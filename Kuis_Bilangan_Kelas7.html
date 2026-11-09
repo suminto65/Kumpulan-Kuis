@@ -1,0 +1,3534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="charter">
+  <title>Bilangan – Kuis Komprehensif Kelas 7 SMP</title>
+  <link rel="icon" href="data:,">
+
+  <!-- Google Fonts: Libre Caslon Text + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+    <!-- KaTeX: rumus matematika ($...$ inline, $$...$$ blok) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+  <style>
+    /* ==========================================================
+       DESIGN SYSTEM: CHARTER ("Stewardship in Navy and Brass")
+       ========================================================== */
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f7f4ec;               /* warm cream paper */
+      --surface-container-low: #fffdf8;    /* bright leaf: figure cards, panels */
+      --surface-container: #ece5d4;        /* deeper cream: secondary buttons, filled bands */
+      --surface-container-high: #e3dac4;   /* table header band, hover fill */
+
+      /* Ink */
+      --on-surface: #1c1f26;               /* near-black ink */
+      --on-surface-variant: #4f5360;       /* graphite: captions, secondary text */
+
+      /* Rules and accents */
+      --outline: #b08d57;                  /* brass: rules, borders */
+      --outline-variant: #d9cfb8;          /* pale brass: hairline dividers */
+      --primary: #14213d;                  /* deep navy: title band, primary actions */
+      --on-primary: #f7f4ec;               /* cream on navy */
+      --primary-container: #e3e6ee;        /* pale navy wash */
+      --on-primary-container: #14213d;
+      --secondary: #2d5a4a;                /* bottle green: favorable notes */
+      --tertiary: #8a6a35;                 /* dark brass: small accent text */
+      --error: #9b2c2c;                    /* deep red for errors */
+      --on-error: #f7f4ec;
+
+      /* Semantic status */
+      --positive: #2d5a4a;
+      --positive-bg: #eaf3ed;
+      --warning: #b08d57;
+      --warning-bg: #fdf8ed;
+      --error-bg: #fbf0f0;
+      --focus: #14213d;
+
+      /* Typography */
+      --font-headline: 'Libre Caslon Text', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-label: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Type scale for focused tool / dashboard */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Radii: Charter maintains crisp, dignified corners */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --brass-rule: 2px solid var(--outline);
+      --hairline: 1px solid var(--outline-variant);
+      --shadow-subtle: 0 4px 12px rgba(20, 33, 61, 0.05);
+      --shadow-card: 0 6px 20px rgba(20, 33, 61, 0.08);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-short: 180ms;
+      --dur-long: 320ms;
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Typography Utilities */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--on-surface);
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    /* Accessibility Focus Rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* ==========================================================
+       TITLE BAND (Charter Primary Treatment 1)
+       ========================================================== */
+    .title-band {
+      background: var(--primary);
+      color: var(--on-primary);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      border-bottom: 3px solid var(--outline);
+      position: relative;
+    }
+
+    .title-band-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .title-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .institution-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: color-mix(in srgb, var(--outline) 85%, white);
+      background: rgba(176, 141, 87, 0.12);
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(176, 141, 87, 0.35);
+      border-radius: var(--rounded);
+    }
+
+    .exam-code {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: color-mix(in srgb, var(--on-primary) 70%, transparent);
+      letter-spacing: 0.04em;
+    }
+
+    .title-band h1 {
+      font-size: var(--display-size);
+      color: var(--on-primary);
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.01em;
+    }
+
+    .title-band h1 span.gold {
+      color: color-mix(in srgb, var(--outline) 80%, white);
+      font-style: italic;
+    }
+
+    .title-band .lede {
+      font-size: var(--subhead-size);
+      color: color-mix(in srgb, var(--on-primary) 82%, var(--primary));
+      max-width: 85ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .syllabus-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .syllabus-pill {
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--on-primary);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--rounded);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* ==========================================================
+       STICKY TOOLBAR & CONTROLS
+       ========================================================== */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface-container-low);
+      border-bottom: var(--brass-rule);
+      box-shadow: 0 4px 15px rgba(20, 33, 61, 0.06);
+    }
+
+    .toolbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface-container);
+      border: var(--hairline);
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .timer-btn {
+      background: transparent;
+      border: none;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem;
+      border-radius: var(--rounded);
+      transition: color var(--dur-short) var(--ease-out);
+    }
+    .timer-btn:hover {
+      color: var(--primary);
+    }
+
+    .mode-toggle {
+      display: inline-flex;
+      background: var(--surface-container);
+      padding: 3px;
+      border-radius: var(--rounded);
+      border: var(--hairline);
+    }
+
+    .mode-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border: none;
+      background: transparent;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      border-radius: var(--rounded);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    .progress-compact {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .progress-bar-bg {
+      width: 110px;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      border: 1px solid var(--outline-variant);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--outline);
+      width: 0%;
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      font-family: var(--font-mono);
+    }
+
+    /* Action Buttons in Toolbar */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--rounded);
+      cursor: pointer;
+      transition: all var(--dur-short) var(--ease-out);
+      text-decoration: none;
+      min-height: 38px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: color-mix(in srgb, var(--primary) 88%, white);
+    }
+
+    .btn-secondary {
+      background: var(--surface-container);
+      color: var(--primary);
+      border: var(--hairline);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+
+    .btn-brass {
+      background: var(--outline);
+      color: #fff;
+      border: 1px solid var(--tertiary);
+    }
+    .btn-brass:hover {
+      background: var(--tertiary);
+    }
+
+    /* ==========================================================
+       MAIN APP CONTAINER & TWO-COLUMN LAYOUT
+       ========================================================== */
+    .main-container {
+      max-width: 1200px;
+      margin: var(--space-lg) auto var(--space-2xl);
+      padding: 0 var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    @media (max-width: 992px) {
+      .main-container {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .sidebar-column {
+        order: -1;
+      }
+    }
+
+    /* ==========================================================
+       SIDEBAR & QUESTION PALETTE
+       ========================================================== */
+    .sidebar-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-top: var(--brass-rule);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-subtle);
+      position: sticky;
+      top: 5rem;
+      max-height: calc(100vh - 6rem);
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: var(--hairline);
+      padding-bottom: 0.5rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .sidebar-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .filter-btn {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      background: var(--surface-container);
+      border: 1px solid transparent;
+      border-radius: var(--rounded);
+      color: var(--on-surface-variant);
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      color: var(--on-primary);
+      font-weight: 600;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.4rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      border: var(--hairline);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+
+    .palette-btn:hover {
+      border-color: var(--outline);
+      background: var(--surface-container);
+    }
+
+    .palette-btn.answered {
+      background: var(--primary-container);
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+    }
+
+    .palette-btn.correct {
+      background: var(--positive-bg);
+      color: var(--positive);
+      border-color: var(--positive);
+    }
+
+    .palette-btn.incorrect {
+      background: var(--error-bg);
+      color: var(--error);
+      border-color: var(--error);
+    }
+
+    .palette-btn.flagged::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      background: var(--outline);
+      border-radius: 50%;
+    }
+
+    .palette-legend {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--on-surface-variant);
+      border-top: var(--hairline);
+      padding-top: var(--space-sm);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      border: 1px solid var(--outline-variant);
+    }
+
+    /* ==========================================================
+       QUESTION CARDS (Charter Figure Card Style)
+       ========================================================== */
+    .question-stream {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .question-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-subtle);
+      position: relative;
+      transition: border-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .question-card:hover {
+      box-shadow: var(--shadow-card);
+    }
+
+    .question-card.active-question {
+      border-left: 4px solid var(--outline);
+    }
+
+    .question-card.status-correct {
+      border-left: 4px solid var(--positive);
+    }
+
+    .question-card.status-incorrect {
+      border-left: 4px solid var(--error);
+    }
+
+    .q-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      border-bottom: var(--hairline);
+      padding-bottom: 0.6rem;
+    }
+
+    .q-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .q-num-badge {
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--rounded);
+    }
+
+    .q-topic-badge {
+      background: var(--surface-container);
+      color: var(--tertiary);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+    }
+
+    .q-type-badge {
+      background: var(--primary-container);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--rounded);
+    }
+
+    .q-points-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--on-surface-variant);
+    }
+
+    .btn-flag {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--on-surface-variant);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+    .btn-flag:hover {
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+    .btn-flag.active {
+      color: var(--outline);
+      font-weight: 600;
+      background: var(--warning-bg);
+      border-color: var(--outline);
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      color: var(--on-surface);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      font-weight: 500;
+    }
+
+    /* Math formatting helpers */
+    .formula-inline {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--surface-container);
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      color: var(--primary);
+      border: 1px solid var(--outline-variant);
+    }
+
+    .math-fraction {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 0.88em;
+      padding: 0 0.2em;
+    }
+    .math-num {
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+    }
+    .math-den {
+      padding-top: 1px;
+    }
+
+    /* Options Containers */
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      transition: all var(--dur-short) var(--ease-out);
+      user-select: none;
+    }
+
+    .option-item:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .option-item.selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+
+    .option-item.correct-reveal {
+      background: var(--positive-bg);
+      border-color: var(--positive);
+    }
+
+    .option-item.incorrect-reveal {
+      background: var(--error-bg);
+      border-color: var(--error);
+    }
+
+    .option-indicator {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: var(--rounded);
+      border: 1.5px solid var(--outline);
+      background: var(--surface-container-low);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 2px;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+
+    .option-item.selected .option-indicator {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .option-text {
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* True/False Buttons Layout */
+    .tf-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .tf-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+      background: var(--background);
+      border: 1.5px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+
+    .tf-btn:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .tf-btn.selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tf-btn.correct-reveal {
+      background: var(--positive-bg);
+      border-color: var(--positive);
+      color: var(--positive);
+    }
+
+    .tf-btn.incorrect-reveal {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Short Answer Input */
+    .short-answer-box {
+      margin-bottom: var(--space-md);
+    }
+
+    .short-answer-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      margin-bottom: 0.4rem;
+    }
+
+    .short-input-row {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 480px;
+    }
+
+    .short-input {
+      flex: 1;
+      padding: 0.65rem 0.9rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border: 1.5px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+
+    .short-input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .short-answer-hint {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      margin-top: 0.35rem;
+    }
+
+    /* Card Footer Actions */
+    .q-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-top: var(--hairline);
+      padding-top: var(--space-md);
+    }
+
+    .q-status-text {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .q-status-text.correct {
+      color: var(--positive);
+    }
+
+    .q-status-text.incorrect {
+      color: var(--error);
+    }
+
+    /* ==========================================================
+       EXPLANATION ACCORDION (Charter Defining Treatment)
+       ========================================================== */
+    .explanation-panel {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      background: var(--surface-container);
+      border-left: 3px solid var(--outline);
+      border-radius: var(--rounded);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      display: none;
+      animation: fadeIn 0.25s var(--ease-out);
+    }
+
+    .explanation-panel.visible {
+      display: block;
+    }
+
+    .explanation-header {
+      font-family: var(--font-headline);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .explanation-body {
+      color: var(--on-surface);
+      margin-bottom: 0.6rem;
+    }
+
+    .explanation-formula-callout {
+      background: var(--surface-container-low);
+      border: 1px dashed var(--outline);
+      padding: 0.6rem 0.8rem;
+      border-radius: var(--rounded);
+      margin: 0.5rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--primary);
+    }
+
+    .excel-tip-box {
+      background: rgba(45, 90, 74, 0.08);
+      border: 1px solid rgba(45, 90, 74, 0.25);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--rounded);
+      font-size: 0.82rem;
+      color: var(--secondary);
+      margin-top: 0.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    /* ==========================================================
+       MODALS: FORMULA SHEET, CALCULATOR, RESULTS
+       ========================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 33, 61, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.2s var(--ease-out);
+    }
+
+    .modal-card {
+      background: var(--background);
+      border: var(--brass-rule);
+      border-radius: var(--rounded);
+      width: 100%;
+      max-width: 850px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: var(--on-primary);
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 2px solid var(--outline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h3 {
+      font-size: 1.25rem;
+      color: var(--on-primary);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--on-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem;
+      border-radius: var(--rounded);
+      transition: background var(--dur-short) var(--ease-out);
+    }
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      background: var(--surface-container);
+      border-top: var(--hairline);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-sm);
+    }
+
+    /* Formula Sheet Content */
+    .formula-topic-section {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .formula-topic-title {
+      font-family: var(--font-headline);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: 0.3rem;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .formula-item {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: 0.6rem 0.8rem;
+    }
+
+    .formula-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      margin-bottom: 0.2rem;
+    }
+
+    .formula-eq {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .formula-desc {
+      font-size: 0.78rem;
+      color: var(--on-surface-variant);
+      line-height: 1.4;
+    }
+
+    /* Calculator Styles */
+    .calc-tabs {
+      display: flex;
+      gap: 0.4rem;
+      border-bottom: var(--hairline);
+      margin-bottom: var(--space-md);
+    }
+
+    .calc-tab-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+
+    .calc-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--outline);
+      background: var(--surface-container);
+    }
+
+    .calc-pane {
+      display: none;
+    }
+    .calc-pane.active {
+      display: block;
+    }
+
+    .calc-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    @media (max-width: 600px) {
+      .calc-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--on-surface-variant);
+    }
+
+    .calc-field input, .calc-field select {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border: 1.5px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+    }
+
+    .calc-result-box {
+      background: var(--surface-container);
+      border: 1.5px solid var(--outline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .calc-result-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--tertiary);
+      margin-bottom: 0.3rem;
+    }
+
+    .calc-result-value {
+      font-family: var(--font-headline);
+      font-size: 1.6rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Score Report Modal */
+    .score-hero {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      border: var(--brass-rule);
+      margin-bottom: var(--space-lg);
+    }
+
+    .score-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 3px solid var(--outline);
+      margin-bottom: var(--space-md);
+      box-shadow: 0 4px 15px rgba(20, 33, 61, 0.2);
+    }
+
+    .score-number {
+      font-family: var(--font-headline);
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .score-out-of {
+      font-size: 0.75rem;
+      color: color-mix(in srgb, var(--on-primary) 70%, transparent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .score-grade {
+      font-family: var(--font-headline);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .score-feedback {
+      font-size: 0.95rem;
+      color: var(--on-surface-variant);
+      max-width: 60ch;
+      margin: 0 auto;
+    }
+
+    .score-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    @media (max-width: 640px) {
+      .score-stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat-card {
+      background: var(--surface-container);
+      padding: 0.75rem;
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== KUIS.skill: logo, editor, bar topik, KaTeX ===== */
+    .brand-row { display:flex; align-items:center; gap:var(--space-md); flex-wrap:wrap; }
+    .brand-logo { width:76px; height:76px; border-radius:50%; flex-shrink:0; box-shadow:0 0 0 2px var(--outline), 0 4px 14px rgba(0,0,0,.35); }
+    .score-hero .brand-logo { margin:0 auto .6rem; display:block; }
+    .btn-editor { border:1.5px solid var(--outline); background:var(--warning-bg); color:var(--tertiary); font-weight:700; }
+    .btn-editor:hover { background:var(--surface-container); }
+    .tbar { margin-bottom:.7rem; } .tbar-top { display:flex; justify-content:space-between; gap:1rem; font-size:.8rem; margin-bottom:.2rem; }
+    .tbar-bg { height:10px; background:var(--surface-container-high); border-radius:99px; overflow:hidden; } .tbar-fill { height:100%; border-radius:99px; }
+    .katex { font-size:1.08em; } .katex-display { margin:.6em 0; overflow-x:auto; overflow-y:hidden; }
+    .modal-footer { flex-wrap:wrap; gap:.5rem; }
+    #editorModal .modal-card { max-width:1120px; width:96vw; }
+    .ed-wrap { display:grid; grid-template-columns:240px 1fr; gap:1rem; }
+    .ed-side { display:flex; flex-direction:column; gap:.5rem; }
+    .ed-list { max-height:56vh; overflow:auto; display:flex; flex-direction:column; gap:.3rem; }
+    .ed-item { text-align:left; padding:.4rem .6rem; border:var(--hairline); background:var(--surface-container-low); border-radius:var(--rounded); cursor:pointer; font:inherit; font-size:.78rem; color:var(--on-surface); }
+    .ed-item.active { background:var(--primary); color:var(--on-primary); } .ed-item small { opacity:.7; }
+    .ed-bar { display:flex; gap:.3rem; flex-wrap:wrap; } .ed-bar .btn { padding:.3rem .5rem; font-size:.72rem; }
+    .ed-form label { display:block; font-size:.75rem; font-weight:600; margin:.6rem 0 .2rem; color:var(--on-surface-variant); }
+    .ed-form input[type=text], .ed-form input[type=number], .ed-form textarea, .ed-form select { width:100%; padding:.45rem .55rem; border:var(--hairline); border-radius:var(--rounded); font:inherit; font-size:.85rem; background:#fff; color:var(--on-surface); }
+    .ed-form textarea { min-height:84px; font-family:var(--font-mono); font-size:.8rem; }
+    .ed-row { display:grid; grid-template-columns:2fr 1fr; gap:.6rem; }
+    .ed-opt { display:grid; grid-template-columns:22px 1fr auto auto; gap:.4rem; align-items:center; margin-bottom:.3rem; }
+    .ed-form .ed-ck { display:flex; align-items:center; gap:.2rem; margin:0; white-space:nowrap; }
+    .ed-note { font-size:.75rem; color:var(--on-surface-variant); margin-top:.8rem; }
+    .ed-preview { margin-top:1rem; padding:.8rem; border:1px dashed var(--outline); background:var(--surface-container-low); border-radius:var(--rounded); }
+    .ed-preview:empty { display:none; } .ed-prev-title { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--tertiary); margin-bottom:.4rem; }
+    .ed-prev-opts { list-style:none; margin:.5rem 0; } .ed-prev-opts li { padding:.15rem 0; } .ed-prev-opts li.ok { color:var(--positive); font-weight:600; }
+    .calc-big { width:100%; padding:.7rem; font-size:1.1rem; font-family:var(--font-mono); border:var(--hairline); border-radius:var(--rounded); }
+    .calc-out { margin-top:.8rem; font-size:1.6rem; font-family:var(--font-mono); color:var(--primary); min-height:2.2rem; }
+    @media (max-width:760px) { .ed-wrap { grid-template-columns:1fr; } .ed-list { max-height:150px; } .brand-logo { width:60px; height:60px; } }
+
+    /* Print & Export Friendly */
+    @media print {
+      .sticky-toolbar, .sidebar-column, .btn-flag, .btn {
+        display: none !important;
+      }
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+      .explanation-panel {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================
+       TOP TITLE BAND
+       ========================================================== -->
+  <header class="title-band">
+    <div class="title-band-inner">
+      <div class="title-meta-row">
+        <div class="brand-row">
+          <img class="brand-logo" id="brandLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAABIFBMVEXp4ePt37T18dllZl1ZaoTU1Kr18Nn/uLh/kKOcjmbBlz7gu10RL2D/AAD/f//9/f0PLFcAAAAUMVsBHEewhTjLp1P+/v6nejDXuGm5lEro6uwxR2fu59HCm0nWs1uKl6dGWXXP1dtneI12hZjl2LDYxZMjOlrNuIqZpLKwikbFqm2xucPEy9JXaYIVM2C7w8xQY3w8UW/ZyqbX3OH+/f3hw2/9/fv+/v2irLj+/v3c4eX+/vwkPWGosr39/fvm05jcwXW5nGTl3MTizIy9omrd0bLv4re6kT3gvmb28duBjqAAEjwzQlSAjZ5ecIfErYLx6s5WV08ADDhtZ1Gecid+jKCHeVT//wCYhFX//7lFSkqFkJ2qqqp8c1V/f3++oF128M85AAAAYHRSTlMI2an//wbUA/////r/AQL+/wD////+Bf/+/v7//v7+///////+/v/+///+//////////7/MP7QTv9s/4v//67//v/+///+/v/+/v///////9L///////8B/wP//wP/Av8Mh+C2AABDFUlEQVR42t19h3/ayrYup9723pMyMjZIYBVAiA4miTGGOG7pyc7e++x62v//X7yZNX00EsUlyZ17f2c7GIP0aa1vVp/Kky+3Dg//8dvhL/8S/8Lr6am2nsKL7A3/+uXwt3+If32JVflSOB3+xm/78PTp2fn5+Yvnf/38+XNDW/iFz399gX959vSUv/2X3w6/FGKVLwLUIf3v01OC0edGu/2qfXFx/ezZs5c1bT0j6+Li4lW73fj8HKNGZE39jP/NYAmtOsTC9OJ5o9HGEGnwvHz58pm2BHwvn11ftF81Pr/AYgaf8cujI1Z5XKio2p0RnF5dv6wd46XL0sscXPjfbxRAn128ajSevzg7PVQ+8n8ZWPiufqES9cLB8oRxqpo44fXmzcvam2fmepl7H5axhvOCStgvjwdY5RFF6ilI1HWtVrUBtdMif3/9ikjY00cUsMojQVV5ev4ci1SHAGXcN1W/DpYWTPR0F3z79i39ATP7xfX1y5dWvI5rL7GAPT8nAvYocFUeA6n/9/QMI3WNgaoqEFHC6lwThJwN6y2G7eI6jxn+gAtMYWePg1flgaEi2nfOkaoqUkH0CMPk7LTeYrrrCGkUGnnd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" alt="Logo Bimbingan Belajar Matematika Suminto">
+          <div class="institution-badge"><i data-lucide="award" style="width: 14px; height: 14px;"></i> <span id="metaBadge"></span></div>
+        </div>
+        <div class="exam-code" id="metaKode"></div>
+      </div>
+      <h1 id="metaJudul"></h1>
+      <p class="lede" id="metaDeskripsi"></p>
+      <div class="syllabus-pills" id="metaPills"></div>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       STICKY TOOLBAR & CONTROLS
+       ========================================================== -->
+  <nav class="sticky-toolbar" aria-label="Toolbar Kontrol Kuis">
+    <div class="toolbar-inner">
+      <div class="toolbar-left">
+        <!-- Timer -->
+        <div class="timer-badge">
+          <i data-lucide="clock" style="width: 16px; height: 16px; color: var(--outline);"></i>
+          <span id="timerDisplay">00:00:00</span>
+          <button class="timer-btn" id="timerToggleBtn" onclick="toggleTimer()" title="Jeda / Lanjutkan Waktu" aria-label="Jeda atau lanjutkan timer">
+            <i data-lucide="pause" id="timerIcon" style="width: 14px; height: 14px;"></i>
+          </button>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-toggle" role="group" aria-label="Pilih Mode Pengerjaan">
+          <button class="mode-btn active" id="btnModePractice" onclick="setMode('practice')">
+            <i data-lucide="sparkles" style="width: 13px; height: 13px;"></i> Mode Latihan
+          </button>
+          <button class="mode-btn" id="btnModeExam" onclick="setMode('exam')">
+            <i data-lucide="timer" style="width: 13px; height: 13px;"></i> Mode Ujian
+          </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-compact">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="toolbarProgressFill"></div>
+          </div>
+          <span class="progress-text" id="toolbarProgressText">0/30</span>
+        </div>
+      </div>
+
+      <div class="toolbar-right">
+        <button class="btn btn-editor" onclick="openEditor()" title="Edit soal, kunci jawaban, dan pembahasan">
+          <i data-lucide="pencil" style="width: 14px; height: 14px;"></i> Editor Kuis
+        </button>
+        <button class="btn btn-secondary" id="btnRumus" style="display:none" onclick="openFormulaModal()">
+          <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> Lembar Rumus
+        </button>
+        <button class="btn btn-secondary" id="btnKalk" style="display:none" onclick="openCalcModal()">
+          <i data-lucide="calculator" style="width: 14px; height: 14px;"></i> Kalkulator
+        </button>
+        <button class="btn btn-brass" onclick="submitQuiz()">
+          <i data-lucide="check-circle" style="width: 14px; height: 14px;"></i> Selesai & Nilai
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================================
+       MAIN CONTENT: QUESTION STREAM & SIDEBAR
+       ========================================================== -->
+  <main class="main-container">
+    <!-- Left: Question Stream -->
+    <section class="question-stream" id="questionStream" aria-label="Daftar Soal Kuis">
+      <!-- Generated dynamically by renderQuestions() -->
+    </section>
+
+    <!-- Right: Sidebar & Navigation Palette -->
+    <aside class="sidebar-column">
+      <div class="sidebar-card">
+        <div class="sidebar-header">
+          <span class="sidebar-title">Navigasi Soal</span>
+          <span class="q-points-badge" id="sidebarAnsweredCount">0 Terjawab</span>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-tabs">
+          <button class="filter-btn active" id="fAll" onclick="filterPalette('all')">Semua</button>
+          <button class="filter-btn" onclick="filterPalette('unanswered')">Belum</button>
+          <button class="filter-btn" onclick="filterPalette('flagged')">Ragu-ragu</button>
+          <button class="filter-btn" onclick="filterPalette('single')">PilGan</button>
+          <button class="filter-btn" onclick="filterPalette('multiple')">Kompleks</button>
+          <button class="filter-btn" onclick="filterPalette('tf')">B/S</button>
+          <button class="filter-btn" onclick="filterPalette('short')">Isian</button>
+        </div>
+
+        <!-- Question Palette Grid -->
+        <div class="palette-grid" id="paletteGrid">
+          <!-- 30 buttons generated by renderPalette() -->
+        </div>
+
+        <!-- Palette Legend -->
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--surface-container-low);"></span>
+            <span>Belum diisi</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--primary-container);"></span>
+            <span>Sudah diisi</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--positive-bg); border-color: var(--positive);"></span>
+            <span>Benar</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--error-bg); border-color: var(--error);"></span>
+            <span>Salah</span>
+          </div>
+          <div class="legend-item" style="grid-column: span 2;">
+            <span class="legend-dot" style="background: var(--outline);"></span>
+            <span>Titik cokelat: Ditandai Ragu-ragu</span>
+          </div>
+        </div>
+
+        <!-- Quick Reset Button -->
+        <div style="margin-top: var(--space-md); text-align: center;">
+          <button class="btn btn-secondary" style="width: 100%; font-size: 0.75rem;" onclick="resetQuiz()">
+            <i data-lucide="rotate-ccw" style="width: 12px; height: 12px;"></i> Reset Semua Jawaban
+          </button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- MODAL: LEMBAR RUMUS (diisi dari META.rumus) -->
+  <div class="modal-overlay" id="formulaModal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="book-open" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Lembar Rumus &amp; Referensi</h3>
+        <button class="modal-close-btn" onclick="closeFormulaModal()" aria-label="Tutup"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+      </div>
+      <div class="modal-body"><div id="formulaBody"></div></div>
+      <div class="modal-footer"><button class="btn btn-primary" onclick="closeFormulaModal()">Tutup</button></div>
+    </div>
+  </div>
+
+  <!-- MODAL: KALKULATOR -->
+  <div class="modal-overlay" id="calcModal" role="dialog" aria-modal="true">
+    <div class="modal-card" style="max-width:520px">
+      <div class="modal-header">
+        <h3><i data-lucide="calculator" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Kalkulator</h3>
+        <button class="modal-close-btn" onclick="closeCalcModal()" aria-label="Tutup"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <input class="calc-big" id="calcInput" type="text" placeholder="mis. 2*(3+4)^2 atau sqrt(49)" onkeydown="if(event.key==='Enter')calcRun()">
+        <div style="margin-top:.6rem"><button class="btn btn-primary" onclick="calcRun()">Hitung</button></div>
+        <div class="calc-out" id="calcOut"></div>
+        <p style="font-size:.78rem;color:var(--on-surface-variant);margin-top:.6rem">Operator: + − × ÷ ^ ( ). Fungsi: sqrt, abs, sin, cos, tan (radian), ln, log, pi. Desimal boleh pakai koma.</p>
+      </div>
+      <div class="modal-footer"><button class="btn btn-primary" onclick="closeCalcModal()">Tutup</button></div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDITOR KUIS -->
+  <div class="modal-overlay" id="editorModal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="pencil" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> Editor Kuis</h3>
+        <button class="modal-close-btn" onclick="closeEditor()" aria-label="Tutup editor"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="ed-wrap">
+          <div class="ed-side">
+            <div class="ed-bar">
+              <button class="btn btn-secondary" onclick="edAdd()">+ Tambah Soal</button>
+              <button class="btn btn-secondary" onclick="edDup()">Duplikat</button>
+              <button class="btn btn-secondary" onclick="edMove(-1)">↑</button>
+              <button class="btn btn-secondary" onclick="edMove(1)">↓</button>
+              <button class="btn btn-secondary" onclick="edDel()">Hapus</button>
+            </div>
+            <div class="ed-list" id="edList"></div>
+          </div>
+          <div>
+            <div class="ed-form" id="edForm"></div>
+            <div class="ed-preview" id="edPreview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-brass" onclick="edSave()">Terapkan &amp; Simpan</button>
+        <button class="btn btn-primary" onclick="edDownloadHtml()">Unduh HTML Kuis (hasil edit)</button>
+        <button class="btn btn-secondary" onclick="edExportJson()">Ekspor JSON</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('edImport').click()">Impor JSON</button>
+        <input type="file" id="edImport" accept=".json,application/json" style="display:none" onchange="edImportJson(this)">
+        <button class="btn btn-secondary" onclick="edReset()">Kembalikan ke Asli</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       MODAL 3: LAPORAN HASIL & ANALITIK SKOR
+       ========================================================== -->
+  <div class="modal-overlay" id="scoreModal" role="dialog" aria-modal="true" aria-labelledby="scoreModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="scoreModalTitle"><i data-lucide="award" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> <span id="scoreModalTitleText">Laporan Hasil</span></h3>
+        <button class="modal-close-btn" onclick="closeScoreModal()" aria-label="Tutup Laporan Hasil">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Hero Score -->
+        <div class="score-hero">
+          <img class="brand-logo" data-logo alt="Logo">
+          <div class="score-circle">
+            <span class="score-number" id="repFinalScore">0</span>
+            <span class="score-out-of">dari 100</span>
+          </div>
+          <div class="score-grade" id="repGradeText">Predikat: -</div>
+          <p class="score-feedback" id="repFeedbackText">
+            Hasil evaluasi Anda.
+          </p>
+        </div>
+
+        <!-- Key Metrics Grid -->
+        <div class="score-stat-grid">
+          <div class="stat-card">
+            <div class="stat-val" id="repCorrectCount">0 / 30</div>
+            <div class="stat-lbl">Jawaban Benar</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="repAccuracy">0%</div>
+            <div class="stat-lbl">Tingkat Akurasi</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="repTimeSpent">00:00</div>
+            <div class="stat-lbl">Durasi Pengerjaan</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val" id="repUnanswered">0</div>
+            <div class="stat-lbl">Tidak Dijawab</div>
+          </div>
+        </div>
+
+        <!-- Topic Mastery Breakdown Chart -->
+        <div style="background: var(--surface-container-low); border: var(--hairline); border-radius: var(--rounded); padding: var(--space-md); margin-bottom: var(--space-md);">
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;">
+            Analisis Penguasaan per Topik
+          </h4>
+          <div id="topicBars"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeScoreModal()">
+          <i data-lucide="eye" style="width: 14px; height: 14px;"></i> Tinjau Seluruh Pembahasan
+        </button>
+        <button class="btn btn-brass" onclick="restartQuizFromModal()">
+          <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i> Ulangi Kuis
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NotebookOS API Shim -->
+  <api-shim></api-shim>
+
+  <!-- DATA KUIS: diisi oleh scripts/build_quiz.py (atau Editor Kuis). Format: {"meta":{...},"soal":[...]} -->
+  <script type="application/json" id="quiz-data">{
+ "meta": {
+  "id": "bilangan-kls7-01",
+  "judul": "Bilangan",
+  "subjudul": "Kuis Komprehensif Kelas 7 SMP",
+  "deskripsi": "Evaluasi Bab 1: bilangan cacah, faktor-KPK-FPB, bilangan bulat, akar dan pangkat, pecahan, desimal, persen, serta bentuk baku.",
+  "kode": "BILANGAN-7-01",
+  "badge": "Bimbingan Belajar Matematika Suminto",
+  "tipLabel": "Tips",
+  "rumusLabel": "Rumus Utama",
+  "kalkulator": true,
+  "pin": "",
+  "rumus": [
+   {
+    "judul": "1. Bilangan Cacah, Faktor, KPK, FPB",
+    "item": [
+     {
+      "label": "Distributif",
+      "eq": "$a(b+c)=ab+ac$",
+      "desc": "Juga berlaku untuk pengurangan: $a(b-c)=ab-ac$."
+     },
+     {
+      "label": "KPK / FPB (faktorisasi)",
+      "eq": "$\\text{KPK}=\\text{pangkat tertinggi},\\ \\text{FPB}=\\text{pangkat terendah}$",
+      "desc": "Dari faktor-faktor prima yang berbeda (KPK) atau yang sama (FPB)."
+     },
+     {
+      "label": "Habis dibagi",
+      "eq": "$3,9:\\ \\text{jumlah angka};\\ 4:\\ 2\\ \\text{angka akhir};\\ 8:\\ 3\\ \\text{angka akhir}$",
+      "desc": "Habis dibagi 6 = genap dan habis dibagi 3."
+     }
+    ]
+   },
+   {
+    "judul": "2. Bilangan Bulat, Pangkat, Akar",
+    "item": [
+     {
+      "label": "Pengurangan",
+      "eq": "$a-b=a+(-b)$",
+      "desc": "$(-)\times(-)=(+)$ dan $(-)\times(+)=(-)$."
+     },
+     {
+      "label": "Urutan kurung",
+      "eq": "$(\\ )\\to[\\ ]\\to\\{\\ \\}$",
+      "desc": "Kerjakan dari kurung terdalam."
+     },
+     {
+      "label": "Taksiran akar",
+      "eq": "$\\sqrt{c}=p+\\dfrac{c-a}{b-a}$",
+      "desc": "$p=\\sqrt{a}$ dan $q=\\sqrt{b}$ adalah bilangan bulat berurutan."
+     }
+    ]
+   },
+   {
+    "judul": "3. Pecahan dan Bentuk Baku",
+    "item": [
+     {
+      "label": "Operasi pecahan",
+      "eq": "$\\dfrac{a}{b}:\\dfrac{c}{d}=\\dfrac{a}{b}\\times\\dfrac{d}{c}$",
+      "desc": "Penjumlahan/pengurangan: samakan penyebut."
+     },
+     {
+      "label": "Bentuk baku",
+      "eq": "$a\\times10^{n}\\ \\text{atau}\\ a\\times10^{-n},\\ 1\\le a<10$",
+      "desc": "Bilangan besar: pangkat positif; bilangan kecil: pangkat negatif."
+     }
+    ]
+   }
+  ]
+ },
+ "soal": [
+  {
+   "topic": "Bilangan Cacah & Sifat Operasi",
+   "type": "single",
+   "points": 3,
+   "question": "Hasil dari $(29\\times4)+(29\\times6)$ dengan sifat distributif adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$290$"
+    },
+    {
+     "id": "B",
+     "text": "$174$"
+    },
+    {
+     "id": "C",
+     "text": "$68$"
+    },
+    {
+     "id": "D",
+     "text": "$300$"
+    }
+   ],
+   "correct": "A",
+   "explanation": "Sifat distributif: $(a\\times b)+(a\\times c)=a\\times(b+c)$.<br>$(29\\times4)+(29\\times6)=29\\times(4+6)=29\\times10=$ <b>290<\/b>.",
+   "formula": "$(a\\times b)+(a\\times c)=a\\times(b+c)$",
+   "tip": "Cari faktor yang sama dulu, lalu jumlahkan sisanya.",
+   "id": 1,
+   "topicId": "bilangan-cacah-sifat-operasi",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Bilangan Cacah & Sifat Operasi",
+   "type": "single",
+   "points": 3,
+   "question": "Operasi $\\diamond$ berarti &ldquo;kuadratkan bilangan pertama, lalu jumlahkan dengan bilangan kedua&rdquo;. Nilai $(2\\diamond3)\\diamond4$ adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$17$"
+    },
+    {
+     "id": "B",
+     "text": "$49$"
+    },
+    {
+     "id": "C",
+     "text": "$53$"
+    },
+    {
+     "id": "D",
+     "text": "$13$"
+    }
+   ],
+   "correct": "C",
+   "explanation": "Kurung lebih dulu: $2\\diamond3=2^2+3=7$.<br>Lalu $7\\diamond4=7^2+4=49+4=$ <b>53<\/b>.<br>Jawaban $17$ muncul bila urutannya terbalik, yaitu $2\\diamond(3\\diamond4)$ &mdash; ini menunjukkan operasi $\\diamond$ tidak asosiatif.",
+   "tip": "Kerjakan dari kurung terdalam.",
+   "id": 2,
+   "topicId": "bilangan-cacah-sifat-operasi",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "single",
+   "points": 3,
+   "question": "Himpunan faktor prima dari $60$ adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$\\{1,2,3,5\\}$"
+    },
+    {
+     "id": "B",
+     "text": "$\\{2,3,5\\}$"
+    },
+    {
+     "id": "C",
+     "text": "$\\{2,3,4,5\\}$"
+    },
+    {
+     "id": "D",
+     "text": "$\\{2,3,5,10\\}$"
+    }
+   ],
+   "correct": "B",
+   "explanation": "Pohon faktor: $60=2\\times2\\times3\\times5=2^2\\times3\\times5$.<br>Faktor primanya <b>2, 3, dan 5<\/b>. Angka $1$ bukan prima; $4$ dan $10$ komposit.",
+   "tip": "Bilangan 1 bukan prima karena hanya punya satu faktor.",
+   "id": 3,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "single",
+   "points": 3,
+   "question": "KPK dan FPB dari $84$ dan $108$ berturut-turut adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$756$ dan $6$"
+    },
+    {
+     "id": "B",
+     "text": "$1.512$ dan $12$"
+    },
+    {
+     "id": "C",
+     "text": "$9.072$ dan $1$"
+    },
+    {
+     "id": "D",
+     "text": "$756$ dan $12$"
+    }
+   ],
+   "correct": "D",
+   "explanation": "$84=2^2\\times3\\times7$ dan $108=2^2\\times3^3$.<br>KPK = pangkat tertinggi: $2^2\\times3^3\\times7=756$.<br>FPB = pangkat terendah: $2^2\\times3=12$.<br>Cek: $756\\times12=9.072=84\\times108$.",
+   "formula": "$\\text{KPK}\\times\\text{FPB}=a\\times b$ (untuk dua bilangan)",
+   "id": 4,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "single",
+   "points": 3,
+   "question": "Alfa, Beta, dan Gama les musik di tempat yang sama. Alfa les setiap 3 hari sekali, Beta 5 hari sekali, dan Gama 6 hari sekali. Pada 5 Juli 2013 mereka datang bersama untuk pertama kali. Mereka datang bersama untuk kedua kalinya pada tanggal ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "4 Agustus 2013"
+    },
+    {
+     "id": "B",
+     "text": "5 Agustus 2013"
+    },
+    {
+     "id": "C",
+     "text": "3 Agustus 2013"
+    },
+    {
+     "id": "D",
+     "text": "11 Juli 2013"
+    }
+   ],
+   "correct": "A",
+   "explanation": "Selang waktu = KPK dari $3$, $5$, $6$ = <b>30 hari<\/b>.<br>5 Juli + 30 hari: Juli punya 31 hari, jadi 5 Juli + 26 hari = 31 Juli, sisa 4 hari, yaitu <b>4 Agustus 2013<\/b>.",
+   "tip": "Hati-hati jumlah hari dalam bulan Juli (31 hari).",
+   "id": 5,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "single",
+   "points": 4,
+   "question": "Cinta berenang setiap 4 hari sekali dan Kasih setiap 3 hari sekali. Pada bulan Juli, Cinta pertama kali berenang tanggal 1 dan Kasih tanggal 2. Banyak hari mereka berenang bersama dalam bulan Juli adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "2 kali"
+    },
+    {
+     "id": "B",
+     "text": "3 kali"
+    },
+    {
+     "id": "C",
+     "text": "4 kali"
+    },
+    {
+     "id": "D",
+     "text": "5 kali"
+    }
+   ],
+   "correct": "B",
+   "explanation": "Cinta: 1, 5, 9, 13, 17, 21, 25, 29.<br>Kasih: 2, 5, 8, 11, 14, 17, 20, 23, 26, 29.<br>Yang sama: <b>5, 17, 29<\/b> &rarr; 3 kali. Selang antar pertemuan = KPK(4, 3) = 12 hari.",
+   "tip": "Tulis dulu kedua daftar tanggalnya, baru cari yang sama.",
+   "id": 6,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "single",
+   "points": 3,
+   "question": "Hasil dari $-10-(-4)$ adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$-6$"
+    },
+    {
+     "id": "B",
+     "text": "$-14$"
+    },
+    {
+     "id": "C",
+     "text": "$14$"
+    },
+    {
+     "id": "D",
+     "text": "$6$"
+    }
+   ],
+   "correct": "A",
+   "explanation": "$a-(-b)=a+b$, sehingga $-10-(-4)=-10+4=$ <b>−6<\/b>.",
+   "formula": "$a-b=a+(-b)$",
+   "tip": "Kurang bilangan negatif sama dengan tambah bilangan positif.",
+   "id": 7,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "single",
+   "points": 3,
+   "question": "Dalam ujian 50 soal, jawaban benar bernilai 2, salah −1, dan tidak dijawab 0. Alvin menjawab benar 32 soal, salah 11 soal, dan sisanya tidak dijawab. Nilai Alvin adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$64$"
+    },
+    {
+     "id": "B",
+     "text": "$75$"
+    },
+    {
+     "id": "C",
+     "text": "$42$"
+    },
+    {
+     "id": "D",
+     "text": "$53$"
+    }
+   ],
+   "correct": "D",
+   "explanation": "Nilai = $32\\times2+11\\times(-1)+7\\times0=64-11=$ <b>53<\/b>.<br>Soal tidak dijawab = $50-32-11=7$ (bernilai 0).",
+   "tip": "Jawaban salah mengurangi nilai, bukan menambah.",
+   "id": 8,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "single",
+   "points": 3,
+   "question": "Hasil dari $\\{168:[(8-15)\\times(-18+14)]\\}$ adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$-6$"
+    },
+    {
+     "id": "B",
+     "text": "$24$"
+    },
+    {
+     "id": "C",
+     "text": "$6$"
+    },
+    {
+     "id": "D",
+     "text": "$42$"
+    }
+   ],
+   "correct": "C",
+   "explanation": "Kurung biasa: $(8-15)=-7$ dan $(-18+14)=-4$.<br>Kurung siku: $(-7)\\times(-4)=28$.<br>Kurung kurawal: $168:28=$ <b>6<\/b>.",
+   "tip": "Urutan: kurung kecil &rarr; kurung siku &rarr; kurung kurawal.",
+   "id": 9,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Akar & Pangkat",
+   "type": "single",
+   "points": 3,
+   "question": "Dengan memperkirakan memakai dua bilangan kuadrat sempurna terdekat, nilai $\\sqrt{40}$ kira-kira ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$6{,}69$"
+    },
+    {
+     "id": "B",
+     "text": "$6{,}31$"
+    },
+    {
+     "id": "C",
+     "text": "$6{,}50$"
+    },
+    {
+     "id": "D",
+     "text": "$6{,}40$"
+    }
+   ],
+   "correct": "B",
+   "explanation": "$\\sqrt{36}=6$ dan $\\sqrt{49}=7$, jadi $\\sqrt{40}$ ada di antara $6$ dan $7$.<br>$\\sqrt{c}=p+\\dfrac{c-a}{b-a}=6+\\dfrac{40-36}{49-36}=6+\\dfrac{4}{13}\\approx$ <b>6,31<\/b>.",
+   "formula": "$\\sqrt{c}=p+\\dfrac{c-a}{b-a}$",
+   "id": 10,
+   "topicId": "akar-pangkat",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Pecahan",
+   "type": "single",
+   "points": 3,
+   "question": "Tini memiliki terigu $2\\dfrac{1}{6}$ kg, lalu membeli lagi $3\\dfrac{1}{2}$ kg. Terigu yang dipakai membuat kue $4\\dfrac{2}{5}$ kg. Sisa terigu Tini adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$1\\dfrac{8}{15}$ kg"
+    },
+    {
+     "id": "B",
+     "text": "$1\\dfrac{11}{30}$ kg"
+    },
+    {
+     "id": "C",
+     "text": "$1\\dfrac{7}{30}$ kg"
+    },
+    {
+     "id": "D",
+     "text": "$1\\dfrac{4}{15}$ kg"
+    }
+   ],
+   "correct": "D",
+   "explanation": "Ubah ke pecahan biasa dan samakan penyebut (KPK 6, 2, 5 = 30):<br>$\\dfrac{65}{30}+\\dfrac{105}{30}-\\dfrac{132}{30}=\\dfrac{38}{30}=\\dfrac{19}{15}=$ <b>$1\\dfrac{4}{15}$<\/b> kg.",
+   "tip": "Jumlahkan dulu, baru kurangi.",
+   "id": 11,
+   "topicId": "pecahan",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Desimal, Persen & Bentuk Baku",
+   "type": "single",
+   "points": 3,
+   "question": "Bentuk baku dari $0{,}000526$ adalah ….",
+   "options": [
+    {
+     "id": "A",
+     "text": "$5{,}26\\times10^{-3}$"
+    },
+    {
+     "id": "B",
+     "text": "$5{,}26\\times10^{-4}$"
+    },
+    {
+     "id": "C",
+     "text": "$52{,}6\\times10^{-5}$"
+    },
+    {
+     "id": "D",
+     "text": "$5{,}26\\times10^{4}$"
+    }
+   ],
+   "correct": "B",
+   "explanation": "Geser koma 4 tempat ke kanan sehingga $1\\le a<10$: $5{,}26$. Karena bilangan kecil, pangkatnya negatif: $5{,}26\\times10^{-4}$.<br>$52{,}6\\times10^{-5}$ bernilai sama tetapi bukan bentuk baku ($a$ harus kurang dari 10).",
+   "formula": "$a\\times10^{-n},\\;1\\le a<10$",
+   "id": 12,
+   "topicId": "desimal-persen-bentuk-baku",
+   "typeLabel": "Pilihan Ganda Biasa"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "multiple",
+   "points": 4,
+   "question": "Manakah yang termasuk bilangan prima? (Pilih semua jawaban yang benar)",
+   "options": [
+    {
+     "id": "A",
+     "text": "$2$"
+    },
+    {
+     "id": "B",
+     "text": "$9$"
+    },
+    {
+     "id": "C",
+     "text": "$13$"
+    },
+    {
+     "id": "D",
+     "text": "$15$"
+    }
+   ],
+   "correct": [
+    "A",
+    "C"
+   ],
+   "explanation": "A benar: 2 hanya habis dibagi 1 dan 2. C benar: 13 hanya habis dibagi 1 dan 13.<br>B salah: $9=3\\times3$. D salah: $15=3\\times5$ (komposit).",
+   "id": 13,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Pilihan Ganda Kompleks (Checkbox)"
+  },
+  {
+   "topic": "Bilangan Cacah & Sifat Operasi",
+   "type": "multiple",
+   "points": 4,
+   "question": "Sifat operasi manakah yang berlaku pada bilangan cacah? (Pilih semua jawaban yang benar)",
+   "options": [
+    {
+     "id": "A",
+     "text": "$a+b=b+a$"
+    },
+    {
+     "id": "B",
+     "text": "$a-b=b-a$"
+    },
+    {
+     "id": "C",
+     "text": "$a\\times b=b\\times a$"
+    },
+    {
+     "id": "D",
+     "text": "$a:b=b:a$"
+    }
+   ],
+   "correct": [
+    "A",
+    "C"
+   ],
+   "explanation": "A dan C benar: penjumlahan dan perkalian bersifat komutatif.<br>B salah: $8-5=3$ tetapi $5-8=-3$. D salah: $10:5=2$ tetapi $5:10=0{,}5$.",
+   "id": 14,
+   "topicId": "bilangan-cacah-sifat-operasi",
+   "typeLabel": "Pilihan Ganda Kompleks (Checkbox)"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "multiple",
+   "points": 4,
+   "question": "Manakah bilangan yang habis dibagi 6? (Pilih semua jawaban yang benar)",
+   "options": [
+    {
+     "id": "A",
+     "text": "$75.264$"
+    },
+    {
+     "id": "B",
+     "text": "$4.325$"
+    },
+    {
+     "id": "C",
+     "text": "$1.236$"
+    },
+    {
+     "id": "D",
+     "text": "$9.520$"
+    }
+   ],
+   "correct": [
+    "A",
+    "C"
+   ],
+   "explanation": "Habis dibagi 6 = genap <b>dan<\/b> jumlah angkanya habis dibagi 3.<br>75.264: genap, $7+5+2+6+4=24$ &#10003;. 4.325: ganjil &#10007;. 1.236: genap, $1+2+3+6=12$ &#10003;. 9.520: genap tetapi $9+5+2+0=16$ &#10007;.",
+   "tip": "Syarat 6 = syarat 2 dan syarat 3 sekaligus.",
+   "id": 15,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Pilihan Ganda Kompleks (Checkbox)"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "multiple",
+   "points": 4,
+   "question": "Manakah yang bernilai $-8$? (Pilih semua jawaban yang benar)",
+   "options": [
+    {
+     "id": "A",
+     "text": "$(-2)^3$"
+    },
+    {
+     "id": "B",
+     "text": "$-2^3$"
+    },
+    {
+     "id": "C",
+     "text": "$(-2)^4$"
+    },
+    {
+     "id": "D",
+     "text": "$-(-2)^3$"
+    }
+   ],
+   "correct": [
+    "A",
+    "B"
+   ],
+   "explanation": "A: $(-2)(-2)(-2)=-8$ &#10003;. B: $-(2\\times2\\times2)=-8$ &#10003;.<br>C: $(-2)^4=16$ &#10007;. D: $-(-8)=8$ &#10007;.",
+   "tip": "Pangkat ganjil pada bilangan negatif menghasilkan negatif; pangkat genap menghasilkan positif.",
+   "id": 16,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Pilihan Ganda Kompleks (Checkbox)"
+  },
+  {
+   "topic": "Akar & Pangkat",
+   "type": "multiple",
+   "points": 5,
+   "question": "Manakah pernyataan yang benar? (Pilih semua jawaban yang benar)",
+   "options": [
+    {
+     "id": "A",
+     "text": "$\\sqrt{200}$ terletak di antara $14$ dan $15$"
+    },
+    {
+     "id": "B",
+     "text": "$\\sqrt[3]{-27}=-3$"
+    },
+    {
+     "id": "C",
+     "text": "$0{,}\\overline{2}=\\dfrac{2}{9}$"
+    },
+    {
+     "id": "D",
+     "text": "$4{,}5\\times10^{-3}=0{,}45$"
+    }
+   ],
+   "correct": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "A benar: $14^2=196<200<225=15^2$. B benar: $(-3)^3=-27$. C benar: $0{,}222\\ldots=\\dfrac{2}{9}$.<br>D salah: $4{,}5\\times10^{-3}=0{,}0045$.",
+   "id": 17,
+   "topicId": "akar-pangkat",
+   "typeLabel": "Pilihan Ganda Kompleks (Checkbox)"
+  },
+  {
+   "topic": "Pecahan",
+   "type": "multiple",
+   "points": 5,
+   "question": "Manakah bilangan yang nilainya berada tepat di antara $\\dfrac{3}{5}$ dan $\\dfrac{5}{8}$? (Pilih semua jawaban yang benar)",
+   "options": [
+    {
+     "id": "A",
+     "text": "$0{,}61$"
+    },
+    {
+     "id": "B",
+     "text": "$\\dfrac{31}{50}$"
+    },
+    {
+     "id": "C",
+     "text": "$0{,}63$"
+    },
+    {
+     "id": "D",
+     "text": "$\\dfrac{3}{5}$"
+    }
+   ],
+   "correct": [
+    "A",
+    "B"
+   ],
+   "explanation": "$\\dfrac{3}{5}=0{,}600$ dan $\\dfrac{5}{8}=0{,}625$.<br>A: $0{,}61$ &#10003;. B: $\\dfrac{31}{50}=0{,}62$ &#10003;. C: $0{,}63>0{,}625$ &#10007;. D: sama dengan batas bawah, bukan di antara &#10007;.",
+   "tip": "Ubah semua ke desimal agar mudah dibandingkan.",
+   "id": 18,
+   "topicId": "pecahan",
+   "typeLabel": "Pilihan Ganda Kompleks (Checkbox)"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "tf",
+   "points": 3,
+   "question": "Pernyataan: “Bilangan 1 termasuk bilangan prima.”",
+   "correct": "false",
+   "explanation": "Salah. Bilangan prima memiliki tepat dua faktor (1 dan dirinya sendiri), sedangkan 1 hanya punya satu faktor sehingga disebut unit. Prima terkecil adalah 2.",
+   "options": [
+    {
+     "id": "true",
+     "text": "Benar (True)"
+    },
+    {
+     "id": "false",
+     "text": "Salah (False)"
+    }
+   ],
+   "id": 19,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Benar atau Salah"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "tf",
+   "points": 3,
+   "question": "Pernyataan: “$0:(-8)=0$, sedangkan $-6:0$ tidak terdefinisi.”",
+   "correct": "true",
+   "explanation": "Benar. $0:(-8)=0$ karena $0\\times(-8)=0$. Pembagian dengan 0 tidak terdefinisi karena tidak ada bilangan yang dikali 0 hasilnya $-6$.",
+   "options": [
+    {
+     "id": "true",
+     "text": "Benar (True)"
+    },
+    {
+     "id": "false",
+     "text": "Salah (False)"
+    }
+   ],
+   "id": 20,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Benar atau Salah"
+  },
+  {
+   "topic": "Bilangan Cacah & Sifat Operasi",
+   "type": "tf",
+   "points": 3,
+   "question": "Pernyataan: “Pada bilangan cacah, pengurangan bersifat komutatif.”",
+   "correct": "false",
+   "explanation": "Salah. Contoh penyangkal: $8-5=3$ tetapi $5-8=-3$ (bahkan bukan bilangan cacah). Jadi $a-b\\neq b-a$ pada umumnya.",
+   "options": [
+    {
+     "id": "true",
+     "text": "Benar (True)"
+    },
+    {
+     "id": "false",
+     "text": "Salah (False)"
+    }
+   ],
+   "id": 21,
+   "topicId": "bilangan-cacah-sifat-operasi",
+   "typeLabel": "Benar atau Salah"
+  },
+  {
+   "topic": "Akar & Pangkat",
+   "type": "tf",
+   "points": 3,
+   "question": "Pernyataan: “Nilai $-3^2$ sama dengan $9$.”",
+   "correct": "false",
+   "explanation": "Salah. Pangkat dikerjakan lebih dulu: $-3^2=-(3\\times3)=-9$. Yang bernilai $9$ adalah $(-3)^2$.",
+   "options": [
+    {
+     "id": "true",
+     "text": "Benar (True)"
+    },
+    {
+     "id": "false",
+     "text": "Salah (False)"
+    }
+   ],
+   "id": 22,
+   "topicId": "akar-pangkat",
+   "typeLabel": "Benar atau Salah"
+  },
+  {
+   "topic": "Desimal, Persen & Bentuk Baku",
+   "type": "tf",
+   "points": 3,
+   "question": "Pernyataan: “Pecahan desimal berulang $0{,}666\\ldots$ termasuk bilangan irasional.”",
+   "correct": "false",
+   "explanation": "Salah. $0{,}666\\ldots=\\dfrac{2}{3}$ dapat ditulis sebagai $\\dfrac{a}{b}$, jadi rasional. Irasional adalah desimal <i>tak berulang<\/i> seperti $\\sqrt{2}$ dan $\\pi$.",
+   "options": [
+    {
+     "id": "true",
+     "text": "Benar (True)"
+    },
+    {
+     "id": "false",
+     "text": "Salah (False)"
+    }
+   ],
+   "id": 23,
+   "topicId": "desimal-persen-bentuk-baku",
+   "typeLabel": "Benar atau Salah"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "tf",
+   "points": 4,
+   "question": "Pernyataan: “Bilangan 63.816 habis dibagi 8, tetapi tidak habis dibagi 9.”",
+   "correct": "true",
+   "explanation": "Benar. Tiga angka terakhir $816:8=102$, jadi habis dibagi 8. Jumlah angkanya $6+3+8+1+6=24$, tidak habis dibagi 9.",
+   "options": [
+    {
+     "id": "true",
+     "text": "Benar (True)"
+    },
+    {
+     "id": "false",
+     "text": "Salah (False)"
+    }
+   ],
+   "id": 24,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Benar atau Salah"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "short",
+   "points": 4,
+   "question": "Hasil dari $7\\times(-9)$ adalah …. (tulis angka)",
+   "correctAnswer": -63,
+   "explanation": "Positif $\\times$ negatif = negatif, jadi $7\\times(-9)=$ <b>−63<\/b>.",
+   "acceptedStrings": [
+    "-63",
+    "−63"
+   ],
+   "id": 25,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Isian Singkat"
+  },
+  {
+   "topic": "Faktor, KPK, dan FPB",
+   "type": "short",
+   "points": 4,
+   "question": "FPB dari $12$ dan $18$ adalah …. (tulis angka)",
+   "correctAnswer": 6,
+   "explanation": "Faktor 12: 1, 2, 3, 4, 6, 12. Faktor 18: 1, 2, 3, 6, 9, 18.<br>Faktor persekutuan terbesar = <b>6<\/b>.",
+   "id": 26,
+   "topicId": "faktor-kpk-dan-fpb",
+   "typeLabel": "Isian Singkat"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "short",
+   "points": 4,
+   "question": "Hasil dari $(-18+30):(-3-1)$ adalah …. (tulis angka)",
+   "correctAnswer": -3,
+   "explanation": "Kurung dulu: $(-18+30)=12$ dan $(-3-1)=-4$.<br>$12:(-4)=$ <b>−3<\/b>.",
+   "acceptedStrings": [
+    "-3",
+    "−3"
+   ],
+   "id": 27,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Isian Singkat"
+  },
+  {
+   "topic": "Desimal, Persen & Bentuk Baku",
+   "type": "short",
+   "points": 4,
+   "question": "Bentuk desimal dari $3{,}8\\times10^{5}$ adalah …. (tulis angka tanpa titik pemisah)",
+   "correctAnswer": 380000,
+   "explanation": "Pangkat $10^5$ menggeser koma 5 tempat ke kanan: $3{,}8\\times100.000=$ <b>380.000<\/b>.",
+   "acceptedStrings": [
+    "380.000",
+    "380000"
+   ],
+   "id": 28,
+   "topicId": "desimal-persen-bentuk-baku",
+   "typeLabel": "Isian Singkat"
+  },
+  {
+   "topic": "Bilangan Bulat",
+   "type": "short",
+   "points": 5,
+   "question": "Jumlah tiga bilangan genap berurutan adalah 114. Jumlah bilangan terbesar dan terkecilnya adalah …. (tulis angka)",
+   "correctAnswer": 76,
+   "explanation": "Bilangan tengah $=114:3=38$, jadi ketiganya $36,\\,38,\\,40$.<br>Terbesar + terkecil $=40+36=$ <b>76<\/b>.",
+   "id": 29,
+   "topicId": "bilangan-bulat",
+   "typeLabel": "Isian Singkat"
+  },
+  {
+   "topic": "Pecahan",
+   "type": "short",
+   "points": 5,
+   "question": "Jika $\\dfrac{38}{9}=a+\\dfrac{1}{b+\\dfrac{1}{c}}$ dengan $a,b,c$ bilangan bulat, maka $a+b+c=$ …. (tulis angka)",
+   "correctAnswer": 10,
+   "explanation": "$\\dfrac{38}{9}=4+\\dfrac{2}{9}=4+\\dfrac{1}{\\,9/2\\,}=4+\\dfrac{1}{4+\\dfrac{1}{2}}$.<br>Jadi $a=4,\\ b=4,\\ c=2$ dan $a+b+c=$ <b>10<\/b>.",
+   "id": 30,
+   "topicId": "pecahan",
+   "typeLabel": "Isian Singkat"
+  }
+ ]
+}</script>
+
+  <!-- ==========================================================
+       CORE APPLICATION JAVASCRIPT
+       ========================================================== -->
+  <script>
+    /* DATA KUIS dibaca dari elemen JSON #quiz-data (lihat bawah) */
+    const TYPE_LABELS = { single: 'Pilihan Ganda Biasa', multiple: 'Pilihan Ganda Kompleks (Checkbox)', tf: 'Benar atau Salah', short: 'Isian Singkat' };
+    let QUIZ_DATA = [];
+    let META = {};
+    let TOPIC_NAMES = {};
+    let BASE_HASH = '';
+    let DRAFT_KEY = 'kuis-draft';
+    const PRISTINE_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML; /* salinan bersih untuk "Unduh HTML Kuis" */
+    (function loadQuizData() {
+      const el = document.getElementById('quiz-data');
+      let base = { meta: {}, soal: [] };
+      try { base = JSON.parse(el.textContent); } catch (e) { console.error('Data kuis rusak:', e); }
+      let h = 0; const t = el.textContent; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0;
+      BASE_HASH = String(h);
+      DRAFT_KEY = 'kuis-draft:' + ((base.meta && base.meta.id) || 'kuis');
+      META = base.meta || {}; QUIZ_DATA = base.soal || [];
+      try {
+        const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+        if (d && d.base === BASE_HASH && d.soal) { META = d.meta; QUIZ_DATA = d.soal; window.HAS_DRAFT = true; }
+      } catch (e) {}
+    })();
+
+    const STATE = {
+      mode: 'practice', // 'practice' (instant check) or 'exam' (timed, submit at end)
+      userAnswers: {},  // { qId: value }
+      checkedStatus: {},// { qId: true/false } (in practice mode)
+      flagged: {},      // { qId: true/false }
+      startTime: null,
+      elapsedSeconds: 0,
+      timerRunning: true,
+      timerInterval: null,
+      isSubmitted: false
+    };
+
+    /* Topic definitions for analytics */
+    
+
+    
+
+    /* ==========================================================
+       INITIALIZATION
+       ========================================================== */
+    document.addEventListener("DOMContentLoaded", function() {
+      initApp();
+    });
+
+    async function initApp() {
+      // 1. Try restoring state if available
+      await loadPersistentState();
+
+      // 2. Start timer
+      startTimer();
+
+      applyMeta();
+
+      // 3. Render questions & sidebar
+      renderQuestions();
+      renderPalette();
+      updateProgress();
+
+      // 4. Initialize Lucide icons
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      initExtras();
+    }
+
+    /* ==========================================================
+       PERSISTENCE (NotebookOS API Shim Support)
+       ========================================================== */
+    async function loadPersistentState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && saved.userAnswers) {
+            STATE.userAnswers = saved.userAnswers || {};
+            STATE.checkedStatus = saved.checkedStatus || {};
+            STATE.flagged = saved.flagged || {};
+            STATE.elapsedSeconds = saved.elapsedSeconds || 0;
+            STATE.mode = saved.mode || 'practice';
+            STATE.isSubmitted = !!saved.isSubmitted;
+          }
+        } catch (e) {
+          console.warn("Could not load persistent state:", e);
+        }
+      }
+    }
+
+    async function savePersistentState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState({
+            userAnswers: STATE.userAnswers,
+            checkedStatus: STATE.checkedStatus,
+            flagged: STATE.flagged,
+            elapsedSeconds: STATE.elapsedSeconds,
+            mode: STATE.mode,
+            isSubmitted: STATE.isSubmitted
+          });
+        } catch (e) {
+          console.warn("Could not save persistent state:", e);
+        }
+      }
+    }
+
+    /* ==========================================================
+       TIMER LOGIC
+       ========================================================== */
+    function startTimer() {
+      if (STATE.timerInterval) clearInterval(STATE.timerInterval);
+      STATE.timerRunning = true;
+      updateTimerIcon();
+
+      STATE.timerInterval = setInterval(function() {
+        if (STATE.timerRunning && !STATE.isSubmitted) {
+          STATE.elapsedSeconds++;
+          renderTimer();
+        }
+      }, 1000);
+    }
+
+    function toggleTimer() {
+      STATE.timerRunning = !STATE.timerRunning;
+      updateTimerIcon();
+    }
+
+    function updateTimerIcon() {
+      const icon = document.getElementById("timerIcon");
+      if (!icon) return;
+      if (STATE.timerRunning) {
+        icon.setAttribute("data-lucide", "pause");
+      } else {
+        icon.setAttribute("data-lucide", "play");
+      }
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderTimer() {
+      const display = document.getElementById("timerDisplay");
+      if (!display) return;
+      const hrs = Math.floor(STATE.elapsedSeconds / 3600);
+      const mins = Math.floor((STATE.elapsedSeconds % 3600) / 60);
+      const secs = STATE.elapsedSeconds % 60;
+      display.textContent =
+        String(hrs).padStart(2, '0') + ':' +
+        String(mins).padStart(2, '0') + ':' +
+        String(secs).padStart(2, '0');
+    }
+
+    /* ==========================================================
+       MODE SWITCHER (Practice vs Exam)
+       ========================================================== */
+    function setMode(newMode) {
+      if (STATE.mode === newMode) return;
+      STATE.mode = newMode;
+
+      const btnPrac = document.getElementById("btnModePractice");
+      const btnExam = document.getElementById("btnModeExam");
+
+      if (newMode === 'practice') {
+        if (btnPrac) btnPrac.classList.add("active");
+        if (btnExam) btnExam.classList.remove("active");
+      } else {
+        if (btnPrac) btnPrac.classList.remove("active");
+        if (btnExam) btnExam.classList.add("active");
+      }
+
+      renderQuestions();
+      renderPalette();
+      savePersistentState();
+    }
+
+    /* ==========================================================
+       RENDER QUESTIONS
+       ========================================================== */
+    function renderQuestions() {
+      const stream = document.getElementById("questionStream");
+      if (!stream) return;
+
+      stream.innerHTML = "";
+
+      QUIZ_DATA.forEach(function(q, idx) {
+        const card = document.createElement("article");
+        card.className = "question-card";
+        card.id = `qCard_${q.id}`;
+
+        const isFlagged = !!STATE.flagged[q.id];
+        const isChecked = !!STATE.checkedStatus[q.id];
+        const hasAnswer = STATE.userAnswers[q.id] !== undefined;
+        const isCorrect = isAnswerCorrect(q.id);
+
+        if (isChecked || STATE.isSubmitted) {
+          if (isCorrect) card.classList.add("status-correct");
+          else card.classList.add("status-incorrect");
+        }
+
+        // Header Meta
+        let metaHtml = `
+          <div class="q-meta-bar">
+            <div class="q-tags">
+              <span class="q-num-badge">Soal ${String(q.id).padStart(2, '0')}</span>
+              <span class="q-topic-badge">${q.topic}</span>
+              <span class="q-type-badge">${q.typeLabel}</span>
+              <span class="q-points-badge">${q.points} Poin</span>
+            </div>
+            <button class="btn-flag ${isFlagged ? 'active' : ''}" onclick="toggleFlag(${q.id})" title="Tandai jika masih ragu-ragu">
+              <i data-lucide="bookmark" style="width: 13px; height: 13px;"></i>
+              <span>${isFlagged ? 'Ditandai' : 'Tandai Ragu'}</span>
+            </button>
+          </div>
+        `;
+
+        // Question Text
+        let textHtml = `<div class="q-text">${q.question}</div>`;
+
+        // Input group based on type
+        let inputHtml = "";
+        if (q.type === "single") {
+          inputHtml = renderSingleChoice(q);
+        } else if (q.type === "multiple") {
+          inputHtml = renderMultipleChoice(q);
+        } else if (q.type === "tf") {
+          inputHtml = renderTrueFalse(q);
+        } else if (q.type === "short") {
+          inputHtml = renderShortAnswer(q);
+        }
+
+        // Action & Status Row
+        let actionsHtml = `
+          <div class="q-actions">
+            <div>
+              ${renderStatusBadge(q)}
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              ${(STATE.mode === 'practice' && !STATE.isSubmitted) ? `
+                <button class="btn btn-secondary" onclick="checkSingleQuestion(${q.id})">
+                  <i data-lucide="check" style="width: 14px; height: 14px;"></i> Periksa Jawaban
+                </button>
+              ` : ''}
+              ${(isChecked || STATE.isSubmitted) ? `
+                <button class="btn btn-secondary" onclick="toggleExplanation(${q.id})">
+                  <i data-lucide="help-circle" style="width: 14px; height: 14px;"></i> Pembahasan & Rumus
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+
+        // Explanation panel
+        let explanationHtml = `
+          <div class="explanation-panel ${(isChecked || STATE.isSubmitted) ? 'visible' : ''}" id="expl_${q.id}">
+            <div class="explanation-header">
+              <i data-lucide="info" style="width: 16px; height: 16px; color: var(--outline);"></i>
+              Pembahasan & Analisis Solusi
+            </div>
+            <div class="explanation-body">
+              ${q.explanation}
+            </div>
+            ${extraHtml(q)}
+          </div>
+        `;
+
+        card.innerHTML = metaHtml + textHtml + inputHtml + actionsHtml + explanationHtml;
+        stream.appendChild(card);
+      });
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    /* Render Sub-types */
+    function renderSingleChoice(q) {
+      const selected = STATE.userAnswers[q.id];
+      const isRevealed = STATE.checkedStatus[q.id] || STATE.isSubmitted;
+
+      let html = `<div class="options-group" role="radiogroup" aria-label="Pilihan Soal ${q.id}">`;
+      q.options.forEach(function(opt) {
+        let extraCls = "";
+        if (selected === opt.id) extraCls += " selected";
+        if (isRevealed) {
+          if (opt.id === q.correct) extraCls += " correct-reveal";
+          else if (selected === opt.id && opt.id !== q.correct) extraCls += " incorrect-reveal";
+        }
+
+        html += `
+          <div class="option-item ${extraCls}" onclick="selectSingleChoice(${q.id}, '${opt.id}')" role="radio" aria-checked="${selected === opt.id}">
+            <div class="option-indicator">${opt.id}</div>
+            <div class="option-text">${opt.text}</div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      return html;
+    }
+
+    function renderMultipleChoice(q) {
+      const selectedList = STATE.userAnswers[q.id] || [];
+      const isRevealed = STATE.checkedStatus[q.id] || STATE.isSubmitted;
+
+      let html = `<div class="options-group" role="group" aria-label="Pilihan Kompleks Soal ${q.id}">`;
+      q.options.forEach(function(opt) {
+        const isSelected = selectedList.includes(opt.id);
+        const isCorrectOption = q.correct.includes(opt.id);
+        let extraCls = "";
+        if (isSelected) extraCls += " selected";
+        if (isRevealed) {
+          if (isCorrectOption) extraCls += " correct-reveal";
+          else if (isSelected && !isCorrectOption) extraCls += " incorrect-reveal";
+        }
+
+        html += `
+          <div class="option-item ${extraCls}" onclick="toggleMultipleChoice(${q.id}, '${opt.id}')" role="checkbox" aria-checked="${isSelected}">
+            <div class="option-indicator">${isSelected ? '✓' : opt.id}</div>
+            <div class="option-text">${opt.text}</div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      return html;
+    }
+
+    function renderTrueFalse(q) {
+      const selected = STATE.userAnswers[q.id];
+      const isRevealed = STATE.checkedStatus[q.id] || STATE.isSubmitted;
+
+      let trueCls = selected === "true" ? "selected" : "";
+      let falseCls = selected === "false" ? "selected" : "";
+
+      if (isRevealed) {
+        if (q.correct === "true") trueCls += " correct-reveal";
+        if (q.correct === "false") falseCls += " correct-reveal";
+        if (selected === "true" && q.correct !== "true") trueCls += " incorrect-reveal";
+        if (selected === "false" && q.correct !== "false") falseCls += " incorrect-reveal";
+      }
+
+      return `
+        <div class="tf-options">
+          <button class="tf-btn ${trueCls}" onclick="selectTrueFalse(${q.id}, 'true')">
+            <i data-lucide="check" style="width: 16px; height: 16px;"></i> Benar (True)
+          </button>
+          <button class="tf-btn ${falseCls}" onclick="selectTrueFalse(${q.id}, 'false')">
+            <i data-lucide="x" style="width: 16px; height: 16px;"></i> Salah (False)
+          </button>
+        </div>
+      `;
+    }
+
+    function renderShortAnswer(q) {
+      const val = STATE.userAnswers[q.id] || "";
+      const isRevealed = STATE.checkedStatus[q.id] || STATE.isSubmitted;
+      const isCorrect = isAnswerCorrect(q.id);
+
+      let borderCls = "";
+      if (isRevealed) {
+        borderCls = isCorrect ? "style='border-color: var(--positive); background: var(--positive-bg);'" : "style='border-color: var(--error); background: var(--error-bg);'";
+      }
+
+      return `
+        <div class="short-answer-box">
+          <label class="short-answer-label" for="shortInput_${q.id}">Ketikkan Jawaban Angka Anda:</label>
+          <div class="short-input-row">
+            <input type="text" class="short-input" id="shortInput_${q.id}" value="${val}" ${borderCls}
+                   placeholder="Contoh: 172.800.000 atau 172800000"
+                   onchange="handleShortAnswerChange(${q.id}, this.value)"
+                   ${STATE.isSubmitted ? 'disabled' : ''}>
+          </div>
+          <div class="short-answer-hint">
+            Format: masukkan angka bulat atau persentase, koma/titik ribuan dan simbol 'Rp' diterima.
+          </div>
+        </div>
+      `;
+    }
+
+    function renderStatusBadge(q) {
+      const isChecked = STATE.checkedStatus[q.id] || STATE.isSubmitted;
+      if (!isChecked) {
+        if (STATE.userAnswers[q.id] !== undefined) {
+          return `<span class="q-status-text" style="color: var(--primary);"><i data-lucide="edit-3" style="width: 14px; height: 14px;"></i> Jawaban Disimpan</span>`;
+        }
+        return `<span class="q-status-text" style="color: var(--on-surface-variant);"><i data-lucide="circle-dashed" style="width: 14px; height: 14px;"></i> Belum Dijawab</span>`;
+      }
+
+      const isCorrect = isAnswerCorrect(q.id);
+      if (isCorrect) {
+        return `<span class="q-status-text correct"><i data-lucide="check-circle" style="width: 15px; height: 15px;"></i> Benar (+${q.points} Poin)</span>`;
+      } else {
+        return `<span class="q-status-text incorrect"><i data-lucide="alert-circle" style="width: 15px; height: 15px;"></i> Kurang Tepat (0 Poin)</span>`;
+      }
+    }
+
+    /* ==========================================================
+       USER INPUT HANDLERS
+       ========================================================== */
+    function selectSingleChoice(qId, optId) {
+      if (STATE.isSubmitted) return;
+      STATE.userAnswers[qId] = optId;
+      refreshQuestionCard(qId);
+      updateProgress();
+      savePersistentState();
+    }
+
+    function toggleMultipleChoice(qId, optId) {
+      if (STATE.isSubmitted) return;
+      let current = STATE.userAnswers[qId] || [];
+      if (!Array.isArray(current)) current = [];
+
+      const idx = current.indexOf(optId);
+      if (idx > -1) {
+        current.splice(idx, 1);
+      } else {
+        current.push(optId);
+      }
+
+      if (current.length === 0) {
+        delete STATE.userAnswers[qId];
+      } else {
+        STATE.userAnswers[qId] = current;
+      }
+
+      refreshQuestionCard(qId);
+      updateProgress();
+      savePersistentState();
+    }
+
+    function selectTrueFalse(qId, val) {
+      if (STATE.isSubmitted) return;
+      STATE.userAnswers[qId] = val;
+      refreshQuestionCard(qId);
+      updateProgress();
+      savePersistentState();
+    }
+
+    function handleShortAnswerChange(qId, val) {
+      if (STATE.isSubmitted) return;
+      val = (val || "").trim();
+      if (!val) {
+        delete STATE.userAnswers[qId];
+      } else {
+        STATE.userAnswers[qId] = val;
+      }
+      refreshQuestionCard(qId);
+      updateProgress();
+      savePersistentState();
+    }
+
+    function toggleFlag(qId) {
+      STATE.flagged[qId] = !STATE.flagged[qId];
+      refreshQuestionCard(qId);
+      renderPalette();
+      savePersistentState();
+    }
+
+    function checkSingleQuestion(qId) {
+      if (STATE.userAnswers[qId] === undefined) {
+        alert("Silakan berikan jawaban Anda terlebih dahulu sebelum memeriksa.");
+        return;
+      }
+      STATE.checkedStatus[qId] = true;
+      refreshQuestionCard(qId);
+      renderPalette();
+      savePersistentState();
+    }
+
+    function toggleExplanation(qId) {
+      const panel = document.getElementById(`expl_${qId}`);
+      if (!panel) return;
+      panel.classList.toggle("visible");
+    }
+
+    function refreshQuestionCard(qId) {
+      const q = QUIZ_DATA.find(function(item) { return item.id === qId; });
+      if (!q) return;
+
+      const card = document.getElementById(`qCard_${qId}`);
+      if (!card) return;
+
+      // Re-render single card to maintain fast tactile response
+      const isFlagged = !!STATE.flagged[q.id];
+      const isChecked = !!STATE.checkedStatus[q.id];
+      const isCorrect = isAnswerCorrect(q.id);
+
+      card.className = "question-card";
+      if (isChecked || STATE.isSubmitted) {
+        if (isCorrect) card.classList.add("status-correct");
+        else card.classList.add("status-incorrect");
+      }
+
+      let metaHtml = `
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-num-badge">Soal ${String(q.id).padStart(2, '0')}</span>
+            <span class="q-topic-badge">${q.topic}</span>
+            <span class="q-type-badge">${q.typeLabel}</span>
+            <span class="q-points-badge">${q.points} Poin</span>
+          </div>
+          <button class="btn-flag ${isFlagged ? 'active' : ''}" onclick="toggleFlag(${q.id})" title="Tandai jika masih ragu-ragu">
+            <i data-lucide="bookmark" style="width: 13px; height: 13px;"></i>
+            <span>${isFlagged ? 'Ditandai' : 'Tandai Ragu'}</span>
+          </button>
+        </div>
+      `;
+
+      let textHtml = `<div class="q-text">${q.question}</div>`;
+
+      let inputHtml = "";
+      if (q.type === "single") inputHtml = renderSingleChoice(q);
+      else if (q.type === "multiple") inputHtml = renderMultipleChoice(q);
+      else if (q.type === "tf") inputHtml = renderTrueFalse(q);
+      else if (q.type === "short") inputHtml = renderShortAnswer(q);
+
+      let actionsHtml = `
+        <div class="q-actions">
+          <div>
+            ${renderStatusBadge(q)}
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            ${(STATE.mode === 'practice' && !STATE.isSubmitted) ? `
+              <button class="btn btn-secondary" onclick="checkSingleQuestion(${q.id})">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i> Periksa Jawaban
+              </button>
+            ` : ''}
+            ${(isChecked || STATE.isSubmitted) ? `
+              <button class="btn btn-secondary" onclick="toggleExplanation(${q.id})">
+                <i data-lucide="help-circle" style="width: 14px; height: 14px;"></i> Pembahasan & Rumus
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `;
+
+      let explanationHtml = `
+        <div class="explanation-panel ${(isChecked || STATE.isSubmitted) ? 'visible' : ''}" id="expl_${q.id}">
+          <div class="explanation-header">
+            <i data-lucide="info" style="width: 16px; height: 16px; color: var(--outline);"></i>
+            Pembahasan & Analisis Solusi
+          </div>
+          <div class="explanation-body">
+            ${q.explanation}
+          </div>
+          ${extraHtml(q)}
+        </div>
+      `;
+
+      card.innerHTML = metaHtml + textHtml + inputHtml + actionsHtml + explanationHtml;
+      if (window.lucide) window.lucide.createIcons();
+      renderPalette();
+    }
+
+    /* ==========================================================
+       ANSWER VALIDATION ENGINE
+       ========================================================== */
+    function isAnswerCorrect(qId) {
+      const q = QUIZ_DATA.find(function(item) { return item.id === qId; });
+      if (!q) return false;
+
+      const userAns = STATE.userAnswers[qId];
+      if (userAns === undefined || userAns === null) return false;
+
+      if (q.type === "single" || q.type === "tf") {
+        return String(userAns).trim().toLowerCase() === String(q.correct).trim().toLowerCase();
+      }
+
+      if (q.type === "multiple") {
+        if (!Array.isArray(userAns)) return false;
+        if (userAns.length !== q.correct.length) return false;
+        const sortedUser = [...userAns].sort();
+        const sortedCorrect = [...q.correct].sort();
+        return sortedUser.every(function(val, index) { return val === sortedCorrect[index]; });
+      }
+
+      if (q.type === "short") {
+        return validateShortAnswer(userAns, q);
+      }
+
+      return false;
+    }
+
+    function normAns(s) {
+      s = String(s).toLowerCase().replace(/[−–]/g, '-').replace(/\s+/g, '').replace(/^rp\.?/, '');
+      if (/^-?\d{1,3}(\.\d{3})+(,\d+)?$/.test(s)) s = s.replace(/\./g, '').replace(',', '.'); else s = s.replace(/,/g, '.');
+      return s;
+    }
+    function toNum(s) {
+      s = normAns(s);
+      const m = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+      if (m) return parseFloat(m[1]) / parseFloat(m[2]);
+      return /^-?\d+(\.\d+)?$/.test(s) ? parseFloat(s) : NaN;
+    }
+    function validateShortAnswer(userStr, q) {
+      if (userStr === undefined || userStr === null || String(userStr).trim() === '') return false;
+      const u = normAns(userStr);
+      const acc = [].concat(q.acceptedStrings || []);
+      if (q.correctAnswer !== undefined && q.correctAnswer !== null && q.correctAnswer !== '') acc.push(String(q.correctAnswer));
+      if (acc.some(function(a) { return normAns(a) === u; })) return true;
+      const n = toNum(userStr);
+      if (!isNaN(n)) {
+        const tol = (typeof q.tolerance === 'number') ? q.tolerance : 0.01;
+        if (acc.some(function(a) { const an = toNum(a); return !isNaN(an) && Math.abs(n - an) <= tol; })) return true;
+      }
+      return false;
+    }
+
+    /* ==========================================================
+       PALETTE & PROGRESS BAR
+       ========================================================== */
+    function updateProgress() {
+      const answeredCount = Object.keys(STATE.userAnswers).length;
+      const total = QUIZ_DATA.length;
+      const pct = Math.round((answeredCount / total) * 100);
+
+      const bar = document.getElementById("toolbarProgressFill");
+      const text = document.getElementById("toolbarProgressText");
+      const sideCount = document.getElementById("sidebarAnsweredCount");
+
+      if (bar) bar.style.width = pct + "%";
+      if (text) text.textContent = `${answeredCount}/${total}`;
+      if (sideCount) sideCount.textContent = `${answeredCount} Terjawab`;
+    }
+
+    let currentPaletteFilter = 'all';
+
+    function filterPalette(filter) {
+      currentPaletteFilter = filter;
+      const buttons = document.querySelectorAll('.filter-tabs .filter-btn');
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+
+      // Find the clicked button or match text
+      const target = Array.from(buttons).find(function(b) {
+        return b.getAttribute('onclick').includes(`'${filter}'`);
+      });
+      if (target) target.classList.add('active');
+
+      renderPalette();
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById("paletteGrid");
+      if (!grid) return;
+
+      grid.innerHTML = "";
+
+      QUIZ_DATA.forEach(function(q) {
+        // Filter check
+        const isAnswered = STATE.userAnswers[q.id] !== undefined;
+        const isFlagged = !!STATE.flagged[q.id];
+        const isChecked = STATE.checkedStatus[q.id] || STATE.isSubmitted;
+        const isCorrect = isAnswerCorrect(q.id);
+
+        if (currentPaletteFilter === 'unanswered' && isAnswered) return;
+        if (currentPaletteFilter === 'flagged' && !isFlagged) return;
+        if (currentPaletteFilter === 'single' && q.type !== 'single') return;
+        if (currentPaletteFilter === 'multiple' && q.type !== 'multiple') return;
+        if (currentPaletteFilter === 'tf' && q.type !== 'tf') return;
+        if (currentPaletteFilter === 'short' && q.type !== 'short') return;
+
+        const btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.textContent = q.id;
+        btn.title = `Lompat ke Soal ${q.id} (${q.topic})`;
+
+        if (isFlagged) btn.classList.add("flagged");
+        if (isAnswered) btn.classList.add("answered");
+
+        if (isChecked) {
+          if (isCorrect) btn.classList.add("correct");
+          else btn.classList.add("incorrect");
+        }
+
+        btn.onclick = function() {
+          scrollToQuestion(q.id);
+        };
+
+        grid.appendChild(btn);
+      });
+    }
+
+    function scrollToQuestion(qId) {
+      const el = document.getElementById(`qCard_${qId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('active-question');
+        setTimeout(function() {
+          el.classList.remove('active-question');
+        }, 1500);
+      }
+    }
+
+    /* ==========================================================
+       SUBMIT & SCORE REPORT
+       ========================================================== */
+    function submitQuiz() {
+      const answeredCount = Object.keys(STATE.userAnswers).length;
+      const total = QUIZ_DATA.length;
+
+      if (!STATE.isSubmitted && answeredCount < total) {
+        const confirmSubmit = confirm(`Anda baru menjawab ${answeredCount} dari ${total} soal. Yakin ingin mengumpulkan dan menyelesaikan evaluasi sekarang?`);
+        if (!confirmSubmit) return;
+      }
+
+      STATE.isSubmitted = true;
+      STATE.timerRunning = false;
+      updateTimerIcon();
+
+      // Mark all questions as checked to reveal answers
+      QUIZ_DATA.forEach(function(q) {
+        STATE.checkedStatus[q.id] = true;
+      });
+
+      // Compute Scores
+      let totalEarned = 0;
+      let maxPoints = 0;
+      let correctCount = 0;
+      const topicStats = {};
+
+      
+      QUIZ_DATA.forEach(function(q) {
+        maxPoints += q.points;
+        if (!topicStats[q.topicId]) topicStats[q.topicId] = { correct: 0, total: 0 };
+        topicStats[q.topicId].total += 1;
+
+        if (isAnswerCorrect(q.id)) {
+          totalEarned += q.points;
+          correctCount += 1;
+          topicStats[q.topicId].correct += 1;
+        }
+      });
+
+      const finalScore = Math.round((totalEarned / maxPoints) * 100);
+      const accuracy = Math.round((correctCount / total) * 100);
+
+      // Populate Report Modal
+      const scoreNum = document.getElementById("repFinalScore");
+      const gradeText = document.getElementById("repGradeText");
+      const feedbackText = document.getElementById("repFeedbackText");
+      const correctTxt = document.getElementById("repCorrectCount");
+      const accuracyTxt = document.getElementById("repAccuracy");
+      const timeSpentTxt = document.getElementById("repTimeSpent");
+      const unansweredTxt = document.getElementById("repUnanswered");
+
+      if (scoreNum) scoreNum.textContent = finalScore;
+      if (correctTxt) correctTxt.textContent = `${correctCount} / ${total}`;
+      if (accuracyTxt) accuracyTxt.textContent = `${accuracy}%`;
+      if (unansweredTxt) unansweredTxt.textContent = `${total - answeredCount}`;
+
+      const mins = Math.floor(STATE.elapsedSeconds / 60);
+      const secs = STATE.elapsedSeconds % 60;
+      if (timeSpentTxt) timeSpentTxt.textContent = `${mins}m ${secs}s`;
+
+      // Grade classification
+      let grade = "D";
+      let appraisal = "Perlu pendalaman konsep dasar. Pelajari pembahasan tiap soal, lalu coba lagi.";
+      if (finalScore >= 85) { grade = "A (Sangat Memuaskan)"; appraisal = "Luar biasa! Anda menguasai materi dengan sangat baik."; }
+      else if (finalScore >= 70) { grade = "B (Baik)"; appraisal = "Bagus! Sebagian besar konsep sudah dikuasai. Perhatikan lagi detail perhitungan."; }
+      else if (finalScore >= 55) { grade = "C (Cukup)"; appraisal = "Cukup baik. Topik dengan bar cokelat/merah di bawah masih perlu latihan tambahan."; }
+
+      if (gradeText) gradeText.textContent = `Predikat: ${grade}`;
+      if (feedbackText) feedbackText.textContent = appraisal;
+
+      // Update UI components
+      renderQuestions();
+      renderPalette();
+      updateProgress();
+      savePersistentState();
+
+      // Render Topic Chart
+      renderTopicChart(topicStats);
+
+      // Open Score Modal
+      openScoreModal();
+    }
+
+    function renderTopicChart(stats) {
+      const box = document.getElementById("topicBars");
+      if (!box) return;
+      box.innerHTML = Object.keys(stats).map(function(k) {
+        const st = stats[k];
+        const p = st.total ? Math.round(st.correct / st.total * 100) : 0;
+        const col = p >= 80 ? 'var(--positive)' : (p >= 50 ? 'var(--outline)' : 'var(--error)');
+        return '<div class="tbar"><div class="tbar-top"><span>' + esc(TOPIC_NAMES[k] || k) + '</span><span>' + st.correct + '/' + st.total + ' · ' + p + '%</span></div><div class="tbar-bg"><div class="tbar-fill" style="width:' + p + '%;background:' + col + '"></div></div></div>';
+      }).join('');
+    }
+
+    function resetQuiz() {
+      const confirmReset = confirm("Apakah Anda yakin ingin mereset seluruh jawaban dan mengulang kuis dari awal?");
+      if (!confirmReset) return;
+
+      STATE.userAnswers = {};
+      STATE.checkedStatus = {};
+      STATE.flagged = {};
+      STATE.elapsedSeconds = 0;
+      STATE.isSubmitted = false;
+      STATE.timerRunning = true;
+
+      renderQuestions();
+      renderPalette();
+      updateProgress();
+      startTimer();
+      savePersistentState();
+    }
+
+    function restartQuizFromModal() {
+      closeScoreModal();
+      resetQuiz();
+    }
+
+    /* ==========================================================
+       MODAL CONTROLLERS
+       ========================================================== */
+    function openFormulaModal() {
+      const m = document.getElementById("formulaModal");
+      if (m) m.classList.add("open");
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeFormulaModal() {
+      const m = document.getElementById("formulaModal");
+      if (m) m.classList.remove("open");
+    }
+
+    function openCalcModal() {
+      const m = document.getElementById("calcModal");
+      if (m) m.classList.add("open");
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeCalcModal() {
+      const m = document.getElementById("calcModal");
+      if (m) m.classList.remove("open");
+    }
+
+    function openScoreModal() {
+      const m = document.getElementById("scoreModal");
+      if (m) m.classList.add("open");
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeScoreModal() {
+      const m = document.getElementById("scoreModal");
+      if (m) m.classList.remove("open");
+    }
+
+        /* ==========================================================
+       KUIS.skill — DATA, MATEMATIKA (KaTeX), KALKULATOR, EDITOR
+       ========================================================== */
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function stripTags(s) { return String(s || '').replace(/<[^>]*>/g, ''); }
+    function slug(s) { return String(s || 'kuis').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'kuis'; }
+
+    function rebuildTopics() {
+      TOPIC_NAMES = {};
+      QUIZ_DATA.forEach(function(q) {
+        q.typeLabel = TYPE_LABELS[q.type] || q.typeLabel;
+        q.topicId = q.topicId || slug(q.topic);
+        TOPIC_NAMES[q.topicId] = q.topic;
+      });
+    }
+
+    function extraHtml(q) {
+      let h = '';
+      if (q.formula) h += '<div class="explanation-formula-callout"><strong>' + esc(META.rumusLabel || 'Rumus Utama') + ':</strong> ' + q.formula + '</div>';
+      const tip = q.tip || q.excelTip;
+      if (tip) h += '<div class="excel-tip-box"><i data-lucide="lightbulb" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;"></i><div><strong>' + esc(META.tipLabel || 'Tips') + ':</strong> ' + tip + '</div></div>';
+      return h;
+    }
+
+    function applyMeta() {
+      rebuildTopics();
+      const $ = function(id) { return document.getElementById(id); };
+      const types = {}; QUIZ_DATA.forEach(function(q) { types[q.type] = 1; });
+      document.title = (META.judul || 'Kuis') + (META.subjudul ? ' – ' + META.subjudul : '');
+      $('metaBadge').textContent = META.badge || 'Bimbingan Belajar Matematika Suminto';
+      $('metaKode').textContent = META.kode ? 'KODE: ' + META.kode : '';
+      $('metaJudul').innerHTML = esc(META.judul || 'Kuis') + (META.subjudul ? ': <span class="gold">' + esc(META.subjudul) + '</span>' : '');
+      $('metaDeskripsi').textContent = META.deskripsi || '';
+      const pills = [QUIZ_DATA.length + ' Soal', Object.keys(types).length + ' Tipe Evaluasi', 'Pemeriksaan Otomatis', 'Pembahasan Lengkap'];
+      if (META.rumus && META.rumus.length) pills.push('Lembar Rumus');
+      if (META.kalkulator) pills.push('Kalkulator');
+      $('metaPills').innerHTML = pills.map(function(p) { return '<span class="syllabus-pill">' + esc(p) + '</span>'; }).join('');
+      $('btnRumus').style.display = (META.rumus && META.rumus.length) ? '' : 'none';
+      $('btnKalk').style.display = META.kalkulator ? '' : 'none';
+      $('fAll').textContent = 'Semua (' + QUIZ_DATA.length + ')';
+      $('scoreModalTitleText').textContent = 'Laporan Hasil — ' + (META.judul || 'Kuis');
+      $('repFeedbackText').textContent = 'Hasil evaluasi: ' + (META.judul || 'Kuis') + (META.subjudul ? ' – ' + META.subjudul : '') + '.';
+      const logo = $('brandLogo').src;
+      document.querySelectorAll('img[data-logo]').forEach(function(i) { i.src = logo; });
+      const fav = document.querySelector('link[rel=icon]'); if (fav) fav.href = logo;
+      $('formulaBody').innerHTML = (META.rumus || []).map(function(sec) {
+        return '<div class="formula-topic-section"><h4 class="formula-topic-title">' + esc(sec.judul) + '</h4><div class="formula-grid">' +
+          (sec.item || []).map(function(it) {
+            return '<div class="formula-item"><div class="formula-label">' + it.label + '</div><div class="formula-eq">' + it.eq + '</div>' + (it.desc ? '<div class="formula-desc">' + it.desc + '</div>' : '') + '</div>';
+          }).join('') + '</div></div>';
+      }).join('');
+    }
+
+    /* ---------- Matematika: KaTeX auto-render ---------- */
+    function typeset(root) {
+      if (!window.renderMathInElement || !root) return;
+      try { window.renderMathInElement(root, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], throwOnError: false }); } catch (e) {}
+    }
+    const TS_ROOTS = ['questionStream', 'formulaBody', 'edPreview', 'scoreModal'];
+    let tsTimer = null;
+    const tsObs = new MutationObserver(function() {
+      clearTimeout(tsTimer);
+      tsTimer = setTimeout(function() {
+        tsObs.disconnect();
+        TS_ROOTS.forEach(function(id) { typeset(document.getElementById(id)); });
+        observeTs();
+      }, 40);
+    });
+    function observeTs() {
+      TS_ROOTS.forEach(function(id) { const e = document.getElementById(id); if (e) tsObs.observe(e, { childList: true, subtree: true }); });
+    }
+
+    /* ---------- Kalkulator ilmiah sederhana ---------- */
+    function calcRun() {
+      const out = document.getElementById('calcOut');
+      let s = document.getElementById('calcInput').value.toLowerCase().replace(/×/g, '*').replace(/÷/g, '/').replace(/[−–]/g, '-').replace(/,/g, '.').replace(/\^/g, '**');
+      const map = { sqrt: 'Math.sqrt', abs: 'Math.abs', sin: 'Math.sin', cos: 'Math.cos', tan: 'Math.tan', ln: 'Math.log', log: 'Math.log10', pi: 'Math.PI', e: 'Math.E' };
+      s = s.replace(/\b(sqrt|abs|sin|cos|tan|ln|log|pi|e)\b/g, function(m) { return map[m]; });
+      if (!s.trim() || !/^[0-9+\-*\/().\s]*$/.test(s.replace(/Math\.(sqrt|abs|sin|cos|tan|log10|log|PI|E)/g, ''))) { out.textContent = 'Ekspresi tidak valid'; return; }
+      try {
+        const v = Function('"use strict"; return (' + s + ')')();
+        out.textContent = (typeof v === 'number' && isFinite(v)) ? String(+v.toPrecision(12)).replace('.', ',') : 'Tidak terdefinisi';
+      } catch (e) { out.textContent = 'Ekspresi tidak valid'; }
+    }
+
+    /* ---------- EDITOR KUIS ---------- */
+    let ED = null, EDSEL = 0, ED_DIRTY = false;
+    const TYPE_SHORT = { single: 'PG', multiple: 'PK', tf: 'B/S', short: 'Isian' };
+
+    function openEditor() {
+      if (META.pin) {
+        const p = prompt('Masukkan PIN editor:');
+        if (p === null) return;
+        if (p !== String(META.pin)) { alert('PIN salah.'); return; }
+      }
+      ED = { meta: JSON.parse(JSON.stringify(META)), soal: JSON.parse(JSON.stringify(QUIZ_DATA)) };
+      EDSEL = ED.soal.length ? 0 : -1; ED_DIRTY = false;
+      renderEditor();
+      document.getElementById('editorModal').classList.add('open');
+    }
+    function closeEditor() {
+      if (ED_DIRTY && !confirm('Ada perubahan yang belum diterapkan. Tutup editor dan buang perubahan?')) return;
+      document.getElementById('editorModal').classList.remove('open');
+    }
+    function edDirty() { ED_DIRTY = true; }
+    function edSelect(i) { EDSEL = i; renderEditor(); }
+
+    function renderEditor() {
+      document.getElementById('edList').innerHTML =
+        '<button class="ed-item ' + (EDSEL === -1 ? 'active' : '') + '" onclick="edSelect(-1)">⚙ Info Kuis</button>' +
+        ED.soal.map(function(q, i) {
+          return '<button class="ed-item ' + (i === EDSEL ? 'active' : '') + '" onclick="edSelect(' + i + ')"><b>' + (i + 1) + '.</b> ' + esc(stripTags(q.question).slice(0, 40)) + ' <small>[' + TYPE_SHORT[q.type] + ']</small></button>';
+        }).join('');
+      renderEdForm();
+    }
+
+    function fld(label, inner) { return '<label>' + label + '</label>' + inner; }
+    function renderEdForm() {
+      const f = document.getElementById('edForm');
+      if (EDSEL === -1) {
+        const m = ED.meta;
+        const ti = function(k, lbl) { return fld(lbl, '<input type="text" data-f="' + k + '" value="' + esc(m[k] || '') + '" oninput="edInfo(this)">'); };
+        f.innerHTML = '<h4>Info Kuis</h4>' + ti('judul', 'Judul kuis') + ti('subjudul', 'Subjudul (tampil emas)') +
+          fld('Deskripsi', '<textarea data-f="deskripsi" oninput="edInfo(this)">' + esc(m.deskripsi || '') + '</textarea>') +
+          ti('kode', 'Kode kuis') + ti('badge', 'Label di atas judul') + ti('pin', 'PIN Editor (kosongkan jika tanpa PIN)') + ti('tipLabel', 'Label kotak tips (mis. Tips)') +
+          '<label><input type="checkbox" data-f="kalkulator" ' + (m.kalkulator ? 'checked' : '') + ' onchange="edInfo(this)"> Tampilkan tombol Kalkulator</label>' +
+          '<p class="ed-note">Lembar Rumus diubah lewat Ekspor/Impor JSON atau minta Claude memperbaruinya.</p>';
+        document.getElementById('edPreview').innerHTML = '';
+        return;
+      }
+      const q = ED.soal[EDSEL]; if (!q) { f.innerHTML = '<p>Belum ada soal. Klik “+ Tambah Soal”.</p>'; return; }
+      let h = '<h4>Soal ' + (EDSEL + 1) + '</h4>';
+      h += fld('Tipe soal', '<select onchange="edType(this.value)">' + Object.keys(TYPE_LABELS).map(function(t) { return '<option value="' + t + '"' + (q.type === t ? ' selected' : '') + '>' + TYPE_LABELS[t] + '</option>'; }).join('') + '</select>');
+      h += '<div class="ed-row">' + fld('Topik', '<input type="text" data-q="topic" value="' + esc(q.topic) + '" oninput="edQ(this)">') + fld('Poin', '<input type="number" min="1" data-q="points" value="' + esc(q.points || 1) + '" oninput="edQ(this)">') + '</div>';
+      h += fld('Pertanyaan (boleh HTML & rumus $...$)', '<textarea data-q="question" oninput="edQ(this)">' + esc(q.question) + '</textarea>');
+      if (q.type === 'single' || q.type === 'multiple') {
+        h += '<label>Opsi jawaban — centang/pilih yang benar</label>';
+        h += q.options.map(function(o, i) {
+          const on = q.type === 'single' ? q.correct === o.id : (q.correct || []).indexOf(o.id) > -1;
+          return '<div class="ed-opt"><b>' + o.id + '</b><input type="text" data-oi="' + i + '" value="' + esc(o.text) + '" oninput="edOpt(this)">' +
+            '<label class="ed-ck"><input type="' + (q.type === 'single' ? 'radio' : 'checkbox') + '" name="edc" ' + (on ? 'checked' : '') + ' onchange="edCorrect(' + i + ',this.checked)"> benar</label>' +
+            '<button class="btn btn-secondary" onclick="edDelOpt(' + i + ')" title="Hapus opsi">✕</button></div>';
+        }).join('') + '<button class="btn btn-secondary" onclick="edAddOpt()">+ Opsi</button>';
+      } else if (q.type === 'tf') {
+        h += fld('Jawaban yang benar', '<select onchange="edTf(this.value)"><option value="true"' + (q.correct === 'true' ? ' selected' : '') + '>Benar</option><option value="false"' + (q.correct === 'false' ? ' selected' : '') + '>Salah</option></select>');
+      } else {
+        h += fld('Jawaban benar (angka atau teks)', '<input type="text" value="' + esc(q.correctAnswer == null ? '' : q.correctAnswer) + '" oninput="edShort(this,\'correctAnswer\')">');
+        h += fld('Bentuk jawaban lain yang diterima (pisahkan dengan ; )', '<input type="text" value="' + esc((q.acceptedStrings || []).join(' ; ')) + '" oninput="edShort(this,\'acceptedStrings\')">');
+        h += fld('Toleransi angka (kosong = 0,01)', '<input type="text" value="' + esc(q.tolerance == null ? '' : q.tolerance) + '" oninput="edShort(this,\'tolerance\')">');
+      }
+      h += fld('Pembahasan (boleh HTML & rumus)', '<textarea data-q="explanation" oninput="edQ(this)">' + esc(q.explanation || '') + '</textarea>');
+      h += fld('Rumus utama (opsional)', '<input type="text" data-q="formula" value="' + esc(q.formula || '') + '" oninput="edQ(this)">');
+      h += fld('Tips (opsional)', '<input type="text" data-q="tip" value="' + esc(q.tip || q.excelTip || '') + '" oninput="edQ(this)">');
+      f.innerHTML = h;
+      edPreview();
+    }
+
+    function edPreview() {
+      const q = ED.soal[EDSEL]; const box = document.getElementById('edPreview'); if (!q) { box.innerHTML = ''; return; }
+      let h = '<div class="ed-prev-title">Pratinjau</div><div class="q-text">' + q.question + '</div>';
+      if (q.options && q.type !== 'short') h += '<ul class="ed-prev-opts">' + q.options.map(function(o) { const ok = Array.isArray(q.correct) ? q.correct.indexOf(o.id) > -1 : q.correct === o.id; return '<li class="' + (ok ? 'ok' : '') + '"><b>' + o.id + '.</b> ' + o.text + (ok ? ' ✓' : '') + '</li>'; }).join('') + '</ul>';
+      if (q.type === 'short') h += '<p><b>Kunci:</b> ' + esc(q.correctAnswer) + '</p>';
+      h += '<div class="explanation-body">' + (q.explanation || '') + '</div>' + extraHtml(q);
+      box.innerHTML = h;
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function edInfo(el) { ED.meta[el.dataset.f] = el.type === 'checkbox' ? el.checked : el.value; edDirty(); }
+    function edQ(el) {
+      const q = ED.soal[EDSEL]; const k = el.dataset.q;
+      q[k] = el.type === 'number' ? (parseFloat(el.value) || 1) : el.value;
+      if (k === 'topic') q.topicId = slug(el.value);
+      if (k === 'tip') delete q.excelTip;
+      edDirty(); edPreview();
+    }
+    function edOpt(el) { ED.soal[EDSEL].options[+el.dataset.oi].text = el.value; edDirty(); edPreview(); }
+    function edCorrect(i, on) {
+      const q = ED.soal[EDSEL]; const id = q.options[i].id;
+      if (q.type === 'single') q.correct = id;
+      else { q.correct = (q.correct || []).filter(function(c) { return c !== id; }); if (on) q.correct.push(id); q.correct.sort(); }
+      edDirty(); edPreview();
+    }
+    function edTf(v) { ED.soal[EDSEL].correct = v; edDirty(); edPreview(); }
+    function edShort(el, k) {
+      const q = ED.soal[EDSEL]; const v = el.value;
+      if (k === 'acceptedStrings') q[k] = v.split(';').map(function(x) { return x.trim(); }).filter(Boolean);
+      else if (k === 'tolerance') { const n = parseFloat(v.replace(',', '.')); if (isNaN(n)) delete q.tolerance; else q.tolerance = n; }
+      else { const n = toNum(v); q[k] = (v.trim() !== '' && !isNaN(n)) ? n : v; }
+      edDirty(); edPreview();
+    }
+    function edRelabel(q, keepIdx) {
+      q.options.forEach(function(o, i) { o.id = String.fromCharCode(65 + i); });
+      if (q.type === 'single') q.correct = q.options[keepIdx.length ? keepIdx[0] : 0] ? q.options[keepIdx.length ? keepIdx[0] : 0].id : 'A';
+      else q.correct = keepIdx.map(function(i) { return q.options[i].id; });
+    }
+    function edIdx(q) { const ids = Array.isArray(q.correct) ? q.correct : [q.correct]; const r = []; q.options.forEach(function(o, i) { if (ids.indexOf(o.id) > -1) r.push(i); }); return r; }
+    function edAddOpt() { const q = ED.soal[EDSEL]; const k = edIdx(q); q.options.push({ id: '?', text: '' }); edRelabel(q, k); edDirty(); renderEdForm(); }
+    function edDelOpt(i) {
+      const q = ED.soal[EDSEL]; if (q.options.length <= 2) { alert('Minimal 2 opsi.'); return; }
+      const k = edIdx(q).filter(function(x) { return x !== i; }).map(function(x) { return x > i ? x - 1 : x; });
+      q.options.splice(i, 1); edRelabel(q, k); edDirty(); renderEdForm(); renderEditor();
+    }
+    function edType(t) {
+      const q = ED.soal[EDSEL]; q.type = t;
+      if (t === 'single' || t === 'multiple') {
+        if (!q.options || q.options.length < 2 || q.options[0].id === 'true') q.options = ['A', 'B', 'C', 'D'].map(function(x) { return { id: x, text: '' }; });
+        q.correct = t === 'single' ? 'A' : ['A'];
+      } else if (t === 'tf') {
+        q.options = [{ id: 'true', text: 'Benar (True)' }, { id: 'false', text: 'Salah (False)' }]; q.correct = 'true';
+      } else { q.options = undefined; q.correct = undefined; q.correctAnswer = ''; q.acceptedStrings = []; }
+      edDirty(); renderEditor();
+    }
+    function edNewQ() {
+      return { id: 0, topic: 'Topik', topicId: 'topik', type: 'single', typeLabel: TYPE_LABELS.single, points: 3, question: '', options: ['A', 'B', 'C', 'D'].map(function(x) { return { id: x, text: '' }; }), correct: 'A', explanation: '', formula: '', tip: '' };
+    }
+    function edAdd() { ED.soal.splice(EDSEL + 1, 0, edNewQ()); EDSEL = EDSEL + 1; edDirty(); renderEditor(); }
+    function edDup() { if (EDSEL < 0) return; ED.soal.splice(EDSEL + 1, 0, JSON.parse(JSON.stringify(ED.soal[EDSEL]))); EDSEL++; edDirty(); renderEditor(); }
+    function edDel() { if (EDSEL < 0 || !confirm('Hapus soal ini?')) return; ED.soal.splice(EDSEL, 1); EDSEL = Math.min(EDSEL, ED.soal.length - 1); edDirty(); renderEditor(); }
+    function edMove(d) { const j = EDSEL + d; if (EDSEL < 0 || j < 0 || j >= ED.soal.length) return; const t = ED.soal[EDSEL]; ED.soal[EDSEL] = ED.soal[j]; ED.soal[j] = t; EDSEL = j; edDirty(); renderEditor(); }
+
+    function edValidate() {
+      const errs = [];
+      ED.soal.forEach(function(q, i) {
+        const n = 'Soal ' + (i + 1) + ': ';
+        if (!String(q.question || '').trim()) errs.push(n + 'pertanyaan masih kosong');
+        if (q.type === 'single' || q.type === 'multiple') {
+          if (q.options.some(function(o) { return !String(o.text).trim(); })) errs.push(n + 'ada opsi yang kosong');
+          if (q.type === 'single' && !q.options.some(function(o) { return o.id === q.correct; })) errs.push(n + 'belum ada jawaban benar');
+          if (q.type === 'multiple' && (!q.correct || !q.correct.length)) errs.push(n + 'centang minimal satu jawaban benar');
+        }
+        if (q.type === 'short' && (q.correctAnswer === '' || q.correctAnswer == null) && !(q.acceptedStrings || []).length) errs.push(n + 'kunci isian masih kosong');
+      });
+      return errs;
+    }
+    function edApply() {
+      const errs = edValidate();
+      if (errs.length) { alert('Perbaiki dulu:\n\n' + errs.join('\n')); return false; }
+      ED.soal.forEach(function(q, i) { q.id = i + 1; q.typeLabel = TYPE_LABELS[q.type]; q.points = q.points || 1; if (!q.topic) q.topic = 'Umum'; q.topicId = slug(q.topic); });
+      META = ED.meta; QUIZ_DATA = ED.soal;
+      try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ base: BASE_HASH, meta: META, soal: QUIZ_DATA })); } catch (e) {}
+      STATE.userAnswers = {}; STATE.checkedStatus = {}; STATE.flagged = {}; STATE.elapsedSeconds = 0; STATE.isSubmitted = false;
+      applyMeta(); renderQuestions(); renderPalette(); updateProgress(); startTimer(); renderTimer();
+      ED_DIRTY = false; ED = { meta: JSON.parse(JSON.stringify(META)), soal: JSON.parse(JSON.stringify(QUIZ_DATA)) };
+      return true;
+    }
+    function edSave() { if (edApply()) { document.getElementById('editorModal').classList.remove('open'); alert('Perubahan diterapkan dan disimpan di perangkat ini.\nUntuk membagikan kuis hasil edit, klik “Unduh HTML Kuis”.'); } }
+    function downloadFile(name, text, mime) {
+      const b = new Blob([text], { type: mime }); const a = document.createElement('a');
+      a.href = URL.createObjectURL(b); a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(function() { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+    }
+    function edDownloadHtml() {
+      if (!edApply()) return;
+      const doc = new DOMParser().parseFromString(PRISTINE_HTML, 'text/html');
+      doc.getElementById('quiz-data').textContent = JSON.stringify({ meta: META, soal: QUIZ_DATA }, null, 1).replace(/<\//g, '<\\/');
+      doc.title = document.title;
+      downloadFile(slug(META.judul) + '.html', '<!DOCTYPE html>\n' + doc.documentElement.outerHTML, 'text/html');
+    }
+    function edExportJson() { downloadFile(slug(ED.meta.judul) + '.json', JSON.stringify({ meta: ED.meta, soal: ED.soal }, null, 1), 'application/json'); }
+    function edImportJson(inp) {
+      const file = inp.files[0]; if (!file) return;
+      const r = new FileReader();
+      r.onload = function() {
+        try {
+          const d = JSON.parse(r.result);
+          ED = { meta: d.meta || ED.meta, soal: d.soal || (Array.isArray(d) ? d : ED.soal) };
+          EDSEL = 0; edDirty(); renderEditor();
+        } catch (e) { alert('File JSON tidak valid.'); }
+        inp.value = '';
+      };
+      r.readAsText(file);
+    }
+    function edReset() {
+      if (!confirm('Kembalikan ke versi asli file ini? Semua hasil edit di perangkat ini dihapus.')) return;
+      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      location.reload();
+    }
+
+    function initExtras() {
+      typeset(document.body);
+      observeTs();
+      if (window.HAS_DRAFT) console.info('Kuis: memakai versi hasil edit tersimpan di perangkat ini.');
+    }
+  </script>
+</body>
+</html>
