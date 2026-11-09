@@ -53,18 +53,11 @@
           "nama": "Kelas 7",
           "kuis": [
             {
-              "judul": "Bilangan Bulat",
-              "bab": "Bab 1",
-              "url": "https://USERNAME.github.io/kuis/smp7-bilangan-bulat.html",
-              "jumlahSoal": 20,
+              "judul": "Kuis Bilangan",
+              "bab": "Bilangan",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Bilangan_Kelas7.html",
+              "jumlahSoal": 30,
               "tanggal": "2026-11-09"
-            },
-            {
-              "judul": "Aljabar Dasar",
-              "bab": "Bab 2",
-              "url": "https://USERNAME.github.io/kuis/smp7-aljabar.html",
-              "jumlahSoal": 20,
-              "tanggal": "2026-10-20"
             }
           ]
         },
