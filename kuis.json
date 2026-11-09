@@ -1,0 +1,147 @@
+{
+  "jenjang": [
+    {
+      "id": "sd",
+      "nama": "SD",
+      "kelas": [
+        {
+          "id": "1",
+          "nama": "Kelas 1",
+          "kuis": []
+        },
+        {
+          "id": "2",
+          "nama": "Kelas 2",
+          "kuis": []
+        },
+        {
+          "id": "3",
+          "nama": "Kelas 3",
+          "kuis": []
+        },
+        {
+          "id": "4",
+          "nama": "Kelas 4",
+          "kuis": [
+            {
+              "judul": "Pecahan Senilai",
+              "bab": "Bab 3",
+              "url": "https://USERNAME.github.io/kuis/sd4-pecahan.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-01"
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "nama": "Kelas 5",
+          "kuis": []
+        },
+        {
+          "id": "6",
+          "nama": "Kelas 6",
+          "kuis": []
+        }
+      ]
+    },
+    {
+      "id": "smp",
+      "nama": "SMP",
+      "kelas": [
+        {
+          "id": "7",
+          "nama": "Kelas 7",
+          "kuis": [
+            {
+              "judul": "Bilangan Bulat",
+              "bab": "Bab 1",
+              "url": "https://USERNAME.github.io/kuis/smp7-bilangan-bulat.html",
+              "jumlahSoal": 20,
+              "tanggal": "2026-11-09"
+            },
+            {
+              "judul": "Aljabar Dasar",
+              "bab": "Bab 2",
+              "url": "https://USERNAME.github.io/kuis/smp7-aljabar.html",
+              "jumlahSoal": 20,
+              "tanggal": "2026-10-20"
+            }
+          ]
+        },
+        {
+          "id": "8",
+          "nama": "Kelas 8",
+          "kuis": []
+        },
+        {
+          "id": "9",
+          "nama": "Kelas 9",
+          "kuis": []
+        }
+      ]
+    },
+    {
+      "id": "sma",
+      "nama": "SMA",
+      "kelas": [
+        {
+          "id": "10",
+          "nama": "Kelas 10",
+          "kuis": [
+            {
+              "judul": "Fungsi Kuadrat",
+              "bab": "Bab 4",
+              "url": "https://USERNAME.github.io/kuis/sma10-fungsi-kuadrat.html",
+              "jumlahSoal": 25,
+              "tanggal": "2026-10-05"
+            }
+          ]
+        },
+        {
+          "id": "11",
+          "nama": "Kelas 11",
+          "kuis": []
+        },
+        {
+          "id": "12",
+          "nama": "Kelas 12",
+          "kuis": []
+        }
+      ]
+    },
+    {
+      "id": "lainnya",
+      "nama": "LAINNYA",
+      "kelas": [
+        {
+          "id": "utbk",
+          "nama": "UTBK",
+          "kuis": []
+        },
+        {
+          "id": "olimpiade",
+          "nama": "Olimpiade",
+          "kuis": []
+        },
+        {
+          "id": "matematikakeuangan",
+          "nama": "Matematika Keuangan",
+          "kuis": [
+            {
+              "judul": "Bunga Majemuk",
+              "bab": "",
+              "url": "https://USERNAME.github.io/kuis/keuangan-bunga.html",
+              "jumlahSoal": 20,
+              "tanggal": "2026-11-07"
+            }
+          ]
+        },
+        {
+          "id": "umum",
+          "nama": "Umum",
+          "kuis": []
+        }
+      ]
+    }
+  ]
+}
