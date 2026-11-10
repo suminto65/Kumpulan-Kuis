@@ -72,6 +72,48 @@
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Aljabar_Dasar_Kelas7.html",
               "jumlahSoal": 30,
               "tanggal": "2026-11-10"
+            },
+            {
+              "judul": "Kuis Aritmetika Sosial",
+              "bab": "Aritmetika Sosial",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Aritmetika_Sosial_Kelas7.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-10"
+            },
+            {
+              "judul": "Kuis Perbandingan",
+              "bab": "Perbandingan",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Perbandingan_Kelas7.html",
+              "jumlahSoal": 42,
+              "tanggal": "2026-11-10"
+            },
+            {
+              "judul": "Kuis Persamaan Linear Satu Variabel",
+              "bab": "PLSV",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_PLSV_Kelas7.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-10"
+            },
+            {
+              "judul": "Kuis Pertidaksamaan Linear Satu Variabel",
+              "bab": "PtLSV",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_PtLSV_Kelas7.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-10"
+            },
+            {
+              "judul": "Kuis Segi Empat",
+              "bab": "Segi Empat",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Segi_Empat_Kelas7.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-10"
+            },
+            {
+              "judul": "Kuis Sudut dan Garis Sejajar",
+              "bab": "Sudut dan Garis Sejajar",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Sudut_dan_Garis_Sejajar_Kelas7.html",
+              "jumlahSoal": 40,
+              "tanggal": "2026-11-10"
             }
           ]
         },
