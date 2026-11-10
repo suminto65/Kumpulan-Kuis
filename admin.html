@@ -27,6 +27,7 @@ button:disabled{opacity:.45;cursor:default}
 ul{list-style:none;margin:0;padding:0}
 li{display:flex;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
 li>div{flex:1;min-width:180px}li small{display:block;color:var(--mut)}
+h3{font-size:15px;margin:20px 0 2px}.fq{border-top:1px solid var(--line);padding:6px 0 10px;margin-top:10px}
 .h{color:var(--mut);font-size:14px}
 #msg{margin:10px 0;font-weight:600}
 </style></head><body>
@@ -62,6 +63,10 @@ li>div{flex:1;min-width:180px}li small{display:block;color:var(--mut)}
 <textarea id="bi" rows="6" placeholder="Bilangan Bulat | https://username.github.io/kuis/smp7-bilangan-bulat.html | Bab 1 | 20"></textarea>
 <div class="r"><button class="p" id="bimp">Impor</button><span id="bres" class="h"></span></div></section>
 <div class="r"><button class="p" id="sv2" disabled>Simpan ke GitHub</button><a class="o" href="index.html" target="_blank" rel="noopener">Lihat situs</a></div>
+<section><h2>Teks situs: Beranda, Tentang, Kontak</h2>
+<p class="h">Ubah tulisan di halaman publik. Bagian ini disimpan terpisah (file situs.json) dari daftar kuis.</p>
+<div id="sf"></div>
+<div class="r"><button class="p" id="ssv" disabled>Simpan teks situs</button></div></section>
 </div>
 </main>
 <script>
@@ -76,7 +81,7 @@ let D=null,sha=null,dirty=false,ji=0,ki=0,ei=-1;
 const F=['owner','repo','branch','path','token'];
 F.forEach(k=>$('#'+k).value=C[k]||(k=='branch'?'main':k=='path'?'kuis.json':''));
 const say=(t,bad)=>{$('#msg').textContent=t;$('#msg').style.color=bad?'var(--red)':'inherit'};
-const api=(m,b)=>fetch(`https://api.github.com/repos/${C.owner}/${C.repo}/contents/${C.path}`+(m=='GET'?`?ref=${C.branch}&t=${Date.now()}`:''),{method:m,headers:{Authorization:'Bearer '+C.token,Accept:'application/vnd.github+json'},body:b&&JSON.stringify(b)});
+const api=(m,b,p=C.path)=>fetch(`https://api.github.com/repos/${C.owner}/${C.repo}/contents/${p}`+(m=='GET'?`?ref=${C.branch}&t=${Date.now()}`:''),{method:m,headers:{Authorization:'Bearer '+C.token,Accept:'application/vnd.github+json'},body:b&&JSON.stringify(b)});
 async function load(){
  say('Memuat data...');
  try{
@@ -86,7 +91,7 @@ async function load(){
   else if(!r.ok){say('Gagal memuat (kode '+r.status+').',1);return}
   else{const j=await r.json();sha=j.sha;D=JSON.parse(dec(j.content));dirty=false;say('Data dimuat.');$('#cfg').open=false}
  }catch(e){say('Tidak bisa terhubung ke GitHub. Periksa koneksi internet.',1);return}
- R();
+ R();loadS();
 }
 $('#conn').onclick=()=>{F.forEach(k=>C[k]=$('#'+k).value.trim());
  if(!C.owner||!C.repo||!C.token){say('Isi username, nama repo, dan token.',1);return}
@@ -143,6 +148,50 @@ $('#bimp').onclick=()=>{
  if(!add.length){$('#bres').textContent=err.length?err.join('. '):'Belum ada baris yang diisi.';return}
  if(!confirm(`Impor ${add.length} kuis ke ${D.jenjang[ji].nama}, ${D.jenjang[ji].kelas[ki].nama}?`+(err.length?`\n\n${err.length} baris dilewati:\n`+err.join('\n'):'')))return;
  L.push(...add);dirty=true;$('#bi').value='';$('#bres').textContent='';R();say(`${add.length} kuis diimpor. Klik Simpan ke GitHub untuk menerbitkan.`)};
-onbeforeunload=e=>{if(dirty){e.preventDefault();return''}};
+const SD=()=>({"nama": "Bimbingan Belajar Matematika SUMINTO", "beranda": {"judul": "Latihan matematika dari SD sampai SMA", "deskripsi": "Pilih jenjang dan kelas, buka kuisnya, lalu kerjakan lewat HP atau komputer. Tanpa login dan tanpa mendaftar.", "langkah": ["Pilih jenjang dan kelas", "Klik tombol Buka kuis", "Kerjakan kuisnya, lalu lihat hasilnya"]}, "tentang": {"paragraf": ["Bimbingan Belajar Matematika SUMINTO menyediakan kuis latihan matematika untuk siswa SD, SMP, dan SMA, serta kategori lain di menu LAINNYA.", "Kuis disusun oleh Pak Suminto, guru matematika, agar siswa bisa berlatih sendiri di rumah kapan saja dan langsung melihat hasilnya."], "faq": [{"q": "Apakah harus login atau mendaftar?", "a": "Tidak. Pilih kelas, klik Buka kuis, dan kuis langsung bisa dikerjakan."}, {"q": "Bisakah dibuka lewat HP?", "a": "Bisa. Halaman ini dibuat agar nyaman di layar HP maupun komputer."}, {"q": "Bagaimana membagikan kuis ke teman atau grup?", "a": "Klik Bagikan ke WhatsApp pada kartu kuis, lalu pilih grup atau kontak."}, {"q": "Link kuis tidak bisa dibuka atau ada soal yang salah?", "a": "Beri tahu kami lewat WhatsApp di halaman Kontak, sebutkan judul kuisnya."}]}, "kontak": {"teks": "Ada pertanyaan tentang kuis, link yang tidak bisa dibuka, atau ingin tahu tentang bimbel? Hubungi kami lewat WhatsApp.", "wa": "6281931231247", "pesan": "Halo, saya ingin bertanya tentang Kuis Matematika Bimbel SUMINTO."}});
+let S=null,ssha=null,sdirty=false;
+const sp=()=>C.path.replace(/[^\/]*$/,'')+'situs.json';
+async function loadS(){
+ try{const r=await api('GET',null,sp());
+  if(r.status==404){S=SD();ssha=null}
+  else if(r.ok){const j=await r.json();ssha=j.sha;S=Object.assign(SD(),JSON.parse(dec(j.content)))}
+  else return;
+ }catch(e){return}
+ sdirty=false;RS()}
+const fld=(l,p,v,r)=>`<label>${l}</label>${r?`<textarea rows="${r}" data-p="${p}">${esc(v)}</textarea>`:`<input data-p="${p}" value="${esc(v)}">`}`;
+function RS(){
+ const b=S.beranda,k=S.kontak;
+ $('#sf').innerHTML=fld('Nama bimbel (di bawah judul header dan di bagian bawah halaman)','nama',S.nama)
+ +'<h3>Beranda</h3>'+fld('Judul','beranda.judul',b.judul)+fld('Penjelasan singkat','beranda.deskripsi',b.deskripsi,3)
+ +b.langkah.map((l,i)=>fld('Cara memakai, langkah '+(i+1),'beranda.langkah.'+i,l)).join('')
+ +'<h3>Tentang</h3>'+fld('Isi (pisahkan paragraf dengan satu baris kosong)','tentang.par',S.tentang.paragraf.join('\n\n'),6)
+ +'<h3>Pertanyaan umum</h3>'+S.tentang.faq.map((f,i)=>`<div class="fq"><label>Pertanyaan ${i+1}</label><input data-p="faq.${i}.q" value="${esc(f.q)}"><label>Jawaban</label><textarea rows="2" data-p="faq.${i}.a">${esc(f.a)}</textarea><div class="r"><button class="x" data-fd="${i}">Hapus pertanyaan ini</button></div></div>`).join('')
+ +'<div class="r"><button id="faqadd">Tambah pertanyaan</button></div>'
+ +'<h3>Kontak</h3>'+fld('Kalimat pengantar','kontak.teks',k.teks,3)+fld('Nomor WhatsApp (contoh: 081234567890 atau 6281234567890)','kontak.wa',k.wa)+fld('Pesan pembuka WhatsApp','kontak.pesan',k.pesan);
+ $('#ssv').disabled=!sdirty;
+}
+$('#sf').addEventListener('input',e=>{const p=e.target.dataset.p;if(!p)return;const v=e.target.value;
+ if(p=='nama')S.nama=v;
+ else if(p=='tentang.par')S.tentang.paragraf=v.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
+ else if(p.startsWith('faq.')){const [,i,f]=p.split('.');S.tentang.faq[i][f]=v}
+ else{const a=p.split('.');let o=S;while(a.length>1)o=o[a.shift()];o[a[0]]=v}
+ sdirty=true;$('#ssv').disabled=false});
+$('#sf').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.id=='faqadd')S.tentang.faq.push({q:'',a:''});
+ else if(b.dataset.fd!=null){if(!confirm('Hapus pertanyaan ini?'))return;S.tentang.faq.splice(+b.dataset.fd,1)}
+ else return;
+ sdirty=true;RS()};
+$('#ssv').onclick=async()=>{
+ let w=String(S.kontak.wa).replace(/\D/g,'');if(w[0]=='0')w='62'+w.slice(1);
+ if(w.length<10||w.slice(0,2)!='62'){say('Nomor WhatsApp tidak valid. Gunakan format 08... atau 62...',1);return}
+ S.kontak.wa=w;S.tentang.faq=S.tentang.faq.filter(f=>f.q.trim()&&f.a.trim());
+ $('#ssv').disabled=true;say('Menyimpan teks situs...');
+ try{const r=await api('PUT',{message:'Update teks situs via admin',content:enc(JSON.stringify(S,null,2)),branch:C.branch,...(ssha&&{sha:ssha})},sp());
+  if(r.ok){ssha=(await r.json()).content.sha;sdirty=false;say('Teks situs tersimpan. Halaman publik akan berubah setelah GitHub selesai memproses (biasanya kurang dari satu menit).')}
+  else if(r.status==409||r.status==422)say('Data di GitHub sudah berubah. Muat ulang halaman admin, lalu ulangi perubahan.',1);
+  else say('Gagal menyimpan (kode '+r.status+'). Periksa izin token.',1)
+ }catch(e){say('Tidak bisa terhubung ke GitHub.',1)}
+ RS()};
+onbeforeunload=e=>{if(dirty||sdirty){e.preventDefault();return''}};
 if(C.token&&C.owner&&C.repo)load();
 </script></body></html>

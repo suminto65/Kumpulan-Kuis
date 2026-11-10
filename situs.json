@@ -1,0 +1,41 @@
+{
+  "nama": "Bimbingan Belajar Matematika SUMINTO",
+  "beranda": {
+    "judul": "Latihan matematika dari SD sampai SMA",
+    "deskripsi": "Pilih jenjang dan kelas, buka kuisnya, lalu kerjakan lewat HP atau komputer. Tanpa login dan tanpa mendaftar.",
+    "langkah": [
+      "Pilih jenjang dan kelas",
+      "Klik tombol Buka kuis",
+      "Kerjakan kuisnya, lalu lihat hasilnya"
+    ]
+  },
+  "tentang": {
+    "paragraf": [
+      "Bimbingan Belajar Matematika SUMINTO menyediakan kuis latihan matematika untuk siswa SD, SMP, dan SMA, serta kategori lain di menu LAINNYA.",
+      "Kuis disusun oleh Pak Suminto, guru matematika, agar siswa bisa berlatih sendiri di rumah kapan saja dan langsung melihat hasilnya."
+    ],
+    "faq": [
+      {
+        "q": "Apakah harus login atau mendaftar?",
+        "a": "Tidak. Pilih kelas, klik Buka kuis, dan kuis langsung bisa dikerjakan."
+      },
+      {
+        "q": "Bisakah dibuka lewat HP?",
+        "a": "Bisa. Halaman ini dibuat agar nyaman di layar HP maupun komputer."
+      },
+      {
+        "q": "Bagaimana membagikan kuis ke teman atau grup?",
+        "a": "Klik Bagikan ke WhatsApp pada kartu kuis, lalu pilih grup atau kontak."
+      },
+      {
+        "q": "Link kuis tidak bisa dibuka atau ada soal yang salah?",
+        "a": "Beri tahu kami lewat WhatsApp di halaman Kontak, sebutkan judul kuisnya."
+      }
+    ]
+  },
+  "kontak": {
+    "teks": "Ada pertanyaan tentang kuis, link yang tidak bisa dibuka, atau ingin tahu tentang bimbel? Hubungi kami lewat WhatsApp.",
+    "wa": "6281931231247",
+    "pesan": "Halo, saya ingin bertanya tentang Kuis Matematika Bimbel SUMINTO."
+  }
+}
