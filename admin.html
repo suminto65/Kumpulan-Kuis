@@ -16,7 +16,7 @@ section,details{background:var(--card);border:1px solid var(--line);border-radiu
 summary{font-weight:600;cursor:pointer}
 h2{font-size:17px;margin:0 0 10px}
 label{display:block;font-size:14px;color:var(--mut);margin:8px 0 3px}
-input,select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--bg);color:var(--ink)}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--bg);color:var(--ink)}
 .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 12px}
 button,a.o{font:600 14px system-ui;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer;text-decoration:none}
 button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
@@ -57,6 +57,10 @@ li>div{flex:1;min-width:180px}li small{display:block;color:var(--mut)}
 <div><label for="ftg">Tanggal</label><input id="ftg" type="date"></div></div>
 <label for="fu">Link kuis (alamat GitHub Pages)</label><input id="fu" type="url" placeholder="https://username.github.io/kuis/nama-file.html">
 <div class="r"><button class="p" id="fs">Tambah kuis</button><button id="fc" hidden>Batal ubah</button></div></section>
+<section><h2>Impor banyak kuis ke kelas ini</h2>
+<p class="h">Satu kuis per baris, dengan format: Judul | Link | Bab | Jumlah soal. Bab dan jumlah soal boleh dikosongkan. Baris yang hanya berisi link juga boleh, judulnya diambil dari nama file. Data dari spreadsheet (dipisah tab) juga bisa ditempel.</p>
+<textarea id="bi" rows="6" placeholder="Bilangan Bulat | https://username.github.io/kuis/smp7-bilangan-bulat.html | Bab 1 | 20"></textarea>
+<div class="r"><button class="p" id="bimp">Impor</button><span id="bres" class="h"></span></div></section>
 <div class="r"><button class="p" id="sv2" disabled>Simpan ke GitHub</button><a class="o" href="index.html" target="_blank" rel="noopener">Lihat situs</a></div>
 </div>
 </main>
@@ -125,6 +129,20 @@ $('#sv2').onclick=async()=>{
   else say('Gagal menyimpan (kode '+r.status+'). Periksa izin token.',1);
  }catch(e){say('Tidak bisa terhubung ke GitHub.',1)}
  R()};
+const bad=u=>!/^https?:\/\//.test(u)?'link harus diawali https://':/raw\.githubusercontent\.com|github\.com\/.+\/(blob|raw)\//.test(u)?'gunakan alamat GitHub Pages, bukan link kode GitHub':'';
+const ttl=u=>{let n='';try{n=decodeURIComponent(u.split('?')[0].split('#')[0].split('/').pop()||'')}catch(e){}n=n.replace(/\.html?$/i,'').replace(/[-_]+/g,' ').trim();return n?n[0].toUpperCase()+n.slice(1):'Kuis'};
+$('#bimp').onclick=()=>{
+ const L=D.jenjang[ji].kelas[ki].kuis,add=[],err=[];
+ $('#bi').value.split('\n').forEach((ln,i)=>{ln=ln.trim();if(!ln)return;
+  const p=ln.split(/\s*[|\t]\s*/);let judul,url,bab='',n=0;
+  if(p.length==1){url=p[0];judul=ttl(url)}else{judul=p[0];url=p[1];bab=p[2]||'';n=+p[3]||0}
+  const e=bad(url);
+  if(!judul||e)err.push(`Baris ${i+1}: ${e||'judul kosong'}`);
+  else if(L.some(z=>z.url==url)||add.some(z=>z.url==url))err.push(`Baris ${i+1}: link sudah ada, dilewati`);
+  else add.push({judul,bab,url,jumlahSoal:n,tanggal:new Date().toISOString().slice(0,10)})});
+ if(!add.length){$('#bres').textContent=err.length?err.join('. '):'Belum ada baris yang diisi.';return}
+ if(!confirm(`Impor ${add.length} kuis ke ${D.jenjang[ji].nama}, ${D.jenjang[ji].kelas[ki].nama}?`+(err.length?`\n\n${err.length} baris dilewati:\n`+err.join('\n'):'')))return;
+ L.push(...add);dirty=true;$('#bi').value='';$('#bres').textContent='';R();say(`${add.length} kuis diimpor. Klik Simpan ke GitHub untuk menerbitkan.`)};
 onbeforeunload=e=>{if(dirty){e.preventDefault();return''}};
 if(C.token&&C.owner&&C.repo)load();
 </script></body></html>
