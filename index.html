@@ -54,6 +54,7 @@ summary{font-weight:600;cursor:pointer}details p{margin:8px 0 0;color:var(--mut)
 .cta{display:inline-block;margin:6px 0 20px;padding:14px 22px;background:var(--wa);color:var(--ctx);border-radius:10px;font:700 16px system-ui,sans-serif;text-decoration:none}
 footer{border-top:1px solid var(--line);padding:18px 0 28px;color:var(--mut);font-size:14px}
 footer a{color:var(--wa);font-weight:600}
+.lp{display:block;text-align:center;font-size:13px;color:var(--mut);text-decoration:underline;padding:2px}
 .empty{grid-column:1/-1;color:var(--mut);padding:24px 0}
 </style></head><body>
 <header><div class="w">
@@ -134,8 +135,9 @@ const card=(z,lab)=>{
  const baru=z.tanggal&&Date.now()-new Date(z.tanggal)<14*864e5;
  const meta=[lab?z.l:'',z.bab,z.jumlahSoal?z.jumlahSoal+' soal':'',tgl(z.tanggal)].filter(Boolean).join(', ');
  const id=(z.url.split('?')[0].split('/').pop()||z.url).replace(/\.html?$/i,'');
+ const lap=hub('Halo, saya ingin melaporkan masalah pada kuis: '+z.judul+' ('+z.l+').\nLink: '+z.url+'\nMasalahnya: ');
  const wa=shr('Kuis Matematika '+z.l+': '+z.judul+'\nKerjakan di sini: '+z.url);
- return `<article class="k">${baru?'<span class="b">Baru</span>':''}<h3>${esc(z.judul)}</h3><small>${esc(meta)}</small><a class="go" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${esc(z.url)}" target="_blank" rel="noopener">Buka kuis</a><a class="wa" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${wa}" target="_blank" rel="noopener">Bagikan ke WhatsApp</a></article>`;
+ return `<article class="k">${baru?'<span class="b">Baru</span>':''}<h3>${esc(z.judul)}</h3><small>${esc(meta)}</small><a class="go" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${esc(z.url)}" target="_blank" rel="noopener">Buka kuis</a><a class="wa" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${wa}" target="_blank" rel="noopener">Bagikan ke WhatsApp</a><a class="lp" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${lap}" target="_blank" rel="noopener">Laporkan soal atau link bermasalah</a></article>`;
 };
 function draw(){
  const q=$('#q').value.trim().toLowerCase(),v=q?'kuis':V;
@@ -158,8 +160,8 @@ function kuis(q){
  $('#list').innerHTML=L.length?L.map(z=>card(z,!!q)).join(''):`<p class="empty">${q?'Tidak ada kuis dengan kata itu.':'Belum ada kuis di kelas ini. Cek lagi nanti.'}</p>`;
 }
 document.addEventListener('click',e=>{
- const a=e.target.closest('a.go,a.wa');
- if(a){const g=a.classList.contains('go');gc({path:(g?'buka/':'bagikan/')+a.dataset.id,title:(g?'Buka: ':'Bagikan: ')+a.dataset.t,event:true})}
+ const a=e.target.closest('a.go,a.wa,a.lp');
+ if(a){const P=a.classList.contains('go')?['buka','Buka']:a.classList.contains('wa')?['bagikan','Bagikan']:['lapor','Lapor'];gc({path:P[0]+'/'+a.dataset.id,title:P[1]+': '+a.dataset.t,event:true})}
  if(e.target.closest('#nav a')){$('#q').value='';draw();return}
  const b=e.target.closest('button[data-j],button[data-k]');if(!b)return;
  $('#q').value='';

@@ -63,6 +63,11 @@ h3{font-size:15px;margin:20px 0 2px}.fq{border-top:1px solid var(--line);padding
 <textarea id="bi" rows="6" placeholder="Bilangan Bulat | https://username.github.io/kuis/smp7-bilangan-bulat.html | Bab 1 | 20"></textarea>
 <div class="r"><button class="p" id="bimp">Impor</button><span id="bres" class="h"></span></div></section>
 <div class="r"><button class="p" id="sv2" disabled>Simpan ke GitHub</button><a class="o" href="index.html" target="_blank" rel="noopener">Lihat situs</a></div>
+<section><h2>Alat: penghitung penyelesaian kuis</h2>
+<p class="h">Memasang pencatat ke file kuis (dari KUIS.skill) agar GoatCounter menghitung berapa kali kuis diselesaikan, tercatat sebagai selesai/nama-file. Pilih file kuis dari komputer, file yang sudah dipasangi akan diunduh, lalu unggah ke GitHub menggantikan file lama. Kode GoatCounter diambil dari kolom di bagian Teks situs di bawah, jadi isi dan simpan dulu.</p>
+<input type="file" id="pf" multiple accept=".html,.htm">
+<div class="r"><button class="p" id="pgo">Pasang penghitung dan unduh</button></div>
+<div id="pres" class="h"></div></section>
 <section><h2>Teks situs: Beranda, Tentang, Kontak</h2>
 <p class="h">Ubah tulisan di halaman publik. Bagian ini disimpan terpisah (file situs.json) dari daftar kuis.</p>
 <div id="sf"></div>
@@ -196,6 +201,22 @@ $('#ssv').onclick=async()=>{
   else say('Gagal menyimpan (kode '+r.status+'). Periksa izin token.',1)
  }catch(e){say('Tidak bisa terhubung ke GitHub.',1)}
  RS()};
+const MARK='penghitung-selesai';
+const snip=k=>'<script>/* '+MARK+' */\n(function(){var KODE='+JSON.stringify(k)+',ok=false,m=document.getElementById("scoreModal");\nif(!m||location.protocol.indexOf("http")!==0)return;\nfunction kirim(){var id=location.pathname.split("/").pop().replace(/\\.html?$/i,"")||"kuis";\nvar j=(typeof META!=="undefined"&&META.judul)||document.title;\nvar s=document.createElement("script");s.async=true;\ns.dataset.goatcounter="https://"+KODE+".goatcounter.com/count";s.dataset.goatcounterSettings=\'{"no_onload":true}\';\ns.src="https://gc.zgo.at/count.js";\ns.onload=function(){goatcounter.count({path:"selesai/"+id,title:"Selesai: "+j,event:true})};document.head.appendChild(s)}\nnew MutationObserver(function(){if(!ok&&m.classList.contains("open")){ok=true;kirim()}}).observe(m,{attributes:true,attributeFilter:["class"]})})();\n<'+'/script>';
+$('#pgo').onclick=async()=>{
+ const k=(S&&S.statistik&&S.statistik.kode||'').trim();
+ if(!k){say('Isi dan simpan Kode GoatCounter dulu di bagian Teks situs.',1);return}
+ const fs=[...$('#pf').files];if(!fs.length){say('Pilih file kuis dulu.',1);return}
+ const out=[];
+ for(const f of fs){let h=await f.text();
+  if(h.includes(MARK)){out.push(f.name+': sudah ada penghitung, dilewati');continue}
+  if(!h.includes('id="scoreModal"')){out.push(f.name+': bukan file kuis dari KUIS.skill, dilewati');continue}
+  const i=h.lastIndexOf('</body>'),sn=snip(k);
+  h=i<0?h+'\n'+sn:h.slice(0,i)+sn+'\n'+h.slice(i);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));a.download=f.name;
+  document.body.appendChild(a);a.click();a.remove();out.push(f.name+': penghitung dipasang, file diunduh');
+  await new Promise(r=>setTimeout(r,400))}
+ $('#pres').innerHTML=out.map(esc).join('<br>')};
 onbeforeunload=e=>{if(dirty||sdirty){e.preventDefault();return''}};
 if(C.token&&C.owner&&C.repo)load();
 </script></body></html>
