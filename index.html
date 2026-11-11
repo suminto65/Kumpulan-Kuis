@@ -79,9 +79,9 @@ footer a{color:var(--wa);font-weight:600}
 <p id="kt"></p>
 <a id="wa1" class="cta" target="_blank" rel="noopener">Chat WhatsApp <span id="nomor"></span></a></div></section>
 </main>
-<footer><div class="w"><span id="nm2"></span>. <a id="wa2" target="_blank" rel="noopener">Hubungi lewat WhatsApp</a></div></footer>
+<footer><div class="w"><span id="nm2"></span>. <a id="wa2" target="_blank" rel="noopener">Hubungi lewat WhatsApp</a><div id="stt" hidden>Statistik kunjungan memakai GoatCounter, tanpa melacak data pribadi.</div></div></footer>
 <script>
-const DEF={"nama": "Bimbingan Belajar Matematika SUMINTO", "beranda": {"judul": "Latihan matematika dari SD sampai SMA", "deskripsi": "Pilih jenjang dan kelas, buka kuisnya, lalu kerjakan lewat HP atau komputer. Tanpa login dan tanpa mendaftar.", "langkah": ["Pilih jenjang dan kelas", "Klik tombol Buka kuis", "Kerjakan kuisnya, lalu lihat hasilnya"]}, "tentang": {"paragraf": ["Bimbingan Belajar Matematika SUMINTO menyediakan kuis latihan matematika untuk siswa SD, SMP, dan SMA, serta kategori lain di menu LAINNYA.", "Kuis disusun oleh Pak Suminto, guru matematika, agar siswa bisa berlatih sendiri di rumah kapan saja dan langsung melihat hasilnya."], "faq": [{"q": "Apakah harus login atau mendaftar?", "a": "Tidak. Pilih kelas, klik Buka kuis, dan kuis langsung bisa dikerjakan."}, {"q": "Bisakah dibuka lewat HP?", "a": "Bisa. Halaman ini dibuat agar nyaman di layar HP maupun komputer."}, {"q": "Bagaimana membagikan kuis ke teman atau grup?", "a": "Klik Bagikan ke WhatsApp pada kartu kuis, lalu pilih grup atau kontak."}, {"q": "Link kuis tidak bisa dibuka atau ada soal yang salah?", "a": "Beri tahu kami lewat WhatsApp di halaman Kontak, sebutkan judul kuisnya."}]}, "kontak": {"teks": "Ada pertanyaan tentang kuis, link yang tidak bisa dibuka, atau ingin tahu tentang bimbel? Hubungi kami lewat WhatsApp.", "wa": "6281931231247", "pesan": "Halo, saya ingin bertanya tentang Kuis Matematika Bimbel SUMINTO."}};
+const DEF={"nama": "Bimbingan Belajar Matematika SUMINTO", "beranda": {"judul": "Latihan matematika dari SD sampai SMA", "deskripsi": "Pilih jenjang dan kelas, buka kuisnya, lalu kerjakan lewat HP atau komputer. Tanpa login dan tanpa mendaftar.", "langkah": ["Pilih jenjang dan kelas", "Klik tombol Buka kuis", "Kerjakan kuisnya, lalu lihat hasilnya"]}, "tentang": {"paragraf": ["Bimbingan Belajar Matematika SUMINTO menyediakan kuis latihan matematika untuk siswa SD, SMP, dan SMA, serta kategori lain di menu LAINNYA.", "Kuis disusun oleh Pak Suminto, guru matematika, agar siswa bisa berlatih sendiri di rumah kapan saja dan langsung melihat hasilnya."], "faq": [{"q": "Apakah harus login atau mendaftar?", "a": "Tidak. Pilih kelas, klik Buka kuis, dan kuis langsung bisa dikerjakan."}, {"q": "Bisakah dibuka lewat HP?", "a": "Bisa. Halaman ini dibuat agar nyaman di layar HP maupun komputer."}, {"q": "Bagaimana membagikan kuis ke teman atau grup?", "a": "Klik Bagikan ke WhatsApp pada kartu kuis, lalu pilih grup atau kontak."}, {"q": "Link kuis tidak bisa dibuka atau ada soal yang salah?", "a": "Beri tahu kami lewat WhatsApp di halaman Kontak, sebutkan judul kuisnya."}]}, "kontak": {"teks": "Ada pertanyaan tentang kuis, link yang tidak bisa dibuka, atau ingin tahu tentang bimbel? Hubungi kami lewat WhatsApp.", "wa": "6281931231247", "pesan": "Halo, saya ingin bertanya tentang Kuis Matematika Bimbel SUMINTO."}, "statistik": {"kode": ""}};
 let SITE=DEF;
 const JD={sd:'Kelas 1 sampai 6',smp:'Kelas 7 sampai 9',sma:'Kelas 10 sampai 12',lainnya:'UTBK, olimpiade, dan lainnya'};
 const $=s=>document.querySelector(s);
@@ -90,7 +90,17 @@ const tgl=t=>t?new Date(t).toLocaleDateString('id-ID',{day:'numeric',month:'shor
 const shr=t=>'https://wa.me/?text='+encodeURIComponent(t);
 const hub=t=>'https://wa.me/'+SITE.kontak.wa+'?text='+encodeURIComponent(t);
 const byDate=(a,b)=>(b.tanggal||'').localeCompare(a.tanggal||'');
-let D=[],J,K,V='home';
+let D=[],J,K,V='home',TR=0;const gcq=[];
+const gc=o=>{if(window.goatcounter&&goatcounter.count)goatcounter.count(o);else if(gcq.length<50)gcq.push(o)};
+const pv=()=>gc({path:'/'+(location.hash.slice(1)||'home')});
+function track(){
+ const c=SITE.statistik&&SITE.statistik.kode;$('#stt').hidden=!c;
+ if(!c||TR||!/^[a-z0-9-]{2,40}$/.test(c))return;TR=1;
+ const e=document.createElement('script');e.async=true;
+ e.dataset.goatcounter='https://'+c+'.goatcounter.com/count';e.dataset.goatcounterSettings='{"no_onload":true}';
+ e.src='https://gc.zgo.at/count.js';e.onload=()=>gcq.splice(0).forEach(o=>goatcounter.count(o));
+ document.head.appendChild(e);
+}
 $('#fav').href=document.querySelector('.hd img').src;
 function applyS(){
  const S=SITE;
@@ -102,10 +112,11 @@ function applyS(){
  $('#kt').textContent=S.kontak.teks;
  $('#nomor').textContent=String(S.kontak.wa).replace(/^(\d{2})(\d{3})(\d{4})(\d+)$/,'+$1 $2-$3-$4');
  $('#wa1').href=$('#wa2').href=hub(S.kontak.pesan);
+ track();
 }
 applyS();
 fetch('situs.json?'+Date.now()).then(r=>r.ok?r.json():null).then(x=>{if(x){SITE={...DEF,...x};applyS()}}).catch(()=>{});
-fetch('kuis.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d.jenjang;J=D[0];K=J.kelas[0];route()})
+fetch('kuis.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d.jenjang;J=D[0];K=J.kelas[0];route();pv()})
  .catch(()=>{show('kuis');$('#list').innerHTML='<p class="empty">Data kuis belum bisa dimuat. Pastikan kuis.json ada di folder yang sama dan halaman dibuka lewat alamat web, bukan langsung dari file.</p>'});
 function route(){
  const h=location.hash.slice(1);
@@ -122,8 +133,9 @@ const all=()=>D.flatMap(j=>j.kelas.flatMap(k=>k.kuis.map(z=>({...z,l:j.nama+', '
 const card=(z,lab)=>{
  const baru=z.tanggal&&Date.now()-new Date(z.tanggal)<14*864e5;
  const meta=[lab?z.l:'',z.bab,z.jumlahSoal?z.jumlahSoal+' soal':'',tgl(z.tanggal)].filter(Boolean).join(', ');
+ const id=(z.url.split('?')[0].split('/').pop()||z.url).replace(/\.html?$/i,'');
  const wa=shr('Kuis Matematika '+z.l+': '+z.judul+'\nKerjakan di sini: '+z.url);
- return `<article class="k">${baru?'<span class="b">Baru</span>':''}<h3>${esc(z.judul)}</h3><small>${esc(meta)}</small><a class="go" href="${esc(z.url)}" target="_blank" rel="noopener">Buka kuis</a><a class="wa" href="${wa}" target="_blank" rel="noopener">Bagikan ke WhatsApp</a></article>`;
+ return `<article class="k">${baru?'<span class="b">Baru</span>':''}<h3>${esc(z.judul)}</h3><small>${esc(meta)}</small><a class="go" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${esc(z.url)}" target="_blank" rel="noopener">Buka kuis</a><a class="wa" data-id="${esc(id)}" data-t="${esc(z.judul)}" href="${wa}" target="_blank" rel="noopener">Bagikan ke WhatsApp</a></article>`;
 };
 function draw(){
  const q=$('#q').value.trim().toLowerCase(),v=q?'kuis':V;
@@ -146,6 +158,8 @@ function kuis(q){
  $('#list').innerHTML=L.length?L.map(z=>card(z,!!q)).join(''):`<p class="empty">${q?'Tidak ada kuis dengan kata itu.':'Belum ada kuis di kelas ini. Cek lagi nanti.'}</p>`;
 }
 document.addEventListener('click',e=>{
+ const a=e.target.closest('a.go,a.wa');
+ if(a){const g=a.classList.contains('go');gc({path:(g?'buka/':'bagikan/')+a.dataset.id,title:(g?'Buka: ':'Bagikan: ')+a.dataset.t,event:true})}
  if(e.target.closest('#nav a')){$('#q').value='';draw();return}
  const b=e.target.closest('button[data-j],button[data-k]');if(!b)return;
  $('#q').value='';
@@ -154,5 +168,5 @@ document.addEventListener('click',e=>{
  route();
 });
 $('#q').addEventListener('input',()=>D.length&&draw());
-addEventListener('hashchange',()=>{if(D.length){route();scrollTo(0,0)}});
+addEventListener('hashchange',()=>{if(D.length){route();pv();scrollTo(0,0)}});
 </script></body></html>
