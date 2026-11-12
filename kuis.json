@@ -112,12 +112,28 @@
         {
           "id": "8",
           "nama": "Kelas 8",
-          "kuis": []
+          "kuis": [
+            {
+              "judul": "Kuis Pola Bilangan",
+              "bab": "Pola Bilangan",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Pola_Bilangan_Barisan_Deret.html",
+              "jumlahSoal": 20,
+              "tanggal": "2026-11-12"
+            }
+          ]
         },
         {
           "id": "9",
           "nama": "Kelas 9",
-          "kuis": []
+          "kuis": [
+            {
+              "judul": "Kuis Bilangan Berpangkat",
+              "bab": "Bilangan Berpangkat",
+              "url": "https://github.com/suminto65/Kumpulan-Kuis/Kuis_Kelas9_Bilangan_Berpangkat_dan_Bentuk_Akar.html",
+              "jumlahSoal": 32,
+              "tanggal": "2026-11-12"
+            }
+          ]
         }
       ]
     },
