@@ -22,15 +22,7 @@
         {
           "id": "4",
           "nama": "Kelas 4",
-          "kuis": [
-            {
-              "judul": "Pecahan Senilai",
-              "bab": "Bab 3",
-              "url": "https://USERNAME.github.io/kuis/sd4-pecahan.html",
-              "jumlahSoal": 15,
-              "tanggal": "2026-11-01"
-            }
-          ]
+          "kuis": []
         },
         {
           "id": "5",
@@ -136,15 +128,7 @@
         {
           "id": "10",
           "nama": "Kelas 10",
-          "kuis": [
-            {
-              "judul": "Fungsi Kuadrat",
-              "bab": "Bab 4",
-              "url": "https://USERNAME.github.io/kuis/sma10-fungsi-kuadrat.html",
-              "jumlahSoal": 25,
-              "tanggal": "2026-10-05"
-            }
-          ]
+          "kuis": []
         },
         {
           "id": "11",
@@ -175,15 +159,7 @@
         {
           "id": "matematikakeuangan",
           "nama": "Matematika Keuangan",
-          "kuis": [
-            {
-              "judul": "Bunga Majemuk",
-              "bab": "",
-              "url": "https://USERNAME.github.io/kuis/keuangan-bunga.html",
-              "jumlahSoal": 20,
-              "tanggal": "2026-11-07"
-            }
-          ]
+          "kuis": []
         },
         {
           "id": "umum",
