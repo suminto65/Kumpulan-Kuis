@@ -4936,5 +4936,16 @@ return API;
       if (window.HAS_DRAFT) console.info('Kuis: memakai versi hasil edit tersimpan di perangkat ini.');
     }
   </script>
+<script>/* penghitung-selesai */
+(function(){var KODE="suminto",ok=false,m=document.getElementById("scoreModal");
+if(!m||location.protocol.indexOf("http")!==0)return;
+function kirim(){var id=location.pathname.split("/").pop().replace(/\.html?$/i,"")||"kuis";
+var j=(typeof META!=="undefined"&&META.judul)||document.title;
+var s=document.createElement("script");s.async=true;
+s.dataset.goatcounter="https://"+KODE+".goatcounter.com/count";s.dataset.goatcounterSettings='{"no_onload":true}';
+s.src="https://gc.zgo.at/count.js";
+s.onload=function(){goatcounter.count({path:"selesai/"+id,title:"Selesai: "+j,event:true})};document.head.appendChild(s)}
+new MutationObserver(function(){if(!ok&&m.classList.contains("open")){ok=true;kirim()}}).observe(m,{attributes:true,attributeFilter:["class"]})})();
+</script>
 </body>
 </html>
