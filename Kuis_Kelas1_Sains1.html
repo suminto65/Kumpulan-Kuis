@@ -1,0 +1,3199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif: Sains Kelas 1 SD (Tumbuhan & Benda di Sekitar Kita) — BBM Suminto</title>
+
+  <!-- Google Fonts: Libre Caslon Text, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <!-- GoatCounter Analytics (Manual trigger on #scoreModal open) -->
+  <script data-goatcounter="https://suminto.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    window.goatcounter = window.goatcounter || { no_onload: true };
+  </script>
+
+  <style>
+    :root {
+      --background: #f7f4ec;
+      --surface-container-low: #fffdf8;
+      --surface-container: #ece5d4;
+      --surface-container-high: #e3dac3;
+      --primary: #14213d;
+      --primary-light: #1f335e;
+      --outline: #b08d57;
+      --outline-soft: rgba(176, 141, 87, 0.35);
+      --secondary: #2d5a4a;
+      --secondary-soft: rgba(45, 90, 74, 0.12);
+      --error: #9b2c2c;
+      --error-soft: rgba(155, 44, 44, 0.11);
+      --amber: #8a5a19;
+      --amber-soft: rgba(176, 141, 87, 0.18);
+      --text-main: #1b2232;
+      --text-muted: #555c6b;
+      --shadow-sm: 0 2px 8px rgba(20, 33, 61, 0.06);
+      --shadow-md: 0 8px 24px rgba(20, 33, 61, 0.10);
+      --shadow-lg: 0 16px 40px rgba(20, 33, 61, 0.16);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      background-image: radial-gradient(rgba(176, 141, 87, 0.12) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      color: var(--primary);
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Brand Header (Kop Kuis Bergaya Transformasi Geometri Interaktif) */
+    .brand-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d1629 100%);
+      color: #fffdf8;
+      border-bottom: 3px solid var(--outline);
+      padding: 16px 24px;
+    }
+
+    .brand-banner-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .bbm-logo-wrap {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(176, 141, 87, 0.2);
+      border: 1px solid var(--outline);
+      color: #f3dfb9;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 11px;
+      border-radius: 999px;
+      margin-bottom: 5px;
+    }
+
+    .brand-title {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-size: 1.42rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.86rem;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    .student-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .student-input {
+      background: rgba(255, 253, 248, 0.08);
+      border: 1.5px solid var(--outline);
+      color: #fffdf8;
+      padding: 8px 13px;
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      min-width: 195px;
+      transition: all 0.18s ease;
+    }
+
+    .student-input.class-input {
+      min-width: 135px;
+    }
+
+    .student-input::placeholder {
+      color: #cbd5e1;
+    }
+
+    .student-input:focus {
+      background: rgba(255, 253, 248, 0.16);
+      box-shadow: 0 0 0 2px rgba(176, 141, 87, 0.35);
+    }
+
+    /* Sticky Toolbar */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(255, 253, 248, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1.5px solid var(--outline);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toolbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-container);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--primary);
+    }
+
+    .timer-box.warning {
+      background: var(--error-soft);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .icon-btn:hover {
+      background: rgba(20, 33, 61, 0.1);
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      background: var(--surface-container);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-sm);
+      padding: 2px;
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fffdf8;
+      box-shadow: 0 1px 4px rgba(20, 33, 61, 0.2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--outline);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn:hover {
+      background: var(--surface-container);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .btn-secondary:hover {
+      background: #23473a;
+    }
+
+    .btn-gold {
+      background: var(--outline);
+      color: #fffdf8;
+      border-color: var(--outline);
+    }
+
+    .btn-gold:hover {
+      background: #9a7946;
+    }
+
+    .btn-danger {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    /* Pill Progress Slider (Penanda Soal yang Sudah Dikerjakan seperti Kuis Transformasi) */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 195px;
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .progress-bar-bg {
+      flex: 1;
+      height: 8px;
+      background: var(--surface-container);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--outline-soft);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--outline) 100%);
+      transition: width 0.35s ease;
+    }
+
+    .progress-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Main Workspace Layout */
+    .workspace {
+      max-width: 1280px;
+      margin: 24px auto;
+      padding: 0 24px 48px;
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--surface-container-low);
+      border: 1.5px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .q-header {
+      background: var(--surface-container);
+      border-bottom: 1px solid var(--outline-soft);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .q-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .q-num-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.88rem;
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .q-type-badge {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2fa;
+      border: 1px solid #c5d1ea;
+      color: var(--primary);
+    }
+
+    .q-topic-badge {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fffdf8;
+      border: 1px solid var(--outline-soft);
+      color: var(--primary);
+    }
+
+    .doubt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--outline);
+      background: #fffdf8;
+      color: var(--amber);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .doubt-btn.active {
+      background: var(--amber);
+      color: #fffdf8;
+      border-color: var(--amber);
+    }
+
+    .q-body {
+      padding: 26px 26px 22px;
+    }
+
+    .q-prompt {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      line-height: 1.75;
+    }
+
+    .q-figure-box {
+      margin: 16px 0 22px;
+      padding: 14px;
+      background: #ffffff;
+      border: 1px dashed var(--outline);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .q-figure-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* Options Styling (Model Lingkaran untuk PilGan Biasa seperti BRSL) */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 13px 16px;
+      background: #ffffff;
+      border: 1.5px solid #d6c3a0;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      position: relative;
+    }
+
+    .option-item:hover:not(.locked) {
+      border-color: var(--outline);
+      background: #fcfaf4;
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: #f0f4fb;
+      box-shadow: 0 0 0 2px rgba(20, 33, 61, 0.1);
+    }
+
+    .option-item.correct {
+      border-color: var(--secondary);
+      background: var(--secondary-soft);
+      box-shadow: 0 0 0 1px var(--secondary);
+    }
+
+    .option-item.wrong {
+      border-color: var(--error);
+      background: var(--error-soft);
+      box-shadow: 0 0 0 1px var(--error);
+    }
+
+    .option-key {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--surface-container-low);
+      border: 1.5px solid var(--outline);
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.84rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.15s ease;
+    }
+
+    .option-item.checkbox-opt .option-key {
+      border-radius: 6px;
+    }
+
+    .option-item.selected .option-key {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .option-item.correct .option-key {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .option-item.wrong .option-key {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 0.98rem;
+      padding-top: 2px;
+    }
+
+    .option-status-icon {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      padding-top: 3px;
+    }
+
+    /* True / False Grid */
+    .tf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 520px) {
+      .tf-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Short Answer Input */
+    .short-answer-wrap {
+      background: #ffffff;
+      border: 1.5px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .short-label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .short-input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .short-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 11px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      border: 1.5px solid #cbbd9e;
+      border-radius: var(--radius-sm);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      outline: none;
+    }
+
+    .short-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.12);
+    }
+
+    .short-input.correct {
+      border-color: var(--secondary);
+      background: var(--secondary-soft);
+    }
+
+    .short-input.wrong {
+      border-color: var(--error);
+      background: var(--error-soft);
+    }
+
+    .short-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .check-action-bar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Explanation Panel */
+    .explanation-panel {
+      margin-top: 22px;
+      border-top: 1.5px dashed var(--outline);
+      padding-top: 20px;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .explanation-panel.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+    }
+
+    .exp-header.is-correct {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      border-left: 4px solid var(--secondary);
+    }
+
+    .exp-header.is-wrong {
+      background: var(--error-soft);
+      color: var(--error);
+      border-left: 4px solid var(--error);
+    }
+
+    .exp-header.is-neutral {
+      background: var(--surface-container);
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+    }
+
+    .exp-steps {
+      background: #ffffff;
+      border: 1px solid #e0d6be;
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      font-size: 0.94rem;
+      margin-bottom: 12px;
+    }
+
+    .exp-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 680px) {
+      .exp-boxes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .formula-box {
+      background: rgba(20, 33, 61, 0.04);
+      border: 1px solid rgba(20, 33, 61, 0.22);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.88rem;
+    }
+
+    .formula-box-title {
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tips-box {
+      background: rgba(176, 141, 87, 0.1);
+      border: 1px solid rgba(176, 141, 87, 0.4);
+      border-left: 4px solid var(--outline);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.88rem;
+    }
+
+    .tips-box-title {
+      font-weight: 700;
+      color: #7c5c2b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Footer Navigation inside Card */
+    .q-footer {
+      background: var(--surface-container);
+      border-top: 1px solid var(--outline-soft);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: var(--surface-container-low);
+      border: 1.5px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 18px;
+      position: sticky;
+      top: 76px;
+    }
+
+    .sidebar-title {
+      font-family: 'Libre Caslon Text', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .filter-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #d5cab0;
+      background: #ffffff;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-pill.active {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .nav-num {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1.5px solid #cfc3a6;
+      background: #ffffff;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.86rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s;
+    }
+
+    .nav-num:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .nav-num.current {
+      box-shadow: 0 0 0 2.5px var(--outline);
+      border-color: var(--primary);
+    }
+
+    .nav-num.answered {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .nav-num.correct {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .nav-num.wrong {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .nav-num .doubt-dot {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #7c4d12;
+      border: 2px solid #fffdf8;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--outline-soft);
+      padding-top: 12px;
+      margin-bottom: 14px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid #cfc3a6;
+      background: #ffffff;
+    }
+
+    .legend-swatch.answered { background: var(--primary); border-color: var(--primary); }
+    .legend-swatch.correct { background: var(--secondary); border-color: var(--secondary); }
+    .legend-swatch.wrong { background: var(--error); border-color: var(--error); }
+    .legend-swatch.doubt { background: #7c4d12; border-radius: 50%; border: none; }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 33, 61, 0.62);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--surface-container-low);
+      border: 2px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalPop 0.22s ease;
+    }
+
+    .modal-box.wide {
+      max-width: 960px;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 15px 22px;
+      border-bottom: 2px solid var(--outline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h3 {
+      color: #fffdf8;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fffdf8;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      background: var(--surface-container);
+      border-top: 1px solid var(--outline-soft);
+      padding: 13px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Score Modal Specifics */
+    .score-hero {
+      text-align: center;
+      padding: 10px 0 18px;
+      border-bottom: 1px dashed var(--outline);
+      margin-bottom: 18px;
+    }
+
+    .score-circle {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      margin: 12px auto;
+      background: var(--primary);
+      border: 4px solid var(--outline);
+      color: #fffdf8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .score-sub {
+      font-size: 0.72rem;
+      color: #f3dfb9;
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 560px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid #dfd5bc;
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .topic-breakdown {
+      background: #ffffff;
+      border: 1px solid #dfd5bc;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .topic-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0eadc;
+      font-size: 0.86rem;
+    }
+
+    .topic-row:last-child {
+      border-bottom: none;
+    }
+
+    /* Formula Sheet */
+    .formula-sheet-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .formula-sheet-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .fs-card {
+      background: #ffffff;
+      border: 1px solid var(--outline-soft);
+      border-top: 3px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .fs-card h4 {
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .fs-card ul {
+      padding-left: 18px;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Scientific Calculator */
+    .calc-display {
+      background: #14213d;
+      color: #fffdf8;
+      border: 2px solid var(--outline);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: right;
+      margin-bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .calc-expr {
+      font-size: 0.78rem;
+      color: #b8c4dc;
+      min-height: 18px;
+      overflow-x: auto;
+    }
+
+    .calc-result {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-top: 4px;
+      overflow-x: auto;
+    }
+
+    .calc-keys {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .calc-key {
+      padding: 11px 6px;
+      border-radius: 7px;
+      border: 1px solid #d4c9af;
+      background: #ffffff;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .calc-key:hover {
+      background: var(--surface-container);
+    }
+
+    .calc-key.op {
+      background: var(--surface-container);
+      color: var(--primary);
+      border-color: var(--outline);
+    }
+
+    .calc-key.eq {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .calc-key.clr {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    /* Quiz Editor */
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 740px) {
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .editor-list {
+      border: 1px solid #d5cab0;
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      max-height: 460px;
+      overflow-y: auto;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .editor-q-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 0.8rem;
+      background: var(--surface-container-low);
+    }
+
+    .editor-q-item.active {
+      border-color: var(--primary);
+      background: rgba(20, 33, 61, 0.08);
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #cbbd9e;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
+      background: #ffffff;
+    }
+
+    textarea.form-control {
+      min-height: 72px;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Header (Kop Kuis Bergaya Transformasi Geometri Interaktif + Logo Asli Transparan) -->
+  <header class="brand-banner">
+    <div class="brand-banner-inner">
+      <div class="brand-identity">
+        <div class="bbm-logo-wrap" aria-label="Logo Bimbingan Belajar Matematika Suminto">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAMAAABmmnOVAAAB/lBMVEWfbx/XtF3muFc6RU9IXoC8kjm9kj+/l0DAkz/hxn79/f3+/v4NKlYVMVsAG0nn6usvR2qJl6nv59LP1NtUaIRneJCwucXUt3B1hJqYpLRFWnnl1q4jPWLEytPLp1Q7UnLGqW67w8zaxZPY3eLd4eWmeCu5llDQuYixhzihrLrbyqexi0Z9jKFdcIsbN2EkOlrCnEwACTlMYX3hzI/l28XcwnenezCuhDm3lFansb7Xs1rhx3mmdib28NvLp1XOp02mdSTEqXaoeCfOp0yyhzWuh0LXuG/OpkzRuYPm05VDS1C0hzTauWa8kTzYs1R7clSAjqKzhzTPtXzt4LZvaFKNek6yhjOzjUm8kTy+oWjEmkPLpU/JqWXWslnYs1fZtFfdvWbaw4i9lkLCmUPe0bTgvmTjy4ngzqIAED6gcB+6lEbDm0XHpFgADUCgbh6ofje7nGS7nWfCmkXGroHewXfewHDgwGufbh2cgkm6kD29olzCm0zgxHigbx6icR7BmD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADT14E5AAAAgHRSTlPlSv///7PQotAe/wD///////////////7////////9////////+v7//P/////////6//////9oUij/+f+P/03T0wWkknFEJ6QD//+LTfqu///QB////6s2iP+qaCdnh9NpBnLQ/2cO//+sTI86/9NZHv9r/ylFUrP/eP9TK6/T/9ajQzcAABVCSURBVHjazVyHf9tGltbu9dEMMCAKARAkCIEmRYkiRUqKJcVxk1sc97hseo9TN5tkk2yyu7f/+r33ZgYAi2TJlvO7SSyxAt+83kZLy/8P1tJzf/Pzj/76061bH+L67OeffvrH55//viCu3Xrv/Tt3Ptiv49p59VX8tf/BnTvvf3jrr78LiGu3Dq5fgNvvbDUab9ZgvfYa/nyz0dja2qnXP7jz/q1rLxfEtXcOAMBKo1FjCxdg2QKavP/etZcF4to71y+06iv6/rYb9J3Q3/Bw+aETBa6tkby+U79w/SQ4jg3i/EGBwG46fio4tyxuloWPh9J3MkJSA3pcOLh1uiAenD9otRSCpuMl6sZiZhEYLiaOSzhW6q2D8x+dGogb56+32gShGUq4Dze3nFv0usVl2ESCbdVb148F4xggzr+92VqDi3acVN2IV34tAoI4Ugf50kAYpwDim683WytwPdcX1tSdlUAImXB4UVQhqKfCbyoYB+++IIgHH3+yuQJ7anr6BoYRwgPOwBraNtAn7fSnSaF+eAhjpXXhnQcvAuKb//pXG2TB9fTuzI4FTxnL8E4JY/mQT1hTvSUdFBqNE/75IKQ14Mk3zw8CyQACFlYkQHqoHMLymc18TiBYYHksIKZYIXw8iguawL9QE+M5Qbz7p9tIhkCWWxv1UTrwUcQABsCRzLaZF7O+koyMRRljUQFBcEsGRIyv330eEF/9x+0e7GvDXA0FIGdu6CABeM64z/qgjcArZjsssvATAMmyEpfFWoDUF30QqpXNt8+fHMRX/9ltIBkqgm85QHWLWyQKrtxgzLNSlsPLjDkAApnEoli4DGQoyLUgCWFJoE5j85O/nxTEldstYEVoRFEMAvjZhC0OeZhLEAJaOey9ia8rEDxgZC33OI+ZlmeFZAAsaW3+cCIQN66stoEVsaWuAf+hGCoQsPFwDDQJPeC2k6KISMYGyA74lBB+jrKSMQdEMjeEtDxgSX3z4xvHB/HgDcTgFqwALMD4xIqA9dwawX1dllgoc44kEdnIPBQCj7kJH4eACAghx8LJk4KVEmjU2/zTg+OCAAx1EAehMfjZAJQ/ADEE4zCQaZ+5IuuXLqtgGUlgE+x1aAGD7AG9F3r6TQGC0bu9EMUCEDfeWAW16BeWCdkcxInNYhQ8dGMJX2QfyY5GiAMkooNmSpJsSCMYe4TixrFAXEEMUWlvUrqz6xL3nSDyqqaz9OKGc1Ii7nDM/T5sv8Oc0oBGgKJ75TggSCYNhg1UNAfkPEAgjo5eCq/Nq5GNci1kVl0wHWJsobpkJc04CBWr377ybBBnEcOepjJgtyWphpU6Ob2MNxcqrBIynXg+LC+WiVDSoQXJzxm7l1gDsqqVBRxpr559Foir97sgAbxwzwHaATBLCdiotPQIXPpR1qnGuJ3M2ZAVRnk5EyAQXunzaIF0du9/dTSI3cfdGt6WMAi4KJi/PYQSaFgCdxyrCG5+uU7MLUUOS0gwH/esoeaUMTkuq3Uf7x4J4o3VBlJQaIUDNZU2WEOJxOHEBysJpxC8BmsKR5gYOoJoZLIIcXwyZxy0rLH6xlEgXjkDijFRXtkn/2ihhfZ5oWYyKnKMxtYOrFfV2toqchE7Un5XqcMGfjHGb/nqReBRb/XK4SCeXOxqAwx2FrgCNjkbIJqhYqllINQavTrkQLUiB6oRpJWGJoqCIfAqTCYDIF3u6gtTzNG+/+QwEJcur25jvERyBVYBvASYHt8KU72xUKU3EDfWF+ZgjZX6TkM9VK4PrHWEyt2M0a0YCQ1YbfXxpUNAoJUyAgFwN3yQBAoatPVv0uXXWu0GO3Q16nX1rmuQNyHacOE65GeNWEwzZGmGGSQ+SiRQVYEYG5Ymg4ZQ32ZHrtpKa4seDLQ+DIEpnZwV7lAgk7r3dxeCOAfMCBTfpIUuEcBvkFrgpchkNlrtZ0AgGPUWfYpcIFwPUSgdj5VwWntsu6ohJYizqBlSRVA2BA/ojslUIQZJalnvrrFjrUa7RzGPLJ1gjLwI8Bc8JYacnQcBUmkT30hyQJQAhQ1OGzdjSZTIWrfNjr16GJhBWKQEw1Ob4Umnw42GdC9fmgOBhMg1bqnVTO6NiKAYq7FPj0sGTYzNp/hL77wTSqQKiFikiOOy3pmzsyAuXV6vSGXE+jZDnnBuMPS6NXaiVdvsGRSCDx20WihYWsbAHa0XpFiqEMI1EQIE05kAu5QqebBJHE6IAXjRQhTohUnZHIwz9cZmSGFAnFtHC2uik7HP/G+9gaJEh+jAnmOReOakIWCswLsHiWUiHFCY9XPTIApC8KS/txdE/TIQyJ4bA2PEkUzxVJGhDMOQFFenQJxbrYGlFZTg6LUBKYZ+vta1nw8E666YxAgDA6sSmgKDaoYUCsTuxbfQS5FmQLrpTiAYEIVQbq9qeYii4936HqZcSjrXG4Vwek60F2RunrtK/G3WvrhbAfHKmTWjO+C7wDA5QnsMYCRb1brZsfhCiuSSyCd9E2RxKy00tUuJGsUn+l3wbkQahzXOvFIBgfqpHE6KATN4S3vCDTPeMjbKFmIhCMeCC2K6lusXPF4wldXbmiGwuxgtZogKo0sc65dLEE8u/kgmbQjq2/RHkFhHqJ6CrNbaOnsGCNgZd2JLNBeLBdJR2W8gkOPp7cI/EM2LTwoQr5zZ1iTyO6rKYUnt+QGtcs1h7P07iIgXk3uNPbXioHCYicLgzLzFGutMuy8hSNV07CsgFt9W/FgyRkJHyoIyDDc0BGM9zYxkjBmGZY2ROg48oTV2NI0oJCdWzLwF1qJNsqnvCxGjiSukMRUIYvd/29pIUDohIZK16StYY1nXmhH0AxDdKOjjZvJ+oFafxICYrAOOZn8vCLKgv9c3ElJD5cqMsfYrxS9X68cSWao1LToivAfRIQS3RDJptmGWEIsDfQg/mo5BgQrQnzaceI1U+aSQUiTP12K/RqZ7iSyVrRkFW89Du7NhGbtlr1dcRocfoh1jQWUSox22sOIpV4YXoXqSDC3pOSg8iTJC9uo5DeLLbvFioBgptblnve+rSdah2kEyOTAWihWVnIoPsUkMNig4snO1abhc97ICsfvnNikobj2x7CYouS55gOBMxRCd/HgW03WmwZKC4DXhDh2wKCLVpjxjP6JQAIirZ1b0a24OuZb/rYOUIP1srLNTWajmpKVJDAkRBPRUfEWjuYZObElZCR/vKpkdAjHGrq0KxjNi+QILr2PrUoJDaaWrtYUsxZKSyxRBxETEIMSYW7mu7vbpgKitF24MbV3TJjlVlvscgfgSPjFSscTkHgmXr9jHamfatOpm9WCtqLWF6/Vi0VP9Fn6q+Iq6AhAbSza0tbBD2QDdEPb5C4K49M/vC1MFzisBFUq1SNRWKmsN1tPG7HqT1tzLjaf48bXy2zUSCmSAZw1jWQZ53/9yCUD8BexlYOpKqmNSRHWnujqK2FxU2iIB+/HPfwEQuxDZRdWuiXJxkp36KuoLRbEPTGjvzC6AuFoY7WphkHunDyKe6hEVhvuqBuHzORD+6YOYvwtkYp8SiO+UmZh9e6BtXxg6oDG2o8pUETyBx9ogdpwIS7jwI3PIZ9HHHLNQqjLHDyPbxD5zW0VDcRZAoK0qa2yiJBQFKxaGBz5rWuoF8a3PMktXdhlFdOG3vMP8Mb3vWuOoM/5ijJ74i3GARQoMLYSjw8DZuwDTa2CtEERNlanwxbsPeZEJYl+Jx47jg6VtUv0JXVMIj4cUcqHBGXbYPQ4/QhWGQaLTZ77vS574vueikZyE/pCrHURGMR7eNfeLKyBiQ4nffivlFms+5DapXK1AJEgVrTvkFztYiuqo4NDFJJ4+5qlw2+cU8eagFp0CBKxui/NFIGCNbt68u1+/e/PmyICIkBJNW/W9KiDIAzCfV0BgpiTRFGgQhDJRuTQmwQiG+mR4l9a+vssUCGLH6G+tVmt/v7VegABZoXDPhhtbmh1ECY9zO+NDr0IJCfLj5eZ7BCKnOgQFIvSA4hp1l5a6C58UIArBfIRv/02UgskCX2JDD0t5FZngTc+apNYgsEoQCUZu3rAKoiO0BLvUfzKCCXdptR6JKcEsVFTwmwjipiorDYr8CvtONqe95BgCAAiXcirWr4LAELGgoJIJiXUhlRGgJKsWFf+38i6kot8BCAxzQ/XSw1b3tz8+LI2VGwc2NRgyuN6wb7sx9sGa+DxE0kSKHUMNgqLCKgiQqTSzbUfXfvziLt0/PtSlazBWaCeuLhVm+9FdIe4+UiAmqB1jnkhJmaWqbXOkr2r/pR4xmRTDgMgFnwIBv8FlYbGdLJ2qV9NdHj6aNtu7Sz3dWhUUVYxKB+b6lIhhJ48FODsyQiY1hUn4Ip5gZydB7aC9ZmgnqKygw21qnSdeXnVglbuQA3uCrnyp4spLB6MD67xpRmXwoQ7pizCWHpU/lE2Z/ohbXKAjqgbbuPIeufJLv1SCmsqnstP2Xxmfn/tw2VtfYlCz/M8ivJvxsqe85uKFIvGgQNdk61OUiF9KODG9ZBHoTrnRKZTYxzhqvVauoz9Ys4uQfyZyqumQf2Fopbxi48x616xNNHRTsXe96Pu8+urOzkx8jZ/e1F9dhzsUwj8fWJVp4DwILDisf3oajGissmqVtLpPkwaahHgRP9pvnVoCNlx4h+6XRWmgtkAoyA3U1msnD+1nU3d71ZQG5mS/LA18d4hQUJGkfkIIOPAwU+6kipNcsMt7lSLJ7sX2AnOly0WrC0gRjaSgnDKNY0mrNCrCC8aj6UQULxEsMBLggnpFuUgXzhaRa7FUxNIZ7KmAQUZOFA3Kokj0RZM5e/PVopgvpHT33FwJcZGWstX53h8PCkvMyZeFRb7mW7Md7G1I+hfoJyUd26tlCXH3Yk/3hxZIxdpcoaTJOxVTjB4yL6QgngNRKabOOQ7Fjdmy8iwKZ5FsOkn52CvL2LRSPgOi/tYhbgOLE93LswV2a87V6lmWSuHKRurHGxX1k5Y/nfS6M3bKZouknszlp1MFdmo1iEpqDhGSK+ZaDRhuwjWnVNAVUwyYAVFbbZhy7gJLNd1qWD53RjVdzNxJ6uqGAHn0Fd34CWRoYaA7VcQTR1GiaLrwatPHNF1Wp5ou4MR6BdFMS1o3u4Op9lMimDNV15WSHQ6C2k8Bn54Emu/EVRtxJjdXfZtANwQoSK23iupt5k2m0n17BkSFTK26SjqwPW43IxpxrrjH2UZcpRNHwX7UKToCKneob2pB5GlVJCItEKavACBKUJuIwR6ZeiTJdRTGiSbE2lxL0jRnKeGw4wkgKihHjdHeZk1bowrBmzhiASsqhDOR081ZW5rmeBDqSSBfl4u7c81ZIgXFw8INEqvJ/HFFo2nyuEum07VKK+HSWCQV/fAT2ShghcI2yEhpDDQcM6L8JQ80IVZWzy5o2K/bJlHDT/u+089cmnADy4l7qBGLmT8omSG9FHwYLE/Ji/SMSNSpYU9jA0I7qwz+hYQaLba9vqBhD6RoU36C3yr7FXrsNVGjC63GkX1pX6aKLQ3qUEOapGYOUmUf3aILBTyr9OunhjjAjWlH47tBP8QJmkwaHSHPuN1qHyPIqWmwkVLM1KYCP4iznoxEtd82NmIGxC6OsxSRINkrhxfk1OW8lVa99kwIa4ou2jg0dQPMxizeJNuHjbMsv6IGe9Q9se0zsYraKs43qQx0xYzuHDbY81R5ealncdQUiRrcmNCeQFVWDhvsWb70GJyEtm8utvj1HHqmc3oa+qQb7e8sxNEoABZkKEdZ8IHPVavliBGn5Sc4/aeim6aalLLUKHyoC39CVzBrjR08b1MrBt5ew2Gv+o6evrIdocuEfQcLB4kaX/X6hiKb93cPH3ujedAJtczwpyVwvtS2lS+jETJZdJbU2JtJfXa2Xi/G3pzE0qIUIn6wU46fDisx45FjbzgAuFYYGC5w1M8epFpzzf9+NV+n/K86AZjR6QdlaWku1+/o4zk0GoHm99OjBwCXdx9DouEqnSAJsOXYpxeafTVPJ+gQySF1gyxU5wmQF2nT1t6POYFLuYAehVx//O4zh0JtLZxphzkZfHcPW54xhXVWUUaRnlOcNFIBT+BMRlpycGASJ0IjchrUbpbx8YdCi/FY1MkktbAEpTq3OIBoh+qgienNjGSsxmMnaaKmdfV4LEhOgL3yWJXMikaP1T/WeKwZFLa0CFDlUI15dlSAZ+nIxPhYS88Ol+FK3KdRerBOrmqcuCMt1jQo/PFJRqaFmZNTPUyU9IDlIvKqXaLKxLRuKXkoL33J9fQeFVSVkeKE4dfjDo/Xy+FxnLzWc/oBWA0ZqzrvdMg2ldFgRmzOF2CMaPkT9dk+Yjjm8LhGocfohznugwLeVFGUKnNNSVPi1TNIYebiqZPAx+GWkY7JmmXgGhyG4dADBXXkJG0n6eOc6Ei5H5xBcTgOyycQ22woh+Q4VO4sC3TShOo+PSB5wDnGenchhsOOVvzaVUcrNMOJENI0V60vxmCIUhPDRopGlIkN8BsClMBW9i5r0uicwIlG1u5+/NGJDpn82jWHTIRO2Rw9lwQq4nhDTu1CnBicqFQTdh34JvuOjQsSZQ5Ra29f/OLjNv+9ia1+PaecOLnULtENlEfbUANUlBAjiD7odcA6Q12JdSt9Vpw+bLROftxmefnvb2O4bHtWOQRDcZn3ReJFEoOcTg7hcB8H+yQJCyTHtq7Ee9XhGe+5Dx4tL7/79SYGc/2RCW0UN8BB4WEC0MXMo6NPPplEgBeQo7hHfNgLdXRkgdmHaGvz+Y5gwfph5jCa6mbYe74kUc0o29hIKRyjeNvFKW3VWjQnYNANNloXfniBY3lvF8fytEWSPuVaCbbi8CQc5D8bpAoOy1P0sK460aEPYGBI9ILH8sBi/PAJnZHMYmMZsX3RD8gcglENqD6BSVOm/U2SlgcliwOKN17wqCZIBkXPmSfMwQYtHjiWJhJUPwocmpOp+oYODJ+2WgfPPE18gkOr+WDRsVnQmA1Poakm/5IOYJzWoVVYHwGM9hr1oPxk5sSTmDm9q47vKsF5eorHd+kUMR5kVrPxGMFZU+eYh6VHt5AGgRrp3z/Vg8yzR7rzvk9TMVaVCggsicO9XEXi9daFgz+89MPteRbd8704xaJyClFeGGU6IadD5S/ncHtxzL9Vr28desy/BknY/oWDl3fMX+M4f4AEqa9sNRo1c94GHjQwBcO/vfD+H078lxde6E8/7O8XPad9+tMP7936x+/8RzD+B/8Ixmcffgbr559//t3/CMZpr/8DeOiAHEcdhggAAAAASUVORK5CYII=" alt="Logo Bimbingan Belajar Matematika Suminto" width="66" height="66" style="width:66px;height:66px;object-fit:contain;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,0.32));" />
+        </div>
+        <div>
+          <div class="brand-badge">
+            <i data-lucide="award" style="width:13px;height:13px;"></i>
+            Bimbingan Belajar Matematika Suminto
+          </div>
+          <h1 class="brand-title" id="quizTitle">Sains Kelas 1 SD: Tumbuhan &amp; Benda di Sekitar Kita</h1>
+          <p class="brand-subtitle" id="quizSubtitle">Kurikulum Merdeka • Bagian &amp; Kebutuhan Tumbuhan • Ciri, Wujud &amp; Kegunaan Benda</p>
+        </div>
+      </div>
+
+      <div class="student-meta-bar">
+        <input type="text" id="studentName" class="student-input" placeholder="Nama Lengkap Siswa..." />
+        <input type="text" id="studentClass" class="student-input class-input" placeholder="Kelas (mis. 1-A)" />
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Toolbar -->
+  <div class="sticky-toolbar">
+    <div class="toolbar-inner">
+      <div class="toolbar-group">
+        <div class="timer-box" id="timerBox">
+          <i data-lucide="timer" style="width:16px;height:16px;"></i>
+          <span id="timerDisplay">45:00</span>
+          <button class="icon-btn" id="toggleTimerBtn" title="Jeda / Lanjutkan Waktu">
+            <i data-lucide="pause" id="timerIcon" style="width:15px;height:15px;"></i>
+          </button>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="Pilih Mode Kuis">
+          <button class="mode-btn active" id="modePracticeBtn" data-mode="practice">
+            <i data-lucide="book-open-check" style="width:14px;height:14px;"></i>
+            Mode Latihan
+          </button>
+          <button class="mode-btn" id="modeExamBtn" data-mode="exam">
+            <i data-lucide="shield-check" style="width:14px;height:14px;"></i>
+            Mode Ujian
+          </button>
+        </div>
+      </div>
+
+      <!-- Pill Progress Slider (Penanda Soal yang Sudah Dikerjakan) -->
+      <div class="progress-wrap" title="Progres Pengerjaan Soal">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <span class="progress-label" id="toolbarProgressLabel">0/20</span>
+      </div>
+
+      <div class="toolbar-group">
+        <button class="btn" id="openFormulaBtn">
+          <i data-lucide="sigma" style="width:15px;height:15px;"></i>
+          Rumus
+        </button>
+        <button class="btn" id="openCalcBtn">
+          <i data-lucide="calculator" style="width:15px;height:15px;"></i>
+          Kalkulator
+        </button>
+        <button class="btn" id="openEditorBtn">
+          <i data-lucide="edit-3" style="width:15px;height:15px;"></i>
+          Editor Kuis
+        </button>
+        <button class="btn btn-secondary" id="finishQuizBtn">
+          <i data-lucide="check-circle-2" style="width:15px;height:15px;"></i>
+          Selesai &amp; Nilai
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="workspace">
+    <!-- Left Column: Question Card -->
+    <section class="question-card" aria-live="polite">
+      <div class="q-header">
+        <div class="q-badges">
+          <span class="q-num-badge" id="qNumberBadge">Soal 1 / 20</span>
+          <span class="q-topic-badge" id="qTopicBadge">Sifat Perpangkatan</span>
+          <span class="q-type-badge" id="qTypeBadge">Pilihan Ganda</span>
+        </div>
+        <button class="doubt-btn" id="doubtBtn">
+          <i data-lucide="flag" style="width:14px;height:14px;"></i>
+          Ragu-ragu
+        </button>
+      </div>
+
+      <div class="q-body">
+        <div class="q-prompt" id="qPrompt"></div>
+        <div id="qFigureContainer"></div>
+        <div id="qInteractionArea"></div>
+
+        <!-- Explanation Panel -->
+        <div class="explanation-panel" id="explanationPanel">
+          <div class="exp-header" id="expHeader"></div>
+          <div class="exp-steps" id="expSteps"></div>
+          <div class="exp-boxes">
+            <div class="formula-box">
+              <div class="formula-box-title">
+                <i data-lucide="function-square" style="width:14px;height:14px;"></i>
+                Rumus Utama
+              </div>
+              <div id="expFormula"></div>
+            </div>
+            <div class="tips-box">
+              <div class="tips-box-title">
+                <i data-lucide="lightbulb" style="width:14px;height:14px;"></i>
+                Tips &amp; Strategi BBM Suminto
+              </div>
+              <div id="expTips"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-footer">
+        <button class="btn" id="prevBtn">
+          <i data-lucide="arrow-left" style="width:15px;height:15px;"></i>
+          Sebelumnya
+        </button>
+        <span class="mono" style="font-size:0.8rem;color:var(--text-muted);" id="answeredCounterText">0 / 20 Terjawab</span>
+        <button class="btn btn-primary" id="nextBtn">
+          Selanjutnya
+          <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Column: Navigation Sidebar -->
+    <aside class="sidebar-card">
+      <div class="sidebar-title">
+        <span>Navigasi Soal</span>
+        <span class="mono" style="font-size:0.78rem;color:var(--text-muted);" id="sidebarProgressPct">0%</span>
+      </div>
+
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-filter="all">Semua</button>
+        <button class="filter-pill" data-filter="unanswered">Belum</button>
+        <button class="filter-pill" data-filter="doubt">Ragu-ragu</button>
+        <button class="filter-pill" data-filter="single">PilGan</button>
+        <button class="filter-pill" data-filter="multiple">Kompleks</button>
+        <button class="filter-pill" data-filter="tf">B/S</button>
+        <button class="filter-pill" data-filter="short">Isian</button>
+      </div>
+
+      <div class="nav-grid" id="navGrid"></div>
+
+      <div class="legend-grid">
+        <div class="legend-item"><span class="legend-swatch"></span> Belum dijawab</div>
+        <div class="legend-item"><span class="legend-swatch answered"></span> Sudah dijawab</div>
+        <div class="legend-item"><span class="legend-swatch correct"></span> Benar</div>
+        <div class="legend-item"><span class="legend-swatch wrong"></span> Salah</div>
+        <div class="legend-item"><span class="legend-swatch doubt"></span> Ditandai ragu</div>
+      </div>
+
+      <button class="btn btn-secondary" style="width:100%;justify-content:center;" id="sidebarFinishBtn">
+        <i data-lucide="award" style="width:15px;height:15px;"></i>
+        Kumpulkan &amp; Lihat Skor
+      </button>
+    </aside>
+  </main>
+
+  <!-- Score & Report Modal -->
+  <div class="modal-backdrop" id="scoreModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="award" style="width:20px;height:20px;color:#f3dfb9;"></i>
+          Laporan Hasil Evaluasi — BBM Suminto
+        </h3>
+        <button class="modal-close" data-close-modal="scoreModal">
+          <i data-lucide="x" style="width:16px;height:16px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="score-hero">
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;">
+            <img src="data:image/png;base64,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" alt="Logo Bimbingan Belajar Matematika Suminto" width="52" height="52" style="width:52px;height:52px;object-fit:contain;display:block;flex-shrink:0;" />
+            <div style="text-align:left;">
+              <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--outline);">Bimbingan Belajar Matematika Suminto</div>
+              <div style="font-family:'Libre Caslon Text',serif;font-weight:700;color:var(--primary);font-size:1.05rem;">Rekapitulasi Capaian Belajar</div>
+              <div id="scoreStudentIdentity" style="font-size:0.84rem;color:var(--text-muted);font-weight:600;margin-top:2px;"></div>
+            </div>
+          </div>
+
+          <div class="score-circle">
+            <span class="score-value" id="finalScoreNum">0</span>
+            <span class="score-sub">Skor Akhir</span>
+          </div>
+          <p id="scorePredicate" style="font-weight:700;color:var(--primary);font-size:1.05rem;"></p>
+          <p id="scoreTimeSpent" style="font-size:0.82rem;color:var(--text-muted);margin-top:2px;"></p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--secondary);" id="statCorrect">0</div>
+            <div class="stat-label">Benar</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--error);" id="statWrong">0</div>
+            <div class="stat-label">Salah</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--text-muted);" id="statUnanswered">0</div>
+            <div class="stat-label">Kosong</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--primary);" id="statAccuracy">0%</div>
+            <div class="stat-label">Akurasi</div>
+          </div>
+        </div>
+
+        <h4 style="font-size:0.92rem;margin-bottom:8px;">Analisis Penguasaan per Submateri</h4>
+        <div class="topic-breakdown" id="topicBreakdown"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="resetQuizBtn">
+          <i data-lucide="rotate-ccw" style="width:15px;height:15px;"></i>
+          Ulangi Kuis
+        </button>
+        <button class="btn btn-primary" data-close-modal="scoreModal">
+          <i data-lucide="eye" style="width:15px;height:15px;"></i>
+          Tinjau Pembahasan Soal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formula Sheet Modal -->
+  <div class="modal-backdrop" id="formulaModal">
+    <div class="modal-box wide">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="sigma" style="width:20px;height:20px;color:#f3dfb9;"></i>
+          Ringkasan Materi — Sains Kelas 1 SD (Kurikulum Merdeka)
+        </h3>
+        <button class="modal-close" data-close-modal="formulaModal">
+          <i data-lucide="x" style="width:16px;height:16px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="formula-sheet-grid">
+          <div class="fs-card">
+            <h4>1. Bagian-Bagian Utama Tumbuhan</h4>
+            <ul>
+              <li><b>Akar:</b> Di dalam tanah, menyerap air &amp; menguatkan tumbuhan</li>
+              <li><b>Batang:</b> Menyalurkan air dari akar ke daun &amp; menopang pohon</li>
+              <li><b>Daun:</b> Tempat memasak makanan (umumnya berwarna hijau)</li>
+              <li><b>Bunga:</b> Bagian tumbuhan yang indah &amp; bakal buah</li>
+              <li><b>Buah &amp; Biji:</b> Buah melindungi biji; biji menjadi tumbuhan baru</li>
+            </ul>
+          </div>
+
+          <div class="fs-card">
+            <h4>2. Kebutuhan &amp; Jenis Tumbuhan</h4>
+            <ul>
+              <li><b>Kebutuhan Hidup:</b> Air yang cukup, cahaya matahari, udara, dan tanah subur</li>
+              <li><b>Batang Berkayu (Keras):</b> Pohon mangga, jambu, kelapa, jati</li>
+              <li><b>Batang Basah (Lunak):</b> Bayam, kangkung, pisang, pacar air</li>
+              <li><b>Tumbuhan Termasuk Makhluk Hidup:</b> Dapat tumbuh tinggi dan berkembang biak</li>
+            </ul>
+          </div>
+
+          <div class="fs-card">
+            <h4>3. Ciri-Ciri &amp; Wujud Benda di Sekitar</h4>
+            <ul>
+              <li><b>Bentuk &amp; Ukuran:</b> Bulat (bola), kotak (buku), panjang (penggaris)</li>
+              <li><b>Permukaan Benda:</b> Halus (kaca, kertas) vs Kasar (durian, batu bata)</li>
+              <li><b>Benda Padat:</b> Bentuk dan ukurannya tetap (meja, pensil, batu)</li>
+              <li><b>Benda Cair:</b> Mengalir dan bentuknya mengikuti wadah (air, sirup, susu)</li>
+            </ul>
+          </div>
+
+          <div class="fs-card">
+            <h4>4. Benda Hidup, Tak Hidup &amp; Bahannya</h4>
+            <ul>
+              <li><b>Benda Hidup:</b> Manusia, hewan, dan tumbuhan</li>
+              <li><b>Benda Tak Hidup:</b> Batu, air, kursi, sepeda, mainan</li>
+              <li><b>Plastik:</b> Ringan dan tidak tembus air (jas hujan, ember)</li>
+              <li><b>Karet:</b> Lentur dan memantul (penghapus, bola, ban)</li>
+              <li><b>Kain:</b> Lembut dan menyerap air (baju, handuk)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close-modal="formulaModal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scientific Calculator Modal -->
+  <div class="modal-backdrop" id="calcModal">
+    <div class="modal-box" style="max-width:400px;">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="calculator" style="width:19px;height:19px;color:#f3dfb9;"></i>
+          Kalkulator Ilmiah
+        </h3>
+        <button class="modal-close" data-close-modal="calcModal">
+          <i data-lucide="x" style="width:16px;height:16px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="calc-display">
+          <div class="calc-expr" id="calcExpr"></div>
+          <div class="calc-result" id="calcResult">0</div>
+        </div>
+        <div class="calc-keys" id="calcKeys">
+          <button class="calc-key clr" data-act="clear">AC</button>
+          <button class="calc-key op" data-act="back">DEL</button>
+          <button class="calc-key op" data-val="(">(</button>
+          <button class="calc-key op" data-val=")">)</button>
+          <button class="calc-key op" data-val="^">x^y</button>
+
+          <button class="calc-key op" data-val="sqrt(">√</button>
+          <button class="calc-key" data-val="7">7</button>
+          <button class="calc-key" data-val="8">8</button>
+          <button class="calc-key" data-val="9">9</button>
+          <button class="calc-key op" data-val="/">÷</button>
+
+          <button class="calc-key op" data-val="^2">x²</button>
+          <button class="calc-key" data-val="4">4</button>
+          <button class="calc-key" data-val="5">5</button>
+          <button class="calc-key" data-val="6">6</button>
+          <button class="calc-key op" data-val="*">×</button>
+
+          <button class="calc-key op" data-val="^-1">x⁻¹</button>
+          <button class="calc-key" data-val="1">1</button>
+          <button class="calc-key" data-val="2">2</button>
+          <button class="calc-key" data-val="3">3</button>
+          <button class="calc-key op" data-val="-">−</button>
+
+          <button class="calc-key op" data-val="pi">π</button>
+          <button class="calc-key" data-val="0">0</button>
+          <button class="calc-key" data-val=".">.</button>
+          <button class="calc-key eq" data-act="eval">=</button>
+          <button class="calc-key op" data-val="+">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Built-in Quiz Editor Modal -->
+  <div class="modal-backdrop" id="editorModal">
+    <div class="modal-box wide">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="edit-3" style="width:19px;height:19px;color:#f3dfb9;"></i>
+          Editor Kuis Built-in — BBM Suminto
+        </h3>
+        <button class="modal-close" data-close-modal="editorModal">
+          <i data-lucide="x" style="width:16px;height:16px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--outline-soft);">
+          <div class="form-group" style="margin:0;">
+            <label>Judul Kuis</label>
+            <input type="text" class="form-control" id="edMetaTitle" />
+          </div>
+          <div class="form-group" style="margin:0;">
+            <label>Durasi (Menit)</label>
+            <input type="number" class="form-control" id="edMetaDuration" min="5" max="180" />
+          </div>
+        </div>
+
+        <div class="editor-grid">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <strong style="font-size:0.84rem;color:var(--primary);">Daftar Soal</strong>
+              <button class="btn btn-primary" style="padding:4px 9px;font-size:0.76rem;" id="edAddQBtn">+ Tambah</button>
+            </div>
+            <div class="editor-list" id="editorQList"></div>
+          </div>
+
+          <div id="editorFormArea">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+              <div class="form-group">
+                <label>Tipe Evaluasi</label>
+                <select class="form-control" id="edQType">
+                  <option value="single">Pilihan Ganda (single)</option>
+                  <option value="multiple">PilGan Kompleks (multiple)</option>
+                  <option value="tf">Benar / Salah (tf)</option>
+                  <option value="short">Isian Singkat (short)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Submateri</label>
+                <input type="text" class="form-control" id="edQTopic" />
+              </div>
+              <div class="form-group">
+                <label>Aksi Soal</label>
+                <button class="btn btn-danger" style="width:100%;justify-content:center;" id="edDelQBtn">Hapus Soal Ini</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Pertanyaan (mendukung LaTeX $...$ dan $$...$$)</label>
+              <textarea class="form-control" id="edQPrompt"></textarea>
+            </div>
+
+            <div class="form-group" id="edOptionsWrap">
+              <label>Opsi Jawaban (pisahkan tiap opsi dengan baris baru)</label>
+              <textarea class="form-control" id="edQOptions"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label id="edKeyLabel">Kunci Jawaban (indeks 0,1,2.. untuk single; 0,2 untuk multiple; true/false untuk tf; teks/angka untuk short)</label>
+              <input type="text" class="form-control mono" id="edQAnswer" />
+            </div>
+
+            <div class="form-group">
+              <label>Pembahasan Langkah demi Langkah</label>
+              <textarea class="form-control" id="edQExplanation"></textarea>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="form-group">
+                <label>Rumus Utama</label>
+                <input type="text" class="form-control" id="edQFormula" />
+              </div>
+              <div class="form-group">
+                <label>Tips Penyelesaian</label>
+                <input type="text" class="form-control" id="edQTips" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:space-between;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn" id="edExportJsonBtn">
+            <i data-lucide="file-code" style="width:14px;height:14px;"></i>
+            Ekspor JSON
+          </button>
+          <label class="btn" style="cursor:pointer;">
+            <i data-lucide="upload" style="width:14px;height:14px;"></i>
+            Impor JSON
+            <input type="file" id="edImportJsonInput" accept=".json" style="display:none;" />
+          </label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="edApplyBtn">
+            <i data-lucide="check" style="width:14px;height:14px;"></i>
+            Terapkan ke Pratinjau
+          </button>
+          <button class="btn btn-gold" id="edDownloadHtmlBtn">
+            <i data-lucide="download" style="width:14px;height:14px;"></i>
+            Unduh HTML Kuis (hasil edit)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded Quiz Data -->
+  <script type="application/json" id="quiz-data">
+  {
+  "meta": {
+    "title": "Sains Kelas 1 SD: Tumbuhan & Benda di Sekitar Kita",
+    "subtitle": "Kurikulum Merdeka • Bagian & Kebutuhan Tumbuhan • Ciri, Wujud & Kegunaan Benda",
+    "institution": "Bimbingan Belajar Matematika Suminto",
+    "durationMinutes": 30
+  },
+  "soal": [
+    {
+      "id": 1,
+      "type": "single",
+      "topic": "Bagian Tumbuhan",
+      "prompt": "Perhatikan gambar tumbuhan di bawah ini! Bagian tumbuhan yang berada di dalam tanah dan berfungsi menyerap air serta zat hara adalah $\\dots$",
+      "figure": {
+        "type": "bebas",
+        "width": 320,
+        "height": 190,
+        "caption": "Ilustrasi Bagian-Bagian Tumbuhan",
+        "elements": [
+          {
+            "tag": "rect",
+            "x": 30,
+            "y": 135,
+            "width": 260,
+            "height": 40,
+            "fill": "#e3dac3",
+            "rx": 6
+          },
+          {
+            "tag": "line",
+            "x1": 30,
+            "y1": 135,
+            "x2": 290,
+            "y2": 135,
+            "stroke": "#8a5a19",
+            "stroke-width": 2.5
+          },
+          {
+            "tag": "path",
+            "d": "M 160,135 Q 140,155 120,165 M 160,135 Q 160,158 158,170 M 160,135 Q 180,155 200,165",
+            "fill": "none",
+            "stroke": "#8a5a19",
+            "stroke-width": 2.5
+          },
+          {
+            "tag": "rect",
+            "x": 155,
+            "y": 65,
+            "width": 10,
+            "height": 70,
+            "fill": "#2d5a4a",
+            "rx": 3
+          },
+          {
+            "tag": "ellipse",
+            "cx": 132,
+            "cy": 95,
+            "rx": 24,
+            "ry": 10,
+            "fill": "#4a8c72",
+            "stroke": "#14213d",
+            "stroke-width": 1.5
+          },
+          {
+            "tag": "ellipse",
+            "cx": 188,
+            "cy": 85,
+            "rx": 24,
+            "ry": 10,
+            "fill": "#4a8c72",
+            "stroke": "#14213d",
+            "stroke-width": 1.5
+          },
+          {
+            "tag": "circle",
+            "cx": 160,
+            "cy": 50,
+            "r": 16,
+            "fill": "#b08d57",
+            "stroke": "#14213d",
+            "stroke-width": 1.5
+          },
+          {
+            "tag": "circle",
+            "cx": 160,
+            "cy": 50,
+            "r": 6,
+            "fill": "#fffdf8"
+          },
+          {
+            "tag": "text",
+            "x": 205,
+            "y": 162,
+            "fill": "#14213d",
+            "font-size": 11,
+            "font-weight": "bold",
+            "text": "? (Di dalam tanah)"
+          }
+        ]
+      },
+      "options": [
+        "Akar",
+        "Daun",
+        "Bunga",
+        "Batang"
+      ],
+      "answer": 0,
+      "explanation": "<b>Akar</b> adalah bagian tumbuhan yang umumnya tumbuh di dalam tanah. Akar berfungsi untuk menyerap air dan zat hara dari tanah serta memperkokoh berdirinya tumbuhan.",
+      "formula": "Akar $\\rightarrow$ Menyerap air & menguatkan tumbuhan",
+      "tips": "Ingat kata kuncinya: bagian tumbuhan yang tersembunyi di dalam tanah adalah akar."
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "topic": "Bagian Tumbuhan",
+      "prompt": "Ibu membelah buah mangga yang sudah matang dan manis. Di dalam daging buah mangga terdapat bagian keras yang dapat ditanam kembali menjadi pohon mangga baru. Bagian tersebut adalah $\\dots$",
+      "options": [
+        "Ranting",
+        "Biji",
+        "Kelopak",
+        "Duri"
+      ],
+      "answer": 1,
+      "explanation": "Di dalam buah terdapat <b>biji</b>. Biji merupakan bakal tumbuhan baru yang jika ditanam di tanah yang subur dan disiram akan tumbuh menjadi kecambah lalu pohon baru.",
+      "formula": "Buah melindungi Biji $\\rightarrow$ Biji menjadi tumbuhan baru",
+      "tips": "Buah tidak hanya enak dimakan, tetapi juga bertugas melindungi biji di dalamnya."
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "topic": "Kebutuhan Tumbuhan",
+      "prompt": "Siti menanam bunga mawar di dalam pot, lalu meletakkannya di dalam lemari yang gelap dan tidak pernah menyiramnya. Setelah beberapa hari, bunga mawar Siti akan $\\dots$",
+      "options": [
+        "Tumbuh semakin tinggi dan berbunga lebat",
+        "Berubah warna menjadi biru cerah",
+        "Layu dan lama-kelamaan mati",
+        "Daunnya bertambah sangat banyak"
+      ],
+      "answer": 2,
+      "explanation": "Tumbuhan adalah makhluk hidup yang membutuhkan <b>air</b> dan <b>cahaya matahari</b> untuk membuat makanan serta bertahan hidup. Tanpa air dan cahaya matahari, tumbuhan akan layu lalu mati.",
+      "formula": "Tumbuhan Sehat = Air + Cahaya Matahari + Tanah Subur",
+      "tips": "Samakan dengan manusia: jika tidak minum dan tidak mendapat udara/cahaya sehat, tumbuhan akan lemas (layu)."
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "topic": "Jenis Tumbuhan",
+      "prompt": "Pohon mangga memiliki batang yang besar, keras, dan berkayu. Tumbuhan di bawah ini yang juga memiliki batang berkayu dan keras seperti pohon mangga adalah $\\dots$",
+      "options": [
+        "Tanaman bayam",
+        "Pohon jambu",
+        "Tanaman kangkung",
+        "Pohon pisang"
+      ],
+      "answer": 1,
+      "explanation": "<b>Pohon jambu</b> memiliki batang berkayu yang keras dan kuat. Sedangkan bayam, kangkung, dan pisang memiliki batang basah yang lunak dan berair.",
+      "formula": "Batang Berkayu (keras) vs Batang Basah (lunak & berair)",
+      "tips": "Bayangkan mana yang batangnya keras jika diketuk: pohon jambu berkayu keras, sedangkan bayam dan pisang batangnya lunak."
+    },
+    {
+      "id": 5,
+      "type": "multiple",
+      "topic": "Bagian & Kegunaan Tumbuhan",
+      "prompt": "Tumbuhan memiliki banyak bagian yang bermanfaat bagi manusia dan makhluk hidup lainnya. Pilihlah <b>dua</b> pernyataan yang benar mengenai bagian tumbuhan!",
+      "options": [
+        "Daun umumnya berwarna hijau dan menjadi tempat tumbuhan membuat makanan",
+        "Batang berfungsi mengalirkan air dari akar menuju ke daun",
+        "Akar tumbuh di pucuk pohon untuk menarik perhatian kupu-kupu",
+        "Bunga adalah bagian tumbuhan yang berada di dalam tanah"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "• Pernyataan 1 <b>Benar</b>: Daun berwarna hijau karena mengandung zat hijau daun (klorofil) untuk memasak makanan dengan bantuan sinar matahari.<br>• Pernyataan 2 <b>Benar</b>: Batang menjadi jalur penghubung air dari akar ke seluruh bagian tumbuhan.<br>• Pernyataan 3 & 4 <b>Salah</b>: Akar berada di dalam tanah, sedangkan bunga berada di bagian atas tumbuhan.",
+      "formula": "Akar (menyerap) $\\rightarrow$ Batang (mengalirkan) $\\rightarrow$ Daun (memasak makanan)",
+      "tips": "Perhatikan letak setiap bagian tumbuhan dari bawah ke atas: akar $\\rightarrow$ batang $\\rightarrow$ daun $\\rightarrow$ bunga $\\rightarrow$ buah."
+    },
+    {
+      "id": 6,
+      "type": "tf",
+      "topic": "Makhluk Hidup & Tak Hidup",
+      "prompt": "Perhatikan pernyataan berikut:<br><i>\"Tanaman cabai yang ditanam di halaman rumah termasuk makhluk hidup karena dapat tumbuh tinggi, membutuhkan air, dan menghasilkan buah.\"</i><br>Apakah pernyataan tersebut Benar atau Salah?",
+      "answer": true,
+      "explanation": "Pernyataan tersebut <b>BENAR</b>. Tumbuhan termasuk makhluk hidup bersama manusia dan hewan karena mengalami pertumbuhan (dari biji menjadi tinggi), membutuhkan air dan cahaya matahari, serta berkembang biak.",
+      "formula": "Ciri Makhluk Hidup: Tumbuh, butuh makan/minum, berkembang biak",
+      "tips": "Tumbuhan memang tidak berpindah tempat seperti hewan, tetapi tumbuhan bertumbuh tinggi dan butuh minum (air)."
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "topic": "Ciri-Ciri Benda",
+      "prompt": "Beni menemukan sebuah benda berbentuk lingkaran di lapangan sekolah. Permukaannya halus, terbuat dari karet, dan memantul saat dijatuhkan ke lantai. Benda yang ditemukan Beni adalah $\\dots$",
+      "figure": {
+        "type": "lingkaran",
+        "width": 260,
+        "height": 150,
+        "r": 48,
+        "caption": "Benda berbentuk bulat, permukaan halus, dan memantul"
+      },
+      "options": [
+        "Batu bata",
+        "Bola karet",
+        "Kotak pensil kayu",
+        "Penghapus papan tulis"
+      ],
+      "answer": 1,
+      "explanation": "<b>Bola karet</b> memiliki ciri berbentuk bulat (lingkaran), permukaannya halus, dan bersifat lentur sehingga memantul saat dijatuhkan ke lantai.",
+      "formula": "Ciri Benda = Bentuk + Warna + Ukuran + Permukaan + Bahan",
+      "tips": "Cocokkan semua petunjuk: bulat + halus + memantul = bola karet."
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "topic": "Permukaan Benda",
+      "prompt": "Lani meraba permukaan kulit buah durian dan permukaan kaca jendela kelas. Perbedaan permukaan kedua benda yang dirasakan tangan Lani adalah $\\dots$",
+      "options": [
+        "Kulit durian halus dan kaca jendela kasar",
+        "Keduanya memiliki permukaan yang sangat lembut",
+        "Kulit durian kasar/berduri dan kaca jendela halus",
+        "Keduanya memiliki permukaan yang berbulu"
+      ],
+      "answer": 2,
+      "explanation": "Permukaan benda dapat dirasakan dengan indra peraba (kulit tangan). Kulit buah durian terasa <b>kasar</b> dan berduri, sedangkan permukaan kaca jendela terasa <b>halus</b> dan rata.",
+      "formula": "Permukaan Kasar (durian, batu, pasir) vs Halus (kaca, kertas, keramik)",
+      "tips": "Bayangkan saat tangan menyentuh permukaan benda: jika rata dan licin berarti halus, jika bergerigi/tajam berarti kasar."
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "topic": "Wujud Benda",
+      "prompt": "Dayu menuangkan air sirup dari dalam botol ke dalam sebuah gelas kosong. Perubahan yang terjadi pada air sirup tersebut adalah $\\dots$",
+      "figure": {
+        "type": "bebas",
+        "width": 320,
+        "height": 160,
+        "caption": "Air dituangkan dari botol ke dalam gelas",
+        "elements": [
+          {
+            "tag": "rect",
+            "x": 75,
+            "y": 35,
+            "width": 44,
+            "height": 95,
+            "rx": 8,
+            "fill": "#fffdf8",
+            "stroke": "#14213d",
+            "stroke-width": 2
+          },
+          {
+            "tag": "rect",
+            "x": 87,
+            "y": 20,
+            "width": 20,
+            "height": 15,
+            "fill": "#b08d57",
+            "stroke": "#14213d",
+            "stroke-width": 1.5
+          },
+          {
+            "tag": "rect",
+            "x": 77,
+            "y": 85,
+            "width": 40,
+            "height": 43,
+            "rx": 4,
+            "fill": "rgba(45,90,74,0.25)"
+          },
+          {
+            "tag": "text",
+            "x": 82,
+            "y": 148,
+            "fill": "#14213d",
+            "font-size": 11,
+            "font-weight": "bold",
+            "text": "Botol"
+          },
+          {
+            "tag": "line",
+            "x1": 135,
+            "y1": 85,
+            "x2": 185,
+            "y2": 85,
+            "stroke": "#b08d57",
+            "stroke-width": 2.5
+          },
+          {
+            "tag": "polygon",
+            "points": "185,80 195,85 185,90",
+            "fill": "#b08d57"
+          },
+          {
+            "tag": "rect",
+            "x": 210,
+            "y": 65,
+            "width": 52,
+            "height": 65,
+            "rx": 4,
+            "fill": "#fffdf8",
+            "stroke": "#14213d",
+            "stroke-width": 2
+          },
+          {
+            "tag": "rect",
+            "x": 212,
+            "y": 90,
+            "width": 48,
+            "height": 38,
+            "fill": "rgba(45,90,74,0.25)"
+          },
+          {
+            "tag": "text",
+            "x": 221,
+            "y": 148,
+            "fill": "#14213d",
+            "font-size": 11,
+            "font-weight": "bold",
+            "text": "Gelas"
+          }
+        ]
+      },
+      "options": [
+        "Bentuknya tetap seperti botol",
+        "Bentuknya berubah menyerupai gelas",
+        "Air sirup berubah menjadi batu keras",
+        "Air sirup menghilang menjadi udara"
+      ],
+      "answer": 1,
+      "explanation": "Air sirup adalah <b>benda cair</b>. Sifat utama benda cair adalah bentuknya selalu berubah mengikuti bentuk wadah atau tempatnya. Saat di botol berbentuk botol, saat di gelas berbentuk seperti gelas.",
+      "formula": "Sifat Benda Cair: Bentuk berubah mengikuti wadahnya",
+      "tips": "Benda padat bentuknya tetap (misal pensil ditaruh di gelas tetap berbentuk pensil), sedangkan benda cair bentuknya mengikuti wadah."
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "topic": "Wujud Benda",
+      "prompt": "Di atas meja belajar Udin terdapat penggaris plastik, buku tulis, penghapus karet, dan air mineral di dalam botol. Benda yang termasuk <b>benda cair</b> adalah $\\dots$",
+      "options": [
+        "Penggaris plastik",
+        "Buku tulis",
+        "Air mineral",
+        "Penghapus karet"
+      ],
+      "answer": 2,
+      "explanation": "<b>Air mineral</b> adalah benda cair karena dapat mengalir dan bentuknya mengikuti botol. Penggaris, buku tulis, dan penghapus adalah benda padat karena bentuk dan ukurannya tetap.",
+      "formula": "Benda Padat (bentuk tetap) vs Benda Cair (mengalir & ikut wadah)",
+      "tips": "Cari benda yang bisa dituang dan membasahi tempatnya."
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "topic": "Kegunaan & Bahan Benda",
+      "prompt": "Saat hujan turun deras, Edo memakai jas hujan agar seragam sekolahnya tidak basah. Jas hujan dibuat dari bahan plastik karena plastik memiliki sifat $\\dots$",
+      "options": [
+        "Mudah menyerap air",
+        "Tidak tembus air (kedap air)",
+        "Mudah robek jika terkena air",
+        "Sangat berat seperti besi"
+      ],
+      "answer": 1,
+      "explanation": "Plastik bersifat <b>tidak tembus air (kedap air)</b> dan ringan, sehingga air hujan tidak dapat menembus masuk ke pakaian di dalamnya.",
+      "formula": "Plastik $\\rightarrow$ Ringan & Tidak Tembus Air (Jas hujan, payung, ember)",
+      "tips": "Bandingkan kain dengan plastik: kain menyerap air (untuk handuk), sedangkan plastik menahan air (untuk jas hujan)."
+    },
+    {
+      "id": 12,
+      "type": "multiple",
+      "topic": "Pengelompokan Benda",
+      "prompt": "Perhatikan benda-benda di dalam ruang kelas berikut: papan tulis, meja kayu, kursi besi, dan kapur tulis. Pilihlah <b>dua</b> pernyataan yang benar tentang benda-benda tersebut!",
+      "options": [
+        "Meja kayu dan kursi besi termasuk benda tak hidup",
+        "Papan tulis dan meja kayu termasuk benda padat yang bentuknya tetap",
+        "Kursi besi dapat tumbuh besar jika disiram air setiap pagi",
+        "Kapur tulis termasuk benda cair karena bisa mengalir"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "• Pernyataan 1 <b>Benar</b>: Meja dan kursi dibuat oleh manusia dan tidak bernapas/tumbuh sehingga merupakan benda tak hidup.<br>• Pernyataan 2 <b>Benar</b>: Papan tulis dan meja memiliki bentuk dan ukuran yang tetap (benda padat).<br>• Pernyataan 3 & 4 <b>Salah</b>: Kursi besi tidak dapat tumbuh dan kapur tulis adalah benda padat.",
+      "formula": "Benda Padat Tak Hidup: Bentuk tetap & tidak mengalami pertumbuhan",
+      "tips": "Periksa satu per satu sifat benda: apakah hidup atau tak hidup, padat atau cair."
+    },
+    {
+      "id": 13,
+      "type": "tf",
+      "topic": "Benda Hidup & Tak Hidup",
+      "prompt": "Perhatikan pernyataan berikut:<br><i>\"Sepeda kayuh milik Budi dapat bergerak maju saat dikayuh, sehingga sepeda termasuk benda hidup.\"</i><br>Apakah pernyataan tersebut Benar atau Salah?",
+      "answer": false,
+      "explanation": "Pernyataan tersebut <b>SALAH</b>. Sepeda tidak dapat bergerak sendiri tanpa dikayuh manusia, tidak bernapas, tidak makan, dan tidak tumbuh besar. Oleh karena itu, sepeda adalah <b>benda tak hidup</b>.",
+      "formula": "Benda Bergerak karena Mesin/Dorongan $\\neq$ Makhluk Hidup",
+      "tips": "Hati-hati! Mobil, sepeda, dan kipas angin memang bisa bergerak, tetapi semuanya adalah benda tak hidup."
+    },
+    {
+      "id": 14,
+      "type": "short",
+      "topic": "Bagian Tumbuhan",
+      "prompt": "Bagian tumbuhan yang berfungsi sebagai tempat memasak makanan (fotosintesis) dan umumnya berwarna hijau adalah $\\dots$",
+      "answer": "daun",
+      "explanation": "<b>Daun</b> merupakan bagian tumbuhan yang mengandung zat hijau daun (klorofil) dan bertugas membuat makanan bagi tumbuhan dengan bantuan cahaya matahari.",
+      "formula": "Daun + Cahaya Matahari + Air $\\rightarrow$ Makanan Tumbuhan",
+      "tips": "Tuliskan satu kata nama bagian tumbuhan tersebut dengan huruf kecil atau kapital."
+    },
+    {
+      "id": 15,
+      "type": "short",
+      "topic": "Kegunaan Benda",
+      "prompt": "Benda di kelas yang digunakan untuk menghapus tulisan pensil di buku tulis dan terbuat dari bahan karet lentur adalah $\\dots$",
+      "answer": "penghapus",
+      "explanation": "<b>Penghapus</b> terbuat dari karet yang lentur dan kesat sehingga dapat mengangkat goresan pensil di atas kertas tanpa merobeknya.",
+      "formula": "Karet Lentur $\\rightarrow$ Penghapus, Ban Sepeda, Bola",
+      "tips": "Ingat perlengkapan di dalam tempat pensilmu yang terbuat dari karet!"
+    }
+  ]
+}
+  </script>
+
+  <!-- Internal Vector Library: MathFig -->
+  <script>
+    const MathFig = (function () {
+      const NS = "http://www.w3.org/2000/svg";
+
+      function el(tag, attrs = {}) {
+        const node = document.createElementNS(NS, tag);
+        for (const [k, v] of Object.entries(attrs)) {
+          if (k === "text") {
+            node.textContent = v;
+          } else {
+            node.setAttribute(k, v);
+          }
+        }
+        return node;
+      }
+
+      function render(fig) {
+        if (!fig || !fig.type) return null;
+        const w = fig.width || 320;
+        const h = fig.height || 180;
+        const svg = el("svg", {
+          viewBox: `0 0 ${w} ${h}`,
+          width: "100%",
+          style: `max-width:${w}px; height:auto; display:block;`
+        });
+
+        switch (fig.type) {
+          case "sudut": {
+            const cx = fig.cx || 60, cy = fig.cy || 140, r = fig.r || 110;
+            const deg = fig.deg || 45;
+            const rad = (deg * Math.PI) / 180;
+            svg.appendChild(el("line", { x1: cx, y1: cy, x2: cx + r, y2: cy, stroke: "#14213d", "stroke-width": 2.5 }));
+            svg.appendChild(el("line", { x1: cx, y1: cy, x2: cx + r * Math.cos(rad), y2: cy - r * Math.sin(rad), stroke: "#14213d", "stroke-width": 2.5 }));
+            const arcR = 32;
+            const ax = cx + arcR * Math.cos(rad), ay = cy - arcR * Math.sin(rad);
+            svg.appendChild(el("path", { d: `M ${cx + arcR},${cy} A ${arcR},${arcR} 0 0,0 ${ax},${ay}`, fill: "none", stroke: "#b08d57", "stroke-width": 2 }));
+            svg.appendChild(el("text", { x: cx + 42, y: cy - 10, fill: "#14213d", "font-size": 12, "font-weight": "bold", text: `${deg}°` }));
+            break;
+          }
+          case "bangun": {
+            svg.appendChild(el("polygon", {
+              points: fig.points || "40,150 260,150 260,40",
+              fill: "rgba(176,141,87,0.14)",
+              stroke: "#14213d",
+              "stroke-width": 2.2
+            }));
+            (fig.labels || []).forEach(lb => {
+              svg.appendChild(el("text", { x: lb.x, y: lb.y, fill: "#14213d", "font-size": 12, "font-weight": "bold", text: lb.text }));
+            });
+            break;
+          }
+          case "lingkaran": {
+            const cx = w / 2, cy = h / 2, r = fig.r || 65;
+            svg.appendChild(el("circle", { cx, cy, r, fill: "rgba(20,33,61,0.06)", stroke: "#14213d", "stroke-width": 2.2 }));
+            svg.appendChild(el("circle", { cx, cy, r: 3, fill: "#b08d57" }));
+            if (fig.showRadius) {
+              svg.appendChild(el("line", { x1: cx, y1: cy, x2: cx + r, y2: cy, stroke: "#9b2c2c", "stroke-width": 2 }));
+              svg.appendChild(el("text", { x: cx + r / 2 - 8, y: cy - 6, fill: "#9b2c2c", "font-size": 12, text: fig.radiusLabel || "r" }));
+            }
+            break;
+          }
+          case "ruang": {
+            svg.appendChild(el("rect", { x: 70, y: 55, width: 110, height: 90, fill: "rgba(20,33,61,0.05)", stroke: "#14213d", "stroke-width": 2 }));
+            svg.appendChild(el("rect", { x: 110, y: 25, width: 110, height: 90, fill: "none", stroke: "#14213d", "stroke-width": 1.6, "stroke-dasharray": "4,3" }));
+            [[70,55,110,25],[180,55,220,25],[70,145,110,115],[180,145,220,115]].forEach(c => {
+              svg.appendChild(el("line", { x1: c[0], y1: c[1], x2: c[2], y2: c[3], stroke: "#14213d", "stroke-width": 1.6 }));
+            });
+            break;
+          }
+          case "jaring": {
+            const s = 34, ox = 95, oy = 30;
+            [[1,0],[0,1],[1,1],[2,1],[1,2],[1,3]].forEach(([gx, gy]) => {
+              svg.appendChild(el("rect", { x: ox + gx * s, y: oy + gy * s, width: s, height: s, fill: "rgba(176,141,87,0.18)", stroke: "#14213d", "stroke-width": 1.8 }));
+            });
+            break;
+          }
+          case "diagram": {
+            const vals = fig.values || [40, 75, 55, 90];
+            const labels = fig.labels || ["A", "B", "C", "D"];
+            svg.appendChild(el("line", { x1: 40, y1: 150, x2: 290, y2: 150, stroke: "#14213d", "stroke-width": 2 }));
+            svg.appendChild(el("line", { x1: 40, y1: 20, x2: 40, y2: 150, stroke: "#14213d", "stroke-width": 2 }));
+            vals.forEach((v, i) => {
+              const bx = 60 + i * 55;
+              svg.appendChild(el("rect", { x: bx, y: 150 - v, width: 32, height: v, fill: i % 2 === 0 ? "#14213d" : "#b08d57" }));
+              svg.appendChild(el("text", { x: bx + 11, y: 166, fill: "#14213d", "font-size": 11, text: labels[i] || "" }));
+            });
+            break;
+          }
+          case "pecahan": {
+            const parts = fig.parts || 4, shaded = fig.shaded || 3;
+            const bw = 240 / parts;
+            for (let i = 0; i < parts; i++) {
+              svg.appendChild(el("rect", {
+                x: 40 + i * bw, y: 65, width: bw, height: 46,
+                fill: i < shaded ? "#b08d57" : "#ffffff",
+                stroke: "#14213d", "stroke-width": 2
+              }));
+            }
+            break;
+          }
+          case "jam": {
+            const cx = w / 2, cy = h / 2, r = 68;
+            svg.appendChild(el("circle", { cx, cy, r, fill: "#fffdf8", stroke: "#14213d", "stroke-width": 3 }));
+            const hr = ((fig.hour || 3) % 12) * 30 * Math.PI / 180;
+            const mn = (fig.minute || 0) * 6 * Math.PI / 180;
+            svg.appendChild(el("line", { x1: cx, y1: cy, x2: cx + 38 * Math.sin(hr), y2: cy - 38 * Math.cos(hr), stroke: "#14213d", "stroke-width": 3.5, "stroke-linecap": "round" }));
+            svg.appendChild(el("line", { x1: cx, y1: cy, x2: cx + 52 * Math.sin(mn), y2: cy - 52 * Math.cos(mn), stroke: "#9b2c2c", "stroke-width": 2.2, "stroke-linecap": "round" }));
+            break;
+          }
+          case "pohon": {
+            svg.appendChild(el("line", { x1: 160, y1: 25, x2: 90, y2: 85, stroke: "#14213d", "stroke-width": 2 }));
+            svg.appendChild(el("line", { x1: 160, y1: 25, x2: 230, y2: 85, stroke: "#14213d", "stroke-width": 2 }));
+            svg.appendChild(el("circle", { cx: 160, cy: 25, r: 14, fill: "#14213d" }));
+            svg.appendChild(el("circle", { cx: 90, cy: 85, r: 14, fill: "#b08d57" }));
+            svg.appendChild(el("circle", { cx: 230, cy: 85, r: 14, fill: "#2d5a4a" }));
+            break;
+          }
+          case "bidang": {
+            const cx = w / 2, cy = h / 2;
+            svg.appendChild(el("line", { x1: 20, y1: cy, x2: w - 20, y2: cy, stroke: "#14213d", "stroke-width": 1.8 }));
+            svg.appendChild(el("line", { x1: cx, y1: 15, x2: cx, y2: h - 15, stroke: "#14213d", "stroke-width": 1.8 }));
+            (fig.points || []).forEach(pt => {
+              svg.appendChild(el("circle", { cx: cx + pt.x * 20, cy: cy - pt.y * 20, r: 4, fill: "#9b2c2c" }));
+            });
+            break;
+          }
+          case "garisbilangan": {
+            const y = h / 2;
+            svg.appendChild(el("line", { x1: 25, y1: y, x2: w - 25, y2: y, stroke: "#14213d", "stroke-width": 2 }));
+            const min = fig.min ?? -3, max = fig.max ?? 3;
+            const step = (w - 80) / (max - min);
+            for (let v = min; v <= max; v++) {
+              const x = 40 + (v - min) * step;
+              svg.appendChild(el("line", { x1: x, y1: y - 5, x2: x, y2: y + 5, stroke: "#14213d", "stroke-width": 1.8 }));
+              svg.appendChild(el("text", { x: x - 4, y: y + 20, fill: "#14213d", "font-size": 11, text: String(v) }));
+            }
+            break;
+          }
+          case "venn": {
+            svg.appendChild(el("rect", { x: 25, y: 20, width: 270, height: 140, fill: "none", stroke: "#14213d", "stroke-width": 2 }));
+            svg.appendChild(el("circle", { cx: 130, cy: 90, r: 48, fill: "rgba(20,33,61,0.12)", stroke: "#14213d", "stroke-width": 2 }));
+            svg.appendChild(el("circle", { cx: 190, cy: 90, r: 48, fill: "rgba(176,141,87,0.18)", stroke: "#b08d57", "stroke-width": 2 }));
+            break;
+          }
+          case "bebas":
+          default: {
+            (fig.elements || []).forEach(item => {
+              const { tag, ...attrs } = item;
+              svg.appendChild(el(tag || "line", attrs));
+            });
+            break;
+          }
+        }
+        return svg;
+      }
+
+      return { render };
+    })();
+  </script>
+
+  <!-- Quiz Engine & UI Logic -->
+  <script>
+    (function () {
+      let quizData = JSON.parse(document.getElementById("quiz-data").textContent);
+
+      let state = {
+        currentIndex: 0,
+        mode: "practice", // 'practice' | 'exam'
+        filter: "all",
+        answers: {},      // { [id]: number | number[] | boolean | string }
+        checked: {},      // { [id]: boolean }
+        doubts: {},       // { [id]: boolean }
+        submitted: false,
+        secondsLeft: (quizData.meta.durationMinutes || 45) * 60,
+        timerPaused: false,
+        timerInterval: null,
+        editingIndex: 0
+      };
+
+      const dom = {
+        quizTitle: document.getElementById("quizTitle"),
+        quizSubtitle: document.getElementById("quizSubtitle"),
+        timerBox: document.getElementById("timerBox"),
+        timerDisplay: document.getElementById("timerDisplay"),
+        toggleTimerBtn: document.getElementById("toggleTimerBtn"),
+        timerIcon: document.getElementById("timerIcon"),
+        modePracticeBtn: document.getElementById("modePracticeBtn"),
+        modeExamBtn: document.getElementById("modeExamBtn"),
+        progressBar: document.getElementById("progressBar"),
+        toolbarProgressLabel: document.getElementById("toolbarProgressLabel"),
+        qNumberBadge: document.getElementById("qNumberBadge"),
+        qTypeBadge: document.getElementById("qTypeBadge"),
+        qTopicBadge: document.getElementById("qTopicBadge"),
+        doubtBtn: document.getElementById("doubtBtn"),
+        qPrompt: document.getElementById("qPrompt"),
+        qFigureContainer: document.getElementById("qFigureContainer"),
+        qInteractionArea: document.getElementById("qInteractionArea"),
+        explanationPanel: document.getElementById("explanationPanel"),
+        expHeader: document.getElementById("expHeader"),
+        expSteps: document.getElementById("expSteps"),
+        expFormula: document.getElementById("expFormula"),
+        expTips: document.getElementById("expTips"),
+        prevBtn: document.getElementById("prevBtn"),
+        nextBtn: document.getElementById("nextBtn"),
+        answeredCounterText: document.getElementById("answeredCounterText"),
+        sidebarProgressPct: document.getElementById("sidebarProgressPct"),
+        filterPills: document.getElementById("filterPills"),
+        navGrid: document.getElementById("navGrid")
+      };
+
+      function typeLabel(type) {
+        switch (type) {
+          case "single": return "Pilihan Ganda";
+          case "multiple": return "Pilihan Ganda Kompleks";
+          case "tf": return "Benar / Salah";
+          case "short": return "Isian Singkat";
+          default: return "Soal";
+        }
+      }
+
+      function renderMath(target) {
+        if (window.renderMathInElement && target) {
+          window.renderMathInElement(target, {
+            delimiters: [
+              { left: "$$", right: "$$", display: true },
+              { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      }
+
+      function isAnswered(q) {
+        const val = state.answers[q.id];
+        if (val === undefined || val === null) return false;
+        if (q.type === "multiple") return Array.isArray(val) && val.length > 0;
+        if (q.type === "short") return String(val).trim().length > 0;
+        return true;
+      }
+
+      function normalizeShort(str) {
+        return String(str || "")
+          .trim()
+          .toLowerCase()
+          .replace(/,/g, ".")
+          .replace(/\s+/g, "");
+      }
+
+      function evaluateQuestion(q) {
+        if (!isAnswered(q)) return false;
+        const userAns = state.answers[q.id];
+        if (q.type === "single") {
+          return Number(userAns) === Number(q.answer);
+        }
+        if (q.type === "tf") {
+          return Boolean(userAns) === Boolean(q.answer);
+        }
+        if (q.type === "multiple") {
+          const a = [...userAns].map(Number).sort((x, y) => x - y);
+          const b = [...q.answer].map(Number).sort((x, y) => x - y);
+          return a.length === b.length && a.every((v, idx) => v === b[idx]);
+        }
+        if (q.type === "short") {
+          const cleanUser = normalizeShort(userAns);
+          const cleanKey = normalizeShort(q.answer);
+          if (cleanUser === cleanKey) return true;
+          if (q.unit) {
+            const cleanUnit = normalizeShort(q.unit);
+            if (cleanUser === cleanKey + cleanUnit) return true;
+          }
+          const numU = parseFloat(cleanUser.replace(/[^0-9.\-]/g, ""));
+          const numK = parseFloat(cleanKey);
+          if (!isNaN(numU) && !isNaN(numK) && Math.abs(numU - numK) < 1e-6) {
+            const stripped = cleanUser.replace(/[0-9.\-]/g, "");
+            if (stripped === "" || (q.unit && stripped === normalizeShort(q.unit))) {
+              return true;
+            }
+          }
+          return false;
+        }
+        return false;
+      }
+
+      function updateMetaHeader() {
+        dom.quizTitle.textContent = quizData.meta.title;
+        dom.quizSubtitle.textContent = quizData.meta.subtitle;
+      }
+
+      function startTimer() {
+        if (state.timerInterval) clearInterval(state.timerInterval);
+        state.timerInterval = setInterval(() => {
+          if (state.timerPaused || state.submitted) return;
+          if (state.secondsLeft > 0) {
+            state.secondsLeft--;
+            updateTimerDisplay();
+          } else {
+            finishQuiz(true);
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const m = Math.floor(state.secondsLeft / 60);
+        const s = state.secondsLeft % 60;
+        dom.timerDisplay.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+        if (state.secondsLeft <= 180) {
+          dom.timerBox.classList.add("warning");
+        } else {
+          dom.timerBox.classList.remove("warning");
+        }
+      }
+
+      function updateProgressAndSidebar() {
+        const total = quizData.soal.length;
+        const answeredCount = quizData.soal.filter(isAnswered).length;
+        const pct = total > 0 ? Math.round((answeredCount / total) * 100) : 0;
+
+        dom.progressBar.style.width = `${pct}%`;
+        dom.toolbarProgressLabel.textContent = `${answeredCount}/${total}`;
+        dom.answeredCounterText.textContent = `${answeredCount} / ${total} Terjawab`;
+        dom.sidebarProgressPct.textContent = `${pct}%`;
+
+        dom.navGrid.innerHTML = "";
+        quizData.soal.forEach((q, idx) => {
+          const ans = isAnswered(q);
+          const isDoubt = !!state.doubts[q.id];
+          const showResult = state.submitted || (state.mode === "practice" && state.checked[q.id]);
+
+          let visible = true;
+          if (state.filter === "unanswered" && ans) visible = false;
+          if (state.filter === "doubt" && !isDoubt) visible = false;
+          if (["single", "multiple", "tf", "short"].includes(state.filter) && q.type !== state.filter) visible = false;
+
+          const btn = document.createElement("button");
+          btn.className = "nav-num";
+          if (!visible) btn.style.opacity = "0.28";
+          if (idx === state.currentIndex) btn.classList.add("current");
+
+          if (showResult && ans) {
+            btn.classList.add(evaluateQuestion(q) ? "correct" : "wrong");
+          } else if (ans) {
+            btn.classList.add("answered");
+          }
+
+          btn.textContent = idx + 1;
+          if (isDoubt) {
+            const dot = document.createElement("span");
+            dot.className = "doubt-dot";
+            btn.appendChild(dot);
+          }
+
+          btn.addEventListener("click", () => {
+            state.currentIndex = idx;
+            renderCurrentQuestion();
+          });
+
+          dom.navGrid.appendChild(btn);
+        });
+      }
+
+      function renderCurrentQuestion() {
+        const total = quizData.soal.length;
+        if (total === 0) return;
+        if (state.currentIndex >= total) state.currentIndex = total - 1;
+        if (state.currentIndex < 0) state.currentIndex = 0;
+
+        const q = quizData.soal[state.currentIndex];
+        const showFeedback = state.submitted || (state.mode === "practice" && state.checked[q.id]);
+
+        dom.qNumberBadge.textContent = `Soal ${state.currentIndex + 1} / ${total}`;
+        dom.qTopicBadge.textContent = q.topic || "Matematika";
+        dom.qTypeBadge.textContent = typeLabel(q.type);
+
+        if (state.doubts[q.id]) {
+          dom.doubtBtn.classList.add("active");
+        } else {
+          dom.doubtBtn.classList.remove("active");
+        }
+
+        dom.qPrompt.innerHTML = q.prompt;
+
+        // Render Figure if present
+        dom.qFigureContainer.innerHTML = "";
+        if (q.figure) {
+          const box = document.createElement("div");
+          box.className = "q-figure-box";
+          const svgEl = MathFig.render(q.figure);
+          if (svgEl) box.appendChild(svgEl);
+          if (q.figure.caption) {
+            const cap = document.createElement("div");
+            cap.className = "q-figure-caption";
+            cap.textContent = q.figure.caption;
+            box.appendChild(cap);
+          }
+          dom.qFigureContainer.appendChild(box);
+        }
+
+        // Render Interaction Area
+        dom.qInteractionArea.innerHTML = "";
+        const letters = ["A", "B", "C", "D", "E", "F"];
+
+        if (q.type === "single") {
+          const list = document.createElement("div");
+          list.className = "options-list";
+
+          (q.options || []).forEach((optText, idx) => {
+            const item = document.createElement("div");
+            item.className = "option-item";
+            const selected = state.answers[q.id] === idx;
+            if (selected) item.classList.add("selected");
+
+            if (showFeedback) {
+              item.classList.add("locked");
+              if (idx === Number(q.answer)) {
+                item.classList.add("correct");
+              } else if (selected) {
+                item.classList.add("wrong");
+              }
+            }
+
+            item.innerHTML = `
+              <span class="option-key">${letters[idx] || idx + 1}</span>
+              <span class="option-text">${optText}</span>
+              <span class="option-status-icon"></span>
+            `;
+
+            if (showFeedback) {
+              const iconWrap = item.querySelector(".option-status-icon");
+              if (idx === Number(q.answer)) {
+                iconWrap.innerHTML = `<i data-lucide="check-circle-2" style="width:18px;height:18px;color:var(--secondary);"></i>`;
+              } else if (selected) {
+                iconWrap.innerHTML = `<i data-lucide="x-circle" style="width:18px;height:18px;color:var(--error);"></i>`;
+              }
+            }
+
+            if (!showFeedback) {
+              item.addEventListener("click", () => {
+                state.answers[q.id] = idx;
+                if (state.mode === "practice") {
+                  state.checked[q.id] = true;
+                }
+                renderCurrentQuestion();
+              });
+            }
+
+            list.appendChild(item);
+          });
+
+          dom.qInteractionArea.appendChild(list);
+        } else if (q.type === "multiple") {
+          const hint = document.createElement("p");
+          hint.style.cssText = "font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;font-weight:500;";
+          hint.textContent = "Pilih lebih dari satu jawaban yang benar, lalu klik Periksa Jawaban.";
+          dom.qInteractionArea.appendChild(hint);
+
+          const list = document.createElement("div");
+          list.className = "options-list";
+          const currentSel = Array.isArray(state.answers[q.id]) ? state.answers[q.id] : [];
+
+          (q.options || []).forEach((optText, idx) => {
+            const item = document.createElement("div");
+            item.className = "option-item checkbox-opt";
+            const selected = currentSel.includes(idx);
+            const isKey = (q.answer || []).map(Number).includes(idx);
+
+            if (selected) item.classList.add("selected");
+            if (showFeedback) {
+              item.classList.add("locked");
+              if (isKey) item.classList.add("correct");
+              else if (selected) item.classList.add("wrong");
+            }
+
+            item.innerHTML = `
+              <span class="option-key">${selected ? "✓" : letters[idx]}</span>
+              <span class="option-text">${optText}</span>
+              <span class="option-status-icon"></span>
+            `;
+
+            if (showFeedback) {
+              const iconWrap = item.querySelector(".option-status-icon");
+              if (isKey) {
+                iconWrap.innerHTML = `<i data-lucide="check-square" style="width:18px;height:18px;color:var(--secondary);"></i>`;
+              } else if (selected) {
+                iconWrap.innerHTML = `<i data-lucide="x-square" style="width:18px;height:18px;color:var(--error);"></i>`;
+              }
+            }
+
+            if (!showFeedback) {
+              item.addEventListener("click", () => {
+                const nextSel = currentSel.includes(idx)
+                  ? currentSel.filter(i => i !== idx)
+                  : [...currentSel, idx];
+                state.answers[q.id] = nextSel;
+                renderCurrentQuestion();
+              });
+            }
+
+            list.appendChild(item);
+          });
+
+          dom.qInteractionArea.appendChild(list);
+
+          if (!showFeedback && state.mode === "practice") {
+            const bar = document.createElement("div");
+            bar.className = "check-action-bar";
+            const checkBtn = document.createElement("button");
+            checkBtn.className = "btn btn-primary";
+            checkBtn.innerHTML = `<i data-lucide="check" style="width:15px;height:15px;"></i> Periksa Jawaban`;
+            checkBtn.disabled = currentSel.length === 0;
+            checkBtn.addEventListener("click", () => {
+              state.checked[q.id] = true;
+              renderCurrentQuestion();
+            });
+            bar.appendChild(checkBtn);
+            dom.qInteractionArea.appendChild(bar);
+          }
+        } else if (q.type === "tf") {
+          const grid = document.createElement("div");
+          grid.className = "tf-grid";
+
+          [
+            { label: "BENAR", val: true, key: "B" },
+            { label: "SALAH", val: false, key: "S" }
+          ].forEach(opt => {
+            const item = document.createElement("div");
+            item.className = "option-item";
+            const selected = state.answers[q.id] === opt.val;
+            if (selected) item.classList.add("selected");
+
+            if (showFeedback) {
+              item.classList.add("locked");
+              if (opt.val === Boolean(q.answer)) item.classList.add("correct");
+              else if (selected) item.classList.add("wrong");
+            }
+
+            item.innerHTML = `
+              <span class="option-key">${opt.key}</span>
+              <span class="option-text" style="font-weight:700;">${opt.label}</span>
+              <span class="option-status-icon"></span>
+            `;
+
+            if (!showFeedback) {
+              item.addEventListener("click", () => {
+                state.answers[q.id] = opt.val;
+                if (state.mode === "practice") {
+                  state.checked[q.id] = true;
+                }
+                renderCurrentQuestion();
+              });
+            }
+
+            grid.appendChild(item);
+          });
+
+          dom.qInteractionArea.appendChild(grid);
+        } else if (q.type === "short") {
+          const wrap = document.createElement("div");
+          wrap.className = "short-answer-wrap";
+
+          const curVal = state.answers[q.id] !== undefined ? state.answers[q.id] : "";
+          const isRight = showFeedback && evaluateQuestion(q);
+
+          wrap.innerHTML = `
+            <label class="short-label">Ketik Jawaban Singkat Anda:</label>
+            <div class="short-input-row">
+              <input type="text" class="short-input ${showFeedback ? (isRight ? "correct" : "wrong") : ""}" id="shortInputField" placeholder="Contoh: 42 atau 4,5" value="${String(curVal).replace(/"/g, "&quot;")}" ${showFeedback ? "disabled" : ""} />
+              ${!showFeedback && state.mode === "practice" ? `<button class="btn btn-primary" id="checkShortBtn">Periksa Jawaban</button>` : ""}
+            </div>
+            <div class="short-hint">Toleransi otomatis untuk tanda koma (,) maupun titik (.) pada bilangan desimal${q.unit ? ` serta satuan (${q.unit})` : ""}.</div>
+          `;
+
+          dom.qInteractionArea.appendChild(wrap);
+
+          const inp = wrap.querySelector("#shortInputField");
+          inp.addEventListener("input", (e) => {
+            state.answers[q.id] = e.target.value;
+            updateProgressAndSidebar();
+          });
+
+          inp.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !showFeedback && state.mode === "practice" && isAnswered(q)) {
+              state.checked[q.id] = true;
+              renderCurrentQuestion();
+            }
+          });
+
+          const chkBtn = wrap.querySelector("#checkShortBtn");
+          if (chkBtn) {
+            chkBtn.addEventListener("click", () => {
+              if (!isAnswered(q)) return;
+              state.checked[q.id] = true;
+              renderCurrentQuestion();
+            });
+          }
+        }
+
+        // Explanation Panel
+        if (showFeedback) {
+          dom.explanationPanel.classList.add("visible");
+          const ansGiven = isAnswered(q);
+          const correct = evaluateQuestion(q);
+
+          dom.expHeader.className = "exp-header " + (!ansGiven ? "is-neutral" : correct ? "is-correct" : "is-wrong");
+          if (!ansGiven) {
+            dom.expHeader.innerHTML = `<i data-lucide="info" style="width:18px;height:18px;"></i> Tidak Dijawab — Kunci Jawaban: ${formatKeyText(q)}`;
+          } else if (correct) {
+            dom.expHeader.innerHTML = `<i data-lucide="check-circle-2" style="width:18px;height:18px;"></i> Jawaban Anda Tepat!`;
+          } else {
+            dom.expHeader.innerHTML = `<i data-lucide="alert-circle" style="width:18px;height:18px;"></i> Belum Tepat — Kunci Jawaban: ${formatKeyText(q)}`;
+          }
+
+          dom.expSteps.innerHTML = q.explanation || "";
+          dom.expFormula.innerHTML = q.formula || "-";
+          dom.expTips.innerHTML = q.tips || "-";
+        } else {
+          dom.explanationPanel.classList.remove("visible");
+        }
+
+        dom.prevBtn.disabled = state.currentIndex === 0;
+        dom.nextBtn.textContent = state.currentIndex === total - 1 ? "Selesai" : "Selanjutnya";
+
+        updateProgressAndSidebar();
+        renderMath(document.querySelector(".question-card"));
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      function formatKeyText(q) {
+        const letters = ["A", "B", "C", "D", "E", "F"];
+        if (q.type === "single") {
+          const idx = Number(q.answer);
+          return `${letters[idx]} (${q.options[idx]})`;
+        }
+        if (q.type === "multiple") {
+          return (q.answer || []).map(i => letters[Number(i)]).join(", ");
+        }
+        if (q.type === "tf") {
+          return q.answer ? "BENAR" : "SALAH";
+        }
+        return `${q.answer}${q.unit ? " " + q.unit : ""}`;
+      }
+
+      function finishQuiz(autoTimeout = false) {
+        if (!autoTimeout && !state.submitted) {
+          const unanswered = quizData.soal.filter(q => !isAnswered(q)).length;
+          if (unanswered > 0) {
+            const ok = confirm(`Masih ada ${unanswered} soal yang belum dijawab. Yakin ingin mengumpulkan dan menilai sekarang?`);
+            if (!ok) return;
+          }
+        }
+
+        state.submitted = true;
+        state.timerPaused = true;
+
+        const total = quizData.soal.length;
+        let correctCount = 0;
+        let wrongCount = 0;
+        let unansweredCount = 0;
+        const topicMap = {};
+
+        quizData.soal.forEach(q => {
+          const t = q.topic || "Umum";
+          if (!topicMap[t]) topicMap[t] = { total: 0, correct: 0 };
+          topicMap[t].total++;
+
+          if (!isAnswered(q)) {
+            unansweredCount++;
+          } else if (evaluateQuestion(q)) {
+            correctCount++;
+            topicMap[t].correct++;
+          } else {
+            wrongCount++;
+          }
+        });
+
+        const score = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+        const totalSecs = (quizData.meta.durationMinutes || 45) * 60;
+        const usedSecs = Math.max(0, totalSecs - state.secondsLeft);
+        const usedMin = Math.floor(usedSecs / 60);
+        const usedSecRem = usedSecs % 60;
+
+        const sName = (document.getElementById("studentName").value || "").trim() || "Peserta Didik";
+        const sClass = (document.getElementById("studentClass").value || "").trim();
+        document.getElementById("scoreStudentIdentity").textContent = sClass ? `${sName} — ${sClass}` : sName;
+
+        document.getElementById("finalScoreNum").textContent = score;
+        document.getElementById("statCorrect").textContent = correctCount;
+        document.getElementById("statWrong").textContent = wrongCount;
+        document.getElementById("statUnanswered").textContent = unansweredCount;
+        document.getElementById("statAccuracy").textContent = `${score}%`;
+        document.getElementById("scoreTimeSpent").textContent = `Waktu pengerjaan: ${usedMin} menit ${usedSecRem} detik`;
+
+        let pred = "";
+        if (score >= 90) pred = "Predikat: Istimewa — Penguasaan Konsep Sangat Matang!";
+        else if (score >= 75) pred = "Predikat: Baik — Pemahaman Sudah Kuat, Terus Pertahankan!";
+        else if (score >= 60) pred = "Predikat: Cukup — Tinjau Kembali Pembahasan pada Submateri yang Masih Keliru.";
+        else pred = "Predikat: Perlu Penguatan — Pelajari Lembar Rumus & Pembahasan Langkah demi Langkah.";
+        document.getElementById("scorePredicate").textContent = pred;
+
+        const breakdownEl = document.getElementById("topicBreakdown");
+        breakdownEl.innerHTML = "";
+        Object.entries(topicMap).forEach(([topic, info]) => {
+          const pct = Math.round((info.correct / info.total) * 100);
+          const row = document.createElement("div");
+          row.className = "topic-row";
+          row.innerHTML = `
+            <span style="font-weight:600;color:var(--primary);">${topic}</span>
+            <span class="mono" style="font-weight:700;color:${pct >= 75 ? "var(--secondary)" : pct >= 50 ? "var(--amber)" : "var(--error)"};">
+              ${info.correct}/${info.total} (${pct}%)
+            </span>
+          `;
+          breakdownEl.appendChild(row);
+        });
+
+        renderCurrentQuestion();
+        openModal("scoreModal");
+
+        // Trigger GoatCounter analytics when #scoreModal opens
+        if (window.goatcounter && typeof window.goatcounter.count === "function") {
+          window.goatcounter.count({
+            path: "/kuis-selesai/sains-kelas-1-sd-tumbuhan-benda",
+            title: `Skor ${score} - ${quizData.meta.title}`,
+            event: true
+          });
+        }
+      }
+
+      function openModal(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add("open");
+          renderMath(el);
+          if (window.lucide) window.lucide.createIcons();
+        }
+      }
+
+      function closeModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("open");
+      }
+
+      // Event Listeners
+      dom.toggleTimerBtn.addEventListener("click", () => {
+        state.timerPaused = !state.timerPaused;
+        dom.timerIcon.setAttribute("data-lucide", state.timerPaused ? "play" : "pause");
+        if (window.lucide) window.lucide.createIcons();
+      });
+
+      [dom.modePracticeBtn, dom.modeExamBtn].forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.mode = btn.dataset.mode;
+          dom.modePracticeBtn.classList.toggle("active", state.mode === "practice");
+          dom.modeExamBtn.classList.toggle("active", state.mode === "exam");
+          renderCurrentQuestion();
+        });
+      });
+
+      dom.doubtBtn.addEventListener("click", () => {
+        const q = quizData.soal[state.currentIndex];
+        state.doubts[q.id] = !state.doubts[q.id];
+        renderCurrentQuestion();
+      });
+
+      dom.prevBtn.addEventListener("click", () => {
+        if (state.currentIndex > 0) {
+          state.currentIndex--;
+          renderCurrentQuestion();
+        }
+      });
+
+      dom.nextBtn.addEventListener("click", () => {
+        if (state.currentIndex < quizData.soal.length - 1) {
+          state.currentIndex++;
+          renderCurrentQuestion();
+        } else {
+          finishQuiz(false);
+        }
+      });
+
+      dom.filterPills.addEventListener("click", (e) => {
+        const pill = e.target.closest(".filter-pill");
+        if (!pill) return;
+        state.filter = pill.dataset.filter;
+        dom.filterPills.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        updateProgressAndSidebar();
+      });
+
+      document.getElementById("finishQuizBtn").addEventListener("click", () => finishQuiz(false));
+      document.getElementById("sidebarFinishBtn").addEventListener("click", () => finishQuiz(false));
+
+      document.getElementById("resetQuizBtn").addEventListener("click", () => {
+        state.answers = {};
+        state.checked = {};
+        state.doubts = {};
+        state.submitted = false;
+        state.currentIndex = 0;
+        state.secondsLeft = (quizData.meta.durationMinutes || 45) * 60;
+        state.timerPaused = false;
+        closeModal("scoreModal");
+        updateTimerDisplay();
+        renderCurrentQuestion();
+      });
+
+      document.getElementById("openFormulaBtn").addEventListener("click", () => openModal("formulaModal"));
+      document.getElementById("openCalcBtn").addEventListener("click", () => openModal("calcModal"));
+      document.getElementById("openEditorBtn").addEventListener("click", () => {
+        loadEditorUI();
+        openModal("editorModal");
+      });
+
+      document.querySelectorAll("[data-close-modal]").forEach(btn => {
+        btn.addEventListener("click", () => closeModal(btn.dataset.closeModal));
+      });
+
+      document.querySelectorAll(".modal-backdrop").forEach(backdrop => {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) backdrop.classList.remove("open");
+        });
+      });
+
+      // Scientific Calculator Logic
+      let calcExpression = "";
+      const calcExprEl = document.getElementById("calcExpr");
+      const calcResEl = document.getElementById("calcResult");
+
+      document.getElementById("calcKeys").addEventListener("click", (e) => {
+        const btn = e.target.closest(".calc-key");
+        if (!btn) return;
+        const act = btn.dataset.act;
+        const val = btn.dataset.val;
+
+        if (act === "clear") {
+          calcExpression = "";
+          calcExprEl.textContent = "";
+          calcResEl.textContent = "0";
+        } else if (act === "back") {
+          calcExpression = calcExpression.slice(0, -1);
+          calcExprEl.textContent = calcExpression;
+        } else if (act === "eval") {
+          try {
+            const parsed = calcExpression
+              .replace(/sqrt\(/g, "Math.sqrt(")
+              .replace(/pi/g, "Math.PI")
+              .replace(/\^/g, "**");
+            const res = Function(`"use strict"; return (${parsed});`)();
+            calcResEl.textContent = Number.isFinite(res) ? Number(res.toPrecision(10)).toString() : "Error";
+          } catch {
+            calcResEl.textContent = "Error";
+          }
+        } else if (val) {
+          calcExpression += val;
+          calcExprEl.textContent = calcExpression;
+        }
+      });
+
+      // Built-in Quiz Editor Logic
+      function loadEditorUI() {
+        document.getElementById("edMetaTitle").value = quizData.meta.title;
+        document.getElementById("edMetaDuration").value = quizData.meta.durationMinutes;
+        renderEditorList();
+        selectEditorQuestion(state.editingIndex);
+      }
+
+      function renderEditorList() {
+        const listEl = document.getElementById("editorQList");
+        listEl.innerHTML = "";
+        quizData.soal.forEach((q, idx) => {
+          const item = document.createElement("div");
+          item.className = "editor-q-item" + (idx === state.editingIndex ? " active" : "");
+          item.textContent = `${idx + 1}. [${q.type}] ${q.topic}`;
+          item.addEventListener("click", () => {
+            saveCurrentEditorForm();
+            selectEditorQuestion(idx);
+          });
+          listEl.appendChild(item);
+        });
+      }
+
+      function selectEditorQuestion(idx) {
+        if (quizData.soal.length === 0) return;
+        if (idx >= quizData.soal.length) idx = quizData.soal.length - 1;
+        state.editingIndex = idx;
+        renderEditorList();
+
+        const q = quizData.soal[idx];
+        document.getElementById("edQType").value = q.type;
+        document.getElementById("edQTopic").value = q.topic || "";
+        document.getElementById("edQPrompt").value = q.prompt || "";
+        document.getElementById("edQOptions").value = Array.isArray(q.options) ? q.options.join("\n") : "";
+        document.getElementById("edOptionsWrap").style.display = (q.type === "single" || q.type === "multiple") ? "block" : "none";
+
+        if (q.type === "multiple") {
+          document.getElementById("edQAnswer").value = Array.isArray(q.answer) ? q.answer.join(",") : "";
+        } else {
+          document.getElementById("edQAnswer").value = String(q.answer);
+        }
+
+        document.getElementById("edQExplanation").value = q.explanation || "";
+        document.getElementById("edQFormula").value = q.formula || "";
+        document.getElementById("edQTips").value = q.tips || "";
+      }
+
+      document.getElementById("edQType").addEventListener("change", (e) => {
+        const t = e.target.value;
+        document.getElementById("edOptionsWrap").style.display = (t === "single" || t === "multiple") ? "block" : "none";
+      });
+
+      function saveCurrentEditorForm() {
+        quizData.meta.title = document.getElementById("edMetaTitle").value.trim() || quizData.meta.title;
+        quizData.meta.durationMinutes = parseInt(document.getElementById("edMetaDuration").value, 10) || 45;
+
+        const q = quizData.soal[state.editingIndex];
+        if (!q) return;
+
+        const t = document.getElementById("edQType").value;
+        q.type = t;
+        q.topic = document.getElementById("edQTopic").value.trim();
+        q.prompt = document.getElementById("edQPrompt").value;
+
+        const rawOpts = document.getElementById("edQOptions").value.split("\n").map(s => s.trim()).filter(Boolean);
+        if (t === "single" || t === "multiple") {
+          q.options = rawOpts.length ? rawOpts : ["Opsi A", "Opsi B"];
+        } else {
+          delete q.options;
+        }
+
+        const rawAns = document.getElementById("edQAnswer").value.trim();
+        if (t === "single") {
+          q.answer = parseInt(rawAns, 10) || 0;
+        } else if (t === "multiple") {
+          q.answer = rawAns.split(",").map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n));
+        } else if (t === "tf") {
+          q.answer = rawAns.toLowerCase() === "true";
+        } else {
+          q.answer = rawAns;
+        }
+
+        q.explanation = document.getElementById("edQExplanation").value;
+        q.formula = document.getElementById("edQFormula").value;
+        q.tips = document.getElementById("edQTips").value;
+      }
+
+      document.getElementById("edAddQBtn").addEventListener("click", () => {
+        saveCurrentEditorForm();
+        const nextId = quizData.soal.reduce((m, item) => Math.max(m, item.id), 0) + 1;
+        quizData.soal.push({
+          id: nextId,
+          type: "single",
+          topic: "Topik Baru",
+          prompt: "Tuliskan soal baru di sini, misal $2^3 + 3^2 = \\dots$",
+          options: ["$17$", "$12$", "$15$", "$18$"],
+          answer: 0,
+          explanation: "$2^3 + 3^2 = 8 + 9 = 17$.",
+          formula: "$a^n = a \\times a \\times \\dots \\times a$",
+          tips: "Hitung nilai masing-masing perpangkatan terlebih dahulu."
+        });
+        selectEditorQuestion(quizData.soal.length - 1);
+      });
+
+      document.getElementById("edDelQBtn").addEventListener("click", () => {
+        if (quizData.soal.length <= 1) {
+          alert("Minimal harus terdapat 1 soal dalam kuis.");
+          return;
+        }
+        quizData.soal.splice(state.editingIndex, 1);
+        selectEditorQuestion(Math.max(0, state.editingIndex - 1));
+      });
+
+      document.getElementById("edApplyBtn").addEventListener("click", () => {
+        saveCurrentEditorForm();
+        document.getElementById("quiz-data").textContent = JSON.stringify(quizData, null, 2);
+        updateMetaHeader();
+        renderCurrentQuestion();
+        closeModal("editorModal");
+      });
+
+      document.getElementById("edExportJsonBtn").addEventListener("click", () => {
+        saveCurrentEditorForm();
+        const blob = new Blob([JSON.stringify(quizData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "kuis-bbm-suminto.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById("edImportJsonInput").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const imported = JSON.parse(ev.target.result);
+            if (imported && imported.meta && Array.isArray(imported.soal)) {
+              quizData = imported;
+              document.getElementById("quiz-data").textContent = JSON.stringify(quizData, null, 2);
+              state.editingIndex = 0;
+              state.currentIndex = 0;
+              state.answers = {};
+              state.checked = {};
+              state.doubts = {};
+              state.submitted = false;
+              loadEditorUI();
+              updateMetaHeader();
+              renderCurrentQuestion();
+            } else {
+              alert("Format JSON tidak valid.");
+            }
+          } catch {
+            alert("Gagal membaca file JSON.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      document.getElementById("edDownloadHtmlBtn").addEventListener("click", () => {
+        saveCurrentEditorForm();
+        const dataScript = document.getElementById("quiz-data");
+        dataScript.textContent = "\n  " + JSON.stringify(quizData, null, 2) + "\n  ";
+
+        const clone = document.documentElement.cloneNode(true);
+        clone.querySelectorAll(".modal-backdrop").forEach(m => m.classList.remove("open"));
+        const htmlContent = "<!DOCTYPE html>\n" + clone.outerHTML;
+
+        const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Kuis_Sains_Kelas_1_SD_BBM_Suminto.html";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // Initialize Application
+      window.addEventListener("DOMContentLoaded", () => {
+        updateMetaHeader();
+        updateTimerDisplay();
+        startTimer();
+        renderCurrentQuestion();
+      });
+    })();
+  </script>
+</body>
+</html>
