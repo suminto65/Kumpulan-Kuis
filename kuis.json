@@ -181,6 +181,19 @@
           "id": "umum",
           "nama": "Umum",
           "kuis": []
+        },
+        {
+          "id": "sains",
+          "nama": "SAINS",
+          "kuis": [
+            {
+              "judul": "Kuis Sains 1",
+              "bab": "Tumbuhan dan Benda Di Sekitar Kita",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas1_Sains1.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-19"
+            }
+          ]
         }
       ]
     }
