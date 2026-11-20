@@ -1,0 +1,2711 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Komprehensif: Fungsi Kuadrat — Bimbingan Belajar Matematika Suminto</title>
+  
+  <!-- Google Fonts: Libre Caslon Text, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      --background: #f7f4ec;
+      --surface-container-low: #fffdf8;
+      --surface-container: #ece5d4;
+      --surface-container-high: #e2d8c3;
+      --primary: #14213d;
+      --primary-light: #233863;
+      --outline: #b08d57;
+      --outline-light: #d4bc94;
+      --secondary: #2d5a4a;
+      --secondary-bg: #e7f0ec;
+      --error: #9b2c2c;
+      --error-bg: #fbeaea;
+      --warning: #9c6615;
+      --warning-bg: #fdf5e6;
+      --text-main: #1a202c;
+      --text-muted: #4a5568;
+      --border-subtle: rgba(176, 141, 87, 0.35);
+      --shadow-sm: 0 2px 6px rgba(20, 33, 61, 0.06);
+      --shadow-md: 0 6px 18px rgba(20, 33, 61, 0.09);
+      --shadow-lg: 0 12px 30px rgba(20, 33, 61, 0.14);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Header Utama */
+    .brand-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #1c2e54 100%);
+      color: #fffdf8;
+      border-bottom: 3px solid var(--outline);
+      padding: 1rem 1.5rem;
+    }
+
+    .brand-header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo-wrap {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .brand-title-group .badge-instansi {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e8cf9c;
+      background: rgba(176, 141, 87, 0.18);
+      border: 1px solid rgba(176, 141, 87, 0.45);
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 0.25rem;
+    }
+
+    .brand-title-group h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fffdf8;
+      line-height: 1.25;
+    }
+
+    .brand-title-group p {
+      font-size: 0.85rem;
+      color: #d6dde8;
+    }
+
+    .header-meta-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: rgba(255, 253, 248, 0.1);
+      border: 1px solid rgba(176, 141, 87, 0.4);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      color: #f7f4ec;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Sticky Toolbar */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--surface-container-low);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+      padding: 0.6rem 1.5rem;
+    }
+
+    .toolbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--surface-container);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--primary);
+    }
+
+    .timer-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      padding: 2px;
+      border-radius: 4px;
+    }
+    .timer-btn:hover { background: rgba(20, 33, 61, 0.1); }
+
+    .mode-switch {
+      display: inline-flex;
+      background: var(--surface-container);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 2px;
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 0.32rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.18s ease;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fffdf8;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-width: 170px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: var(--surface-container);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(176, 141, 87, 0.3);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--outline));
+      transition: width 0.3s ease;
+    }
+
+    .progress-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.42rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-gold {
+      background: var(--outline);
+      color: #fffdf8;
+      border-color: #967543;
+    }
+    .btn-gold:hover {
+      background: #9c7a47;
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+    .btn-secondary:hover {
+      background: #23473a;
+    }
+
+    /* Main Workspace Layout */
+    .workspace {
+      max-width: 1280px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 1.5rem;
+      align-items: start;
+      flex: 1;
+    }
+
+    @media (max-width: 960px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--border-subtle);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 1.75rem;
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+    }
+
+    .q-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .q-num-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .q-type-badge {
+      font-size: 0.76rem;
+      font-weight: 600;
+      background: var(--surface-container);
+      color: var(--primary);
+      border: 1px solid var(--outline);
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .q-topic-badge {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: #f2ece0;
+      padding: 0.22rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .btn-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.32rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .btn-flag.flagged {
+      background: var(--warning-bg);
+      border-color: var(--warning);
+      color: var(--warning);
+    }
+
+    .q-prompt {
+      font-size: 1.03rem;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .q-figure-container {
+      margin: 1.1rem 0 1.4rem;
+      padding: 1rem;
+      background: #faf7f0;
+      border: 1px dashed var(--outline);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .q-figure-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* Options Styling */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.9rem 1.1rem;
+      background: #fff;
+      border: 1.5px solid #dcd3c0;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      position: relative;
+    }
+
+    .option-item:hover {
+      border-color: var(--outline);
+      background: #fcfaf4;
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: rgba(20, 33, 61, 0.045);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .option-item.correct-reveal {
+      border-color: var(--secondary);
+      background: var(--secondary-bg);
+      box-shadow: 0 0 0 1px var(--secondary);
+    }
+
+    .option-item.wrong-reveal {
+      border-color: var(--error);
+      background: var(--error-bg);
+      box-shadow: 0 0 0 1px var(--error);
+    }
+
+    .option-marker {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--outline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--surface-container-low);
+      margin-top: 1px;
+    }
+
+    .option-item.multiple-type .option-marker {
+      border-radius: 6px;
+    }
+
+    .option-item.selected .option-marker {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .option-item.correct-reveal .option-marker {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .option-item.wrong-reveal .option-marker {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 0.96rem;
+      padding-top: 2px;
+    }
+
+    .helper-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Short Answer Input */
+    .short-answer-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-width: 440px;
+    }
+
+    .short-input-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .short-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1.5px solid var(--outline);
+      border-radius: var(--radius-md);
+      background: #fff;
+      color: var(--primary);
+    }
+    .short-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.12);
+    }
+
+    /* Explanation Panel */
+    .explanation-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: #f5f0e4;
+      border: 1px solid var(--outline);
+      border-left: 5px solid var(--secondary);
+      border-radius: var(--radius-md);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .explanation-box.incorrect-header {
+      border-left-color: var(--error);
+    }
+
+    .exp-status-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(176, 141, 87, 0.3);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .status-ok { color: var(--secondary); display: flex; align-items: center; gap: 0.4rem; }
+    .status-no { color: var(--error); display: flex; align-items: center; gap: 0.4rem; }
+
+    .exp-body {
+      font-size: 0.93rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      line-height: 1.65;
+    }
+
+    .exp-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    @media (max-width: 640px) {
+      .exp-cards-grid { grid-template-columns: 1fr; }
+    }
+
+    .exp-subcard {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+    }
+
+    .exp-formula-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--primary);
+    }
+    .exp-formula-card h4 {
+      color: var(--primary);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .exp-tip-card {
+      background: #fffdf5;
+      border: 1px solid var(--outline);
+    }
+    .exp-tip-card h4 {
+      color: #8a6428;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Question Footer Navigation */
+    .q-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.75rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid var(--border-subtle);
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem;
+      position: sticky;
+      top: 4.3rem;
+    }
+
+    .sidebar-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .filter-pill {
+      font-size: 0.71rem;
+      font-weight: 600;
+      padding: 0.22rem 0.52rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-container);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .filter-pill.active {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .num-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+
+    .num-btn {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid #d5cbb8;
+      background: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.14s ease;
+    }
+
+    .num-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .num-btn.current {
+      outline: 2.5px solid var(--outline);
+      outline-offset: 1px;
+    }
+
+    .num-btn.answered {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .num-btn.status-correct {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .num-btn.status-wrong {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .num-btn.flagged::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #b87333;
+      border: 1px solid #fff;
+    }
+
+    .legend-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 33, 61, 0.62);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      background: var(--surface-container-low);
+      border: 2px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 760px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-panel.wide {
+      max-width: 980px;
+    }
+
+    .modal-head {
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 1rem 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--outline);
+    }
+
+    .modal-head h3 {
+      font-size: 1.12rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .modal-close {
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fffdf8;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.25); }
+
+    .modal-body {
+      padding: 1.35rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-foot {
+      padding: 0.9rem 1.35rem;
+      background: var(--surface-container);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Formula Sheet Styling */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .formula-card {
+      background: #fff;
+      border: 1px solid var(--border-subtle);
+      border-top: 3px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+    }
+
+    .formula-card h4 {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .formula-card ul {
+      padding-left: 1.15rem;
+      font-size: 0.87rem;
+      color: var(--text-main);
+    }
+    .formula-card li { margin-bottom: 0.35rem; }
+
+    /* Scientific Calculator */
+    .calc-panel {
+      max-width: 340px;
+    }
+
+    .calc-display {
+      background: #10192e;
+      color: #f7f4ec;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      text-align: right;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--outline);
+    }
+
+    .calc-expr {
+      font-size: 0.76rem;
+      color: #b08d57;
+      min-height: 1.1rem;
+      word-break: break-all;
+    }
+
+    .calc-val {
+      font-size: 1.55rem;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .calc-keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45rem;
+    }
+
+    .calc-key {
+      padding: 0.65rem 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid #d5cbb8;
+      background: #fff;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    .calc-key:hover { background: var(--surface-container); }
+    .calc-key.op { background: var(--surface-container); color: var(--primary); font-weight: 700; }
+    .calc-key.eq { background: var(--primary); color: #fffdf8; border-color: var(--primary); }
+    .calc-key.clr { background: var(--error-bg); color: var(--error); border-color: #e2b4b4; }
+
+    /* Score Report Modal */
+    .score-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #1e325c 100%);
+      color: #fffdf8;
+      padding: 1.35rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--outline);
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .score-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid var(--outline);
+      background: rgba(255,253,248,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .score-circle .big-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #f3d9a4;
+      line-height: 1.1;
+    }
+
+    .score-circle .sub-lbl {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-box {
+      background: #fff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .stat-box .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .stat-box .lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    .review-table th, .review-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+    .review-table th {
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+
+    /* Built-in Quiz Editor */
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      .editor-grid { grid-template-columns: 1fr; }
+    }
+
+    .editor-list {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: #fff;
+      max-height: 55vh;
+      overflow-y: auto;
+    }
+
+    .editor-item-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border: none;
+      border-bottom: 1px solid #eee6d6;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.82rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .editor-item-btn.active {
+      background: var(--primary);
+      color: #fffdf8;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 0.85rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.88rem;
+      border: 1px solid #cbbda2;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      background: #fff;
+    }
+    textarea.form-control {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    .footer-brand {
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      background: var(--surface-container-low);
+      margin-top: 2rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Utama -->
+  <header class="brand-header">
+    <div class="brand-header-inner">
+      <div class="brand-identity">
+        <div class="brand-logo-wrap" id="headerLogoContainer" aria-label="Logo Bimbingan Belajar Matematika Suminto"></div>
+        <div class="brand-title-group">
+          <div class="badge-instansi">
+            <i data-lucide="award" style="width:13px;height:13px;"></i>
+            Bimbingan Belajar Matematika Suminto
+          </div>
+          <h1 id="quizTitleDisplay">Evaluasi Komprehensif: Fungsi Kuadrat</h1>
+          <p id="quizSubtitleDisplay">Grafik Parabola, Sumbu Simetri & Nilai Optimum, Menyusun Fungsi Kuadrat, serta Aplikasi Kontekstual</p>
+        </div>
+      </div>
+      <div class="header-meta-tags">
+        <div class="meta-pill"><i data-lucide="layers" style="width:14px;height:14px;"></i> <span id="metaCount">20 Soal</span></div>
+        <div class="meta-pill"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Matematika SMP / MTs</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Toolbar -->
+  <div class="sticky-toolbar">
+    <div class="toolbar-inner">
+      <div class="toolbar-left">
+        <div class="timer-box" title="Waktu Pengerjaan">
+          <i data-lucide="clock" style="width:15px;height:15px;"></i>
+          <span id="timerDisplay">00:00</span>
+          <button class="timer-btn" id="toggleTimerBtn" title="Jeda / Lanjutkan Timer">
+            <i data-lucide="pause" style="width:14px;height:14px;"></i>
+          </button>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="Mode Kuis">
+          <button class="mode-btn active" id="modePracticeBtn" data-mode="practice">Mode Latihan</button>
+          <button class="mode-btn" id="modeExamBtn" data-mode="exam">Mode Ujian</button>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="progress-label" id="progressLabel">0/20</span>
+        </div>
+      </div>
+
+      <div class="toolbar-right">
+        <button class="btn" id="openFormulaBtn" title="Buka Lembar Rumus">
+          <i data-lucide="book-open" style="width:15px;height:15px;"></i> Rumus
+        </button>
+        <button class="btn" id="openCalcBtn" title="Buka Kalkulator Ilmiah">
+          <i data-lucide="calculator" style="width:15px;height:15px;"></i> Kalkulator
+        </button>
+        <button class="btn" id="openEditorBtn" title="Buka Editor Kuis">
+          <i data-lucide="edit-3" style="width:15px;height:15px;"></i> Editor Kuis
+        </button>
+        <button class="btn btn-primary" id="finishQuizBtn">
+          <i data-lucide="check-circle-2" style="width:15px;height:15px;"></i> Selesai &amp; Nilai
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="workspace">
+    <!-- Area Soal -->
+    <section class="question-card" aria-live="polite">
+      <div class="q-header">
+        <div class="q-badges">
+          <span class="q-num-badge" id="qNumBadge">Soal 1</span>
+          <span class="q-type-badge" id="qTypeBadge">Pilihan Ganda</span>
+          <span class="q-topic-badge" id="qTopicBadge">Grafik Fungsi Kuadrat</span>
+        </div>
+        <button class="btn-flag" id="flagBtn" type="button">
+          <i data-lucide="flag" style="width:14px;height:14px;"></i>
+          <span>Ragu-ragu</span>
+        </button>
+      </div>
+
+      <div class="q-prompt" id="qPrompt"></div>
+      <div class="q-figure-container" id="qFigureWrap" style="display:none;"></div>
+      <div id="qInputArea"></div>
+
+      <!-- Panel Pembahasan -->
+      <div class="explanation-box" id="explanationBox" style="display:none;">
+        <div class="exp-status-banner">
+          <span id="expStatusText"></span>
+          <span class="mono" id="expKeySummary" style="font-size:0.8rem;"></span>
+        </div>
+        <div class="exp-body" id="expBody"></div>
+        <div class="exp-cards-grid">
+          <div class="exp-subcard exp-formula-card">
+            <h4><i data-lucide="sigma" style="width:14px;height:14px;"></i> Rumus Utama</h4>
+            <div id="expFormula"></div>
+          </div>
+          <div class="exp-subcard exp-tip-card">
+            <h4><i data-lucide="lightbulb" style="width:14px;height:14px;"></i> Tips Pengerjaan</h4>
+            <div id="expTip"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-footer">
+        <button class="btn" id="prevBtn">
+          <i data-lucide="arrow-left" style="width:15px;height:15px;"></i> Sebelumnya
+        </button>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button class="btn btn-gold" id="checkBtn" style="display:none;">
+            <i data-lucide="check" style="width:15px;height:15px;"></i> Periksa Jawaban
+          </button>
+          <button class="btn btn-primary" id="nextBtn">
+            Selanjutnya <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar-card">
+      <div class="sidebar-title">
+        <span>Navigasi Soal</span>
+        <span class="mono" style="font-size:0.76rem;color:var(--text-muted);" id="sidebarAnsweredStat">0 dijawab</span>
+      </div>
+
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-filter="all">Semua</button>
+        <button class="filter-pill" data-filter="unanswered">Belum</button>
+        <button class="filter-pill" data-filter="flagged">Ragu-ragu</button>
+        <button class="filter-pill" data-filter="single">PilGan</button>
+        <button class="filter-pill" data-filter="multiple">Kompleks</button>
+        <button class="filter-pill" data-filter="tf">B/S</button>
+        <button class="filter-pill" data-filter="short">Isian</button>
+      </div>
+
+      <div class="num-grid" id="numGrid"></div>
+
+      <div class="legend-list">
+        <div class="legend-item"><span class="legend-dot" style="background:#fff;border:1.5px solid #d5cbb8;"></span> Belum</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--primary);"></span> Sudah</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--secondary);"></span> Benar</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--error);"></span> Salah</div>
+        <div class="legend-item" style="grid-column:span 2;"><span class="legend-dot" style="background:#b87333;border-radius:50%;"></span> Ditandai Ragu-ragu</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer-brand">
+    &copy; 2026 <strong>Bimbingan Belajar Matematika Suminto</strong> &mdash; Sistem Evaluasi Pembelajaran Interaktif
+  </footer>
+
+  <!-- MODAL: LEMBAR RUMUS -->
+  <div class="modal-backdrop" id="formulaModal">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3><i data-lucide="book-open" style="width:18px;height:18px;"></i> Lembar Rumus Fungsi Kuadrat</h3>
+        <button class="modal-close" data-close="formulaModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="formula-grid">
+          <div class="formula-card">
+            <h4>1. Bentuk Umum &amp; Peran Koefisien</h4>
+            <ul>
+              <li>Bentuk umum: $f(x) = ax^2 + bx + c$ dengan $a \neq 0$.</li>
+              <li>Jika $a &gt; 0$, parabola terbuka ke atas (memiliki nilai minimum).</li>
+              <li>Jika $a &lt; 0$, parabola terbuka ke bawah (memiliki nilai maksimum).</li>
+              <li>Semakin besar $|a|$, bentuk parabola semakin kurus/sempit.</li>
+              <li>Titik potong dengan Sumbu-Y berada di koordinat $(0, c)$.</li>
+            </ul>
+          </div>
+          <div class="formula-card">
+            <h4>2. Sumbu Simetri &amp; Nilai Optimum</h4>
+            <ul>
+              <li>Persamaan sumbu simetri: $x = -\dfrac{b}{2a}$</li>
+              <li>Nilai optimum (maks/min): $y_{\text{opt}} = f\left(-\dfrac{b}{2a}\right) = -\dfrac{D}{4a}$</li>
+              <li>Diskriminan: $D = b^2 - 4ac$</li>
+              <li>Koordinat titik puncak (verteks): $\left(-\dfrac{b}{2a},\; -\dfrac{D}{4a}\right)$</li>
+            </ul>
+          </div>
+          <div class="formula-card">
+            <h4>3. Pergeseran Grafik (Bentuk Verteks)</h4>
+            <ul>
+              <li>$f(x) = a(x - s)^2 + t$ memiliki titik puncak $(s, t)$ dan sumbu simetri $x = s$.</li>
+              <li>$(x - s)^2$ menggeser grafik sejauh $s$ satuan ke kanan ($s &gt; 0$).</li>
+              <li>$(x + s)^2$ menggeser grafik sejauh $s$ satuan ke kiri ($s &gt; 0$).</li>
+              <li>$+t$ menggeser ke atas $t$ satuan; $-t$ menggeser ke bawah $t$ satuan.</li>
+            </ul>
+          </div>
+          <div class="formula-card">
+            <h4>4. Menyusun Fungsi Kuadrat</h4>
+            <ul>
+              <li>Diketahui titik potong Sumbu-X $(p,0)$ dan $(q,0)$: $y = a(x - p)(x - q)$</li>
+              <li>Diketahui titik puncak $(s, t)$ dan satu titik lain: $y = a(x - s)^2 + t$</li>
+              <li>Diketahui tiga titik sembarang: substitusikan ke $y = ax^2 + bx + c$ lalu selesaikan SPLTV.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-primary" data-close="formulaModal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: KALKULATOR ILMIAH -->
+  <div class="modal-backdrop" id="calcModal">
+    <div class="modal-panel calc-panel">
+      <div class="modal-head">
+        <h3><i data-lucide="calculator" style="width:17px;height:17px;"></i> Kalkulator</h3>
+        <button class="modal-close" data-close="calcModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="calc-display">
+          <div class="calc-expr" id="calcExpr"></div>
+          <div class="calc-val" id="calcVal">0</div>
+        </div>
+        <div class="calc-keys">
+          <button class="calc-key clr" data-k="C">C</button>
+          <button class="calc-key clr" data-k="DEL">DEL</button>
+          <button class="calc-key op" data-k="(">(</button>
+          <button class="calc-key op" data-k=")">)</button>
+
+          <button class="calc-key op" data-k="sqrt(">√</button>
+          <button class="calc-key op" data-k="^2">x²</button>
+          <button class="calc-key op" data-k="^">xʸ</button>
+          <button class="calc-key op" data-k="/">÷</button>
+
+          <button class="calc-key" data-k="7">7</button>
+          <button class="calc-key" data-k="8">8</button>
+          <button class="calc-key" data-k="9">9</button>
+          <button class="calc-key op" data-k="*">×</button>
+
+          <button class="calc-key" data-k="4">4</button>
+          <button class="calc-key" data-k="5">5</button>
+          <button class="calc-key" data-k="6">6</button>
+          <button class="calc-key op" data-k="-">−</button>
+
+          <button class="calc-key" data-k="1">1</button>
+          <button class="calc-key" data-k="2">2</button>
+          <button class="calc-key" data-k="3">3</button>
+          <button class="calc-key op" data-k="+">+</button>
+
+          <button class="calc-key" data-k="0">0</button>
+          <button class="calc-key" data-k=".">.</button>
+          <button class="calc-key" data-k="-1*">±</button>
+          <button class="calc-key eq" data-k="=">=</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LAPORAN SKOR AKHIR -->
+  <div class="modal-backdrop" id="scoreModal">
+    <div class="modal-panel wide">
+      <div class="modal-head">
+        <h3><i data-lucide="award" style="width:18px;height:18px;"></i> Laporan Hasil Evaluasi Belajar</h3>
+        <button class="modal-close" data-close="scoreModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="score-hero">
+          <div id="modalLogoContainer" style="width:68px;height:68px;flex-shrink:0;"></div>
+          <div class="score-circle">
+            <span class="big-num" id="finalScoreNum">0</span>
+            <span class="sub-lbl">Skor Akhir</span>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#e8cf9c;font-weight:700;">
+              Bimbingan Belajar Matematika Suminto
+            </div>
+            <h2 style="font-size:1.28rem;margin:0.15rem 0;" id="scoreGradeTitle">Hasil Pengerjaan Kuis</h2>
+            <p style="font-size:0.86rem;color:#dce3ee;" id="scoreFeedbackMsg"></p>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="val" style="color:var(--secondary);" id="statCorrect">0</div>
+            <div class="lbl">Jawaban Benar</div>
+          </div>
+          <div class="stat-box">
+            <div class="val" style="color:var(--error);" id="statWrong">0</div>
+            <div class="lbl">Jawaban Salah</div>
+          </div>
+          <div class="stat-box">
+            <div class="val" style="color:var(--text-muted);" id="statBlank">0</div>
+            <div class="lbl">Belum Dijawab</div>
+          </div>
+          <div class="stat-box">
+            <div class="val" style="color:var(--primary);" id="statTime">00:00</div>
+            <div class="lbl">Durasi Waktu</div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:0.6rem;color:var(--primary);">Rincian Per Nomor Soal</h4>
+        <div style="overflow-x:auto;border:1px solid var(--border-subtle);border-radius:var(--radius-sm);">
+          <table class="review-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Topik</th>
+                <th>Tipe</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="reviewTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn" id="resetQuizBtn"><i data-lucide="rotate-ccw" style="width:15px;height:15px;"></i> Ulangi Kuis</button>
+        <button class="btn btn-primary" data-close="scoreModal">Tinjau Pembahasan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDITOR KUIS BUILT-IN -->
+  <div class="modal-backdrop" id="editorModal">
+    <div class="modal-panel wide">
+      <div class="modal-head">
+        <h3><i data-lucide="edit-3" style="width:18px;height:18px;"></i> Editor Kuis Interaktif</h3>
+        <button class="modal-close" data-close="editorModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border-subtle);">
+          <button class="btn btn-secondary" id="edAddBtn"><i data-lucide="plus" style="width:14px;height:14px;"></i> Tambah Soal</button>
+          <button class="btn" id="edExportJsonBtn"><i data-lucide="download" style="width:14px;height:14px;"></i> Ekspor JSON</button>
+          <label class="btn" style="margin:0;cursor:pointer;">
+            <i data-lucide="upload" style="width:14px;height:14px;"></i> Impor JSON
+            <input type="file" id="edImportJsonInput" accept=".json" style="display:none;">
+          </label>
+          <button class="btn btn-gold" id="edDownloadHtmlBtn"><i data-lucide="file-code" style="width:14px;height:14px;"></i> Unduh HTML Kuis (hasil edit)</button>
+        </div>
+
+        <div class="editor-grid">
+          <div>
+            <div style="font-size:0.78rem;font-weight:700;color:var(--primary);margin-bottom:0.4rem;">Daftar Soal</div>
+            <div class="editor-list" id="edQuestionList"></div>
+          </div>
+          <div id="edFormContainer"></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-primary" id="edApplyBtn"><i data-lucide="check" style="width:15px;height:15px;"></i> Terapkan &amp; Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA KUIS KOMPREHENSIF (JSON) -->
+  <script type="application/json" id="quiz-data">
+  {
+    "meta": {
+      "judul": "Evaluasi Komprehensif: Fungsi Kuadrat",
+      "subjudul": "Grafik Parabola, Sumbu Simetri & Nilai Optimum, Menyusun Fungsi Kuadrat, serta Aplikasi Kontekstual",
+      "instansi": "Bimbingan Belajar Matematika Suminto"
+    },
+    "soal": [
+      {
+        "id": 1,
+        "tipe": "single",
+        "topik": "Grafik Fungsi Kuadrat",
+        "pertanyaan": "Diketahui fungsi kuadrat $y = 8 + 2x - x^2$. Grafik fungsi tersebut memotong Sumbu-Y pada koordinat $\\dots$",
+        "opsi": [
+          "$(0, 8)$",
+          "$(8, 0)$",
+          "$(2, 4)$",
+          "$(4, 8)$"
+        ],
+        "kunci": 0,
+        "pembahasan": "Titik potong grafik fungsi kuadrat dengan Sumbu-Y terjadi ketika $x = 0$. Substitusikan $x = 0$ ke dalam persamaan fungsi: $y = 8 + 2(0) - (0)^2 = 8$. Jadi, titik potongnya berada pada koordinat $(0, 8)$.",
+        "rumus": "Untuk bentuk umum $y = ax^2 + bx + c$, titik potong dengan Sumbu-Y selalu berada di $(0, c)$.",
+        "tips": "Susun ulang suku-suku fungsi menjadi $y = -x^2 + 2x + 8$ agar tidak keliru mengidentifikasi nilai konstanta $c = 8$."
+      },
+      {
+        "id": 2,
+        "tipe": "single",
+        "topik": "Grafik Fungsi Kuadrat",
+        "pertanyaan": "Grafik fungsi kuadrat $y = x^2 - 2x - 8$ memotong Sumbu-X di titik $\\dots$",
+        "opsi": [
+          "$(-2, 4)$ dan $(4, -2)$",
+          "$(-2, 0)$ dan $(4, 0)$",
+          "$(-4, 0)$ dan $(-2, 0)$",
+          "$(-2, 4)$ dan $(-2, 2)$"
+        ],
+        "kunci": 1,
+        "pembahasan": "Titik potong dengan Sumbu-X diperoleh saat $y = 0$, sehingga $x^2 - 2x - 8 = 0$. Dengan pemfaktoran: $(x + 2)(x - 4) = 0 \\implies x = -2$ atau $x = 4$. Koordinat titik potongnya adalah $(-2, 0)$ dan $(4, 0)$.",
+        "rumus": "Syarat memotong Sumbu-X adalah $y = 0 \\implies ax^2 + bx + c = 0$.",
+        "tips": "Setiap titik yang terletak tepat pada Sumbu-X pasti memiliki ordinat $y = 0$, sehingga opsi lain yang nilai $y$-nya bukan $0$ dapat langsung dieliminasi."
+      },
+      {
+        "id": 3,
+        "tipe": "multiple",
+        "topik": "Sifat Koefisien Grafik",
+        "pertanyaan": "Perhatikan perbandingan grafik fungsi kuadrat $f(x) = ax^2 + bx + c$ berikut! Pilihlah <strong>semua</strong> pernyataan yang benar mengenai pengaruh koefisien $a$, $b$, dan $c$ terhadap bentuk grafik parabola.",
+        "figure": {
+          "type": "bidang",
+          "width": 360,
+          "height": 260,
+          "xmin": -3,
+          "xmax": 3,
+          "ymin": -5,
+          "ymax": 5,
+          "curves": [
+            { "fn": "x*x", "color": "#14213d", "label": "y = x²" },
+            { "fn": "2*x*x", "color": "#9b2c2c", "label": "y = 2x²" },
+            { "fn": "-x*x", "color": "#2d5a4a", "label": "y = -x²" }
+          ]
+        },
+        "opsi": [
+          "Jika $a > 0$, grafik parabola terbuka ke atas dan memiliki titik puncak minimum.",
+          "Jika $a < 0$, grafik parabola terbuka ke bawah dan memiliki titik puncak maksimum.",
+          "Untuk $a > 0$, semakin besar nilai $a$, bentuk grafik parabola menjadi semakin lebar.",
+          "Nilai konstanta $c$ menentukan koordinat titik potong grafik dengan Sumbu-Y, yaitu $(0, c)$."
+        ],
+        "kunci": [0, 1, 3],
+        "pembahasan": "Nilai $a > 0$ membuat parabola terbuka ke atas (titik balik minimum), sedangkan $a < 0$ membuat parabola terbuka ke bawah (titik balik maksimum). Untuk $a > 0$, semakin besar nilai $a$ (misalnya dari $y = x^2$ ke $y = 2x^2$), kenaikan nilai $y$ semakin cepat sehingga grafik tampak semakin kurus/sempit, bukan melebar. Konstanta $c$ menunjukkan perpotongan di Sumbu-Y pada $(0, c)$.",
+        "rumus": "$a > 0 \\implies$ terbuka ke atas; $a < 0 \\implies$ terbuka ke bawah; makin besar $|a| \\implies$ grafik makin kurus.",
+        "tips": "Uji titik $x = 1$: pada $y = x^2$ didapat $(1,1)$, sedangkan pada $y = 2x^2$ didapat $(1,2)$ yang lebih dekat ke Sumbu-Y (lebih kurus)."
+      },
+      {
+        "id": 4,
+        "tipe": "tf",
+        "topik": "Sifat Grafik Fungsi Kuadrat",
+        "pertanyaan": "Grafik suatu fungsi kuadrat $f(x) = ax^2 + bx + c$ ($a \\neq 0$) dapat memotong Sumbu-Y pada dua titik koordinat yang berbeda.",
+        "opsi": ["Benar", "Salah"],
+        "kunci": 1,
+        "pembahasan": "Pernyataan tersebut <strong>Salah</strong>. Dalam definisi fungsi, setiap satu nilai domain $x$ hanya boleh dipetakan ke tepat satu nilai kodomain $y$. Pada Sumbu-Y berlaku $x = 0$, sehingga hanya ada satu nilai $y = a(0)^2 + b(0) + c = c$. Grafik fungsi kuadrat selalu memotong Sumbu-Y di tepat satu titik, yaitu $(0, c)$.",
+        "rumus": "Perpotongan Sumbu-Y ($x = 0$): $f(0) = c \\implies$ tepat satu titik $(0, c)$.",
+        "tips": "Berbeda dengan Sumbu-X yang bisa dipotong di $0, 1,$ atau $2$ titik bergantung nilai diskriminan $D$, Sumbu-Y selalu dipotong di tepat $1$ titik."
+      },
+      {
+        "id": 5,
+        "tipe": "single",
+        "topik": "Pergeseran Grafik",
+        "pertanyaan": "Grafik fungsi $f(x) = (x - 3)^2 - 4$ diperoleh dengan menggeser grafik $g(x) = x^2$ sejauh $\\dots$",
+        "opsi": [
+          "$3$ satuan ke kiri dan $4$ satuan ke bawah",
+          "$3$ satuan ke kanan dan $4$ satuan ke bawah",
+          "$3$ satuan ke kanan dan $4$ satuan ke atas",
+          "$4$ satuan ke kanan dan $3$ satuan ke bawah"
+        ],
+        "kunci": 1,
+        "pembahasan": "Bentuk verteks $f(x) = (x - s)^2 + t$ dengan $s = 3$ dan $t = -4$ berarti grafik dasar $g(x) = x^2$ digeser sejauh $3$ satuan ke arah kanan (Sumbu-X positif) dan $4$ satuan ke arah bawah (Sumbu-Y negatif), sehingga titik puncaknya berpindah dari $(0,0)$ ke $(3, -4)$.",
+        "rumus": "$f(x) = (x - s)^2 + t \\implies$ geser $s$ satuan ke kanan ($s > 0$) dan $t$ satuan ke atas ($t > 0$).",
+        "tips": "Untuk mencari pergeseran horizontal, samakan bagian di dalam kuadrat dengan nol: $x - 3 = 0 \\implies x = +3$ (geser ke kanan $3$ satuan)."
+      },
+      {
+        "id": 6,
+        "tipe": "single",
+        "topik": "Sumbu Simetri",
+        "pertanyaan": "Persamaan sumbu simetri grafik fungsi $f(x) = x^2 + 4x - 12$ adalah $\\dots$",
+        "opsi": [
+          "$x + 4 = 0$",
+          "$x + 3 = 0$",
+          "$x + 2 = 0$",
+          "$x + 1 = 0$"
+        ],
+        "kunci": 2,
+        "pembahasan": "Dari fungsi $f(x) = x^2 + 4x - 12$, diketahui $a = 1$ dan $b = 4$. Persamaan sumbu simetrinya adalah $x = -\\dfrac{b}{2a} = -\\dfrac{4}{2(1)} = -2$. Persamaan $x = -2$ ekuivalen dengan $x + 2 = 0$.",
+        "rumus": "$x = -\\dfrac{b}{2a}$",
+        "tips": "Pindahkan konstanta $-2$ ke ruas kiri sehingga $x = -2$ berubah menjadi $x + 2 = 0$ sesuai format pilihan jawaban."
+      },
+      {
+        "id": 7,
+        "tipe": "single",
+        "topik": "Nilai Optimum",
+        "pertanyaan": "Nilai maksimum dari fungsi kuadrat $f(x) = 5 + 4x - x^2$ adalah $\\dots$",
+        "opsi": [
+          "$5$",
+          "$8$",
+          "$9$",
+          "$13$"
+        ],
+        "kunci": 2,
+        "pembahasan": "Identifikasi koefisien: $a = -1$, $b = 4$, dan $c = 5$. Karena $a < 0$, fungsi memiliki nilai maksimum pada sumbu simetri $x = -\\dfrac{b}{2a} = -\\dfrac{4}{2(-1)} = 2$. Substitusikan $x = 2$ ke fungsi: $f(2) = 5 + 4(2) - (2)^2 = 5 + 8 - 4 = 9$.",
+        "rumus": "$y_{\\text{maks}} = f\\left(-\\dfrac{b}{2a}\\right)$ atau $y_{\\text{maks}} = -\\dfrac{b^2 - 4ac}{4a}$",
+        "tips": "Lebih cepat dan minim risiko salah tanda jika menghitung $x = -\\frac{b}{2a}$ terlebih dahulu lalu menyubstitusikannya ke $f(x)$."
+      },
+      {
+        "id": 8,
+        "tipe": "short",
+        "topik": "Nilai Optimum",
+        "pertanyaan": "Diketahui fungsi kuadrat $y = 2x^2 + 6x - m$ mempunyai nilai minimum $3$. Tentukan nilai $m$ yang memenuhi!",
+        "kunci": "1.5",
+        "pembahasan": "Diketahui $a = 2$, $b = 6$, dan $c = -m$. Sumbu simetri grafik berada di $x = -\\dfrac{b}{2a} = -\\dfrac{6}{2(2)} = -\\dfrac{3}{2} = -1,5$. Karena nilai minimumnya adalah $3$, maka $y(-1,5) = 3$:<br>$$2(-1,5)^2 + 6(-1,5) - m = 3$$<br>$$2(2,25) - 9 - m = 3$$<br>$$4,5 - 9 - m = 3 \\implies -4,5 - m = 3 \\implies m = -7,5$$<br><em>Koreksi perhitungan teliti:</em> $-4,5 - m = 3 \\implies m = -4,5 - 3 = -7,5$.",
+        "rumus": "$y_{\\text{min}} = -\\dfrac{b^2 - 4ac}{4a} \\implies 3 = -\\dfrac{36 - 4(2)(-m)}{8}$",
+        "tips": "Gunakan rumus diskriminan: $3 = -\\frac{36 + 8m}{8} \\implies -24 = 36 + 8m \\implies 8m = -60 \\implies m = -7,5$."
+      },
+      {
+        "id": 9,
+        "tipe": "single",
+        "topik": "Nilai Optimum & Simetri",
+        "pertanyaan": "Fungsi kuadrat $y = f(x)$ melalui titik $(3, -12)$ dan $(7, 36)$. Jika persamaan sumbu simetrinya adalah $x = 3$, nilai minimum fungsi $f(x)$ adalah $\\dots$",
+        "opsi": [
+          "$-15$",
+          "$-12$",
+          "$3$",
+          "$36$"
+        ],
+        "kunci": 1,
+        "pembahasan": "Perhatikan bahwa persamaan sumbu simetri grafik adalah $x = 3$, dan titik yang dilalui grafik memiliki absis yang sama yaitu $(3, -12)$. Karena titik puncak selalu terletak tepat pada sumbu simetri, maka $(3, -12)$ adalah titik puncaknya. Dengan demikian, nilai optimum (minimum) fungsi tersebut adalah ordinatnya, yaitu $-12$.",
+        "rumus": "Titik puncak = $(x_{\\text{simetri}},\\; y_{\\text{optimum}})$.",
+        "tips": "Tidak perlu mencari persamaan $a, b, c$ secara panjang! Cek apakah salah satu titik yang diketahui memiliki nilai $x$ sama dengan sumbu simetrinya."
+      },
+      {
+        "id": 10,
+        "tipe": "single",
+        "topik": "Menentukan Fungsi Kuadrat",
+        "pertanyaan": "Perhatikan gambar grafik fungsi kuadrat berikut! Persamaan grafik fungsi kuadrat pada gambar tersebut adalah $\\dots$",
+        "figure": {
+          "type": "bidang",
+          "width": 340,
+          "height": 260,
+          "xmin": -2,
+          "xmax": 4,
+          "ymin": -2,
+          "ymax": 5,
+          "curves": [
+            { "fn": "-x*x + 2*x + 3", "color": "#14213d", "label": "f(x)" }
+          ],
+          "points": [
+            { "x": 1, "y": 4, "label": "(1, 4)" },
+            { "x": 0, "y": 3, "label": "(0, 3)" }
+          ]
+        },
+        "opsi": [
+          "$y = -2x^2 + 4x + 3$",
+          "$y = -x^2 - 2x + 3$",
+          "$y = -x^2 + 2x + 3$",
+          "$y = -2x^2 - 4x + 3$"
+        ],
+        "kunci": 2,
+        "pembahasan": "Dari gambar terlihat titik puncak berada di $(1, 4)$ dan grafik memotong Sumbu-Y di $(0, 3)$. Gunakan bentuk verteks $y = a(x - s)^2 + t = a(x - 1)^2 + 4$. Substitusikan titik $(0, 3)$: $3 = a(0 - 1)^2 + 4 \\implies 3 = a + 4 \\implies a = -1$. Maka persamaannya adalah $y = -1(x - 1)^2 + 4 = -(x^2 - 2x + 1) + 4 = -x^2 + 2x + 3$.",
+        "rumus": "$y = a(x - s)^2 + t$ dengan $(s, t)$ adalah koordinat titik puncak.",
+        "tips": "Sumbu simetri berada di $x = 1 > 0$ dan grafik terbuka ke bawah ($a < 0$), sehingga $x = -\\frac{b}{2a} > 0$ mengharuskan $b > 0$. Hanya opsi dengan $+2x$ atau $+4x$ yang mungkin benar."
+      },
+      {
+        "id": 11,
+        "tipe": "single",
+        "topik": "Menentukan Fungsi Kuadrat",
+        "pertanyaan": "Perhatikan gambar parabola di bawah ini yang memiliki titik puncak $(3, -16)$ dan memotong Sumbu-Y di $(0, -7)$! Salah satu nilai $x$ pembuat nol fungsi $f(x)$ adalah $\\dots$",
+        "figure": {
+          "type": "bidang",
+          "width": 340,
+          "height": 260,
+          "xmin": -3,
+          "xmax": 9,
+          "ymin": -18,
+          "ymax": 6,
+          "curves": [
+            { "fn": "(x-3)*(x-3) - 16", "color": "#14213d", "label": "f(x)" }
+          ],
+          "points": [
+            { "x": 3, "y": -16, "label": "(3, -16)" },
+            { "x": 0, "y": -7, "label": "(0, -7)" }
+          ]
+        },
+        "opsi": [
+          "$-2$",
+          "$4$",
+          "$7$",
+          "$8$"
+        ],
+        "kunci": 2,
+        "pembahasan": "Titik puncak $(3, -16) \\implies f(x) = a(x - 3)^2 - 16$. Karena melalui $(0, -7)$, maka $-7 = a(0 - 3)^2 - 16 \\implies 9 = 9a \\implies a = 1$. Sehingga $f(x) = (x - 3)^2 - 16$. Pembuat nol fungsi ($f(x) = 0$): $(x - 3)^2 = 16 \\implies x - 3 = \\pm 4$, sehingga $x = 7$ atau $x = -1$. Pada pilihan jawaban tersedia $7$.",
+        "rumus": "$f(x) = a(x - s)^2 + t$, lalu selesaikan $f(x) = 0$.",
+        "tips": "Jika satu pembuat nol adalah $x_1$, maka karena simetri terhadap $x = 3$, berlaku $\\frac{x_1 + x_2}{2} = 3 \\implies x_1 + x_2 = 6$."
+      },
+      {
+        "id": 12,
+        "tipe": "single",
+        "topik": "Menentukan Fungsi Kuadrat",
+        "pertanyaan": "Suatu fungsi kuadrat grafiknya memotong Sumbu-X di titik $(-2, 0)$ dan $(3, 0)$, serta memotong Sumbu-Y di titik $(0, 3)$. Persamaan fungsi kuadrat tersebut adalah $\\dots$",
+        "opsi": [
+          "$f(x) = -\\frac{1}{2}x^2 + \\frac{1}{2}x + 3$",
+          "$f(x) = \\frac{1}{2}x^2 - \\frac{1}{2}x + 3$",
+          "$f(x) = -x^2 + x + 6$",
+          "$f(x) = -\\frac{1}{2}x^2 - \\frac{1}{2}x + 3$"
+        ],
+        "kunci": 0,
+        "pembahasan": "Karena memotong Sumbu-X di $(-2, 0)$ dan $(3, 0)$, gunakan bentuk faktor $f(x) = a(x + 2)(x - 3)$. Substitusikan titik $(0, 3)$: $3 = a(0 + 2)(0 - 3) \\implies 3 = -6a \\implies a = -\\frac{1}{2}$. Maka $f(x) = -\\frac{1}{2}(x^2 - x - 6) = -\\frac{1}{2}x^2 + \\frac{1}{2}x + 3$.",
+        "rumus": "$y = a(x - p)(x - q)$ dengan $(p,0)$ dan $(q,0)$ titik potong Sumbu-X.",
+        "tips": "Perhatikan tanda faktor: akar $x = -2$ ditulis menjadi $(x - (-2)) = (x + 2)$."
+      },
+      {
+        "id": 13,
+        "tipe": "multiple",
+        "topik": "Menentukan Fungsi Kuadrat",
+        "pertanyaan": "Diketahui grafik suatu fungsi kuadrat melalui tiga titik koordinat: $(-1, 1)$, $(0, -4)$, dan $(1, -5)$. Manakah pernyataan berikut yang <strong>benar</strong> mengenai fungsi kuadrat tersebut?",
+        "opsi": [
+          "Nilai konstanta $c$ pada bentuk $f(x) = ax^2 + bx + c$ adalah $-4$.",
+          "Persamaan fungsi kuadratnya adalah $f(x) = 2x^2 - 3x - 4$.",
+          "Grafik parabola terbuka ke atas karena nilai $a = 2 > 0$.",
+          "Persamaan fungsi kuadratnya adalah $f(x) = x^2 - 3x - 4$."
+        ],
+        "kunci": [0, 1, 2],
+        "pembahasan": "Substitusi $(0, -4) \\implies c = -4$. Substitusi $(-1, 1) \\implies a(-1)^2 + b(-1) - 4 = 1 \\implies a - b = 5$. Substitusi $(1, -5) \\implies a(1)^2 + b(1) - 4 = -5 \\implies a + b = -1$. Jumlahkan kedua persamaan: $2a = 4 \\implies a = 2$, lalu $b = -1 - 2 = -3$. Jadi fungsi kuadratnya adalah $f(x) = 2x^2 - 3x - 4$, yang terbuka ke atas karena $a = 2 > 0$.",
+        "rumus": "$f(x) = ax^2 + bx + c$ diselesaikan dengan eliminasi/substitusi sistem persamaan linear.",
+        "tips": "Selalu dahulukan substitusi titik yang memiliki $x = 0$ karena langsung menghasilkan nilai $c$."
+      },
+      {
+        "id": 14,
+        "tipe": "single",
+        "topik": "Kedudukan Grafik terhadap Sumbu-X",
+        "pertanyaan": "Jika grafik fungsi kuadrat $y = ax^2 + 6x + 9$ menyinggung Sumbu-X, maka nilai $a$ yang memenuhi adalah $\\dots$",
+        "opsi": [
+          "$-2$",
+          "$-1$",
+          "$1$",
+          "$2$"
+        ],
+        "kunci": 2,
+        "pembahasan": "Syarat grafik fungsi kuadrat menyinggung Sumbu-X (memotong di satu titik) adalah nilai diskriminan $D = 0$. Dengan $b = 6$ dan $c = 9$: $D = b^2 - 4ac = 0 \\implies 6^2 - 4(a)(9) = 0 \\implies 36 - 36a = 0 \\implies a = 1$.",
+        "rumus": "Menyinggung Sumbu-X $\\iff D = b^2 - 4ac = 0$.",
+        "tips": "Perhatikan pola kuadrat sempurna: $x^2 + 6x + 9 = (x + 3)^2$, sehingga koefisien $x^2$ langsung terlihat bernilai $a = 1$."
+      },
+      {
+        "id": 15,
+        "tipe": "tf",
+        "topik": "Kedudukan Grafik terhadap Sumbu-X",
+        "pertanyaan": "Grafik fungsi kuadrat $f(x) = 2x^2 - 3x + 5$ tidak memotong maupun menyinggung Sumbu-X (definit positif).",
+        "opsi": ["Benar", "Salah"],
+        "kunci": 0,
+        "pembahasan": "Pernyataan tersebut <strong>Benar</strong>. Hitung diskriminannya: $D = b^2 - 4ac = (-3)^2 - 4(2)(5) = 9 - 40 = -31 < 0$. Karena $D < 0$ dan $a = 2 > 0$, seluruh kurva parabola berada di atas Sumbu-X sehingga tidak pernah memotong maupun menyinggung Sumbu-X.",
+        "rumus": "Tidak memotong Sumbu-X $\\iff D = b^2 - 4ac < 0$.",
+        "tips": "Cek tanda $D$: jika $D > 0$ memotong di 2 titik, $D = 0$ menyinggung di 1 titik, dan $D < 0$ melayang (tidak memotong Sumbu-X)."
+      },
+      {
+        "id": 16,
+        "tipe": "single",
+        "topik": "Aplikasi Fungsi Kuadrat",
+        "pertanyaan": "Sebuah peluru ditembakkan vertikal ke atas. Tinggi peluru $h$ (dalam meter) setelah $t$ detik dirumuskan oleh $h(t) = -5t^2 + 80t + 10$. Tinggi maksimum yang dapat dicapai peluru tersebut adalah $\\dots$",
+        "opsi": [
+          "$310\\text{ m}$",
+          "$330\\text{ m}$",
+          "$620\\text{ m}$",
+          "$660\\text{ m}$"
+        ],
+        "kunci": 1,
+        "pembahasan": "Dari $h(t) = -5t^2 + 80t + 10$, diperoleh $a = -5$, $b = 80$, dan $c = 10$. Waktu saat peluru mencapai tinggi maksimum adalah $t = -\\dfrac{b}{2a} = -\\dfrac{80}{2(-5)} = 8$ detik. Substitusikan $t = 8$ ke persamaan tinggi: $h(8) = -5(8)^2 + 80(8) + 10 = -5(64) + 640 + 10 = -320 + 640 + 10 = 330$ meter.",
+        "rumus": "$t_{\\text{maks}} = -\\dfrac{b}{2a}$ dan $h_{\\text{maks}} = h(t_{\\text{maks}})$.",
+        "tips": "Perhatikan bahwa $-5(8)^2 + 80(8)$ selalu bernilai setengah dari $80(8)$, yaitu $+320$, lalu tinggal ditambah $c = 10$."
+      },
+      {
+        "id": 17,
+        "tipe": "single",
+        "topik": "Aplikasi Fungsi Kuadrat",
+        "pertanyaan": "Diketahui sebuah belah ketupat dengan panjang diagonal-diagonalnya adalah $(12 - 2x)\\text{ cm}$ dan $(3x + 6)\\text{ cm}$. Luas maksimum belah ketupat tersebut adalah $\\dots$",
+        "opsi": [
+          "$20\\text{ cm}^2$",
+          "$24\\text{ cm}^2$",
+          "$40\\text{ cm}^2$",
+          "$48\\text{ cm}^2$"
+        ],
+        "kunci": 3,
+        "pembahasan": "Luas belah ketupat adalah $L(x) = \\frac{1}{2} \\cdot d_1 \\cdot d_2 = \\frac{1}{2}(12 - 2x)(3x + 6) = (6 - x)(3x + 6) = -3x^2 + 12x + 36$. Nilai $x$ pembuat maksimum adalah $x = -\\dfrac{12}{2(-3)} = 2$. Substitusikan $x = 2$: $d_1 = 12 - 2(2) = 8\\text{ cm}$ dan $d_2 = 3(2) + 6 = 12\\text{ cm}$. Maka luas maksimumnya adalah $L = \\frac{1}{2} \\times 8 \\times 12 = 48\\text{ cm}^2$.",
+        "rumus": "$L = \\dfrac{1}{2} \\times d_1 \\times d_2$",
+        "tips": "Setelah mendapat $x = 2$, langsung hitung panjang masing-masing diagonal lalu kalikan dan bagi dua—jauh lebih cepat daripada menghitung polinomial kuadratnya."
+      },
+      {
+        "id": 18,
+        "tipe": "short",
+        "topik": "Aplikasi Fungsi Kuadrat",
+        "pertanyaan": "Seorang siswa memotong selembar kain berbentuk persegi panjang dengan keliling $80\\text{ cm}$. Agar kain hasil potongan tersebut mempunyai luas maksimum, berapa $\\text{cm}^2$ luas maksimum yang dapat diperoleh? (Tulis angkanya saja)",
+        "kunci": "400",
+        "pembahasan": "Keliling persegi panjang $K = 2(p + l) = 80 \\implies p + l = 40 \\implies l = 40 - p$. Luas kain sebagai fungsi dari $p$ adalah $L(p) = p(40 - p) = -p^2 + 40p$. Luas mencapai maksimum saat $p = -\\dfrac{40}{2(-1)} = 20\\text{ cm}$, sehingga $l = 40 - 20 = 20\\text{ cm}$ (berbentuk persegi). Luas maksimumnya adalah $20 \\times 20 = 400\\text{ cm}^2$.",
+        "rumus": "$L(p) = p\\left(\\dfrac{K}{2} - p\\right)$ mencapai maksimum ketika $p = l = \\dfrac{K}{4}$.",
+        "tips": "Untuk keliling tetap, persegi panjang selalu mencapai luas maksimum ketika panjang sama dengan lebar (membentuk persegi dengan sisi $K/4$)."
+      },
+      {
+        "id": 19,
+        "tipe": "single",
+        "topik": "Menentukan Fungsi Kuadrat",
+        "pertanyaan": "Suatu fungsi kuadrat memotong Sumbu-Y di koordinat $(0, 4)$, melalui titik $(-1, -1)$, dan memiliki persamaan sumbu simetri $x = 2$. Persamaan fungsi kuadrat tersebut adalah $\\dots$",
+        "opsi": [
+          "$f(x) = -x^2 + 4x + 4$",
+          "$f(x) = x^2 - 4x + 4$",
+          "$f(x) = -2x^2 + 8x + 4$",
+          "$f(x) = 2x^2 - 8x + 4$"
+        ],
+        "kunci": 0,
+        "pembahasan": "Misalkan $f(x) = ax^2 + bx + c$. Karena memotong Sumbu-Y di $(0, 4)$, maka $c = 4$. Sumbu simetri $x = 2 \\implies -\\dfrac{b}{2a} = 2 \\implies b = -4a$. Substitusikan titik $(-1, -1)$ ke $f(x) = ax^2 - 4ax + 4$: $-1 = a(-1)^2 - 4a(-1) + 4 \\implies -1 = a + 4a + 4 \\implies 5a = -5 \\implies a = -1$. Diperoleh $b = -4(-1) = 4$, sehingga $f(x) = -x^2 + 4x + 4$.",
+        "rumus": "$c = f(0)$ dan $b = -2a \\cdot x_{\\text{simetri}}$.",
+        "tips": "Gunakan hubungan $b = -2a \\cdot x_{\\text{simetri}}$ untuk mengurangi jumlah variabel yang tidak diketahui menjadi hanya $a$."
+      },
+      {
+        "id": 20,
+        "tipe": "multiple",
+        "topik": "Analisis Grafik & Nilai Optimum",
+        "pertanyaan": "Diberikan fungsi kuadrat $f(x) = -2x^2 - 12x - 17$. Pilihlah <strong>semua</strong> pernyataan yang sesuai dengan karakteristik fungsi tersebut!",
+        "opsi": [
+          "Fungsi memiliki nilai maksimum karena koefisien $a = -2 < 0$.",
+          "Persamaan sumbu simetri grafik berada pada garis $x = -3$.",
+          "Nilai maksimum fungsi tersebut adalah $1$.",
+          "Titik puncak grafik berada pada koordinat $(-3, -17)$."
+        ],
+        "kunci": [0, 1, 2],
+        "pembahasan": "Koefisien $a = -2 < 0$ menandakan parabola terbuka ke bawah sehingga memiliki nilai maksimum. Sumbu simetri: $x = -\\dfrac{b}{2a} = -\\dfrac{-12}{2(-2)} = -\\dfrac{12}{4} = -3$. Nilai maksimum: $f(-3) = -2(-3)^2 - 12(-3) - 17 = -2(9) + 36 - 17 = -18 + 36 - 17 = 1$. Maka koordinat titik puncaknya adalah $(-3, 1)$, bukan $(-3, -17)$.",
+        "rumus": "Titik puncak = $\\left(-\\dfrac{b}{2a},\\; f\\left(-\\dfrac{b}{2a}\\right)\\right)$.",
+        "tips": "Hati-hati dengan tanda negatif ganda saat menghitung $x = -\\frac{-12}{2(-2)}$: terdapat tiga tanda negatif sehingga hasil akhirnya tetap negatif ($-3$)."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Koreksi Kunci Soal No. 8 agar sinkron 100% dengan pembahasan (-7.5) -->
+  <script>
+    (function fixQ8Key() {
+      const el = document.getElementById('quiz-data');
+      const data = JSON.parse(el.textContent);
+      const q8 = data.soal.find(s => s.id === 8);
+      if (q8) {
+        q8.kunci = "-7.5";
+        q8.pembahasan = "Diketahui $a = 2$, $b = 6$, dan $c = -m$. Sumbu simetri grafik berada di $x = -\\dfrac{b}{2a} = -\\dfrac{6}{2(2)} = -\\dfrac{3}{2} = -1,5$. Karena nilai minimumnya adalah $3$, maka $f(-1,5) = 3$:<br>$$2(-1,5)^2 + 6(-1,5) - m = 3$$<br>$$2(2,25) - 9 - m = 3$$<br>$$4,5 - 9 - m = 3 \\implies -4,5 - m = 3 \\implies m = -7,5$$";
+      }
+      el.textContent = JSON.stringify(data, null, 2);
+    })();
+  </script>
+
+  <!-- MESIN APLIKASI KUIS & PUSTAKA VEKTOR MATHFIG -->
+  <script>
+    /* =========================================================================
+       1. LOGO VEKTOR RESMI BIMBINGAN BELAJAR MATEMATIKA SUMINTO
+       ========================================================================= */
+    function getSumintoLogoSVG() {
+      return `
+      <svg viewBox="0 0 220 220" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="topArc" d="M 32,110 A 78,78 0 1,1 188,110" />
+          <path id="bottomArc" d="M 192,112 A 82,82 0 0,1 28,112" />
+        </defs>
+        <!-- Outer White & Gold Ring -->
+        <circle cx="110" cy="110" r="106" fill="#ffffff" />
+        <circle cx="110" cy="110" r="102" fill="none" stroke="#c5a049" stroke-width="4.5" />
+        <!-- Navy Band -->
+        <circle cx="110" cy="110" r="96" fill="#102754" />
+        <!-- Inner White Circle with Gold Border -->
+        <circle cx="110" cy="110" r="62" fill="#ffffff" stroke="#c5a049" stroke-width="3" />
+        <circle cx="110" cy="110" r="56" fill="none" stroke="#c5a049" stroke-width="1.8" />
+        <!-- Horizontal Gold Divider Lines -->
+        <line x1="56" y1="93" x2="164" y2="93" stroke="#c5a049" stroke-width="2.2" />
+        <line x1="56" y1="127" x2="164" y2="127" stroke="#c5a049" stroke-width="2.2" />
+        <!-- Curved Text Top -->
+        <text fill="#ffffff" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="16.5" letter-spacing="1.4">
+          <textPath href="#topArc" startOffset="50%" text-anchor="middle">BIMBINGAN BELAJAR</textPath>
+        </text>
+        <!-- Curved Text Bottom -->
+        <text fill="#ffffff" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="17" letter-spacing="1.8">
+          <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MATEMATIKA</textPath>
+        </text>
+        <!-- Gold Stars -->
+        <polygon points="28,103 30.5,109 37,109.5 32,113.5 33.5,120 28,116.5 22.5,120 24,113.5 19,109.5 25.5,109" fill="#c5a049" />
+        <polygon points="192,103 194.5,109 201,109.5 196,113.5 197.5,120 192,116.5 186.5,120 188,113.5 183,109.5 189.5,109" fill="#c5a049" />
+        <!-- Center Brand Name -->
+        <text x="110" y="117" text-anchor="middle" fill="#102754" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="0.8">SUMINTO</text>
+        <!-- Top Math Operators -->
+        <text x="110" y="84" text-anchor="middle" fill="#102754" font-family="JetBrains Mono, monospace" font-weight="800" font-size="20" letter-spacing="3">+ − × ÷</text>
+        <!-- Bottom Math Symbols -->
+        <text x="110" y="149" text-anchor="middle" fill="#102754" font-family="Libre Caslon Text, Georgia, serif" font-weight="700" font-size="21" letter-spacing="4">√ ∑ ∫</text>
+      </svg>`;
+    }
+
+    /* =========================================================================
+       2. PUSTAKA VEKTOR INTERNAL MATHFIG
+       ========================================================================= */
+    const MathFig = {
+      render(fig) {
+        if (!fig || !fig.type) return '';
+        const w = fig.width || 340;
+        const h = fig.height || 240;
+        switch (fig.type) {
+          case 'bidang': return this.bidang(fig, w, h);
+          case 'garisbilangan': return this.garisBilangan(fig, w, h);
+          case 'sudut': return this.sudut(fig, w, h);
+          case 'bangun': return this.bangun(fig, w, h);
+          case 'lingkaran': return this.lingkaran(fig, w, h);
+          case 'pecahan': return this.pecahan(fig, w, h);
+          case 'diagram': return this.diagram(fig, w, h);
+          case 'bebas': return fig.svg || '';
+          default: return this.bidang(fig, w, h);
+        }
+      },
+      bidang(fig, w, h) {
+        const xmin = fig.xmin ?? -5, xmax = fig.xmax ?? 5;
+        const ymin = fig.ymin ?? -5, ymax = fig.ymax ?? 5;
+        const pad = 28;
+        const pw = w - pad * 2, ph = h - pad * 2;
+        const toX = x => pad + ((x - xmin) / (xmax - xmin)) * pw;
+        const toY = y => pad + ((ymax - y) / (ymax - ymin)) * ph;
+
+        let svg = `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" style="max-width:100%;height:auto;background:#fff;border-radius:8px;border:1px solid #d5cbb8;" xmlns="http://www.w3.org/2000/svg">`;
+        // Grid lines
+        const xStep = (xmax - xmin) > 10 ? 2 : 1;
+        const yStep = (ymax - ymin) > 12 ? 4 : ((ymax - ymin) > 8 ? 2 : 1);
+        for (let x = Math.ceil(xmin); x <= xmax; x += xStep) {
+          const px = toX(x);
+          svg += `<line x1="${px}" y1="${pad}" x2="${px}" y2="${h - pad}" stroke="#ece5d4" stroke-width="1"/>`;
+        }
+        for (let y = Math.ceil(ymin); y <= ymax; y += yStep) {
+          const py = toY(y);
+          svg += `<line x1="${pad}" y1="${py}" x2="${w - pad}" y2="${py}" stroke="#ece5d4" stroke-width="1"/>`;
+        }
+        // Axes
+        const x0 = Math.min(Math.max(toX(0), pad), w - pad);
+        const y0 = Math.min(Math.max(toY(0), pad), h - pad);
+        svg += `<line x1="${pad}" y1="${y0}" x2="${w - pad}" y2="${y0}" stroke="#14213d" stroke-width="1.6"/>`;
+        svg += `<line x1="${x0}" y1="${pad}" x2="${x0}" y2="${h - pad}" stroke="#14213d" stroke-width="1.6"/>`;
+        svg += `<text x="${w - pad + 6}" y="${y0 + 4}" font-size="11" font-weight="bold" fill="#14213d">X</text>`;
+        svg += `<text x="${x0 - 4}" y="${pad - 8}" font-size="11" font-weight="bold" fill="#14213d">Y</text>`;
+
+        // Tick numbers
+        for (let x = Math.ceil(xmin); x <= xmax; x += xStep) {
+          if (x === 0) continue;
+          svg += `<text x="${toX(x)}" y="${y0 + 13}" text-anchor="middle" font-size="9" fill="#4a5568">${x}</text>`;
+        }
+        for (let y = Math.ceil(ymin); y <= ymax; y += yStep) {
+          if (y === 0) continue;
+          svg += `<text x="${x0 - 6}" y="${toY(y) + 3}" text-anchor="end" font-size="9" fill="#4a5568">${y}</text>`;
+        }
+
+        // Curves
+        (fig.curves || []).forEach((c, idx) => {
+          let d = '';
+          const samples = 140;
+          for (let i = 0; i <= samples; i++) {
+            const x = xmin + (i / samples) * (xmax - xmin);
+            let y = 0;
+            try {
+              y = Function('x', `return ${c.fn};`)(x);
+            } catch (e) { y = NaN; }
+            if (!isNaN(y) && y >= ymin - 0.5 && y <= ymax + 0.5) {
+              const px = toX(x).toFixed(1);
+              const py = toY(y).toFixed(1);
+              d += (d === '' ? `M ${px} ${py}` : ` L ${px} ${py}`);
+            }
+          }
+          svg += `<path d="${d}" fill="none" stroke="${c.color || '#14213d'}" stroke-width="2.4"/>`;
+          if (c.label) {
+            svg += `<text x="${w - pad - 4}" y="${pad + 14 + idx * 14}" text-anchor="end" font-size="10.5" font-weight="600" fill="${c.color || '#14213d'}">${c.label}</text>`;
+          }
+        });
+
+        // Points
+        (fig.points || []).forEach(pt => {
+          const px = toX(pt.x), py = toY(pt.y);
+          svg += `<circle cx="${px}" cy="${py}" r="4" fill="#b08d57" stroke="#14213d" stroke-width="1.5"/>`;
+          if (pt.label) {
+            svg += `<text x="${px + 6}" y="${py - 6}" font-size="10" font-weight="700" fill="#14213d">${pt.label}</text>`;
+          }
+        });
+
+        svg += `</svg>`;
+        return svg;
+      },
+      garisBilangan(fig, w, h) {
+        return `<svg viewBox="0 0 ${w} 80" width="${w}" height="80" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="40" x2="${w-20}" y2="40" stroke="#14213d" stroke-width="2"/></svg>`;
+      },
+      sudut(fig, w, h) {
+        return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><polyline points="40,${h-40} ${w-40},${h-40} 120,40" fill="none" stroke="#14213d" stroke-width="2"/></svg>`;
+      },
+      bangun(fig, w, h) {
+        return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><rect x="40" y="30" width="${w-80}" height="${h-60}" fill="rgba(176,141,87,0.12)" stroke="#14213d" stroke-width="2"/></svg>`;
+      },
+      lingkaran(fig, w, h) {
+        return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><circle cx="${w/2}" cy="${h/2}" r="${Math.min(w,h)/3}" fill="rgba(20,33,61,0.06)" stroke="#14213d" stroke-width="2"/></svg>`;
+      },
+      pecahan(fig, w, h) {
+        return `<svg viewBox="0 0 ${w} 60" width="${w}" height="60" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="10" width="${w-40}" height="40" fill="#ece5d4" stroke="#14213d" stroke-width="2"/></svg>`;
+      },
+      diagram(fig, w, h) {
+        return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><line x1="30" y1="${h-30}" x2="${w-20}" y2="${h-30}" stroke="#14213d" stroke-width="2"/></svg>`;
+      }
+    };
+
+    /* =========================================================================
+       3. STATE & CORE QUIZ ENGINE
+       ========================================================================= */
+    let quizData = JSON.parse(document.getElementById('quiz-data').textContent);
+    let state = {
+      currentIndex: 0,
+      mode: 'practice', // 'practice' | 'exam'
+      answers: {},      // { [id]: number | number[] | string }
+      checked: {},      // { [id]: boolean }
+      flagged: {},      // { [id]: boolean }
+      filter: 'all',
+      submitted: false,
+      elapsedSeconds: 0,
+      timerRunning: true,
+      editorSelectedIndex: 0
+    };
+
+    // Render Logos
+    document.getElementById('headerLogoContainer').innerHTML = getSumintoLogoSVG();
+    document.getElementById('modalLogoContainer').innerHTML = getSumintoLogoSVG();
+
+    function renderMath(el) {
+      if (window.renderMathInElement && el) {
+        renderMathInElement(el, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // Timer
+    setInterval(() => {
+      if (state.timerRunning && !state.submitted) {
+        state.elapsedSeconds++;
+        document.getElementById('timerDisplay').textContent = formatTime(state.elapsedSeconds);
+      }
+    }, 1000);
+
+    function formatTime(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    document.getElementById('toggleTimerBtn').addEventListener('click', () => {
+      state.timerRunning = !state.timerRunning;
+      document.getElementById('toggleTimerBtn').innerHTML = state.timerRunning
+        ? '<i data-lucide="pause" style="width:14px;height:14px;"></i>'
+        : '<i data-lucide="play" style="width:14px;height:14px;"></i>';
+      lucide.createIcons();
+    });
+
+    // Mode Switching
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (state.submitted) return;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.mode = btn.dataset.mode;
+        renderCurrentQuestion();
+        renderSidebar();
+      });
+    });
+
+    // Normalisasi Jawaban Isian Singkat (toleransi koma/titik & satuan)
+    function normalizeShort(val) {
+      if (val === undefined || val === null) return '';
+      let s = String(val).trim().toLowerCase();
+      s = s.replace(/,/g, '.');
+      // Ambil angka/pecahan utama jika disertai satuan
+      const match = s.match(/^-?\d+(\.\d+)?(\/-?\d+(\.\d+)?)?/);
+      if (match) {
+        const token = match[0];
+        if (token.includes('/')) {
+          const [num, den] = token.split('/').map(Number);
+          if (den !== 0) return String(num / den);
+        }
+        return String(parseFloat(token));
+      }
+      return s;
+    }
+
+    function isAnswered(q) {
+      const ans = state.answers[q.id];
+      if (q.tipe === 'multiple') return Array.isArray(ans) && ans.length > 0;
+      if (q.tipe === 'short') return typeof ans === 'string' && ans.trim() !== '';
+      return ans !== undefined && ans !== null;
+    }
+
+    function evaluateQuestion(q) {
+      const ans = state.answers[q.id];
+      if (!isAnswered(q)) return null;
+      if (q.tipe === 'single' || q.tipe === 'tf') {
+        return ans === q.kunci;
+      }
+      if (q.tipe === 'multiple') {
+        const aSorted = [...ans].sort((a, b) => a - b);
+        const kSorted = [...q.kunci].sort((a, b) => a - b);
+        return aSorted.length === kSorted.length && aSorted.every((v, i) => v === kSorted[i]);
+      }
+      if (q.tipe === 'short') {
+        return normalizeShort(ans) === normalizeShort(q.kunci);
+      }
+      return false;
+    }
+
+    function getTypeLabel(tipe) {
+      switch (tipe) {
+        case 'single': return 'Pilihan Ganda';
+        case 'multiple': return 'Pilihan Ganda Kompleks';
+        case 'tf': return 'Benar / Salah';
+        case 'short': return 'Isian Singkat';
+        default: return 'Soal';
+      }
+    }
+
+    function renderCurrentQuestion() {
+      const total = quizData.soal.length;
+      if (total === 0) return;
+      if (state.currentIndex >= total) state.currentIndex = total - 1;
+      const q = quizData.soal[state.currentIndex];
+
+      document.getElementById('quizTitleDisplay').textContent = quizData.meta.judul;
+      document.getElementById('quizSubtitleDisplay').textContent = quizData.meta.subjudul;
+      document.getElementById('metaCount').textContent = `${total} Soal`;
+
+      document.getElementById('qNumBadge').textContent = `Soal ${state.currentIndex + 1} / ${total}`;
+      document.getElementById('qTypeBadge').textContent = getTypeLabel(q.tipe);
+      document.getElementById('qTopicBadge').textContent = q.topik || 'Fungsi Kuadrat';
+
+      const flagBtn = document.getElementById('flagBtn');
+      flagBtn.classList.toggle('flagged', !!state.flagged[q.id]);
+
+      const promptEl = document.getElementById('qPrompt');
+      promptEl.innerHTML = q.pertanyaan;
+
+      const figWrap = document.getElementById('qFigureWrap');
+      if (q.figure) {
+        figWrap.style.display = 'flex';
+        figWrap.innerHTML = MathFig.render(q.figure) + (q.figure.caption ? `<div class="q-figure-caption">${q.figure.caption}</div>` : '');
+      } else {
+        figWrap.style.display = 'none';
+        figWrap.innerHTML = '';
+      }
+
+      const showFeedback = state.submitted || (state.mode === 'practice' && !!state.checked[q.id]);
+      const inputArea = document.getElementById('qInputArea');
+      inputArea.innerHTML = '';
+
+      if (q.tipe === 'single' || q.tipe === 'tf') {
+        const list = document.createElement('div');
+        list.className = 'options-list';
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        (q.opsi || []).forEach((optText, idx) => {
+          const item = document.createElement('div');
+          item.className = 'option-item';
+          const selected = state.answers[q.id] === idx;
+          if (selected) item.classList.add('selected');
+
+          if (showFeedback) {
+            if (idx === q.kunci) item.classList.add('correct-reveal');
+            else if (selected && idx !== q.kunci) item.classList.add('wrong-reveal');
+          }
+
+          item.innerHTML = `
+            <span class="option-marker">${q.tipe === 'tf' ? (idx === 0 ? 'B' : 'S') : letters[idx]}</span>
+            <span class="option-text">${optText}</span>
+          `;
+
+          item.addEventListener('click', () => {
+            if (state.submitted) return;
+            state.answers[q.id] = idx;
+            if (state.mode === 'practice') state.checked[q.id] = true;
+            updateProgress();
+            renderCurrentQuestion();
+            renderSidebar();
+          });
+          list.appendChild(item);
+        });
+        inputArea.appendChild(list);
+      } else if (q.tipe === 'multiple') {
+        const hint = document.createElement('div');
+        hint.className = 'helper-hint';
+        hint.innerHTML = `<i data-lucide="check-square" style="width:14px;height:14px;"></i> Pilih lebih dari satu jawaban yang benar, lalu klik <strong>Periksa Jawaban</strong>.`;
+        inputArea.appendChild(hint);
+
+        const list = document.createElement('div');
+        list.className = 'options-list';
+        const currentAns = Array.isArray(state.answers[q.id]) ? state.answers[q.id] : [];
+
+        (q.opsi || []).forEach((optText, idx) => {
+          const item = document.createElement('div');
+          item.className = 'option-item multiple-type';
+          const selected = currentAns.includes(idx);
+          if (selected) item.classList.add('selected');
+
+          if (showFeedback) {
+            if ((q.kunci || []).includes(idx)) item.classList.add('correct-reveal');
+            else if (selected) item.classList.add('wrong-reveal');
+          }
+
+          item.innerHTML = `
+            <span class="option-marker">${selected ? '✓' : ''}</span>
+            <span class="option-text">${optText}</span>
+          `;
+
+          item.addEventListener('click', () => {
+            if (state.submitted) return;
+            let next = Array.isArray(state.answers[q.id]) ? [...state.answers[q.id]] : [];
+            if (next.includes(idx)) next = next.filter(v => v !== idx);
+            else next.push(idx);
+            state.answers[q.id] = next;
+            state.checked[q.id] = false;
+            updateProgress();
+            renderCurrentQuestion();
+            renderSidebar();
+          });
+          list.appendChild(item);
+        });
+        inputArea.appendChild(list);
+      } else if (q.tipe === 'short') {
+        const box = document.createElement('div');
+        box.className = 'short-answer-box';
+        const val = state.answers[q.id] || '';
+        box.innerHTML = `
+          <div class="helper-hint"><i data-lucide="pen-tool" style="width:14px;height:14px;"></i> Ketik jawaban numerik Anda (mendukung tanda titik atau koma desimal).</div>
+          <div class="short-input-row">
+            <input type="text" class="short-input" id="shortAnswerInput" placeholder="Masukkan jawaban..." value="${val}" ${state.submitted ? 'disabled' : ''}>
+          </div>
+        `;
+        inputArea.appendChild(box);
+        const inp = box.querySelector('#shortAnswerInput');
+        inp.addEventListener('input', (e) => {
+          state.answers[q.id] = e.target.value;
+          state.checked[q.id] = false;
+          updateProgress();
+          renderSidebar();
+        });
+        inp.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && state.mode === 'practice') {
+            state.checked[q.id] = true;
+            renderCurrentQuestion();
+            renderSidebar();
+          }
+        });
+      }
+
+      // Check Button visibility in Practice Mode
+      const checkBtn = document.getElementById('checkBtn');
+      if (state.mode === 'practice' && !state.submitted && (q.tipe === 'multiple' || q.tipe === 'short')) {
+        checkBtn.style.display = 'inline-flex';
+      } else {
+        checkBtn.style.display = 'none';
+      }
+
+      // Explanation Panel
+      const expBox = document.getElementById('explanationBox');
+      if (showFeedback) {
+        const correct = evaluateQuestion(q);
+        expBox.style.display = 'block';
+        expBox.classList.toggle('incorrect-header', !correct);
+
+        document.getElementById('expStatusText').innerHTML = correct
+          ? `<span class="status-ok"><i data-lucide="check-circle" style="width:16px;height:16px;"></i> Jawaban Anda Benar!</span>`
+          : `<span class="status-no"><i data-lucide="x-circle" style="width:16px;height:16px;"></i> Jawaban Kurang Tepat</span>`;
+
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        let keyDisp = '';
+        if (q.tipe === 'single') keyDisp = `Kunci: ${letters[q.kunci]}`;
+        else if (q.tipe === 'tf') keyDisp = `Kunci: ${q.kunci === 0 ? 'Benar' : 'Salah'}`;
+        else if (q.tipe === 'multiple') keyDisp = `Kunci: ${(q.kunci || []).map(i => letters[i]).join(', ')}`;
+        else if (q.tipe === 'short') keyDisp = `Kunci: ${q.kunci}`;
+
+        document.getElementById('expKeySummary').textContent = keyDisp;
+        document.getElementById('expBody').innerHTML = q.pembahasan || '';
+        document.getElementById('expFormula').innerHTML = q.rumus || '-';
+        document.getElementById('expTip').innerHTML = q.tips || '-';
+      } else {
+        expBox.style.display = 'none';
+      }
+
+      document.getElementById('prevBtn').disabled = state.currentIndex === 0;
+      document.getElementById('nextBtn').textContent = state.currentIndex === total - 1 ? 'Selesai' : 'Selanjutnya';
+
+      renderMath(document.querySelector('.question-card'));
+      lucide.createIcons();
+    }
+
+    document.getElementById('checkBtn').addEventListener('click', () => {
+      const q = quizData.soal[state.currentIndex];
+      if (!isAnswered(q)) {
+        alert('Silakan pilih atau ketik jawaban terlebih dahulu.');
+        return;
+      }
+      state.checked[q.id] = true;
+      renderCurrentQuestion();
+      renderSidebar();
+    });
+
+    document.getElementById('flagBtn').addEventListener('click', () => {
+      const q = quizData.soal[state.currentIndex];
+      state.flagged[q.id] = !state.flagged[q.id];
+      renderCurrentQuestion();
+      renderSidebar();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        renderCurrentQuestion();
+        renderSidebar();
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (state.currentIndex < quizData.soal.length - 1) {
+        state.currentIndex++;
+        renderCurrentQuestion();
+        renderSidebar();
+      } else {
+        finishQuiz();
+      }
+    });
+
+    function updateProgress() {
+      const total = quizData.soal.length;
+      const answeredCount = quizData.soal.filter(q => isAnswered(q)).length;
+      const pct = total > 0 ? Math.round((answeredCount / total) * 100) : 0;
+      document.getElementById('progressFill').style.width = `${pct}%`;
+      document.getElementById('progressLabel').textContent = `${answeredCount}/${total}`;
+      document.getElementById('sidebarAnsweredStat').textContent = `${answeredCount} dijawab`;
+    }
+
+    function renderSidebar() {
+      const grid = document.getElementById('numGrid');
+      grid.innerHTML = '';
+      quizData.soal.forEach((q, idx) => {
+        const answered = isAnswered(q);
+        const flagged = !!state.flagged[q.id];
+
+        // Filter check
+        if (state.filter === 'unanswered' && answered) return;
+        if (state.filter === 'flagged' && !flagged) return;
+        if (['single', 'multiple', 'tf', 'short'].includes(state.filter) && q.tipe !== state.filter) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'num-btn';
+        btn.textContent = idx + 1;
+        if (idx === state.currentIndex) btn.classList.add('current');
+        if (flagged) btn.classList.add('flagged');
+
+        const reveal = state.submitted || (state.mode === 'practice' && !!state.checked[q.id]);
+        if (reveal && answered) {
+          const ok = evaluateQuestion(q);
+          btn.classList.add(ok ? 'status-correct' : 'status-wrong');
+        } else if (answered) {
+          btn.classList.add('answered');
+        }
+
+        btn.addEventListener('click', () => {
+          state.currentIndex = idx;
+          renderCurrentQuestion();
+          renderSidebar();
+        });
+        grid.appendChild(btn);
+      });
+    }
+
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        state.filter = pill.dataset.filter;
+        renderSidebar();
+      });
+    });
+
+    /* =========================================================================
+       4. FINISH QUIZ, SCORE MODAL & GOATCOUNTER ANALYTICS
+       ========================================================================= */
+    function triggerGoatCounter() {
+      if (!window.goatcounter) {
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = '//gc.zgo.at/count.js';
+        s.setAttribute('data-goatcounter', 'https://suminto.goatcounter.com/count');
+        document.body.appendChild(s);
+      } else if (typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({
+          path: '/kuis-selesai-fungsi-kuadrat',
+          title: 'Selesai Kuis Fungsi Kuadrat - BBM Suminto',
+          event: true
+        });
+      }
+    }
+
+    function finishQuiz() {
+      state.submitted = true;
+      state.timerRunning = false;
+      renderCurrentQuestion();
+      renderSidebar();
+
+      let correct = 0, wrong = 0, blank = 0;
+      const tbody = document.getElementById('reviewTableBody');
+      tbody.innerHTML = '';
+
+      quizData.soal.forEach((q, idx) => {
+        const ans = isAnswered(q);
+        const ok = evaluateQuestion(q);
+        let statusHtml = '';
+        if (!ans) {
+          blank++;
+          statusHtml = `<span style="color:var(--text-muted);font-weight:600;">Kosong</span>`;
+        } else if (ok) {
+          correct++;
+          statusHtml = `<span style="color:var(--secondary);font-weight:700;">Benar</span>`;
+        } else {
+          wrong++;
+          statusHtml = `<span style="color:var(--error);font-weight:700;">Salah</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="mono"><strong>${idx + 1}</strong></td>
+          <td>${q.topik}</td>
+          <td>${getTypeLabel(q.tipe)}</td>
+          <td>${statusHtml}</td>
+          <td><button class="btn" style="padding:0.2rem 0.55rem;font-size:0.75rem;" data-jump="${idx}">Lihat</button></td>
+        `;
+        tr.querySelector('button').addEventListener('click', () => {
+          state.currentIndex = idx;
+          closeModal('scoreModal');
+          renderCurrentQuestion();
+          renderSidebar();
+        });
+        tbody.appendChild(tr);
+      });
+
+      const total = quizData.soal.length;
+      const score = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      document.getElementById('finalScoreNum').textContent = score;
+      document.getElementById('statCorrect').textContent = correct;
+      document.getElementById('statWrong').textContent = wrong;
+      document.getElementById('statBlank').textContent = blank;
+      document.getElementById('statTime').textContent = formatTime(state.elapsedSeconds);
+
+      let title = 'Terus Berlatih!';
+      let msg = 'Tinjau kembali pembahasan pada setiap nomor untuk memperkuat pemahaman konsep fungsi kuadrat.';
+      if (score >= 90) {
+        title = 'Sangat Memuaskan! Penguasaan Materi Prima';
+        msg = 'Luar biasa! Anda telah menguasai konsep grafik parabola, titik optimum, hingga aplikasi fungsi kuadrat dengan sangat baik.';
+      } else if (score >= 75) {
+        title = 'Baik! Sudah Melampaui Kriteria Ketuntasan';
+        msg = 'Hasil yang solid. Periksa beberapa nomor yang masih keliru agar semakin teliti saat ujian.';
+      }
+      document.getElementById('scoreGradeTitle').textContent = title;
+      document.getElementById('scoreFeedbackMsg').textContent = msg;
+
+      openModal('scoreModal');
+      triggerGoatCounter();
+    }
+
+    document.getElementById('finishQuizBtn').addEventListener('click', finishQuiz);
+
+    document.getElementById('resetQuizBtn').addEventListener('click', () => {
+      state.answers = {};
+      state.checked = {};
+      state.flagged = {};
+      state.submitted = false;
+      state.elapsedSeconds = 0;
+      state.timerRunning = true;
+      state.currentIndex = 0;
+      document.getElementById('timerDisplay').textContent = '00:00';
+      closeModal('scoreModal');
+      updateProgress();
+      renderCurrentQuestion();
+      renderSidebar();
+    });
+
+    /* =========================================================================
+       5. MODALS & SCIENTIFIC CALCULATOR
+       ========================================================================= */
+    function openModal(id) {
+      const el = document.getElementById(id);
+      el.classList.add('open');
+      renderMath(el);
+      lucide.createIcons();
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.dataset.close));
+    });
+
+    document.getElementById('openFormulaBtn').addEventListener('click', () => openModal('formulaModal'));
+    document.getElementById('openCalcBtn').addEventListener('click', () => openModal('calcModal'));
+
+    // Scientific Calculator Logic
+    let calcBuffer = '';
+    document.querySelectorAll('.calc-key').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const k = btn.dataset.k;
+        const exprEl = document.getElementById('calcExpr');
+        const valEl = document.getElementById('calcVal');
+        if (k === 'C') {
+          calcBuffer = '';
+          exprEl.textContent = '';
+          valEl.textContent = '0';
+        } else if (k === 'DEL') {
+          calcBuffer = calcBuffer.slice(0, -1);
+          valEl.textContent = calcBuffer || '0';
+        } else if (k === '=') {
+          try {
+            exprEl.textContent = calcBuffer;
+            const sanitized = calcBuffer
+              .replace(/sqrt\(/g, 'Math.sqrt(')
+              .replace(/\^/g, '**');
+            const res = Function(`"use strict"; return (${sanitized})`)();
+            calcBuffer = String(Number.isFinite(res) ? Number(res.toFixed(8)) : 'Error');
+            valEl.textContent = calcBuffer;
+          } catch (e) {
+            valEl.textContent = 'Error';
+            calcBuffer = '';
+          }
+        } else {
+          calcBuffer += k;
+          valEl.textContent = calcBuffer;
+        }
+      });
+    });
+
+    /* =========================================================================
+       6. BUILT-IN QUIZ EDITOR & HTML EXPORT
+       ========================================================================= */
+    document.getElementById('openEditorBtn').addEventListener('click', () => {
+      state.editorSelectedIndex = state.currentIndex;
+      renderEditor();
+      openModal('editorModal');
+    });
+
+    function renderEditor() {
+      const listEl = document.getElementById('edQuestionList');
+      listEl.innerHTML = '';
+      quizData.soal.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'editor-item-btn' + (idx === state.editorSelectedIndex ? ' active' : '');
+        btn.innerHTML = `<span>#${idx + 1} [${q.tipe.toUpperCase()}] ${q.topik}</span>`;
+        btn.addEventListener('click', () => {
+          state.editorSelectedIndex = idx;
+          renderEditor();
+        });
+        listEl.appendChild(btn);
+      });
+
+      const q = quizData.soal[state.editorSelectedIndex];
+      const formEl = document.getElementById('edFormContainer');
+      if (!q) {
+        formEl.innerHTML = '<p>Tidak ada soal.</p>';
+        return;
+      }
+
+      const isChoice = q.tipe === 'single' || q.tipe === 'multiple' || q.tipe === 'tf';
+      const opsiStr = (q.opsi || []).join('\n');
+      const kunciStr = Array.isArray(q.kunci) ? q.kunci.join(',') : String(q.kunci);
+
+      formEl.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div class="form-group">
+            <label>Tipe Soal</label>
+            <select class="form-control" id="edTipe">
+              <option value="single" ${q.tipe === 'single' ? 'selected' : ''}>Pilihan Ganda (single)</option>
+              <option value="multiple" ${q.tipe === 'multiple' ? 'selected' : ''}>Pilihan Ganda Kompleks (multiple)</option>
+              <option value="tf" ${q.tipe === 'tf' ? 'selected' : ''}>Benar / Salah (tf)</option>
+              <option value="short" ${q.tipe === 'short' ? 'selected' : ''}>Isian Singkat (short)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Topik Materi</label>
+            <input type="text" class="form-control" id="edTopik" value="${q.topik || ''}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pertanyaan (mendukung LaTeX $...$)</label>
+          <textarea class="form-control" id="edPertanyaan">${q.pertanyaan || ''}</textarea>
+        </div>
+        ${isChoice ? `
+        <div class="form-group">
+          <label>Pilihan Jawaban (1 opsi per baris)</label>
+          <textarea class="form-control" id="edOpsi">${opsiStr}</textarea>
+        </div>` : ''}
+        <div class="form-group">
+          <label>Kunci Jawaban (${q.tipe === 'multiple' ? 'indeks dipisah koma, misal: 0,2' : (isChoice ? 'indeks mulai 0 (0=A, 1=B, ...)' : 'nilai jawaban benar')})</label>
+          <input type="text" class="form-control" id="edKunci" value="${kunciStr}">
+        </div>
+        <div class="form-group">
+          <label>Pembahasan Lengkap</label>
+          <textarea class="form-control" id="edPembahasan">${q.pembahasan || ''}</textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div class="form-group">
+            <label>Rumus Utama</label>
+            <input type="text" class="form-control" id="edRumus" value="${q.rumus || ''}">
+          </div>
+          <div class="form-group">
+            <label>Tips Pengerjaan</label>
+            <input type="text" class="form-control" id="edTips" value="${q.tips || ''}">
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;">
+          <button class="btn" style="color:var(--error);border-color:var(--error);" id="edDeleteBtn">Hapus Soal Ini</button>
+          <button class="btn btn-secondary" id="edSaveItemBtn">Simpan Perubahan Soal</button>
+        </div>
+      `;
+
+      document.getElementById('edSaveItemBtn').addEventListener('click', () => {
+        q.tipe = document.getElementById('edTipe').value;
+        q.topik = document.getElementById('edTopik').value;
+        q.pertanyaan = document.getElementById('edPertanyaan').value;
+        if (document.getElementById('edOpsi')) {
+          q.opsi = document.getElementById('edOpsi').value.split('\n').map(s => s.trim()).filter(Boolean);
+        }
+        const rawKey = document.getElementById('edKunci').value.trim();
+        if (q.tipe === 'multiple') {
+          q.kunci = rawKey.split(',').map(n => parseInt(n.trim(), 10)).filter(n => !isNaN(n));
+        } else if (q.tipe === 'single' || q.tipe === 'tf') {
+          q.kunci = parseInt(rawKey, 10) || 0;
+        } else {
+          q.kunci = rawKey;
+        }
+        q.pembahasan = document.getElementById('edPembahasan').value;
+        q.rumus = document.getElementById('edRumus').value;
+        q.tips = document.getElementById('edTips').value;
+        renderEditor();
+        renderCurrentQuestion();
+        renderSidebar();
+      });
+
+      document.getElementById('edDeleteBtn').addEventListener('click', () => {
+        if (quizData.soal.length <= 1) return alert('Minimal harus ada 1 soal.');
+        quizData.soal.splice(state.editorSelectedIndex, 1);
+        state.editorSelectedIndex = Math.max(0, state.editorSelectedIndex - 1);
+        renderEditor();
+        updateProgress();
+        renderCurrentQuestion();
+        renderSidebar();
+      });
+    }
+
+    document.getElementById('edAddBtn').addEventListener('click', () => {
+      const nextId = quizData.soal.reduce((m, s) => Math.max(m, s.id), 0) + 1;
+      quizData.soal.push({
+        id: nextId,
+        tipe: 'single',
+        topik: 'Fungsi Kuadrat',
+        pertanyaan: 'Soal baru: Tentukan nilai $f(2)$ jika $f(x) = x^2 + 3x - 1$.',
+        opsi: ['$7$', '$9$', '$11$', '$13$'],
+        kunci: 1,
+        pembahasan: '$f(2) = 2^2 + 3(2) - 1 = 4 + 6 - 1 = 9$.',
+        rumus: '$f(x) = ax^2 + bx + c$',
+        tips: 'Substitusikan nilai $x = 2$ ke setiap variabel $x$.'
+      });
+      state.editorSelectedIndex = quizData.soal.length - 1;
+      renderEditor();
+      updateProgress();
+      renderSidebar();
+    });
+
+    document.getElementById('edApplyBtn').addEventListener('click', () => {
+      closeModal('editorModal');
+      updateProgress();
+      renderCurrentQuestion();
+      renderSidebar();
+    });
+
+    document.getElementById('edExportJsonBtn').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(quizData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-fungsi-kuadrat-bbm-suminto.json';
+      a.click();
+    });
+
+    document.getElementById('edImportJsonInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const parsed = JSON.parse(ev.target.result);
+          if (parsed && Array.isArray(parsed.soal)) {
+            quizData = parsed;
+            state.editorSelectedIndex = 0;
+            state.currentIndex = 0;
+            state.answers = {};
+            state.checked = {};
+            renderEditor();
+            updateProgress();
+            renderCurrentQuestion();
+            renderSidebar();
+          }
+        } catch (err) {
+          alert('Format file JSON tidak valid.');
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById('edDownloadHtmlBtn').addEventListener('click', () => {
+      const docClone = document.documentElement.cloneNode(true);
+      const dataScript = docClone.querySelector('#quiz-data');
+      if (dataScript) {
+        dataScript.textContent = JSON.stringify(quizData, null, 2);
+      }
+      // Bersihkan modal backdrop open state sebelum ekspor
+      docClone.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('open'));
+      const htmlString = '<!DOCTYPE html>\n' + docClone.outerHTML;
+      const blob = new Blob([htmlString], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Kuis-Fungsi-Kuadrat-BBM-Suminto.html';
+      a.click();
+    });
+
+    // Inisialisasi Awal
+    window.addEventListener('DOMContentLoaded', () => {
+      updateProgress();
+      renderCurrentQuestion();
+      renderSidebar();
+    });
+  </script>
+</body>
+</html>

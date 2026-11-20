@@ -1,0 +1,2573 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif: Bangun Ruang Sisi Lengkung — Bimbingan Belajar Matematika Suminto</title>
+
+  <!-- Google Fonts: Charter - Stewardship in Navy and Brass -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <!-- GoatCounter Analytics (manual trigger on #scoreModal open) -->
+  <script>
+    window.goatcounter = { no_onload: true };
+  </script>
+  <script data-goatcounter="https://suminto.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  <style>
+    :root {
+      --background: #f7f4ec;
+      --surface-container-low: #fffdf8;
+      --surface-container: #ece5d4;
+      --primary: #14213d;
+      --primary-soft: #1f325c;
+      --outline: #b08d57;
+      --outline-light: #d6c3a0;
+      --secondary: #2d5a4a;
+      --secondary-bg: #e7f2ed;
+      --error: #9b2c2c;
+      --error-bg: #fbeaea;
+      --warning: #8c5a18;
+      --warning-bg: #f8efd9;
+      --text-main: #1b2230;
+      --text-muted: #5b6374;
+      --shadow-sm: 0 2px 8px rgba(20, 33, 61, 0.06);
+      --shadow-md: 0 8px 24px rgba(20, 33, 61, 0.10);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Header Brand */
+    .hero-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #1d2f56 100%);
+      color: #fffdf8;
+      border-bottom: 3px solid var(--outline);
+      padding: 18px 24px;
+    }
+
+    .hero-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.28));
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f3d79e;
+      background: rgba(176, 141, 87, 0.18);
+      border: 1px solid rgba(176, 141, 87, 0.55);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fffdf8;
+    }
+
+    .hero-subtitle {
+      font-size: 0.88rem;
+      color: #d7deec;
+      margin-top: 3px;
+    }
+
+    .meta-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: rgba(255, 253, 248, 0.1);
+      border: 1px solid rgba(255, 253, 248, 0.2);
+      color: #fffdf8;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Sticky Toolbar */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 253, 248, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--outline-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toolbar-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-light);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      padding: 3px;
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fffdf8;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid var(--outline-light);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary-soft);
+    }
+
+    .btn-gold {
+      background: var(--outline);
+      color: #fffdf8;
+      border-color: var(--outline);
+    }
+
+    .btn-gold:hover {
+      background: #9a7946;
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .btn-secondary:hover {
+      background: #23473a;
+    }
+
+    .btn-danger {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .btn-icon {
+      padding: 6px 8px;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 5px;
+      background: var(--surface-container);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--outline), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      max-width: 1260px;
+      margin: 22px auto 48px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* Question Card */
+    .card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--surface-container);
+      margin-bottom: 18px;
+    }
+
+    .q-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .q-num-badge {
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .q-tag {
+      background: var(--surface-container);
+      color: var(--primary);
+      border: 1px solid var(--outline-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .q-type-tag {
+      background: #eef2fa;
+      color: var(--primary);
+      border: 1px solid #c5d1ea;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .flag-btn {
+      border: 1px solid var(--outline-light);
+      background: var(--surface-container-low);
+      color: var(--warning);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .flag-btn.flagged {
+      background: var(--warning-bg);
+      border-color: var(--outline);
+      color: var(--warning);
+    }
+
+    .q-stem {
+      font-size: 1.04rem;
+      line-height: 1.75;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+
+    .q-figure-box {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin: 0 auto 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 480px;
+    }
+
+    .q-figure-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      border: 1.5px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .option-item:hover {
+      border-color: var(--outline);
+      background: #fcfaf4;
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: #f0f4fb;
+      box-shadow: 0 0 0 2px rgba(20, 33, 61, 0.1);
+    }
+
+    .option-item.correct {
+      border-color: var(--secondary);
+      background: var(--secondary-bg);
+    }
+
+    .option-item.wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+    }
+
+    .opt-marker {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--outline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      color: var(--primary);
+      background: var(--surface-container-low);
+      margin-top: 1px;
+    }
+
+    .option-item.checkbox-opt .opt-marker {
+      border-radius: 6px;
+    }
+
+    .option-item.selected .opt-marker {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .option-item.correct .opt-marker {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .option-item.wrong .opt-marker {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .tf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .short-input-wrap {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .short-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 15px;
+      border: 1.5px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      color: var(--primary);
+    }
+
+    .short-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.12);
+    }
+
+    .q-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid var(--surface-container);
+    }
+
+    /* Explanation Panel */
+    .explanation-box {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--outline-light);
+      background: #faf7ef;
+      display: none;
+    }
+
+    .explanation-box.show {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .exp-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .exp-status.ok {
+      background: var(--secondary-bg);
+      color: var(--secondary);
+    }
+
+    .exp-status.no {
+      background: var(--error-bg);
+      color: var(--error);
+    }
+
+    .exp-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .formula-callout {
+      background: #ffffff;
+      border-left: 4px solid var(--primary);
+      border-top: 1px solid var(--outline-light);
+      border-right: 1px solid var(--outline-light);
+      border-bottom: 1px solid var(--outline-light);
+      padding: 12px 14px;
+      border-radius: 6px;
+    }
+
+    .tips-callout {
+      background: #fffaf0;
+      border-left: 4px solid var(--outline);
+      border-top: 1px solid var(--outline-light);
+      border-right: 1px solid var(--outline-light);
+      border-bottom: 1px solid var(--outline-light);
+      padding: 12px 14px;
+      border-radius: 6px;
+    }
+
+    .callout-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: sticky;
+      top: 76px;
+    }
+
+    .sidebar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      border: 1px solid var(--outline-light);
+      background: var(--surface-container-low);
+      color: var(--text-muted);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .chip.active {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .nav-item {
+      position: relative;
+      height: 38px;
+      border-radius: 8px;
+      border: 1.5px solid var(--outline-light);
+      background: #ffffff;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .nav-item:hover { border-color: var(--primary); }
+    .nav-item.current { box-shadow: 0 0 0 2.5px var(--outline); border-color: var(--primary); }
+    .nav-item.answered { background: #dce5f7; border-color: #6b88c4; color: var(--primary); }
+    .nav-item.correct { background: var(--secondary); border-color: var(--secondary); color: #fffdf8; }
+    .nav-item.wrong { background: var(--error); border-color: var(--error); color: #fffdf8; }
+
+    .nav-item.flagged::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #8c5a18;
+      border: 1.5px solid #fffdf8;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      padding-top: 12px;
+      border-top: 1px solid var(--surface-container);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      display: inline-block;
+      border: 1px solid var(--outline-light);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 33, 61, 0.56);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--surface-container-low);
+      border: 1.5px solid var(--outline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      max-width: 760px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-lg { max-width: 980px; }
+    .modal-sm { max-width: 390px; }
+
+    .modal-header {
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--outline);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      background: var(--surface-container);
+      border-top: 1px solid var(--outline-light);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Formula Sheet */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .formula-section {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+
+    .formula-section h4 {
+      color: var(--primary);
+      border-bottom: 1.5px solid var(--outline-light);
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      font-family: 'Libre Caslon Text', serif;
+    }
+
+    .formula-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 0.88rem;
+    }
+
+    /* Scientific Calculator */
+    .calc-display {
+      background: #14213d;
+      color: #fffdf8;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      text-align: right;
+      margin-bottom: 12px;
+      border: 1px solid var(--outline);
+    }
+
+    .calc-expr {
+      font-size: 0.78rem;
+      color: #c5d1ea;
+      min-height: 18px;
+      word-break: break-all;
+    }
+
+    .calc-val {
+      font-size: 1.6rem;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .calc-btn {
+      padding: 11px 6px;
+      border-radius: 7px;
+      border: 1px solid var(--outline-light);
+      background: #ffffff;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.86rem;
+      cursor: pointer;
+    }
+
+    .calc-btn:hover { background: var(--surface-container); }
+    .calc-btn.op { background: #ece5d4; color: var(--primary); }
+    .calc-btn.eq { background: var(--primary); color: #fffdf8; grid-column: span 2; }
+    .calc-btn.clr { background: var(--error-bg); color: var(--error); }
+
+    /* Score Modal */
+    .score-banner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: linear-gradient(135deg, var(--primary), #213763);
+      color: #fffdf8;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--outline);
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .score-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 4px solid var(--outline);
+      background: rgba(255, 253, 248, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .score-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .review-table th, .review-table td {
+      border: 1px solid var(--outline-light);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .review-table th {
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+
+    /* Editor Modal */
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 16px;
+      min-height: 460px;
+    }
+
+    .editor-list {
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      overflow-y: auto;
+      max-height: 520px;
+    }
+
+    .editor-list-item {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--surface-container);
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .editor-list-item.active {
+      background: #e9effa;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--outline-light);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.86rem;
+      background: #ffffff;
+    }
+
+    textarea.form-control {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    .editor-preview {
+      background: #faf7ef;
+      border: 1px dashed var(--outline);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 940px) {
+      .workspace { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .exp-cards { grid-template-columns: 1fr; }
+      .score-stats { grid-template-columns: repeat(2, 1fr); }
+      .editor-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO HEADER -->
+  <header class="hero-header">
+    <div class="hero-inner">
+      <div class="brand-block">
+        <!-- Logo Vektor Resmi Bimbingan Belajar Matematika Suminto -->
+        <svg class="brand-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Bimbingan Belajar Matematika Suminto">
+          <defs>
+            <path id="topArc" d="M 30,100 A 70,70 0 1,1 170,100" />
+            <path id="bottomArc" d="M 24,100 A 76,76 0 1,0 176,100" />
+          </defs>
+          <!-- Outer Gold Ring -->
+          <circle cx="100" cy="100" r="96" fill="#fffdf8" stroke="#b08d57" stroke-width="6"/>
+          <!-- Deep Navy Ring -->
+          <circle cx="100" cy="100" r="76" fill="none" stroke="#14213d" stroke-width="28"/>
+          <!-- Inner Gold Ring -->
+          <circle cx="100" cy="100" r="56" fill="#fffdf8" stroke="#b08d57" stroke-width="3"/>
+          <!-- Curved Top & Bottom Text -->
+          <text fill="#ffffff" font-family="Inter, sans-serif" font-weight="800" font-size="14.5" letter-spacing="1.4">
+            <textPath href="#topArc" startOffset="50%" text-anchor="middle">BIMBINGAN BELAJAR</textPath>
+          </text>
+          <text fill="#ffffff" font-family="Inter, sans-serif" font-weight="800" font-size="15.5" letter-spacing="2.2">
+            <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MATEMATIKA</textPath>
+          </text>
+          <!-- Gold Stars Left & Right -->
+          <polygon points="24,93 26,99 32,99 27,103 29,109 24,105 19,109 21,103 16,99 22,99" fill="#d4af5a"/>
+          <polygon points="176,93 178,99 184,99 179,103 181,109 176,105 171,109 173,103 168,99 174,99" fill="#d4af5a"/>
+          <!-- Inner Horizontal Gold Lines -->
+          <line x1="48" y1="84" x2="152" y2="84" stroke="#b08d57" stroke-width="2.5"/>
+          <line x1="48" y1="116" x2="152" y2="116" stroke="#b08d57" stroke-width="2.5"/>
+          <!-- Math Operators Top -->
+          <text x="100" y="75" text-anchor="middle" fill="#14213d" font-family="Inter, sans-serif" font-weight="800" font-size="18" letter-spacing="2">+ − × ÷</text>
+          <!-- SUMINTO Center -->
+          <text x="100" y="108" text-anchor="middle" fill="#14213d" font-family="Inter, sans-serif" font-weight="900" font-size="22" letter-spacing="1">SUMINTO</text>
+          <!-- Math Symbols Bottom -->
+          <text x="100" y="139" text-anchor="middle" fill="#14213d" font-family="Georgia, serif" font-weight="700" font-size="19" letter-spacing="3">√ Σ ∫</text>
+        </svg>
+
+        <div>
+          <div class="brand-badge">
+            <i data-lucide="award" style="width:13px;height:13px;"></i>
+            Bimbingan Belajar Matematika Suminto
+          </div>
+          <h1 class="hero-title" id="quizTitle">Bangun Ruang Sisi Lengkung</h1>
+          <p class="hero-subtitle" id="quizSubtitle">Tabung, Kerucut, Bola, Perubahan Volume, &amp; Bangun Gabungan — Kelas 9 SMP</p>
+        </div>
+      </div>
+
+      <div class="meta-pills">
+        <span class="meta-pill"><i data-lucide="layers" style="width:14px;height:14px;"></i> <span id="metaCount">20 Soal</span></span>
+        <span class="meta-pill"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> <span id="metaLevel">SMP Kelas 9</span></span>
+        <span class="meta-pill"><i data-lucide="check-circle-2" style="width:14px;height:14px;"></i> 4 Tipe Evaluasi</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY TOOLBAR -->
+  <div class="sticky-toolbar">
+    <div class="toolbar-inner">
+      <div class="toolbar-group">
+        <div class="timer-box mono">
+          <i data-lucide="clock" style="width:16px;height:16px;"></i>
+          <span id="timerDisplay">00:00</span>
+          <button class="btn btn-icon" id="timerToggleBtn" title="Jeda / Lanjutkan Timer" style="padding:3px 6px;">
+            <i data-lucide="pause" style="width:13px;height:13px;"></i>
+          </button>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="Mode Kuis">
+          <button class="mode-btn active" id="modePracticeBtn" data-mode="practice">Mode Latihan</button>
+          <button class="mode-btn" id="modeExamBtn" data-mode="exam">Mode Ujian</button>
+        </div>
+      </div>
+
+      <div class="toolbar-group">
+        <button class="btn" id="openFormulaBtn"><i data-lucide="book-open" style="width:15px;height:15px;"></i> Lembar Rumus</button>
+        <button class="btn" id="openCalcBtn"><i data-lucide="calculator" style="width:15px;height:15px;"></i> Kalkulator</button>
+        <button class="btn" id="openEditorBtn"><i data-lucide="sliders-horizontal" style="width:15px;height:15px;"></i> Editor Kuis</button>
+        <button class="btn btn-secondary" id="finishQuizBtn"><i data-lucide="flag" style="width:15px;height:15px;"></i> Selesai &amp; Nilai</button>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="workspace">
+    <!-- Question Area -->
+    <section class="card" id="questionCard">
+      <div class="q-header">
+        <div class="q-badges">
+          <span class="q-num-badge mono" id="qNumberBadge">Soal 1 / 20</span>
+          <span class="q-tag" id="qTopicBadge">Tabung</span>
+          <span class="q-type-tag" id="qTypeBadge">Pilihan Ganda</span>
+        </div>
+        <button class="flag-btn" id="flagBtn">
+          <i data-lucide="bookmark" style="width:14px;height:14px;"></i>
+          <span id="flagBtnText">Ragu-ragu</span>
+        </button>
+      </div>
+
+      <div class="q-stem" id="qStem"></div>
+      <div id="qFigureContainer"></div>
+      <div id="qInputArea"></div>
+
+      <div class="q-actions">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn" id="prevBtn"><i data-lucide="arrow-left" style="width:15px;height:15px;"></i> Sebelumnya</button>
+          <button class="btn btn-primary" id="nextBtn">Selanjutnya <i data-lucide="arrow-right" style="width:15px;height:15px;"></i></button>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-gold" id="checkBtn"><i data-lucide="check" style="width:15px;height:15px;"></i> Periksa Jawaban</button>
+        </div>
+      </div>
+
+      <!-- Explanation Panel -->
+      <div class="explanation-box" id="explanationBox">
+        <div class="exp-status" id="expStatus"></div>
+        <div id="expBody"></div>
+        <div class="exp-cards">
+          <div class="formula-callout">
+            <div class="callout-title" style="color:var(--primary);"><i data-lucide="sigma" style="width:14px;height:14px;"></i> Rumus Utama</div>
+            <div id="expFormula"></div>
+          </div>
+          <div class="tips-callout">
+            <div class="callout-title" style="color:var(--warning);"><i data-lucide="lightbulb" style="width:14px;height:14px;"></i> Tips Cepat</div>
+            <div id="expTips"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar Navigation -->
+    <aside class="card sidebar">
+      <div class="sidebar-title">
+        <span>Navigasi Soal</span>
+        <span class="mono" style="font-size:0.82rem;color:var(--text-muted);" id="answeredCounter">0 / 20</span>
+      </div>
+
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="all">Semua</button>
+        <button class="chip" data-filter="unanswered">Belum</button>
+        <button class="chip" data-filter="flagged">Ragu-ragu</button>
+        <button class="chip" data-filter="single">PilGan</button>
+        <button class="chip" data-filter="multiple">Kompleks</button>
+        <button class="chip" data-filter="tf">B/S</button>
+        <button class="chip" data-filter="short">Isian</button>
+      </div>
+
+      <div class="nav-grid" id="navGrid"></div>
+
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#ffffff;"></span> Belum</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#dce5f7;border-color:#6b88c4;"></span> Sudah</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--secondary);border-color:var(--secondary);"></span> Benar</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--error);border-color:var(--error);"></span> Salah</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#8c5a18;border-radius:50%;"></span> Ragu-ragu</div>
+      </div>
+
+      <button class="btn" id="resetQuizBtn" style="width:100%;margin-top:14px;">
+        <i data-lucide="rotate-ccw" style="width:14px;height:14px;"></i> Ulangi Kuis
+      </button>
+    </aside>
+  </main>
+
+  <!-- MODAL: LEMBAR RUMUS -->
+  <div class="modal-backdrop" id="formulaModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 style="display:flex;align-items:center;gap:8px;"><i data-lucide="book-open" style="width:19px;height:19px;"></i> Lembar Rumus Bangun Ruang Sisi Lengkung</h3>
+        <button class="btn btn-icon" data-close="formulaModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="formula-grid">
+          <div class="formula-section">
+            <h4>1. Tabung</h4>
+            <ul>
+              <li>Luas Alas = $\pi r^2$</li>
+              <li>Luas Selimut = $2\pi r t$</li>
+              <li>Luas Permukaan = $2\pi r(r + t)$</li>
+              <li>Luas Tanpa Tutup = $\pi r(r + 2t)$</li>
+              <li>Volume = $\pi r^2 t$</li>
+              <li>Tabung Berlubang: $V = \pi(R^2 - r^2)t$</li>
+            </ul>
+          </div>
+          <div class="formula-section">
+            <h4>2. Kerucut</h4>
+            <ul>
+              <li>Hubungan $r, t, s$: $s^2 = r^2 + t^2$</li>
+              <li>Luas Selimut = $\pi r s$</li>
+              <li>Luas Permukaan = $\pi r(r + s)$</li>
+              <li>Volume = $\frac{1}{3}\pi r^2 t$</li>
+              <li>Dari Juring ($\theta^\circ$, jari-jari $R$): $s = R$, $r = \frac{\theta^\circ}{360^\circ}R$</li>
+              <li>Selimut Kerucut Terpancung: $L = \pi(r_1 + r_2)s_{\text{kap}}$</li>
+            </ul>
+          </div>
+          <div class="formula-section">
+            <h4>3. Bola &amp; Belahan Bola</h4>
+            <ul>
+              <li>Luas Permukaan Bola = $4\pi r^2$</li>
+              <li>Luas Belahan Bola Berongga = $2\pi r^2$</li>
+              <li>Luas Setengah Bola Padat = $3\pi r^2$</li>
+              <li>Luas $\frac{3}{4}$ Bola Padat = $4\pi r^2$</li>
+              <li>Volume Bola = $\frac{4}{3}\pi r^3$</li>
+              <li>Volume Setengah Bola = $\frac{2}{3}\pi r^3$</li>
+            </ul>
+          </div>
+          <div class="formula-section">
+            <h4>4. Perubahan Dimensi &amp; Konversi</h4>
+            <ul>
+              <li>Tabung / Kerucut ($r \to kr$, $t \to mt$): $V_2 = k^2 m \cdot V_1$</li>
+              <li>Bola ($r \to kr$): $L_2 = k^2 L_1$ dan $V_2 = k^3 V_1$</li>
+              <li>Bola terbesar dalam kubus rusuk $a$: $d = a \Rightarrow r = \frac{a}{2}$</li>
+              <li>Konversi: $1\text{ dm}^3 = 1\text{ liter} = 1.000\text{ cm}^3$</li>
+              <li>$1\text{ m}^2 = 10.000\text{ cm}^2$, $1\text{ kg} = 1.000\text{ gram}$</li>
+              <li>Nilai $\pi \approx \frac{22}{7}$ (kelipatan $7$) atau $\pi \approx 3,14$</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close="formulaModal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: KALKULATOR ILMIAH -->
+  <div class="modal-backdrop" id="calcModal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 style="display:flex;align-items:center;gap:8px;"><i data-lucide="calculator" style="width:18px;height:18px;"></i> Kalkulator Ilmiah</h3>
+        <button class="btn btn-icon" data-close="calcModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="calc-display mono">
+          <div class="calc-expr" id="calcExpr"></div>
+          <div class="calc-val" id="calcVal">0</div>
+        </div>
+        <div class="calc-grid mono">
+          <button class="calc-btn clr" data-c="AC">AC</button>
+          <button class="calc-btn op" data-c="DEL">DEL</button>
+          <button class="calc-btn op" data-c="(">(</button>
+          <button class="calc-btn op" data-c=")">)</button>
+          <button class="calc-btn op" data-c="/">÷</button>
+
+          <button class="calc-btn op" data-c="pi">π</button>
+          <button class="calc-btn" data-c="7">7</button>
+          <button class="calc-btn" data-c="8">8</button>
+          <button class="calc-btn" data-c="9">9</button>
+          <button class="calc-btn op" data-c="*">×</button>
+
+          <button class="calc-btn op" data-c="sqrt(">√</button>
+          <button class="calc-btn" data-c="4">4</button>
+          <button class="calc-btn" data-c="5">5</button>
+          <button class="calc-btn" data-c="6">6</button>
+          <button class="calc-btn op" data-c="-">−</button>
+
+          <button class="calc-btn op" data-c="^2">x²</button>
+          <button class="calc-btn" data-c="1">1</button>
+          <button class="calc-btn" data-c="2">2</button>
+          <button class="calc-btn" data-c="3">3</button>
+          <button class="calc-btn op" data-c="+">+</button>
+
+          <button class="calc-btn op" data-c="^3">x³</button>
+          <button class="calc-btn" data-c="0">0</button>
+          <button class="calc-btn" data-c=".">.</button>
+          <button class="calc-btn eq" data-c="=">=</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LAPORAN SKOR (#scoreModal) -->
+  <div class="modal-backdrop" id="scoreModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 style="display:flex;align-items:center;gap:8px;"><i data-lucide="trophy" style="width:19px;height:19px;"></i> Laporan Hasil Kuis</h3>
+        <button class="btn btn-icon" data-close="scoreModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="score-banner">
+          <div class="score-circle">
+            <span class="mono" style="font-size:1.8rem;font-weight:800;line-height:1;" id="finalScoreNum">0</span>
+            <span style="font-size:0.72rem;color:#f3d79e;">SKOR</span>
+          </div>
+          <div style="flex:1;">
+            <div class="brand-badge" style="margin-bottom:6px;">Bimbingan Belajar Matematika Suminto</div>
+            <h2 class="serif" id="scoreHeadline" style="font-size:1.3rem;margin-bottom:4px;">Evaluasi Selesai</h2>
+            <p id="scoreSubline" style="font-size:0.86rem;color:#dce4f5;"></p>
+          </div>
+        </div>
+
+        <div class="score-stats">
+          <div class="stat-card">
+            <div class="stat-num mono" style="color:var(--secondary);" id="statCorrect">0</div>
+            <div class="stat-label">Benar</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num mono" style="color:var(--error);" id="statWrong">0</div>
+            <div class="stat-label">Salah</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num mono" style="color:var(--text-muted);" id="statEmpty">0</div>
+            <div class="stat-label">Kosong</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num mono" id="statTime">00:00</div>
+            <div class="stat-label">Durasi</div>
+          </div>
+        </div>
+
+        <h4 class="serif" style="color:var(--primary);margin-bottom:8px;">Ringkasan Per Soal</h4>
+        <div style="overflow-x:auto;">
+          <table class="review-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Topik</th>
+                <th>Tipe</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="scoreReviewBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-close="scoreModal">Tinjau Soal</button>
+        <button class="btn btn-primary" id="retryFromModalBtn"><i data-lucide="rotate-ccw" style="width:14px;height:14px;"></i> Kerjakan Ulang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDITOR KUIS BUILT-IN -->
+  <div class="modal-backdrop" id="editorModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 style="display:flex;align-items:center;gap:8px;"><i data-lucide="sliders-horizontal" style="width:19px;height:19px;"></i> Editor Kuis Built-in — BBM Suminto</h3>
+        <button class="btn btn-icon" data-close="editorModal"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+          <button class="btn btn-primary" id="edAddBtn"><i data-lucide="plus" style="width:14px;height:14px;"></i> Tambah Soal</button>
+          <button class="btn" id="edExportJsonBtn"><i data-lucide="download" style="width:14px;height:14px;"></i> Ekspor JSON</button>
+          <label class="btn" style="cursor:pointer;">
+            <i data-lucide="upload" style="width:14px;height:14px;"></i> Impor JSON
+            <input type="file" id="edImportJsonInput" accept=".json" style="display:none;" />
+          </label>
+          <button class="btn btn-secondary" id="edDownloadHtmlBtn"><i data-lucide="file-code" style="width:14px;height:14px;"></i> Unduh HTML Kuis (hasil edit)</button>
+        </div>
+
+        <div class="editor-layout">
+          <div class="editor-list" id="editorList"></div>
+          <div id="editorFormWrap">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="form-group">
+                <label>Topik / Subbab</label>
+                <input type="text" class="form-control" id="edTopic" />
+              </div>
+              <div class="form-group">
+                <label>Tipe Soal</label>
+                <select class="form-control" id="edType">
+                  <option value="single">Pilihan Ganda (single)</option>
+                  <option value="multiple">Pilihan Ganda Kompleks (multiple)</option>
+                  <option value="tf">Benar / Salah (tf)</option>
+                  <option value="short">Isian Singkat (short)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Teks Pertanyaan (mendukung LaTeX $...$)</label>
+              <textarea class="form-control" id="edStem"></textarea>
+            </div>
+
+            <div class="form-group" id="edOptionsGroup">
+              <label>Opsi Jawaban (satu opsi per baris)</label>
+              <textarea class="form-control" id="edOptions"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Kunci Jawaban <span id="edAnswerHint" style="font-weight:400;color:var(--text-muted);"></span></label>
+              <input type="text" class="form-control mono" id="edAnswer" />
+            </div>
+
+            <div class="form-group">
+              <label>Pembahasan</label>
+              <textarea class="form-control" id="edExplanation"></textarea>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="form-group">
+                <label>Rumus Utama</label>
+                <input type="text" class="form-control" id="edFormula" />
+              </div>
+              <div class="form-group">
+                <label>Tips Cepat</label>
+                <input type="text" class="form-control" id="edTips" />
+              </div>
+            </div>
+
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+              <button class="btn btn-gold" id="edSaveItemBtn"><i data-lucide="save" style="width:14px;height:14px;"></i> Simpan Perubahan Soal</button>
+              <button class="btn btn-danger" id="edDeleteItemBtn"><i data-lucide="trash-2" style="width:14px;height:14px;"></i> Hapus Soal</button>
+            </div>
+
+            <div class="editor-preview">
+              <div style="font-size:0.74rem;font-weight:700;text-transform:uppercase;color:var(--outline);margin-bottom:4px;">Pratinjau Langsung</div>
+              <div id="edLivePreview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close="editorModal">Selesai &amp; Terapkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA KUIS (JSON TERSTRUKTUR) -->
+  <script type="application/json" id="quiz-data">
+{
+  "meta": {
+    "title": "Bangun Ruang Sisi Lengkung",
+    "subtitle": "Tabung, Kerucut, Bola, Perubahan Volume, & Bangun Gabungan — Kelas 9 SMP",
+    "level": "SMP Kelas 9",
+    "brand": "Bimbingan Belajar Matematika Suminto"
+  },
+  "soal": [
+    {
+      "id": 1,
+      "topic": "Tabung",
+      "type": "single",
+      "stem": "Perhatikan jaring-jaring tabung berikut. Jika panjang jari-jari alas tabung $r = 7\\text{ cm}$ dan tinggi tabung $t = 12\\text{ cm}$ ($\\pi = \\frac{22}{7}$), maka luas selimut dan luas permukaan tabung berturut-turut adalah...",
+      "figure": {
+        "type": "jaring",
+        "shape": "tabung",
+        "r": "7 cm",
+        "t": "12 cm",
+        "caption": "Ilustrasi jaring-jaring tabung (dua lingkaran alas-tutup dan selimut persegi panjang)"
+      },
+      "options": [
+        "$528\\text{ cm}^2$ dan $682\\text{ cm}^2$",
+        "$528\\text{ cm}^2$ dan $836\\text{ cm}^2$",
+        "$440\\text{ cm}^2$ dan $748\\text{ cm}^2$",
+        "$616\\text{ cm}^2$ dan $924\\text{ cm}^2$"
+      ],
+      "answer": 1,
+      "explanation": "Luas selimut tabung adalah $2\\pi rt = 2 \\times \\frac{22}{7} \\times 7 \\times 12 = 44 \\times 12 = 528\\text{ cm}^2$. Luas alas dan tutup adalah $2\\pi r^2 = 2 \\times \\frac{22}{7} \\times 7^2 = 308\\text{ cm}^2$. Jadi, luas permukaan tabung $= 528 + 308 = 836\\text{ cm}^2$.",
+      "formula": "$L_{\\text{selimut}} = 2\\pi rt$ dan $L_{\\text{permukaan}} = 2\\pi r(r + t)$",
+      "tips": "Karena $r = 7$ kelipatan $7$, gunakan $\\pi = \\frac{22}{7}$ agar $2\\pi r = 44$ langsung bulat."
+    },
+    {
+      "id": 2,
+      "topic": "Tabung",
+      "type": "single",
+      "stem": "Sebuah tabung tanpa tutup memiliki jari-jari alas $21\\text{ cm}$ dan tinggi $30\\text{ cm}$. Jika $\\pi = \\frac{22}{7}$, luas permukaan tabung tanpa tutup tersebut adalah...",
+      "options": [
+        "$3.960\\text{ cm}^2$",
+        "$5.346\\text{ cm}^2$",
+        "$6.732\\text{ cm}^2$",
+        "$4.620\\text{ cm}^2$"
+      ],
+      "answer": 1,
+      "explanation": "Tabung tanpa tutup terdiri atas $1$ lingkaran alas dan selimut tabung. $L_{\\text{alas}} = \\frac{22}{7} \\times 21 \\times 21 = 1.386\\text{ cm}^2$. $L_{\\text{selimut}} = 2 \\times \\frac{22}{7} \\times 21 \\times 30 = 3.960\\text{ cm}^2$. Total luas $= 1.386 + 3.960 = 5.346\\text{ cm}^2$.",
+      "formula": "$L_{\\text{tanpa tutup}} = \\pi r^2 + 2\\pi rt = \\pi r(r + 2t)$",
+      "tips": "Gunakan bentuk faktorisasi $\\pi r(r + 2t) = 66 \\times (21 + 60) = 66 \\times 81 = 5.346$ untuk menghemat waktu."
+    },
+    {
+      "id": 3,
+      "topic": "Tabung",
+      "type": "short",
+      "stem": "Tinggi suatu tabung adalah $15\\text{ cm}$ dan luas selimutnya $1.320\\text{ cm}^2$. Jika $\\pi = \\frac{22}{7}$, berapakah panjang jari-jari alas tabung tersebut? (Tulis angka dalam cm)",
+      "answer": ["14", "14 cm", "14cm"],
+      "explanation": "Dari rumus $L_{\\text{selimut}} = 2\\pi r t$, diperoleh $1.320 = 2 \\times \\frac{22}{7} \\times r \\times 15 = \\frac{660}{7}r$. Maka $r = \\frac{1.320 \\times 7}{660} = 2 \\times 7 = 14\\text{ cm}$.",
+      "formula": "$r = \\dfrac{L_{\\text{selimut}}}{2\\pi t}$",
+      "tips": "Sederhanakan $1.320 \\div 660 = 2$ terlebih dahulu sebelum mengalikan dengan $7$."
+    },
+    {
+      "id": 4,
+      "topic": "Tabung",
+      "type": "single",
+      "stem": "Diketahui volume sebuah tabung adalah $3.080\\text{ cm}^3$. Jika jari-jari alas tabung $7\\text{ cm}$ dan $\\pi = \\frac{22}{7}$, luas seluruh permukaan tabung tersebut adalah...",
+      "options": [
+        "$880\\text{ cm}^2$",
+        "$1.080\\text{ cm}^2$",
+        "$1.188\\text{ cm}^2$",
+        "$1.342\\text{ cm}^2$"
+      ],
+      "answer": 2,
+      "explanation": "Cari tinggi terlebih dahulu: $V = \\pi r^2 t \\Rightarrow 3.080 = \\frac{22}{7} \\times 49 \\times t = 154t \\Rightarrow t = 20\\text{ cm}$. Selanjutnya $L = 2\\pi r(r + t) = 2 \\times \\frac{22}{7} \\times 7 \\times (7 + 20) = 44 \\times 27 = 1.188\\text{ cm}^2$.",
+      "formula": "$t = \\dfrac{V}{\\pi r^2}$ lalu $L = 2\\pi r(r + t)$",
+      "tips": "Ingat luas lingkaran berjari-jari $7$ selalu $154\\text{ cm}^2$, sehingga $3.080 \\div 154 = 20$ sangat cepat dihitung."
+    },
+    {
+      "id": 5,
+      "topic": "Kerucut",
+      "type": "tf",
+      "stem": "Kerucut dapat dibentuk dari sebuah segitiga siku-siku yang diputar sejauh $360^\\circ$ dengan salah satu sisi siku-sikunya sebagai sumbu putar, dan pada jaring-jaring kerucut panjang busur juring selimut sama dengan keliling lingkaran alasnya ($2\\pi r$).",
+      "answer": true,
+      "explanation": "Pernyataan tersebut BENAR. Sisi siku-siku vertikal menjadi tinggi ($t$), sisi siku-siku alas menjadi jari-jari ($r$), dan sisi miring menjadi garis pelukis ($s$). Saat selimut dibuka menjadi juring lingkaran berjari-jari $s$, panjang busurnya tepat menempel mengelilingi alas lingkaran ($2\\pi r$).",
+      "formula": "$\\text{Panjang busur juring} = K_{\\text{alas}} = 2\\pi r$",
+      "tips": "Hubungan panjang busur dan keliling inilah yang menjadi asal rumus $L_{\\text{selimut}} = \\pi r s$."
+    },
+    {
+      "id": 6,
+      "topic": "Kerucut",
+      "type": "single",
+      "stem": "Perhatikan gambar kerucut di bawah ini. Jika jari-jari alas $r = 7\\text{ cm}$ dan tinggi $t = 24\\text{ cm}$ ($\\pi = \\frac{22}{7}$), luas seluruh permukaan kerucut tersebut adalah...",
+      "figure": {
+        "type": "ruang",
+        "shape": "kerucut",
+        "r": "7 cm",
+        "t": "24 cm",
+        "s": "s = ?",
+        "caption": "Kerucut dengan jari-jari 7 cm dan tinggi 24 cm"
+      },
+      "options": [
+        "$550\\text{ cm}^2$",
+        "$616\\text{ cm}^2$",
+        "$704\\text{ cm}^2$",
+        "$748\\text{ cm}^2$"
+      ],
+      "answer": 2,
+      "explanation": "Hitung garis pelukis dengan Pythagoras: $s = \\sqrt{r^2 + t^2} = \\sqrt{7^2 + 24^2} = \\sqrt{49 + 576} = \\sqrt{625} = 25\\text{ cm}$. Luas permukaan $= \\pi r(r + s) = \\frac{22}{7} \\times 7 \\times (7 + 25) = 22 \\times 32 = 704\\text{ cm}^2$.",
+      "formula": "$s = \\sqrt{r^2 + t^2}$ dan $L = \\pi r(r + s)$",
+      "tips": "Hafalkan tripel Pythagoras populer: $(3,4,5)$, $(5,12,13)$, $(7,24,25)$, $(8,15,17)$."
+    },
+    {
+      "id": 7,
+      "topic": "Kerucut",
+      "type": "short",
+      "stem": "Sebuah kerucut dibuat dari selembar karton berbentuk juring lingkaran dengan sudut pusat $216^\\circ$ dan jari-jari karton $15\\text{ cm}$. Berapakah tinggi kerucut yang terbentuk? (Tulis angka dalam cm)",
+      "answer": ["12", "12 cm", "12cm"],
+      "explanation": "Jari-jari juring karton menjadi garis pelukis kerucut, yaitu $s = 15\\text{ cm}$. Jari-jari alas kerucut: $r = \\frac{216^\\circ}{360^\\circ} \\times 15 = \\frac{3}{5} \\times 15 = 9\\text{ cm}$. Maka tinggi kerucut: $t = \\sqrt{s^2 - r^2} = \\sqrt{15^2 - 9^2} = \\sqrt{225 - 81} = \\sqrt{144} = 12\\text{ cm}$.",
+      "formula": "$r = \\dfrac{\\theta^\\circ}{360^\\circ} \\cdot s$ dan $t = \\sqrt{s^2 - r^2}$",
+      "tips": "Pasangan $(9, 12, 15)$ adalah kelipatan $3$ dari tripel Pythagoras $(3, 4, 5)$."
+    },
+    {
+      "id": 8,
+      "topic": "Kerucut",
+      "type": "single",
+      "stem": "Jika luas permukaan sebuah kerucut adalah $96\\pi\\text{ cm}^2$ dan luas selimutnya $60\\pi\\text{ cm}^2$, maka volume kerucut tersebut adalah...",
+      "options": [
+        "$96\\pi\\text{ cm}^3$",
+        "$116\\pi\\text{ cm}^3$",
+        "$136\\pi\\text{ cm}^3$",
+        "$156\\pi\\text{ cm}^3$"
+      ],
+      "answer": 0,
+      "explanation": "Luas alas $= L_{\\text{permukaan}} - L_{\\text{selimut}} = 96\\pi - 60\\pi = 36\\pi$, sehingga $\\pi r^2 = 36\\pi \\Rightarrow r = 6\\text{ cm}$. Dari $L_{\\text{selimut}} = \\pi r s = 60\\pi \\Rightarrow 6s = 60 \\Rightarrow s = 10\\text{ cm}$. Tinggi $t = \\sqrt{10^2 - 6^2} = 8\\text{ cm}$. Volume $= \\frac{1}{3}\\pi r^2 t = \\frac{1}{3}\\pi(36)(8) = 96\\pi\\text{ cm}^3$.",
+      "formula": "$L_{\\text{alas}} = L_{\\text{total}} - L_{\\text{selimut}}$ dan $V = \\frac{1}{3}\\pi r^2 t$",
+      "tips": "Jangan mengganti $\\pi$ dengan $3,14$ jika soal dan opsi sudah dinyatakan dalam $\\pi$."
+    },
+    {
+      "id": 9,
+      "topic": "Kerucut Terpancung",
+      "type": "single",
+      "stem": "Sebuah kap lampu berbentuk potongan kerucut (tanpa alas dan tutup) memiliki diameter atas $12\\text{ cm}$, diameter bawah $30\\text{ cm}$, dan panjang sisi miring $15\\text{ cm}$ seperti pada gambar. Luas permukaan kap lampu tersebut adalah...",
+      "figure": {
+        "type": "ruang",
+        "shape": "kaplampu",
+        "d1": "12 cm",
+        "d2": "30 cm",
+        "s": "15 cm",
+        "caption": "Kap lampu berbentuk kerucut terpancung"
+      },
+      "options": [
+        "$270\\pi\\text{ cm}^2$",
+        "$315\\pi\\text{ cm}^2$",
+        "$360\\pi\\text{ cm}^2$",
+        "$375\\pi\\text{ cm}^2$"
+      ],
+      "answer": 1,
+      "explanation": "Jari-jari atas $r_1 = 6\\text{ cm}$, jari-jari bawah $r_2 = 15\\text{ cm}$, dan sisi miring kap $s_{\\text{kap}} = 15\\text{ cm}$. Dengan kesebangunan diperoleh $s_{\\text{kecil}} = 10\\text{ cm}$ dan $s_{\\text{besar}} = 25\\text{ cm}$. Maka $L = \\pi(15)(25) - \\pi(6)(10) = 375\\pi - 60\\pi = 315\\pi\\text{ cm}^2$.",
+      "formula": "$L_{\\text{selimut terpancung}} = \\pi(r_1 + r_2) \\cdot s_{\\text{kap}}$",
+      "tips": "Rumus cepat $\\pi(r_1 + r_2)s_{\\text{kap}} = \\pi(6+15)(15) = 315\\pi$ langsung menghasilkan jawaban tanpa perlu mencari $s_{\\text{kecil}}$!"
+    },
+    {
+      "id": 10,
+      "topic": "Konsep BRSL",
+      "type": "multiple",
+      "stem": "Manakah di antara pernyataan berikut yang **BENAR** mengenai tabung, kerucut, dan bola? *(Pilih semua jawaban yang benar)*",
+      "options": [
+        "Tabung memiliki 3 bidang sisi (alas, tutup, selimut) dan 2 rusuk lengkung.",
+        "Jika tabung dan kerucut memiliki jari-jari dan tinggi yang sama, maka volume tabung sama dengan $3$ kali volume kerucut.",
+        "Luas permukaan benda padat berbentuk setengah bola berjari-jari $r$ adalah $2\\pi r^2$.",
+        "Luas permukaan $\\frac{3}{4}$ bola padat berjari-jari $r$ adalah $4\\pi r^2$."
+      ],
+      "answer": [0, 1, 3],
+      "explanation": "Pernyataan (1) dan (2) benar sesuai sifat tabung dan perbandingan volume $\\pi r^2 t : \\frac{1}{3}\\pi r^2 t = 3 : 1$. Pernyataan (3) salah karena setengah bola padat memiliki bidang alas lingkaran sehingga luasnya $2\\pi r^2 + \\pi r^2 = 3\\pi r^2$. Pernyataan (4) benar karena $\\frac{3}{4}(4\\pi r^2) + 2(\\frac{1}{2}\\pi r^2) = 3\\pi r^2 + \\pi r^2 = 4\\pi r^2$.",
+      "formula": "$L_{\\frac{1}{2}\\text{ bola padat}} = 3\\pi r^2$ dan $L_{\\frac{3}{4}\\text{ bola padat}} = 4\\pi r^2$",
+      "tips": "Selalu periksa kata kunci 'padat/pejal' (tambah luas bidang potongan) versus 'berongga/kosong' (hanya kulit lengkung)."
+    },
+    {
+      "id": 11,
+      "topic": "Bola",
+      "type": "single",
+      "stem": "Jika luas seluruh permukaan sebuah bola adalah $144\\pi\\text{ cm}^2$, maka volume bola tersebut adalah...",
+      "options": [
+        "$278\\pi\\text{ cm}^3$",
+        "$288\\pi\\text{ cm}^3$",
+        "$432\\pi\\text{ cm}^3$",
+        "$576\\pi\\text{ cm}^3$"
+      ],
+      "answer": 1,
+      "explanation": "Dari $4\\pi r^2 = 144\\pi$, diperoleh $r^2 = 36 \\Rightarrow r = 6\\text{ cm}$. Volume bola $= \\frac{4}{3}\\pi r^3 = \\frac{4}{3}\\pi(6^3) = \\frac{4}{3}\\pi(216) = 288\\pi\\text{ cm}^3$.",
+      "formula": "$L = 4\\pi r^2$ dan $V = \\frac{4}{3}\\pi r^3$",
+      "tips": "Perhatikan bahwa $V = \\frac{1}{3} r \\cdot L_{\\text{bola}} = \\frac{1}{3}(6)(144\\pi) = 288\\pi$."
+    },
+    {
+      "id": 12,
+      "topic": "Bola",
+      "type": "single",
+      "stem": "Volume bola terbesar yang dapat dimasukkan ke dalam sebuah kubus dengan panjang rusuk $24\\text{ cm}$ adalah...",
+      "options": [
+        "$1.728\\pi\\text{ cm}^3$",
+        "$2.304\\pi\\text{ cm}^3$",
+        "$3.456\\pi\\text{ cm}^3$",
+        "$6.912\\pi\\text{ cm}^3$"
+      ],
+      "answer": 1,
+      "explanation": "Bola terbesar di dalam kubus menyinggung keenam sisi kubus, sehingga diameter bola sama dengan panjang rusuk kubus: $d = 24\\text{ cm} \\Rightarrow r = 12\\text{ cm}$. Volume bola $= \\frac{4}{3}\\pi (12)^3 = \\frac{4}{3}\\pi(1.728) = 2.304\\pi\\text{ cm}^3$.",
+      "formula": "$r_{\\text{maks}} = \\dfrac{a}{2}$ dan $V = \\dfrac{4}{3}\\pi r^3$",
+      "tips": "Hati-hati jangan menggunakan $r = 24$, karena $24\\text{ cm}$ adalah diameter bola, bukan jari-jarinya."
+    },
+    {
+      "id": 13,
+      "topic": "Bola",
+      "type": "tf",
+      "stem": "Sebuah benda padat berbentuk setengah bola dengan diameter $40\\text{ cm}$ ($\\pi = 3,14$) memiliki luas permukaan sebesar $2.512\\text{ cm}^2$.",
+      "answer": false,
+      "explanation": "Pernyataan tersebut SALAH. Karena benda berbentuk setengah bola PADAT, bidang datar berbentuk lingkaran di bagian alas harus ikut dihitung: $r = 20\\text{ cm}$, $L = 3\\pi r^2 = 3 \\times 3,14 \\times 400 = 3.768\\text{ cm}^2$. Nilai $2.512\\text{ cm}^2$ hanyalah luas kulit lengkungnya ($2\\pi r^2$).",
+      "formula": "$L_{\\frac{1}{2}\\text{ bola padat}} = 2\\pi r^2 + \\pi r^2 = 3\\pi r^2$",
+      "tips": "Bedakan benda padat (seperti belahan semangka utuh) dengan cangkang/parasut (tanpa tutup)."
+    },
+    {
+      "id": 14,
+      "topic": "Perubahan Volume",
+      "type": "short",
+      "stem": "Sebuah kerucut mempunyai volume $27\\text{ cm}^3$. Jika diameter alas kerucut diperbesar $2$ kali dan tingginya diperbesar $3$ kali, berapakah volume kerucut yang baru? (Tulis angka dalam $\\text{cm}^3$)",
+      "answer": ["324", "324 cm3", "324 cm^3", "324 cm³"],
+      "explanation": "Diameter diperbesar $2$ kali berarti jari-jari juga diperbesar $2$ kali ($k = 2$), sedangkan tinggi diperbesar $3$ kali ($m = 3$). Maka $V_{\\text{baru}} = k^2 \\cdot m \\cdot V_{\\text{awal}} = 2^2 \\times 3 \\times 27 = 4 \\times 3 \\times 27 = 324\\text{ cm}^3$.",
+      "formula": "$V_{\\text{baru}} = k_r^2 \\cdot k_t \\cdot V_{\\text{awal}}$",
+      "tips": "Faktor skala jari-jari selalu dikuadratkan karena $r$ berpangkat dua dalam rumus volume tabung dan kerucut."
+    },
+    {
+      "id": 15,
+      "topic": "Perubahan Volume",
+      "type": "multiple",
+      "stem": "Sebuah bola memiliki jari-jari awal $12\\text{ cm}$, kemudian jari-jarinya diperkecil menjadi $\\frac{3}{4}$ kali semula. Manakah pernyataan berikut yang **BENAR**? *(Pilih semua yang benar)*",
+      "options": [
+        "Jari-jari bola yang baru adalah $9\\text{ cm}$.",
+        "Perbandingan volume awal terhadap volume akhir ($V_1 : V_2$) adalah $64 : 27$.",
+        "Perbandingan luas permukaan awal terhadap luas permukaan akhir ($L_1 : L_2$) adalah $4 : 3$.",
+        "Besar perubahan (penyusutan) volume bola adalah $1.332\\pi\\text{ cm}^3$."
+      ],
+      "answer": [0, 1, 3],
+      "explanation": "$r_2 = \\frac{3}{4}(12) = 9\\text{ cm}$ (Benar). $V_1 : V_2 = 12^3 : 9^3 = 4^3 : 3^3 = 64 : 27$ (Benar). $L_1 : L_2 = 4^2 : 3^2 = 16 : 9$, bukan $4 : 3$ (Salah). $V_1 = \\frac{4}{3}\\pi(12^3) = 2.304\\pi$ dan $V_2 = \\frac{4}{3}\\pi(9^3) = 972\\pi$, sehingga penyusutan $= 2.304\\pi - 972\\pi = 1.332\\pi\\text{ cm}^3$ (Benar).",
+      "formula": "$L_1 : L_2 = r_1^2 : r_2^2$ dan $V_1 : V_2 = r_1^3 : r_2^3$",
+      "tips": "Sederhanakan perbandingan jari-jari $12 : 9 = 4 : 3$ dulu, lalu pangkatkan $2$ untuk luas dan pangkatkan $3$ untuk volume."
+    },
+    {
+      "id": 16,
+      "topic": "Penerapan BRSL",
+      "type": "tf",
+      "stem": "Sebuah saluran air beton berbentuk tabung berlubang memiliki jari-jari luar $15\\text{ cm}$, jari-jari dalam $10\\text{ cm}$, dan tinggi $50\\text{ cm}$ ($\\pi = 3,14$). Jika berat $1\\text{ cm}^3$ beton adalah $5\\text{ gram}$, maka berat saluran air tersebut adalah $98,125\\text{ kg}$.",
+      "figure": {
+        "type": "ruang",
+        "shape": "pipa",
+        "R": "15 cm",
+        "r": "10 cm",
+        "t": "50 cm",
+        "caption": "Saluran air beton berbentuk tabung berlubang"
+      },
+      "answer": true,
+      "explanation": "Pernyataan tersebut BENAR. Volume beton $= \\pi(R^2 - r^2)t = 3,14 \\times (15^2 - 10^2) \\times 50 = 3,14 \\times 125 \\times 50 = 19.625\\text{ cm}^3$. Berat $= 19.625 \\times 5\\text{ gram} = 98.125\\text{ gram} = 98,125\\text{ kg}$.",
+      "formula": "$V_{\\text{pipa}} = \\pi(R^2 - r^2)t = \\pi(R+r)(R-r)t$",
+      "tips": "Gunakan identitas selisih kuadrat $15^2 - 10^2 = (15+10)(15-10) = 25 \\times 5 = 125$."
+    },
+    {
+      "id": 17,
+      "topic": "Penerapan BRSL",
+      "type": "short",
+      "stem": "Sebuah bak mandi berbentuk tabung dengan jari-jari $35\\text{ cm}$ dan tinggi $1\\text{ m}$ telah terisi air sebanyak $\\frac{1}{4}$ tinggi bak. Air dialirkan dari keran dengan debit $25\\text{ dm}^3/\\text{menit}$ ($\\pi = \\frac{22}{7}$). Berapa menit lama waktu yang diperlukan sampai bak terisi penuh? *(Tulis angka desimal, misal: 11,55)*",
+      "answer": ["11,55", "11.55", "11,55 menit", "11.55 menit"],
+      "explanation": "Ubah ke desimeter: $r = 3,5\\text{ dm}$ dan $t = 10\\text{ dm}$. Volume penuh $= \\frac{22}{7} \\times 3,5 \\times 3,5 \\times 10 = 385\\text{ dm}^3$. Bagian kosong $= 1 - \\frac{1}{4} = \\frac{3}{4}$, sehingga volume yang perlu diisi $= \\frac{3}{4} \\times 385 = 288,75\\text{ dm}^3$. Waktu $= \\frac{288,75}{25} = 11,55\\text{ menit}$.",
+      "formula": "$\\text{Waktu} = \\dfrac{\\text{Volume belum terisi}}{\\text{Debit}}$",
+      "tips": "Konversikan satuan panjang ke $\\text{dm}$ sejak awal agar hasil volume langsung dalam $\\text{dm}^3$ (liter)."
+    },
+    {
+      "id": 18,
+      "topic": "Bangun Gabungan",
+      "type": "single",
+      "stem": "Sebuah balon berbentuk gabungan tabung dengan setengah bola di kedua ujungnya memiliki panjang total $51\\text{ cm}$ dan diameter $21\\text{ cm}$ ($\\pi = \\frac{22}{7}$). Luas permukaan balon tersebut adalah...",
+      "figure": {
+        "type": "ruang",
+        "shape": "kapsul",
+        "L": "51 cm",
+        "d": "21 cm",
+        "caption": "Balon berbentuk tabung dengan setengah bola di kedua ujungnya"
+      },
+      "options": [
+        "$2.673\\text{ cm}^2$",
+        "$3.366\\text{ cm}^2$",
+        "$4.059\\text{ cm}^2$",
+        "$4.752\\text{ cm}^2$"
+      ],
+      "answer": 1,
+      "explanation": "Diameter $d = 21\\text{ cm} \\Rightarrow r = 10,5\\text{ cm}$. Tinggi bagian tabung $= 51 - 2(10,5) = 30\\text{ cm}$. Gabungan dua setengah bola membentuk $1$ bola utuh, sehingga $L = L_{\\text{selimut tabung}} + L_{\\text{bola}} = 2\\pi r t + 4\\pi r^2 = \\pi d(t + d) = \\frac{22}{7} \\times 21 \\times (30 + 21) = 66 \\times 51 = 3.366\\text{ cm}^2$.",
+      "formula": "$L_{\\text{kapsul}} = 2\\pi r t + 4\\pi r^2 = \\pi d \\cdot L_{\\text{total}}$",
+      "tips": "Menariknya, luas permukaan kapsul selalu sama dengan $\\pi \\times d \\times \\text{panjang total}$!"
+    },
+    {
+      "id": 19,
+      "topic": "Bangun Gabungan",
+      "type": "single",
+      "stem": "Sebuah tempat sampah tertutup berbentuk tabung dengan tutup setengah bola memiliki tinggi total $27\\text{ cm}$ dan tinggi bagian tabung $20\\text{ cm}$ ($\\pi = \\frac{22}{7}$). Luas seluruh permukaan tempat sampah tersebut adalah...",
+      "figure": {
+        "type": "ruang",
+        "shape": "tempatsampah",
+        "H": "27 cm",
+        "t": "20 cm",
+        "caption": "Tempat sampah tabung bertutup setengah bola"
+      },
+      "options": [
+        "$1.034\\text{ cm}^2$",
+        "$1.188\\text{ cm}^2$",
+        "$1.342\\text{ cm}^2$",
+        "$1.496\\text{ cm}^2$"
+      ],
+      "answer": 2,
+      "explanation": "Jari-jari bola sekaligus jari-jari tabung adalah $r = 27 - 20 = 7\\text{ cm}$. Luas permukaan terdiri dari alas tabung ($\\pi r^2$), selimut tabung ($2\\pi r t$), dan tutup setengah bola ($2\\pi r^2$). Jadi $L = 3\\pi r^2 + 2\\pi r t = 3(\\frac{22}{7})(49) + 2(\\frac{22}{7})(7)(20) = 462 + 880 = 1.342\\text{ cm}^2$.",
+      "formula": "$L = \\pi r^2 + 2\\pi r t + 2\\pi r^2 = \\pi r(3r + 2t)$",
+      "tips": "Bagian pertemuan antara tabung dan tutup setengah bola berada di dalam, sehingga tidak dihitung dalam luas permukaan."
+    },
+    {
+      "id": 20,
+      "topic": "Bangun Gabungan",
+      "type": "multiple",
+      "stem": "Sebuah bandul logam terbentuk dari gabungan kerucut dan setengah bola dengan diameter $10\\text{ cm}$ dan tinggi total $17\\text{ cm}$ ($\\pi = 3,14$). Jika berat setiap $1\\text{ cm}^3$ logam adalah $15\\text{ gram}$, manakah pernyataan berikut yang **BENAR**? *(Pilih semua yang benar)*",
+      "figure": {
+        "type": "ruang",
+        "shape": "bandul",
+        "H": "17 cm",
+        "d": "10 cm",
+        "caption": "Bandul logam gabungan kerucut dan setengah bola"
+      },
+      "options": [
+        "Tinggi bagian kerucut adalah $12\\text{ cm}$ dan garis pelukisnya $13\\text{ cm}$.",
+        "Volume bagian kerucut adalah $314\\text{ cm}^3$.",
+        "Luas seluruh permukaan bandul adalah $361,1\\text{ cm}^2$.",
+        "Berat seluruh bandul logam adalah $7.212\\text{ gram}$."
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "$r = 5\\text{ cm}$, maka $t_{\\text{kerucut}} = 17 - 5 = 12\\text{ cm}$ dan $s = \\sqrt{5^2 + 12^2} = 13\\text{ cm}$ (Benar). $V_{\\text{kerucut}} = \\frac{1}{3}(3,14)(25)(12) = 314\\text{ cm}^3$ (Benar). $L = \\pi r s + 2\\pi r^2 = 3,14(5)(13) + 2(3,14)(25) = 204,1 + 157 = 361,1\\text{ cm}^2$ (Benar). $V_{\\text{setengah bola}} = \\frac{2}{3}(3,14)(125) = \\frac{785}{3}\\text{ cm}^3$, sehingga $V_{\\text{total}} = \\frac{1.727}{3}\\text{ cm}^3$ dan berat total $= \\frac{1.727}{3} \\times 15 = 8.635\\text{ gram}$ (Opsi 4 Salah).",
+      "formula": "$V = \\frac{1}{3}\\pi r^2 t + \\frac{2}{3}\\pi r^3$ dan $L = \\pi r s + 2\\pi r^2$",
+      "tips": "Biarkan pecahan $\\frac{1}{3}$ tetap dalam bentuk pecahan saat mengalikan dengan berat jenis $15\\text{ g/cm}^3$ agar habis dibagi $3$ dan hasilnya tepat bulat."
+    }
+  ]
+}
+  </script>
+
+  <!-- PUSTAKA VEKTOR INTERNAL MATHFIG + MESIN KUIS -->
+  <script>
+    /* =========================================================================
+       MATHFIG — Pustaka Vektor SVG Internal Bimbingan Belajar Matematika Suminto
+       Mendukung: sudut, bangun, lingkaran, ruang, jaring, diagram, pecahan,
+                  jam, pohon, bidang, garisbilangan, venn, bebas
+       ========================================================================= */
+    const MathFig = (() => {
+      const NAVY = '#14213d';
+      const GOLD = '#b08d57';
+      const GREEN = '#2d5a4a';
+      const FILL = '#f2ede0';
+      const FILL_ALT = '#e6eefb';
+      const STROKE_DASH = '5,4';
+
+      function wrapSvg(w, h, inner) {
+        return `<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${w}px;height:auto;display:block;" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+      }
+
+      function renderJaring(cfg) {
+        if (cfg.shape === 'tabung') {
+          return wrapSvg(360, 210, `
+            <circle cx="180" cy="36" r="28" fill="${FILL_ALT}" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="180" y1="36" x2="208" y2="36" stroke="${GOLD}" stroke-width="2"/>
+            <text x="194" y="31" font-size="11" font-weight="700" fill="${NAVY}" text-anchor="middle">r=${cfg.r || 'r'}</text>
+
+            <rect x="65" y="64" width="230" height="82" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <text x="180" y="109" font-size="13" font-weight="700" fill="${NAVY}" text-anchor="middle">Selimut (2πr × t)</text>
+
+            <line x1="312" y1="64" x2="312" y2="146" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="306" y1="64" x2="318" y2="64" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="306" y1="146" x2="318" y2="146" stroke="${GOLD}" stroke-width="2"/>
+            <text x="322" y="109" font-size="12" font-weight="700" fill="${NAVY}">t=${cfg.t || 't'}</text>
+
+            <circle cx="180" cy="174" r="28" fill="${FILL_ALT}" stroke="${NAVY}" stroke-width="2"/>
+            <circle cx="180" cy="36" r="2.5" fill="${NAVY}"/>
+            <circle cx="180" cy="174" r="2.5" fill="${NAVY}"/>
+          `);
+        }
+        return '';
+      }
+
+      function renderRuang(cfg) {
+        if (cfg.shape === 'kerucut') {
+          return wrapSvg(280, 220, `
+            <path d="M 140 24 L 62 172 A 78 24 0 0 0 218 172 Z" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="140" cy="172" rx="78" ry="24" fill="${FILL_ALT}" fill-opacity="0.65" stroke="${NAVY}" stroke-width="2" stroke-dasharray="${STROKE_DASH}"/>
+            <path d="M 62 172 A 78 24 0 0 0 218 172" fill="none" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="140" y1="24" x2="140" y2="172" stroke="${GREEN}" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="140" y1="172" x2="218" y2="172" stroke="${GOLD}" stroke-width="2.2"/>
+            <rect x="140" y="162" width="10" height="10" fill="none" stroke="${NAVY}" stroke-width="1.3"/>
+            <text x="128" y="110" font-size="12" font-weight="700" fill="${GREEN}" text-anchor="end">t = ${cfg.t || 't'}</text>
+            <text x="180" y="166" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="middle">r = ${cfg.r || 'r'}</text>
+            <text x="193" y="96" font-size="12" font-weight="700" fill="${NAVY}">${cfg.s || 's'}</text>
+            <circle cx="140" cy="24" r="3" fill="${NAVY}"/>
+          `);
+        }
+        if (cfg.shape === 'kaplampu') {
+          return wrapSvg(320, 210, `
+            <path d="M 108 42 L 58 164 A 102 22 0 0 0 262 164 L 212 42 Z" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="160" cy="42" rx="52" ry="13" fill="#ffffff" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="160" cy="164" rx="102" ry="22" fill="none" stroke="${NAVY}" stroke-width="1.6" stroke-dasharray="${STROKE_DASH}"/>
+            <path d="M 58 164 A 102 22 0 0 0 262 164" fill="none" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="108" y1="42" x2="212" y2="42" stroke="${GOLD}" stroke-width="1.8" stroke-dasharray="3,2"/>
+            <line x1="58" y1="164" x2="262" y2="164" stroke="${GOLD}" stroke-width="1.8" stroke-dasharray="3,2"/>
+            <text x="160" y="24" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="middle">d₁ = ${cfg.d1 || '12 cm'}</text>
+            <text x="160" y="160" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="middle">d₂ = ${cfg.d2 || '30 cm'}</text>
+            <line x1="224" y1="42" x2="274" y2="164" stroke="${GREEN}" stroke-width="2"/>
+            <text x="262" y="102" font-size="12" font-weight="700" fill="${GREEN}">s = ${cfg.s || '15 cm'}</text>
+          `);
+        }
+        if (cfg.shape === 'pipa') {
+          return wrapSvg(340, 185, `
+            <ellipse cx="76" cy="95" rx="34" ry="58" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="76" cy="95" rx="20" ry="34" fill="#ffffff" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="76" y1="37" x2="256" y2="37" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="76" y1="153" x2="256" y2="153" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="76" y1="61" x2="256" y2="61" stroke="${NAVY}" stroke-width="1.5" stroke-dasharray="${STROKE_DASH}"/>
+            <line x1="76" y1="129" x2="256" y2="129" stroke="${NAVY}" stroke-width="1.5" stroke-dasharray="${STROKE_DASH}"/>
+            <path d="M 256 37 A 34 58 0 0 1 256 153" fill="none" stroke="${NAVY}" stroke-width="2"/>
+            <path d="M 256 37 A 34 58 0 0 0 256 153" fill="none" stroke="${NAVY}" stroke-width="1.4" stroke-dasharray="${STROKE_DASH}"/>
+            <line x1="76" y1="95" x2="76" y2="37" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="76" y1="95" x2="96" y2="95" stroke="${GREEN}" stroke-width="2"/>
+            <text x="166" y="26" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="middle">t = ${cfg.t || '50 cm'}</text>
+            <text x="26" y="64" font-size="11" font-weight="700" fill="${GOLD}">R=${cfg.R || '15'}</text>
+            <text x="102" y="99" font-size="11" font-weight="700" fill="${GREEN}">r=${cfg.r || '10'}</text>
+          `);
+        }
+        if (cfg.shape === 'kapsul') {
+          return wrapSvg(360, 170, `
+            <path d="M 96 42 L 244 42 A 44 44 0 0 1 244 130 L 96 130 A 44 44 0 0 1 96 42 Z" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="96" cy="86" rx="14" ry="44" fill="none" stroke="${NAVY}" stroke-width="1.5" stroke-dasharray="${STROKE_DASH}"/>
+            <ellipse cx="244" cy="86" rx="14" ry="44" fill="none" stroke="${NAVY}" stroke-width="1.5" stroke-dasharray="${STROKE_DASH}"/>
+            <line x1="52" y1="150" x2="288" y2="150" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="52" y1="143" x2="52" y2="157" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="288" y1="143" x2="288" y2="157" stroke="${GOLD}" stroke-width="2"/>
+            <text x="170" y="164" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="middle">Panjang total = ${cfg.L || '51 cm'}</text>
+            <line x1="308" y1="42" x2="308" y2="130" stroke="${GREEN}" stroke-width="2"/>
+            <line x1="302" y1="42" x2="314" y2="42" stroke="${GREEN}" stroke-width="2"/>
+            <line x1="302" y1="130" x2="314" y2="130" stroke="${GREEN}" stroke-width="2"/>
+            <text x="318" y="90" font-size="12" font-weight="700" fill="${GREEN}">d=${cfg.d || '21'}</text>
+          `);
+        }
+        if (cfg.shape === 'tempatsampah') {
+          return wrapSvg(290, 230, `
+            <path d="M 92 84 A 52 52 0 0 1 196 84 Z" fill="${FILL_ALT}" stroke="${NAVY}" stroke-width="2"/>
+            <rect x="92" y="84" width="104" height="106" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="144" cy="84" rx="52" ry="13" fill="none" stroke="${NAVY}" stroke-width="1.5" stroke-dasharray="${STROKE_DASH}"/>
+            <ellipse cx="144" cy="190" rx="52" ry="13" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <line x1="60" y1="32" x2="60" y2="190" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="54" y1="32" x2="66" y2="32" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="54" y1="190" x2="66" y2="190" stroke="${GOLD}" stroke-width="2"/>
+            <text x="48" y="114" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="end">${cfg.H || '27 cm'}</text>
+            <line x1="224" y1="84" x2="224" y2="190" stroke="${GREEN}" stroke-width="2"/>
+            <line x1="218" y1="84" x2="230" y2="84" stroke="${GREEN}" stroke-width="2"/>
+            <line x1="218" y1="190" x2="230" y2="190" stroke="${GREEN}" stroke-width="2"/>
+            <text x="234" y="140" font-size="12" font-weight="700" fill="${GREEN}">${cfg.t || '20 cm'}</text>
+          `);
+        }
+        if (cfg.shape === 'bandul') {
+          return wrapSvg(290, 235, `
+            <path d="M 145 24 L 88 136 L 202 136 Z" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>
+            <path d="M 88 136 A 57 57 0 0 0 202 136 Z" fill="${FILL_ALT}" stroke="${NAVY}" stroke-width="2"/>
+            <ellipse cx="145" cy="136" rx="57" ry="14" fill="none" stroke="${NAVY}" stroke-width="1.5" stroke-dasharray="${STROKE_DASH}"/>
+            <line x1="145" y1="24" x2="145" y2="136" stroke="${NAVY}" stroke-width="1.4" stroke-dasharray="4,3"/>
+            <line x1="52" y1="24" x2="52" y2="193" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="46" y1="24" x2="58" y2="24" stroke="${GOLD}" stroke-width="2"/>
+            <line x1="46" y1="193" x2="58" y2="193" stroke="${GOLD}" stroke-width="2"/>
+            <text x="42" y="114" font-size="12" font-weight="700" fill="${NAVY}" text-anchor="end">${cfg.H || '17 cm'}</text>
+            <line x1="88" y1="212" x2="202" y2="212" stroke="${GREEN}" stroke-width="2"/>
+            <line x1="88" y1="206" x2="88" y2="218" stroke="${GREEN}" stroke-width="2"/>
+            <line x1="202" y1="206" x2="202" y2="218" stroke="${GREEN}" stroke-width="2"/>
+            <text x="145" y="228" font-size="12" font-weight="700" fill="${GREEN}" text-anchor="middle">d = ${cfg.d || '10 cm'}</text>
+          `);
+        }
+        return '';
+      }
+
+      function renderGeneric(cfg) {
+        const handlers = {
+          jaring: renderJaring,
+          ruang: renderRuang,
+          lingkaran: (c) => wrapSvg(220, 180, `<circle cx="110" cy="90" r="65" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/><line x1="110" y1="90" x2="175" y2="90" stroke="${GOLD}" stroke-width="2"/><text x="142" y="84" font-size="12" font-weight="700" fill="${NAVY}">${c.r || 'r'}</text>`),
+          sudut: (c) => wrapSvg(220, 160, `<line x1="40" y1="130" x2="190" y2="130" stroke="${NAVY}" stroke-width="2"/><line x1="40" y1="130" x2="150" y2="45" stroke="${NAVY}" stroke-width="2"/><path d="M 80 130 A 40 40 0 0 0 72 105" fill="none" stroke="${GOLD}" stroke-width="2"/><text x="86" y="118" font-size="12" font-weight="700" fill="${NAVY}">${c.deg || 'θ'}</text>`),
+          bangun: (c) => wrapSvg(220, 160, `<rect x="40" y="30" width="140" height="100" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/>`),
+          diagram: (c) => wrapSvg(240, 150, `<line x1="30" y1="125" x2="220" y2="125" stroke="${NAVY}" stroke-width="2"/><rect x="50" y="65" width="28" height="60" fill="${GOLD}"/><rect x="100" y="40" width="28" height="85" fill="${NAVY}"/><rect x="150" y="80" width="28" height="45" fill="${GREEN}"/>`),
+          pecahan: (c) => wrapSvg(180, 180, `<circle cx="90" cy="90" r="70" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/><path d="M90,90 L90,20 A70,70 0 0,1 160,90 Z" fill="${GOLD}"/>`),
+          jam: (c) => wrapSvg(180, 180, `<circle cx="90" cy="90" r="72" fill="#fff" stroke="${NAVY}" stroke-width="3"/><line x1="90" y1="90" x2="90" y2="40" stroke="${NAVY}" stroke-width="3"/><line x1="90" y1="90" x2="132" y2="90" stroke="${GOLD}" stroke-width="3"/>`),
+          pohon: (c) => wrapSvg(220, 160, `<circle cx="110" cy="28" r="16" fill="${FILL}" stroke="${NAVY}" stroke-width="2"/><line x1="110" y1="44" x2="65" y2="105" stroke="${NAVY}" stroke-width="2"/><line x1="110" y1="44" x2="155" y2="105" stroke="${NAVY}" stroke-width="2"/>`),
+          bidang: (c) => wrapSvg(220, 180, `<line x1="20" y1="90" x2="200" y2="90" stroke="${NAVY}" stroke-width="1.5"/><line x1="110" y1="15" x2="110" y2="165" stroke="${NAVY}" stroke-width="1.5"/>`),
+          garisbilangan: (c) => wrapSvg(260, 70, `<line x1="20" y1="35" x2="240" y2="35" stroke="${NAVY}" stroke-width="2"/><circle cx="130" cy="35" r="4" fill="${GOLD}"/>`),
+          venn: (c) => wrapSvg(240, 150, `<circle cx="95" cy="75" r="48" fill="${FILL_ALT}" fill-opacity="0.6" stroke="${NAVY}" stroke-width="2"/><circle cx="145" cy="75" r="48" fill="${FILL}" fill-opacity="0.6" stroke="${GOLD}" stroke-width="2"/>`),
+          bebas: (c) => c.svg || ''
+        };
+        return handlers[cfg.type] ? handlers[cfg.type](cfg) : '';
+      }
+
+      return { render: renderGeneric };
+    })();
+
+    /* =========================================================================
+       MESIN KUIS INTERAKTIF — BIMBINGAN BELAJAR MATEMATIKA SUMINTO
+       ========================================================================= */
+    const TYPE_LABELS = {
+      single: 'Pilihan Ganda',
+      multiple: 'PilGan Kompleks',
+      tf: 'Benar / Salah',
+      short: 'Isian Singkat'
+    };
+
+    let quizData = JSON.parse(document.getElementById('quiz-data').textContent);
+    let currentIndex = 0;
+    let mode = 'practice'; // 'practice' | 'exam'
+    let activeFilter = 'all';
+    let userAnswers = {};  // { id: value }
+    let checkedState = {}; // { id: true }
+    let flaggedState = {}; // { id: true }
+    let quizSubmitted = false;
+
+    // Timer state
+    let elapsedSec = 0;
+    let timerRunning = true;
+    let timerInterval = null;
+
+    // DOM Helpers
+    const $ = (id) => document.getElementById(id);
+
+    function renderMathIn(el) {
+      if (window.renderMathInElement && el) {
+        window.renderMathInElement(el, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function normalizeShort(str) {
+      return String(str || '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/,/g, '.')
+        .replace(/cm³|cm\^3|cm3|cm²|cm\^2|cm2|cm|menit|kg|gram|m²|m2/g, '');
+    }
+
+    function isAnswered(q) {
+      const ans = userAnswers[q.id];
+      if (ans === undefined || ans === null) return false;
+      if (q.type === 'multiple') return Array.isArray(ans) && ans.length > 0;
+      if (q.type === 'short') return String(ans).trim().length > 0;
+      return true;
+    }
+
+    function evaluateQuestion(q) {
+      if (!isAnswered(q)) return null;
+      const ans = userAnswers[q.id];
+      if (q.type === 'single') return ans === q.answer;
+      if (q.type === 'tf') return ans === q.answer;
+      if (q.type === 'multiple') {
+        const a = [...ans].sort().join(',');
+        const k = [...q.answer].sort().join(',');
+        return a === k;
+      }
+      if (q.type === 'short') {
+        const normUser = normalizeShort(ans);
+        const accepted = Array.isArray(q.answer) ? q.answer : [q.answer];
+        return accepted.some(k => {
+          const normKey = normalizeShort(k);
+          if (normUser === normKey) return true;
+          const numU = parseFloat(normUser);
+          const numK = parseFloat(normKey);
+          return !isNaN(numU) && !isNaN(numK) && Math.abs(numU - numK) < 1e-4;
+        });
+      }
+      return false;
+    }
+
+    function updateHeaderMeta() {
+      $('quizTitle').textContent = quizData.meta.title;
+      $('quizSubtitle').textContent = quizData.meta.subtitle;
+      $('metaCount').textContent = `${quizData.soal.length} Soal`;
+      $('metaLevel').textContent = quizData.meta.level || 'SMP Kelas 9';
+    }
+
+    function updateProgress() {
+      const total = quizData.soal.length;
+      const done = quizData.soal.filter(q => isAnswered(q)).length;
+      $('answeredCounter').textContent = `${done} / ${total}`;
+      $('progressBar').style.width = total ? `${(done / total) * 100}%` : '0%';
+    }
+
+    function renderSidebar() {
+      const grid = $('navGrid');
+      grid.innerHTML = '';
+      quizData.soal.forEach((q, idx) => {
+        const answered = isAnswered(q);
+        const flagged = !!flaggedState[q.id];
+        if (activeFilter === 'unanswered' && answered) return;
+        if (activeFilter === 'flagged' && !flagged) return;
+        if (['single', 'multiple', 'tf', 'short'].includes(activeFilter) && q.type !== activeFilter) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'nav-item';
+        btn.textContent = idx + 1;
+        if (idx === currentIndex) btn.classList.add('current');
+        if (flagged) btn.classList.add('flagged');
+
+        const reveal = (mode === 'practice' && checkedState[q.id]) || quizSubmitted;
+        if (reveal && answered) {
+          btn.classList.add(evaluateQuestion(q) ? 'correct' : 'wrong');
+        } else if (answered) {
+          btn.classList.add('answered');
+        }
+
+        btn.addEventListener('click', () => {
+          currentIndex = idx;
+          renderQuestion();
+        });
+        grid.appendChild(btn);
+      });
+      updateProgress();
+    }
+
+    function renderQuestion() {
+      const q = quizData.soal[currentIndex];
+      if (!q) return;
+
+      $('qNumberBadge').textContent = `Soal ${currentIndex + 1} / ${quizData.soal.length}`;
+      $('qTopicBadge').textContent = q.topic;
+      $('qTypeBadge').textContent = TYPE_LABELS[q.type] || q.type;
+      $('qStem').innerHTML = q.stem.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+      // Flag button
+      const isFlagged = !!flaggedState[q.id];
+      $('flagBtn').classList.toggle('flagged', isFlagged);
+      $('flagBtnText').textContent = isFlagged ? 'Ditandai Ragu' : 'Ragu-ragu';
+
+      // Figure
+      const figContainer = $('qFigureContainer');
+      if (q.figure) {
+        const svgHtml = MathFig.render(q.figure);
+        figContainer.innerHTML = `<div class="q-figure-box">${svgHtml}${q.figure.caption ? `<div class="q-figure-caption">${q.figure.caption}</div>` : ''}</div>`;
+      } else {
+        figContainer.innerHTML = '';
+      }
+
+      // Input Area
+      const inputArea = $('qInputArea');
+      inputArea.innerHTML = '';
+      const reveal = (mode === 'practice' && checkedState[q.id]) || quizSubmitted;
+
+      if (q.type === 'single') {
+        const list = document.createElement('div');
+        list.className = 'options-list';
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        q.options.forEach((opt, i) => {
+          const item = document.createElement('div');
+          item.className = 'option-item';
+          const selected = userAnswers[q.id] === i;
+          if (selected) item.classList.add('selected');
+          if (reveal) {
+            if (i === q.answer) item.classList.add('correct');
+            else if (selected && i !== q.answer) item.classList.add('wrong');
+          }
+          item.innerHTML = `<div class="opt-marker mono">${letters[i] || i + 1}</div><div>${opt}</div>`;
+          item.addEventListener('click', () => {
+            if (quizSubmitted) return;
+            userAnswers[q.id] = i;
+            if (mode === 'practice') delete checkedState[q.id];
+            renderQuestion();
+          });
+          list.appendChild(item);
+        });
+        inputArea.appendChild(list);
+      } else if (q.type === 'multiple') {
+        const list = document.createElement('div');
+        list.className = 'options-list';
+        const selectedArr = Array.isArray(userAnswers[q.id]) ? userAnswers[q.id] : [];
+        q.options.forEach((opt, i) => {
+          const item = document.createElement('div');
+          item.className = 'option-item checkbox-opt';
+          const selected = selectedArr.includes(i);
+          if (selected) item.classList.add('selected');
+          if (reveal) {
+            if (q.answer.includes(i)) item.classList.add('correct');
+            else if (selected && !q.answer.includes(i)) item.classList.add('wrong');
+          }
+          item.innerHTML = `<div class="opt-marker mono">${selected ? '✓' : ''}</div><div>${opt}</div>`;
+          item.addEventListener('click', () => {
+            if (quizSubmitted) return;
+            const cur = new Set(Array.isArray(userAnswers[q.id]) ? userAnswers[q.id] : []);
+            if (cur.has(i)) cur.delete(i);
+            else cur.add(i);
+            userAnswers[q.id] = Array.from(cur);
+            if (mode === 'practice') delete checkedState[q.id];
+            renderQuestion();
+          });
+          list.appendChild(item);
+        });
+        inputArea.appendChild(list);
+      } else if (q.type === 'tf') {
+        const grid = document.createElement('div');
+        grid.className = 'tf-grid';
+        [
+          { val: true, label: 'BENAR', mark: 'B' },
+          { val: false, label: 'SALAH', mark: 'S' }
+        ].forEach(choice => {
+          const item = document.createElement('div');
+          item.className = 'option-item';
+          const selected = userAnswers[q.id] === choice.val;
+          if (selected) item.classList.add('selected');
+          if (reveal) {
+            if (choice.val === q.answer) item.classList.add('correct');
+            else if (selected && choice.val !== q.answer) item.classList.add('wrong');
+          }
+          item.innerHTML = `<div class="opt-marker mono">${choice.mark}</div><div style="font-weight:700;">${choice.label}</div>`;
+          item.addEventListener('click', () => {
+            if (quizSubmitted) return;
+            userAnswers[q.id] = choice.val;
+            if (mode === 'practice') delete checkedState[q.id];
+            renderQuestion();
+          });
+          grid.appendChild(item);
+        });
+        inputArea.appendChild(grid);
+      } else if (q.type === 'short') {
+        const wrap = document.createElement('div');
+        wrap.className = 'short-input-wrap';
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.className = 'short-input';
+        inp.placeholder = 'Ketik jawaban Anda di sini (contoh: 14 atau 11,55)...';
+        inp.value = userAnswers[q.id] || '';
+        inp.disabled = quizSubmitted;
+        inp.addEventListener('input', (e) => {
+          userAnswers[q.id] = e.target.value;
+          updateProgress();
+          renderSidebar();
+        });
+        wrap.appendChild(inp);
+        inputArea.appendChild(wrap);
+      }
+
+      // Nav Buttons
+      $('prevBtn').disabled = currentIndex === 0;
+      $('nextBtn').disabled = currentIndex === quizData.soal.length - 1;
+      $('checkBtn').style.display = (mode === 'practice' && !quizSubmitted) ? 'inline-flex' : 'none';
+
+      // Explanation
+      const expBox = $('explanationBox');
+      if (reveal) {
+        const ok = evaluateQuestion(q);
+        expBox.classList.add('show');
+        const st = $('expStatus');
+        st.className = 'exp-status ' + (ok ? 'ok' : 'no');
+        st.innerHTML = ok
+          ? '<i data-lucide="check-circle" style="width:16px;height:16px;"></i> Jawaban Tepat!'
+          : `<i data-lucide="x-circle" style="width:16px;height:16px;"></i> ${isAnswered(q) ? 'Belum Tepat' : 'Belum Dijawab'} ${q.type === 'short' ? `— Kunci: ${Array.isArray(q.answer) ? q.answer[0] : q.answer}` : ''}`;
+        $('expBody').innerHTML = `<p>${q.explanation}</p>`;
+        $('expFormula').innerHTML = q.formula || '-';
+        $('expTips').innerHTML = q.tips || '-';
+      } else {
+        expBox.classList.remove('show');
+      }
+
+      renderSidebar();
+      renderMathIn($('questionCard'));
+      lucide.createIcons();
+    }
+
+    // Timer
+    function formatTime(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timerRunning && !quizSubmitted) {
+          elapsedSec++;
+          $('timerDisplay').textContent = formatTime(elapsedSec);
+        }
+      }, 1000);
+    }
+
+    // Open & Close Modals
+    function openModal(id) {
+      $(id).classList.add('open');
+      renderMathIn($(id));
+      lucide.createIcons();
+    }
+
+    function closeModal(id) {
+      $(id).classList.remove('open');
+    }
+
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.dataset.close));
+    });
+
+    document.querySelectorAll('.modal-backdrop').forEach(bd => {
+      bd.addEventListener('click', (e) => {
+        if (e.target === bd) bd.classList.remove('open');
+      });
+    });
+
+    // Finish & Score + GoatCounter trigger
+    function finishQuiz() {
+      quizSubmitted = true;
+      timerRunning = false;
+
+      let correct = 0, wrong = 0, empty = 0;
+      const tbody = $('scoreReviewBody');
+      tbody.innerHTML = '';
+
+      quizData.soal.forEach((q, idx) => {
+        const res = evaluateQuestion(q);
+        let statusHtml = '';
+        if (res === null) {
+          empty++;
+          statusHtml = '<span style="color:var(--text-muted);font-weight:600;">Kosong</span>';
+        } else if (res) {
+          correct++;
+          statusHtml = '<span style="color:var(--secondary);font-weight:700;">Benar</span>';
+        } else {
+          wrong++;
+          statusHtml = '<span style="color:var(--error);font-weight:700;">Salah</span>';
+        }
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="mono">${idx + 1}</td>
+          <td>${q.topic}</td>
+          <td>${TYPE_LABELS[q.type]}</td>
+          <td>${statusHtml}</td>
+          <td><button class="btn" style="padding:3px 9px;font-size:0.76rem;" data-jump="${idx}">Lihat</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      tbody.querySelectorAll('[data-jump]').forEach(b => {
+        b.addEventListener('click', () => {
+          currentIndex = Number(b.dataset.jump);
+          closeModal('scoreModal');
+          renderQuestion();
+        });
+      });
+
+      const score = Math.round((correct / quizData.soal.length) * 100);
+      $('finalScoreNum').textContent = score;
+      $('statCorrect').textContent = correct;
+      $('statWrong').textContent = wrong;
+      $('statEmpty').textContent = empty;
+      $('statTime').textContent = formatTime(elapsedSec);
+
+      if (score >= 85) {
+        $('scoreHeadline').textContent = 'Luar Biasa! Penguasaan Materi Sangat Baik';
+        $('scoreSubline').textContent = 'Anda telah menguasai konsep tabung, kerucut, bola, perubahan volume, dan bangun gabungan dengan cemerlang.';
+      } else if (score >= 70) {
+        $('scoreHeadline').textContent = 'Bagus! Tinggal Sedikit Lagi Sempurna';
+        $('scoreSubline').textContent = 'Periksa kembali pembahasan pada soal yang masih keliru untuk mempertajam ketelitian hitung.';
+      } else {
+        $('scoreHeadline').textContent = 'Terus Berlatih! Manfaatkan Lembar Rumus & Pembahasan';
+        $('scoreSubline').textContent = 'Tinjau ulang pembahasan dan kotak Tips Cepat pada setiap nomor, lalu coba kerjakan kembali.';
+      }
+
+      renderQuestion();
+      openModal('scoreModal');
+
+      // Analytics Tracking: GoatCounter trigger when #scoreModal opens
+      if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({
+          path: 'kuis-selesai/bangun-ruang-sisi-lengkung',
+          title: `Skor ${score} - Bangun Ruang Sisi Lengkung`,
+          event: true
+        });
+      }
+    }
+
+    function resetQuiz() {
+      userAnswers = {};
+      checkedState = {};
+      flaggedState = {};
+      quizSubmitted = false;
+      currentIndex = 0;
+      elapsedSec = 0;
+      timerRunning = true;
+      $('timerDisplay').textContent = '00:00';
+      closeModal('scoreModal');
+      renderQuestion();
+    }
+
+    // Toolbar Event Listeners
+    $('timerToggleBtn').addEventListener('click', () => {
+      timerRunning = !timerRunning;
+      $('timerToggleBtn').innerHTML = timerRunning
+        ? '<i data-lucide="pause" style="width:13px;height:13px;"></i>'
+        : '<i data-lucide="play" style="width:13px;height:13px;"></i>';
+      lucide.createIcons();
+    });
+
+    $('modePracticeBtn').addEventListener('click', () => {
+      mode = 'practice';
+      $('modePracticeBtn').classList.add('active');
+      $('modeExamBtn').classList.remove('active');
+      renderQuestion();
+    });
+
+    $('modeExamBtn').addEventListener('click', () => {
+      mode = 'exam';
+      $('modeExamBtn').classList.add('active');
+      $('modePracticeBtn').classList.remove('active');
+      renderQuestion();
+    });
+
+    $('prevBtn').addEventListener('click', () => {
+      if (currentIndex > 0) { currentIndex--; renderQuestion(); }
+    });
+
+    $('nextBtn').addEventListener('click', () => {
+      if (currentIndex < quizData.soal.length - 1) { currentIndex++; renderQuestion(); }
+    });
+
+    $('checkBtn').addEventListener('click', () => {
+      const q = quizData.soal[currentIndex];
+      checkedState[q.id] = true;
+      renderQuestion();
+    });
+
+    $('flagBtn').addEventListener('click', () => {
+      const q = quizData.soal[currentIndex];
+      flaggedState[q.id] = !flaggedState[q.id];
+      renderQuestion();
+    });
+
+    $('filterChips').addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      document.querySelectorAll('#filterChips .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      renderSidebar();
+    });
+
+    $('openFormulaBtn').addEventListener('click', () => openModal('formulaModal'));
+    $('openCalcBtn').addEventListener('click', () => openModal('calcModal'));
+    $('finishQuizBtn').addEventListener('click', finishQuiz);
+    $('resetQuizBtn').addEventListener('click', resetQuiz);
+    $('retryFromModalBtn').addEventListener('click', resetQuiz);
+
+    // Scientific Calculator Logic
+    let calcExpr = '';
+    document.querySelectorAll('.calc-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const c = btn.dataset.c;
+        if (c === 'AC') {
+          calcExpr = '';
+          $('calcExpr').textContent = '';
+          $('calcVal').textContent = '0';
+        } else if (c === 'DEL') {
+          calcExpr = calcExpr.slice(0, -1);
+          $('calcExpr').textContent = calcExpr;
+        } else if (c === '=') {
+          try {
+            const safe = calcExpr
+              .replace(/pi/g, 'Math.PI')
+              .replace(/sqrt\(/g, 'Math.sqrt(')
+              .replace(/\^2/g, '**2')
+              .replace(/\^3/g, '**3');
+            const val = Function('"use strict";return (' + safe + ')')();
+            $('calcExpr').textContent = calcExpr + ' =';
+            $('calcVal').textContent = Number.isFinite(val) ? Number(val.toFixed(6)) : 'Error';
+            calcExpr = Number.isFinite(val) ? String(Number(val.toFixed(6))) : '';
+          } catch {
+            $('calcVal').textContent = 'Error';
+          }
+        } else {
+          calcExpr += c;
+          $('calcExpr').textContent = calcExpr;
+        }
+      });
+    });
+
+    /* =========================================================================
+       EDITOR KUIS BUILT-IN (Edit, Pratinjau, Impor/Ekspor JSON, Unduh HTML)
+       ========================================================================= */
+    let edIdx = 0;
+
+    function updateEdHint(type) {
+      const hints = {
+        single: '(indeks opsi mulai 0, misal: 1 untuk B)',
+        multiple: '(indeks dipisah koma, misal: 0,1,3)',
+        tf: '(ketik true atau false)',
+        short: '(jawaban diterima dipisah koma, misal: 14, 14 cm)'
+      };
+      $('edAnswerHint').textContent = hints[type] || '';
+      $('edOptionsGroup').style.display = (type === 'single' || type === 'multiple') ? 'block' : 'none';
+    }
+
+    function renderEditorList() {
+      const list = $('editorList');
+      list.innerHTML = '';
+      quizData.soal.forEach((q, i) => {
+        const item = document.createElement('div');
+        item.className = 'editor-list-item' + (i === edIdx ? ' active' : '');
+        item.textContent = `${i + 1}. [${q.topic}] ${q.stem.slice(0, 34)}...`;
+        item.addEventListener('click', () => {
+          edIdx = i;
+          loadEditorForm();
+        });
+        list.appendChild(item);
+      });
+    }
+
+    function updateLivePreview() {
+      $('edLivePreview').innerHTML = $('edStem').value;
+      renderMathIn($('edLivePreview'));
+    }
+
+    function loadEditorForm() {
+      renderEditorList();
+      const q = quizData.soal[edIdx];
+      if (!q) return;
+      $('edTopic').value = q.topic || '';
+      $('edType').value = q.type || 'single';
+      $('edStem').value = q.stem || '';
+      $('edOptions').value = Array.isArray(q.options) ? q.options.join('\n') : '';
+      $('edAnswer').value = Array.isArray(q.answer) ? q.answer.join(', ') : String(q.answer);
+      $('edExplanation').value = q.explanation || '';
+      $('edFormula').value = q.formula || '';
+      $('edTips').value = q.tips || '';
+      updateEdHint(q.type);
+      updateLivePreview();
+    }
+
+    $('openEditorBtn').addEventListener('click', () => {
+      edIdx = currentIndex;
+      loadEditorForm();
+      openModal('editorModal');
+    });
+
+    $('edType').addEventListener('change', (e) => updateEdHint(e.target.value));
+    $('edStem').addEventListener('input', updateLivePreview);
+
+    $('edSaveItemBtn').addEventListener('click', () => {
+      const q = quizData.soal[edIdx];
+      if (!q) return;
+      const type = $('edType').value;
+      q.topic = $('edTopic').value.trim() || 'Umum';
+      q.type = type;
+      q.stem = $('edStem').value.trim();
+      if (type === 'single' || type === 'multiple') {
+        q.options = $('edOptions').value.split('\n').map(s => s.trim()).filter(Boolean);
+      } else {
+        delete q.options;
+      }
+
+      const rawAns = $('edAnswer').value.trim();
+      if (type === 'single') q.answer = parseInt(rawAns, 10) || 0;
+      else if (type === 'multiple') q.answer = rawAns.split(',').map(x => parseInt(x.trim(), 10)).filter(n => !isNaN(n));
+      else if (type === 'tf') q.answer = rawAns.toLowerCase() === 'true';
+      else q.answer = rawAns.split(',').map(s => s.trim()).filter(Boolean);
+
+      q.explanation = $('edExplanation').value.trim();
+      q.formula = $('edFormula').value.trim();
+      q.tips = $('edTips').value.trim();
+
+      document.getElementById('quiz-data').textContent = JSON.stringify(quizData, null, 2);
+      renderEditorList();
+      updateHeaderMeta();
+      renderQuestion();
+      alert('Perubahan soal berhasil disimpan!');
+    });
+
+    $('edAddBtn').addEventListener('click', () => {
+      const nextId = quizData.soal.reduce((m, s) => Math.max(m, s.id), 0) + 1;
+      quizData.soal.push({
+        id: nextId,
+        topic: 'Tabung',
+        type: 'single',
+        stem: 'Tulis pertanyaan baru di sini...',
+        options: ['Opsi A', 'Opsi B', 'Opsi C', 'Opsi D'],
+        answer: 0,
+        explanation: 'Tulis pembahasan di sini.',
+        formula: '$V = \\pi r^2 t$',
+        tips: 'Tulis tips cepat di sini.'
+      });
+      edIdx = quizData.soal.length - 1;
+      updateHeaderMeta();
+      loadEditorForm();
+    });
+
+    $('edDeleteItemBtn').addEventListener('click', () => {
+      if (quizData.soal.length <= 1) return alert('Minimal harus ada 1 soal.');
+      quizData.soal.splice(edIdx, 1);
+      edIdx = Math.max(0, edIdx - 1);
+      currentIndex = Math.min(currentIndex, quizData.soal.length - 1);
+      updateHeaderMeta();
+      loadEditorForm();
+      renderQuestion();
+    });
+
+    $('edExportJsonBtn').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(quizData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-brsl-bbm-suminto.json';
+      a.click();
+    });
+
+    $('edImportJsonInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          if (!Array.isArray(parsed.soal)) throw new Error();
+          quizData = parsed;
+          edIdx = 0;
+          currentIndex = 0;
+          updateHeaderMeta();
+          loadEditorForm();
+          renderQuestion();
+          alert('JSON berhasil diimpor!');
+        } catch {
+          alert('Format JSON tidak valid.');
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    $('edDownloadHtmlBtn').addEventListener('click', () => {
+      document.getElementById('quiz-data').textContent = JSON.stringify(quizData, null, 2);
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelectorAll('.modal-backdrop.open').forEach(m => m.classList.remove('open'));
+      const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-bangun-ruang-sisi-lengkung-bbm-suminto.html';
+      a.click();
+    });
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderMeta();
+      renderQuestion();
+      startTimer();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

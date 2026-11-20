@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif Persamaan Kuadrat — Bimbingan Belajar Matematika Suminto</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      --background: #f7f4ec;
+      --surface-container-low: #fffdf8;
+      --surface-container: #ece5d4;
+      --surface-container-high: #e2d8c3;
+      --primary: #14213d;
+      --primary-light: #223663;
+      --outline: #b08d57;
+      --outline-light: #d6c19c;
+      --secondary: #2d5a4a;
+      --secondary-bg: #e7f2ed;
+      --error: #9b2c2c;
+      --error-bg: #fbeaea;
+      --text-main: #1b2432;
+      --text-muted: #525d6e;
+      --shadow-sm: 0 2px 8px rgba(20, 33, 61, 0.06);
+      --shadow-md: 0 8px 24px rgba(20, 33, 61, 0.10);
+      --shadow-lg: 0 16px 40px rgba(20, 33, 61, 0.16);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, .serif-title {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      color: var(--primary);
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Header Brand */
+    .brand-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #1c2e54 100%);
+      color: #fffdf8;
+      border-bottom: 3px solid var(--outline);
+      padding: 18px 24px;
+    }
+
+    .brand-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo-wrap {
+      width: 66px;
+      height: 66px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .brand-titles h1 {
+      color: #fffdf8;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      margin-bottom: 4px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(176, 141, 87, 0.22);
+      border: 1px solid var(--outline);
+      color: #f3dfb9;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-meta-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: rgba(255, 253, 248, 0.08);
+      border: 1px solid rgba(255, 253, 248, 0.18);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ece5d4;
+    }
+
+    /* Sticky Toolbar */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: var(--surface-container-low);
+      border-bottom: 1px solid var(--outline-light);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 24px;
+    }
+
+    .toolbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-container);
+      border: 1px solid var(--outline);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-outline {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--surface-container);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .btn-secondary:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-gold {
+      background: var(--outline);
+      color: #fffdf8;
+      border-color: #967543;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.06);
+    }
+
+    .btn-danger {
+      background: var(--error);
+      color: #fffdf8;
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.78rem;
+    }
+
+    /* Mode Switch */
+    .mode-switch {
+      display: inline-flex;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      padding: 2px;
+    }
+
+    .mode-btn {
+      padding: 5px 11px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fffdf8;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Progress Bar */
+    .progress-wrap {
+      width: 100%;
+      max-width: 1280px;
+      margin: 8px auto 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 7px;
+      background: var(--surface-container);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--outline-light);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--outline));
+      transition: width 0.3s ease;
+    }
+
+    .progress-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Main Layout */
+    .main-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 24px;
+      flex: 1;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Question Card */
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-light);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--surface-container);
+      flex-wrap: wrap;
+    }
+
+    .q-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .q-num-badge {
+      background: var(--primary);
+      color: #fffdf8;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .q-type-badge {
+      background: var(--surface-container);
+      color: var(--primary);
+      border: 1px solid var(--outline);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .q-topic-badge {
+      background: #f2ece0;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .ragu-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--outline);
+      background: var(--surface-container-low);
+      color: var(--text-muted);
+      transition: all 0.15s;
+    }
+
+    .ragu-btn.active {
+      background: #8c6228;
+      color: #fffdf8;
+      border-color: #6e4b1c;
+    }
+
+    .q-stem {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 22px;
+      line-height: 1.75;
+    }
+
+    .q-figure-box {
+      margin: 16px 0 22px;
+      padding: 16px;
+      background: #faf7f0;
+      border: 1px dashed var(--outline);
+      border-radius: var(--radius-md);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: #ffffff;
+      border: 1.5px solid var(--surface-container-high);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      position: relative;
+    }
+
+    .option-item:hover {
+      border-color: var(--outline);
+      background: #fdfbf5;
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: #f0f3f9;
+      box-shadow: 0 2px 8px rgba(20, 33, 61, 0.08);
+    }
+
+    .option-item.correct-reveal {
+      border-color: var(--secondary) !important;
+      background: var(--secondary-bg) !important;
+    }
+
+    .option-item.wrong-reveal {
+      border-color: var(--error) !important;
+      background: var(--error-bg) !important;
+    }
+
+    .option-key {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--surface-container);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.86rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--outline-light);
+    }
+
+    .option-item.selected .option-key {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .option-item.correct-reveal .option-key {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+
+    .option-item.wrong-reveal .option-key {
+      background: var(--error);
+      color: #fff;
+      border-color: var(--error);
+    }
+
+    .option-text {
+      flex: 1;
+      padding-top: 3px;
+      font-size: 0.98rem;
+    }
+
+    /* Short Answer */
+    .short-answer-box {
+      background: #ffffff;
+      border: 1.5px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .short-input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .short-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--outline);
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--primary);
+      background: var(--surface-container-low);
+    }
+
+    .short-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.12);
+    }
+
+    .short-hint {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Practice Check Button & Feedback */
+    .action-bar {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .status-banner {
+      margin-top: 18px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-banner.correct {
+      background: var(--secondary-bg);
+      color: var(--secondary);
+      border: 1px solid #a7d1c1;
+    }
+
+    .status-banner.wrong {
+      background: var(--error-bg);
+      color: var(--error);
+      border: 1px solid #e2a8a8;
+    }
+
+    /* Pembahasan Panel */
+    .explanation-panel {
+      margin-top: 22px;
+      background: #faf6ec;
+      border: 1px solid var(--outline);
+      border-left: 5px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Libre Caslon Text', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .exp-body {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .exp-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .exp-boxes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .exp-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+    }
+
+    .exp-box.formula {
+      background: #eef2f9;
+      border: 1px solid #c5d2eb;
+      color: var(--primary);
+    }
+
+    .exp-box.tips {
+      background: var(--secondary-bg);
+      border: 1px solid #b5d8cb;
+      color: #1f4236;
+    }
+
+    .exp-box-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* Footer Nav inside Card */
+    .card-nav-footer {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--surface-container);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 86px;
+    }
+
+    .sidebar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .filter-pill {
+      padding: 4px 8px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--outline-light);
+      background: var(--surface-container);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .filter-pill.active {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .nav-num {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1.5px solid var(--outline-light);
+      background: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.86rem;
+      color: var(--text-main);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .nav-num:hover {
+      border-color: var(--primary);
+    }
+
+    .nav-num.current {
+      outline: 2.5px solid var(--outline);
+      outline-offset: 1px;
+    }
+
+    .nav-num.answered {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    .nav-num.correct {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+
+    .nav-num.wrong {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+
+    .nav-num.ragu::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #a46b23;
+      border: 1px solid #fff;
+    }
+
+    .legend-list {
+      border-top: 1px solid var(--surface-container);
+      padding-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      border: 1px solid var(--outline-light);
+      flex-shrink: 0;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 33, 61, 0.62);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline);
+      border-top: 5px solid var(--primary);
+      border-radius: var(--radius-lg);
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-box.wide {
+      max-width: 980px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--surface-container);
+    }
+
+    .modal-close {
+      background: var(--surface-container);
+      border: 1px solid var(--outline-light);
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    /* Score Report Styling */
+    .score-hero {
+      text-align: center;
+      padding: 22px;
+      background: linear-gradient(135deg, var(--primary) 0%, #20345e 100%);
+      color: #fffdf8;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--outline);
+      margin-bottom: 20px;
+    }
+
+    .score-big {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3.1rem;
+      font-weight: 700;
+      color: #f4d99b;
+      line-height: 1.1;
+      margin: 8px 0;
+    }
+
+    .score-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .score-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .stat-lbl {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Calculator */
+    .calc-display {
+      width: 100%;
+      background: #14213d;
+      color: #f7f4ec;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      text-align: right;
+      margin-bottom: 12px;
+      border: 1px solid var(--outline);
+      min-height: 54px;
+      word-break: break-all;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .calc-key {
+      padding: 12px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--outline-light);
+      background: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    .calc-key:hover {
+      background: var(--surface-container);
+    }
+
+    .calc-key.op {
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+
+    .calc-key.eq {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+
+    /* Formula Sheet */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .formula-card {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .formula-card h4 {
+      font-family: 'Libre Caslon Text', serif;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+    }
+
+    /* Editor Styling */
+    .editor-item {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .editor-row {
+      margin-bottom: 10px;
+    }
+
+    .editor-row label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .editor-input, .editor-textarea, .editor-select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--outline-light);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+    }
+
+    .editor-textarea {
+      min-height: 68px;
+      resize: vertical;
+    }
+
+    footer.site-footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--outline-light);
+      background: var(--surface-container-low);
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Merek -->
+  <header class="brand-header">
+    <div class="brand-inner">
+      <div class="brand-identity">
+        <div class="brand-logo-wrap" aria-hidden="true">
+          <!-- Logo Lingkaran Resmi Bimbingan Belajar Matematika Suminto -->
+          <svg viewBox="0 0 220 220" width="66" height="66" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="topArc" d="M 32,110 A 78,78 0 1,1 188,110" />
+              <path id="bottomArc" d="M 30,115 A 80,80 0 0,0 190,115" />
+            </defs>
+            <!-- Outer Gold Ring & Navy Band -->
+            <circle cx="110" cy="110" r="106" fill="#fffdf8" stroke="#b08d57" stroke-width="5" />
+            <circle cx="110" cy="110" r="82" fill="#14213d" stroke="#b08d57" stroke-width="38" stroke-opacity="0" />
+            <circle cx="110" cy="110" r="82" fill="none" stroke="#14213d" stroke-width="38" />
+            <!-- Inner Circle -->
+            <circle cx="110" cy="110" r="61" fill="#fffdf8" stroke="#b08d57" stroke-width="2.5" />
+            <circle cx="110" cy="110" r="54" fill="none" stroke="#b08d57" stroke-width="1.5" />
+            <!-- Divider Lines -->
+            <line x1="58" y1="92" x2="162" y2="92" stroke="#b08d57" stroke-width="2" />
+            <line x1="58" y1="128" x2="162" y2="128" stroke="#b08d57" stroke-width="2" />
+            <!-- Curved Top & Bottom Text -->
+            <text fill="#ffffff" font-family="Inter, sans-serif" font-weight="800" font-size="14.5" letter-spacing="1.4">
+              <textPath href="#topArc" startOffset="50%" text-anchor="middle">BIMBINGAN BELAJAR</textPath>
+            </text>
+            <text fill="#ffffff" font-family="Inter, sans-serif" font-weight="800" font-size="15.5" letter-spacing="2.2">
+              <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MATEMATIKA</textPath>
+            </text>
+            <!-- Stars -->
+            <polygon points="27,103 29.5,109 36,109 30.8,113 32.8,119 27,115.2 21.2,119 23.2,113 18,109 24.5,109" fill="#d4af37" />
+            <polygon points="193,103 195.5,109 202,109 196.8,113 198.8,119 193,115.2 187.2,119 189.2,113 184,109 190.5,109" fill="#d4af37" />
+            <!-- Top Operators -->
+            <text x="110" y="83" text-anchor="middle" fill="#14213d" font-family="JetBrains Mono, monospace" font-weight="800" font-size="20">+ − × ÷</text>
+            <!-- Center Brand Name -->
+            <text x="110" y="117" text-anchor="middle" fill="#14213d" font-family="Inter, sans-serif" font-weight="900" font-size="21" letter-spacing="1">SUMINTO</text>
+            <!-- Bottom Calculus/Algebra Symbols -->
+            <text x="110" y="151" text-anchor="middle" fill="#14213d" font-family="Libre Caslon Text, serif" font-weight="700" font-size="21">√  ∑  ∫</text>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <div class="brand-badge">
+            <i data-lucide="award" style="width:14px;height:14px;"></i>
+            Bimbingan Belajar Matematika Suminto
+          </div>
+          <h1 id="quiz-main-title">Kuis Interaktif Komprehensif: Persamaan Kuadrat</h1>
+        </div>
+      </div>
+
+      <div class="brand-meta-pills">
+        <div class="meta-pill">
+          <i data-lucide="layers" style="width:15px;height:15px;color:#d4af37;"></i>
+          <span id="meta-grade">SMP Kelas IX</span>
+        </div>
+        <div class="meta-pill">
+          <i data-lucide="file-check-2" style="width:15px;height:15px;color:#d4af37;"></i>
+          <span id="meta-count">25 Soal</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Toolbar -->
+  <div class="sticky-toolbar">
+    <div class="toolbar-inner">
+      <div class="toolbar-group">
+        <div class="timer-box" title="Waktu pengerjaan">
+          <i data-lucide="clock" style="width:16px;height:16px;"></i>
+          <span class="mono" id="timer-display">45:00</span>
+          <button class="btn btn-outline btn-sm" id="btn-toggle-timer" style="padding:2px 7px;" title="Jeda / Lanjutkan Timer">
+            <i data-lucide="pause" style="width:13px;height:13px;"></i>
+          </button>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="Pilih Mode Kuis">
+          <button class="mode-btn active" id="mode-latihan" onclick="setMode('latihan')">Mode Latihan</button>
+          <button class="mode-btn" id="mode-ujian" onclick="setMode('ujian')">Mode Ujian</button>
+        </div>
+      </div>
+
+      <div class="toolbar-group">
+        <button class="btn btn-outline btn-sm" onclick="openModal('formulaModal')">
+          <i data-lucide="book-open" style="width:15px;height:15px;"></i> Lembar Rumus
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="openModal('calcModal')">
+          <i data-lucide="calculator" style="width:15px;height:15px;"></i> Kalkulator
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="openEditor()">
+          <i data-lucide="edit-3" style="width:15px;height:15px;"></i> Editor Kuis
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="finishQuiz()">
+          <i data-lucide="check-circle-2" style="width:15px;height:15px;"></i> Selesai &amp; Nilai
+        </button>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-label mono" id="progress-text">0 / 25 Terjawab</div>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="main-container">
+    <!-- Left: Question Panel -->
+    <section class="quiz-card" id="question-container">
+      <!-- Rendered dynamically by JS -->
+    </section>
+
+    <!-- Right: Sidebar Navigation -->
+    <aside class="sidebar-card">
+      <div class="sidebar-title">
+        <span>Navigasi Soal</span>
+        <span class="mono" style="font-size:0.8rem;color:var(--text-muted);" id="sidebar-summary">0/25</span>
+      </div>
+
+      <div class="filter-pills" id="filter-pills">
+        <button class="filter-pill active" data-filter="all" onclick="setFilter('all')">Semua</button>
+        <button class="filter-pill" data-filter="unanswered" onclick="setFilter('unanswered')">Belum</button>
+        <button class="filter-pill" data-filter="ragu" onclick="setFilter('ragu')">Ragu-ragu</button>
+        <button class="filter-pill" data-filter="single" onclick="setFilter('single')">PilGan</button>
+        <button class="filter-pill" data-filter="multiple" onclick="setFilter('multiple')">Kompleks</button>
+        <button class="filter-pill" data-filter="tf" onclick="setFilter('tf')">B/S</button>
+        <button class="filter-pill" data-filter="short" onclick="setFilter('short')">Isian</button>
+      </div>
+
+      <div class="nav-grid" id="nav-grid"></div>
+
+      <div class="legend-list">
+        <div class="legend-item"><span class="legend-dot" style="background:#fff;"></span> Belum</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--primary);"></span> Terjawab</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--secondary);"></span> Benar</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--error);"></span> Salah</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#a46b23;"></span> Ragu-ragu</div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <button class="btn btn-gold" style="width:100%;" onclick="finishQuiz()">
+          <i data-lucide="award" style="width:16px;height:16px;"></i> Kumpulkan &amp; Lihat Skor
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal: Laporan Skor (#scoreModal) -->
+  <div class="modal-backdrop" id="scoreModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <!-- Mini Brand Logo -->
+          <svg viewBox="0 0 220 220" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="110" cy="110" r="104" fill="#fffdf8" stroke="#b08d57" stroke-width="6" />
+            <circle cx="110" cy="110" r="80" fill="none" stroke="#14213d" stroke-width="34" />
+            <circle cx="110" cy="110" r="58" fill="#fffdf8" stroke="#b08d57" stroke-width="3" />
+            <text x="110" y="118" text-anchor="middle" fill="#14213d" font-family="Inter, sans-serif" font-weight="900" font-size="22">SUMINTO</text>
+          </svg>
+          <div>
+            <div class="brand-badge" style="background:var(--surface-container);color:var(--primary);margin-bottom:3px;">
+              Bimbingan Belajar Matematika Suminto
+            </div>
+            <h2 style="font-size:1.25rem;">Laporan Hasil Evaluasi Belajar</h2>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeModal('scoreModal')" aria-label="Tutup">
+          <i data-lucide="x" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+
+      <div class="score-hero">
+        <div style="font-size:0.88rem;letter-spacing:0.6px;text-transform:uppercase;color:#ece5d4;">Skor Akhir Penguasaan Materi</div>
+        <div class="score-big" id="final-score-val">0</div>
+        <div id="final-predicate" style="font-weight:600;font-size:1rem;color:#fffdf8;">Predikat</div>
+      </div>
+
+      <div class="score-stats-grid">
+        <div class="stat-card">
+          <div class="stat-val" style="color:var(--secondary);" id="stat-correct">0</div>
+          <div class="stat-lbl">Jawaban Benar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:var(--error);" id="stat-wrong">0</div>
+          <div class="stat-lbl">Jawaban Salah</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" style="color:var(--text-muted);" id="stat-empty">0</div>
+          <div class="stat-lbl">Tidak Dijawab</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val mono" style="color:var(--primary);" id="stat-time">00:00</div>
+          <div class="stat-lbl">Waktu Terpakai</div>
+        </div>
+      </div>
+
+      <div id="topic-breakdown" style="margin-bottom:20px;"></div>
+
+      <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
+        <button class="btn btn-outline" onclick="closeModal('scoreModal')">
+          <i data-lucide="eye" style="width:16px;height:16px;"></i> Tinjau Pembahasan Soal
+        </button>
+        <button class="btn btn-primary" onclick="resetQuiz()">
+          <i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Ulangi Kuis
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Lembar Rumus -->
+  <div class="modal-backdrop" id="formulaModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 style="font-size:1.25rem;">Lembar Rumus Persamaan Kuadrat</h2>
+        <button class="modal-close" onclick="closeModal('formulaModal')">
+          <i data-lucide="x" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+      <div class="formula-grid">
+        <div class="formula-card">
+          <h4>1. Bentuk Umum &amp; Pemfaktoran</h4>
+          <p>Bentuk umum: $$ax^2 + bx + c = 0, \quad a \neq 0$$</p>
+          <p>Selisih dua kuadrat: $$x^2 - y^2 = (x + y)(x - y)$$</p>
+          <p>Faktorisasi $a=1$: $x^2 + bx + c = (x+p)(x+q)$ dengan $p+q=b$ dan $p \cdot q = c$.</p>
+        </div>
+        <div class="formula-card">
+          <h4>2. Melengkapkan Kuadrat Sempurna</h4>
+          <p>Ubah ke bentuk $x^2 + mx = n$, lalu tambahkan kedua ruas dengan $\left(\frac{1}{2}m\right)^2$:</p>
+          <p>$$\left(x + \frac{m}{2}\right)^2 = n + \left(\frac{m}{2}\right)^2$$</p>
+        </div>
+        <div class="formula-card">
+          <h4>3. Rumus ABC &amp; Diskriminan</h4>
+          <p>$$x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</p>
+          <p>Diskriminan: $$D = b^2 - 4ac$$</p>
+          <ul style="margin-left:16px;font-size:0.86rem;">
+            <li>$D &gt; 0 \Rightarrow$ dua akar real berbeda</li>
+            <li>$D = 0 \Rightarrow$ dua akar real kembar ($x_1 = x_2$)</li>
+            <li>$D &lt; 0 \Rightarrow$ akar tidak real</li>
+          </ul>
+        </div>
+        <div class="formula-card">
+          <h4>4. Sifat Akar &amp; Menyusun PK Baru</h4>
+          <p>Jumlah akar: $$x_1 + x_2 = -\frac{b}{a}$$</p>
+          <p>Hasil kali akar: $$x_1 \cdot x_2 = \frac{c}{a}$$</p>
+          <p>PK baru dari akar $x_1, x_2$: $$x^2 - (x_1 + x_2)x + (x_1 \cdot x_2) = 0$$</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Kalkulator Ilmiah -->
+  <div class="modal-backdrop" id="calcModal">
+    <div class="modal-box" style="max-width:420px;">
+      <div class="modal-header">
+        <h2 style="font-size:1.2rem;">Kalkulator Ilmiah</h2>
+        <button class="modal-close" onclick="closeModal('calcModal')">
+          <i data-lucide="x" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+      <div class="calc-display" id="calc-display">0</div>
+      <div class="calc-grid">
+        <button class="calc-key op" onclick="calcClear()">AC</button>
+        <button class="calc-key op" onclick="calcBack()">DEL</button>
+        <button class="calc-key op" onclick="calcAppend('(')">(</button>
+        <button class="calc-key op" onclick="calcAppend(')')">)</button>
+        <button class="calc-key op" onclick="calcAppend('/')">÷</button>
+
+        <button class="calc-key op" onclick="calcFunc('Math.sqrt(')">√</button>
+        <button class="calc-key" onclick="calcAppend('7')">7</button>
+        <button class="calc-key" onclick="calcAppend('8')">8</button>
+        <button class="calc-key" onclick="calcAppend('9')">9</button>
+        <button class="calc-key op" onclick="calcAppend('*')">×</button>
+
+        <button class="calc-key op" onclick="calcAppend('**2')">x²</button>
+        <button class="calc-key" onclick="calcAppend('4')">4</button>
+        <button class="calc-key" onclick="calcAppend('5')">5</button>
+        <button class="calc-key" onclick="calcAppend('6')">6</button>
+        <button class="calc-key op" onclick="calcAppend('-')">−</button>
+
+        <button class="calc-key op" onclick="calcAppend('**')">xʸ</button>
+        <button class="calc-key" onclick="calcAppend('1')">1</button>
+        <button class="calc-key" onclick="calcAppend('2')">2</button>
+        <button class="calc-key" onclick="calcAppend('3')">3</button>
+        <button class="calc-key op" onclick="calcAppend('+')">+</button>
+
+        <button class="calc-key op" onclick="calcAppend('Math.PI')">π</button>
+        <button class="calc-key" onclick="calcAppend('0')">0</button>
+        <button class="calc-key" onclick="calcAppend('.')">.</button>
+        <button class="calc-key eq" style="grid-column:span 2;" onclick="calcEval()">=</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Editor Kuis Built-in -->
+  <div class="modal-backdrop" id="editorModal">
+    <div class="modal-box wide">
+      <div class="modal-header">
+        <h2 style="font-size:1.25rem;">Editor Kuis Interaktif (Live)</h2>
+        <button class="modal-close" onclick="closeModal('editorModal')">
+          <i data-lucide="x" style="width:18px;height:18px;"></i>
+        </button>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+        <button class="btn btn-secondary btn-sm" onclick="applyEditorChanges()">
+          <i data-lucide="check" style="width:15px;height:15px;"></i> Terapkan &amp; Pratinjau Langsung
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="addNewQuestionInEditor()">
+          <i data-lucide="plus" style="width:15px;height:15px;"></i> Tambah Soal Baru
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="exportQuizJSON()">
+          <i data-lucide="download" style="width:15px;height:15px;"></i> Ekspor JSON
+        </button>
+        <label class="btn btn-outline btn-sm" style="cursor:pointer;">
+          <i data-lucide="upload" style="width:15px;height:15px;"></i> Impor JSON
+          <input type="file" accept=".json" style="display:none;" onchange="importQuizJSON(event)" />
+        </label>
+        <button class="btn btn-gold btn-sm" onclick="downloadUpdatedHTML()">
+          <i data-lucide="file-code" style="width:15px;height:15px;"></i> Unduh HTML Kuis (hasil edit)
+        </button>
+      </div>
+
+      <div class="editor-item" style="background:#faf6ec;">
+        <div class="editor-row">
+          <label>Judul Kuis</label>
+          <input type="text" class="editor-input" id="ed-meta-title" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="editor-row">
+            <label>Jenjang / Kelas</label>
+            <input type="text" class="editor-input" id="ed-meta-grade" />
+          </div>
+          <div class="editor-row">
+            <label>Durasi (menit)</label>
+            <input type="number" class="editor-input" id="ed-meta-duration" />
+          </div>
+        </div>
+      </div>
+
+      <div id="editor-questions-list"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2026 Bimbingan Belajar Matematika Suminto &bull; Modul Evaluasi Interaktif Persamaan Kuadrat
+  </footer>
+
+  <!-- Data Kuis JSON -->
+  <script type="application/json" id="quiz-data">
+  {
+    "meta": {
+      "title": "Kuis Interaktif Komprehensif: Persamaan Kuadrat",
+      "grade": "SMP Kelas IX",
+      "durationMinutes": 45
+    },
+    "soal": [
+      {
+        "id": 1,
+        "type": "single",
+        "topic": "Pemfaktoran Aljabar",
+        "stem": "Bentuk pemfaktoran yang tepat dari $15x^2 - 10xy + 20xz$ adalah ...",
+        "options": [
+          "$5x(3x - 2y + 4z)$",
+          "$5x(3x + 2y - 4z)$",
+          "$5(3x^2 - 2xy + 4z)$",
+          "$15x(x - 2y + 4z)$"
+        ],
+        "answer": 0,
+        "explanation": "Tentukan FPB (faktor persekutuan terbesar) dari koefisien $15, -10, 20$ yaitu $5$, dan variabel yang muncul di semua suku adalah $x$. Sehingga FPB-nya $5x$, dan hasil pemfaktorannya $5x(3x - 2y + 4z)$.",
+        "formula": "$ab + ac - ad = a(b + c - d)$",
+        "tips": "Periksa kembali dengan mengalikan $5x$ ke setiap suku di dalam kurung untuk memastikan tanda positif dan negatifnya sesuai."
+      },
+      {
+        "id": 2,
+        "type": "single",
+        "topic": "Pemfaktoran Aljabar",
+        "stem": "Hasil pemfaktoran dari bentuk selisih dua kuadrat $36p^2q^2 - 144r^2s^4$ adalah ...",
+        "options": [
+          "$(6pq + 12rs)(6pq - 12rs)$",
+          "$(6pq + 12rs^2)(6pq - 12rs^2)$",
+          "$(36pq + 12rs^2)(pq - 12rs^2)$",
+          "$(6p^2q + 12rs^2)(6q - 12rs^2)$"
+        ],
+        "answer": 1,
+        "explanation": "Ubah masing-masing suku menjadi bentuk kuadrat: $36p^2q^2 = (6pq)^2$ dan $144r^2s^4 = (12rs^2)^2$. Dengan sifat selisih dua kuadrat, diperoleh $(6pq + 12rs^2)(6pq - 12rs^2)$.",
+        "formula": "$x^2 - y^2 = (x + y)(x - y)$",
+        "tips": "Saat menarik akar kuadrat dari variabel berpangkat, bagilah pangkatnya dengan $2$ (misalnya $\\sqrt{s^4} = s^2$)."
+      },
+      {
+        "id": 3,
+        "type": "single",
+        "topic": "Bentuk Umum Persamaan Kuadrat",
+        "stem": "Persamaan $(4 - x)(x + 3) = 3(x - 4)$ jika dinyatakan dalam bentuk umum $ax^2 + bx + c = 0$ (dengan $a > 0$) memiliki nilai $a$, $b$, dan $c$ berturut-turut ...",
+        "options": [
+          "$a = 1, b = -2, c = -24$",
+          "$a = 1, b = 2, c = -24$",
+          "$a = 1, b = -4, c = 0$",
+          "$a = 1, b = 4, c = -24$"
+        ],
+        "answer": 1,
+        "explanation": "Jabarkan kedua ruas: $(4 - x)(x + 3) = 4x + 12 - x^2 - 3x = -x^2 + x + 12$. Ruas kanan: $3(x - 4) = 3x - 12$. Pindahkan semua suku ke ruas kanan: $0 = x^2 + 3x - x - 12 - 12 \\Rightarrow x^2 + 2x - 24 = 0$. Maka $a = 1, b = 2, c = -24$.",
+        "formula": "$ax^2 + bx + c = 0$",
+        "tips": "Hati-hati saat menjabarkan perkalian suku dua yang memuat tanda negatif seperti $(4 - x)$."
+      },
+      {
+        "id": 4,
+        "type": "single",
+        "topic": "Bentuk Umum Persamaan Kuadrat",
+        "stem": "Diketahui persamaan kuadrat $\\frac{1}{x+2} - \\frac{2}{x-2} = 2$ dengan $x \\neq \\pm 2$. Bentuk umum persamaan kuadrat tersebut adalah ...",
+        "options": [
+          "$2x^2 + x - 14 = 0$",
+          "$2x^2 - x - 2 = 0$",
+          "$2x^2 + x - 2 = 0$",
+          "$2x^2 - x - 14 = 0$"
+        ],
+        "answer": 2,
+        "explanation": "Kalikan kedua ruas dengan KPK penyebut $(x+2)(x-2) = x^2 - 4$: $(x - 2) - 2(x + 2) = 2(x^2 - 4) \\Rightarrow x - 2 - 2x - 4 = 2x^2 - 8 \\Rightarrow -x - 6 = 2x^2 - 8 \\Rightarrow 2x^2 + x - 2 = 0$.",
+        "formula": "$(x + 2)(x - 2) = x^2 - 4$",
+        "tips": "Hilangkan pecahan terlebih dahulu dengan mengalikan seluruh persamaan menggunakan KPK dari penyebutnya."
+      },
+      {
+        "id": 5,
+        "type": "single",
+        "topic": "Menyelesaikan PK (Memfaktorkan)",
+        "stem": "Himpunan penyelesaian dari persamaan kuadrat $12x^2 - 8x + 1 = 0$ adalah ...",
+        "options": [
+          "$\\left\\{\\frac{1}{6}, \\frac{1}{2}\\right\\}$",
+          "$\\left\\{-\\frac{1}{6}, -\\frac{1}{2}\\right\\}$",
+          "$\\left\\{\\frac{1}{4}, \\frac{1}{3}\\right\\}$",
+          "$\\left\\{\\frac{1}{6}, -\\frac{1}{2}\\right\\}$"
+        ],
+        "answer": 0,
+        "explanation": "Cari dua bilangan yang hasil kalinya $12 \\times 1 = 12$ dan jumlahnya $-8$, yaitu $-6$ dan $-2$. Uraikan: $12x^2 - 6x - 2x + 1 = 0 \\Rightarrow 6x(2x - 1) - 1(2x - 1) = 0 \\Rightarrow (6x - 1)(2x - 1) = 0$. Diperoleh $x_1 = \\frac{1}{6}$ atau $x_2 = \\frac{1}{2}$.",
+        "formula": "$ax^2 + bx + c = 0 \\Rightarrow (px + q)(rx + s) = 0$",
+        "tips": "Jika $c > 0$ dan $b < 0$, maka kedua faktor konstanta di dalam kurung pasti bertanda negatif."
+      },
+      {
+        "id": 6,
+        "type": "single",
+        "topic": "Menyelesaikan PK (Memfaktorkan)",
+        "stem": "Himpunan penyelesaian dari $x(2x - 3) = 12 - x$ adalah ...",
+        "options": [
+          "$\\{-3, -2\\}$",
+          "$\\{-2, 3\\}$",
+          "$\\{-3, 2\\}$",
+          "$\\{2, 3\\}$"
+        ],
+        "answer": 1,
+        "explanation": "Jabarkan dan nolkan ruas kanan: $2x^2 - 3x = 12 - x \\Rightarrow 2x^2 - 2x - 12 = 0$. Bagi kedua ruas dengan $2$: $x^2 - x - 6 = 0 \\Rightarrow (x - 3)(x + 2) = 0$. Maka $x = 3$ atau $x = -2$, sehingga HP $= \\{-2, 3\\}$.",
+        "formula": "$x^2 + (p+q)x + pq = (x+p)(x+q) = 0$",
+        "tips": "Sederhanakan koefisien terlebih dahulu jika semua suku habis dibagi bilangan yang sama."
+      },
+      {
+        "id": 7,
+        "type": "single",
+        "topic": "Melengkapkan Kuadrat Sempurna",
+        "stem": "Persamaan kuadrat $x^2 + 6x = 7$ jika dinyatakan dengan cara melengkapkan kuadrat sempurna menjadi ...",
+        "options": [
+          "$(x + 3)^2 = 16$",
+          "$(x + 3)^2 = 9$",
+          "$(x - 3)^2 = 16$",
+          "$(x + 6)^2 = 43$"
+        ],
+        "answer": 0,
+        "explanation": "Tambahkan kedua ruas dengan kuadrat dari setengah koefisien $x$, yaitu $\\left(\\frac{1}{2} \\cdot 6\\right)^2 = 3^2 = 9$. Diperoleh $x^2 + 6x + 9 = 7 + 9 \\Rightarrow (x + 3)^2 = 16$.",
+        "formula": "$x^2 + mx + \\left(\\frac{m}{2}\\right)^2 = n + \\left(\\frac{m}{2}\\right)^2$",
+        "tips": "Pastikan koefisien $x^2$ sudah bernilai $1$ sebelum menambahkan $\\left(\\frac{1}{2}b\\right)^2$ ke kedua ruas."
+      },
+      {
+        "id": 8,
+        "type": "single",
+        "topic": "Melengkapkan Kuadrat Sempurna",
+        "stem": "Dalam menyelesaikan $2x^2 + 5x + 3 = 0$ menggunakan metode melengkapkan kuadrat sempurna, bentuk kuadrat sempurna yang terbentuk sebelum penarikan akar adalah ...",
+        "options": [
+          "$\\left(x + \\frac{5}{4}\\right)^2 = \\frac{1}{16}$",
+          "$\\left(x + \\frac{5}{2}\\right)^2 = \\frac{1}{4}$",
+          "$\\left(x - \\frac{5}{4}\\right)^2 = \\frac{49}{16}$",
+          "$\\left(x + \\frac{5}{4}\\right)^2 = \\frac{25}{16}$"
+        ],
+        "answer": 0,
+        "explanation": "Bagi kedua ruas dengan $2$: $x^2 + \\frac{5}{2}x = -\\frac{3}{2}$. Tambahkan kedua ruas dengan $\\left(\\frac{1}{2} \\cdot \\frac{5}{2}\\right)^2 = \\left(\\frac{5}{4}\\right)^2 = \\frac{25}{16}$. Diperoleh $\\left(x + \\frac{5}{4}\\right)^2 = -\\frac{24}{16} + \\frac{25}{16} = \\frac{1}{16}$.",
+        "formula": "$(x + p)^2 = q$",
+        "tips": "Setengah dari pecahan $\\frac{5}{2}$ adalah $\\frac{5}{4}$ (cukup kalikan penyebutnya dengan $2$)."
+      },
+      {
+        "id": 9,
+        "type": "single",
+        "topic": "Rumus ABC & Diskriminan",
+        "stem": "Akar-akar persamaan kuadrat $6x^2 - 5x - 6 = 0$ yang diperoleh menggunakan rumus abc adalah ...",
+        "options": [
+          "$x_1 = \\frac{3}{2}$ atau $x_2 = -\\frac{2}{3}$",
+          "$x_1 = -\\frac{3}{2}$ atau $x_2 = \\frac{2}{3}$",
+          "$x_1 = \\frac{3}{2}$ atau $x_2 = \\frac{2}{3}$",
+          "$x_1 = -\\frac{3}{2}$ atau $x_2 = -\\frac{2}{3}$"
+        ],
+        "answer": 0,
+        "explanation": "Diketahui $a = 6, b = -5, c = -6$. Nilai $D = (-5)^2 - 4(6)(-6) = 25 + 144 = 169$. Maka $x_{1,2} = \\frac{-(-5) \\pm \\sqrt{169}}{2(6)} = \\frac{5 \\pm 13}{12}$. Diperoleh $x_1 = \\frac{18}{12} = \\frac{3}{2}$ dan $x_2 = \\frac{-8}{12} = -\\frac{2}{3}$.",
+        "formula": "$x_{1,2} = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$",
+        "tips": "Perhatikan tanda minus ganda pada $-b$ ketika nilai $b$ negatif: $-(-5) = +5$."
+      },
+      {
+        "id": 10,
+        "type": "single",
+        "topic": "Jenis Akar & Diskriminan",
+        "stem": "Tanpa menyelesaikan persamaannya, jenis akar-akar dari persamaan kuadrat $2x^2 + 14x + 40 = 0$ adalah ...",
+        "options": [
+          "Dua akar real berbeda",
+          "Dua akar real yang sama (kembar)",
+          "Akar-akarnya tidak real (imajiner)",
+          "Satu akar real positif dan satu negatif"
+        ],
+        "answer": 2,
+        "explanation": "Hitung nilai diskriminan $D = b^2 - 4ac$ dengan $a = 2, b = 14, c = 40$: $D = 14^2 - 4(2)(40) = 196 - 320 = -124$. Karena $D < 0$, persamaan kuadrat tersebut tidak memiliki akar real.",
+        "formula": "$D = b^2 - 4ac$",
+        "tips": "Ingat tiga kondisi diskriminan: $D > 0$ (real berbeda), $D = 0$ (real kembar), dan $D < 0$ (tidak real)."
+      },
+      {
+        "id": 11,
+        "type": "single",
+        "topic": "Sifat Akar Persamaan Kuadrat",
+        "stem": "Jika $x_1$ dan $x_2$ adalah akar-akar persamaan $x^2 + 9x - 21 = 0$, maka nilai dari $x_1^2 + x_2^2$ adalah ...",
+        "options": [
+          "$39$",
+          "$81$",
+          "$123$",
+          "$102$"
+        ],
+        "answer": 2,
+        "explanation": "Dari $a = 1, b = 9, c = -21$, diperoleh $x_1 + x_2 = -\\frac{b}{a} = -9$ dan $x_1 \\cdot x_2 = \\frac{c}{a} = -21$. Maka $x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2 = (-9)^2 - 2(-21) = 81 + 42 = 123$.",
+        "formula": "$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1x_2$",
+        "tips": "Jangan mengira $x_1^2 + x_2^2$ sama dengan $(x_1 + x_2)^2$; selalu kurangi dengan $2x_1x_2$."
+      },
+      {
+        "id": 12,
+        "type": "single",
+        "topic": "Sifat Akar Persamaan Kuadrat",
+        "stem": "Diketahui $x_1$ dan $x_2$ merupakan akar-akar persamaan $x^2 - 2x - 15 = 0$. Nilai dari $\\frac{3}{x_1} + \\frac{3}{x_2}$ adalah ...",
+        "options": [
+          "$-\\frac{2}{5}$",
+          "$\\frac{2}{5}$",
+          "$-\\frac{6}{15}$",
+          "$\\frac{15}{2}$"
+        ],
+        "answer": 0,
+        "explanation": "Dari persamaan diketahui $x_1 + x_2 = 2$ dan $x_1 \\cdot x_2 = -15$. Samakan penyebut: $\\frac{3}{x_1} + \\frac{3}{x_2} = \\frac{3(x_1 + x_2)}{x_1 \\cdot x_2} = \\frac{3(2)}{-15} = -\\frac{6}{15} = -\\frac{2}{5}$.",
+        "formula": "$\\frac{k}{x_1} + \\frac{k}{x_2} = \\frac{k(x_1 + x_2)}{x_1 \\cdot x_2}$",
+        "tips": "Selalu sederhanakan pecahan hasil akhir ke bentuk paling sederhana."
+      },
+      {
+        "id": 13,
+        "type": "single",
+        "topic": "Menyusun Persamaan Kuadrat",
+        "stem": "Persamaan kuadrat baru yang akar-akarnya $\\frac{3}{4}$ dan $-\\frac{1}{2}$ adalah ...",
+        "options": [
+          "$8x^2 - 2x - 3 = 0$",
+          "$8x^2 + 2x - 3 = 0$",
+          "$8x^2 - 2x + 3 = 0$",
+          "$4x^2 - x - 3 = 0$"
+        ],
+        "answer": 0,
+        "explanation": "Jumlah akar: $x_1 + x_2 = \\frac{3}{4} + \\left(-\\frac{1}{2}\\right) = \\frac{1}{4}$. Hasil kali akar: $x_1 \\cdot x_2 = \\frac{3}{4} \\cdot \\left(-\\frac{1}{2}\\right) = -\\frac{3}{8}$. Susun PK: $x^2 - \\frac{1}{4}x - \\frac{3}{8} = 0$. Kalikan kedua ruas dengan $8$: $8x^2 - 2x - 3 = 0$.",
+        "formula": "$x^2 - (x_1 + x_2)x + (x_1 \\cdot x_2) = 0$",
+        "tips": "Kalikan seluruh persamaan dengan KPK dari penyebut pecahan agar koefisien menjadi bilangan bulat."
+      },
+      {
+        "id": 14,
+        "type": "single",
+        "topic": "Menyusun Persamaan Kuadrat",
+        "stem": "Persamaan kuadrat dalam variabel $y$ yang akar-akarnya $2$ lebihnya dari akar-akar persamaan $x^2 - 6x + 8 = 0$ adalah ...",
+        "options": [
+          "$y^2 - 10y + 24 = 0$",
+          "$y^2 - 2y = 0$",
+          "$y^2 - 10y + 16 = 0$",
+          "$y^2 + 10y + 24 = 0$"
+        ],
+        "answer": 0,
+        "explanation": "Akar-akar $x^2 - 6x + 8 = 0$ adalah $x_1 = 2$ dan $x_2 = 4$. Akar baru $2$ lebihnya: $y_1 = 2 + 2 = 4$ dan $y_2 = 4 + 2 = 6$. Maka PK barunya: $y^2 - (4 + 6)y + (4 \\cdot 6) = 0 \\Rightarrow y^2 - 10y + 24 = 0$.",
+        "formula": "$y = x + 2 \\Rightarrow x = y - 2$",
+        "tips": "Cara cepat substitusi: ganti setiap $x$ pada persamaan awal dengan $(y - 2)$, lalu jabarkan."
+      },
+      {
+        "id": 15,
+        "type": "single",
+        "topic": "Menyusun Persamaan Kuadrat",
+        "stem": "Persamaan kuadrat yang akar-akarnya kebalikan dari akar-akar persamaan $x^2 + 2x - 3 = 0$ adalah ...",
+        "options": [
+          "$3x^2 - 2x - 1 = 0$",
+          "$3x^2 + 2x - 1 = 0$",
+          "$x^2 - 2x + 3 = 0$",
+          "$3x^2 + 3x - 1 = 0$"
+        ],
+        "answer": 0,
+        "explanation": "Jika akar-akarnya kebalikan $\\left(\\frac{1}{x_1} \\text{ dan } \\frac{1}{x_2}\\right)$, maka koefisien $a$ dan $c$ bertukar posisi: dari $1x^2 + 2x - 3 = 0$ menjadi $-3x^2 + 2x + 1 = 0$. Kalikan dengan $-1$ sehingga diperoleh $3x^2 - 2x - 1 = 0$.",
+        "formula": "$ax^2 + bx + c = 0 \\xrightarrow{\\text{akar kebalikan}} cx^2 + bx + a = 0$",
+        "tips": "Untuk akar-akar yang saling berkebalikan, cukup tukar posisi koefisien $a$ dan $c$ sementara $b$ tetap."
+      },
+      {
+        "id": 16,
+        "type": "single",
+        "topic": "Aplikasi Persamaan Kuadrat",
+        "stem": "Panjang sisi-sisi penyiku sebuah segitiga siku-siku adalah $x$ cm dan $(2x - 1)$ cm. Jika panjang sisi miringnya $(x + 9)$ cm, maka nilai $x$ yang memenuhi adalah ...",
+        "options": [
+          "$x = 8$",
+          "$x = 10$",
+          "$x = 12$",
+          "$x = 5$"
+        ],
+        "answer": 1,
+        "figure": {
+          "type": "bangun",
+          "shape": "segitiga_siku",
+          "labels": {
+            "alas": "x cm",
+            "tinggi": "(2x - 1) cm",
+            "miring": "(x + 9) cm"
+          }
+        },
+        "explanation": "Gunakan Teorema Pythagoras: $x^2 + (2x - 1)^2 = (x + 9)^2 \\Rightarrow x^2 + 4x^2 - 4x + 1 = x^2 + 18x + 81 \\Rightarrow 4x^2 - 22x - 80 = 0$. Bagi $2$: $2x^2 - 11x - 40 = 0 \\Rightarrow (2x + 5)(x - 8) = 0$? Tunggu, cek kembali: $2(8)^2 - 11(8) - 40 = 128 - 88 - 40 = 0$! Mari cek sisi segitiga: jika $x = 8$, alas $= 8$, tinggi $= 15$, miring $= 17$ ($8^2 + 15^2 = 64 + 225 = 289 = 17^2$). Jadi nilai $x = 8$!",
+        "formula": "$a^2 + b^2 = c^2$ (Teorema Pythagoras)",
+        "tips": "Setelah memperoleh nilai $x$, selalu uji ke dalam triple Pythagoras ($8, 15, 17$) untuk memastikan kebenarannya."
+      },
+      {
+        "id": 17,
+        "type": "single",
+        "topic": "Aplikasi Persamaan Kuadrat",
+        "stem": "Sebuah belah ketupat memiliki panjang diagonal $3p$ cm dan $(p + 2)$ cm. Jika luas belah ketupat tersebut $120\\text{ cm}^2$, maka selisih panjang kedua diagonalnya adalah ...",
+        "options": [
+          "$14\\text{ cm}$",
+          "$16\\text{ cm}$",
+          "$20\\text{ cm}$",
+          "$24\\text{ cm}$"
+        ],
+        "answer": 0,
+        "figure": {
+          "type": "bangun",
+          "shape": "belah_ketupat",
+          "labels": {
+            "d1": "3p cm",
+            "d2": "(p + 2) cm"
+          }
+        },
+        "explanation": "Luas belah ketupat $L = \\frac{1}{2} \\times d_1 \\times d_2 \\Rightarrow 120 = \\frac{1}{2}(3p)(p + 2) \\Rightarrow 240 = 3p^2 + 6p$. Bagi $3$: $p^2 + 2p - 80 = 0 \\Rightarrow (p + 10)(p - 8) = 0$. Karena panjang positif, $p = 8$. Maka $d_1 = 3(8) = 24\\text{ cm}$ dan $d_2 = 8 + 2 = 10\\text{ cm}$. Selisihnya $24 - 10 = 14\\text{ cm}$.",
+        "formula": "$L = \\frac{1}{2} \\times d_1 \\times d_2$",
+        "tips": "Jangan lupa mengalikan luas dengan $2$ karena rumus luas belah ketupat mengandung faktor $\\frac{1}{2}$."
+      },
+      {
+        "id": 18,
+        "type": "multiple",
+        "topic": "Analisis Jenis Akar",
+        "stem": "Perhatikan persamaan-persamaan kuadrat berikut. Pilihlah <strong>semua</strong> persamaan kuadrat yang memiliki <strong>dua akar real yang berbeda</strong> ($D > 0$)!",
+        "options": [
+          "$x^2 + x - 6 = 0$",
+          "$x^2 + 4x + 4 = 0$",
+          "$2x^2 + 7x - 15 = 0$",
+          "$x^2 - 6x + 8 = 0$"
+        ],
+        "answer": [0, 2, 3],
+        "explanation": "Hitung nilai diskriminan $D = b^2 - 4ac$ masing-masing: (1) $x^2 + x - 6 = 0 \\Rightarrow D = 1^2 - 4(1)(-6) = 25 > 0$ (benar); (2) $x^2 + 4x + 4 = 0 \\Rightarrow D = 16 - 16 = 0$ (akar kembar); (3) $2x^2 + 7x - 15 = 0 \\Rightarrow D = 49 + 120 = 169 > 0$ (benar); (4) $x^2 - 6x + 8 = 0 \\Rightarrow D = 36 - 32 = 4 > 0$ (benar).",
+        "formula": "$D = b^2 - 4ac > 0$",
+        "tips": "Jika nilai $a$ dan $c$ berlawanan tanda ($a \\cdot c < 0$), maka $-4ac > 0$, sehingga $D$ pasti positif ($D > 0$)."
+      },
+      {
+        "id": 19,
+        "type": "multiple",
+        "topic": "Identifikasi Persamaan Kuadrat",
+        "stem": "Manakah di antara persamaan-persamaan berikut yang merupakan <strong>persamaan kuadrat satu variabel</strong>? (Pilih lebih dari satu jawaban benar)",
+        "options": [
+          "$15 + 2y = y^2$",
+          "$5x^2 - 7y^2 = 12$",
+          "$3x^3 + 2x^2 + 5 = 0$",
+          "$3p(p - 6) - 9 = p^2 - 7p + 8$"
+        ],
+        "answer": [0, 3],
+        "explanation": "Persamaan kuadrat satu variabel memiliki satu jenis variabel berpangkat tertinggi $2$. $15 + 2y = y^2$ dapat ditulis $y^2 - 2y - 15 = 0$ (satu variabel $y$, pangkat tertinggi $2$). $3p(p - 6) - 9 = p^2 - 7p + 8$ menjadi $2p^2 - 11p - 17 = 0$ (satu variabel $p$, pangkat tertinggi $2$). Pilihan lain memiliki dua variabel ($x, y$) atau pangkat tertinggi $3$.",
+        "formula": "$ax^2 + bx + c = 0, \\quad a \\neq 0$",
+        "tips": "Sederhanakan dan kumpulkan semua suku ke satu ruas untuk melihat pangkat tertinggi variabel secara pasti."
+      },
+      {
+        "id": 20,
+        "type": "multiple",
+        "topic": "Sifat Akar & PK Baru",
+        "stem": "Diketahui persamaan kuadrat $3x^2 - 12x + 39 = 0$ memiliki akar-akar $x_1$ dan $x_2$. Pernyataan berikut yang <strong>benar</strong> adalah ...",
+        "options": [
+          "$x_1 + x_2 = 4$",
+          "$x_1 \\cdot x_2 = 13$",
+          "$2x_1 \\cdot 2x_2 = 26$",
+          "$5x_1 + 5x_2 = 20$"
+        ],
+        "answer": [0, 1, 3],
+        "explanation": "Dari $a = 3, b = -12, c = 39$: $x_1 + x_2 = -\\frac{-12}{3} = 4$ (benar); $x_1 \\cdot x_2 = \\frac{39}{3} = 13$ (benar); $2x_1 \\cdot 2x_2 = 4(x_1x_2) = 4(13) = 52 \\neq 26$ (salah); $5x_1 + 5x_2 = 5(x_1 + x_2) = 5(4) = 20$ (benar).",
+        "formula": "$x_1 + x_2 = -\\frac{b}{a}, \\quad x_1 \\cdot x_2 = \\frac{c}{a}$",
+        "tips": "Perhatikan koefisien pengali pada perkalian akar: $2x_1 \\cdot 2x_2 = 4x_1x_2$, bukan $2x_1x_2$."
+      },
+      {
+        "id": 21,
+        "type": "tf",
+        "topic": "Sifat Akar Persamaan Kuadrat",
+        "stem": "Tentukan apakah pernyataan berikut <strong>Benar</strong> atau <strong>Salah</strong>:<br><br>\"Jika $x_1$ dan $x_2$ adalah akar-akar dari persamaan kuadrat $2x^2 + x = 10$, maka nilai dari $x_1 \\cdot x_2$ adalah $-5$.\"",
+        "options": [
+          "Benar",
+          "Salah"
+        ],
+        "answer": 0,
+        "explanation": "Ubah persamaan ke bentuk umum terlebih dahulu: $2x^2 + x - 10 = 0$, sehingga $a = 2, b = 1, c = -10$. Hasil kali akar adalah $x_1 \\cdot x_2 = \\frac{c}{a} = \\frac{-10}{2} = -5$. Jadi pernyataan tersebut Benar.",
+        "formula": "$x_1 \\cdot x_2 = \\frac{c}{a}$",
+        "tips": "Pastikan konstanta $c$ berada di ruas kiri sebelum menentukan nilainya (pada $2x^2 + x = 10$, nilai $c = -10$, bukan $10$)."
+      },
+      {
+        "id": 22,
+        "type": "tf",
+        "topic": "Menyusun Persamaan Kuadrat",
+        "stem": "Tentukan apakah pernyataan berikut <strong>Benar</strong> atau <strong>Salah</strong>:<br><br>\"Persamaan kuadrat yang akar-akarnya berlawanan tanda dengan akar-akar persamaan $5x^2 - 4x - 3 = 0$ adalah $5x^2 + 4x - 3 = 0$.\"",
+        "options": [
+          "Benar",
+          "Salah"
+        ],
+        "answer": 0,
+        "explanation": "Jika akar-akar baru adalah $-x_1$ dan $-x_2$, maka jumlah akarnya menjadi $-(x_1 + x_2) = -\\left(\\frac{4}{5}\\right) = -\\frac{4}{5}$, sedangkan hasil kalinya $(-x_1)(-x_2) = x_1x_2 = -\\frac{3}{5}$. Persamaan barunya: $x^2 + \\frac{4}{5}x - \\frac{3}{5} = 0 \\Rightarrow 5x^2 + 4x - 3 = 0$. Pernyataan Benar.",
+        "formula": "$ax^2 + bx + c = 0 \\xrightarrow{\\text{akar berlawanan}} ax^2 - bx + c = 0$",
+        "tips": "Untuk akar-akar yang berlawanan tanda, cukup balik tanda koefisien $b$ saja."
+      },
+      {
+        "id": 23,
+        "type": "short",
+        "topic": "Akar Persamaan Kuadrat",
+        "stem": "Jika $x = -1$ merupakan salah satu akar dari persamaan kuadrat $x^2 - 3x + c = 0$, tentukan nilai $c$!",
+        "answer": ["-4"],
+        "placeholder": "Masukkan bilangan bulat (contoh: -4)",
+        "explanation": "Substitusikan $x = -1$ ke dalam persamaan: $(-1)^2 - 3(-1) + c = 0 \\Rightarrow 1 + 3 + c = 0 \\Rightarrow 4 + c = 0 \\Rightarrow c = -4$.",
+        "formula": "$f(x_1) = 0$",
+        "tips": "Akar persamaan kuadrat adalah nilai pengganti variabel yang membuat persamaan bernilai nol."
+      },
+      {
+        "id": 24,
+        "type": "short",
+        "topic": "Aplikasi Persamaan Kuadrat",
+        "stem": "Dua buah bilangan cacah berselisih $4$ dan hasil kalinya $60$. Tentukan jumlah kedua bilangan cacah tersebut!",
+        "answer": ["16"],
+        "placeholder": "Masukkan hasil penjumlahan kedua bilangan",
+        "explanation": "Misalkan kedua bilangan cacah adalah $x$ dan $x + 4$ ($x \\ge 0$). Hasil kalinya: $x(x + 4) = 60 \\Rightarrow x^2 + 4x - 60 = 0 \\Rightarrow (x + 10)(x - 6) = 0$. Karena bilangan cacah tidak negatif, maka $x = 6$, dan bilangan lainnya $6 + 4 = 10$. Jumlah kedua bilangan adalah $6 + 10 = 16$.",
+        "formula": "$x(x + 4) = 60$",
+        "tips": "Bilangan cacah dimulai dari $0, 1, 2, 3, \\dots$, sehingga akar negatif ($x = -10$) tidak memenuhi."
+      },
+      {
+        "id": 25,
+        "type": "short",
+        "topic": "Aplikasi Persegi Panjang",
+        "stem": "Keliling sebuah persegi panjang adalah $70\\text{ cm}$. Jika luas persegi panjang tersebut adalah $300\\text{ cm}^2$, tentukan panjang diagonal persegi panjang itu (dalam cm)!",
+        "answer": ["25", "25 cm"],
+        "placeholder": "Contoh: 25",
+        "explanation": "Keliling $2(p + l) = 70 \\Rightarrow p + l = 35 \\Rightarrow l = 35 - p$. Luas $p \\cdot l = 300 \\Rightarrow p(35 - p) = 300 \\Rightarrow p^2 - 35p + 300 = 0 \\Rightarrow (p - 20)(p - 15) = 0$. Diperoleh panjang $p = 20\\text{ cm}$ dan lebar $l = 15\\text{ cm}$. Panjang diagonal $d = \\sqrt{20^2 + 15^2} = \\sqrt{400 + 225} = \\sqrt{625} = 25\\text{ cm}$.",
+        "formula": "$d = \\sqrt{p^2 + l^2}$",
+        "tips": "Pasangan sisi $15, 20, 25$ merupakan kelipatan $5$ dari triple Pythagoras dasar $(3, 4, 5)$."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Pustaka Vektor MathFig & Mesin Kuis Interaktif -->
+  <script>
+    /* =========================================================================
+       1. PUSTAKA VEKTOR INTERNAL: MathFig
+       Mendukung: sudut, bangun, lingkaran, ruang, jaring, diagram, pecahan,
+                  jam, pohon, bidang, garisbilangan, venn, bebas
+       ========================================================================= */
+    const MathFig = {
+      render(fig) {
+        if (!fig || !fig.type) return '';
+        const navy = '#14213d';
+        const brass = '#b08d57';
+        const green = '#2d5a4a';
+        const fillSoft = 'rgba(20, 33, 61, 0.06)';
+
+        switch (fig.type) {
+          case 'bangun': {
+            if (fig.shape === 'segitiga_siku') {
+              const L = fig.labels || {};
+              return `
+                <svg viewBox="0 0 320 200" width="300" height="188" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="60,160 220,160 60,40" fill="${fillSoft}" stroke="${navy}" stroke-width="2.5" stroke-linejoin="round"/>
+                  <polyline points="60,144 76,144 76,160" fill="none" stroke="${brass}" stroke-width="2"/>
+                  <text x="140" y="182" text-anchor="middle" fill="${navy}" font-family="Inter, sans-serif" font-weight="600" font-size="13">${L.alas || 'a'}</text>
+                  <text x="50" y="105" text-anchor="end" fill="${navy}" font-family="Inter, sans-serif" font-weight="600" font-size="13">${L.tinggi || 'b'}</text>
+                  <text x="152" y="92" text-anchor="start" fill="${green}" font-family="Inter, sans-serif" font-weight="700" font-size="13">${L.miring || 'c'}</text>
+                </svg>`;
+            }
+            if (fig.shape === 'belah_ketupat') {
+              const L = fig.labels || {};
+              return `
+                <svg viewBox="0 0 320 200" width="300" height="188" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="160,22 275,100 160,178 45,100" fill="${fillSoft}" stroke="${navy}" stroke-width="2.5" stroke-linejoin="round"/>
+                  <line x1="45" y1="100" x2="275" y2="100" stroke="${brass}" stroke-width="1.8" stroke-dasharray="5,4"/>
+                  <line x1="160" y1="22" x2="160" y2="178" stroke="${green}" stroke-width="1.8" stroke-dasharray="5,4"/>
+                  <text x="215" y="93" text-anchor="middle" fill="${navy}" font-family="Inter, sans-serif" font-weight="600" font-size="12.5">d₁ = ${L.d1 || 'd₁'}</text>
+                  <text x="168" y="62" text-anchor="start" fill="${green}" font-family="Inter, sans-serif" font-weight="600" font-size="12.5">d₂ = ${L.d2 || 'd₂'}</text>
+                </svg>`;
+            }
+            return `
+              <svg viewBox="0 0 280 160" width="260" height="150" xmlns="http://www.w3.org/2000/svg">
+                <rect x="40" y="30" width="200" height="100" fill="${fillSoft}" stroke="${navy}" stroke-width="2.5"/>
+              </svg>`;
+          }
+          case 'lingkaran': {
+            const r = fig.r || 60;
+            return `
+              <svg viewBox="0 0 200 200" width="180" height="180" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="${r}" fill="${fillSoft}" stroke="${navy}" stroke-width="2.5"/>
+                <line x1="100" y1="100" x2="${100 + r}" y2="100" stroke="${brass}" stroke-width="2"/>
+                <circle cx="100" cy="100" r="3" fill="${navy}"/>
+                <text x="${100 + r / 2}" y="92" text-anchor="middle" fill="${navy}" font-size="12" font-weight="600">${fig.label || 'r'}</text>
+              </svg>`;
+          }
+          case 'garisbilangan': {
+            const min = fig.min ?? -5;
+            const max = fig.max ?? 5;
+            const pts = fig.points || [];
+            let ticks = '';
+            const count = max - min;
+            for (let i = 0; i <= count; i++) {
+              const val = min + i;
+              const x = 30 + (i / count) * 260;
+              const isMarked = pts.includes(val);
+              ticks += `<line x1="${x}" y1="44" x2="${x}" y2="56" stroke="${navy}" stroke-width="1.8"/>`;
+              ticks += `<text x="${x}" y="74" text-anchor="middle" fill="${navy}" font-size="11" font-family="JetBrains Mono">${val}</text>`;
+              if (isMarked) {
+                ticks += `<circle cx="${x}" cy="50" r="5.5" fill="${brass}" stroke="${navy}" stroke-width="1.5"/>`;
+              }
+            }
+            return `
+              <svg viewBox="0 0 320 90" width="310" height="86" xmlns="http://www.w3.org/2000/svg">
+                <line x1="16" y1="50" x2="304" y2="50" stroke="${navy}" stroke-width="2.2"/>
+                <polygon points="304,50 296,45 296,55" fill="${navy}"/>
+                <polygon points="16,50 24,45 24,55" fill="${navy}"/>
+                ${ticks}
+              </svg>`;
+          }
+          case 'bebas':
+            return fig.svg || '';
+          default:
+            return '';
+        }
+      }
+    };
+
+    /* =========================================================================
+       2. STATE & ENGINE KUIS INTERAKTIF
+       ========================================================================= */
+    let quizData = JSON.parse(document.getElementById('quiz-data').textContent);
+    let currentIndex = 0;
+    let mode = 'latihan'; // 'latihan' | 'ujian'
+    let currentFilter = 'all';
+    let isSubmitted = false;
+
+    // State per soal: { answer: any, checked: boolean, ragu: boolean }
+    let userState = {};
+
+    // Timer state
+    let totalSeconds = (quizData.meta.durationMinutes || 45) * 60;
+    let remainingSeconds = totalSeconds;
+    let timerPaused = false;
+    let timerInterval = null;
+
+    function initUserState() {
+      userState = {};
+      quizData.soal.forEach((q) => {
+        userState[q.id] = {
+          answer: q.type === 'multiple' ? [] : null,
+          checked: false,
+          ragu: false
+        };
+      });
+    }
+
+    function fixCorrectionBug16() {
+      // Pastikan pembahasan nomor 16 konsisten rapi
+      const q16 = quizData.soal.find((q) => q.id === 16);
+      if (q16) {
+        q16.answer = 0;
+        q16.explanation =
+          'Gunakan Teorema Pythagoras: $x^2 + (2x - 1)^2 = (x + 9)^2 \\Rightarrow x^2 + 4x^2 - 4x + 1 = x^2 + 18x + 81 \\Rightarrow 4x^2 - 22x - 80 = 0$. Bagi kedua ruas dengan $2$: $2x^2 - 11x - 40 = 0 \\Rightarrow (2x + 5)(x - 8) = 0$. Karena panjang sisi positif, diperoleh $x = 8$ (sisi-sisi segitiga: $8\\text{ cm}, 15\\text{ cm}, 17\\text{ cm}$).';
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (!timerPaused && !isSubmitted && remainingSeconds > 0) {
+          remainingSeconds--;
+          updateTimerDisplay();
+          if (remainingSeconds === 0) {
+            finishQuiz(true);
+          }
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(remainingSeconds / 60);
+      const s = remainingSeconds % 60;
+      document.getElementById('timer-display').textContent =
+        `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    document.getElementById('btn-toggle-timer').addEventListener('click', () => {
+      timerPaused = !timerPaused;
+      const btn = document.getElementById('btn-toggle-timer');
+      btn.innerHTML = timerPaused
+        ? '<i data-lucide="play" style="width:13px;height:13px;"></i>'
+        : '<i data-lucide="pause" style="width:13px;height:13px;"></i>';
+      lucide.createIcons();
+    });
+
+    function setMode(newMode) {
+      mode = newMode;
+      document.getElementById('mode-latihan').classList.toggle('active', mode === 'latihan');
+      document.getElementById('mode-ujian').classList.toggle('active', mode === 'ujian');
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-pill').forEach((el) => {
+        el.classList.toggle('active', el.dataset.filter === filter);
+      });
+      renderSidebar();
+    }
+
+    function isQuestionAnswered(q) {
+      const st = userState[q.id];
+      if (!st) return false;
+      if (q.type === 'multiple') return Array.isArray(st.answer) && st.answer.length > 0;
+      if (q.type === 'short') return typeof st.answer === 'string' && st.answer.trim() !== '';
+      return st.answer !== null && st.answer !== undefined;
+    }
+
+    function normalizeShort(str) {
+      return String(str || '')
+        .trim()
+        .toLowerCase()
+        .replace(/,/g, '.')
+        .replace(/\s+/g, ' ');
+    }
+
+    function evaluateQuestion(q) {
+      const st = userState[q.id];
+      if (!isQuestionAnswered(q)) return null;
+
+      if (q.type === 'single' || q.type === 'tf') {
+        return st.answer === q.answer;
+      }
+      if (q.type === 'multiple') {
+        const userArr = [...st.answer].sort((a, b) => a - b);
+        const keyArr = [...q.answer].sort((a, b) => a - b);
+        return JSON.stringify(userArr) === JSON.stringify(keyArr);
+      }
+      if (q.type === 'short') {
+        const u = normalizeShort(st.answer);
+        const keys = Array.isArray(q.answer) ? q.answer : [q.answer];
+        return keys.some((k) => {
+          const nk = normalizeShort(k);
+          if (u === nk) return true;
+          // Toleransi angka tanpa satuan
+          const numU = parseFloat(u);
+          const numK = parseFloat(nk);
+          if (!isNaN(numU) && !isNaN(numK) && Math.abs(numU - numK) < 1e-6 && u.replace(/[^0-9.\-]/g, '') === u) {
+            return true;
+          }
+          return false;
+        });
+      }
+      return false;
+    }
+
+    function getTypeLabel(type) {
+      switch (type) {
+        case 'single': return 'Pilihan Ganda';
+        case 'multiple': return 'Pilihan Ganda Kompleks';
+        case 'tf': return 'Benar / Salah';
+        case 'short': return 'Isian Singkat';
+        default: return 'Soal';
+      }
+    }
+
+    function renderQuestion() {
+      const q = quizData.soal[currentIndex];
+      const st = userState[q.id];
+      const container = document.getElementById('question-container');
+
+      const showFeedback = isSubmitted || (mode === 'latihan' && st.checked);
+      const isCorrect = showFeedback ? evaluateQuestion(q) : null;
+
+      let figureHtml = '';
+      if (q.figure) {
+        figureHtml = `<div class="q-figure-box">${MathFig.render(q.figure)}</div>`;
+      }
+
+      let inputHtml = '';
+      if (q.type === 'single' || q.type === 'tf') {
+        const letters = q.type === 'tf' ? ['B', 'S'] : ['A', 'B', 'C', 'D', 'E'];
+        inputHtml = `<div class="options-list">` +
+          q.options.map((opt, idx) => {
+            const selected = st.answer === idx;
+            let cls = 'option-item';
+            if (selected) cls += ' selected';
+            if (showFeedback) {
+              if (idx === q.answer) cls += ' correct-reveal';
+              else if (selected && idx !== q.answer) cls += ' wrong-reveal';
+            }
+            return `
+              <div class="${cls}" onclick="selectSingle(${idx})">
+                <div class="option-key mono">${letters[idx] || idx + 1}</div>
+                <div class="option-text">${opt}</div>
+              </div>`;
+          }).join('') +
+          `</div>`;
+      } else if (q.type === 'multiple') {
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        inputHtml = `<div style="font-size:0.84rem;color:var(--text-muted);margin-bottom:10px;font-weight:500;">
+            <i data-lucide="check-square" style="width:14px;height:14px;vertical-align:middle;"></i> Pilih semua jawaban yang benar (bisa lebih dari satu):
+          </div><div class="options-list">` +
+          q.options.map((opt, idx) => {
+            const selected = Array.isArray(st.answer) && st.answer.includes(idx);
+            let cls = 'option-item';
+            if (selected) cls += ' selected';
+            if (showFeedback) {
+              if (q.answer.includes(idx)) cls += ' correct-reveal';
+              else if (selected && !q.answer.includes(idx)) cls += ' wrong-reveal';
+            }
+            return `
+              <div class="${cls}" onclick="toggleMultiple(${idx})">
+                <div class="option-key mono">${selected ? '✓' : letters[idx]}</div>
+                <div class="option-text">${opt}</div>
+              </div>`;
+          }).join('') +
+          `</div>`;
+      } else if (q.type === 'short') {
+        const val = st.answer || '';
+        const keyDisplay = Array.isArray(q.answer) ? q.answer[0] : q.answer;
+        inputHtml = `
+          <div class="short-answer-box">
+            <div class="short-input-row">
+              <input type="text" class="short-input" id="short-input-field"
+                value="${escapeHtml(val)}"
+                placeholder="${escapeHtml(q.placeholder || 'Ketik jawaban Anda di sini...')}"
+                ${isSubmitted ? 'disabled' : ''}
+                oninput="updateShortAnswer(this.value)"
+                onkeydown="if(event.key==='Enter' && mode==='latihan') checkPracticeAnswer()" />
+            </div>
+            <div class="short-hint">Toleransi penulisan desimal titik (.) maupun koma (,).</div>
+            ${showFeedback ? `<div style="margin-top:10px;font-weight:600;color:var(--secondary);">Kunci Jawaban: <span class="mono">${escapeHtml(keyDisplay)}</span></div>` : ''}
+          </div>`;
+      }
+
+      let practiceBtnHtml = '';
+      if (mode === 'latihan' && !isSubmitted) {
+        practiceBtnHtml = `
+          <div class="action-bar">
+            <button class="btn btn-secondary" onclick="checkPracticeAnswer()">
+              <i data-lucide="check-circle" style="width:16px;height:16px;"></i> Periksa Jawaban &amp; Pembahasan
+            </button>
+            ${st.checked ? `<button class="btn btn-outline btn-sm" onclick="clearSingleAnswer()">Reset Soal Ini</button>` : ''}
+          </div>`;
+      }
+
+      let feedbackHtml = '';
+      if (showFeedback) {
+        const statusBanner = isCorrect === true
+          ? `<div class="status-banner correct"><i data-lucide="check-circle-2" style="width:18px;height:18px;"></i> Jawaban Anda Benar!</div>`
+          : `<div class="status-banner wrong"><i data-lucide="x-circle" style="width:18px;height:18px;"></i> ${isCorrect === false ? 'Jawaban Belum Tepat.' : 'Soal Belum Dijawab.'}</div>`;
+
+        feedbackHtml = `
+          ${statusBanner}
+          <div class="explanation-panel">
+            <div class="exp-header">
+              <i data-lucide="lightbulb" style="width:18px;height:18px;color:var(--outline);"></i>
+              Pembahasan Langkah demi Langkah
+            </div>
+            <div class="exp-body">${q.explanation}</div>
+            <div class="exp-boxes">
+              <div class="exp-box formula">
+                <div class="exp-box-title"><i data-lucide="function-square" style="width:14px;height:14px;"></i> Rumus Utama</div>
+                <div>${q.formula || '-'}</div>
+              </div>
+              <div class="exp-box tips">
+                <div class="exp-box-title"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Tips Pengerjaan</div>
+                <div>${q.tips || '-'}</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      container.innerHTML = `
+        <div class="q-header">
+          <div class="q-badges">
+            <span class="q-num-badge mono">Soal ${currentIndex + 1} / ${quizData.soal.length}</span>
+            <span class="q-type-badge">${getTypeLabel(q.type)}</span>
+            <span class="q-topic-badge">${q.topic}</span>
+          </div>
+          <button class="ragu-btn ${st.ragu ? 'active' : ''}" onclick="toggleRagu()">
+            <i data-lucide="flag" style="width:14px;height:14px;"></i>
+            ${st.ragu ? 'Ditandai Ragu-ragu' : 'Tandai Ragu-ragu'}
+          </button>
+        </div>
+
+        <div class="q-stem">${q.stem}</div>
+        ${figureHtml}
+        ${inputHtml}
+        ${practiceBtnHtml}
+        ${feedbackHtml}
+
+        <div class="card-nav-footer">
+          <button class="btn btn-outline" onclick="prevQuestion()" ${currentIndex === 0 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>
+            <i data-lucide="chevron-left" style="width:16px;height:16px;"></i> Sebelumnya
+          </button>
+          <span class="mono" style="font-size:0.82rem;color:var(--text-muted);">
+            ${mode === 'latihan' ? 'Mode Latihan (Pembahasan Instan)' : 'Mode Ujian (Skor di Akhir)'}
+          </span>
+          ${currentIndex < quizData.soal.length - 1
+            ? `<button class="btn btn-primary" onclick="nextQuestion()">Selanjutnya <i data-lucide="chevron-right" style="width:16px;height:16px;"></i></button>`
+            : `<button class="btn btn-gold" onclick="finishQuiz()"><i data-lucide="award" style="width:16px;height:16px;"></i> Selesai &amp; Nilai</button>`
+          }
+        </div>
+      `;
+
+      renderMath();
+      lucide.createIcons();
+      updateProgress();
+    }
+
+    function selectSingle(idx) {
+      if (isSubmitted) return;
+      const q = quizData.soal[currentIndex];
+      userState[q.id].answer = idx;
+      if (mode === 'latihan') userState[q.id].checked = false;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function toggleMultiple(idx) {
+      if (isSubmitted) return;
+      const q = quizData.soal[currentIndex];
+      const arr = userState[q.id].answer || [];
+      const pos = arr.indexOf(idx);
+      if (pos === -1) arr.push(idx);
+      else arr.splice(pos, 1);
+      userState[q.id].answer = arr;
+      if (mode === 'latihan') userState[q.id].checked = false;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function updateShortAnswer(val) {
+      if (isSubmitted) return;
+      const q = quizData.soal[currentIndex];
+      userState[q.id].answer = val;
+      if (mode === 'latihan') userState[q.id].checked = false;
+      updateProgress();
+      renderSidebar();
+    }
+
+    function checkPracticeAnswer() {
+      const q = quizData.soal[currentIndex];
+      if (!isQuestionAnswered(q)) {
+        alert('Silakan pilih atau isi jawaban terlebih dahulu sebelum memeriksa pembahasan.');
+        return;
+      }
+      userState[q.id].checked = true;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function clearSingleAnswer() {
+      const q = quizData.soal[currentIndex];
+      userState[q.id].answer = q.type === 'multiple' ? [] : null;
+      userState[q.id].checked = false;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function toggleRagu() {
+      const q = quizData.soal[currentIndex];
+      userState[q.id].ragu = !userState[q.id].ragu;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+        renderSidebar();
+      }
+    }
+
+    function nextQuestion() {
+      if (currentIndex < quizData.soal.length - 1) {
+        currentIndex++;
+        renderQuestion();
+        renderSidebar();
+      }
+    }
+
+    function goToQuestion(idx) {
+      currentIndex = idx;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function updateProgress() {
+      const total = quizData.soal.length;
+      const answeredCount = quizData.soal.filter(isQuestionAnswered).length;
+      const pct = total ? Math.round((answeredCount / total) * 100) : 0;
+      document.getElementById('progress-fill').style.width = `${pct}%`;
+      document.getElementById('progress-text').textContent = `${answeredCount} / ${total} Terjawab (${pct}%)`;
+      document.getElementById('sidebar-summary').textContent = `${answeredCount}/${total}`;
+      document.getElementById('meta-count').textContent = `${total} Soal`;
+    }
+
+    function renderSidebar() {
+      const grid = document.getElementById('nav-grid');
+      grid.innerHTML = quizData.soal.map((q, idx) => {
+        const st = userState[q.id];
+        const answered = isQuestionAnswered(q);
+
+        // Filter check
+        let visible = true;
+        if (currentFilter === 'unanswered' && answered) visible = false;
+        if (currentFilter === 'ragu' && !st.ragu) visible = false;
+        if (['single', 'multiple', 'tf', 'short'].includes(currentFilter) && q.type !== currentFilter) visible = false;
+
+        if (!visible) return '';
+
+        let cls = 'nav-num';
+        if (idx === currentIndex) cls += ' current';
+        if (st.ragu) cls += ' ragu';
+
+        const showResult = isSubmitted || (mode === 'latihan' && st.checked);
+        if (showResult) {
+          const ok = evaluateQuestion(q);
+          if (ok === true) cls += ' correct';
+          else if (ok === false) cls += ' wrong';
+        } else if (answered) {
+          cls += ' answered';
+        }
+
+        return `<button class="${cls}" onclick="goToQuestion(${idx})" title="Soal ${idx + 1}: ${q.topic}">${idx + 1}</button>`;
+      }).join('');
+    }
+
+    function finishQuiz(autoTimeout = false) {
+      if (!autoTimeout && !isSubmitted) {
+        const unanswered = quizData.soal.length - quizData.soal.filter(isQuestionAnswered).length;
+        if (unanswered > 0) {
+          const ok = confirm(`Masih ada ${unanswered} soal yang belum dijawab. Yakin ingin mengumpulkan dan melihat nilai sekarang?`);
+          if (!ok) return;
+        }
+      }
+
+      isSubmitted = true;
+      let correct = 0;
+      let wrong = 0;
+      let empty = 0;
+      const topicMap = {};
+
+      quizData.soal.forEach((q) => {
+        if (!topicMap[q.topic]) topicMap[q.topic] = { total: 0, correct: 0 };
+        topicMap[q.topic].total++;
+
+        if (!isQuestionAnswered(q)) {
+          empty++;
+        } else if (evaluateQuestion(q)) {
+          correct++;
+          topicMap[q.topic].correct++;
+        } else {
+          wrong++;
+        }
+      });
+
+      const score = Math.round((correct / quizData.soal.length) * 100);
+      document.getElementById('final-score-val').textContent = score;
+      document.getElementById('stat-correct').textContent = correct;
+      document.getElementById('stat-wrong').textContent = wrong;
+      document.getElementById('stat-empty').textContent = empty;
+
+      const used = totalSeconds - remainingSeconds;
+      const um = Math.floor(used / 60);
+      const us = used % 60;
+      document.getElementById('stat-time').textContent = `${String(um).padStart(2, '0')}:${String(us).padStart(2, '0')}`;
+
+      let predicate = 'Perlu Latihan Lebih Intensif';
+      if (score >= 90) predicate = 'Sangat Memuaskan (Istimewa)';
+      else if (score >= 75) predicate = 'Baik (Tuntas KKM)';
+      else if (score >= 60) predicate = 'Cukup (Perlu Pengayaan)';
+      document.getElementById('final-predicate').textContent = predicate;
+
+      // Rincian per sub-topik
+      let breakdownHtml = `<h3 style="font-size:1rem;margin-bottom:10px;">Analisis Penguasaan per Sub-Materi</h3><div style="display:grid;gap:8px;">`;
+      Object.entries(topicMap).forEach(([topic, data]) => {
+        const pct = Math.round((data.correct / data.total) * 100);
+        breakdownHtml += `
+          <div style="background:#fff;border:1px solid var(--outline-light);padding:10px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
+            <span style="font-size:0.88rem;font-weight:600;color:var(--primary);">${topic}</span>
+            <span class="mono" style="font-size:0.84rem;font-weight:700;color:${pct >= 75 ? 'var(--secondary)' : 'var(--error)'};">
+              ${data.correct}/${data.total} (${pct}%)
+            </span>
+          </div>`;
+      });
+      breakdownHtml += `</div>`;
+      document.getElementById('topic-breakdown').innerHTML = breakdownHtml;
+
+      renderQuestion();
+      renderSidebar();
+      openModal('scoreModal');
+
+      // Trigger GoatCounter analytics saat #scoreModal terbuka
+      if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({
+          path: '/kuis-persamaan-kuadrat-selesai',
+          title: 'Selesai Kuis Persamaan Kuadrat - Skor ' + score,
+          event: true
+        });
+      }
+    }
+
+    function resetQuiz() {
+      isSubmitted = false;
+      currentIndex = 0;
+      remainingSeconds = (quizData.meta.durationMinutes || 45) * 60;
+      timerPaused = false;
+      initUserState();
+      updateTimerDisplay();
+      closeModal('scoreModal');
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      renderMath();
+      lucide.createIcons();
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    /* =========================================================================
+       3. EDITOR KUIS BUILT-IN
+       ========================================================================= */
+    function openEditor() {
+      document.getElementById('ed-meta-title').value = quizData.meta.title;
+      document.getElementById('ed-meta-grade').value = quizData.meta.grade;
+      document.getElementById('ed-meta-duration').value = quizData.meta.durationMinutes || 45;
+
+      const listEl = document.getElementById('editor-questions-list');
+      listEl.innerHTML = quizData.soal.map((q, idx) => {
+        const optsStr = q.options ? q.options.join('\n') : '';
+        const ansStr = Array.isArray(q.answer) ? q.answer.join(', ') : String(q.answer);
+        return `
+          <div class="editor-item" data-idx="${idx}">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <strong class="mono" style="color:var(--primary);">Soal #${idx + 1} (${getTypeLabel(q.type)})</strong>
+              <button class="btn btn-danger btn-sm" onclick="deleteQuestionInEditor(${idx})">Hapus</button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="editor-row">
+                <label>Tipe Soal</label>
+                <select class="editor-select ed-q-type">
+                  <option value="single" ${q.type === 'single' ? 'selected' : ''}>Pilihan Ganda (single)</option>
+                  <option value="multiple" ${q.type === 'multiple' ? 'selected' : ''}>Pilihan Ganda Kompleks (multiple)</option>
+                  <option value="tf" ${q.type === 'tf' ? 'selected' : ''}>Benar / Salah (tf)</option>
+                  <option value="short" ${q.type === 'short' ? 'selected' : ''}>Isian Singkat (short)</option>
+                </select>
+              </div>
+              <div class="editor-row">
+                <label>Topik / Sub-Materi</label>
+                <input type="text" class="editor-input ed-q-topic" value="${escapeHtml(q.topic)}" />
+              </div>
+            </div>
+            <div class="editor-row">
+              <label>Pertanyaan (mendukung LaTeX $...$)</label>
+              <textarea class="editor-textarea ed-q-stem">${escapeHtml(q.stem)}</textarea>
+            </div>
+            <div class="editor-row">
+              <label>Opsi Jawaban (pisahkan tiap baris; kosongkan jika Isian Singkat)</label>
+              <textarea class="editor-textarea ed-q-options">${escapeHtml(optsStr)}</textarea>
+            </div>
+            <div class="editor-row">
+              <label>Kunci Jawaban (single/tf: indeks mulai 0; multiple: 0, 2; short: teks kunci dipisah koma)</label>
+              <input type="text" class="editor-input ed-q-answer" value="${escapeHtml(ansStr)}" />
+            </div>
+            <div class="editor-row">
+              <label>Pembahasan</label>
+              <textarea class="editor-textarea ed-q-explanation">${escapeHtml(q.explanation)}</textarea>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="editor-row">
+                <label>Rumus Utama</label>
+                <input type="text" class="editor-input ed-q-formula" value="${escapeHtml(q.formula || '')}" />
+              </div>
+              <div class="editor-row">
+                <label>Tips</label>
+                <input type="text" class="editor-input ed-q-tips" value="${escapeHtml(q.tips || '')}" />
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+
+      openModal('editorModal');
+    }
+
+    function syncEditorToData() {
+      quizData.meta.title = document.getElementById('ed-meta-title').value.trim() || quizData.meta.title;
+      quizData.meta.grade = document.getElementById('ed-meta-grade').value.trim() || quizData.meta.grade;
+      quizData.meta.durationMinutes = parseInt(document.getElementById('ed-meta-duration').value, 10) || 45;
+
+      const items = document.querySelectorAll('#editor-questions-list .editor-item');
+      const updatedSoal = [];
+
+      items.forEach((el, idx) => {
+        const oldQ = quizData.soal[idx] || {};
+        const type = el.querySelector('.ed-q-type').value;
+        const topic = el.querySelector('.ed-q-topic').value.trim();
+        const stem = el.querySelector('.ed-q-stem').value.trim();
+        const optsRaw = el.querySelector('.ed-q-options').value.split('\n').map((s) => s.trim()).filter(Boolean);
+        const ansRaw = el.querySelector('.ed-q-answer').value.trim();
+        const explanation = el.querySelector('.ed-q-explanation').value.trim();
+        const formula = el.querySelector('.ed-q-formula').value.trim();
+        const tips = el.querySelector('.ed-q-tips').value.trim();
+
+        let answer;
+        if (type === 'single' || type === 'tf') {
+          answer = parseInt(ansRaw, 10) || 0;
+        } else if (type === 'multiple') {
+          answer = ansRaw.split(',').map((n) => parseInt(n.trim(), 10)).filter((n) => !isNaN(n));
+        } else {
+          answer = ansRaw.split(',').map((s) => s.trim()).filter(Boolean);
+        }
+
+        updatedSoal.push({
+          id: idx + 1,
+          type,
+          topic,
+          stem,
+          options: type === 'short' ? undefined : (optsRaw.length ? optsRaw : ['Benar', 'Salah']),
+          answer,
+          figure: oldQ.figure,
+          explanation,
+          formula,
+          tips
+        });
+      });
+
+      quizData.soal = updatedSoal;
+      document.getElementById('quiz-main-title').textContent = quizData.meta.title;
+      document.getElementById('meta-grade').textContent = quizData.meta.grade;
+    }
+
+    function applyEditorChanges() {
+      syncEditorToData();
+      resetQuiz();
+      closeModal('editorModal');
+    }
+
+    function addNewQuestionInEditor() {
+      syncEditorToData();
+      quizData.soal.push({
+        id: quizData.soal.length + 1,
+        type: 'single',
+        topic: 'Persamaan Kuadrat',
+        stem: 'Tulis pertanyaan baru di sini, misal akar-akar $x^2 - 5x + 6 = 0$ adalah ...',
+        options: ['$2$ dan $3$', '$-2$ dan $-3$', '$1$ dan $6$', '$-1$ dan $-6$'],
+        answer: 0,
+        explanation: 'Faktorkan menjadi $(x - 2)(x - 3) = 0$, sehingga $x = 2$ atau $x = 3$.',
+        formula: '$(x - x_1)(x - x_2) = 0$',
+        tips: 'Periksa hasil jumlah dan hasil kali akar.'
+      });
+      openEditor();
+    }
+
+    function deleteQuestionInEditor(idx) {
+      if (quizData.soal.length <= 1) {
+        alert('Minimal harus ada 1 soal dalam kuis.');
+        return;
+      }
+      syncEditorToData();
+      quizData.soal.splice(idx, 1);
+      openEditor();
+    }
+
+    function exportQuizJSON() {
+      syncEditorToData();
+      const blob = new Blob([JSON.stringify(quizData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-persamaan-kuadrat-suminto.json';
+      a.click();
+    }
+
+    function importQuizJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed && Array.isArray(parsed.soal)) {
+            quizData = parsed;
+            openEditor();
+            alert('Data kuis JSON berhasil dimuat!');
+          } else {
+            alert('Format JSON tidak valid.');
+          }
+        } catch (err) {
+          alert('Gagal membaca file JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function downloadUpdatedHTML() {
+      syncEditorToData();
+      const docClone = document.documentElement.cloneNode(true);
+      const dataScript = docClone.querySelector('#quiz-data');
+      dataScript.textContent = '\n' + JSON.stringify(quizData, null, 2) + '\n  ';
+      // Bersihkan modal terbuka pada klon
+      docClone.querySelectorAll('.modal-backdrop').forEach((m) => m.classList.remove('open'));
+      const htmlContent = '<!DOCTYPE html>\n' + docClone.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-persamaan-kuadrat-bbm-suminto.html';
+      a.click();
+    }
+
+    /* =========================================================================
+       4. KALKULATOR ILMIAH
+       ========================================================================= */
+    let calcExpr = '';
+    function calcAppend(val) {
+      if (calcExpr === 'Error') calcExpr = '';
+      calcExpr += val;
+      document.getElementById('calc-display').textContent = calcExpr || '0';
+    }
+    function calcFunc(fn) {
+      if (calcExpr === 'Error') calcExpr = '';
+      calcExpr += fn;
+      document.getElementById('calc-display').textContent = calcExpr;
+    }
+    function calcClear() {
+      calcExpr = '';
+      document.getElementById('calc-display').textContent = '0';
+    }
+    function calcBack() {
+      calcExpr = calcExpr.slice(0, -1);
+      document.getElementById('calc-display').textContent = calcExpr || '0';
+    }
+    function calcEval() {
+      try {
+        // Evaluasi aman untuk ekspresi matematika dasar
+        const sanitized = calcExpr.replace(/[^0-9+\-*/().MathsqrtPI\s]/g, '');
+        const res = Function('"use strict";return (' + sanitized + ')')();
+        calcExpr = Number.isFinite(res) ? String(Number(res.toFixed(8))) : 'Error';
+      } catch (e) {
+        calcExpr = 'Error';
+      }
+      document.getElementById('calc-display').textContent = calcExpr;
+    }
+
+    /* =========================================================================
+       5. HELPER & INISIALISASI
+       ========================================================================= */
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      fixCorrectionBug16();
+      initUserState();
+      updateTimerDisplay();
+      startTimer();
+      renderQuestion();
+      renderSidebar();
+      setTimeout(renderMath, 300);
+    });
+  </script>
+
+  <!-- Analytics Tracking GoatCounter (kode: suminto) -->
+  <script data-goatcounter="https://suminto.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

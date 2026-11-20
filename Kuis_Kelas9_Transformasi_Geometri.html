@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kuis Interaktif Transformasi Geometri — Bimbingan Belajar Matematika Suminto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+<style>
+  :root {
+    --background: #f7f4ec;
+    --surface-container-low: #fffdf8;
+    --surface-container: #ece5d4;
+    --surface-container-high: #e2d8c0;
+    --primary: #14213d;
+    --primary-light: #1e325c;
+    --outline: #b08d57;
+    --outline-soft: rgba(176, 141, 87, 0.35);
+    --secondary: #2d5a4a;
+    --secondary-soft: rgba(45, 90, 74, 0.12);
+    --error: #9b2c2c;
+    --error-soft: rgba(155, 44, 44, 0.12);
+    --doubt: #8b5a2b;
+    --doubt-soft: rgba(139, 90, 43, 0.15);
+    --text-main: #1a202c;
+    --text-muted: #525866;
+    --shadow-sm: 0 2px 6px rgba(20, 33, 61, 0.06);
+    --shadow-md: 0 8px 24px rgba(20, 33, 61, 0.10);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, .font-serif { font-family: 'Libre Caslon Text', Georgia, serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  .brand-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d1629 100%);
+    color: #fffdf8;
+    border-bottom: 3px solid var(--outline);
+    padding: 16px 24px;
+  }
+  .brand-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand-identity { display: flex; align-items: center; gap: 16px; }
+  .brand-logo-wrap {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    background: #fffdf8;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+  .brand-title-group .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(176, 141, 87, 0.22);
+    border: 1px solid var(--outline);
+    color: #f4dfb6;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 4px;
+  }
+  .brand-title-group h1 { font-size: 1.35rem; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+  .brand-subtitle { font-size: 0.85rem; color: #cbd5e1; }
+  .student-meta-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .student-input {
+    background: rgba(255, 253, 248, 0.1);
+    border: 1px solid var(--outline);
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    outline: none;
+    min-width: 190px;
+  }
+  .student-input::placeholder { color: #cbd5e1; }
+  .student-input:focus { background: rgba(255, 253, 248, 0.18); }
+
+  .sticky-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--surface-container-low);
+    border-bottom: 1.5px solid var(--outline-soft);
+    box-shadow: var(--shadow-sm);
+    padding: 10px 24px;
+  }
+  .toolbar-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .timer-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-container);
+    border: 1px solid var(--outline);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+  }
+  .mode-switch {
+    display: inline-flex;
+    background: var(--surface-container);
+    border: 1px solid var(--outline-soft);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+  }
+  .mode-btn {
+    border: none;
+    background: transparent;
+    padding: 5px 11px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .mode-btn.active { background: var(--primary); color: #fffdf8; }
+  .progress-wrap { display: flex; align-items: center; gap: 10px; min-width: 180px; }
+  .progress-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: var(--surface-container);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--outline-soft);
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--outline));
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--primary); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.18s ease;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-outline { background: var(--surface-container-low); border-color: var(--outline); color: var(--primary); }
+  .btn-outline:hover { background: var(--surface-container); }
+  .btn-primary { background: var(--primary); color: #fffdf8; border-color: var(--primary); }
+  .btn-primary:hover { background: var(--primary-light); }
+  .btn-secondary { background: var(--secondary); color: #fffdf8; border-color: var(--secondary); }
+  .btn-secondary:hover { filter: brightness(1.08); }
+  .btn-gold { background: var(--outline); color: #14213d; border-color: var(--outline); }
+  .btn-gold:hover { filter: brightness(1.06); }
+  .btn-sm { padding: 4px 9px; font-size: 0.76rem; }
+
+  .main-container {
+    max-width: 1360px;
+    width: 100%;
+    margin: 24px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 24px;
+    align-items: start;
+    flex: 1;
+  }
+  @media (max-width: 960px) { .main-container { grid-template-columns: 1fr; } }
+
+  .sidebar-card {
+    background: var(--surface-container-low);
+    border: 1.5px solid var(--outline-soft);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 76px;
+  }
+  .sidebar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .filter-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .filter-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--outline-soft);
+    background: var(--background);
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .filter-pill.active { background: var(--primary); color: #fffdf8; border-color: var(--primary); }
+  .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; margin-bottom: 16px; }
+  .nav-num {
+    position: relative;
+    height: 38px;
+    border-radius: 8px;
+    border: 1.5px solid var(--outline-soft);
+    background: var(--background);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .nav-num:hover { border-color: var(--primary); }
+  .nav-num.current { box-shadow: 0 0 0 2.5px var(--outline); border-color: var(--primary); }
+  .nav-num.answered { background: var(--primary); color: #fffdf8; border-color: var(--primary); }
+  .nav-num.correct { background: var(--secondary); color: #fffdf8; border-color: var(--secondary); }
+  .nav-num.incorrect { background: var(--error); color: #fffdf8; border-color: var(--error); }
+  .nav-num.doubt::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d97706;
+    border: 1.5px solid #fffdf8;
+  }
+  .legend-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--outline-soft);
+    padding-top: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+
+  .question-card {
+    background: var(--surface-container-low);
+    border: 1.5px solid var(--outline-soft);
+    border-radius: var(--radius-lg);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-md);
+  }
+  .q-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--outline-soft);
+  }
+  .q-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .badge-num {
+    background: var(--primary);
+    color: #fffdf8;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 4px 11px;
+    border-radius: 6px;
+  }
+  .badge-topic {
+    background: var(--surface-container);
+    color: var(--primary);
+    border: 1px solid var(--outline-soft);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .badge-type {
+    background: rgba(176, 141, 87, 0.16);
+    color: #6e5226;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 6px;
+  }
+  .doubt-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 6px;
+    border: 1px solid var(--outline-soft);
+    background: var(--background);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--doubt);
+    cursor: pointer;
+  }
+  .doubt-toggle.active { background: var(--doubt); color: #fffdf8; border-color: var(--doubt); }
+
+  .q-stem { font-size: 1.04rem; color: var(--text-main); margin-bottom: 18px; }
+  .q-figure-box {
+    margin: 16px 0 22px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1.5px solid var(--outline-soft);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .q-figure-caption { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+
+  .options-list { display: flex; flex-direction: column; gap: 11px; }
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--outline-soft);
+    background: var(--background);
+    cursor: pointer;
+    transition: all 0.16s ease;
+  }
+  .option-item:hover { border-color: var(--primary); background: #f2ede0; }
+  .option-item.selected { border-color: var(--primary); background: rgba(20, 33, 61, 0.08); }
+  .option-item.correct-opt { border-color: var(--secondary); background: var(--secondary-soft); }
+  .option-item.wrong-opt { border-color: var(--error); background: var(--error-soft); }
+  .opt-key {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--surface-container-low);
+    border: 1.5px solid var(--outline);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .option-item.selected .opt-key { background: var(--primary); color: #fffdf8; }
+  .option-item.correct-opt .opt-key { background: var(--secondary); color: #fffdf8; border-color: var(--secondary); }
+  .option-item.wrong-opt .opt-key { background: var(--error); color: #fffdf8; border-color: var(--error); }
+  .opt-text { flex: 1; font-size: 0.97rem; }
+
+  .short-answer-box {
+    background: var(--background);
+    border: 1.5px solid var(--outline);
+    border-radius: var(--radius-md);
+    padding: 18px;
+  }
+  .short-input-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .short-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--outline);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    background: #fffdf8;
+    color: var(--primary);
+  }
+  .short-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; }
+
+  .explanation-panel {
+    margin-top: 22px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--outline);
+    background: #fcf9f0;
+    padding: 20px;
+    display: none;
+  }
+  .explanation-panel.visible { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .exp-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  .exp-status.ok { background: var(--secondary-soft); color: var(--secondary); }
+  .exp-status.bad { background: var(--error-soft); color: var(--error); }
+  .exp-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  @media (max-width: 700px) { .exp-boxes { grid-template-columns: 1fr; } }
+  .formula-box {
+    background: var(--primary);
+    color: #fffdf8;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    border-left: 4px solid var(--outline);
+    font-size: 0.88rem;
+  }
+  .formula-box-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #f4dfb6;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tip-box {
+    background: var(--surface-container);
+    color: var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    border-left: 4px solid var(--secondary);
+    font-size: 0.88rem;
+  }
+  .tip-box-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--secondary);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .q-footer-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--outline-soft);
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 22, 41, 0.65);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-box {
+    background: var(--surface-container-low);
+    border: 2px solid var(--outline);
+    border-radius: var(--radius-lg);
+    max-width: 820px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid var(--outline-soft);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+  .modal-close {
+    background: var(--surface-container);
+    border: 1px solid var(--outline-soft);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .calc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; margin-top: 12px; }
+  .calc-display {
+    width: 100%;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.25rem;
+    text-align: right;
+    background: var(--primary);
+    color: #fffdf8;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--outline);
+  }
+  .calc-btn {
+    padding: 11px 6px;
+    border-radius: 8px;
+    border: 1px solid var(--outline-soft);
+    background: var(--background);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--primary);
+  }
+  .calc-btn:hover { background: var(--surface-container); }
+  .calc-btn.op { background: var(--surface-container); color: #6e5226; }
+  .calc-btn.eq { background: var(--secondary); color: #fff; }
+
+  .score-hero {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), #1e325c);
+    color: #fffdf8;
+    padding: 22px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--outline);
+    margin-bottom: 18px;
+  }
+  .score-big {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f4dfb6;
+    line-height: 1.1;
+  }
+  .topic-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .topic-stat-card {
+    background: var(--background);
+    border: 1px solid var(--outline-soft);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+
+  .editor-field { margin-bottom: 12px; }
+  .editor-field label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .editor-field input, .editor-field textarea, .editor-field select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--outline);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    background: #fff;
+  }
+
+  .app-footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--outline-soft);
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+
+<header class="brand-header">
+  <div class="brand-inner">
+    <div class="brand-identity">
+      <div class="brand-logo-wrap" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <defs>
+            <path id="topArc" d="M 28,100 A 72,72 0 1,1 172,100" />
+            <path id="botArc" d="M 172,100 A 72,72 0 1,1 28,100" />
+          </defs>
+          <circle cx="100" cy="100" r="95" fill="#fffdf8" stroke="#b08d57" stroke-width="4.5"/>
+          <circle cx="100" cy="100" r="87" fill="#14213d"/>
+          <circle cx="100" cy="100" r="56" fill="#fffdf8" stroke="#b08d57" stroke-width="2.5"/>
+          <text fill="#ffffff" font-family="Inter, sans-serif" font-size="14.5" font-weight="700" letter-spacing="1.4">
+            <textPath href="#topArc" startOffset="50%" text-anchor="middle">BIMBINGAN BELAJAR</textPath>
+          </text>
+          <text fill="#ffffff" font-family="Inter, sans-serif" font-size="15.5" font-weight="700" letter-spacing="2.2">
+            <textPath href="#botArc" startOffset="50%" text-anchor="middle">MATEMATIKA</textPath>
+          </text>
+          <polygon points="24,94 26.5,100 33,100.5 28,104.5 29.5,111 24,107.2 18.5,111 20,104.5 15,100.5 21.5,100" fill="#b08d57"/>
+          <polygon points="176,94 178.5,100 185,100.5 180,104.5 181.5,111 176,107.2 170.5,111 172,104.5 167,100.5 173.5,100" fill="#b08d57"/>
+          <line x1="50" y1="84" x2="150" y2="84" stroke="#b08d57" stroke-width="2"/>
+          <line x1="50" y1="116" x2="150" y2="116" stroke="#b08d57" stroke-width="2"/>
+          <text x="100" y="75" text-anchor="middle" fill="#14213d" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">+ − × ÷</text>
+          <text x="100" y="106" text-anchor="middle" fill="#14213d" font-family="Inter, sans-serif" font-size="19.5" font-weight="800" letter-spacing="1">SUMINTO</text>
+          <text x="100" y="137" text-anchor="middle" fill="#14213d" font-family="Libre Caslon Text, serif" font-size="18" font-weight="700">√  ∑  ∫</text>
+        </svg>
+      </div>
+      <div class="brand-title-group">
+        <div class="brand-badge">
+          <i data-lucide="award" style="width:13px;height:13px;"></i>
+          Bimbingan Belajar Matematika Suminto
+        </div>
+        <h1 id="quizTitle">Transformasi Geometri Komprehensif</h1>
+        <p class="brand-subtitle" id="quizSubtitle">Refleksi • Translasi • Rotasi • Dilatasi &amp; Komposisi Transformasi</p>
+      </div>
+    </div>
+    <div class="student-meta-bar">
+      <input type="text" id="studentName" class="student-input" placeholder="Nama Lengkap Siswa..." />
+      <input type="text" id="studentClass" class="student-input" style="min-width:120px;" placeholder="Kelas (mis. IX-A)" />
+    </div>
+  </div>
+</header>
+
+<div class="sticky-toolbar">
+  <div class="toolbar-inner">
+    <div class="toolbar-group">
+      <div class="timer-pill" title="Waktu Pengerjaan">
+        <i data-lucide="clock" style="width:15px;height:15px;"></i>
+        <span id="timerDisplay">00:00</span>
+        <button id="timerToggleBtn" class="btn btn-outline btn-sm" style="padding:2px 7px;" title="Jeda / Lanjutkan Timer">Jeda</button>
+      </div>
+      <div class="mode-switch" role="group" aria-label="Mode Kuis">
+        <button class="mode-btn active" id="modeLatihanBtn" onclick="setQuizMode('latihan')">Mode Latihan</button>
+        <button class="mode-btn" id="modeUjianBtn" onclick="setQuizMode('ujian')">Mode Ujian</button>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel">0/25</span>
+    </div>
+
+    <div class="toolbar-group">
+      <button class="btn btn-outline" onclick="openModal('formulaModal')">
+        <i data-lucide="book-open" style="width:15px;height:15px;"></i> Rumus
+      </button>
+      <button class="btn btn-outline" onclick="openModal('calcModal')">
+        <i data-lucide="calculator" style="width:15px;height:15px;"></i> Kalkulator
+      </button>
+      <button class="btn btn-outline" onclick="openEditorModal()">
+        <i data-lucide="edit-3" style="width:15px;height:15px;"></i> Editor Kuis
+      </button>
+      <button class="btn btn-secondary" onclick="finishQuiz()">
+        <i data-lucide="check-circle-2" style="width:15px;height:15px;"></i> Selesai &amp; Nilai
+      </button>
+    </div>
+  </div>
+</div>
+
+<main class="main-container">
+  <aside class="sidebar-card">
+    <div class="sidebar-title">
+      <span>Navigasi Soal</span>
+      <span class="font-mono" style="font-size:0.78rem;color:var(--text-muted);" id="filteredCount">25 soal</span>
+    </div>
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" data-filter="all" onclick="setFilter('all')">Semua</button>
+      <button class="filter-pill" data-filter="unanswered" onclick="setFilter('unanswered')">Belum</button>
+      <button class="filter-pill" data-filter="doubt" onclick="setFilter('doubt')">Ragu-ragu</button>
+      <button class="filter-pill" data-filter="single" onclick="setFilter('single')">PilGan</button>
+      <button class="filter-pill" data-filter="multiple" onclick="setFilter('multiple')">Kompleks</button>
+      <button class="filter-pill" data-filter="tf" onclick="setFilter('tf')">B/S</button>
+      <button class="filter-pill" data-filter="short" onclick="setFilter('short')">Isian</button>
+    </div>
+    <div class="nav-grid" id="navGrid"></div>
+    <div class="legend-list">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--background);border:1.5px solid var(--outline-soft);"></span> Belum dijawab</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--primary);"></span> Sudah dijawab</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--secondary);"></span> Benar</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--error);"></span> Salah</div>
+      <div class="legend-item" style="grid-column:span 2;"><span class="legend-dot" style="background:#d97706;border-radius:50%;"></span> Ditandai ragu-ragu</div>
+    </div>
+  </aside>
+
+  <section class="question-card" id="questionArea"></section>
+</main>
+
+<footer class="app-footer">
+  &copy; 2026 <strong>Bimbingan Belajar Matematika Suminto</strong> — Media Evaluasi Interaktif Transformasi Geometri
+</footer>
+
+<div class="modal-backdrop" id="formulaModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Lembar Rumus Transformasi Geometri</h3>
+      <button class="modal-close" onclick="closeModal('formulaModal')">✕</button>
+    </div>
+    <div style="display:grid;gap:14px;font-size:0.9rem;">
+      <div class="formula-box">
+        <div class="formula-box-title">1. Pencerminan (Refleksi) Titik $P(x, y)$</div>
+        <ul style="margin-left:18px;line-height:1.8;">
+          <li>Terhadap sumbu-$X$: $P(x, y) \rightarrow P'(x, -y)$</li>
+          <li>Terhadap sumbu-$Y$: $P(x, y) \rightarrow P'(-x, y)$</li>
+          <li>Terhadap garis $y = x$: $P(x, y) \rightarrow P'(y, x)$</li>
+          <li>Terhadap garis $y = -x$: $P(x, y) \rightarrow P'(-y, -x)$</li>
+          <li>Terhadap garis $x = h$: $P(x, y) \rightarrow P'(2h - x, y)$</li>
+          <li>Terhadap garis $y = k$: $P(x, y) \rightarrow P'(x, 2k - y)$</li>
+        </ul>
+      </div>
+      <div class="formula-box">
+        <div class="formula-box-title">2. Pergeseran (Translasi)</div>
+        <p>Titik $A(x, y)$ ditranslasikan oleh $T = \binom{p}{q}$ menghasilkan $A'(x + p,\, y + q)$.</p>
+        <p style="margin-top:4px;">Dua translasi berurutan $T_1 = \binom{p}{q}$ dilanjutkan $T_2 = \binom{r}{s}$ ekuivalen dengan $T = \binom{p+r}{q+s}$.</p>
+      </div>
+      <div class="formula-box">
+        <div class="formula-box-title">3. Perputaran (Rotasi) Pusat $O(0, 0)$</div>
+        <ul style="margin-left:18px;line-height:1.8;">
+          <li>Rotasi $+90^\circ$ (berlawanan jarum jam) atau $-270^\circ$: $P(x, y) \rightarrow P'(-y, x)$</li>
+          <li>Rotasi $-90^\circ$ (searah jarum jam) atau $+270^\circ$: $P(x, y) \rightarrow P'(y, -x)$</li>
+          <li>Rotasi $\pm 180^\circ$: $P(x, y) \rightarrow P'(-x, -y)$</li>
+        </ul>
+      </div>
+      <div class="formula-box">
+        <div class="formula-box-title">4. Perkalian (Dilatasi) Faktor Skala $k$</div>
+        <ul style="margin-left:18px;line-height:1.8;">
+          <li>Pusat $O(0, 0)$ dan faktor skala $k$: $P(x, y) \rightarrow P'(kx, ky)$</li>
+          <li>Pusat $M(p, q)$ dan faktor skala $k$: $P(x, y) \rightarrow P'\big(p + k(x - p),\, q + k(y - q)\big)$</li>
+          <li>Perubahan Luas &amp; Volume: $\text{Luas}' = k^2 \times \text{Luas awal}$, $\text{Volume}' = |k|^3 \times \text{Volume awal}$</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="calcModal">
+  <div class="modal-box" style="max-width:420px;">
+    <div class="modal-header">
+      <h3>Kalkulator Ilmiah</h3>
+      <button class="modal-close" onclick="closeModal('calcModal')">✕</button>
+    </div>
+    <input type="text" id="calcDisplay" class="calc-display" readonly value="0" />
+    <div class="calc-grid">
+      <button class="calc-btn op" onclick="calcClear()">C</button>
+      <button class="calc-btn op" onclick="calcBack()">⌫</button>
+      <button class="calc-btn op" onclick="calcAppend('(')">(</button>
+      <button class="calc-btn op" onclick="calcAppend(')')">)</button>
+      <button class="calc-btn op" onclick="calcAppend('/')">÷</button>
+
+      <button class="calc-btn op" onclick="calcFunc('Math.sin(')">sin</button>
+      <button class="calc-btn" onclick="calcAppend('7')">7</button>
+      <button class="calc-btn" onclick="calcAppend('8')">8</button>
+      <button class="calc-btn" onclick="calcAppend('9')">9</button>
+      <button class="calc-btn op" onclick="calcAppend('*')">×</button>
+
+      <button class="calc-btn op" onclick="calcFunc('Math.cos(')">cos</button>
+      <button class="calc-btn" onclick="calcAppend('4')">4</button>
+      <button class="calc-btn" onclick="calcAppend('5')">5</button>
+      <button class="calc-btn" onclick="calcAppend('6')">6</button>
+      <button class="calc-btn op" onclick="calcAppend('-')">−</button>
+
+      <button class="calc-btn op" onclick="calcFunc('Math.sqrt(')">√</button>
+      <button class="calc-btn" onclick="calcAppend('1')">1</button>
+      <button class="calc-btn" onclick="calcAppend('2')">2</button>
+      <button class="calc-btn" onclick="calcAppend('3')">3</button>
+      <button class="calc-btn op" onclick="calcAppend('+')">+</button>
+
+      <button class="calc-btn op" onclick="calcAppend('**2')">x²</button>
+      <button class="calc-btn op" onclick="calcAppend('Math.PI')">π</button>
+      <button class="calc-btn" onclick="calcAppend('0')">0</button>
+      <button class="calc-btn" onclick="calcAppend('.')">.</button>
+      <button class="calc-btn eq" onclick="calcEval()">=</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="scoreModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="badge-num">BBM SUMINTO</span>
+        <h3>Laporan Hasil Evaluasi Belajar</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal('scoreModal')">✕</button>
+    </div>
+    <div id="scoreReportBody"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="editorModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Editor Kuis Interaktif (BBM Suminto)</h3>
+      <button class="modal-close" onclick="closeModal('editorModal')">✕</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+      <select id="editorSelectQ" onchange="loadQuestionIntoEditor()" style="padding:7px 10px;border-radius:6px;border:1px solid var(--outline);font-weight:600;"></select>
+      <button class="btn btn-outline btn-sm" onclick="addNewQuestionEditor()">+ Tambah Soal</button>
+      <button class="btn btn-outline btn-sm" onclick="exportQuizJSON()">Ekspor JSON</button>
+      <label class="btn btn-outline btn-sm" style="cursor:pointer;">
+        Impor JSON <input type="file" accept=".json" style="display:none;" onchange="importQuizJSON(event)" />
+      </label>
+      <button class="btn btn-gold btn-sm" onclick="downloadEditedHTML()">Unduh HTML Kuis (hasil edit)</button>
+    </div>
+    <div id="editorFormArea"></div>
+  </div>
+</div>
+
+<script type="application/json" id="quiz-data">
+{
+  "meta": {
+    "judul": "Transformasi Geometri Komprehensif",
+    "subjudul": "Refleksi • Translasi • Rotasi • Dilatasi & Komposisi Transformasi",
+    "lembaga": "Bimbingan Belajar Matematika Suminto",
+    "jenjang": "SMP Kelas IX"
+  },
+  "soal": [
+    {
+      "id": 1,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "single",
+      "pertanyaan": "Perhatikan gambar pencerminan berikut. Titik $A(2, 2)$ dan $B(-3, -1)$ direfleksikan terhadap sumbu-$Y$ menghasilkan bayangan $A'(-2, 2)$ dan $B'(3, -1)$. Berdasarkan pola tersebut, koordinat bayangan titik $P(-7, 4)$ jika direfleksikan terhadap sumbu-$Y$ adalah ....",
+      "figure": {
+        "type": "bidang",
+        "caption": "Ilustrasi pencerminan titik A dan B terhadap sumbu-Y pada bidang Kartesius.",
+        "xRange": [
+          -5,
+          5
+        ],
+        "yRange": [
+          -4,
+          4
+        ],
+        "mirror": {
+          "x1": 0,
+          "y1": -4,
+          "x2": 0,
+          "y2": 4,
+          "label": "Sumbu Y"
+        },
+        "points": [
+          {
+            "x": 2,
+            "y": 2,
+            "label": "A(2,2)",
+            "color": "#14213d"
+          },
+          {
+            "x": -2,
+            "y": 2,
+            "label": "A'(-2,2)",
+            "color": "#2d5a4a"
+          },
+          {
+            "x": -3,
+            "y": -1,
+            "label": "B(-3,-1)",
+            "color": "#14213d"
+          },
+          {
+            "x": 3,
+            "y": -1,
+            "label": "B'(3,-1)",
+            "color": "#2d5a4a"
+          }
+        ],
+        "segments": [
+          {
+            "x1": 2,
+            "y1": 2,
+            "x2": -2,
+            "y2": 2,
+            "dashed": true
+          },
+          {
+            "x1": -3,
+            "y1": -1,
+            "x2": 3,
+            "y2": -1,
+            "dashed": true
+          }
+        ]
+      },
+      "opsi": [
+        "$P'(7, 4)$",
+        "$P'(-7, -4)$",
+        "$P'(7, -4)$",
+        "$P'(4, -7)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Pada pencerminan terhadap sumbu-$Y$, jarak titik ke sumbu-$Y$ sama dengan jarak bayangannya ke sumbu-$Y$ secara mendatar, sehingga absis berubah tanda sedangkan ordinat tetap: $P(x, y) \\rightarrow P'(-x, y)$. Untuk $P(-7, 4)$, bayangannya adalah $P'(-(-7), 4) = P'(7, 4)$.",
+      "rumus": "$P(x, y) \\xrightarrow{M_y} P'(-x, y)$",
+      "tips": "Cermin sumbu-$Y$ berdiri vertikal: koordinat $y$ (ketinggian) tetap, koordinat $x$ berbalik tanda."
+    },
+    {
+      "id": 2,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "single",
+      "pertanyaan": "Koordinat bayangan titik $P(-3, 1)$ jika dicerminkan terhadap garis $x = 4$ adalah ....",
+      "opsi": [
+        "$(11, 1)$",
+        "$(5, 1)$",
+        "$(-3, 7)$",
+        "$(1, 1)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Gunakan rumus pencerminan terhadap garis vertikal $x = h$ dengan $h = 4$: $x' = 2h - x = 2(4) - (-3) = 8 + 3 = 11$, dan $y' = y = 1$. Jadi koordinat bayangannya adalah $(11, 1)$.",
+      "rumus": "$P(x, y) \\xrightarrow{x = h} P'(2h - x, y)$",
+      "tips": "Selisih $x = -3$ ke cermin $x = 4$ adalah $7$ satuan ke kanan, maka bayangannya berada $7$ satuan di kanan cermin: $4 + 7 = 11$."
+    },
+    {
+      "id": 3,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "single",
+      "pertanyaan": "Koordinat bayangan titik $R(12, -3)$ jika dicerminkan terhadap garis $y = -2$ adalah ....",
+      "opsi": [
+        "$(12, -1)$",
+        "$(12, -5)$",
+        "$(10, -3)$",
+        "$(-16, -3)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Pada pencerminan terhadap garis horizontal $y = k$ dengan $k = -2$: $x' = x = 12$, sedangkan $y' = 2k - y = 2(-2) - (-3) = -4 + 3 = -1$. Jadi bayangannya adalah $(12, -1)$.",
+      "rumus": "$P(x, y) \\xrightarrow{y = k} P'(x, 2k - y)$",
+      "tips": "Titik $(12, -3)$ berada $1$ satuan di bawah garis $y = -2$, sehingga bayangannya berada $1$ satuan di atasnya yaitu $y = -1$."
+    },
+    {
+      "id": 4,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "single",
+      "pertanyaan": "Diketahui segitiga $ABC$ dengan koordinat titik sudut $A(-4, 7)$, $B(-6, 2)$, dan $C(-2, 2)$. Jika $\\triangle ABC$ direfleksikan terhadap garis $y = x$, koordinat titik-titik sudut bayangannya berturut-turut adalah ....",
+      "figure": {
+        "type": "bidang",
+        "caption": "Segitiga ABC pada kuadran II akan dicerminkan terhadap garis y = x.",
+        "xRange": [
+          -8,
+          8
+        ],
+        "yRange": [
+          -7,
+          8
+        ],
+        "mirror": {
+          "x1": -7,
+          "y1": -7,
+          "x2": 8,
+          "y2": 8,
+          "label": "y = x"
+        },
+        "polygons": [
+          {
+            "pts": [
+              [
+                -4,
+                7
+              ],
+              [
+                -6,
+                2
+              ],
+              [
+                -2,
+                2
+              ]
+            ],
+            "labels": [
+              "A",
+              "B",
+              "C"
+            ],
+            "color": "#14213d",
+            "fill": "rgba(20,33,61,0.15)"
+          }
+        ]
+      },
+      "opsi": [
+        "$A'(7, -4)$, $B'(2, -6)$, dan $C'(2, -2)$",
+        "$A'(-7, 4)$, $B'(-2, 6)$, dan $C'(-2, 2)$",
+        "$A'(4, -7)$, $B'(6, -2)$, dan $C'(2, -2)$",
+        "$A'(-4, -7)$, $B'(-6, -2)$, dan $C'(-2, -2)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Refleksi terhadap garis $y = x$ menukar posisi absis dan ordinat tanpa mengubah tanda: $(x, y) \\rightarrow (y, x)$. Maka $A(-4, 7) \\rightarrow A'(7, -4)$, $B(-6, 2) \\rightarrow B'(2, -6)$, dan $C(-2, 2) \\rightarrow C'(2, -2)$.",
+      "rumus": "$P(x, y) \\xrightarrow{y = x} P'(y, x)$",
+      "tips": "Garis $y = x$ artinya nilai $y$ menjadi $x$ baru, dan nilai $x$ menjadi $y$ baru."
+    },
+    {
+      "id": 5,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "short",
+      "pertanyaan": "Titik $L''(5, -6)$ merupakan hasil pencerminan titik $L(a, b)$ berturut-turut terhadap garis $y = x$ kemudian dilanjutkan terhadap sumbu-$Y$. Tentukan nilai dari $a + b$! (Ketik bilangan bulat saja)",
+      "kunci": "-11",
+      "toleransi": 0,
+      "satuan": "",
+      "pembahasan": "Langkah 1: $L(a, b) \\xrightarrow{y = x} L'(b, a)$. Langkah 2: $L'(b, a) \\xrightarrow{\\text{sumbu-}Y} L''(-b, a)$. Diketahui $L''(5, -6)$, sehingga $-b = 5 \\Rightarrow b = -5$ dan $a = -6$. Dengan demikian, $a + b = -6 + (-5) = -11$.",
+      "rumus": "$L(a, b) \\xrightarrow{y=x} (b, a) \\xrightarrow{M_y} (-b, a)$",
+      "tips": "Lakukan pemetaan maju dari $(a, b)$ lalu samakan dengan koordinat bayangan akhir."
+    },
+    {
+      "id": 6,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "single",
+      "pertanyaan": "Titik $Q''(-6, 18)$ adalah bayangan dari titik $Q$ pada refleksi berturut-turut terhadap garis $y = 4$ dan garis $x = 6$. Koordinat titik asal $Q$ adalah ....",
+      "opsi": [
+        "$(18, -10)$",
+        "$(18, 10)$",
+        "$(-18, -10)$",
+        "$(6, -10)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Misalkan $Q(x, y)$. Refleksi terhadap $y = 4$ menghasilkan $Q'(x, 2(4) - y) = Q'(x, 8 - y)$. Dilanjutkan refleksi terhadap $x = 6$ menghasilkan $Q''(2(6) - x, 8 - y) = Q''(12 - x, 8 - y)$. Diketahui $Q''(-6, 18)$, maka: $12 - x = -6 \\Rightarrow x = 18$, dan $8 - y = 18 \\Rightarrow y = -10$. Jadi $Q(18, -10)$.",
+      "rumus": "$Q(x, y) \\xrightarrow{y=k} (x, 2k-y) \\xrightarrow{x=h} (2h-x, 2k-y)$",
+      "tips": "Karena cermin pertama horizontal ($y=4$) dan cermin kedua vertikal ($x=6$), keduanya bekerja saling bebas pada komponen $y$ dan $x$."
+    },
+    {
+      "id": 7,
+      "topik": "Refleksi (Pencerminan)",
+      "tipe": "multiple",
+      "pertanyaan": "Manakah di antara pernyataan berikut yang **BENAR** mengenai sifat-sifat pencerminan (refleksi) pada bidang datar? *(Pilih semua jawaban yang benar)*",
+      "opsi": [
+        "Jarak setiap titik asal ke garis cermin sama dengan jarak bayangannya ke garis cermin.",
+        "Ruas garis yang menghubungkan titik asal dan bayangannya selalu tegak lurus terhadap garis cermin.",
+        "Bangun hasil pencerminan selalu kongruen (sama bentuk dan ukuran) dengan bangun asalnya.",
+        "Pencerminan terhadap sumbu-$X$ yang dilanjutkan pencerminan terhadap sumbu-$Y$ menghasilkan bayangan yang sama dengan rotasi $90^\\circ$ berpusat di $O(0,0)$."
+      ],
+      "kunci": [
+        0,
+        1,
+        2
+      ],
+      "pembahasan": "Pernyataan 1, 2, dan 3 adalah sifat dasar refleksi (isometri). Pernyataan 4 salah karena refleksi terhadap sumbu-$X$ lalu sumbu-$Y$ memetakan $(x, y) \\rightarrow (x, -y) \\rightarrow (-x, -y)$, yang ekuivalen dengan rotasi $180^\\circ$ berpusat di $O(0, 0)$, bukan $90^\\circ$.",
+      "rumus": "$M_y \\circ M_x : (x, y) \\rightarrow (-x, -y) \\equiv R[O, 180^\\circ]$",
+      "tips": "Refleksi adalah transformasi isometri: ukuran dan sudut tidak berubah, hanya orientasi yang terbalik."
+    },
+    {
+      "id": 8,
+      "topik": "Translasi (Pergeseran)",
+      "tipe": "single",
+      "pertanyaan": "Pada suatu translasi $T = \\binom{9}{b}$, titik $N(4a, 5b)$ dipetakan ke titik $N'(21, 8 - 2b)$. Nilai dari $a + b$ adalah ....",
+      "opsi": [
+        "$4$",
+        "$3$",
+        "$5$",
+        "$2$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Berdasarkan rumus translasi $N'(x + p, y + q) = (4a + 9, 5b + b) = (21, 8 - 2b)$. Untuk absis: $4a + 9 = 21 \\Rightarrow 4a = 12 \\Rightarrow a = 3$. Untuk ordinat: $6b = 8 - 2b \\Rightarrow 8b = 8 \\Rightarrow b = 1$. Maka $a + b = 3 + 1 = 4$.",
+      "rumus": "$N(x, y) \\xrightarrow{T=\\binom{p}{q}} N'(x + p, y + q)$",
+      "tips": "Samakan komponen mendatar (atas) dengan $x'$, dan komponen tegak (bawah) dengan $y'$."
+    },
+    {
+      "id": 9,
+      "topik": "Translasi (Pergeseran)",
+      "tipe": "single",
+      "pertanyaan": "Perhatikan gambar tiga segitiga kongruen pada bidang koordinat berikut. Pasangan bilangan translasi yang memetakan **Segitiga I** ke **Segitiga III** adalah ....",
+      "figure": {
+        "type": "bidang",
+        "caption": "Posisi Segitiga I, II, dan III pada bidang koordinat Kartesius.",
+        "xRange": [
+          -4,
+          6
+        ],
+        "yRange": [
+          -4,
+          5
+        ],
+        "polygons": [
+          {
+            "pts": [
+              [
+                0,
+                1
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "labels": [
+              "",
+              "",
+              "I"
+            ],
+            "color": "#14213d",
+            "fill": "rgba(20,33,61,0.18)"
+          },
+          {
+            "pts": [
+              [
+                -1,
+                -3
+              ],
+              [
+                3,
+                -3
+              ],
+              [
+                1,
+                -1
+              ]
+            ],
+            "labels": [
+              "",
+              "",
+              "II"
+            ],
+            "color": "#b08d57",
+            "fill": "rgba(176,141,87,0.22)"
+          },
+          {
+            "pts": [
+              [
+                -3,
+                -1
+              ],
+              [
+                1,
+                -1
+              ],
+              [
+                -1,
+                1
+              ]
+            ],
+            "labels": [
+              "",
+              "",
+              "III"
+            ],
+            "color": "#2d5a4a",
+            "fill": "rgba(45,90,74,0.20)"
+          }
+        ]
+      },
+      "opsi": [
+        "$\\binom{-3}{-2}$",
+        "$\\binom{3}{2}$",
+        "$\\binom{-2}{-3}$",
+        "$\\binom{-1}{-4}$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Ambil titik puncak atas Segitiga I yaitu $(2, 3)$ dan titik puncak atas yang bersesuaian pada Segitiga III yaitu $(-1, 1)$. Komponen translasinya adalah $p = -1 - 2 = -3$ (3 satuan ke kiri) dan $q = 1 - 3 = -2$ (2 satuan ke bawah), sehingga $T = \\binom{-3}{-2}$.",
+      "rumus": "$T = \\binom{x' - x}{y' - y}$",
+      "tips": "Pilih satu titik sudut yang mudah dibaca (misalnya titik puncak atas) lalu hitung pergeseran kanan/kiri dan atas/bawah."
+    },
+    {
+      "id": 10,
+      "topik": "Translasi (Pergeseran)",
+      "tipe": "single",
+      "pertanyaan": "Diketahui persegi panjang $PQRS$ dengan koordinat $P(-5, -1)$, $Q(3, -1)$, dan $R(3, 8)$. Koordinat bayangan titik $S$ oleh translasi $T = \\binom{-2}{-3}$ adalah ....",
+      "opsi": [
+        "$(-7, 5)$",
+        "$(-7, 11)$",
+        "$(-3, 5)$",
+        "$(1, 5)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Pada persegi panjang $PQRS$, sisi $PQ$ mendatar pada $y = -1$ dan sisi $QR$ tegak pada $x = 3$. Maka titik sudut keempat adalah $S(-5, 8)$. Setelah ditranslasikan oleh $T = \\binom{-2}{-3}$, diperoleh $S'(-5 + (-2), 8 + (-3)) = S'(-7, 5)$.",
+      "rumus": "$S'(x_S + p, y_S + q)$",
+      "tips": "Tentukan terlebih dahulu koordinat titik $S$ menggunakan sifat sisi sejajar persegi panjang."
+    },
+    {
+      "id": 11,
+      "topik": "Translasi (Pergeseran)",
+      "tipe": "short",
+      "pertanyaan": "Titik $A'(2, 6)$ adalah bayangan dari titik $A(3, 3)$ oleh translasi $T = \\binom{a}{b}$. Hitunglah nilai dari $a + b$!",
+      "kunci": "2",
+      "toleransi": 0,
+      "satuan": "",
+      "pembahasan": "Dari $A(3, 3) \\rightarrow A'(2, 6)$ diperoleh $3 + a = 2 \\Rightarrow a = -1$, dan $3 + b = 6 \\Rightarrow b = 3$. Oleh karena itu, $a + b = -1 + 3 = 2$.",
+      "rumus": "$a = x' - x, \\quad b = y' - y$",
+      "tips": "Perhatikan tanda negatif saat menghitung $2 - 3 = -1$."
+    },
+    {
+      "id": 12,
+      "topik": "Translasi (Pergeseran)",
+      "tipe": "single",
+      "pertanyaan": "Koordinat bayangan titik $(4, -3)$ oleh pergeseran $T_1 = \\binom{2}{2}$ dilanjutkan dengan pergeseran $T_2 = \\binom{-5}{7}$ adalah ....",
+      "opsi": [
+        "$(1, 6)$",
+        "$(-3, 9)$",
+        "$(1, 2)$",
+        "$(11, 6)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Dua translasi berurutan dapat dijumlahkan terlebih dahulu: $T = T_1 + T_2 = \\binom{2 + (-5)}{2 + 7} = \\binom{-3}{9}$. Bayangan titik $(4, -3)$ adalah $(4 + (-3), -3 + 9) = (1, 6)$.",
+      "rumus": "$T_{\\text{total}} = \\binom{p_1 + p_2}{q_1 + q_2}$",
+      "tips": "Translasi bersifat komutatif dan asosiatif: cukup jumlahkan semua komponen mendatar dan semua komponen tegak."
+    },
+    {
+      "id": 13,
+      "topik": "Rotasi (Perputaran)",
+      "tipe": "single",
+      "pertanyaan": "Titik $S(3, -2)$ dirotasikan terhadap titik asal $O(0, 0)$ sejauh $90^\\circ$ (berlawanan arah jarum jam). Koordinat bayangan titik $S$ adalah ....",
+      "opsi": [
+        "$(2, 3)$",
+        "$(-2, 3)$",
+        "$(-2, -3)$",
+        "$(2, -3)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Rotasi dengan pusat $O(0, 0)$ dan sudut $+90^\\circ$ memetakan $P(x, y) \\rightarrow P'(-y, x)$. Untuk $S(3, -2)$, diperoleh $S'(-(-2), 3) = S'(2, 3)$.",
+      "rumus": "$P(x, y) \\xrightarrow{R[O, 90^\\circ]} P'(-y, x)$",
+      "tips": "Titik $(3, -2)$ berada di kuadran IV; diputar $90^\\circ$ berlawanan jarum jam akan berpindah ke kuadran I $(+, +)$."
+    },
+    {
+      "id": 14,
+      "topik": "Rotasi (Perputaran)",
+      "tipe": "single",
+      "pertanyaan": "Garis $AB$ dengan koordinat $A(3, 6)$ dan $B(-2, 4)$ dirotasikan sebesar $-90^\\circ$ (searah jarum jam) dengan pusat $O(0, 0)$. Koordinat bayangan $A'$ dan $B'$ berturut-turut adalah ....",
+      "figure": {
+        "type": "bidang",
+        "caption": "Ruas garis AB sebelum dirotasikan -90° terhadap O(0,0).",
+        "xRange": [
+          -5,
+          7
+        ],
+        "yRange": [
+          -5,
+          7
+        ],
+        "points": [
+          {
+            "x": 3,
+            "y": 6,
+            "label": "A(3,6)",
+            "color": "#14213d"
+          },
+          {
+            "x": -2,
+            "y": 4,
+            "label": "B(-2,4)",
+            "color": "#14213d"
+          }
+        ],
+        "segments": [
+          {
+            "x1": 3,
+            "y1": 6,
+            "x2": -2,
+            "y2": 4,
+            "color": "#14213d"
+          }
+        ]
+      },
+      "opsi": [
+        "$A'(6, -3)$ dan $B'(4, 2)$",
+        "$A'(-6, 3)$ dan $B'(-4, -2)$",
+        "$A'(-3, -6)$ dan $B'(2, -4)$",
+        "$A'(6, 3)$ dan $B'(4, -2)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Rotasi $-90^\\circ$ berpusat di $O(0, 0)$ memiliki aturan $P(x, y) \\rightarrow P'(y, -x)$. Maka $A(3, 6) \\rightarrow A'(6, -3)$ dan $B(-2, 4) \\rightarrow B'(4, -(-2)) = B'(4, 2)$.",
+      "rumus": "$P(x, y) \\xrightarrow{R[O, -90^\\circ]} P'(y, -x)$",
+      "tips": "Rotasi $-90^\\circ$ (searah jarum jam) sama dengan rotasi $+270^\\circ$."
+    },
+    {
+      "id": 15,
+      "topik": "Rotasi (Perputaran)",
+      "tipe": "single",
+      "pertanyaan": "Titik $P(-2, 3)$ dirotasikan dengan rotasi $R(O, 1.890^\\circ)$ dilanjutkan oleh rotasi $R(O, 1.350^\\circ)$ menghasilkan bayangan $P''$. Koordinat titik $P''$ adalah ....",
+      "opsi": [
+        "$(-2, 3)$",
+        "$(-2, -3)$",
+        "$(3, -2)$",
+        "$(-3, 2)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Total sudut rotasi dengan pusat yang sama adalah $\\alpha = 1.890^\\circ + 1.350^\\circ = 3.240^\\circ$. Karena satu putaran penuh adalah $360^\\circ$, bagi $3.240^\\circ$ dengan $360^\\circ$: $3.240^\\circ = 9 \\times 360^\\circ + 0^\\circ$. Artinya titik berputar tepat $9$ putaran penuh dan kembali ke posisi semula $(-2, 3)$.",
+      "rumus": "$R(O, \\alpha_1) \\circ R(O, \\alpha_2) = R(O, \\alpha_1 + \\alpha_2), \\quad 360^\\circ \\equiv 0^\\circ$",
+      "tips": "Jumlahkan kedua sudut terlebih dahulu, lalu cari sisa pembagiannya terhadap $360^\\circ$."
+    },
+    {
+      "id": 16,
+      "topik": "Rotasi (Perputaran)",
+      "tipe": "tf",
+      "pertanyaan": "Tentukan apakah pernyataan berikut **Benar** atau **Salah**:\n\n> \"Rotasi titik $A(2, -7)$ terhadap pusat $O(0, 0)$ sejauh $-180^\\circ$ menghasilkan koordinat bayangan yang berbeda dengan rotasi sejauh $+180^\\circ$.\"",
+      "opsi": [
+        "Benar",
+        "Salah"
+      ],
+      "kunci": 1,
+      "pembahasan": "Pernyataan tersebut **Salah**. Baik rotasi $+180^\\circ$ (berlawanan jarum jam) maupun $-180^\\circ$ (searah jarum jam) memetakan setiap titik $(x, y)$ ke posisi setengah putaran yang sama persis, yaitu $(-x, -y) = (-2, 7)$.",
+      "rumus": "$R[O, +180^\\circ] \\equiv R[O, -180^\\circ] : (x, y) \\rightarrow (-x, -y)$",
+      "tips": "Setengah lingkaran ke kiri maupun ke kanan selalu berujung di titik seberang yang sama."
+    },
+    {
+      "id": 17,
+      "topik": "Dilatasi (Perkalian)",
+      "tipe": "single",
+      "pertanyaan": "Koordinat bayangan titik $(-15, 24)$ pada dilatasi dengan pusat $O(0, 0)$ dan faktor skala $k = -\\frac{1}{3}$ adalah ....",
+      "opsi": [
+        "$(5, -8)$",
+        "$(-5, 8)$",
+        "$(8, -5)$",
+        "$(45, -72)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Pada dilatasi berpusat di $O(0, 0)$ dengan faktor skala $k = -\\frac{1}{3}$, setiap koordinat dikalikan dengan $k$: $x' = (-\\frac{1}{3})(-15) = 5$ dan $y' = (-\\frac{1}{3})(24) = -8$. Jadi bayangannya adalah $(5, -8)$.",
+      "rumus": "$P(x, y) \\xrightarrow{D[O, k]} P'(kx, ky)$",
+      "tips": "Faktor skala negatif memperkecil sekaligus membalik arah letak bayangan terhadap pusat $O(0, 0)$."
+    },
+    {
+      "id": 18,
+      "topik": "Dilatasi (Perkalian)",
+      "tipe": "single",
+      "pertanyaan": "Titik $P'(6, -3)$ adalah bayangan titik $P$ oleh dilatasi $[O, 3]$. Koordinat titik asal $P$ adalah ....",
+      "opsi": [
+        "$(2, -1)$",
+        "$(18, -9)$",
+        "$(3, -6)$",
+        "$(-2, 1)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Diketahui $P'(3x, 3y) = (6, -3)$. Maka $3x = 6 \\Rightarrow x = 2$ dan $3y = -3 \\Rightarrow y = -1$. Koordinat titik asal adalah $P(2, -1)$.",
+      "rumus": "$x = \\frac{x'}{k}, \\quad y = \\frac{y'}{k}$",
+      "tips": "Untuk mencari titik asal dari bayangan dilatasi pusat $O$, bagi koordinat bayangan dengan faktor skala $k$."
+    },
+    {
+      "id": 19,
+      "topik": "Dilatasi (Perkalian)",
+      "tipe": "single",
+      "pertanyaan": "Diketahui titik $Q(-2, 2)$ didilatasikan dengan pusat $T(-2, -3)$ dan faktor skala $k = -2$. Koordinat bayangan titik $Q'$ adalah ....",
+      "opsi": [
+        "$(-2, -13)$",
+        "$(2, -13)$",
+        "$(-2, 7)$",
+        "$(4, -4)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Gunakan rumus dilatasi dengan pusat $(p, q) = (-2, -3)$ dan $k = -2$: $x' = -2 + (-2)(-2 - (-2)) = -2 + 0 = -2$. $y' = -3 + (-2)(2 - (-3)) = -3 + (-2)(5) = -3 - 10 = -13$. Jadi $Q'(-2, -13)$.",
+      "rumus": "$P'(p + k(x - p),\\; q + k(y - q))$",
+      "tips": "Hitung selisih koordinat titik terhadap pusat $(x - p, y - q)$ terlebih dahulu sebelum dikalikan $k$."
+    },
+    {
+      "id": 20,
+      "topik": "Dilatasi (Perkalian)",
+      "tipe": "short",
+      "pertanyaan": "Sebuah foto berukuran $4\\text{ cm} \\times 6\\text{ cm}$. Bila foto tersebut diperbesar $2$ kali ukuran semula (dilatasi faktor skala $k = 2$), berapakah keliling foto setelah diperbesar (dalam $\\text{cm}$)?",
+      "kunci": "40",
+      "toleransi": 0,
+      "satuan": "cm",
+      "pembahasan": "Ukuran awal foto: panjang $6\\text{ cm}$ dan lebar $4\\text{ cm}$. Setelah diperbesar $2$ kali: panjang baru $= 2 \\times 6 = 12\\text{ cm}$ dan lebar baru $= 2 \\times 4 = 8\\text{ cm}$. Keliling foto hasil perbesaran $= 2 \\times (12 + 8) = 2 \\times 20 = 40\\text{ cm}$.",
+      "rumus": "$K' = k \\times K_{\\text{awal}} = 2 \\times 2(4 + 6) = 40\\text{ cm}$",
+      "tips": "Besaran panjang/keliling berbanding lurus dengan $k$, sedangkan luas berbanding lurus dengan $k^2$."
+    },
+    {
+      "id": 21,
+      "topik": "Dilatasi (Perkalian)",
+      "tipe": "single",
+      "pertanyaan": "Sebuah tabung mempunyai jari-jari $8\\text{ cm}$ dan tinggi $28\\text{ cm}$ diisi air sampai penuh. Jika tabung tersebut diperbesar dengan faktor skala $k = 2$, berapakah volume air maksimal yang dapat masuk ke dalam tabung hasil perbesaran tersebut? ($\\pi = \\frac{22}{7}$)",
+      "opsi": [
+        "$45.056\\text{ cm}^3$",
+        "$5.632\\text{ cm}^3$",
+        "$11.264\\text{ cm}^3$",
+        "$22.528\\text{ cm}^3$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Volume tabung awal: $V_{\\text{awal}} = \\pi r^2 t = \\frac{22}{7} \\times 8^2 \\times 28 = 22 \\times 64 \\times 4 = 5.632\\text{ cm}^3$. Karena dimensi diperbesar dengan faktor skala $k = 2$, maka $V_{\\text{baru}} = k^3 \\times V_{\\text{awal}} = 2^3 \\times 5.632 = 8 \\times 5.632 = 45.056\\text{ cm}^3$.",
+      "rumus": "$V' = k^3 \\times V_{\\text{awal}}$",
+      "tips": "Ketika semua rusuk/dimensi bangun ruang dikalikan $k$, volumenya menjadi $k^3$ kali volume semula."
+    },
+    {
+      "id": 22,
+      "topik": "Dilatasi (Perkalian)",
+      "tipe": "single",
+      "pertanyaan": "Sebuah kubus mempunyai panjang rusuk $30\\text{ cm}$. Jika kubus tersebut didilatasikan dengan faktor skala $k = \\frac{1}{3}$, perbandingan volume kubus mula-mula dengan volume kubus hasil dilatasi adalah ....",
+      "opsi": [
+        "$27 : 1$",
+        "$9 : 1$",
+        "$3 : 1$",
+        "$1 : 27$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Rusuk awal $s_1 = 30\\text{ cm} \\Rightarrow V_1 = 30^3 = 27.000\\text{ cm}^3$. Rusuk baru $s_2 = \\frac{1}{3} \\times 30 = 10\\text{ cm} \\Rightarrow V_2 = 10^3 = 1.000\\text{ cm}^3$. Jadi $V_1 : V_2 = 27.000 : 1.000 = 27 : 1$.",
+      "rumus": "$\\frac{V_1}{V_2} = \\left(\\frac{s_1}{s_2}\\right)^3 = 3^3 = 27 : 1$",
+      "tips": "Perhatikan urutan pertanyaan: 'mula-mula dengan hasil dilatasi', sehingga bilangan yang lebih besar berada di depan."
+    },
+    {
+      "id": 23,
+      "topik": "Komposisi Transformasi",
+      "tipe": "single",
+      "pertanyaan": "Titik $A(11, -4)$ dirotasikan dengan rotasi $R(O, 90^\\circ)$, dilanjutkan dengan translasi $T = \\binom{-3}{-7}$, dan terakhir direfleksikan terhadap garis $y = -x$. Koordinat bayangan akhir titik $A$ adalah ....",
+      "opsi": [
+        "$(-4, -1)$",
+        "$(-6, -7)$",
+        "$(-2, -5)$",
+        "$(3, 2)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Tahap 1: Rotasi $R(O, 90^\\circ)$ pada $A(11, -4)$ menghasilkan $A'(4, 11)$. Tahap 2: Translasi $\\binom{-3}{-7}$ pada $A'(4, 11)$ menghasilkan $A''(4 - 3, 11 - 7) = A''(1, 4)$. Tahap 3: Refleksi terhadap $y = -x$ pada $A''(1, 4)$ menukar dan menegatifkan koordinat sehingga menjadi $A'''(-4, -1)$.",
+      "rumus": "$(x, y) \\xrightarrow{R[O,90^\\circ]} (-y, x) \\xrightarrow{T} (-y+p, x+q) \\xrightarrow{y=-x} (-(x+q), -(-y+p))$",
+      "tips": "Kerjakan komposisi transformasi secara berurutan dari transformasi pertama hingga terakhir."
+    },
+    {
+      "id": 24,
+      "topik": "Komposisi Transformasi",
+      "tipe": "single",
+      "pertanyaan": "Garis $2x - 3y + 6 = 0$ ditranslasikan oleh $T = \\binom{3}{-5}$. Persamaan bayangan garis tersebut adalah ....",
+      "opsi": [
+        "$2x - 3y - 15 = 0$",
+        "$2x - 3y + 27 = 0$",
+        "$2x - 3y - 3 = 0$",
+        "$2x - 3y + 15 = 0$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Misalkan titik pada garis adalah $(x, y)$ dan bayangannya $(x', y')$. Maka $x' = x + 3 \\Rightarrow x = x' - 3$ dan $y' = y - 5 \\Rightarrow y = y' + 5$. Substitusikan ke persamaan garis: $2(x' - 3) - 3(y' + 5) + 6 = 0 \\Rightarrow 2x' - 6 - 3y' - 15 + 6 = 0 \\Rightarrow 2x' - 3y' - 15 = 0$.",
+      "rumus": "$x = x' - p, \\quad y = y' - q$",
+      "tips": "Pada transformasi kurva/garis, nyatakan variabel lama $(x, y)$ dalam variabel baru $(x', y')$ lalu substitusikan."
+    },
+    {
+      "id": 25,
+      "topik": "Aplikasi Transformasi",
+      "tipe": "single",
+      "pertanyaan": "Seorang anak bermain lompat-lompatan dari titik awal $O(0, 0)$ dengan pola berulang: Langkah 1 melompat $1$ satuan ke depan ($+y$) lalu menggambar garis $1\\text{ cm}$; Langkah 2 melompat $2$ satuan ke kanan ($+x$) lalu menggambar garis $4\\text{ cm}$; Langkah 3 melompat $3$ satuan ke belakang ($-y$) lalu menggambar garis $9\\text{ cm}$; Langkah 4 melompat $4$ satuan ke kiri ($-x$) lalu menggambar garis $16\\text{ cm}$, dan seterusnya ($n$ lompatan menghasilkan garis $n^2\\text{ cm}$). Posisi koordinat anak tersebut tepat saat menggambar garis sepanjang $1\\text{ m}$ ($100\\text{ cm}$) adalah ....",
+      "figure": {
+        "type": "bidang",
+        "caption": "Lintasan langkah 1 sampai langkah 4 dari titik O(0,0).",
+        "xRange": [
+          -3,
+          4
+        ],
+        "yRange": [
+          -3,
+          3
+        ],
+        "points": [
+          {
+            "x": 0,
+            "y": 0,
+            "label": "O(0,0)",
+            "color": "#14213d"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "label": "L1",
+            "color": "#2d5a4a"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "label": "L2",
+            "color": "#2d5a4a"
+          },
+          {
+            "x": 2,
+            "y": -2,
+            "label": "L3",
+            "color": "#2d5a4a"
+          },
+          {
+            "x": -2,
+            "y": -2,
+            "label": "L4",
+            "color": "#9b2c2c"
+          }
+        ],
+        "segments": [
+          {
+            "x1": 0,
+            "y1": 0,
+            "x2": 0,
+            "y2": 1,
+            "color": "#14213d"
+          },
+          {
+            "x1": 0,
+            "y1": 1,
+            "x2": 2,
+            "y2": 1,
+            "color": "#14213d"
+          },
+          {
+            "x1": 2,
+            "y1": 1,
+            "x2": 2,
+            "y2": -2,
+            "color": "#14213d"
+          },
+          {
+            "x1": 2,
+            "y1": -2,
+            "x2": -2,
+            "y2": -2,
+            "color": "#14213d"
+          }
+        ]
+      },
+      "opsi": [
+        "$(6, 5)$",
+        "$(-4, -4)$",
+        "$(6, -4)$",
+        "$(-6, 5)$"
+      ],
+      "kunci": 0,
+      "pembahasan": "Panjang garis $1\\text{ m} = 100\\text{ cm}$. Pola panjang garis pada langkah ke-$n$ adalah $n^2\\text{ cm}$, sehingga $n^2 = 100 \\Rightarrow n = 10$ (Langkah ke-10). Jumlah pergeseran mendatar (langkah genap: kanan $+$, kiri $-$): $x = +2 - 4 + 6 - 8 + 10 = 6$. Jumlah pergeseran tegak (langkah ganjil: depan $+$, belakang $-$): $y = +1 - 3 + 5 - 7 + 9 = 5$. Jadi posisi anak tersebut berada di koordinat $(6, 5)$.",
+      "rumus": "$T_{\\text{total}} = \\sum_{i=1}^{10} T_i$",
+      "tips": "Pisahkan pergerakan sumbu-$X$ (langkah genap: kanan/kiri) dan sumbu-$Y$ (langkah ganjil: depan/belakang)."
+    }
+  ]
+}
+</script>
+
+<script>
+const MathFig = (function() {
+  function svgEl(tag, attrs = {}) {
+    const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+    return el;
+  }
+
+  function renderBidang(fig) {
+    const [xMin, xMax] = fig.xRange || [-5, 5];
+    const [yMin, yMax] = fig.yRange || [-5, 5];
+    const pad = 28;
+    const cell = 28;
+    const w = (xMax - xMin) * cell + pad * 2;
+    const h = (yMax - yMin) * cell + pad * 2;
+    const svg = svgEl("svg", { viewBox: `0 0 ${w} ${h}`, width: Math.min(w, 460), style: "max-width:100%;height:auto;" });
+
+    const toPx = (x, y) => [pad + (x - xMin) * cell, pad + (yMax - y) * cell];
+
+    for (let x = xMin; x <= xMax; x++) {
+      const [px] = toPx(x, 0);
+      svg.appendChild(svgEl("line", {
+        x1: px, y1: pad, x2: px, y2: h - pad,
+        stroke: x === 0 ? "#14213d" : "#e2d8c0",
+        "stroke-width": x === 0 ? "2" : "1"
+      }));
+      if (x !== 0 && x % 1 === 0) {
+        const [, py0] = toPx(0, 0);
+        const t = svgEl("text", { x: px, y: Math.min(Math.max(py0 + 13, pad + 12), h - 8), "text-anchor": "middle", fill: "#525866", "font-size": "9.5", "font-family": "JetBrains Mono, monospace" });
+        t.textContent = x;
+        svg.appendChild(t);
+      }
+    }
+    for (let y = yMin; y <= yMax; y++) {
+      const [, py] = toPx(0, y);
+      svg.appendChild(svgEl("line", {
+        x1: pad, y1: py, x2: w - pad, y2: py,
+        stroke: y === 0 ? "#14213d" : "#e2d8c0",
+        "stroke-width": y === 0 ? "2" : "1"
+      }));
+      if (y !== 0 && y % 1 === 0) {
+        const [px0] = toPx(0, 0);
+        const t = svgEl("text", { x: Math.max(px0 - 7, 16), y: py + 3, "text-anchor": "end", fill: "#525866", "font-size": "9.5", "font-family": "JetBrains Mono, monospace" });
+        t.textContent = y;
+        svg.appendChild(t);
+      }
+    }
+
+    const [xEnd, yZero] = toPx(xMax, 0);
+    const lblX = svgEl("text", { x: xEnd + 10, y: yZero + 4, fill: "#14213d", "font-weight": "700", "font-size": "11" });
+    lblX.textContent = "X";
+    svg.appendChild(lblX);
+
+    const [xZero, yTop] = toPx(0, yMax);
+    const lblY = svgEl("text", { x: xZero, y: yTop - 9, "text-anchor": "middle", fill: "#14213d", "font-weight": "700", "font-size": "11" });
+    lblY.textContent = "Y";
+    svg.appendChild(lblY);
+
+    if (fig.mirror) {
+      const [mx1, my1] = toPx(fig.mirror.x1, fig.mirror.y1);
+      const [mx2, my2] = toPx(fig.mirror.x2, fig.mirror.y2);
+      svg.appendChild(svgEl("line", { x1: mx1, y1: my1, x2: mx2, y2: my2, stroke: "#b08d57", "stroke-width": "2.2", "stroke-dasharray": "6,4" }));
+      if (fig.mirror.label) {
+        const ml = svgEl("text", { x: mx2 - 4, y: my2 + 14, fill: "#8b5a2b", "font-size": "10", "font-weight": "700" });
+        ml.textContent = fig.mirror.label;
+        svg.appendChild(ml);
+      }
+    }
+
+    (fig.polygons || []).forEach(poly => {
+      const ptsStr = poly.pts.map(([x, y]) => toPx(x, y).join(",")).join(" ");
+      svg.appendChild(svgEl("polygon", {
+        points: ptsStr,
+        fill: poly.fill || "rgba(20,33,61,0.14)",
+        stroke: poly.color || "#14213d",
+        "stroke-width": "2"
+      }));
+      poly.pts.forEach(([x, y], idx) => {
+        const [px, py] = toPx(x, y);
+        svg.appendChild(svgEl("circle", { cx: px, cy: py, r: "3.5", fill: poly.color || "#14213d" }));
+        if (poly.labels && poly.labels[idx]) {
+          const lb = svgEl("text", { x: px + 6, y: py - 5, fill: poly.color || "#14213d", "font-size": "10.5", "font-weight": "700" });
+          lb.textContent = poly.labels[idx];
+          svg.appendChild(lb);
+        }
+      });
+    });
+
+    (fig.segments || []).forEach(seg => {
+      const [sx1, sy1] = toPx(seg.x1, seg.y1);
+      const [sx2, sy2] = toPx(seg.x2, seg.y2);
+      const attrs = { x1: sx1, y1: sy1, x2: sx2, y2: sy2, stroke: seg.color || "#64748b", "stroke-width": "1.8" };
+      if (seg.dashed) attrs["stroke-dasharray"] = "4,4";
+      svg.appendChild(svgEl("line", attrs));
+    });
+
+    (fig.points || []).forEach(pt => {
+      const [px, py] = toPx(pt.x, pt.y);
+      svg.appendChild(svgEl("circle", { cx: px, cy: py, r: "4.5", fill: pt.color || "#14213d" }));
+      if (pt.label) {
+        const t = svgEl("text", { x: px + 6, y: py - 6, fill: pt.color || "#14213d", "font-size": "10.5", "font-weight": "700", "font-family": "JetBrains Mono, monospace" });
+        t.textContent = pt.label;
+        svg.appendChild(t);
+      }
+    });
+
+    return svg;
+  }
+
+  function render(fig, container) {
+    if (!fig || !container) return;
+    container.innerHTML = "";
+    let svg;
+    if (fig.type === "bidang") svg = renderBidang(fig);
+    else {
+      svg = svgEl("svg", { viewBox: "0 0 300 120", width: 300 });
+      const t = svgEl("text", { x: 150, y: 60, "text-anchor": "middle", fill: "#525866", "font-size": "12" });
+      t.textContent = `[Diagram: ${fig.type}]`;
+      svg.appendChild(t);
+    }
+    container.appendChild(svg);
+    if (fig.caption) {
+      const cap = document.createElement("div");
+      cap.className = "q-figure-caption";
+      cap.textContent = fig.caption;
+      container.appendChild(cap);
+    }
+  }
+
+  return { render };
+})();
+
+let quizData = JSON.parse(document.getElementById("quiz-data").textContent);
+
+let state = {
+  currentIdx: 0,
+  mode: "latihan",
+  filter: "all",
+  answers: {},
+  checked: {},
+  doubts: {},
+  submitted: false,
+  seconds: 0,
+  timerPaused: false
+};
+
+setInterval(() => {
+  if (!state.timerPaused && !state.submitted) {
+    state.seconds++;
+    const m = String(Math.floor(state.seconds / 60)).padStart(2, "0");
+    const s = String(state.seconds % 60).padStart(2, "0");
+    document.getElementById("timerDisplay").textContent = `${m}:${s}`;
+  }
+}, 1000);
+
+document.getElementById("timerToggleBtn").addEventListener("click", () => {
+  state.timerPaused = !state.timerPaused;
+  document.getElementById("timerToggleBtn").textContent = state.timerPaused ? "Lanjut" : "Jeda";
+});
+
+function setQuizMode(mode) {
+  state.mode = mode;
+  document.getElementById("modeLatihanBtn").classList.toggle("active", mode === "latihan");
+  document.getElementById("modeUjianBtn").classList.toggle("active", mode === "ujian");
+  renderQuestion();
+  renderSidebar();
+}
+
+function setFilter(f) {
+  state.filter = f;
+  document.querySelectorAll(".filter-pill").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.filter === f);
+  });
+  renderSidebar();
+}
+
+function isAnswered(q) {
+  const ans = state.answers[q.id];
+  if (ans === undefined || ans === null) return false;
+  if (Array.isArray(ans)) return ans.length > 0;
+  if (typeof ans === "string") return ans.trim() !== "";
+  return true;
+}
+
+function evaluateQuestion(q) {
+  const ans = state.answers[q.id];
+  if (!isAnswered(q)) return false;
+  if (q.tipe === "single" || q.tipe === "tf") {
+    return ans === q.kunci;
+  }
+  if (q.tipe === "multiple") {
+    if (!Array.isArray(ans)) return false;
+    const a = [...ans].sort().join(",");
+    const k = [...q.kunci].sort().join(",");
+    return a === k;
+  }
+  if (q.tipe === "short") {
+    let cleanUser = String(ans).trim().toLowerCase().replace(",", ".");
+    let cleanKey = String(q.kunci).trim().toLowerCase().replace(",", ".");
+    if (q.satuan) {
+      cleanUser = cleanUser.replace(q.satuan.toLowerCase(), "").trim();
+    }
+    const numU = parseFloat(cleanUser);
+    const numK = parseFloat(cleanKey);
+    if (!isNaN(numU) && !isNaN(numK)) {
+      return Math.abs(numU - numK) <= (q.toleransi || 0);
+    }
+    return cleanUser === cleanKey;
+  }
+  return false;
+}
+
+function updateProgress() {
+  const total = quizData.soal.length;
+  const done = quizData.soal.filter(isAnswered).length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById("progressFill").style.width = `${pct}%`;
+  document.getElementById("progressLabel").textContent = `${done}/${total}`;
+}
+
+function renderSidebar() {
+  const grid = document.getElementById("navGrid");
+  grid.innerHTML = "";
+  let visibleCount = 0;
+
+  quizData.soal.forEach((q, idx) => {
+    const ans = isAnswered(q);
+    const doubt = !!state.doubts[q.id];
+    let show = true;
+    if (state.filter === "unanswered") show = !ans;
+    else if (state.filter === "doubt") show = doubt;
+    else if (["single", "multiple", "tf", "short"].includes(state.filter)) show = q.tipe === state.filter;
+
+    if (!show) return;
+    visibleCount++;
+
+    const btn = document.createElement("button");
+    btn.className = "nav-num";
+    btn.textContent = idx + 1;
+    if (idx === state.currentIdx) btn.classList.add("current");
+    if (doubt) btn.classList.add("doubt");
+
+    const showResult = state.submitted || (state.mode === "latihan" && state.checked[q.id]);
+    if (showResult && ans) {
+      btn.classList.add(evaluateQuestion(q) ? "correct" : "incorrect");
+    } else if (ans) {
+      btn.classList.add("answered");
+    }
+
+    btn.onclick = () => {
+      state.currentIdx = idx;
+      renderQuestion();
+      renderSidebar();
+    };
+    grid.appendChild(btn);
+  });
+
+  document.getElementById("filteredCount").textContent = `${visibleCount} soal`;
+  updateProgress();
+}
+
+function getTypeLabel(t) {
+  return {
+    single: "Pilihan Ganda",
+    multiple: "Pilihan Ganda Kompleks",
+    tf: "Benar / Salah",
+    short: "Isian Singkat"
+  }[t] || t;
+}
+
+function renderQuestion() {
+  const q = quizData.soal[state.currentIdx];
+  if (!q) return;
+  const area = document.getElementById("questionArea");
+  const showFeedback = state.submitted || (state.mode === "latihan" && state.checked[q.id]);
+  const isDoubt = !!state.doubts[q.id];
+
+  let optionsHTML = "";
+  if (q.tipe === "single" || q.tipe === "tf") {
+    const letters = q.tipe === "tf" ? ["B", "S"] : ["A", "B", "C", "D", "E"];
+    optionsHTML = `<div class="options-list">` + q.opsi.map((opt, i) => {
+      const selected = state.answers[q.id] === i;
+      let cls = "option-item";
+      if (selected) cls += " selected";
+      if (showFeedback) {
+        if (i === q.kunci) cls += " correct-opt";
+        else if (selected && i !== q.kunci) cls += " wrong-opt";
+      }
+      return `
+        <div class="${cls}" onclick="selectSingle(${q.id}, ${i})">
+          <div class="opt-key">${letters[i] || i + 1}</div>
+          <div class="opt-text">${opt}</div>
+        </div>
+      `;
+    }).join("") + `</div>`;
+  } else if (q.tipe === "multiple") {
+    const letters = ["A", "B", "C", "D", "E"];
+    const curArr = Array.isArray(state.answers[q.id]) ? state.answers[q.id] : [];
+    optionsHTML = `<div class="options-list">` + q.opsi.map((opt, i) => {
+      const selected = curArr.includes(i);
+      const isKey = q.kunci.includes(i);
+      let cls = "option-item";
+      if (selected) cls += " selected";
+      if (showFeedback) {
+        if (isKey) cls += " correct-opt";
+        else if (selected && !isKey) cls += " wrong-opt";
+      }
+      return `
+        <div class="${cls}" onclick="toggleMultiple(${q.id}, ${i})">
+          <div class="opt-key">${selected ? "✓" : letters[i]}</div>
+          <div class="opt-text">${opt}</div>
+        </div>
+      `;
+    }).join("") + `</div>`;
+  } else if (q.tipe === "short") {
+    const val = state.answers[q.id] || "";
+    optionsHTML = `
+      <div class="short-answer-box">
+        <label style="font-size:0.82rem;font-weight:700;color:var(--primary);">Jawaban Anda:</label>
+        <div class="short-input-row">
+          <input type="text" id="shortAnsInput" class="short-input" value="${String(val).replace(/"/g, '&quot;')}" placeholder="Ketik jawaban di sini..." oninput="inputShort(${q.id}, this.value)" />
+          ${state.mode === "latihan" && !state.submitted ? `<button class="btn btn-primary" onclick="checkCurrent(${q.id})">Periksa Jawaban</button>` : ""}
+        </div>
+        <div class="short-hint">Mendukung pemisah desimal titik (.) maupun koma (,). ${q.satuan ? `Satuan: <strong>${q.satuan}</strong>.` : ""}</div>
+      </div>
+    `;
+  }
+
+  const isCorrect = evaluateQuestion(q);
+  const expHTML = `
+    <div class="explanation-panel ${showFeedback ? "visible" : ""}">
+      <div class="exp-status ${isCorrect ? "ok" : "bad"}">
+        ${isCorrect ? "✓ Jawaban Tepat!" : `✕ Kurang Tepat — Kunci Jawaban: ${formatKeyText(q)}`}
+      </div>
+      <div style="font-size:0.93rem;color:var(--text-main);">${q.pembahasan}</div>
+      <div class="exp-boxes">
+        <div class="formula-box">
+          <div class="formula-box-title">Rumus Utama</div>
+          <div>${q.rumus || "-"}</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-box-title">Tips Cepat</div>
+          <div>${q.tips || "-"}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  area.innerHTML = `
+    <div class="q-header">
+      <div class="q-badges">
+        <span class="badge-num">SOAL ${state.currentIdx + 1} / ${quizData.soal.length}</span>
+        <span class="badge-topic">${q.topik}</span>
+        <span class="badge-type">${getTypeLabel(q.tipe)}</span>
+      </div>
+      <button class="doubt-toggle ${isDoubt ? "active" : ""}" onclick="toggleDoubt(${q.id})">
+        <i data-lucide="flag" style="width:13px;height:13px;"></i>
+        ${isDoubt ? "Ditandai Ragu" : "Tandai Ragu-ragu"}
+      </button>
+    </div>
+
+    <div class="q-stem">${q.pertanyaan.replace(/\n/g, "<br>")}</div>
+    ${q.figure ? `<div class="q-figure-box" id="qFigureContainer"></div>` : ""}
+    ${optionsHTML}
+    ${expHTML}
+
+    <div class="q-footer-nav">
+      <button class="btn btn-outline" ${state.currentIdx === 0 ? "disabled" : ""} onclick="navigateQ(-1)">
+        ← Sebelumnya
+      </button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        ${state.mode === "latihan" && q.tipe === "multiple" && !state.submitted ? `<button class="btn btn-primary" onclick="checkCurrent(${q.id})">Periksa Pilihan Kompleks</button>` : ""}
+        ${state.currentIdx < quizData.soal.length - 1
+          ? `<button class="btn btn-primary" onclick="navigateQ(1)">Berikutnya →</button>`
+          : `<button class="btn btn-secondary" onclick="finishQuiz()">Selesai &amp; Lihat Nilai</button>`}
+      </div>
+    </div>
+  `;
+
+  if (q.figure) {
+    MathFig.render(q.figure, document.getElementById("qFigureContainer"));
+  }
+  if (window.lucide) lucide.createIcons();
+  renderMath();
+}
+
+function formatKeyText(q) {
+  if (q.tipe === "single") return ["A", "B", "C", "D", "E"][q.kunci] + ` (${q.opsi[q.kunci]})`;
+  if (q.tipe === "tf") return q.opsi[q.kunci];
+  if (q.tipe === "multiple") return q.kunci.map(i => ["A", "B", "C", "D", "E"][i]).join(", ");
+  return `${q.kunci}${q.satuan ? " " + q.satuan : ""}`;
+}
+
+function selectSingle(id, idx) {
+  if (state.submitted) return;
+  state.answers[id] = idx;
+  if (state.mode === "latihan") state.checked[id] = true;
+  renderQuestion();
+  renderSidebar();
+}
+
+function toggleMultiple(id, idx) {
+  if (state.submitted) return;
+  const cur = Array.isArray(state.answers[id]) ? [...state.answers[id]] : [];
+  const pos = cur.indexOf(idx);
+  if (pos >= 0) cur.splice(pos, 1);
+  else cur.push(idx);
+  state.answers[id] = cur;
+  renderQuestion();
+  renderSidebar();
+}
+
+function inputShort(id, val) {
+  if (state.submitted) return;
+  state.answers[id] = val;
+  renderSidebar();
+}
+
+function checkCurrent(id) {
+  state.checked[id] = true;
+  renderQuestion();
+  renderSidebar();
+}
+
+function toggleDoubt(id) {
+  state.doubts[id] = !state.doubts[id];
+  renderQuestion();
+  renderSidebar();
+}
+
+function navigateQ(delta) {
+  const next = state.currentIdx + delta;
+  if (next >= 0 && next < quizData.soal.length) {
+    state.currentIdx = next;
+    renderQuestion();
+    renderSidebar();
+  }
+}
+
+function renderMath() {
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ],
+      throwOnError: false
+    });
+  }
+}
+
+function finishQuiz() {
+  state.submitted = true;
+  renderQuestion();
+  renderSidebar();
+
+  const total = quizData.soal.length;
+  let correctCount = 0;
+  const topicMap = {};
+
+  quizData.soal.forEach(q => {
+    if (!topicMap[q.topik]) topicMap[q.topik] = { total: 0, benar: 0 };
+    topicMap[q.topik].total++;
+    if (evaluateQuestion(q)) {
+      correctCount++;
+      topicMap[q.topik].benar++;
+    }
+  });
+
+  const score = Math.round((correctCount / total) * 100);
+  const sName = document.getElementById("studentName").value.trim() || "Peserta Didik";
+  const sClass = document.getElementById("studentClass").value.trim() || "Kelas IX";
+  const m = String(Math.floor(state.seconds / 60)).padStart(2, "0");
+  const s = String(state.seconds % 60).padStart(2, "0");
+
+  let predicate = "Perlu Pendalaman Materi";
+  if (score >= 90) predicate = "Sangat Memuaskan (Istimewa)";
+  else if (score >= 75) predicate = "Tuntas & Baik";
+  else if (score >= 60) predicate = "Cukup — Tingkatkan Latihan";
+
+  const breakdownHTML = Object.entries(topicMap).map(([topik, st]) => {
+    const pct = Math.round((st.benar / st.total) * 100);
+    return `
+      <div class="topic-stat-card">
+        <div style="font-size:0.76rem;font-weight:700;color:var(--primary);">${topik}</div>
+        <div class="font-mono" style="font-size:1.1rem;font-weight:700;color:var(--secondary);margin:3px 0;">${st.benar}/${st.total} (${pct}%)</div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("scoreReportBody").innerHTML = `
+    <div class="score-hero">
+      <div style="font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;color:#f4dfb6;">Bimbingan Belajar Matematika Suminto</div>
+      <div style="font-size:1.05rem;margin:4px 0 10px;"><strong>${sName}</strong> (${sClass})</div>
+      <div class="score-big">${score}</div>
+      <div style="font-size:0.9rem;margin-top:6px;">${predicate} • Benar ${correctCount} dari ${total} soal • Waktu ${m}:${s}</div>
+    </div>
+    <h4 style="margin-bottom:8px;color:var(--primary);">Analisis Penguasaan per Subtopik</h4>
+    <div class="topic-breakdown">${breakdownHTML}</div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px;flex-wrap:wrap;">
+      <button class="btn btn-outline" onclick="closeModal('scoreModal')">Tinjau Pembahasan Soal</button>
+      <button class="btn btn-primary" onclick="resetQuiz()">Ulangi Kuis</button>
+    </div>
+  `;
+
+  openModal("scoreModal");
+  triggerGoatCounter();
+}
+
+function resetQuiz() {
+  state.answers = {};
+  state.checked = {};
+  state.doubts = {};
+  state.submitted = false;
+  state.seconds = 0;
+  state.currentIdx = 0;
+  closeModal("scoreModal");
+  renderQuestion();
+  renderSidebar();
+}
+
+function triggerGoatCounter() {
+  if (!document.getElementById("gc-script")) {
+    const sc = document.createElement("script");
+    sc.id = "gc-script";
+    sc.async = true;
+    sc.src = "https://gc.zgo.at/count.js";
+    sc.setAttribute("data-goatcounter", "https://suminto.goatcounter.com/count");
+    document.body.appendChild(sc);
+  } else if (window.goatcounter && window.goatcounter.count) {
+    window.goatcounter.count({ path: "/kuis-transformasi-geometri-selesai" });
+  }
+}
+
+function openModal(id) { document.getElementById(id).classList.add("open"); }
+function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+
+let calcExpr = "";
+function calcAppend(ch) {
+  calcExpr += ch;
+  document.getElementById("calcDisplay").value = calcExpr;
+}
+function calcFunc(fn) {
+  calcExpr += fn;
+  document.getElementById("calcDisplay").value = calcExpr;
+}
+function calcClear() {
+  calcExpr = "";
+  document.getElementById("calcDisplay").value = "0";
+}
+function calcBack() {
+  calcExpr = calcExpr.slice(0, -1);
+  document.getElementById("calcDisplay").value = calcExpr || "0";
+}
+function calcEval() {
+  try {
+    const res = Function('"use strict";return (' + calcExpr + ')')();
+    calcExpr = String(Number.isFinite(res) ? +res.toFixed(8) : "Error");
+    document.getElementById("calcDisplay").value = calcExpr;
+  } catch (e) {
+    document.getElementById("calcDisplay").value = "Error";
+    calcExpr = "";
+  }
+}
+
+function openEditorModal() {
+  const sel = document.getElementById("editorSelectQ");
+  sel.innerHTML = quizData.soal.map((q, i) => `<option value="${i}">Soal #${i + 1} — ${q.topik}</option>`).join("");
+  sel.value = state.currentIdx;
+  loadQuestionIntoEditor();
+  openModal("editorModal");
+}
+
+function loadQuestionIntoEditor() {
+  const idx = parseInt(document.getElementById("editorSelectQ").value, 10);
+  const q = quizData.soal[idx];
+  if (!q) return;
+  const opsiStr = (q.opsi || []).join("\n");
+  const kunciStr = Array.isArray(q.kunci) ? q.kunci.join(",") : String(q.kunci);
+
+  document.getElementById("editorFormArea").innerHTML = `
+    <div class="editor-field">
+      <label>Topik</label>
+      <input type="text" id="edTopik" value="${q.topik.replace(/"/g, '&quot;')}" />
+    </div>
+    <div class="editor-field">
+      <label>Tipe Evaluasi</label>
+      <select id="edTipe">
+        <option value="single" ${q.tipe === "single" ? "selected" : ""}>single (Pilihan Ganda)</option>
+        <option value="multiple" ${q.tipe === "multiple" ? "selected" : ""}>multiple (Pilihan Ganda Kompleks)</option>
+        <option value="tf" ${q.tipe === "tf" ? "selected" : ""}>tf (Benar / Salah)</option>
+        <option value="short" ${q.tipe === "short" ? "selected" : ""}>short (Isian Singkat)</option>
+      </select>
+    </div>
+    <div class="editor-field">
+      <label>Pertanyaan (mendukung LaTeX $...$)</label>
+      <textarea id="edPertanyaan" rows="3">${q.pertanyaan}</textarea>
+    </div>
+    <div class="editor-field">
+      <label>Opsi Jawaban (pisahkan per baris; kosongkan jika Isian Singkat)</label>
+      <textarea id="edOpsi" rows="4">${opsiStr}</textarea>
+    </div>
+    <div class="editor-field">
+      <label>Kunci Jawaban (indeks 0,1,2... untuk PilGan/TF; pisah koma mis. 0,1,2 untuk Kompleks; teks/angka untuk Isian)</label>
+      <input type="text" id="edKunci" value="${kunciStr}" />
+    </div>
+    <div class="editor-field">
+      <label>Pembahasan Lengkap</label>
+      <textarea id="edPembahasan" rows="3">${q.pembahasan}</textarea>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="editor-field">
+        <label>Rumus Utama</label>
+        <input type="text" id="edRumus" value="${(q.rumus || "").replace(/"/g, '&quot;')}" />
+      </div>
+      <div class="editor-field">
+        <label>Tips Cepat</label>
+        <input type="text" id="edTips" value="${(q.tips || "").replace(/"/g, '&quot;')}" />
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px;">
+      <button class="btn btn-primary" onclick="saveQuestionFromEditor(${idx})">Simpan Perubahan Soal</button>
+    </div>
+  `;
+}
+
+function saveQuestionFromEditor(idx) {
+  const q = quizData.soal[idx];
+  q.topik = document.getElementById("edTopik").value.trim();
+  q.tipe = document.getElementById("edTipe").value;
+  q.pertanyaan = document.getElementById("edPertanyaan").value;
+  const rawOpsi = document.getElementById("edOpsi").value.split("\n").map(s => s.trim()).filter(Boolean);
+  if (q.tipe !== "short") q.opsi = rawOpsi;
+  const rawKunci = document.getElementById("edKunci").value.trim();
+  if (q.tipe === "single" || q.tipe === "tf") q.kunci = parseInt(rawKunci, 10) || 0;
+  else if (q.tipe === "multiple") q.kunci = rawKunci.split(",").map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n));
+  else q.kunci = rawKunci;
+
+  q.pembahasan = document.getElementById("edPembahasan").value;
+  q.rumus = document.getElementById("edRumus").value;
+  q.tips = document.getElementById("edTips").value;
+
+  document.getElementById("quiz-data").textContent = JSON.stringify(quizData, null, 2);
+  renderQuestion();
+  renderSidebar();
+  alert("Perubahan soal berhasil disimpan ke sesi kuis!");
+}
+
+function addNewQuestionEditor() {
+  const newId = quizData.soal.length + 1;
+  quizData.soal.push({
+    id: newId,
+    topik: "Transformasi Geometri",
+    tipe: "single",
+    pertanyaan: "Pertanyaan baru...",
+    opsi: ["Opsi A", "Opsi B", "Opsi C", "Opsi D"],
+    kunci: 0,
+    pembahasan: "Pembahasan soal...",
+    rumus: "-",
+    tips: "-"
+  });
+  state.currentIdx = quizData.soal.length - 1;
+  openEditorModal();
+  renderSidebar();
+}
+
+function exportQuizJSON() {
+  const blob = new Blob([JSON.stringify(quizData, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "kuis-transformasi-geometri-bbm-suminto.json";
+  a.click();
+}
+
+function importQuizJSON(ev) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (parsed && Array.isArray(parsed.soal)) {
+        quizData = parsed;
+        document.getElementById("quiz-data").textContent = JSON.stringify(quizData, null, 2);
+        state.currentIdx = 0;
+        openEditorModal();
+        renderQuestion();
+        renderSidebar();
+      }
+    } catch (err) {
+      alert("Format JSON tidak valid.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+function downloadEditedHTML() {
+  document.getElementById("quiz-data").textContent = JSON.stringify(quizData, null, 2);
+  const fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+  const blob = new Blob([fullHTML], { type: "text/html" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Kuis-Transformasi-Geometri-BBM-Suminto.html";
+  a.click();
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  renderSidebar();
+  renderQuestion();
+});
+</script>
+</body>
+</html>

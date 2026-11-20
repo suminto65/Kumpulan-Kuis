@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Interaktif: Kesebangunan & Kekongruenan — Bimbingan Belajar Matematika Suminto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <script data-goatcounter="https://suminto.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <style>
+    :root {
+      --background: #f7f4ec;
+      --surface-container-low: #fffdf8;
+      --surface-container: #ece5d4;
+      --primary: #14213d;
+      --primary-soft: #1f335e;
+      --outline: #b08d57;
+      --outline-light: #dfd2b8;
+      --secondary: #2d5a4a;
+      --secondary-soft: #e6f0ec;
+      --error: #9b2c2c;
+      --error-soft: #fbeaea;
+      --text-main: #1a202c;
+      --text-muted: #5a554c;
+      --shadow-sm: 0 2px 8px rgba(20, 33, 61, 0.06);
+      --shadow-md: 0 8px 24px rgba(20, 33, 61, 0.12);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Brand */
+    .brand-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d1629 100%);
+      color: #fffdf8;
+      padding: 16px 24px;
+      border-bottom: 3px solid var(--outline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-logo-wrap {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+    }
+    .brand-title-group h1 {
+      font-family: 'Libre Caslon Text', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      color: #fffdf8;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(176, 141, 87, 0.2);
+      border: 1px solid var(--outline);
+      color: #f3dfb9;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #d6cfc2;
+    }
+
+    /* Sticky Toolbar */
+    .sticky-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--surface-container-low);
+      border-bottom: 1px solid var(--outline-light);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .timer-box {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.95rem;
+      background: var(--surface-container);
+      border: 1px solid var(--outline);
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--outline-light);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+    }
+    .btn:hover { background: var(--surface-container); border-color: var(--outline); }
+    .btn-primary {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+    .btn-primary:hover { background: var(--primary-soft); }
+    .btn-gold {
+      background: var(--outline);
+      color: #fffdf8;
+      border-color: var(--outline);
+    }
+    .btn-gold:hover { filter: brightness(0.94); }
+    .btn-success {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+    .btn-success:hover { filter: brightness(1.08); }
+    .btn-danger {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+    .btn-sm { padding: 5px 10px; font-size: 0.8rem; }
+
+    /* Mode Switch */
+    .mode-switch {
+      display: inline-flex;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-light);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 5px 11px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fffdf8;
+    }
+
+    /* Progress Bar */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 170px;
+    }
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: var(--surface-container);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--outline-light);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--secondary), var(--outline));
+      transition: width 0.3s ease;
+    }
+    .progress-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Main Workspace */
+    .workspace {
+      max-width: 1320px;
+      width: 100%;
+      margin: 22px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 22px;
+      flex: 1;
+    }
+    @media (max-width: 960px) {
+      .workspace { grid-template-columns: 1fr; }
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-light);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+    .q-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px dashed var(--outline-light);
+    }
+    .q-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      background: var(--primary);
+      color: #fffdf8;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .badge-tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--surface-container);
+      color: var(--primary);
+      border: 1px solid var(--outline-light);
+    }
+    .badge-topic {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      border: 1px solid rgba(45,90,74,0.25);
+    }
+
+    .q-prompt {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+    .q-figure {
+      margin: 16px 0 22px;
+      padding: 16px;
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+    }
+    .q-figure svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      border: 1.5px solid var(--outline-light);
+      border-radius: 10px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .option-item:hover {
+      border-color: var(--outline);
+      background: #fcfaf4;
+    }
+    .option-item.selected {
+      border-color: var(--primary);
+      background: #eef2f9;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+    .option-item.correct {
+      border-color: var(--secondary);
+      background: var(--secondary-soft);
+    }
+    .option-item.wrong {
+      border-color: var(--error);
+      background: var(--error-soft);
+    }
+    .opt-marker {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--surface-container);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .option-item.selected .opt-marker {
+      background: var(--primary);
+      color: #fffdf8;
+    }
+    .option-item.correct .opt-marker {
+      background: var(--secondary);
+      color: #fffdf8;
+    }
+    .option-item.wrong .opt-marker {
+      background: var(--error);
+      color: #fffdf8;
+    }
+    .opt-text {
+      flex: 1;
+      font-size: 0.98rem;
+    }
+
+    /* Short Answer Input */
+    .short-answer-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 420px;
+    }
+    .short-input {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      padding: 12px 14px;
+      border: 2px solid var(--outline-light);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--primary);
+      outline: none;
+    }
+    .short-input:focus { border-color: var(--primary); }
+    .short-input.correct { border-color: var(--secondary); background: var(--secondary-soft); }
+    .short-input.wrong { border-color: var(--error); background: var(--error-soft); }
+    .short-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Explanation Box */
+    .explanation-panel {
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f4efe2;
+      border: 1px solid var(--outline);
+      display: none;
+    }
+    .explanation-panel.visible { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Libre Caslon Text', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .exp-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 640px) { .exp-boxes { grid-template-columns: 1fr; } }
+    .formula-box {
+      background: #ffffff;
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .formula-box strong { color: var(--primary); display: block; font-size: 0.78rem; text-transform: uppercase; margin-bottom: 3px; }
+    .tip-box {
+      background: var(--secondary-soft);
+      border-left: 4px solid var(--secondary);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .tip-box strong { color: var(--secondary); display: block; font-size: 0.78rem; text-transform: uppercase; margin-bottom: 3px; }
+    .exp-steps {
+      background: #fffdf8;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--outline-light);
+      font-size: 0.95rem;
+    }
+
+    /* Bottom Navigation */
+    .q-footer-nav {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--outline-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ragu-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid #c29b61;
+      background: #fdf6e7;
+      color: #7c5821;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .ragu-toggle.active {
+      background: #b08d57;
+      color: #fffdf8;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      height: fit-content;
+      position: sticky;
+      top: 72px;
+    }
+    .sidebar-title {
+      font-family: 'Libre Caslon Text', serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .filter-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--outline-light);
+      background: var(--background);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .filter-pill.active {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+    .nav-num-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1.5px solid var(--outline-light);
+      background: #ffffff;
+      color: var(--primary);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.15s;
+    }
+    .nav-num-btn:hover { border-color: var(--outline); }
+    .nav-num-btn.current {
+      outline: 2.5px solid var(--outline);
+      outline-offset: 1px;
+    }
+    .nav-num-btn.answered {
+      background: var(--primary);
+      color: #fffdf8;
+      border-color: var(--primary);
+    }
+    .nav-num-btn.correct {
+      background: var(--secondary);
+      color: #fffdf8;
+      border-color: var(--secondary);
+    }
+    .nav-num-btn.wrong {
+      background: var(--error);
+      color: #fffdf8;
+      border-color: var(--error);
+    }
+    .nav-num-btn.ragu::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d97706;
+      border: 1px solid #fff;
+    }
+    .legend-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding-top: 12px;
+      border-top: 1px solid var(--outline-light);
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .dot { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+    /* Modals & Drawers */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 22, 41, 0.65);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: var(--surface-container-low);
+      border: 2px solid var(--outline);
+      border-radius: 14px;
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--outline-light);
+    }
+    .modal-header h2 {
+      font-family: 'Libre Caslon Text', serif;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    /* Score Modal Specific */
+    .score-hero {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, #1c2f57 100%);
+      color: #fffdf8;
+      border-radius: 12px;
+      border: 1px solid var(--outline);
+      margin-bottom: 18px;
+    }
+    .score-big {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #f5d799;
+      line-height: 1.1;
+      margin: 8px 0;
+    }
+    .score-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 600px) { .score-stats { grid-template-columns: repeat(2, 1fr); } }
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .stat-lbl { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* Scientific Calculator */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .calc-display {
+      width: 100%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      text-align: right;
+      padding: 12px;
+      border: 1.5px solid var(--outline);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--primary);
+    }
+    .calc-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--outline-light);
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .calc-btn:hover { background: var(--surface-container); }
+    .calc-btn.op { background: var(--surface-container); color: var(--primary); }
+    .calc-btn.eq { background: var(--primary); color: #fffdf8; }
+
+    /* Formula Sheet */
+    .formula-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 640px) { .formula-card-grid { grid-template-columns: 1fr; } }
+    .f-sheet-item {
+      background: #ffffff;
+      border: 1px solid var(--outline-light);
+      border-left: 4px solid var(--outline);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.9rem;
+    }
+    .f-sheet-item h4 {
+      font-family: 'Libre Caslon Text', serif;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    /* Editor Form */
+    .editor-field { margin-bottom: 12px; }
+    .editor-field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+    .editor-field input, .editor-field textarea, .editor-field select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--outline-light);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="brand-header">
+    <div class="brand-left">
+      <div class="brand-logo-wrap">
+        <svg viewBox="0 0 200 200" width="68" height="68" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Bimbingan Belajar Matematika Suminto">
+          <circle cx="100" cy="100" r="95" fill="#14213d" stroke="#b08d57" stroke-width="5"/>
+          <circle cx="100" cy="100" r="64" fill="#fffdf8" stroke="#b08d57" stroke-width="2.5"/>
+          <defs>
+            <path id="topArc" d="M 26,100 A 74,74 0 1,1 174,100" />
+            <path id="botArc" d="M 176,100 A 76,76 0 1,1 24,100" />
+          </defs>
+          <text fill="#fffdf8" font-family="Inter, sans-serif" font-weight="700" font-size="14.2" letter-spacing="1.6">
+            <textPath href="#topArc" startOffset="50%" text-anchor="middle">BIMBINGAN BELAJAR</textPath>
+          </text>
+          <text fill="#fffdf8" font-family="Inter, sans-serif" font-weight="700" font-size="14.5" letter-spacing="2.2">
+            <textPath href="#botArc" startOffset="50%" text-anchor="middle">MATEMATIKA</textPath>
+          </text>
+          <!-- Bintang Emas Kiri & Kanan -->
+          <polygon points="23,93 25,99 31,99 26,103 28,109 23,105 18,109 20,103 15,99 21,99" fill="#b08d57"/>
+          <polygon points="177,93 179,99 185,99 180,103 182,109 177,105 172,109 174,103 169,99 175,99" fill="#b08d57"/>
+          <!-- Garis Pembatas Emas Dalam -->
+          <line x1="43" y1="81" x2="157" y2="81" stroke="#b08d57" stroke-width="2"/>
+          <line x1="43" y1="119" x2="157" y2="119" stroke="#b08d57" stroke-width="2"/>
+          <!-- Simbol Matematika Atas -->
+          <text x="100" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="18" fill="#14213d">+ − × ÷</text>
+          <!-- Nama SUMINTO -->
+          <text x="100" y="107" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="22" letter-spacing="1" fill="#14213d">SUMINTO</text>
+          <!-- Simbol Matematika Bawah -->
+          <text x="100" y="142" text-anchor="middle" font-family="Libre Caslon Text, serif" font-weight="700" font-size="19" fill="#14213d">√  ∑  ∫</text>
+        </svg>
+      </div>
+      <div class="brand-title-group">
+        <div class="brand-badge">Bimbingan Belajar Matematika Suminto</div>
+        <h1 id="quizTitle">Kesebangunan dan Kekongruenan (Kelas 9)</h1>
+        <div class="brand-sub" id="quizSubtitle">Evaluasi Komprehensif: Kekongruenan Bangun & Segitiga, Kesebangunan, Segitiga Siku-siku & Penerapan</div>
+      </div>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn-gold" onclick="openModal('formulaModal')"><i data-lucide="book-open" style="width:16px;height:16px"></i> Lembar Rumus</button>
+      <button class="btn" onclick="openModal('calcModal')"><i data-lucide="calculator" style="width:16px;height:16px"></i> Kalkulator</button>
+    </div>
+  </header>
+
+  <!-- Sticky Toolbar -->
+  <div class="sticky-toolbar">
+    <div class="toolbar-group">
+      <div class="timer-box">
+        <i data-lucide="clock" style="width:16px;height:16px"></i>
+        <span id="timerText">45:00</span>
+        <button class="btn btn-sm" id="timerToggleBtn" onclick="toggleTimer()" title="Jeda/Lanjut Timer">Jeda</button>
+      </div>
+
+      <div class="mode-switch" role="group" aria-label="Mode Kuis">
+        <button class="mode-btn active" id="modeLatihanBtn" onclick="setMode('latihan')">Mode Latihan</button>
+        <button class="mode-btn" id="modeUjianBtn" onclick="setMode('ujian')">Mode Ujian</button>
+      </div>
+    </div>
+
+    <div class="toolbar-group">
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-label" id="progressLabel">0/20</span>
+      </div>
+      <button class="btn" onclick="openEditor()"><i data-lucide="edit-3" style="width:15px;height:15px"></i> Editor Kuis</button>
+      <button class="btn btn-success" onclick="finishQuiz()"><i data-lucide="check-circle" style="width:15px;height:15px"></i> Selesai & Nilai</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="workspace">
+    <section class="question-card" id="questionArea">
+      <div class="q-meta-bar">
+        <div class="q-badges">
+          <span class="badge-num" id="qNumberBadge">Soal 1 / 20</span>
+          <span class="badge-tag" id="qTypeBadge">Pilihan Ganda</span>
+          <span class="badge-topic" id="qTopicBadge">Kekongruenan</span>
+        </div>
+        <button class="ragu-toggle" id="raguBtn" onclick="toggleRagu()">
+          <i data-lucide="flag" style="width:14px;height:14px"></i> Ragu-ragu
+        </button>
+      </div>
+
+      <div class="q-prompt" id="qPrompt"></div>
+      <div class="q-figure" id="qFigure" style="display:none;"></div>
+      <div id="qInputContainer"></div>
+
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;" id="checkActionWrap">
+        <button class="btn btn-primary" id="checkBtn" onclick="checkCurrentAnswer()">
+          <i data-lucide="check" style="width:16px;height:16px"></i> Periksa Jawaban
+        </button>
+      </div>
+
+      <!-- Pembahasan -->
+      <div class="explanation-panel" id="explanationPanel">
+        <div class="exp-header">
+          <i data-lucide="lightbulb" style="width:18px;height:18px;color:#b08d57"></i>
+          <span>Pembahasan & Konsep Kunci</span>
+        </div>
+        <div class="exp-boxes">
+          <div class="formula-box">
+            <strong>Rumus / Dalil Utama</strong>
+            <div id="expFormula"></div>
+          </div>
+          <div class="tip-box">
+            <strong>Tips Cepat BBM Suminto</strong>
+            <div id="expTip"></div>
+          </div>
+        </div>
+        <div class="exp-steps" id="expSteps"></div>
+      </div>
+
+      <!-- Footer Prev/Next -->
+      <div class="q-footer-nav">
+        <button class="btn" id="prevBtn" onclick="navigate(-1)"><i data-lucide="chevron-left" style="width:16px;height:16px"></i> Sebelumnya</button>
+        <span style="font-size:0.82rem; color:var(--text-muted);" id="modeHintText">Mode Latihan: Cek jawaban & pembahasan langsung per soal.</span>
+        <button class="btn btn-primary" id="nextBtn" onclick="navigate(1)">Selanjutnya <i data-lucide="chevron-right" style="width:16px;height:16px"></i></button>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar-card">
+      <div class="sidebar-title">
+        <span>Navigasi Soal</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--text-muted);" id="sidebarCountText">20 Soal</span>
+      </div>
+
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-filter="all" onclick="setFilter('all')">Semua</button>
+        <button class="filter-pill" data-filter="unanswered" onclick="setFilter('unanswered')">Belum</button>
+        <button class="filter-pill" data-filter="ragu" onclick="setFilter('ragu')">Ragu-ragu</button>
+        <button class="filter-pill" data-filter="single" onclick="setFilter('single')">PilGan</button>
+        <button class="filter-pill" data-filter="multiple" onclick="setFilter('multiple')">Kompleks</button>
+        <button class="filter-pill" data-filter="tf" onclick="setFilter('tf')">B/S</button>
+        <button class="filter-pill" data-filter="short" onclick="setFilter('short')">Isian</button>
+      </div>
+
+      <div class="nav-grid" id="navGrid"></div>
+
+      <div class="legend-list">
+        <div class="legend-item"><span class="dot" style="background:#fff;border:1px solid #ccc;"></span> Belum dijawab</div>
+        <div class="legend-item"><span class="dot" style="background:var(--primary);"></span> Sudah dijawab</div>
+        <div class="legend-item"><span class="dot" style="background:var(--secondary);"></span> Benar</div>
+        <div class="legend-item"><span class="dot" style="background:var(--error);"></span> Salah</div>
+        <div class="legend-item"><span class="dot" style="background:#d97706;border-radius:50%;"></span> Ragu-ragu</div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal Skor -->
+  <div class="modal-backdrop" id="scoreModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="brand-badge" style="background:var(--primary);color:#f3dfb9;margin:0;">Bimbingan Belajar Matematika Suminto</span>
+          <h2>Laporan Hasil Evaluasi</h2>
+        </div>
+        <button class="btn btn-sm" onclick="closeModal('scoreModal')">Tutup</button>
+      </div>
+      <div class="score-hero">
+        <div style="font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;color:#dfd2b8;">Skor Akhir Anda</div>
+        <div class="score-big" id="finalScoreVal">0</div>
+        <div id="finalGradeText" style="font-size:0.95rem;color:#fffdf8;"></div>
+      </div>
+      <div class="score-stats">
+        <div class="stat-box"><div class="stat-val" id="statCorrect" style="color:var(--secondary)">0</div><div class="stat-lbl">Jawaban Benar</div></div>
+        <div class="stat-box"><div class="stat-val" id="statWrong" style="color:var(--error)">0</div><div class="stat-lbl">Jawaban Salah</div></div>
+        <div class="stat-box"><div class="stat-val" id="statUnanswered">0</div><div class="stat-lbl">Kosong</div></div>
+        <div class="stat-box"><div class="stat-val" id="statTime">00:00</div><div class="stat-lbl">Waktu Terpakai</div></div>
+      </div>
+      <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:16px;">
+        Semua pembahasan telah dibuka. Anda dapat menutup jendela ini untuk meninjau ulang setiap nomor soal beserta langkah penyelesaiannya.
+      </p>
+      <div style="display:flex;justify-content:flex-end;gap:10px;">
+        <button class="btn" onclick="resetQuiz()">Ulangi Kuis</button>
+        <button class="btn btn-primary" onclick="closeModal('scoreModal')">Tinjau Pembahasan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lembar Rumus -->
+  <div class="modal-backdrop" id="formulaModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Lembar Rumus: Kesebangunan & Kekongruenan</h2>
+        <button class="btn btn-sm" onclick="closeModal('formulaModal')">Tutup</button>
+      </div>
+      <div class="formula-card-grid">
+        <div class="f-sheet-item">
+          <h4>1. Kekongruenan Bangun Datar ($\cong$)</h4>
+          Dua bangun datar kongruen jika memiliki <strong>bentuk dan ukuran yang sama</strong>:<br/>
+          • Sisi-sisi yang bersesuaian sama panjang.<br/>
+          • Sudut-sudut yang bersesuaian sama besar.
+        </div>
+        <div class="f-sheet-item">
+          <h4>2. Kriteria Kekongruenan Dua Segitiga</h4>
+          • <strong>Sisi - Sisi - Sisi (s-s-s)</strong><br/>
+          • <strong>Sisi - Sudut - Sisi (s-sd-s)</strong><br/>
+          • <strong>Sudut - Sisi - Sudut (sd-s-sd)</strong><br/>
+          • <strong>Sudut - Sudut - Sisi (sd-sd-s)</strong><br/>
+          • Khusus siku-siku: sisi miring & satu sisi siku sama panjang.
+        </div>
+        <div class="f-sheet-item">
+          <h4>3. Kesebangunan Bangun Datar ($\sim$)</h4>
+          • Sisi-sisi bersesuaian sebanding: $\frac{AB}{EF} = \frac{BC}{FG} = \frac{CD}{GH} = \frac{AD}{EH}$<br/>
+          • Sudut-sudut bersesuaian sama besar.<br/>
+          • Perbandingan Luas = $(\text{perbandingan sisi})^2$.
+        </div>
+        <div class="f-sheet-item">
+          <h4>4. Garis Sejajar pada Segitiga & Trapesium</h4>
+          • Pada $\triangle ABC$ dengan $EF \parallel AB$:<br/>
+            $\frac{CE}{CA} = \frac{CF}{CB} = \frac{EF}{AB}$ dan $\frac{CE}{EA} = \frac{CF}{FB}$<br/>
+          • Pada trapesium dengan garis tengah $EF$:<br/>
+            $EF = \frac{(AB \times CF) + (DC \times FB)}{CF + FB}$
+        </div>
+        <div class="f-sheet-item">
+          <h4>5. Kesebangunan Khusus Segitiga Siku-siku</h4>
+          Pada $\triangle ABC$ siku-siku di $A$ dengan $AD \perp BC$:<br/>
+          • $AD^2 = BD \times CD$<br/>
+          • $AB^2 = BD \times BC$<br/>
+          • $AC^2 = CD \times CB$
+        </div>
+        <div class="f-sheet-item">
+          <h4>6. Aplikasi Foto & Karton / Bayangan</h4>
+          • Foto & karton sebangun: $\frac{\text{Lebar Foto}}{\text{Lebar Karton}} = \frac{\text{Tinggi Foto}}{\text{Tinggi Karton}}$<br/>
+          • Bayangan: $\frac{\text{Tinggi Benda 1}}{\text{Bayangan 1}} = \frac{\text{Tinggi Benda 2}}{\text{Bayangan 2}}$
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Kalkulator -->
+  <div class="modal-backdrop" id="calcModal">
+    <div class="modal-box" style="max-width:360px;">
+      <div class="modal-header">
+        <h2>Kalkulator Ilmiah</h2>
+        <button class="btn btn-sm" onclick="closeModal('calcModal')">Tutup</button>
+      </div>
+      <input type="text" class="calc-display" id="calcDisplay" readonly value="0" />
+      <div class="calc-grid">
+        <button class="calc-btn op" onclick="calcClear()">C</button>
+        <button class="calc-btn op" onclick="calcBack()">⌫</button>
+        <button class="calc-btn op" onclick="calcFunc('sqrt')">√</button>
+        <button class="calc-btn op" onclick="calcAppend('/')">÷</button>
+        <button class="calc-btn" onclick="calcAppend('7')">7</button>
+        <button class="calc-btn" onclick="calcAppend('8')">8</button>
+        <button class="calc-btn" onclick="calcAppend('9')">9</button>
+        <button class="calc-btn op" onclick="calcAppend('*')">×</button>
+        <button class="calc-btn" onclick="calcAppend('4')">4</button>
+        <button class="calc-btn" onclick="calcAppend('5')">5</button>
+        <button class="calc-btn" onclick="calcAppend('6')">6</button>
+        <button class="calc-btn op" onclick="calcAppend('-')">−</button>
+        <button class="calc-btn" onclick="calcAppend('1')">1</button>
+        <button class="calc-btn" onclick="calcAppend('2')">2</button>
+        <button class="calc-btn" onclick="calcAppend('3')">3</button>
+        <button class="calc-btn op" onclick="calcAppend('+')">+</button>
+        <button class="calc-btn" onclick="calcAppend('0')">0</button>
+        <button class="calc-btn" onclick="calcAppend('.')">.</button>
+        <button class="calc-btn op" onclick="calcFunc('sq')">x²</button>
+        <button class="calc-btn eq" onclick="calcEval()">=</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Editor Kuis -->
+  <div class="modal-backdrop" id="editorModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Editor Kuis Interaktif BBM Suminto</h2>
+        <button class="btn btn-sm" onclick="closeModal('editorModal')">Tutup</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+        <button class="btn btn-sm btn-primary" onclick="addNewQuestion()">+ Tambah Soal</button>
+        <button class="btn btn-sm" onclick="exportJSON()">Ekspor JSON</button>
+        <label class="btn btn-sm" style="margin:0;">Impor JSON <input type="file" accept=".json" style="display:none" onchange="importJSON(event)"/></label>
+        <button class="btn btn-sm btn-gold" onclick="downloadUpdatedHTML()"><i data-lucide="download" style="width:14px;height:14px"></i> Unduh HTML Kuis (hasil edit)</button>
+      </div>
+      <div class="editor-field">
+        <label>Pilih Nomor Soal untuk Diedit:</label>
+        <select id="editorSelectQ" onchange="loadEditorQuestion()"></select>
+      </div>
+      <div class="editor-field">
+        <label>Pertanyaan (Mendukung LaTeX $...$):</label>
+        <textarea id="edPrompt" rows="3"></textarea>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="editor-field">
+          <label>Tipe Soal:</label>
+          <select id="edType">
+            <option value="single">Pilihan Ganda (single)</option>
+            <option value="multiple">Pilihan Ganda Kompleks (multiple)</option>
+            <option value="tf">Benar / Salah (tf)</option>
+            <option value="short">Isian Singkat (short)</option>
+          </select>
+        </div>
+        <div class="editor-field">
+          <label>Topik:</label>
+          <input type="text" id="edTopic" />
+        </div>
+      </div>
+      <div class="editor-field" id="edOptionsWrap">
+        <label>Pilihan Jawaban (pisahkan dengan baris baru):</label>
+        <textarea id="edOptions" rows="4"></textarea>
+      </div>
+      <div class="editor-field">
+        <label>Kunci Jawaban (single/tf: indeks 0,1,2.. | multiple: 0,2 | short: nilai jawaban):</label>
+        <input type="text" id="edAnswer" />
+      </div>
+      <div class="editor-field">
+        <label>Rumus Utama:</label>
+        <input type="text" id="edFormula" />
+      </div>
+      <div class="editor-field">
+        <label>Tips Cepat:</label>
+        <input type="text" id="edTip" />
+      </div>
+      <div class="editor-field">
+        <label>Langkah Pembahasan:</label>
+        <textarea id="edSteps" rows="3"></textarea>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:12px;">
+        <button class="btn btn-danger btn-sm" onclick="deleteCurrentEditorQ()">Hapus Soal Ini</button>
+        <button class="btn btn-success" onclick="saveEditorQuestion()">Simpan & Pratinjau</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded Quiz Data -->
+  <script type="application/json" id="quiz-data">
+  {
+    "meta": {
+      "title": "Kesebangunan dan Kekongruenan (Kelas 9)",
+      "subtitle": "Evaluasi Komprehensif: Kekongruenan Bangun & Segitiga, Kesebangunan, Segitiga Siku-siku & Penerapan",
+      "durationMinutes": 45
+    },
+    "soal": [
+      {
+        "id": 1,
+        "type": "single",
+        "topic": "Kekongruenan Bangun Datar",
+        "prompt": "Perhatikan trapesium $ABCD$ dan $JKLM$ yang kongruen ($ABCD \\cong JKLM$). Jika panjang $AB = 14\\text{ cm}$, $CD = 8\\text{ cm}$, $m\\angle A = 72^\\circ$, dan $m\\angle D = 108^\\circ$, maka pernyataan berikut yang benar adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "kongruen_trapesium"
+        },
+        "options": [
+          "Panjang $JK = 8\\text{ cm}$ dan $m\\angle M = 72^\\circ$",
+          "Panjang $LM = 8\\text{ cm}$ dan $m\\angle M = 108^\\circ$",
+          "Panjang $KL = 14\\text{ cm}$ dan $m\\angle J = 108^\\circ$",
+          "Panjang $JM = 14\\text{ cm}$ dan $m\\angle L = 72^\\circ$"
+        ],
+        "answer": 1,
+        "formula": "$ABCD \\cong JKLM \\Rightarrow AB = JK,\\; BC = KL,\\; CD = LM,\\; DA = MJ$ dan $\\angle A = \\angle J,\\; \\angle D = \\angle M$",
+        "tip": "Urutan penamaan titik sudut pada notasi kekongruenan ($ABCD \\cong JKLM$) langsung menunjukkan pasangan titik yang bersesuaian.",
+        "steps": "Dari urutan huruf $ABCD \\cong JKLM$, sisi $CD$ bersesuaian dengan $LM$ sehingga $LM = CD = 8\\text{ cm}$. Sudut $D$ bersesuaian dengan sudut $M$ sehingga $m\\angle M = m\\angle D = 108^\\circ$."
+      },
+      {
+        "id": 2,
+        "type": "single",
+        "topic": "Kekongruenan Segitiga",
+        "prompt": "Perhatikan gambar di bawah ini! Segitiga $ABC$ dan $\\triangle EDC$ berpotongan di titik $C$ dengan $AC = EC$ dan $BC = DC$. Kriteria yang membuktikan bahwa $\\triangle ABC \\cong \\triangle EDC$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "kongruen_jam_pasir"
+        },
+        "options": [
+          "Sisi – Sisi – Sisi",
+          "Sisi – Sudut – Sisi",
+          "Sudut – Sisi – Sudut",
+          "Sudut – Sudut – Sisi"
+        ],
+        "answer": 1,
+        "formula": "$AC = EC$ (sisi), $\\angle ACB = \\angle ECD$ (sudut bertolak belakang), $BC = DC$ (sisi)",
+        "tip": "Dua garis lurus yang berpotongan selalu membentuk sepasang sudut bertolak belakang yang sama besar.",
+        "steps": "Diketahui $AC = EC$ (sisi), $\\angle ACB = \\angle ECD$ karena saling bertolak belakang (sudut apit), dan $BC = DC$ (sisi). Dengan demikian, $\\triangle ABC \\cong \\triangle EDC$ memenuhi kriteria <strong>Sisi – Sudut – Sisi</strong>."
+      },
+      {
+        "id": 3,
+        "type": "single",
+        "topic": "Kekongruenan Segitiga",
+        "prompt": "Diketahui $\\triangle PQR$ dan $\\triangle KLM$ kongruen. Jika $m\\angle P = 55^\\circ$, $m\\angle Q = 60^\\circ$, $m\\angle K = 65^\\circ$, dan $m\\angle L = 60^\\circ$, maka pasangan sisi yang sama panjang adalah ....",
+        "options": [
+          "$QR = KL$",
+          "$QR = ML$",
+          "$PQ = KL$",
+          "$PR = ML$"
+        ],
+        "answer": 1,
+        "formula": "Jumlah sudut dalam segitiga $= 180^\\circ$. Sisi di hadapan sudut yang sama besar memiliki panjang yang sama.",
+        "tip": "Hitung sudut ketiga masing-masing segitiga terlebih dahulu, lalu pasangkan sudut-sudut yang besarnya sama.",
+        "steps": "Pada $\\triangle PQR$: $m\\angle R = 180^\\circ - (55^\\circ + 60^\\circ) = 65^\\circ$.<br/>Pada $\\triangle KLM$: $m\\angle M = 180^\\circ - (65^\\circ + 60^\\circ) = 55^\\circ$.<br/>Sudut bersesuaian: $\\angle P = \\angle M = 55^\\circ$, $\\angle Q = \\angle L = 60^\\circ$, dan $\\angle R = \\angle K = 65^\\circ$.<br/>Sisi di hadapan $\\angle P$ adalah $QR$, dan sisi di hadapan $\\angle M$ adalah $KL$? Perhatikan: di hadapan $\\angle M$ adalah $KL$, sedangkan di hadapan $\\angle P$ adalah $QR$! Tunggu: di hadapan $\\angle P (55^\\circ)$ adalah $QR$; di hadapan $\\angle M (55^\\circ)$ adalah $KL$. Mari cek pilihan: di hadapan $\\angle R (65^\\circ)$ adalah $PQ$ dan di hadapan $\\angle K (65^\\circ)$ adalah $ML$. Di hadapan $\\angle Q (60^\\circ)$ adalah $PR$ dan di hadapan $\\angle L (60^\\circ)$ adalah $KM$. Jadi $QR = KL$ (opsi A)."
+      },
+      {
+        "id": 4,
+        "type": "multiple",
+        "topic": "Kekongruenan Segitiga",
+        "prompt": "Perhatikan gambar layang-layang $ABCD$ dengan diagonal $AC$ dan $BD$ berpotongan tegak lurus di $E$, serta $AD = CD$ dan $AB = CB$. Manakah pernyataan berikut yang <strong>benar</strong>? (Pilih lebih dari satu jawaban)",
+        "figure": {
+          "type": "bangun",
+          "subtype": "layang_layang"
+        },
+        "options": [
+          "$\\triangle ABD \\cong \\triangle CBD$ berdasarkan kriteria Sisi – Sisi – Sisi",
+          "$\\triangle AED \\cong \\triangle CED$ berdasarkan kriteria Sisi – Sudut – Sisi",
+          "Terdapat tepat 3 pasang segitiga yang saling kongruen pada bangun $ABCD$",
+          "$\\triangle AEB \\cong \\triangle AED$ karena memiliki sudut siku-siku di $E$"
+        ],
+        "answer": [0, 1, 2],
+        "formula": "Layang-layang simetris terhadap diagonal utamanya ($BD$), membagi bangun menjadi 3 pasang segitiga kongruen.",
+        "tip": "Diagonal utama layang-layang berfungsi sebagai sumbu simetri yang membelah layang-layang menjadi dua bagian kongruen.",
+        "steps": "1) $\\triangle ABD \\cong \\triangle CBD$ karena $AD=CD$, $AB=CB$, dan $BD$ berimpit (s-s-s) → <strong>Benar</strong>.<br/>2) $\\triangle AED \\cong \\triangle CED$ karena $AD=CD$, $\\angle AED = \\angle CED = 90^\\circ$, dan $ED$ berimpit → <strong>Benar</strong>.<br/>3) Total ada 3 pasang segitiga kongruen: $(\\triangle ABD, \\triangle CBD)$, $(\\triangle AED, \\triangle CED)$, dan $(\\triangle AEB, \\triangle CEB)$ → <strong>Benar</strong>.<br/>4) $\\triangle AEB$ dan $\\triangle AED$ tidak kongruen karena $AB \\neq AD$."
+      },
+      {
+        "id": 5,
+        "type": "single",
+        "topic": "Model Berskala",
+        "prompt": "Seorang arsitek merancang gedung pertokoan berukuran $525\\text{ m} \\times 300\\text{ m}$. Sebelum pembangunan dimulai, dibuat denah berukuran $35\\text{ cm} \\times 20\\text{ cm}$. Skala yang digunakan untuk denah gedung tersebut adalah ....",
+        "options": [
+          "$1 : 150$",
+          "$1 : 1.500$",
+          "$1 : 15.000$",
+          "$1 : 3.000$"
+        ],
+        "answer": 1,
+        "formula": "$\\text{Skala} = \\frac{\\text{Ukuran pada denah}}{\\text{Ukuran sebenarnya}}$ (dalam satuan yang sama)",
+        "tip": "Ubah meter ke sentimeter dengan mengalikan $100$ sebelum menyederhanakan perbandingan.",
+        "steps": "Panjang sebenarnya $= 525\\text{ m} = 52.500\\text{ cm}$.<br/>$\\text{Skala} = \\frac{35\\text{ cm}}{52.500\\text{ cm}} = \\frac{1}{1.500} = 1 : 1.500$.<br/>Cek lebar: $\\frac{20\\text{ cm}}{30.000\\text{ cm}} = \\frac{1}{1.500}$ (konsisten)."
+      },
+      {
+        "id": 6,
+        "type": "single",
+        "topic": "Kesebangunan Bangun Datar",
+        "prompt": "Dua buah trapesium siku-siku $ABCD$ dan $PQRS$ sebangun seperti pada gambar di bawah. Jika $AB = 10\\text{ cm}$, $AD = 12\\text{ cm}$, $PQ = 21\\text{ cm}$, dan $SR = 15\\text{ cm}$, maka nilai $x + y$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "dua_trapesium_sebangun"
+        },
+        "options": [
+          "$25,2\\text{ cm}$",
+          "$29,4\\text{ cm}$",
+          "$32,2\\text{ cm}$",
+          "$35,4\\text{ cm}$"
+        ],
+        "answer": 2,
+        "formula": "$\\frac{AB}{SR} = \\frac{DC}{PQ} = \\frac{AD}{QR}$",
+        "tip": "Perhatikan posisi sisi sejajar terpendek dan terpanjang masing-masing trapesium sebelum menyusun perbandingan.",
+        "steps": "Sisi sejajar pendek: $AB = 10\\text{ cm}$ bersesuaian dengan $SR = 15\\text{ cm}$ (rasio $= \\frac{10}{15} = \\frac{2}{3}$).<br/>1) $\\frac{x}{21} = \\frac{2}{3} \\Rightarrow x = 14\\text{ cm}$.<br/>2) $\\frac{12}{y} = \\frac{2}{3} \\Rightarrow y = \\frac{12 \\times 3}{2} = 18\\text{ cm}$.<br/>Maka $x + y = 14 + 18 = 32\\text{ cm}$."
+      },
+      {
+        "id": 7,
+        "type": "single",
+        "topic": "Kesebangunan Bangun Datar",
+        "prompt": "Perhatikan gambar! Bangun trapesium $ABCD$ dan bangun $AEFG$ sebangun dengan $AE = 12\\text{ cm}$, $EB = 6\\text{ cm}$, $GF = 6\\text{ cm}$, $EF = 10\\text{ cm}$, dan $BC = 15\\text{ cm}$. Luas bangun $ABCD$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "trapesium_berimpit"
+        },
+        "options": [
+          "$162,0\\text{ cm}^2$",
+          "$202,5\\text{ cm}^2$",
+          "$324,0\\text{ cm}^2$",
+          "$405,0\\text{ cm}^2$"
+        ],
+        "answer": 1,
+        "formula": "$\\text{Luas Trapesium} = \\frac{(a + b)}{2} \\times t$",
+        "tip": "Gunakan teorema Pythagoras pada trapesium siku-siku untuk mencari tinggi trapesium terlebih dahulu.",
+        "steps": "Panjang $AB = AE + EB = 12 + 6 = 18\\text{ cm}$.<br/>Perbandingan sisi $AEFG : ABCD = AE : AB = 12 : 18 = 2 : 3$.<br/>Maka $DC = \\frac{3}{2} \\times GF = \\frac{3}{2} \\times 6 = 9\\text{ cm}$.<br/>Tinggi trapesium $AD = \\sqrt{BC^2 - (AB - DC)^2} = \\sqrt{15^2 - (18 - 9)^2} = \\sqrt{225 - 81} = \\sqrt{144} = 12\\text{ cm}$.<br/>$\\text{Luas } ABCD = \\frac{18 + 9}{2} \\times 12 = 27 \\times 6 = 162\\text{ cm}^2$."
+      },
+      {
+        "id": 8,
+        "type": "tf",
+        "topic": "Kesebangunan Dua Segitiga",
+        "prompt": "Tentukan apakah pernyataan berikut <strong>Benar</strong> atau <strong>Salah</strong>:<br/>\"Dalam $\\triangle ABC$ dan $\\triangle PQR$, diketahui panjang $AB = 15\\text{ cm}$, $BC = 12\\text{ cm}$, $AC = 21\\text{ cm}$, sedangkan $PR = 28\\text{ cm}$, $PQ = 49\\text{ cm}$, dan $QR = 35\\text{ cm}$. Kedua segitiga tersebut <strong>sebangun</strong>.\"",
+        "options": [
+          "Benar",
+          "Salah"
+        ],
+        "answer": 0,
+        "formula": "Urutkan sisi dari terpendek ke terpanjang, lalu uji apakah $\\frac{s_1}{p_1} = \\frac{s_2}{p_2} = \\frac{s_3}{p_3}$.",
+        "tip": "Selalu pasangkan sisi terpendek dengan terpendek, sedang dengan sedang, dan terpanjang dengan terpanjang.",
+        "steps": "Urutan sisi $\\triangle ABC$: $BC = 12$, $AB = 15$, $AC = 21$.<br/>Urutan sisi $\\triangle PQR$: $PR = 28$, $QR = 35$, $PQ = 49$.<br/>Uji perbandingan:<br/>$\\frac{12}{28} = \\frac{3}{7}$, $\\quad \\frac{15}{35} = \\frac{3}{7}$, $\\quad \\frac{21}{49} = \\frac{3}{7}$.<br/>Karena ketiga perbandingan sisi bersesuaian sama besar ($3:7$), maka $\\triangle ABC \\sim \\triangle PQR$ (<strong>Benar</strong>)."
+      },
+      {
+        "id": 9,
+        "type": "single",
+        "topic": "Kesebangunan Dua Segitiga",
+        "prompt": "Perhatikan gambar $\\triangle ABC$ berikut! Titik $D$ terletak pada $AC$ dan $E$ pada $BC$ sehingga $\\angle CDE = \\angle ABC$. Jika $AB = BC$, $DE = 6\\text{ cm}$, dan $AD = 2\\text{ cm}$, maka panjang $AC$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "segitiga_sudut_silang"
+        },
+        "options": [
+          "$4\\text{ cm}$",
+          "$6\\text{ cm}$",
+          "$8\\text{ cm}$",
+          "$10\\text{ cm}$"
+        ],
+        "answer": 1,
+        "formula": "$\\triangle CDE \\sim \\triangle CBA \\Rightarrow \\frac{CD}{CB} = \\frac{DE}{BA}$",
+        "tip": "Perhatikan bahwa $\\angle C$ berimpit pada $\\triangle CDE$ dan $\\triangle CBA$, sehingga sudut ketiga otomatis sama besar.",
+        "steps": "Karena $\\angle C$ berimpit dan $\\angle CDE = \\angle CBA$, maka $\\triangle CDE \\sim \\triangle CBA$.<br/>Susun perbandingan sisi di hadapan sudut yang sama:<br/>$\\frac{CD}{CB} = \\frac{DE}{BA}$.<br/>Diketahui $AB = BC$, sehingga penyebut kedua ruas sama ($CB = BA$).<br/>Akibatnya $CD = DE = 6\\text{ cm}$.<br/>Maka $AC = AD + DC = 2 + 6 = 8\\text{ cm}$."
+      },
+      {
+        "id": 10,
+        "type": "short",
+        "topic": "Garis Sejajar pada Segitiga",
+        "prompt": "Perhatikan gambar $\\triangle ABC$ dengan garis $EF \\parallel AB$. Jika $CF = 6\\text{ cm}$, $FB = 4\\text{ cm}$, dan $AB = 8\\text{ cm}$, hitunglah panjang $EF$ (dalam cm)!",
+        "figure": {
+          "type": "bangun",
+          "subtype": "segitiga_garis_sejajar"
+        },
+        "answer": "4.8",
+        "formula": "$\\frac{CF}{CB} = \\frac{EF}{AB}$",
+        "tip": "Hati-hati! Untuk mencari sisi sejajar ($EF$), gunakan sisi utuh $CB = CF + FB$, bukan hanya potongan $FB$.",
+        "steps": "Panjang $CB = CF + FB = 6 + 4 = 10\\text{ cm}$.<br/>$\\frac{CF}{CB} = \\frac{EF}{AB} \\Rightarrow \\frac{6}{10} = \\frac{EF}{8}$<br/>$EF = \\frac{6 \\times 8}{10} = \\frac{48}{10} = 4,8\\text{ cm}$."
+      },
+      {
+        "id": 11,
+        "type": "single",
+        "topic": "Kesebangunan Khusus",
+        "prompt": "Perhatikan gambar dua garis sejajar $AB$ dan $CD$ yang dihubungkan menyilang oleh $AC$ dan $BD$, serta $EF \\parallel AB \\parallel DC$ dan $AB \\perp BC$. Jika $AB = 8\\text{ cm}$ dan $CD = 12\\text{ cm}$, maka panjang $EF$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "pita_silang_ef"
+        },
+        "options": [
+          "$4,2\\text{ cm}$",
+          "$4,8\\text{ cm}$",
+          "$5,0\\text{ cm}$",
+          "$6,4\\text{ cm}$"
+        ],
+        "answer": 1,
+        "formula": "$EF = \\frac{AB \\times CD}{AB + CD}$",
+        "tip": "Rumus cepat untuk tinggi perpotongan diagonal dua tiang sejajar adalah perkalian dibagi penjumlahan keduanya.",
+        "steps": "Menggunakan prinsip kesebangunan $\\triangle BEF \\sim \\triangle BDC$ dan $\\triangle CEF \\sim \\triangle CAB$:<br/>$\\frac{1}{EF} = \\frac{1}{AB} + \\frac{1}{CD} \\Rightarrow EF = \\frac{AB \\times CD}{AB + CD}$<br/>$EF = \\frac{8 \\times 12}{8 + 12} = \\frac{96}{20} = 4,8\\text{ cm}$."
+      },
+      {
+        "id": 12,
+        "type": "single",
+        "topic": "Kesebangunan pada Segitiga Siku-siku",
+        "prompt": "Perhatikan $\\triangle ABC$ siku-siku di $A$ dengan garis tinggi $AD \\perp BC$. Jika panjang $BD = 12\\text{ cm}$ dan $BC = 28\\text{ cm}$, maka panjang $AB$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "siku_siku_air_mancur"
+        },
+        "options": [
+          "$4\\sqrt{21}\\text{ cm}$",
+          "$8\\sqrt{3}\\text{ cm}$",
+          "$12\\sqrt{2}\\text{ cm}$",
+          "$16\\text{ cm}$"
+        ],
+        "answer": 0,
+        "formula": "$AB^2 = BD \\times BC$",
+        "tip": "Gunakan rumus air mancur dari titik $B$: kuadrat sisi miring kiri ($AB^2$) sama dengan jarak terdekat ($BD$) dikali jarak terjauh ($BC$).",
+        "steps": "$AB^2 = BD \\times BC$<br/>$AB^2 = 12 \\times 28 = 336$<br/>$AB = \\sqrt{336} = \\sqrt{16 \\times 21} = 4\\sqrt{21}\\text{ cm}$."
+      },
+      {
+        "id": 13,
+        "type": "short",
+        "topic": "Kesebangunan pada Segitiga Siku-siku",
+        "prompt": "Pada $\\triangle ABC$ siku-siku di $A$ dengan $AD \\perp BC$, diketahui luas $\\triangle ABD = 48\\text{ cm}^2$ dan panjang $BD = 8\\text{ cm}$. Hitunglah panjang sisi $CD$ (dalam cm)!",
+        "figure": {
+          "type": "bangun",
+          "subtype": "siku_siku_air_mancur"
+        },
+        "answer": "18",
+        "formula": "$\\text{Luas } \\triangle ABD = \\frac{1}{2} \\times BD \\times AD$ dan $AD^2 = BD \\times CD$",
+        "tip": "Cari tinggi $AD$ dari rumus luas segitiga siku-siku $ABD$, lalu gunakan rumus air mancur tengah $AD^2 = BD \\times CD$.",
+        "steps": "1) $\\text{Luas } \\triangle ABD = \\frac{1}{2} \\times BD \\times AD \\Rightarrow 48 = \\frac{1}{2} \\times 8 \\times AD \\Rightarrow 48 = 4 \\times AD \\Rightarrow AD = 12\\text{ cm}$.<br/>2) $AD^2 = BD \\times CD \\Rightarrow 12^2 = 8 \\times CD \\Rightarrow 144 = 8 \\times CD \\Rightarrow CD = 18\\text{ cm}$."
+      },
+      {
+        "id": 14,
+        "type": "single",
+        "topic": "Garis Sejajar pada Trapesium",
+        "prompt": "Perhatikan trapesium di bawah ini! Panjang sisi sejajar atas $9\\text{ cm}$, sisi sejajar bawah $19\\text{ cm}$, dan sisi miring terbagi menjadi $6\\text{ cm}$ (atas) dan $4\\text{ cm}$ (bawah). Nilai $x$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "trapesium_garis_tengah"
+        },
+        "options": [
+          "$13\\text{ cm}$",
+          "$14\\text{ cm}$",
+          "$15\\text{ cm}$",
+          "$16\\text{ cm}$"
+        ],
+        "answer": 2,
+        "formula": "$x = \\frac{(19 \\times 6) + (9 \\times 4)}{6 + 4}$",
+        "tip": "Kalikan silang: sisi sejajar bawah dikali ruas miring atas, ditambah sisi sejajar atas dikali ruas miring bawah, lalu bagi total ruas miring.",
+        "steps": "$x = \\frac{(19 \\times 6) + (9 \\times 4)}{6 + 4} = \\frac{114 + 36}{10} = \\frac{150}{10} = 15\\text{ cm}$."
+      },
+      {
+        "id": 15,
+        "type": "single",
+        "topic": "Penerapan: Foto dan Karton",
+        "prompt": "Sebuah foto ditempelkan pada sehelai karton berukuran $40\\text{ cm} \\times 60\\text{ cm}$. Di sebelah atas, kiri, dan kanan karton masih terdapat sisa karton selebar $5\\text{ cm}$. Jika foto dan karton sebangun, lebar karton bagian bawah yang tidak tertutup foto adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "foto_karton"
+        },
+        "options": [
+          "$5\\text{ cm}$",
+          "$7,5\\text{ cm}$",
+          "$10\\text{ cm}$",
+          "$12,5\\text{ cm}$"
+        ],
+        "answer": 2,
+        "formula": "$\\frac{\\text{Lebar Foto}}{\\text{Lebar Karton}} = \\frac{\\text{Tinggi Foto}}{\\text{Tinggi Karton}}$",
+        "tip": "Lebar foto berkurang $2 \\times \\text{sisa samping}$ (kiri dan kanan), sedangkan tinggi foto berkurang $(\\text{sisa atas} + \\text{sisa bawah})$.",
+        "steps": "Lebar karton $L_k = 40\\text{ cm}$, tinggi karton $T_k = 60\\text{ cm}$.<br/>Lebar foto $L_f = 40 - 5 - 5 = 30\\text{ cm}$.<br/>Karena sebangun: $\\frac{30}{40} = \\frac{T_f}{60} \\Rightarrow T_f = \\frac{3}{4} \\times 60 = 45\\text{ cm}$.<br/>Sisa bawah $= T_k - \\text{sisa atas} - T_f = 60 - 5 - 45 = 10\\text{ cm}$."
+      },
+      {
+        "id": 16,
+        "type": "single",
+        "topic": "Penerapan: Foto dan Karton",
+        "prompt": "Sebuah foto ditempel pada karton berukuran lebar $40\\text{ cm}$ dan tinggi $60\\text{ cm}$. Di sisi kiri, kanan, dan atas foto terdapat sisa karton selebar $5\\text{ cm}$. Jika foto dan karton sebangun, luas karton yang <strong>tidak tertutup foto</strong> adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "foto_karton"
+        },
+        "options": [
+          "$750\\text{ cm}^2$",
+          "$850\\text{ cm}^2$",
+          "$1.050\\text{ cm}^2$",
+          "$1.350\\text{ cm}^2$"
+        ],
+        "answer": 2,
+        "formula": "$\\text{Luas Sisa Karton} = \\text{Luas Karton} - \\text{Luas Foto}$",
+        "tip": "Hitung ukuran foto ($30\\text{ cm} \\times 45\\text{ cm}$) terlebih dahulu, lalu kurangkan luasnya dari luas karton utuh.",
+        "steps": "Luas karton $= 40 \\times 60 = 2.400\\text{ cm}^2$.<br/>Ukuran foto: lebar $= 40 - 5 - 5 = 30\\text{ cm}$, tinggi $= \\frac{30}{40} \\times 60 = 45\\text{ cm}$.<br/>Luas foto $= 30 \\times 45 = 1.350\\text{ cm}^2$.<br/>Luas karton yang tidak tertutup foto $= 2.400 - 1.350 = 1.050\\text{ cm}^2$."
+      },
+      {
+        "id": 17,
+        "type": "short",
+        "topic": "Penerapan: Lebar Sungai",
+        "prompt": "Andi ingin mengukur lebar sungai dari tongkat $D$ sampai pohon di seberang sungai. Ia menancapkan tongkat pada posisi $A, B, C, D$ dengan $DC = 9\\text{ m}$, $AB = 12\\text{ m}$, dan $AD = 6\\text{ m}$ ($AD \\perp AB$ dan $DC \\parallel AB$). Berapa meter lebar sungai ($DP$) tersebut?",
+        "figure": {
+          "type": "bangun",
+          "subtype": "lebar_sungai"
+        },
+        "answer": "18",
+        "formula": "$\\frac{DP}{DP + AD} = \\frac{DC}{AB}$",
+        "tip": "Segitiga atas ($\\triangle PDC$) sebangun dengan segitiga besar ($\\triangle PAB$).",
+        "steps": "Misalkan lebar sungai $DP = x$. Maka $PA = x + 6$.<br/>$\\frac{DP}{PA} = \\frac{DC}{AB} \\Rightarrow \\frac{x}{x + 6} = \\frac{9}{12} = \\frac{3}{4}$<br/>$4x = 3(x + 6) \\Rightarrow 4x = 3x + 18 \\Rightarrow x = 18\\text{ m}$."
+      },
+      {
+        "id": 18,
+        "type": "single",
+        "topic": "Penerapan: Bayangan & Tiang Lampu",
+        "prompt": "Seorang anak yang tingginya $1,5\\text{ meter}$ berdiri pada jarak $6\\text{ meter}$ dari sebuah tiang lampu. Jika panjang bayangan anak oleh sinar lampu tersebut adalah $2\\text{ meter}$, maka tinggi tiang lampu adalah ....",
+        "options": [
+          "$4,5\\text{ meter}$",
+          "$5,0\\text{ meter}$",
+          "$6,0\\text{ meter}$",
+          "$7,5\\text{ meter}$"
+        ],
+        "answer": 2,
+        "formula": "$\\frac{\\text{Tinggi Anak}}{\\text{Tinggi Tiang}} = \\frac{\\text{Bayangan Anak}}{\\text{Bayangan Anak} + \\text{Jarak ke Tiang}}$",
+        "tip": "Sinar lampu berada di puncak tiang, sehingga alas segitiga besar adalah jumlah bayangan anak dan jarak anak ke tiang ($2 + 6 = 8\\text{ m}$).",
+        "steps": "$\\frac{1,5}{T} = \\frac{2}{2 + 6} \\Rightarrow \\frac{1,5}{T} = \\frac{2}{8} = \\frac{1}{4}$<br/>$T = 1,5 \\times 4 = 6,0\\text{ meter}$."
+      },
+      {
+        "id": 19,
+        "type": "single",
+        "topic": "Penerapan: Kesebangunan Bertingkat",
+        "prompt": "Perhatikan gambar tiga persegi $PINK$, $NOTE$, dan $BLUE$ yang berimpit lurus di bagian alas dengan titik $P - O - B$ segaris. Jika panjang sisi $KN = 5\\text{ cm}$ dan $NE = 9\\text{ cm}$, maka luas persegi $BLUE$ adalah ....",
+        "figure": {
+          "type": "bangun",
+          "subtype": "tiga_persegi_segaris"
+        },
+        "options": [
+          "$196\\text{ cm}^2$",
+          "$256\\text{ cm}^2$",
+          "$262,44\\text{ cm}^2$",
+          "$324\\text{ cm}^2$"
+        ],
+        "answer": 2,
+        "formula": "$\\triangle PIO \\sim \\triangle OTB \\Rightarrow \\frac{OI}{PI} = \\frac{BT}{OT}$",
+        "tip": "Selisih tinggi dua persegi bersebelahan membentuk segitiga-segitiga siku-siku yang sebangun.",
+        "steps": "Sisi persegi $PINK = 5\\text{ cm}$, sisi persegi $NOTE = 9\\text{ cm}$.<br/>Pada $\\triangle PIO$: $PI = 5\\text{ cm}$ dan $OI = 9 - 5 = 4\\text{ cm}$.<br/>Misalkan sisi persegi $BLUE = s$. Pada $\\triangle OTB$: $OT = 9\\text{ cm}$ dan $BT = s - 9$.<br/>Karena $\\triangle PIO \\sim \\triangle OTB$:<br/>$\\frac{BT}{OT} = \\frac{OI}{PI} \\Rightarrow \\frac{s - 9}{9} = \\frac{4}{5}$<br/>$s - 9 = \\frac{36}{5} = 7,2 \\Rightarrow s = 16,2\\text{ cm}$.<br/>Luas persegi $BLUE = s^2 = (16,2)^2 = 262,44\\text{ cm}^2$."
+      },
+      {
+        "id": 20,
+        "type": "multiple",
+        "topic": "Analisis Kesebangunan & Kekongruenan",
+        "prompt": "Perhatikan gambar dua garis sejajar $DC \\parallel EF \\parallel AB$ pada diagonal trapesium $ABCD$ dengan $DC = 10\\text{ cm}$ dan $AB = 25\\text{ cm}$. Manakah pernyataan berikut yang <strong>benar</strong>? (Pilih semua yang tepat)",
+        "figure": {
+          "type": "bangun",
+          "subtype": "pita_silang_ef"
+        },
+        "options": [
+          "$\\triangle DEC \\sim \\triangle BEA$ dengan perbandingan sisi $2 : 5$",
+          "Panjang segmen tengah $EF$ adalah $\\frac{50}{7}\\text{ cm}$",
+          "Perbandingan luas $\\triangle DEC$ terhadap $\\triangle BEA$ adalah $2 : 5$",
+          "Jika $AE = 15\\text{ cm}$, maka panjang diagonal $AC$ adalah $21\\text{ cm}$"
+        ],
+        "answer": [0, 1, 3],
+        "formula": "Perbandingan luas dua bangun sebangun sama dengan <strong>kuadrat</strong> dari perbandingan sisinya.",
+        "tip": "Ingat perbedaan rasio panjang ($a:b$) dan rasio luas ($a^2:b^2$)!",
+        "steps": "1) Karena $DC \\parallel AB$, sudut dalam berseberangan sama besar sehingga $\\triangle DEC \\sim \\triangle BEA$ dengan rasio $DC : AB = 10 : 25 = 2 : 5$ → <strong>Benar</strong>.<br/>2) $EF = \\frac{10 \\times 25}{10 + 25} = \\frac{250}{35} = \\frac{50}{7}\\text{ cm}$ → <strong>Benar</strong>.<br/>3) Rasio luas $= (2 : 5)^2 = 4 : 25$, bukan $2 : 5$ → <strong>Salah</strong>.<br/>4) $\\frac{CE}{AE} = \\frac{2}{5} \\Rightarrow CE = \\frac{2}{5} \\times 15 = 6\\text{ cm}$, sehingga $AC = 15 + 6 = 21\\text{ cm}$ → <strong>Benar</strong>."
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    /* =========================================================
+       INTERNAL VECTOR LIBRARY: MathFig
+       ========================================================= */
+    const MathFig = {
+      render(fig) {
+        if (!fig || !fig.type) return '';
+        const st = fig.subtype || '';
+        const navy = '#14213d';
+        const brass = '#b08d57';
+        const green = '#2d5a4a';
+        const red = '#9b2c2c';
+
+        if (fig.type === 'bangun') {
+          switch (st) {
+            case 'kongruen_trapesium':
+              return `<svg width="420" height="150" viewBox="0 0 420 150">
+                <polygon points="30,30 160,30 160,115 65,115" fill="#e6f0ec" stroke="${navy}" stroke-width="2.2"/>
+                <text x="18" y="26" font-weight="bold" fill="${navy}">A</text>
+                <text x="165" y="26" font-weight="bold" fill="${navy}">B</text>
+                <text x="165" y="128" font-weight="bold" fill="${navy}">C</text>
+                <text x="52" y="128" font-weight="bold" fill="${navy}">D</text>
+                <text x="95" y="22" font-size="12" fill="${red}">14 cm</text>
+                <text x="110" y="132" font-size="12" fill="${red}">8 cm</text>
+                <text x="42" y="52" font-size="11" fill="${navy}">72°</text>
+                <text x="68" y="106" font-size="11" fill="${navy}">108°</text>
+
+                <polygon points="230,35 360,35 360,120 265,120" fill="#fdf6e7" stroke="${navy}" stroke-width="2.2"/>
+                <text x="218" y="31" font-weight="bold" fill="${navy}">J</text>
+                <text x="365" y="31" font-weight="bold" fill="${navy}">K</text>
+                <text x="365" y="133" font-weight="bold" fill="${navy}">L</text>
+                <text x="252" y="133" font-weight="bold" fill="${navy}">M</text>
+                <text x="295" y="78" font-size="12" fill="${brass}" font-weight="bold">ABCD ≅ JKLM</text>
+              </svg>`;
+
+            case 'kongruen_jam_pasir':
+              return `<svg width="280" height="190" viewBox="0 0 280 190">
+                <polygon points="60,25 220,25 140,95" fill="#e6f0ec" stroke="${navy}" stroke-width="2"/>
+                <polygon points="140,95 60,165 220,165" fill="#fdf6e7" stroke="${navy}" stroke-width="2"/>
+                <line x1="94" y1="62" x2="105" y2="53" stroke="${red}" stroke-width="2"/>
+                <line x1="98" y1="66" x2="109" y2="57" stroke="${red}" stroke-width="2"/>
+                <line x1="171" y1="133" x2="182" y2="124" stroke="${red}" stroke-width="2"/>
+                <line x1="175" y1="137" x2="186" y2="128" stroke="${red}" stroke-width="2"/>
+                <line x1="175" y1="56" x2="185" y2="65" stroke="${green}" stroke-width="2"/>
+                <line x1="95" y1="126" x2="105" y2="135" stroke="${green}" stroke-width="2"/>
+                <text x="45" y="25" font-weight="bold" fill="${navy}">A</text>
+                <text x="226" y="25" font-weight="bold" fill="${navy}">B</text>
+                <text x="150" y="99" font-weight="bold" fill="${navy}">C</text>
+                <text x="45" y="172" font-weight="bold" fill="${navy}">D</text>
+                <text x="226" y="172" font-weight="bold" fill="${navy}">E</text>
+              </svg>`;
+
+            case 'layang_layang':
+              return `<svg width="260" height="200" viewBox="0 0 260 200">
+                <polygon points="130,20 220,75 130,180 40,75" fill="#fffdf8" stroke="${navy}" stroke-width="2.2"/>
+                <line x1="130" y1="20" x2="130" y2="180" stroke="${navy}" stroke-width="1.6"/>
+                <line x1="40" y1="75" x2="220" y2="75" stroke="${navy}" stroke-width="1.6"/>
+                <polyline points="130,65 140,65 140,75" fill="none" stroke="${red}" stroke-width="1.5"/>
+                <line x1="80" y1="43" x2="86" y2="52" stroke="${green}" stroke-width="2"/>
+                <line x1="180" y1="43" x2="174" y2="52" stroke="${green}" stroke-width="2"/>
+                <line x1="78" y1="125" x2="88" y2="119" stroke="${brass}" stroke-width="2"/>
+                <line x1="82" y1="130" x2="92" y2="124" stroke="${brass}" stroke-width="2"/>
+                <line x1="182" y1="125" x2="172" y2="119" stroke="${brass}" stroke-width="2"/>
+                <line x1="178" y1="130" x2="168" y2="124" stroke="${brass}" stroke-width="2"/>
+                <text x="125" y="14" font-weight="bold" fill="${navy}">D</text>
+                <text x="226" y="80" font-weight="bold" fill="${navy}">C</text>
+                <text x="125" y="196" font-weight="bold" fill="${navy}">B</text>
+                <text x="24" y="80" font-weight="bold" fill="${navy}">A</text>
+                <text x="135" y="89" font-size="12" font-weight="bold" fill="${red}">E</text>
+              </svg>`;
+
+            case 'dua_trapesium_sebangun':
+              return `<svg width="430" height="170" viewBox="0 0 430 170">
+                <polygon points="40,40 155,40 115,130 40,130" fill="#e6f0ec" stroke="${navy}" stroke-width="2"/>
+                <polyline points="40,52 52,52 52,40" fill="none" stroke="${navy}" stroke-width="1.5"/>
+                <polyline points="40,118 52,118 52,130" fill="none" stroke="${navy}" stroke-width="1.5"/>
+                <text x="26" y="38" font-weight="bold">D</text>
+                <text x="160" y="38" font-weight="bold">C</text>
+                <text x="118" y="144" font-weight="bold">B</text>
+                <text x="26" y="144" font-weight="bold">A</text>
+                <text x="92" y="33" font-size="12" fill="${red}" font-weight="bold">x</text>
+                <text x="8" y="88" font-size="12" fill="${navy}">12 cm</text>
+                <text x="62" y="145" font-size="12" fill="${navy}">10 cm</text>
+
+                <polygon points="245,30 375,30 375,140 205,140" fill="#fdf6e7" stroke="${navy}" stroke-width="2"/>
+                <polyline points="363,30 363,42 375,42" fill="none" stroke="${navy}" stroke-width="1.5"/>
+                <polyline points="363,140 363,128 375,128" fill="none" stroke="${navy}" stroke-width="1.5"/>
+                <text x="232" y="26" font-weight="bold">S</text>
+                <text x="380" y="26" font-weight="bold">R</text>
+                <text x="380" y="146" font-weight="bold">Q</text>
+                <text x="192" y="146" font-weight="bold">P</text>
+                <text x="295" y="23" font-size="12" fill="${navy}">15 cm</text>
+                <text x="382" y="88" font-size="12" fill="${red}" font-weight="bold">y</text>
+                <text x="275" y="156" font-size="12" fill="${navy}">21 cm</text>
+              </svg>`;
+
+            case 'trapesium_berimpit':
+              return `<svg width="320" height="175" viewBox="0 0 320 175">
+                <polygon points="40,30 140,30 265,145 40,145" fill="#fdf6e7" stroke="${navy}" stroke-width="2.2"/>
+                <polygon points="40,68 106,68 190,145 40,145" fill="#e6f0ec" stroke="${green}" stroke-width="2"/>
+                <text x="25" y="32" font-weight="bold">D</text>
+                <text x="145" y="32" font-weight="bold">C</text>
+                <text x="24" y="72" font-weight="bold">G</text>
+                <text x="112" y="66" font-weight="bold">F</text>
+                <text x="25" y="158" font-weight="bold">A</text>
+                <text x="186" y="160" font-weight="bold">E</text>
+                <text x="268" y="158" font-weight="bold">B</text>
+                <text x="58" y="62" font-size="12" fill="${green}">6 cm</text>
+                <text x="155" y="102" font-size="12" fill="${green}">10 cm</text>
+                <text x="210" y="85" font-size="12" fill="${navy}">15 cm</text>
+                <text x="100" y="138" font-size="12" fill="${green}">12 cm</text>
+                <text x="218" y="138" font-size="12" fill="${navy}">6 cm</text>
+              </svg>`;
+
+            case 'segitiga_sudut_silang':
+              return `<svg width="310" height="180" viewBox="0 0 310 180">
+                <polygon points="105,25 40,150 270,150" fill="#fffdf8" stroke="${navy}" stroke-width="2.2"/>
+                <line x1="65" y1="102" x2="165" y2="75" stroke="${red}" stroke-width="2"/>
+                <text x="102" y="18" font-weight="bold">C</text>
+                <text x="25" y="156" font-weight="bold">A</text>
+                <text x="275" y="156" font-weight="bold">B</text>
+                <text x="48" y="102" font-weight="bold">D</text>
+                <text x="170" y="72" font-weight="bold">E</text>
+                <text x="74" y="92" font-size="12" fill="${red}">x°</text>
+                <text x="225" y="143" font-size="12" fill="${red}">x°</text>
+                <text x="26" y="130" font-size="12" fill="${navy}">2 cm</text>
+                <text x="105" y="106" font-size="12" fill="${navy}">6 cm</text>
+              </svg>`;
+
+            case 'segitiga_garis_sejajar':
+              return `<svg width="300" height="180" viewBox="0 0 300 180">
+                <polygon points="110,20 45,155 260,155" fill="#fffdf8" stroke="${navy}" stroke-width="2.2"/>
+                <line x1="71" y1="101" x2="200" y2="101" stroke="${green}" stroke-width="2"/>
+                <text x="106" y="15" font-weight="bold">C</text>
+                <text x="30" y="162" font-weight="bold">A</text>
+                <text x="265" y="162" font-weight="bold">B</text>
+                <text x="53" y="103" font-weight="bold">E</text>
+                <text x="206" y="103" font-weight="bold">F</text>
+                <text x="165" y="58" font-size="12" fill="${navy}">6 cm</text>
+                <text x="238" y="128" font-size="12" fill="${navy}">4 cm</text>
+                <text x="145" y="172" font-size="12" fill="${navy}">8 cm</text>
+                <text x="125" y="95" font-size="12" fill="${red}" font-weight="bold">EF = ?</text>
+              </svg>`;
+
+            case 'pita_silang_ef':
+              return `<svg width="320" height="175" viewBox="0 0 320 175">
+                <line x1="45" y1="30" x2="45" y2="145" stroke="${navy}" stroke-width="2.5"/>
+                <line x1="275" y1="15" x2="275" y2="145" stroke="${navy}" stroke-width="2.5"/>
+                <line x1="45" y1="145" x2="275" y2="145" stroke="${navy}" stroke-width="2"/>
+                <line x1="45" y1="30" x2="275" y2="145" stroke="${brass}" stroke-width="2"/>
+                <line x1="45" y1="145" x2="275" y2="15" stroke="${brass}" stroke-width="2"/>
+                <line x1="141" y1="78" x2="141" y2="145" stroke="${red}" stroke-width="2.2" stroke-dasharray="4,3"/>
+                <text x="30" y="32" font-weight="bold">A</text>
+                <text x="30" y="152" font-weight="bold">B</text>
+                <text x="280" y="152" font-weight="bold">C</text>
+                <text x="280" y="20" font-weight="bold">D</text>
+                <text x="137" y="70" font-weight="bold" fill="${red}">E</text>
+                <text x="137" y="160" font-weight="bold" fill="${red}">F</text>
+              </svg>`;
+
+            case 'siku_siku_air_mancur':
+              return `<svg width="320" height="175" viewBox="0 0 320 175">
+                <polygon points="110,25 40,145 280,145" fill="#fffdf8" stroke="${navy}" stroke-width="2.2"/>
+                <line x1="110" y1="25" x2="110" y2="145" stroke="${red}" stroke-width="2"/>
+                <polyline points="110,133 122,133 122,145" fill="none" stroke="${red}" stroke-width="1.5"/>
+                <polyline points="103,37 113,43 119,33" fill="none" stroke="${navy}" stroke-width="1.5"/>
+                <text x="106" y="18" font-weight="bold">A</text>
+                <text x="25" y="152" font-weight="bold">B</text>
+                <text x="285" y="152" font-weight="bold">C</text>
+                <text x="105" y="162" font-weight="bold" fill="${red}">D</text>
+              </svg>`;
+
+            case 'trapesium_garis_tengah':
+              return `<svg width="310" height="165" viewBox="0 0 310 165">
+                <polygon points="90,25 210,25 265,140 40,140" fill="#fffdf8" stroke="${navy}" stroke-width="2.2"/>
+                <line x1="60" y1="94" x2="243" y2="94" stroke="${green}" stroke-width="2"/>
+                <text x="140" y="18" font-size="12" fill="${navy}">9 cm</text>
+                <text x="140" y="156" font-size="12" fill="${navy}">19 cm</text>
+                <text x="145" y="88" font-size="13" fill="${red}" font-weight="bold">x</text>
+                <text x="48" y="62" font-size="12" fill="${navy}">6 cm</text>
+                <text x="26" y="120" font-size="12" fill="${navy}">4 cm</text>
+              </svg>`;
+
+            case 'foto_karton':
+              return `<svg width="230" height="210" viewBox="0 0 230 210">
+                <rect x="45" y="15" width="130" height="175" fill="#ece5d4" stroke="${navy}" stroke-width="2"/>
+                <rect x="62" y="32" width="96" height="130" fill="#ffffff" stroke="${green}" stroke-width="2"/>
+                <text x="182" y="105" font-size="12" fill="${navy}">60 cm</text>
+                <text x="90" y="205" font-size="12" fill="${navy}">40 cm</text>
+                <text x="95" y="100" font-size="13" font-weight="bold" fill="${green}">FOTO</text>
+                <text x="96" y="27" font-size="10" fill="${red}">5 cm</text>
+                <text x="46" y="100" font-size="10" fill="${red}">5</text>
+                <text x="161" y="100" font-size="10" fill="${red}">5</text>
+              </svg>`;
+
+            case 'lebar_sungai':
+              return `<svg width="330" height="195" viewBox="0 0 330 195">
+                <rect x="20" y="45" width="290" height="75" fill="#e0f2fe" stroke="none"/>
+                <line x1="20" y1="45" x2="310" y2="45" stroke="${navy}" stroke-width="2"/>
+                <line x1="20" y1="120" x2="310" y2="120" stroke="${navy}" stroke-width="2"/>
+                <text x="235" y="86" font-size="13" fill="#0369a1" font-style="italic">Sungai</text>
+                <polygon points="90,10 105,35 75,35" fill="${green}"/>
+                <rect x="87" y="35" width="6" height="10" fill="#78350f"/>
+                <text x="112" y="30" font-size="12" font-weight="bold">Pohon (P)</text>
+
+                <line x1="90" y1="45" x2="90" y2="165" stroke="${red}" stroke-width="1.8" stroke-dasharray="4,3"/>
+                <line x1="90" y1="45" x2="210" y2="165" stroke="${red}" stroke-width="1.8" stroke-dasharray="4,3"/>
+                <line x1="90" y1="165" x2="210" y2="165" stroke="${navy}" stroke-width="2"/>
+                <circle cx="90" cy="120" r="3.5" fill="${navy}"/>
+                <circle cx="165" cy="120" r="3.5" fill="${navy}"/>
+                <circle cx="90" cy="165" r="3.5" fill="${navy}"/>
+                <circle cx="210" cy="165" r="3.5" fill="${navy}"/>
+                <text x="74" y="135" font-weight="bold">D</text>
+                <text x="172" y="135" font-weight="bold">C</text>
+                <text x="74" y="172" font-weight="bold">A</text>
+                <text x="216" y="172" font-weight="bold">B</text>
+                <text x="122" y="115" font-size="11">9 m</text>
+                <text x="142" y="180" font-size="11">12 m</text>
+                <text x="65" y="148" font-size="11">6 m</text>
+              </svg>`;
+
+            case 'tiga_persegi_segaris':
+              return `<svg width="320" height="185" viewBox="0 0 320 185">
+                <rect x="30" y="120" width="40" height="40" fill="#fdf6e7" stroke="${navy}" stroke-width="2"/>
+                <rect x="70" y="88" width="72" height="72" fill="#e6f0ec" stroke="${navy}" stroke-width="2"/>
+                <rect x="142" y="30" width="130" height="130" fill="#eef2f9" stroke="${navy}" stroke-width="2"/>
+                <line x1="30" y1="120" x2="142" y2="30" stroke="${red}" stroke-width="2"/>
+                <text x="18" y="122" font-weight="bold">P</text>
+                <text x="58" y="85" font-weight="bold">O</text>
+                <text x="134" y="24" font-weight="bold">B</text>
+                <text x="275" y="24" font-weight="bold">L</text>
+                <text x="25" y="174" font-weight="bold">K</text>
+                <text x="66" y="174" font-weight="bold">N</text>
+                <text x="138" y="174" font-weight="bold">E</text>
+                <text x="270" y="174" font-weight="bold">U</text>
+                <text x="46" y="174" font-size="11" fill="${red}">5</text>
+                <text x="102" y="174" font-size="11" fill="${red}">9</text>
+              </svg>`;
+          }
+        }
+        return '';
+      }
+    };
+
+    /* =========================================================
+       QUIZ ENGINE STATE & LOGIC
+       ========================================================= */
+    let quizData = JSON.parse(document.getElementById('quiz-data').textContent);
+    let currentIndex = 0;
+    let mode = 'latihan'; // 'latihan' | 'ujian'
+    let isSubmitted = false;
+    let userAnswers = {}; // { [id]: number | number[] | string }
+    let checkedMap = {};  // { [id]: boolean }
+    let raguMap = {};     // { [id]: boolean }
+    let activeFilter = 'all';
+
+    // Timer
+    let totalSeconds = (quizData.meta.durationMinutes || 45) * 60;
+    let remainingSeconds = totalSeconds;
+    let timerRunning = true;
+    let timerInterval = null;
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (!timerRunning || isSubmitted) return;
+        if (remainingSeconds > 0) {
+          remainingSeconds--;
+          updateTimerUI();
+        } else {
+          finishQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const m = Math.floor(remainingSeconds / 60);
+      const s = remainingSeconds % 60;
+      document.getElementById('timerText').textContent =
+        String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function toggleTimer() {
+      timerRunning = !timerRunning;
+      document.getElementById('timerToggleBtn').textContent = timerRunning ? 'Jeda' : 'Lanjut';
+    }
+
+    function setMode(newMode) {
+      if (isSubmitted) return;
+      mode = newMode;
+      document.getElementById('modeLatihanBtn').classList.toggle('active', mode === 'latihan');
+      document.getElementById('modeUjianBtn').classList.toggle('active', mode === 'ujian');
+      document.getElementById('modeHintText').textContent =
+        mode === 'latihan'
+          ? 'Mode Latihan: Cek jawaban & pembahasan langsung per soal.'
+          : 'Mode Ujian: Pembahasan terbuka setelah menekan "Selesai & Nilai".';
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function renderMath(el) {
+      if (window.renderMathInElement) {
+        renderMathInElement(el, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function normalizeShort(val) {
+      if (val === undefined || val === null) return '';
+      return String(val)
+        .trim()
+        .toLowerCase()
+        .replace(/,/g, '.')
+        .replace(/\s*(cm2|cm²|m2|m²|cm|m|derajat|°)\s*$/i, '')
+        .trim();
+    }
+
+    function isQuestionCorrect(q) {
+      const ans = userAnswers[q.id];
+      if (ans === undefined || ans === null || ans === '' || (Array.isArray(ans) && ans.length === 0)) {
+        return false;
+      }
+      if (q.type === 'single' || q.type === 'tf') {
+        return Number(ans) === Number(q.answer);
+      }
+      if (q.type === 'multiple') {
+        const expected = [...q.answer].map(Number).sort((a, b) => a - b);
+        const actual = [...ans].map(Number).sort((a, b) => a - b);
+        return expected.length === actual.length && expected.every((v, i) => v === actual[i]);
+      }
+      if (q.type === 'short') {
+        const normUser = normalizeShort(ans);
+        const normKey = normalizeShort(q.answer);
+        if (!isNaN(normUser) && !isNaN(normKey) && normUser !== '' && normKey !== '') {
+          return Math.abs(parseFloat(normUser) - parseFloat(normKey)) < 0.01;
+        }
+        return normUser === normKey;
+      }
+      return false;
+    }
+
+    function hasAnswer(q) {
+      const ans = userAnswers[q.id];
+      if (ans === undefined || ans === null) return false;
+      if (Array.isArray(ans)) return ans.length > 0;
+      return String(ans).trim() !== '';
+    }
+
+    function getTypeLabel(type) {
+      return {
+        single: 'Pilihan Ganda',
+        multiple: 'Pilihan Ganda Kompleks',
+        tf: 'Benar / Salah',
+        short: 'Isian Singkat'
+      }[type] || type;
+    }
+
+    function renderQuestion() {
+      const soalList = quizData.soal;
+      if (!soalList.length) return;
+      if (currentIndex >= soalList.length) currentIndex = soalList.length - 1;
+      const q = soalList[currentIndex];
+
+      document.getElementById('quizTitle').textContent = quizData.meta.title;
+      document.getElementById('quizSubtitle').textContent = quizData.meta.subtitle;
+      document.getElementById('qNumberBadge').textContent = `Soal ${currentIndex + 1} / ${soalList.length}`;
+      document.getElementById('qTypeBadge').textContent = getTypeLabel(q.type);
+      document.getElementById('qTopicBadge').textContent = q.topic || 'Matematika';
+
+      const raguBtn = document.getElementById('raguBtn');
+      raguBtn.classList.toggle('active', !!raguMap[q.id]);
+
+      const promptEl = document.getElementById('qPrompt');
+      promptEl.innerHTML = q.prompt;
+
+      const figEl = document.getElementById('qFigure');
+      if (q.figure) {
+        figEl.innerHTML = MathFig.render(q.figure);
+        figEl.style.display = figEl.innerHTML ? 'flex' : 'none';
+      } else {
+        figEl.style.display = 'none';
+      }
+
+      const container = document.getElementById('qInputContainer');
+      container.innerHTML = '';
+
+      const showFeedback = isSubmitted || (mode === 'latihan' && checkedMap[q.id]);
+
+      if (q.type === 'single' || q.type === 'tf') {
+        const list = document.createElement('div');
+        list.className = 'options-list';
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        q.options.forEach((opt, idx) => {
+          const item = document.createElement('div');
+          item.className = 'option-item';
+          const selected = userAnswers[q.id] === idx;
+          if (selected) item.classList.add('selected');
+          if (showFeedback) {
+            if (idx === Number(q.answer)) item.classList.add('correct');
+            else if (selected) item.classList.add('wrong');
+          }
+          item.innerHTML = `
+            <div class="opt-marker">${q.type === 'tf' ? (idx === 0 ? 'B' : 'S') : letters[idx]}</div>
+            <div class="opt-text">${opt}</div>
+          `;
+          item.onclick = () => {
+            if (isSubmitted) return;
+            userAnswers[q.id] = idx;
+            if (mode === 'ujian') checkedMap[q.id] = false;
+            renderQuestion();
+            renderSidebar();
+            updateProgress();
+          };
+          list.appendChild(item);
+        });
+        container.appendChild(list);
+      } else if (q.type === 'multiple') {
+        const list = document.createElement('div');
+        list.className = 'options-list';
+        const currentSel = Array.isArray(userAnswers[q.id]) ? userAnswers[q.id] : [];
+        q.options.forEach((opt, idx) => {
+          const item = document.createElement('div');
+          item.className = 'option-item';
+          const selected = currentSel.includes(idx);
+          if (selected) item.classList.add('selected');
+          if (showFeedback) {
+            const isKey = q.answer.map(Number).includes(idx);
+            if (isKey) item.classList.add('correct');
+            else if (selected) item.classList.add('wrong');
+          }
+          item.innerHTML = `
+            <div class="opt-marker">${selected ? '✓' : ''}</div>
+            <div class="opt-text">${opt}</div>
+          `;
+          item.onclick = () => {
+            if (isSubmitted) return;
+            let arr = Array.isArray(userAnswers[q.id]) ? [...userAnswers[q.id]] : [];
+            if (arr.includes(idx)) arr = arr.filter(x => x !== idx);
+            else arr.push(idx);
+            userAnswers[q.id] = arr;
+            checkedMap[q.id] = false;
+            renderQuestion();
+            renderSidebar();
+            updateProgress();
+          };
+          list.appendChild(item);
+        });
+        container.appendChild(list);
+      } else if (q.type === 'short') {
+        const wrap = document.createElement('div');
+        wrap.className = 'short-answer-wrap';
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.className = 'short-input';
+        inp.placeholder = 'Ketik jawaban angka Anda...';
+        inp.value = userAnswers[q.id] || '';
+        inp.disabled = isSubmitted;
+        if (showFeedback) {
+          inp.classList.add(isQuestionCorrect(q) ? 'correct' : 'wrong');
+        }
+        inp.oninput = (e) => {
+          userAnswers[q.id] = e.target.value;
+          checkedMap[q.id] = false;
+          renderSidebar();
+          updateProgress();
+        };
+        const hint = document.createElement('div');
+        hint.className = 'short-hint';
+        hint.textContent = showFeedback
+          ? `Kunci Jawaban: ${q.answer}`
+          : 'Tips: Anda dapat menggunakan tanda koma (,) maupun titik (.) untuk desimal.';
+        wrap.appendChild(inp);
+        wrap.appendChild(hint);
+        container.appendChild(wrap);
+      }
+
+      // Check Button Visibility
+      const checkWrap = document.getElementById('checkActionWrap');
+      checkWrap.style.display = (!isSubmitted && mode === 'latihan') ? 'flex' : 'none';
+
+      // Explanation Panel
+      const expPanel = document.getElementById('explanationPanel');
+      if (showFeedback) {
+        expPanel.classList.add('visible');
+        document.getElementById('expFormula').innerHTML = q.formula || '-';
+        document.getElementById('expTip').innerHTML = q.tip || '-';
+        document.getElementById('expSteps').innerHTML = q.steps || '-';
+      } else {
+        expPanel.classList.remove('visible');
+      }
+
+      document.getElementById('prevBtn').disabled = currentIndex === 0;
+      document.getElementById('nextBtn').disabled = currentIndex === soalList.length - 1;
+
+      renderMath(document.getElementById('questionArea'));
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function checkCurrentAnswer() {
+      const q = quizData.soal[currentIndex];
+      if (!hasAnswer(q)) {
+        alert('Silakan pilih atau ketik jawaban terlebih dahulu sebelum memeriksa.');
+        return;
+      }
+      checkedMap[q.id] = true;
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function toggleRagu() {
+      const q = quizData.soal[currentIndex];
+      raguMap[q.id] = !raguMap[q.id];
+      renderQuestion();
+      renderSidebar();
+    }
+
+    function navigate(delta) {
+      const next = currentIndex + delta;
+      if (next >= 0 && next < quizData.soal.length) {
+        currentIndex = next;
+        renderQuestion();
+        renderSidebar();
+      }
+    }
+
+    function setFilter(f) {
+      activeFilter = f;
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === f);
+      });
+      renderSidebar();
+    }
+
+    function renderSidebar() {
+      const grid = document.getElementById('navGrid');
+      grid.innerHTML = '';
+      const list = quizData.soal;
+      document.getElementById('sidebarCountText').textContent = `${list.length} Soal`;
+
+      list.forEach((q, idx) => {
+        // Apply Filter
+        if (activeFilter === 'unanswered' && hasAnswer(q)) return;
+        if (activeFilter === 'ragu' && !raguMap[q.id]) return;
+        if (['single', 'multiple', 'tf', 'short'].includes(activeFilter) && q.type !== activeFilter) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'nav-num-btn';
+        btn.textContent = idx + 1;
+        if (idx === currentIndex) btn.classList.add('current');
+        if (raguMap[q.id]) btn.classList.add('ragu');
+
+        const showStatus = isSubmitted || (mode === 'latihan' && checkedMap[q.id]);
+        if (showStatus) {
+          btn.classList.add(isQuestionCorrect(q) ? 'correct' : 'wrong');
+        } else if (hasAnswer(q)) {
+          btn.classList.add('answered');
+        }
+
+        btn.onclick = () => {
+          currentIndex = idx;
+          renderQuestion();
+          renderSidebar();
+        };
+        grid.appendChild(btn);
+      });
+    }
+
+    function updateProgress() {
+      const total = quizData.soal.length;
+      const done = quizData.soal.filter(q => hasAnswer(q)).length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = `${done}/${total}`;
+    }
+
+    function finishQuiz() {
+      if (!isSubmitted) {
+        const unanswered = quizData.soal.filter(q => !hasAnswer(q)).length;
+        if (unanswered > 0 && remainingSeconds > 0) {
+          const ok = confirm(`Masih ada ${unanswered} soal yang belum dijawab. Yakin ingin menyelesaikan kuis dan melihat nilai?`);
+          if (!ok) return;
+        }
+      }
+      isSubmitted = true;
+      timerRunning = false;
+
+      let correct = 0;
+      let wrong = 0;
+      let empty = 0;
+      quizData.soal.forEach(q => {
+        if (!hasAnswer(q)) empty++;
+        else if (isQuestionCorrect(q)) correct++;
+        else wrong++;
+      });
+
+      const score = Math.round((correct / quizData.soal.length) * 100);
+      document.getElementById('finalScoreVal').textContent = score;
+      document.getElementById('statCorrect').textContent = correct;
+      document.getElementById('statWrong').textContent = wrong;
+      document.getElementById('statUnanswered').textContent = empty;
+
+      const elapsed = totalSeconds - remainingSeconds;
+      const em = Math.floor(elapsed / 60);
+      const es = elapsed % 60;
+      document.getElementById('statTime').textContent =
+        String(em).padStart(2, '0') + ':' + String(es).padStart(2, '0');
+
+      let predikat = 'Terus Berlatih!';
+      if (score >= 90) predikat = 'Istimewa! Penguasaan Konsep Sangat Baik';
+      else if (score >= 75) predikat = 'Baik! Lulus Kriteria Ketuntasan Minimal';
+      else if (score >= 60) predikat = 'Cukup. Tinjau kembali pembahasan soal yang keliru.';
+      document.getElementById('finalGradeText').textContent = predikat;
+
+      renderQuestion();
+      renderSidebar();
+      openModal('scoreModal');
+
+      // GoatCounter analytics trigger saat #scoreModal dibuka
+      if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({
+          path: 'quiz-completed-kesebangunan-kekongruenan',
+          title: 'Selesai Kuis Kesebangunan & Kekongruenan',
+          event: true
+        });
+      }
+    }
+
+    function resetQuiz() {
+      isSubmitted = false;
+      userAnswers = {};
+      checkedMap = {};
+      raguMap = {};
+      remainingSeconds = totalSeconds;
+      timerRunning = true;
+      document.getElementById('timerToggleBtn').textContent = 'Jeda';
+      currentIndex = 0;
+      closeModal('scoreModal');
+      updateTimerUI();
+      updateProgress();
+      renderQuestion();
+      renderSidebar();
+    }
+
+    /* =========================================================
+       MODALS, CALCULATOR & QUIZ EDITOR
+       ========================================================= */
+    function openModal(id) {
+      const el = document.getElementById(id);
+      el.classList.add('open');
+      renderMath(el);
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    // Scientific Calculator
+    let calcExpr = '';
+    function calcAppend(ch) {
+      calcExpr += ch;
+      document.getElementById('calcDisplay').value = calcExpr;
+    }
+    function calcClear() {
+      calcExpr = '';
+      document.getElementById('calcDisplay').value = '0';
+    }
+    function calcBack() {
+      calcExpr = calcExpr.slice(0, -1);
+      document.getElementById('calcDisplay').value = calcExpr || '0';
+    }
+    function calcFunc(fn) {
+      try {
+        const val = Function('"use strict";return (' + (calcExpr || '0') + ')')();
+        const res = fn === 'sqrt' ? Math.sqrt(val) : Math.pow(val, 2);
+        calcExpr = String(Number(res.toFixed(6)));
+        document.getElementById('calcDisplay').value = calcExpr;
+      } catch {
+        document.getElementById('calcDisplay').value = 'Error';
+        calcExpr = '';
+      }
+    }
+    function calcEval() {
+      try {
+        const res = Function('"use strict";return (' + calcExpr + ')')();
+        calcExpr = String(Number(res.toFixed(6)));
+        document.getElementById('calcDisplay').value = calcExpr;
+      } catch {
+        document.getElementById('calcDisplay').value = 'Error';
+        calcExpr = '';
+      }
+    }
+
+    // Built-in Quiz Editor
+    function openEditor() {
+      const sel = document.getElementById('editorSelectQ');
+      sel.innerHTML = '';
+      quizData.soal.forEach((q, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `Soal ${i + 1} (${q.type}) — ${q.topic}`;
+        sel.appendChild(opt);
+      });
+      sel.value = currentIndex;
+      loadEditorQuestion();
+      openModal('editorModal');
+    }
+
+    function loadEditorQuestion() {
+      const idx = Number(document.getElementById('editorSelectQ').value);
+      const q = quizData.soal[idx];
+      if (!q) return;
+      document.getElementById('edPrompt').value = q.prompt || '';
+      document.getElementById('edType').value = q.type || 'single';
+      document.getElementById('edTopic').value = q.topic || '';
+      document.getElementById('edOptions').value = (q.options || []).join('\n');
+      document.getElementById('edAnswer').value = Array.isArray(q.answer) ? q.answer.join(',') : q.answer;
+      document.getElementById('edFormula').value = q.formula || '';
+      document.getElementById('edTip').value = q.tip || '';
+      document.getElementById('edSteps').value = q.steps || '';
+    }
+
+    function saveEditorQuestion() {
+      const idx = Number(document.getElementById('editorSelectQ').value);
+      const q = quizData.soal[idx];
+      q.prompt = document.getElementById('edPrompt').value;
+      q.type = document.getElementById('edType').value;
+      q.topic = document.getElementById('edTopic').value;
+      const rawOpts = document.getElementById('edOptions').value.split('\n').map(s => s.trim()).filter(Boolean);
+      if (q.type !== 'short') q.options = rawOpts;
+      const rawAns = document.getElementById('edAnswer').value.trim();
+      if (q.type === 'multiple') {
+        q.answer = rawAns.split(',').map(s => Number(s.trim())).filter(n => !isNaN(n));
+      } else if (q.type === 'single' || q.type === 'tf') {
+        q.answer = Number(rawAns);
+      } else {
+        q.answer = rawAns;
+      }
+      q.formula = document.getElementById('edFormula').value;
+      q.tip = document.getElementById('edTip').value;
+      q.steps = document.getElementById('edSteps').value;
+
+      document.getElementById('quiz-data').textContent = JSON.stringify(quizData, null, 2);
+      currentIndex = idx;
+      renderQuestion();
+      renderSidebar();
+      updateProgress();
+      closeModal('editorModal');
+    }
+
+    function addNewQuestion() {
+      const newId = quizData.soal.length ? Math.max(...quizData.soal.map(s => s.id)) + 1 : 1;
+      quizData.soal.push({
+        id: newId,
+        type: 'single',
+        topic: 'Kesebangunan & Kekongruenan',
+        prompt: 'Soal baru: Tuliskan pertanyaan di sini...',
+        options: ['Opsi A', 'Opsi B', 'Opsi C', 'Opsi D'],
+        answer: 0,
+        formula: '-',
+        tip: '-',
+        steps: '-'
+      });
+      openEditor();
+      document.getElementById('editorSelectQ').value = quizData.soal.length - 1;
+      loadEditorQuestion();
+    }
+
+    function deleteCurrentEditorQ() {
+      if (quizData.soal.length <= 1) {
+        alert('Minimal harus ada 1 soal dalam kuis.');
+        return;
+      }
+      const idx = Number(document.getElementById('editorSelectQ').value);
+      quizData.soal.splice(idx, 1);
+      if (currentIndex >= quizData.soal.length) currentIndex = quizData.soal.length - 1;
+      openEditor();
+      renderQuestion();
+      renderSidebar();
+      updateProgress();
+    }
+
+    function exportJSON() {
+      const blob = new Blob([JSON.stringify(quizData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-kesebangunan-kekongruenan-bbm-suminto.json';
+      a.click();
+    }
+
+    function importJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const parsed = JSON.parse(ev.target.result);
+          if (parsed && Array.isArray(parsed.soal)) {
+            quizData = parsed;
+            document.getElementById('quiz-data').textContent = JSON.stringify(quizData, null, 2);
+            resetQuiz();
+            closeModal('editorModal');
+          }
+        } catch {
+          alert('Format file JSON tidak valid.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function downloadUpdatedHTML() {
+      document.getElementById('quiz-data').textContent = JSON.stringify(quizData, null, 2);
+      const fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([fullHTML], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kuis-kesebangunan-kekongruenan-bbm-suminto.html';
+      a.click();
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      updateTimerUI();
+      updateProgress();
+      renderQuestion();
+      renderSidebar();
+      startTimer();
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
