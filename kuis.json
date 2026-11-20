@@ -9,7 +9,7 @@
           "nama": "Kelas 1",
           "kuis": [
             {
-              "judul": "Kuis ASAS 1",
+              "judul": "Kuis ASAS 1 MATH 1",
               "bab": "Asesmen Sumatif Akhir Semester 1",
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas1_ASAS1A.html",
               "jumlahSoal": 25,
@@ -27,7 +27,7 @@
           "nama": "Kelas 3",
           "kuis": [
             {
-              "judul": "Kuis ASAS 1",
+              "judul": "Kuis ASAS 1 MATH 3",
               "bab": "Asesmen Sumatif Akhir Semester 1",
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas3_ASAS1A.html",
               "jumlahSoal": 25,
@@ -50,7 +50,7 @@
           "nama": "Kelas 6",
           "kuis": [
             {
-              "judul": "Kuis ASAS 1",
+              "judul": "Kuis ASAS 1 MATH 6",
               "bab": "Asesmen Sumatif Akhir Semester 1",
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas6_ASAS1A.html",
               "jumlahSoal": 30,
