@@ -115,10 +115,87 @@
           "kuis": [
             {
               "judul": "Kuis Pola Bilangan",
-              "bab": "Pola Bilangan",
+              "bab": "Bab Pola Bilangan",
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Pola_Bilangan_Barisan_Deret.html",
-              "jumlahSoal": 20,
-              "tanggal": "2026-11-12"
+              "jumlahSoal": 40,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Bidang Cartesius",
+              "bab": "Bab Bidang Cartesius",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Bidang_Kartesius.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Relasi dan Fungsi",
+              "bab": "Bab Relasi dan Fungsi",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Relasi_dan_Fungsi.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Persamaan Garis Lurus",
+              "bab": "Bab Persamaan Garis Lurus",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Persamaan_Garis_Lurus.html",
+              "jumlahSoal": 40,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis SPLDV",
+              "bab": "Bab SPLDV",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_SPLDV.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Teorema Pythagoras",
+              "bab": "Bab Teorema Pythagoras",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Teorema_Pythagoras.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Lingkaran 1",
+              "bab": "Bab Lingkaran 1",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Lingkaran1.html",
+              "jumlahSoal": 46,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Lingkaran 2",
+              "bab": "Bab Lingkaran 2",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Lingkaran2.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Lingkaran 3",
+              "bab": "Bab Lingkaran 3",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Lingkaran3.html",
+              "jumlahSoal": 43,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis BRSD",
+              "bab": "Bab BRSD",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_BRSD.html",
+              "jumlahSoal": 40,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Statistika",
+              "bab": "Bab Statistika",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Statistika.html",
+              "jumlahSoal": 36,
+              "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Peluang",
+              "bab": "Bab Peluang",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas8_Peluang.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-20"
             }
           ]
         },
