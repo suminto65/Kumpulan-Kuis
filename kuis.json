@@ -335,6 +335,27 @@
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas3_Sains3B.html",
               "jumlahSoal": 25,
               "tanggal": "2026-11-21"
+            },
+            {
+              "judul": "Game Kuis Sains 1",
+              "bab": "Tumbuhan dan Benda Di Sekitar Kita",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Interaktif_Sains_Kelas_1.html",
+              "jumlahSoal": 18,
+              "tanggal": "2026-11-23"
+            },
+            {
+              "judul": "Game Kuis Sains 3",
+              "bab": "Ekosistem, Benda, dan Perubahan Pada Benda",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Interaktif_Sains_Kelas_3.html",
+              "jumlahSoal": 24,
+              "tanggal": "2026-11-23"
+            },
+            {
+              "judul": "Game Kuis Sains 6",
+              "bab": "Sistem Reproduksi Tumbuhan, Ekosistem, dan Pemisahan Campuran",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Interaktif_Sains_Kelas_6.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-23"
             }
           ]
         }
