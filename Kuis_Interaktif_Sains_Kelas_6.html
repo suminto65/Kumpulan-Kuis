@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Sains Kelas 6 — Bab 3–5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #ebe2f8;
+      --tertiary: #0096cc;
+      --tertiary-container: #dcf4fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fee2e2;
+      --on-error-container: #7f1d1d;
+
+      /* Semantic */
+      --positive: #15803d;
+      --on-positive: #ffffff;
+      --positive-container: #dcfce7;
+      --on-positive-container: #14532d;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --on-warning-container: #78350f;
+      --focus: #c2207f;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Scientific SVG illustration tokens */
+      --illust-leaf: #16a34a;
+      --illust-leaf-light: #bbf7d0;
+      --illust-stem: #65a30d;
+      --illust-soil: #854d0e;
+      --illust-soil-light: #fef08a;
+      --illust-sand: #facc15;
+      --illust-water: #bae6fd;
+      --illust-water-deep: #0284c7;
+      --illust-sun: #f59e0b;
+      --illust-coral: #f43f5e;
+      --illust-metal: #64748b;
+      --illust-glass: #e0f2fe;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.5rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.55rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-sky-deep: 0 10px 28px rgb(0 150 204 / 0.28);
+      --pop-scale: scale(1.03);
+      --press-scale: scale(0.97);
+      --lift: translateY(-4px);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    [hidden] { display: none !important; }
+
+    /* Typography */
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .section-title em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--subhead-size);
+      line-height: 1.35;
+      margin: 0;
+    }
+    .label-text {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-surface-variant);
+    }
+    .tabular-num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+    }
+    .lede {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: var(--space-sm) 0 0;
+    }
+
+    /* Cards & Surfaces */
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+    }
+    .card-sky { box-shadow: var(--shadow-sky); }
+    .card-grape { box-shadow: var(--shadow-grape); }
+
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    /* Badges & Tags */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--label-size);
+      font-weight: 600;
+      border: 1.5px solid var(--secondary);
+      color: var(--secondary);
+      background: var(--surface-container-low);
+    }
+    .tag-sky {
+      border-color: var(--tertiary);
+      background: var(--tertiary-container);
+      color: var(--on-surface);
+    }
+    .tag-pink {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 2px solid transparent;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: var(--press-scale); }
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: var(--shadow-pink-deep);
+    }
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      box-shadow: var(--shadow-grape-deep);
+    }
+    .btn-quiet {
+      background: var(--surface-container);
+      color: var(--primary);
+      border-color: var(--outline-variant);
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn-danger-soft {
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    /* KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .kpi-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .kpi-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .kpi-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+    .kpi-value {
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-value.accent { color: var(--primary); }
+    .kpi-caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Mode Selector Grid */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+    .mode-card-featured {
+      grid-column: span 12;
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink-deep);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) auto;
+      gap: var(--space-lg);
+      align-items: center;
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .mode-card-chapter {
+      grid-column: span 4;
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .mode-card-chapter:nth-child(2) { box-shadow: var(--shadow-sky); }
+    .mode-card-chapter:nth-child(3) { box-shadow: var(--shadow-grape); }
+    .mode-card-chapter:nth-child(4) { box-shadow: var(--shadow-pink); }
+
+    .mode-card-featured:hover,
+    .mode-card-chapter:hover {
+      transform: var(--lift);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .mode-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+
+    /* Progress Bar (Lollipop Style) */
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+      min-width: 0;
+    }
+    .progress-fill.pink { background: var(--data-1); }
+    .progress-fill.grape { background: var(--data-2); }
+
+    /* Quiz Top Bar */
+    .quiz-topbar {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+    }
+    .quiz-progress-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .quiz-actions-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      animation: cardEnter var(--dur-long) var(--ease-bounce);
+    }
+    @keyframes cardEnter {
+      from { opacity: 0; transform: translateY(10px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .question-prompt {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem);
+      line-height: 1.45;
+      color: var(--on-surface);
+      margin: 0;
+      max-width: 68ch;
+    }
+
+    /* Illustration Well */
+    .visual-well {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .visual-well svg {
+      width: 100%;
+      max-width: 440px;
+      height: auto;
+      display: block;
+    }
+    .visual-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      text-align: center;
+    }
+
+    /* Options Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 56px;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      text-align: left;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      box-shadow: var(--shadow-grape);
+      background: var(--surface-container);
+    }
+    .option-btn:disabled { cursor: default; }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9375rem;
+    }
+    .option-btn.selected {
+      background: var(--secondary-container);
+      box-shadow: var(--shadow-grape);
+      outline: 2.5px solid var(--secondary);
+    }
+    .option-btn.correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+      outline: 2.5px solid var(--positive);
+      box-shadow: none;
+    }
+    .option-btn.correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+    .option-btn.incorrect {
+      background: var(--error-container);
+      color: var(--on-error-container);
+      outline: 2.5px solid var(--error);
+      box-shadow: none;
+    }
+    .option-btn.incorrect .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Matching / Drag & Drop Board */
+    .match-instructions {
+      background: var(--surface-container);
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      align-self: flex-start;
+    }
+    .match-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .match-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .match-chip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      min-height: 50px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      border: 2px solid var(--secondary);
+      color: var(--on-surface);
+      font-weight: 700;
+      cursor: grab;
+      text-align: left;
+      box-shadow: var(--shadow-grape);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-micro) var(--ease-out),
+                  opacity var(--dur-micro) var(--ease-out);
+    }
+    .match-chip:hover:not(:disabled) { transform: var(--pop-scale); }
+    .match-chip.active-pick {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink-deep);
+    }
+    .match-chip.used {
+      opacity: 0.42;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .match-slot {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      border: 2px dashed var(--outline);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .match-slot.drag-over {
+      background: var(--tertiary-container);
+      outline: 2px solid var(--tertiary);
+    }
+    .match-slot.filled {
+      border-style: solid;
+      border-color: var(--secondary);
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-sky);
+    }
+    .match-slot.slot-correct {
+      border-style: solid;
+      border-color: var(--positive);
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .match-slot.slot-incorrect {
+      border-style: solid;
+      border-color: var(--error);
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+    .match-slot-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .slot-assigned-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--secondary);
+      color: var(--on-secondary);
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+    .slot-clear-btn {
+      background: transparent;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: var(--rounded-full);
+      font-weight: 800;
+      min-width: 28px;
+      min-height: 28px;
+    }
+    .slot-placeholder-btn {
+      align-self: flex-start;
+      background: var(--surface-container-low);
+      border: 1.5px solid var(--outline-variant);
+      color: var(--on-surface-variant);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 36px;
+    }
+    .slot-placeholder-btn:hover {
+      background: var(--surface-container-high);
+      color: var(--primary);
+    }
+
+    /* Feedback Panel */
+    .feedback-panel {
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      animation: cardEnter var(--dur-short) var(--ease-bounce);
+    }
+    .feedback-panel.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .feedback-panel.is-wrong {
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 800;
+      font-size: 1.0625rem;
+    }
+    .feedback-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: var(--space-sm);
+    }
+
+    /* Results Screen */
+    .results-hero {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink-deep);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .score-ring-wrap {
+      position: relative;
+      width: 156px;
+      height: 156px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-ring-svg {
+      width: 156px;
+      height: 156px;
+      transform: rotate(-90deg);
+    }
+    .score-ring-bg {
+      fill: none;
+      stroke: var(--surface-container-high);
+      stroke-width: 14;
+    }
+    .score-ring-fg {
+      fill: none;
+      stroke: var(--data-1);
+      stroke-width: 14;
+      stroke-linecap: round;
+      transition: stroke-dashoffset var(--dur-long) var(--ease-out);
+    }
+    .score-ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .score-ring-pct {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+    .breakdown-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+    .breakdown-row:last-child { margin-bottom: 0; }
+    .breakdown-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+
+    /* Badges Grid */
+    .badge-shelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .medal-card {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      opacity: 0.52;
+    }
+    .medal-card.unlocked {
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-grape);
+      opacity: 1;
+    }
+    .medal-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .medal-card.unlocked .medal-icon {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    /* Review List */
+    .review-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .segmented {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      padding: var(--space-xs);
+      border-radius: var(--rounded-full);
+    }
+    .seg-btn {
+      min-height: 40px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: none;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .seg-btn.active {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .review-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .review-item {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .review-item.is-wrong {
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Study Notes Accordion */
+    .study-details {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-lg);
+    }
+    .study-summary {
+      cursor: pointer;
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      list-style: none;
+    }
+    .study-summary::-webkit-details-marker { display: none; }
+    .study-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .study-box {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .study-box ul {
+      margin: var(--space-sm) 0 0;
+      padding-left: 1.2rem;
+      color: var(--on-surface-variant);
+      font-size: 0.92rem;
+    }
+    .study-box li + li { margin-top: var(--space-xs); }
+
+    .resume-banner {
+      background: var(--tertiary-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .footer-note {
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding-bottom: var(--space-xl);
+    }
+
+    @media (max-width: 900px) {
+      .hero-panel { grid-template-columns: 1fr; }
+      .mode-card-chapter { grid-column: span 12; }
+      .mode-card-featured { grid-template-columns: 1fr; }
+      .study-columns { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .page-grid { padding: var(--space-md); gap: var(--space-md); }
+      .hero-panel, .question-card, .results-hero { padding: var(--space-lg); }
+      .options-grid { grid-template-columns: 1fr; }
+      .match-board { grid-template-columns: 1fr; }
+      .results-hero { grid-template-columns: 1fr; justify-items: start; }
+      .quiz-topbar { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid" id="app-root">
+    <!-- ==================== VIEW 1: LOBBY / HUB ==================== -->
+    <section id="view-lobby" aria-label="Beranda Kuis Sains">
+      <header class="hero-panel">
+        <div>
+          <span class="badge">
+            <i data-lucide="sparkles" aria-hidden="true"></i>
+            Sains Kelas 6 • Bab 3–5
+          </span>
+          <h1 class="display" style="margin-top: var(--space-sm);">
+            Kuis Sains <em>Juara</em>: Tumbuhan, Ekosistem &amp; Campuran
+          </h1>
+          <p class="lede">
+            Uji pemahamanmu lewat soal pilihan ganda, tebak gambar anatomi &amp; alat lab, serta mencocokkan konsep interaktif. Pilih latihan per bab atau langsung tantang dirimu di Ujian Sumatif Komprehensif!
+          </p>
+        </div>
+        <div class="card card-sky" style="background: var(--surface-container);">
+          <span class="label-text">Progres Belajarmu</span>
+          <div style="display:flex; align-items:baseline; gap:var(--space-sm); margin-top:var(--space-xs);">
+            <span class="kpi-value accent" id="hero-rank-label">Penjelajah Muda</span>
+          </div>
+          <p style="margin:var(--space-xs) 0 var(--space-md); color:var(--on-surface-variant); font-size:0.9rem;" id="hero-rank-desc">
+            Selesaikan latihan bab atau ujian sumatif untuk mengumpulkan semua lencana ilmuwan.
+          </p>
+          <div class="progress-track" aria-label="Kemajuan penguasaan bab">
+            <div class="progress-fill" id="hero-mastery-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Resume Banner if an unfinished quiz exists -->
+      <div id="resume-banner" class="resume-banner" hidden>
+        <div>
+          <strong>Kamu punya kuis yang belum selesai!</strong>
+          <div id="resume-detail" style="font-size:0.9rem; color:var(--on-surface-variant);"></div>
+        </div>
+        <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" onclick="resumeSavedQuiz()">
+            <i data-lucide="play" aria-hidden="true"></i>
+            Lanjutkan Kuis
+          </button>
+          <button type="button" class="btn btn-quiet" onclick="discardSavedQuiz()">Hapus Sesi</button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Strip -->
+      <section class="kpi-grid" aria-label="Ringkasan pencapaian">
+        <div class="kpi-card">
+          <span class="label-text">Skor Terbaik Sumatif</span>
+          <span class="kpi-value accent" id="kpi-best-sumatif">Belum ada</span>
+          <span class="kpi-caption">Gabungan Bab 3, 4 &amp; 5</span>
+        </div>
+        <div class="kpi-card">
+          <span class="label-text">Bab Dikuasai (≥80%)</span>
+          <span class="kpi-value" id="kpi-chapters-mastered">0 / 3</span>
+          <span class="kpi-caption">Target juara tiap bab</span>
+        </div>
+        <div class="kpi-card">
+          <span class="label-text">Soal Diselesaikan</span>
+          <span class="kpi-value" id="kpi-total-answered">0</span>
+          <span class="kpi-caption">Akumulasi latihanmu</span>
+        </div>
+        <div class="kpi-card">
+          <span class="label-text">Lencana Diraih</span>
+          <span class="kpi-value accent" id="kpi-badges-count">0 / 6</span>
+          <span class="kpi-caption">Koleksi pencapaian</span>
+        </div>
+      </section>
+
+      <!-- Mode Selection -->
+      <section aria-labelledby="mode-heading" style="display:grid; gap:var(--space-md);">
+        <div>
+          <span class="label-text">Pilih Mode Kuis</span>
+          <h2 id="mode-heading" class="section-title">Mulai Latihan per Bab atau <em>Sumatif</em></h2>
+        </div>
+
+        <div class="mode-grid">
+          <!-- Featured Comprehensive Exam -->
+          <article class="mode-card-featured">
+            <div>
+              <div class="tag-row">
+                <span class="badge">Ujian Sumatif Komprehensif</span>
+                <span class="tag tag-pink">18 Soal Gabungan</span>
+                <span class="tag tag-sky" id="best-badge-sumatif">Belum Dicoba</span>
+              </div>
+              <h3 class="subhead" style="margin-top:var(--space-sm); font-size:1.35rem;">
+                Tantangan Lengkap: Reproduksi Tumbuhan, Ekosistem &amp; Pemisahan Campuran
+              </h3>
+              <p style="margin:var(--space-xs) 0 0; color:var(--on-surface-variant); max-width:62ch;">
+                6 soal dari masing-masing bab mencakup pilihan ganda, tebak diagram ilustrasi, dan drag &amp; drop konsep. Dilengkapi analisis nilai per bab di akhir ujian.
+              </p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="startQuizMode('sumatif')">
+                <i data-lucide="award" aria-hidden="true"></i>
+                Mulai Ujian Sumatif
+              </button>
+            </div>
+          </article>
+
+          <!-- Chapter 3 -->
+          <article class="mode-card-chapter">
+            <div>
+              <div class="tag-row">
+                <span class="tag tag-pink">Bab 3</span>
+                <span class="tag" id="best-badge-bab3">Belum Dicoba</span>
+              </div>
+              <h3 class="subhead" style="margin-top:var(--space-sm);">Reproduksi Tumbuhan</h3>
+              <p style="margin:var(--space-xs) 0 0; color:var(--on-surface-variant); font-size:0.93rem;">
+                Aseksual alami (rizoma, umbi, geragih), buatan (setek, menyambung, merunduk), bagian bunga, penyerbukan, spora, dan runjung.
+              </p>
+            </div>
+            <div class="mode-meta">
+              <span class="label-text">10 Soal • PG, Gambar &amp; Cocokkan</span>
+              <button type="button" class="btn btn-secondary" style="width:100%;" onclick="startQuizMode('bab3')">
+                <i data-lucide="sprout" aria-hidden="true"></i>
+                Latihan Bab 3
+              </button>
+            </div>
+          </article>
+
+          <!-- Chapter 4 -->
+          <article class="mode-card-chapter">
+            <div>
+              <div class="tag-row">
+                <span class="tag tag-sky">Bab 4</span>
+                <span class="tag" id="best-badge-bab4">Belum Dicoba</span>
+              </div>
+              <h3 class="subhead" style="margin-top:var(--space-sm);">Ekosistem &amp; Lingkungan</h3>
+              <p style="margin:var(--space-xs) 0 0; color:var(--on-surface-variant); font-size:0.93rem;">
+                Komponen biotik &amp; abiotik, hutan hujan tropis, terumbu karang, rawa bakau, rantai makanan, serta jaring-jaring makanan.
+              </p>
+            </div>
+            <div class="mode-meta">
+              <span class="label-text">10 Soal • PG, Gambar &amp; Cocokkan</span>
+              <button type="button" class="btn btn-secondary" style="width:100%;" onclick="startQuizMode('bab4')">
+                <i data-lucide="trees" aria-hidden="true"></i>
+                Latihan Bab 4
+              </button>
+            </div>
+          </article>
+
+          <!-- Chapter 5 -->
+          <article class="mode-card-chapter">
+            <div>
+              <div class="tag-row">
+                <span class="tag tag-pink">Bab 5</span>
+                <span class="tag" id="best-badge-bab5">Belum Dicoba</span>
+              </div>
+              <h3 class="subhead" style="margin-top:var(--space-sm);">Pemisahan Campuran &amp; Lab</h3>
+              <p style="margin:var(--space-xs) 0 0; color:var(--on-surface-variant); font-size:0.93rem;">
+                Keselamatan lab, alat laboratorium, filtrasi, dekantasi, distilasi (penyulingan), sublimasi, sentrifugasi, dan magnetik.
+              </p>
+            </div>
+            <div class="mode-meta">
+              <span class="label-text">10 Soal • PG, Gambar &amp; Cocokkan</span>
+              <button type="button" class="btn btn-secondary" style="width:100%;" onclick="startQuizMode('bab5')">
+                <i data-lucide="flask-conical" aria-hidden="true"></i>
+                Latihan Bab 5
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Quick Study Reference (Progressive Disclosure) -->
+      <details class="study-details">
+        <summary class="study-summary">
+          <span>Ringkasan Materi Cepat (Bekal Sebelum Kuis Bab 3–5)</span>
+          <span class="tag">Klik untuk buka/tutup</span>
+        </summary>
+        <div class="study-columns">
+          <div class="study-box">
+            <strong>Bab 3: Reproduksi Tumbuhan</strong>
+            <ul>
+              <li><strong>Aseksual alami:</strong> Rizoma (jahe), umbi lapis (bawang bombai), umbi batang (kentang, ubi jalar), geragih/stolon (mint, stroberi, rumput).</li>
+              <li><strong>Aseksual buatan:</strong> Setek batang (giok, bugenvil, mint), menyambung (mata tunas + batang pokok), merunduk (melati).</li>
+              <li><strong>Seksual:</strong> Penyerbukan (kepala sari ke kepala putik) diikuti pembuahan; spora (pakis &amp; lumut); runjung (pinus).</li>
+            </ul>
+          </div>
+          <div class="study-box">
+            <strong>Bab 4: Ekosistem</strong>
+            <ul>
+              <li><strong>Komponen:</strong> Biotik (tumbuhan, hewan, mikroorganisme) dan Abiotik (air, cahaya, panas, tanah).</li>
+              <li><strong>Ekosistem:</strong> Hutan hujan tropis (khatulistiwa, panas &amp; banyak hujan), terumbu karang (kalsium karbonat), rawa bakau (perairan aliran lambat).</li>
+              <li><strong>Aliran energi:</strong> Rantai makanan (1 jalur) vs jaring-jaring makanan (gabungan jalur); produsen, konsumen, pengurai.</li>
+            </ul>
+          </div>
+          <div class="study-box">
+            <strong>Bab 5: Lab &amp; Pemisahan Campuran</strong>
+            <ul>
+              <li><strong>Keselamatan &amp; Alat:</strong> Jas lab, kacamata pelindung, gelas ukur (ukur volume), Erlenmeyer (campur larutan), gelas kimia.</li>
+              <li><strong>Metode Cair-Padat:</strong> Filtrasi (saring filtrat &amp; residu), dekantasi (tuang atas endapan), sentrifugasi (putar cepat).</li>
+              <li><strong>Metode Khusus:</strong> Distilasi (titik didih), sublimasi (padat ke gas), pemisahan magnetik (tarik logam besi).</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <!-- Achievement Shelf on Lobby -->
+      <section class="card card-grape" aria-label="Koleksi Lencana Pencapaian">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm); margin-bottom:var(--space-md);">
+          <div>
+            <span class="label-text">Lencana Ilmuwan</span>
+            <h2 class="subhead">Koleksi Pencapaianmu</h2>
+          </div>
+          <button type="button" class="btn btn-quiet" id="reset-progress-btn" onclick="handleResetProgress(this)">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            Reset Progres
+          </button>
+        </div>
+        <div class="badge-shelf" id="lobby-badge-shelf"></div>
+      </section>
+    </section>
+
+    <!-- ==================== VIEW 2: ACTIVE QUIZ ==================== -->
+    <section id="view-quiz" aria-label="Sesi Kuis Aktif" hidden>
+      <div class="quiz-topbar">
+        <div>
+          <div class="quiz-progress-meta">
+            <div style="display:flex; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+              <span class="badge" id="quiz-mode-badge">Latihan Bab 3</span>
+              <span class="tag" id="quiz-counter-badge">Soal 1 dari 10</span>
+            </div>
+            <span class="tabular-num" id="quiz-live-score" style="color:var(--primary);">Benar: 0</span>
+          </div>
+          <div class="progress-track" aria-label="Kemajuan pengerjaan soal">
+            <div class="progress-fill" id="quiz-progress-fill" style="width: 10%;"></div>
+          </div>
+        </div>
+        <div class="quiz-actions-top">
+          <button type="button" class="btn btn-quiet" id="exit-quiz-btn" onclick="handleExitQuiz(this)">
+            <i data-lucide="home" aria-hidden="true"></i>
+            Beranda
+          </button>
+        </div>
+      </div>
+
+      <article class="question-card" id="question-container">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-sm);">
+          <div class="tag-row">
+            <span class="tag tag-sky" id="q-chapter-tag">Bab 3</span>
+            <span class="tag tag-pink" id="q-type-tag">Pilihan Ganda</span>
+          </div>
+          <span class="label-text" id="q-topic-label">Reproduksi Aseksual</span>
+        </div>
+
+        <h2 class="question-prompt" id="q-prompt-text">Memuat soal…</h2>
+
+        <!-- Optional SVG Visual Area -->
+        <div class="visual-well" id="q-visual-well" hidden>
+          <div id="q-visual-svg"></div>
+          <div class="visual-caption" id="q-visual-caption"></div>
+        </div>
+
+        <!-- Options Area (MCQ / Visual) -->
+        <div class="options-grid" id="q-options-area" hidden></div>
+
+        <!-- Drag & Drop / Tap Matching Area -->
+        <div id="q-match-area" hidden style="display:flex; flex-direction:column; gap:var(--space-md);">
+          <div class="match-instructions">
+            <i data-lucide="hand" aria-hidden="true"></i>
+            <span>Seret kartu di kiri ke kotak kanan, atau klik kartu lalu klik kotak pasangannya.</span>
+          </div>
+          <div class="match-board">
+            <div class="match-column" id="match-left-col" aria-label="Kartu konsep"></div>
+            <div class="match-column" id="match-right-col" aria-label="Kotak pasangan"></div>
+          </div>
+          <div style="display:flex; justify-content:flex-end;">
+            <button type="button" class="btn btn-primary" id="match-submit-btn" onclick="submitMatchQuestion()" disabled>
+              <i data-lucide="check-circle" aria-hidden="true"></i>
+              Periksa Jawaban
+            </button>
+          </div>
+        </div>
+
+        <!-- Instant Feedback Panel -->
+        <div class="feedback-panel" id="q-feedback-panel" hidden aria-live="polite">
+          <div class="feedback-header" id="q-feedback-title"></div>
+          <p id="q-feedback-body" style="margin:0;"></p>
+          <div class="feedback-actions">
+            <button type="button" class="btn btn-primary" id="q-next-btn" onclick="goToNextQuestion()">
+              Soal Berikutnya
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ==================== VIEW 3: RESULTS & REVIEW ==================== -->
+    <section id="view-results" aria-label="Hasil dan Review Kuis" hidden>
+      <div class="results-hero">
+        <div class="score-ring-wrap">
+          <svg class="score-ring-svg" viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="score-ring-bg" cx="70" cy="70" r="56"></circle>
+            <circle class="score-ring-fg" id="results-ring-fg" cx="70" cy="70" r="56" stroke-dasharray="351.86" stroke-dashoffset="351.86"></circle>
+          </svg>
+          <div class="score-ring-center">
+            <span class="score-ring-pct" id="results-pct">0%</span>
+            <span class="label-text" id="results-raw">0/0</span>
+          </div>
+        </div>
+        <div>
+          <span class="badge" id="results-mode-badge">Hasil Latihan</span>
+          <h2 class="display" id="results-headline" style="margin-top:var(--space-sm);">
+            Kerja Bagus, <em>Ilmuwan</em>!
+          </h2>
+          <p class="lede" id="results-summary-text"></p>
+          <div style="display:flex; flex-wrap:wrap; gap:var(--space-sm); margin-top:var(--space-lg);">
+            <button type="button" class="btn btn-primary" onclick="retryCurrentMode()">
+              <i data-lucide="rotate-cw" aria-hidden="true"></i>
+              Ulangi Mode Ini
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="backToLobby()">
+              <i data-lucide="layout-grid" aria-hidden="true"></i>
+              Pilih Bab / Mode Lain
+            </button>
+            <button type="button" class="btn btn-quiet" onclick="exportResultsReport()">
+              <i data-lucide="download" aria-hidden="true"></i>
+              Unduh Laporan (.txt)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-grid">
+        <div class="card card-sky">
+          <span class="label-text">Analisis Materi</span>
+          <h3 class="subhead" style="margin:var(--space-xs) 0 var(--space-md);">Ketuntasan per Bab</h3>
+          <div id="results-chapter-breakdown"></div>
+        </div>
+        <div class="card card-grape">
+          <span class="label-text">Analisis Tipe Soal</span>
+          <h3 class="subhead" style="margin:var(--space-xs) 0 var(--space-md);">Ketepatan per Format</h3>
+          <div id="results-format-breakdown"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="label-text">Ringkasan Pencapaian</span>
+        <h3 class="subhead" style="margin:var(--space-xs) 0 var(--space-md);">Status Lencana Ilmuwan</h3>
+        <div class="badge-shelf" id="results-badge-shelf"></div>
+      </div>
+
+      <section style="display:grid; gap:var(--space-md);" aria-label="Review Jawaban">
+        <div class="review-controls">
+          <div>
+            <span class="label-text">Pembahasan Soal</span>
+            <h3 class="section-title">Review Jawaban &amp; <em>Kunci</em></h3>
+          </div>
+          <div class="segmented" role="group" aria-label="Filter review soal">
+            <button type="button" class="seg-btn active" data-filter="all" onclick="setReviewFilter('all')">Semua</button>
+            <button type="button" class="seg-btn" data-filter="wrong" onclick="setReviewFilter('wrong')">Perlu Dipelajari</button>
+            <button type="button" class="seg-btn" data-filter="correct" onclick="setReviewFilter('correct')">Sudah Benar</button>
+          </div>
+        </div>
+        <div class="review-list" id="results-review-list"></div>
+      </section>
+    </section>
+
+    <footer class="footer-note">
+      <span>Materi dirujuk dari buku <strong>Juara Sains Kelas 6 (Bab 3–5)</strong>: Reproduksi Tumbuhan, Ekosistem, dan Pemisahan Campuran.</span>
+      <span id="status-save-indicator" class="label-text">Progres Tersimpan</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    /* ======================================================================
+       1. CUSTOM SCIENTIFIC SVG ILLUSTRATIONS (All colors via :root CSS tokens)
+       ====================================================================== */
+    function getIllustrationSvg(key) {
+      const svgs = {
+        bunga: `<svg viewBox="0 0 420 230" role="img" aria-label="Diagram penampang bunga">
+          <rect x="4" y="4" width="412" height="222" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Tangkai & Kelopak -->
+          <rect x="200" y="160" width="20" height="58" rx="8" fill="var(--illust-stem)"/>
+          <path d="M165 162 Q210 185 255 162 Q232 148 210 154 Q188 148 165 162 Z" fill="var(--illust-leaf)"/>
+          <!-- Mahkota Bunga -->
+          <path d="M175 152 C110 135 95 62 155 48 C178 44 195 72 198 118 Z" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2.5"/>
+          <path d="M245 152 C310 135 325 62 265 48 C242 44 225 72 222 118 Z" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2.5"/>
+          <!-- Putik (tengah) -->
+          <ellipse cx="210" cy="134" rx="22" ry="26" fill="var(--illust-leaf-light)" stroke="var(--illust-leaf)" stroke-width="2.5"/>
+          <circle cx="210" cy="136" r="8" fill="var(--illust-sun)"/>
+          <rect x="205" y="64" width="10" height="50" rx="5" fill="var(--illust-leaf-light)" stroke="var(--illust-leaf)" stroke-width="2"/>
+          <ellipse cx="210" cy="58" rx="16" ry="9" fill="var(--illust-leaf)" />
+          <!-- Benang sari kiri & kanan -->
+          <path d="M188 145 Q155 105 150 72" fill="none" stroke="var(--on-surface)" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="148" cy="66" rx="12" ry="7" fill="var(--illust-sun)" stroke="var(--on-surface)" stroke-width="2"/>
+          <path d="M232 145 Q265 105 270 72" fill="none" stroke="var(--on-surface)" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="272" cy="66" rx="12" ry="7" fill="var(--illust-sun)" stroke="var(--on-surface)" stroke-width="2"/>
+          <!-- Callout numbers -->
+          <line x1="136" y1="66" x2="88" y2="52" stroke="var(--on-surface)" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="74" cy="48" r="15" fill="var(--primary)"/>
+          <text x="74" y="53" text-anchor="middle" fill="var(--on-primary)" font-weight="800" font-size="14">1</text>
+
+          <line x1="226" y1="58" x2="294" y2="38" stroke="var(--on-surface)" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="308" cy="36" r="15" fill="var(--secondary)"/>
+          <text x="308" y="41" text-anchor="middle" fill="var(--on-secondary)" font-weight="800" font-size="14">2</text>
+
+          <line x1="116" y1="100" x2="72" y2="112" stroke="var(--on-surface)" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="58" cy="116" r="15" fill="var(--secondary)"/>
+          <text x="58" y="121" text-anchor="middle" fill="var(--on-secondary)" font-weight="800" font-size="14">3</text>
+
+          <line x1="232" y1="136" x2="310" y2="146" stroke="var(--on-surface)" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="326" cy="148" r="15" fill="var(--secondary)"/>
+          <text x="326" y="153" text-anchor="middle" fill="var(--on-secondary)" font-weight="800" font-size="14">4</text>
+        </svg>`,
+
+        stolon: `<svg viewBox="0 0 420 220" role="img" aria-label="Diagram tanaman dengan batang mendatar di atas tanah">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Tanah -->
+          <rect x="16" y="142" width="388" height="62" rx="12" fill="var(--illust-soil-light)"/>
+          <line x1="16" y1="142" x2="404" y2="142" stroke="var(--illust-soil)" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Induk kiri -->
+          <path d="M90 142 Q80 165 70 185 M90 142 Q95 168 98 188 M90 142 Q108 165 116 184" stroke="var(--illust-soil)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M90 142 C72 115 58 84 88 74 C105 70 105 110 90 142 Z" fill="var(--illust-leaf)"/>
+          <path d="M90 142 C108 112 132 88 108 72 C90 64 82 104 90 142 Z" fill="var(--illust-stem)"/>
+          <circle cx="72" cy="118" r="9" fill="var(--illust-coral)"/>
+          <!-- Batang mendatar (stolon) -->
+          <path d="M92 134 Q185 118 282 136" fill="none" stroke="var(--illust-stem)" stroke-width="6" stroke-linecap="round"/>
+          <!-- Anakan kanan -->
+          <path d="M282 142 Q272 162 266 178 M282 142 Q288 164 294 180" stroke="var(--illust-soil)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M282 142 C268 122 260 98 282 92 C295 88 296 118 282 142 Z" fill="var(--illust-leaf)"/>
+          <path d="M282 142 C298 122 314 102 296 90 C282 84 276 114 282 142 Z" fill="var(--illust-stem)"/>
+          <!-- Label tanda tanya -->
+          <line x1="185" y1="126" x2="185" y2="62" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="4 3"/>
+          <rect x="155" y="28" width="60" height="34" rx="17" fill="var(--primary)"/>
+          <text x="185" y="51" text-anchor="middle" fill="var(--on-primary)" font-weight="900" font-size="18">?</text>
+          <text x="90" y="200" text-anchor="middle" fill="var(--on-surface)" font-weight="700" font-size="12">Induk</text>
+          <text x="282" y="200" text-anchor="middle" fill="var(--on-surface)" font-weight="700" font-size="12">Tumbuhan Baru</text>
+        </svg>`,
+
+        menyambung: `<svg viewBox="0 0 420 220" role="img" aria-label="Diagram metode menyambung dua batang tumbuhan">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Pot & Tanah -->
+          <path d="M135 162 L225 162 L212 204 L148 204 Z" fill="var(--illust-soil)"/>
+          <rect x="128" y="152" width="104" height="14" rx="7" fill="var(--illust-coral)"/>
+          <!-- Batang pokok (bawah) -->
+          <path d="M168 152 L168 104 L192 84 L192 152 Z" fill="var(--illust-soil-light)" stroke="var(--illust-soil)" stroke-width="2.5"/>
+          <!-- Batang atas yang disambungkan -->
+          <path d="M168 96 L192 76 L192 36 L168 36 Z" fill="var(--illust-leaf-light)" stroke="var(--illust-leaf)" stroke-width="2.5"/>
+          <!-- Daun kecil di atas -->
+          <path d="M180 42 C164 26 146 28 150 42 C154 52 172 48 180 42 Z" fill="var(--illust-leaf)"/>
+          <path d="M184 52 C202 36 220 40 214 54 C208 64 192 58 184 52 Z" fill="var(--illust-leaf)"/>
+          <!-- Ikatan tali -->
+          <rect x="163" y="80" width="34" height="18" rx="6" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2"/>
+          <line x1="165" y1="86" x2="195" y2="92" stroke="var(--primary)" stroke-width="2"/>
+          <!-- Label -->
+          <line x1="194" y1="54" x2="275" y2="54" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="4 3"/>
+          <rect x="275" y="36" width="110" height="36" rx="18" fill="var(--primary)"/>
+          <text x="330" y="59" text-anchor="middle" fill="var(--on-primary)" font-weight="800" font-size="14">? (Atas)</text>
+          <line x1="194" y1="126" x2="275" y2="126" stroke="var(--on-surface)" stroke-width="2"/>
+          <rect x="275" y="108" width="122" height="36" rx="18" fill="var(--surface-container)"/>
+          <text x="336" y="131" text-anchor="middle" fill="var(--on-surface)" font-weight="700" font-size="13">Batang Pokok</text>
+        </svg>`,
+
+        terumbu_karang: `<svg viewBox="0 0 420 220" role="img" aria-label="Ilustrasi ekosistem terumbu karang">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--illust-water)"/>
+          <!-- Sinar matahari menembus air -->
+          <polygon points="70,4 130,4 175,180 95,180" fill="var(--surface-container-low)" opacity="0.35"/>
+          <polygon points="220,4 275,4 320,180 250,180" fill="var(--surface-container-low)" opacity="0.3"/>
+          <!-- Dasar pasir -->
+          <path d="M4 174 Q120 158 230 174 T416 170 L416 216 L4 216 Z" fill="var(--illust-sand)"/>
+          <!-- Karang bercabang -->
+          <path d="M90 175 L90 120 M90 142 L68 122 M90 135 L112 115 M68 122 L62 104 M112 115 L120 98" stroke="var(--illust-coral)" stroke-width="11" stroke-linecap="round" fill="none"/>
+          <path d="M270 176 L270 112 M270 144 L244 124 M270 130 L298 110" stroke="var(--primary)" stroke-width="12" stroke-linecap="round" fill="none"/>
+          <ellipse cx="180" cy="168" rx="34" ry="20" fill="var(--secondary)" />
+          <!-- Ikan-ikan kecil -->
+          <ellipse cx="165" cy="86" rx="18" ry="10" fill="var(--illust-sun)"/>
+          <polygon points="147,86 135,78 135,94" fill="var(--illust-sun)"/>
+          <circle cx="175" cy="84" r="2.2" fill="var(--on-surface)"/>
+          <ellipse cx="325" cy="76" rx="15" ry="8" fill="var(--illust-coral)"/>
+          <polygon points="340,76 350,69 350,83" fill="var(--illust-coral)"/>
+          <circle cx="317" cy="74" r="2" fill="var(--on-surface)"/>
+          <!-- Gelembung -->
+          <circle cx="100" cy="76" r="5" fill="var(--surface-container-low)"/>
+          <circle cx="285" cy="66" r="4" fill="var(--surface-container-low)"/>
+        </svg>`,
+
+        rawa_bakau: `<svg viewBox="0 0 420 220" role="img" aria-label="Ilustrasi ekosistem perairan beraliran lambat dengan pohon bakau">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Langit & air lambat -->
+          <rect x="12" y="12" width="396" height="120" rx="12" fill="var(--tertiary-container)"/>
+          <rect x="12" y="130" width="396" height="46" fill="var(--illust-water)"/>
+          <rect x="12" y="172" width="396" height="36" rx="10" fill="var(--illust-soil-light)"/>
+          <!-- Pohon bakau + akar tunjang -->
+          <rect x="112" y="64" width="16" height="72" rx="6" fill="var(--illust-soil)"/>
+          <path d="M120 120 Q92 148 80 182 M120 120 Q112 152 108 182 M120 120 Q134 152 142 182 M120 120 Q154 148 164 182" fill="none" stroke="var(--illust-soil)" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="120" cy="56" rx="52" ry="30" fill="var(--illust-leaf)"/>
+          <rect x="282" y="74" width="14" height="64" rx="6" fill="var(--illust-soil)"/>
+          <path d="M289 124 Q264 150 254 182 M289 124 Q286 154 284 182 M289 124 Q310 150 322 182" fill="none" stroke="var(--illust-soil)" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="289" cy="64" rx="46" ry="26" fill="var(--illust-stem)"/>
+          <!-- Gelombang air lambat -->
+          <path d="M35 148 Q60 142 85 148 T135 148" fill="none" stroke="var(--illust-water-deep)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M190 156 Q215 150 240 156 T290 156" fill="none" stroke="var(--illust-water-deep)" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="210" y="196" text-anchor="middle" fill="var(--on-surface)" font-weight="700" font-size="13">Perairan Beraliran Lambat &amp; Akar Tunjang</text>
+        </svg>`,
+
+        rantai_makanan: `<svg viewBox="0 0 420 190" role="img" aria-label="Diagram alur rantai makanan">
+          <rect x="4" y="4" width="412" height="182" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Kotak 1: Padi -->
+          <rect x="16" y="54" width="66" height="66" rx="14" fill="var(--illust-leaf-light)" stroke="var(--illust-leaf)" stroke-width="2"/>
+          <text x="49" y="84" text-anchor="middle" fill="var(--on-surface)" font-weight="800" font-size="12">Padi</text>
+          <text x="49" y="102" text-anchor="middle" fill="var(--on-surface-variant)" font-size="10">Produsen</text>
+          <path d="M84 87 L98 87" stroke="var(--on-surface)" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="97,81 105,87 97,93" fill="var(--on-surface)"/>
+          <!-- Kotak 2: Belalang -->
+          <rect x="106" y="54" width="66" height="66" rx="14" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2"/>
+          <text x="139" y="84" text-anchor="middle" fill="var(--on-surface)" font-weight="800" font-size="12">Belalang</text>
+          <text x="139" y="102" text-anchor="middle" fill="var(--on-surface-variant)" font-size="10">Kons. I</text>
+          <path d="M174 87 L188 87" stroke="var(--on-surface)" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="187,81 195,87 187,93" fill="var(--on-surface)"/>
+          <!-- Kotak 3: Katak -->
+          <rect x="196" y="54" width="60" height="66" rx="14" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="2"/>
+          <text x="226" y="84" text-anchor="middle" fill="var(--on-surface)" font-weight="800" font-size="12">Katak</text>
+          <text x="226" y="102" text-anchor="middle" fill="var(--on-surface-variant)" font-size="10">Kons. II</text>
+          <path d="M258 87 L272 87" stroke="var(--on-surface)" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="271,81 279,87 271,93" fill="var(--on-surface)"/>
+          <!-- Kotak 4: Ular -->
+          <rect x="280" y="54" width="54" height="66" rx="14" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="2"/>
+          <text x="307" y="84" text-anchor="middle" fill="var(--on-surface)" font-weight="800" font-size="12">Ular</text>
+          <text x="307" y="102" text-anchor="middle" fill="var(--on-surface-variant)" font-size="10">Kons. III</text>
+          <path d="M336 87 L348 87" stroke="var(--primary)" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="347,81 355,87 347,93" fill="var(--primary)"/>
+          <!-- Kotak 5: ? -->
+          <rect x="356" y="54" width="48" height="66" rx="14" fill="var(--primary)"/>
+          <text x="380" y="95" text-anchor="middle" fill="var(--on-primary)" font-weight="900" font-size="22">?</text>
+          <!-- Panah balik ke produsen -->
+          <path d="M380 124 Q210 165 49 124" fill="none" stroke="var(--illust-soil)" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <text x="210" y="164" text-anchor="middle" fill="var(--on-surface-variant)" font-weight="700" font-size="11">Zat hara kembali ke tanah</text>
+        </svg>`,
+
+        alat_lab: `<svg viewBox="0 0 420 220" role="img" aria-label="Empat alat kaca laboratorium sains">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--surface-container-low)"/>
+          <!-- 1. Gelas Kimia -->
+          <path d="M36 74 L36 164 Q36 172 44 172 L96 172 Q104 172 104 164 L104 74" fill="var(--illust-glass)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <line x1="32" y1="74" x2="108" y2="74" stroke="var(--on-surface)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="56" y1="110" x2="72" y2="110" stroke="var(--on-surface)" stroke-width="2"/>
+          <line x1="56" y1="135" x2="72" y2="135" stroke="var(--on-surface)" stroke-width="2"/>
+          <text x="70" y="196" text-anchor="middle" fill="var(--on-surface-variant)" font-weight="700" font-size="11">Gelas Kimia</text>
+
+          <!-- 2. Labu Erlenmeyer -->
+          <path d="M162 64 L162 94 L132 164 Q129 172 138 172 L202 172 Q211 172 208 164 L178 94 L178 64 Z" fill="var(--illust-glass)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <text x="170" y="196" text-anchor="middle" fill="var(--on-surface-variant)" font-weight="700" font-size="11">Erlenmeyer</text>
+
+          <!-- 3. Gelas Ukur (?) -->
+          <rect x="256" y="42" width="32" height="124" rx="4" fill="var(--tertiary-container)" stroke="var(--primary)" stroke-width="3"/>
+          <rect x="242" y="166" width="60" height="8" rx="4" fill="var(--primary)"/>
+          <line x1="258" y1="64" x2="274" y2="64" stroke="var(--primary)" stroke-width="2"/>
+          <line x1="258" y1="84" x2="270" y2="84" stroke="var(--primary)" stroke-width="2"/>
+          <line x1="258" y1="104" x2="274" y2="104" stroke="var(--primary)" stroke-width="2"/>
+          <line x1="258" y1="124" x2="270" y2="124" stroke="var(--primary)" stroke-width="2"/>
+          <line x1="258" y1="144" x2="274" y2="144" stroke="var(--primary)" stroke-width="2"/>
+          <rect x="254" y="182" width="36" height="24" rx="12" fill="var(--primary)"/>
+          <text x="272" y="199" text-anchor="middle" fill="var(--on-primary)" font-weight="900" font-size="14">?</text>
+
+          <!-- 4. Tabung Reaksi -->
+          <path d="M350 74 L350 156 A12 12 0 0 0 374 156 L374 74 Z" fill="var(--illust-glass)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <text x="362" y="196" text-anchor="middle" fill="var(--on-surface-variant)" font-weight="700" font-size="11">Tabung Reaksi</text>
+        </svg>`,
+
+        filtrasi: `<svg viewBox="0 0 420 220" role="img" aria-label="Skema percobaan filtrasi atau penyaringan">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Corong kaca & kertas saring -->
+          <polygon points="120,38 230,38 184,104 184,136 166,136 166,104" fill="var(--illust-glass)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <!-- Kertas saring dan residu pasir -->
+          <polygon points="134,46 216,46 175,98" fill="var(--illust-soil-light)" stroke="var(--illust-soil)" stroke-width="2"/>
+          <circle cx="166" cy="64" r="3" fill="var(--illust-soil)"/>
+          <circle cx="182" cy="68" r="3.5" fill="var(--illust-soil)"/>
+          <circle cx="174" cy="78" r="3" fill="var(--illust-soil)"/>
+          <!-- Tetesan filtrat -->
+          <circle cx="175" cy="148" r="4" fill="var(--illust-water-deep)"/>
+          <!-- Gelas penampung bawah -->
+          <path d="M132 134 L132 194 Q132 202 140 202 L210 202 Q218 202 218 194 L218 134" fill="none" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <rect x="135" y="160" width="80" height="39" rx="6" fill="var(--illust-water)"/>
+          <!-- Label -->
+          <line x1="212" y1="64" x2="275" y2="54" stroke="var(--on-surface)" stroke-width="2"/>
+          <text x="282" y="58" fill="var(--on-surface)" font-weight="700" font-size="12">Pasir tertahan (Residu)</text>
+          <line x1="220" y1="178" x2="275" y2="178" stroke="var(--primary)" stroke-width="2.5"/>
+          <rect x="278" y="160" width="114" height="34" rx="17" fill="var(--primary)"/>
+          <text x="335" y="182" text-anchor="middle" fill="var(--on-primary)" font-weight="800" font-size="13">Cairan ? (Bawah)</text>
+        </svg>`,
+
+        distilasi: `<svg viewBox="0 0 420 220" role="img" aria-label="Skema rangkaian distilasi atau penyulingan">
+          <rect x="4" y="4" width="412" height="212" rx="18" fill="var(--surface-container-low)"/>
+          <!-- Api pemanas -->
+          <path d="M84 188 C74 174 88 158 92 152 C96 158 110 174 100 188 Z" fill="var(--illust-sun)"/>
+          <!-- Labu didih -->
+          <circle cx="92" cy="122" r="32" fill="var(--illust-water)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <rect x="82" y="54" width="20" height="40" fill="var(--illust-glass)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <!-- Pipa kondensor miring -->
+          <path d="M102 68 L280 120" stroke="var(--on-surface)" stroke-width="6" stroke-linecap="round"/>
+          <rect x="148" y="76" width="96" height="24" rx="12" transform="rotate(16 196 88)" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2"/>
+          <!-- Gelas penampung destilat -->
+          <path d="M274 128 L274 186 Q274 194 282 194 L334 194 Q342 194 342 186 L342 128" fill="var(--illust-glass)" stroke="var(--on-surface)" stroke-width="2.5"/>
+          <rect x="277" y="160" width="62" height="31" rx="6" fill="var(--illust-water-deep)"/>
+          <circle cx="294" cy="140" r="4" fill="var(--illust-water-deep)"/>
+          <!-- Label -->
+          <text x="92" y="206" text-anchor="middle" fill="var(--on-surface)" font-weight="700" font-size="11">Pemanasan (Uap)</text>
+          <text x="200" y="56" text-anchor="middle" fill="var(--secondary)" font-weight="700" font-size="11">Pendinginan (Kondensor)</text>
+          <text x="308" y="210" text-anchor="middle" fill="var(--primary)" font-weight="800" font-size="11">Air Murni</text>
+        </svg>`
+      };
+      return svgs[key] || '';
+    }
+
+    /* ======================================================================
+       2. COMPREHENSIVE QUESTION BANK (30 QUESTIONS ACROSS BAB 3, 4, 5)
+       ====================================================================== */
+    const QUESTION_BANK = [
+      // ---------------- BAB 3: REPRODUKSI TUMBUHAN ----------------
+      {
+        id: `b3_q1`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Reproduksi Aseksual`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Petani memotong umbi kentang menjadi beberapa potongan kecil yang bertunas lalu menanamnya hingga tumbuh tanaman baru. Mengapa cara ini disebut reproduksi aseksual?`,
+        options: [
+          `Karena tidak membutuhkan peleburan sel reproduksi dari dua induk`,
+          `Karena melibatkan serbuk sari yang dibawa oleh serangga`,
+          `Karena menghasilkan biji di dalam buah yang berdaging`,
+          `Karena keturunannya selalu berbeda sifat dengan induknya`
+        ],
+        correctIndex: 0,
+        explanation: `Reproduksi aseksual tidak membutuhkan sel reproduksi. Potongan atau fragmen dari satu organisme induk tunggal dapat tumbuh menjadi tumbuhan baru.`
+      },
+      {
+        id: `b3_q2`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Bagian Bunga & Serbuk Sari`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `bunga`,
+        visualCaption: `Diagram bagian-bagian bunga lengkap (angka 1–4)`,
+        prompt: `Perhatikan diagram bunga di atas! Bagian yang ditunjuk oleh angka 1 menghasilkan serbuk halus berwarna kuning untuk penyerbukan. Apakah nama bagian tersebut?`,
+        options: [
+          `Kepala sari`,
+          `Kepala putik`,
+          `Mahkota bunga`,
+          `Bakal biji`
+        ],
+        correctIndex: 0,
+        explanation: `Angka 1 adalah kepala sari (bagian dari benang sari) yang menghasilkan serbuk sari kuning. Angka 2 adalah kepala putik, angka 3 mahkota bunga, dan angka 4 bakal biji di dalam ovarium.`
+      },
+      {
+        id: `b3_q3`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Penyerbukan & Pembuahan`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Setelah serbuk sari berpindah dari kepala sari ke kepala putik (penyerbukan), proses penting apakah yang terjadi di dalam bakal buah agar terbentuk biji?`,
+        options: [
+          `Pembentukan spora di kantong spora`,
+          `Pembuahan antara sel reproduksi jantan dan sel telur`,
+          `Pertumbuhan geragih mendatar di permukaan tanah`,
+          `Penguapan air melalui daun bunga`
+        ],
+        correctIndex: 1,
+        explanation: `Penyerbukan hanyalah perpindahan serbuk sari ke kepala putik. Setelah itu terjadi pembuahan (peleburan sel kelamin jantan dan betina) yang menghasilkan biji.`
+      },
+      {
+        id: `b3_q4`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Reproduksi Aseksual Alami`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `stolon`,
+        visualCaption: `Cara berkembang biak alami pada tanaman stroberi dan mint`,
+        prompt: `Amati gambar di atas! Tumbuhan baru tumbuh dari batang mendatar (horisontal) di atas permukaan tanah. Bagian bertanda tanda tanya (?) tersebut dinamakan…`,
+        options: [
+          `Rizoma`,
+          `Umbi lapis`,
+          `Geragih (stolon)`,
+          `Kantung spora`
+        ],
+        correctIndex: 2,
+        explanation: `Geragih atau stolon adalah batang yang tumbuh secara horisontal di atas tanah (seperti pada stroberi, mint, dan rumput). Ujung tunasnya akan tumbuh menjadi tumbuhan baru.`
+      },
+      {
+        id: `b3_q5`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Batang Bawah Tanah`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Jahe, bawang bombai, dan ubi jalar berkembang biak secara alami dari batang di bawah tanah. Pasangan tumbuhan dan alat reproduksi yang tepat adalah…`,
+        options: [
+          `Jahe (umbi lapis), bawang bombai (rizoma), ubi jalar (stolon)`,
+          `Jahe (rizoma), bawang bombai (umbi lapis), ubi jalar (umbi batang)`,
+          `Jahe (umbi batang), bawang bombai (spora), ubi jalar (rizoma)`,
+          `Jahe (stolon), bawang bombai (umbi batang), ubi jalar (umbi lapis)`
+        ],
+        correctIndex: 1,
+        explanation: `Dalam buku sumber, jahe tumbuh dan bereproduksi dari rizoma, bawang bombai dari umbi lapis, sedangkan ubi jalar dan kentang dari umbi batang.`
+      },
+      {
+        id: `b3_q6`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Reproduksi Aseksual Buatan`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `menyambung`,
+        visualCaption: `Metode menyambung dua batang tanaman berbeda`,
+        prompt: `Gambar di atas menunjukkan metode menyambung agar tanaman memiliki ciri-ciri unggul. Batang bagian atas yang disambungkan dan bertanda ? disebut…`,
+        options: [
+          `Batang pokok`,
+          `Mata tunas`,
+          `Geragih`,
+          `Akar tunjang`
+        ],
+        correctIndex: 1,
+        explanation: `Pada metode menyambung, batang tumbuhan yang akan disambungkan di bagian atas disebut mata tunas, sedangkan batang bawah tempat memasukkan mata tunas disebut batang pokok.`
+      },
+      {
+        id: `b3_q7`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Setek & Merunduk`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Pak Budi membengkokkan batang muda tanaman melati yang lentur lalu menutupinya dengan tanah sampai tumbuh akar baru. Metode reproduksi buatan ini disebut…`,
+        options: [
+          `Setek batang`,
+          `Menyambung`,
+          `Merunduk`,
+          `Penyerbukan silang`
+        ],
+        correctIndex: 2,
+        explanation: `Merunduk adalah reproduksi aseksual buatan dengan membengkokkan batang muda yang lentur dan menutupinya dengan tanah (contoh: melati). Setek dilakukan dengan memotong batang lalu menancapkannya ke tanah lembap atau air.`
+      },
+      {
+        id: `b3_q8`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Spora`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Tumbuhan pakis dan lumut tidak mempunyai biji maupun bunga. Bagaimana kedua tumbuhan ini berkembang biak menghasilkan tumbuhan baru?`,
+        options: [
+          `Menggunakan spora yang terbungkus dalam kantong spora`,
+          `Menggunakan umbi batang di dalam tanah`,
+          `Menggunakan runjung jantan dan runjung betina`,
+          `Dengan merundukkan daunnya ke air`
+        ],
+        correctIndex: 0,
+        explanation: `Pakis dan lumut tidak berbiji. Keduanya tumbuh dari spora—sel kecil berbentuk seperti biji—yang terbungkus di dalam kantong spora dan disebarkan angin atau air saat pecah.`
+      },
+      {
+        id: `b3_q9`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Runjung (Konifer)`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Pohon pinus merupakan tumbuhan berbiji yang tidak memiliki bunga. Di manakah alat reproduksi seksual pohon pinus berada?`,
+        options: [
+          `Di dalam kantong spora di bawah daun`,
+          `Di dalam struktur berkayu yang disebut runjung`,
+          `Di sepanjang batang merambat atau stolon`,
+          `Di dalam umbi lapis di pangkal akar`
+        ],
+        correctIndex: 1,
+        explanation: `Tumbuhan konifer seperti pinus melakukan reproduksi seksual melalui runjung. Runjung jantan menghasilkan serbuk sari, sedangkan runjung betina menghasilkan bakal biji.`
+      },
+      {
+        id: `b3_q10`,
+        chapter: `bab3`,
+        chapterLabel: `Bab 3 • Reproduksi Tumbuhan`,
+        topic: `Mencocokkan Cara Reproduksi`,
+        type: `match`,
+        typeLabel: `Mencocokkan Konsep`,
+        prompt: `Cocokkan nama tumbuhan di kolom kiri dengan cara reproduksi aseksualnya yang tepat di kolom kanan!`,
+        pairs: [
+          { id: `p1`, left: `Jahe`, right: `Rizoma (batang menjalar di bawah tanah)` },
+          { id: `p2`, left: `Bawang bombai`, right: `Umbi lapis` },
+          { id: `p3`, left: `Tanaman giok & bugenvil`, right: `Setek batang di tanah lembap` },
+          { id: `p4`, left: `Melati`, right: `Merunduk (batang muda dibengkokkan ke tanah)` }
+        ],
+        explanation: `Jahe bereproduksi alami dengan rizoma, bawang bombai dengan umbi lapis. Secara buatan, bugenvil dan giok diperbanyak dengan setek batang, sedangkan melati dengan merunduk.`
+      },
+
+      // ---------------- BAB 4: EKOSISTEM ----------------
+      {
+        id: `b4_q1`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Komponen Ekosistem`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Ekosistem tersusun dari komponen biotik dan komponen abiotik yang saling berinteraksi. Manakah kelompok berikut yang seluruhnya termasuk komponen abiotik?`,
+        options: [
+          `Air, cahaya matahari, panas, dan tanah`,
+          `Rumput, kelinci, bakteri, dan udara`,
+          `Pohon bakau, ikan kecil, dan lumpur`,
+          `Mikroorganisme, air laut, dan karang`
+        ],
+        correctIndex: 0,
+        explanation: `Komponen abiotik adalah benda mati (kondisi fisik lingkungan) seperti air, cahaya, panas/suhu, dan tanah. Tumbuhan, hewan, dan mikroorganisme adalah komponen biotik.`
+      },
+      {
+        id: `b4_q2`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Interaksi Biotik & Abiotik`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Mengapa jenis tumbuhan dan hewan yang hidup di ekosistem gurun sangat berbeda dengan yang hidup di hutan hujan tropis?`,
+        options: [
+          `Karena hewan tidak bisa berpindah antar benua`,
+          `Karena jenis organisme yang hidup bergantung pada komponen abiotik ekosistemnya`,
+          `Karena di gurun tidak ada komponen biotik sama sekali`,
+          `Karena semua tumbuhan membutuhkan kadar garam yang tinggi`
+        ],
+        correctIndex: 1,
+        explanation: `Jenis organisme (komponen biotik) yang mampu bertahan hidup di dalam suatu ekosistem sangat tergantung pada komponen abiotik seperti ketersediaan air, cahaya, panas, dan tanah.`
+      },
+      {
+        id: `b4_q3`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Hutan Hujan Tropis`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Di manakah ekosistem hutan hujan tropis ditemukan dan bagaimana ciri kondisi fisiknya?`,
+        options: [
+          `Di sekitar kutub bumi dengan suhu membeku sepanjang tahun`,
+          `Di negara-negara sekitar khatulistiwa dengan iklim panas dan banyak hujan`,
+          `Di dasar laut dalam tanpa cahaya matahari`,
+          `Di puncak pegunungan bersalju dengan angin kencang`
+        ],
+        correctIndex: 1,
+        explanation: `Hutan hujan tropis ditemukan di negara-negara di sekitar khatulistiwa (lingkaran khayal mengelilingi bumi) dan mempunyai ciri iklim yang panas serta curah hujan tinggi.`
+      },
+      {
+        id: `b4_q4`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Terumbu Karang`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `terumbu_karang`,
+        visualCaption: `Ekosistem laut dangkal yang kaya tempat berlindung ikan`,
+        prompt: `Perhatikan gambar ekosistem laut di atas! Terumbu karang terbentuk dari zat keras yang dihasilkan oleh hewan karang. Zat apakah yang membentuk terumbu karang?`,
+        options: [
+          `Kalsium karbonat`,
+          `Serbuk besi dan pasir`,
+          `Akar tunjang bakau`,
+          `Endapan garam murni`
+        ],
+        correctIndex: 0,
+        explanation: `Menurut materi Bab 4, terumbu karang terbuat dari kalsium karbonat yang dihasilkan oleh karang dan menjadi habitat penting bagi beragam biota laut.`
+      },
+      {
+        id: `b4_q5`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Rawa Bakau`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `rawa_bakau`,
+        visualCaption: `Pohon dengan akar tunjang rapat di tepi perairan berlumpur`,
+        prompt: `Ekosistem pada gambar memiliki ciri khas perairan beraliran lambat yang dikelilingi oleh tumbuhan berakar rapat untuk menahan ombak. Ekosistem apakah ini?`,
+        options: [
+          `Hutan hujan tropis`,
+          `Terumbu karang`,
+          `Rawa bakau`,
+          `Padang rumput`
+        ],
+        correctIndex: 2,
+        explanation: `Rawa bakau mempunyai ciri-ciri perairan beraliran lambat yang dikelilingi oleh tumbuhan (pohon bakau) dan melindungi pesisir dari abrasi.`
+      },
+      {
+        id: `b4_q6`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Rantai Makanan`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `rantai_makanan`,
+        visualCaption: `Alur perpindahan energi pada ekosistem sawah`,
+        prompt: `Perhatikan rantai makanan di atas! Organisme pada kotak bertanda ? berperan menguraikan sisa-sisa ular dan makhluk hidup mati menjadi zat hara bagi tanah. Peran apakah itu?`,
+        options: [
+          `Produsen`,
+          `Konsumen Tingkat I`,
+          `Konsumen Puncak`,
+          `Pengurai (Dekomposer)`
+        ],
+        correctIndex: 3,
+        explanation: `Pengurai atau dekomposer (seperti jamur dan bakteri) menguraikan sisa makhluk hidup yang telah mati menjadi unsur hara yang diserap kembali oleh produsen (padi).`
+      },
+      {
+        id: `b4_q7`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Keseimbangan Jaring Makanan`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Dalam jaring-jaring makanan sawah, ular memangsa tikus dan katak, sedangkan elang memangsa ular dan tikus. Apa dampak yang paling mungkin terjadi jika populasi ular menurun drastis akibat perburuan?`,
+        options: [
+          `Populasi tikus dan katak meningkat tajam sehingga merusak tanaman padi`,
+          `Populasi padi langsung bertambah dua kali lipat tanpa gangguan`,
+          `Populasi katak ikut punah karena kehilangan tumbuhan hijau`,
+          `Elang berubah menjadi produsen yang membuat makanan sendiri`
+        ],
+        correctIndex: 0,
+        explanation: `Ketika pemangsa (ular) berkurang drastis, populasi mangsanya (tikus dan katak) melonjak tak terkendali sehingga membahayakan produsen (tanaman padi).`
+      },
+      {
+        id: `b4_q8`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Rantai vs Jaring-jaring Makanan`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Manakah pernyataan yang paling tepat membedakan rantai makanan dengan jaring-jaring makanan?`,
+        options: [
+          `Rantai makanan hanya terjadi di laut, sedangkan jaring makanan di darat`,
+          `Rantai makanan adalah satu jalur makan-dimakan, sedangkan jaring-jaring makanan adalah gabungan banyak rantai makanan yang saling terhubung`,
+          `Rantai makanan tidak memiliki produsen, sedangkan jaring makanan memiliki produsen`,
+          `Jaring-jaring makanan hanya terdiri dari hewan pemakan daging`
+        ],
+        correctIndex: 1,
+        explanation: `Di alam nyata, satu jenis hewan bisa memakan lebih dari satu jenis makanan, sehingga beberapa rantai makanan saling bertemu membentuk jaring-jaring makanan.`
+      },
+      {
+        id: `b4_q9`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Dampak Aktivitas Manusia`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Manakah kombinasi aktivitas manusia berikut yang merusak keseimbangan ekosistem darat maupun perairan?`,
+        options: [
+          `Reboisasi hutan gundul dan membuang sampah pada tempatnya`,
+          `Penebangan liar, pembakaran hutan, dan penangkapan ikan menggunakan bom`,
+          `Menjaga kawasan terumbu karang dan menanam pohon bakau`,
+          `Membuat kompos dari daun kering untuk menyuburkan tanah`
+        ],
+        correctIndex: 1,
+        explanation: `Penebangan liar, pembakaran hutan, dan penangkapan ikan menggunakan bom merusak habitat serta membunuh komponen biotik secara massal.`
+      },
+      {
+        id: `b4_q10`,
+        chapter: `bab4`,
+        chapterLabel: `Bab 4 • Ekosistem`,
+        topic: `Mencocokkan Konsep Ekosistem`,
+        type: `match`,
+        typeLabel: `Mencocokkan Konsep`,
+        prompt: `Cocokkan istilah ekosistem di kolom kiri dengan ciri atau contoh yang sesuai di kolom kanan!`,
+        pairs: [
+          { id: `p1`, left: `Komponen Biotik`, right: `Tumbuhan, hewan, dan mikroorganisme` },
+          { id: `p2`, left: `Produsen`, right: `Tumbuhan hijau yang berfotosintesis` },
+          { id: `p3`, left: `Hutan Hujan Tropis`, right: `Sekitar khatulistiwa dengan iklim panas & banyak hujan` },
+          { id: `p4`, left: `Rawa Bakau`, right: `Perairan beraliran lambat yang dikelilingi tumbuhan` }
+        ],
+        explanation: `Komponen biotik adalah makhluk hidup, produsen membuat makanannya sendiri via fotosintesis, hutan hujan tropis beriklim panas & basah di khatulistiwa, dan rawa bakau berair lambat.`
+      },
+
+      // ---------------- BAB 5: PEMISAHAN CAMPURAN & LAB ----------------
+      {
+        id: `b5_q1`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Keselamatan Kerja Lab`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Saat melakukan percobaan pemanasan cairan menggunakan pembakar Bunsen dan tabung reaksi, aturan keselamatan manakah yang wajib dipatuhi?`,
+        options: [
+          `Memakai kacamata pelindung dan mengarahkan mulut tabung menjauhi wajah siapapun`,
+          `Mencicipi sedikit larutan untuk mengetahui apakah suhunya sudah hangat`,
+          `Membiarkan rambut panjang terurai dekat nyala api`,
+          `Menutup rapat mulut tabung reaksi agar cairan cepat mendidih`
+        ],
+        correctIndex: 0,
+        explanation: `Keselamatan kerja laboratorium mewajibkan pemakaian jas lab dan kacamata pelindung, mengikat rambut panjang, tidak menutup tabung saat dipanaskan, serta mengarahkan mulut tabung menjauhi wajah.`
+      },
+      {
+        id: `b5_q2`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Prosedur Aman di Lab`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Bagaimana cara yang aman apabila kamu perlu mengenali bau suatu zat kimia di dalam gelas kimia selama praktikum?`,
+        options: [
+          `Mendekatkan hidung tepat di atas mulut gelas dan menghirup kuat-kuat`,
+          `Mengibaskan uap zat perlahan ke arah hidung dengan telapak tangan`,
+          `Menumpahkan sedikit zat ke meja lalu menciumnya`,
+          `Mengocok gelas dengan kencang tanpa penutup sebelum menghirupnya`
+        ],
+        correctIndex: 1,
+        explanation: `Jangan pernah menghirup uap bahan kimia secara langsung. Kibaskan udara di atas mulut wadah perlahan ke arah hidung untuk menghindari iritasi saluran napas.`
+      },
+      {
+        id: `b5_q3`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Alat Laboratorium`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `alat_lab`,
+        visualCaption: `Empat peralatan gelas yang umum digunakan di laboratorium sains`,
+        prompt: `Perhatikan empat gambar alat laboratorium di atas! Alat bertanda ? berbentuk silinder ramping dengan garis skala angka untuk mengukur volume cairan secara teliti. Alat apakah itu?`,
+        options: [
+          `Gelas kimia`,
+          `Labu Erlenmeyer`,
+          `Gelas ukur`,
+          `Tabung reaksi`
+        ],
+        correctIndex: 2,
+        explanation: `Gelas ukur dirancang ramping dengan skala presisi untuk mengukur volume cairan secara akurat. Gelas kimia untuk menampung/memanaskan, Erlenmeyer untuk mencampur/mengocok, dan tabung reaksi untuk reaksi skala kecil.`
+      },
+      {
+        id: `b5_q4`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Filtrasi (Penyaringan)`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `filtrasi`,
+        visualCaption: `Pemisahan campuran air dan pasir dengan corong serta kertas saring`,
+        prompt: `Pada percobaan filtrasi di atas, pasir tertahan di kertas saring sebagai residu. Apakah nama cairan jernih bertanda ? yang menetes ke dalam gelas di bawah?`,
+        options: [
+          `Filtrat`,
+          `Sublimat`,
+          `Endapan`,
+          `Solven padat`
+        ],
+        correctIndex: 0,
+        explanation: `Dalam metode filtrasi (penyaringan), cairan bersih yang berhasil melewati pori-pori kertas saring disebut filtrat, sedangkan padatan yang tertinggal di saringan disebut residu.`
+      },
+      {
+        id: `b5_q5`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Dekantasi`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Air sungai yang keruh didiamkan selama 30 menit hingga pasir dan lumpurnya mengendap di dasar gelas. Setelah itu, air jernih di bagian atas dituang perlahan ke wadah lain. Cara ini disebut…`,
+        options: [
+          `Distilasi`,
+          `Dekantasi`,
+          `Sublimasi`,
+          `Pemisahan magnetik`
+        ],
+        correctIndex: 1,
+        explanation: `Dekantasi adalah memisahkan cairan dari padatan tidak larut yang sudah mengendap di dasar wadah dengan cara menuangkan cairannya secara hati-hati.`
+      },
+      {
+        id: `b5_q6`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Distilasi (Penyulingan)`,
+        type: `visual`,
+        typeLabel: `Tebak Gambar`,
+        visualKey: `distilasi`,
+        visualCaption: `Rangkaian pemanasan, kondensor pendingin, dan penampung cairan murni`,
+        prompt: `Perhatikan skema pemisahan air garam pada gambar! Air diuapkan lalu uapnya didinginkan kembali menjadi air murni. Metode berdasarkan perbedaan titik didih ini adalah…`,
+        options: [
+          `Sentrifugasi`,
+          `Filtrasi`,
+          `Distilasi (penyulingan)`,
+          `Dekantasi`
+        ],
+        correctIndex: 2,
+        explanation: `Distilasi atau penyulingan memisahkan campuran berdasarkan perbedaan titik didih zat melalui proses penguapan yang diikuti kondensasi (pengembunan) uap menjadi cairan murni (destilat).`
+      },
+      {
+        id: `b5_q7`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Sublimasi`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Serbuk kapur barus (naftalena) tercampur dengan pasir halus. Metode pemisahan manakah yang paling tepat untuk mendapatkan kembali kapur barus murni?`,
+        options: [
+          `Sublimasi, karena kapur barus dapat berubah langsung dari padat ke gas saat dipanaskan`,
+          `Pemisahan magnetik, karena kapur barus ditarik oleh magnet`,
+          `Dekantasi, karena kapur barus lebih berat daripada pasir`,
+          `Filtrasi air dingin tanpa pemanasan`
+        ],
+        correctIndex: 0,
+        explanation: `Sublimasi digunakan bila salah satu zat padat dapat menyublim (padat → gas saat dipanaskan, lalu gas → kristal padat kembali saat menyentuh permukaan dingin), seperti kapur barus atau iodin.`
+      },
+      {
+        id: `b5_q8`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Sentrifugasi`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Untuk memisahkan sel-sel darah dari plasma darah dengan cepat, petugas laboratorium memutar tabung darah pada kecepatan sangat tinggi menggunakan alat khusus. Metode apakah ini?`,
+        options: [
+          `Sublimasi`,
+          `Sentrifugasi`,
+          `Distilasi`,
+          `Filtrasi kertas`
+        ],
+        correctIndex: 1,
+        explanation: `Sentrifugasi memisahkan partikel padat halus yang tersuspensi dalam cairan dengan gaya putar berkecepatan tinggi sehingga partikel yang lebih padat terkumpul di dasar tabung.`
+      },
+      {
+        id: `b5_q9`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Pemisahan Magnetik`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        prompt: `Bagaimana cara tercepat dan paling bersih untuk memisahkan serbuk besi yang tercampur di dalam mangkuk berisi serbuk belerang atau pasir kering?`,
+        options: [
+          `Mendekatkan magnet batang agar serbuk besi tertarik oleh gaya magnet`,
+          `Memanaskan campuran hingga belerang menguap menjadi gas`,
+          `Menyaring campuran kering menggunakan kertas saring basah`,
+          `Memutarnya dalam mesin sentrifuga tanpa cairan`
+        ],
+        correctIndex: 0,
+        explanation: `Pemisahan magnetik memanfaatkan sifat kemagnetan zat: bahan magnetik seperti besi, baja, atau nikel akan menempel pada magnet, sementara pasir atau belerang tertinggal.`
+      },
+      {
+        id: `b5_q10`,
+        chapter: `bab5`,
+        chapterLabel: `Bab 5 • Lab & Campuran`,
+        topic: `Mencocokkan Metode Pemisahan`,
+        type: `match`,
+        typeLabel: `Mencocokkan Konsep`,
+        prompt: `Cocokkan metode pemisahan campuran di kolom kiri dengan contoh penerapannya di kolom kanan!`,
+        pairs: [
+          { id: `p1`, left: `Filtrasi`, right: `Menyaring ampas kopi dari air dengan kertas saring` },
+          { id: `p2`, left: `Distilasi`, right: `Memperoleh air tawar murni dari air laut via titik didih` },
+          { id: `p3`, left: `Sublimasi`, right: `Memisahkan kapur barus dari pengotor pasir` },
+          { id: `p4`, left: `Sentrifugasi`, right: `Memutar cepat tabung sampel untuk memisahkan sel darah` }
+        ],
+        explanation: `Filtrasi menyaring padatan tak larut, distilasi menguapkan & mengembunkan cairan berdasarkan titik didih, sublimasi memisahkan zat menyublim, dan sentrifugasi memakai putaran berkecepatan tinggi.`
+      }
+    ];
+
+    /* Summative mode selects 6 balanced questions per chapter (18 total: 3 MCQ, 2 Visual, 1 Match each) */
+    const SUMATIF_IDS = [
+      `b3_q1`, `b3_q2`, `b3_q4`, `b3_q5`, `b3_q8`, `b3_q10`,
+      `b4_q1`, `b4_q3`, `b4_q4`, `b4_q6`, `b4_q7`, `b4_q10`,
+      `b5_q1`, `b5_q3`, `b5_q5`, `b5_q6`, `b5_q9`, `b5_q10`
+    ];
+
+    const BADGE_CATALOG = [
+      { id: `badge_bab3`, title: `Ahli Botani`, desc: `Skor ≥80% pada Bab 3`, icon: `sprout` },
+      { id: `badge_bab4`, title: `Penjaga Ekosistem`, desc: `Skor ≥80% pada Bab 4`, icon: `trees` },
+      { id: `badge_bab5`, title: `Master Lab`, desc: `Skor ≥80% pada Bab 5`, icon: `flask-conical` },
+      { id: `badge_sumatif`, title: `Juara Sumatif`, desc: `Skor ≥80% Ujian Sumatif`, icon: `award` },
+      { id: `badge_perfect`, title: `Akurasi 100%`, desc: `Nilai sempurna di mode mana saja`, icon: `star` },
+      { id: `badge_matcher`, title: `Jagoan Konsep`, desc: `Benar semua pada soal mencocokkan`, icon: `puzzle` }
+    ];
+
+    const MODE_META = {
+      bab3: { title: `Latihan Bab 3: Reproduksi Tumbuhan`, badge: `Bab 3` },
+      bab4: { title: `Latihan Bab 4: Ekosistem`, badge: `Bab 4` },
+      bab5: { title: `Latihan Bab 5: Lab & Campuran`, badge: `Bab 5` },
+      sumatif: { title: `Ujian Sumatif Komprehensif`, badge: `Sumatif Bab 3–5` }
+    };
+
+    /* ======================================================================
+       3. APPLICATION STATE & PERSISTENCE
+       ====================================================================== */
+    let persistedState = {
+      bestScores: { bab3: null, bab4: null, bab5: null, sumatif: null },
+      unlockedBadges: [],
+      totalAnswered: 0,
+      activeSession: null
+    };
+
+    let currentSession = null; // { mode, questions, currentIndex, answers: { [qId]: { isCorrect, userAnswer, ... } }, matchState }
+    let selectedMatchLeft = null;
+    let draggedLeftId = null;
+    let reviewFilter = `all`;
+    let lastCompletedResult = null;
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    async function savePersistedState() {
+      const indicator = document.getElementById(`status-save-indicator`);
+      if (indicator) indicator.textContent = `Menyimpan…`;
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(persistedState);
+        }
+        if (indicator) indicator.textContent = `Progres Tersimpan`;
+      } catch (err) {
+        if (indicator) indicator.textContent = `Mode Sesi Lokal`;
+      }
+    }
+
+    function showView(viewId) {
+      const views = [`view-lobby`, `view-quiz`, `view-results`];
+      for (let i = 0; i < views.length; i++) {
+        const el = document.getElementById(views[i]);
+        if (el) el.hidden = views[i] !== viewId;
+      }
+      window.scrollTo({ top: 0, behavior: `smooth` });
+      refreshIcons();
+    }
+
+    /* ======================================================================
+       4. LOBBY RENDERING & MODE LAUNCH
+       ====================================================================== */
+    function getQuestionsForMode(mode) {
+      if (mode === `sumatif`) {
+        return SUMATIF_IDS.map(function (id) {
+          return QUESTION_BANK.find(function (q) { return q.id === id; });
+        }).filter(Boolean);
+      }
+      return QUESTION_BANK.filter(function (q) { return q.chapter === mode; });
+    }
+
+    function renderBadgeShelf(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      let html = ``;
+      for (let i = 0; i < BADGE_CATALOG.length; i++) {
+        const b = BADGE_CATALOG[i];
+        const unlocked = persistedState.unlockedBadges.indexOf(b.id) !== -1;
+        html += `<div class="medal-card ${unlocked ? `unlocked` : ``}">
+          <div class="medal-icon">
+            <i data-lucide="${b.icon}" aria-hidden="true"></i>
+          </div>
+          <div>
+            <div style="font-weight:800; font-size:0.95rem;">${b.title}</div>
+            <div style="font-size:0.82rem; color:var(--on-surface-variant);">${unlocked ? `Diraih!` : b.desc}</div>
+          </div>
+        </div>`;
+      }
+      container.innerHTML = html;
+      refreshIcons();
+    }
+
+    function renderLobby() {
+      const bestSumatif = persistedState.bestScores.sumatif;
+      const elSumatif = document.getElementById(`kpi-best-sumatif`);
+      if (elSumatif) elSumatif.textContent = bestSumatif !== null ? `${bestSumatif}%` : `Belum ada`;
+
+      const chapters = [`bab3`, `bab4`, `bab5`];
+      let masteredCount = 0;
+      for (let i = 0; i < chapters.length; i++) {
+        const ch = chapters[i];
+        const sc = persistedState.bestScores[ch];
+        if (sc !== null && sc >= 80) masteredCount++;
+        const badgeEl = document.getElementById(`best-badge-${ch}`);
+        if (badgeEl) {
+          badgeEl.textContent = sc !== null ? `Terbaik: ${sc}%` : `Belum Dicoba`;
+        }
+      }
+      const sumBadge = document.getElementById(`best-badge-sumatif`);
+      if (sumBadge) {
+        sumBadge.textContent = bestSumatif !== null ? `Terbaik: ${bestSumatif}%` : `Belum Dicoba`;
+      }
+
+      const elMastered = document.getElementById(`kpi-chapters-mastered`);
+      if (elMastered) elMastered.textContent = `${masteredCount} / 3`;
+
+      const elTotal = document.getElementById(`kpi-total-answered`);
+      if (elTotal) elTotal.textContent = String(persistedState.totalAnswered || 0);
+
+      const badgeCount = persistedState.unlockedBadges.length;
+      const elBadges = document.getElementById(`kpi-badges-count`);
+      if (elBadges) elBadges.textContent = `${badgeCount} / ${BADGE_CATALOG.length}`;
+
+      /* Rank label & mastery bar */
+      const masteryPct = Math.round((masteredCount / 3) * 100);
+      const bar = document.getElementById(`hero-mastery-bar`);
+      if (bar) bar.style.width = `${masteryPct}%`;
+
+      const rankLabel = document.getElementById(`hero-rank-label`);
+      const rankDesc = document.getElementById(`hero-rank-desc`);
+      if (rankLabel && rankDesc) {
+        if (badgeCount >= 5) {
+          rankLabel.textContent = `Profesor Muda Sains`;
+          rankDesc.textContent = `Luar biasa! Hampir semua lencana dan materi Bab 3–5 sudah kamu kuasai.`;
+        } else if (masteredCount >= 2 || (bestSumatif !== null && bestSumatif >= 80)) {
+          rankLabel.textContent = `Detektif Alam Hebat`;
+          rankDesc.textContent = `Pemahamanmu makin mantap! Kejar skor ≥80% di semua bab dan sumatif.`;
+        } else if (persistedState.totalAnswered > 0) {
+          rankLabel.textContent = `Peneliti Aktif`;
+          rankDesc.textContent = `Terus berlatih agar ketiga bab mencapai skor minimal 80%.`;
+        } else {
+          rankLabel.textContent = `Penjelajah Muda`;
+          rankDesc.textContent = `Selesaikan latihan bab atau ujian sumatif untuk mengumpulkan semua lencana ilmuwan.`;
+        }
+      }
+
+      /* Resume banner */
+      const resumeBanner = document.getElementById(`resume-banner`);
+      const resumeDetail = document.getElementById(`resume-detail`);
+      if (resumeBanner && resumeDetail) {
+        if (persistedState.activeSession && persistedState.activeSession.mode) {
+          const s = persistedState.activeSession;
+          const meta = MODE_META[s.mode] || MODE_META.bab3;
+          const answeredCount = Object.keys(s.answers || {}).length;
+          resumeBanner.hidden = false;
+          resumeDetail.textContent = `${meta.title} — Terjawab ${answeredCount} dari ${s.questionIds.length} soal.`;
+        } else {
+          resumeBanner.hidden = true;
+        }
+      }
+
+      renderBadgeShelf(`lobby-badge-shelf`);
+    }
+
+    function startQuizMode(mode) {
+      const questions = getQuestionsForMode(mode);
+      currentSession = {
+        mode: mode,
+        questionIds: questions.map(function (q) { return q.id; }),
+        currentIndex: 0,
+        answers: {}
+      };
+      persistedState.activeSession = {
+        mode: mode,
+        questionIds: currentSession.questionIds,
+        currentIndex: 0,
+        answers: {}
+      };
+      savePersistedState();
+      showView(`view-quiz`);
+      renderCurrentQuestion();
+    }
+
+    function resumeSavedQuiz() {
+      const s = persistedState.activeSession;
+      if (!s || !s.mode || !Array.isArray(s.questionIds)) return;
+      currentSession = {
+        mode: s.mode,
+        questionIds: s.questionIds,
+        currentIndex: Math.min(s.currentIndex || 0, s.questionIds.length - 1),
+        answers: s.answers || {}
+      };
+      showView(`view-quiz`);
+      renderCurrentQuestion();
+    }
+
+    function discardSavedQuiz() {
+      persistedState.activeSession = null;
+      savePersistedState();
+      renderLobby();
+    }
+
+    function handleExitQuiz(btn) {
+      if (!btn) return;
+      const answeredCount = currentSession ? Object.keys(currentSession.answers).length : 0;
+      if (answeredCount > 0 && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Klik lagi: Ke Beranda`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.innerHTML = `<i data-lucide="home" aria-hidden="true"></i> Beranda`;
+            refreshIcons();
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="home" aria-hidden="true"></i> Beranda`;
+      showView(`view-lobby`);
+      renderLobby();
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.classList.add(`btn-danger-soft`);
+        btn.textContent = `Klik sekali lagi untuk hapus semua progres`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.classList.remove(`btn-danger-soft`);
+            btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i> Reset Progres`;
+            refreshIcons();
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.classList.remove(`btn-danger-soft`);
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i> Reset Progres`;
+      persistedState = {
+        bestScores: { bab3: null, bab4: null, bab5: null, sumatif: null },
+        unlockedBadges: [],
+        totalAnswered: 0,
+        activeSession: null
+      };
+      savePersistedState();
+      renderLobby();
+    }
+
+    /* ======================================================================
+       5. QUIZ ENGINE (MCQ, VISUAL, DRAG & DROP / TAP MATCHING)
+       ====================================================================== */
+    function getQuestionById(id) {
+      return QUESTION_BANK.find(function (q) { return q.id === id; });
+    }
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function renderCurrentQuestion() {
+      if (!currentSession) return;
+      const total = currentSession.questionIds.length;
+      const idx = currentSession.currentIndex;
+      const qId = currentSession.questionIds[idx];
+      const q = getQuestionById(qId);
+      if (!q) return;
+
+      /* Reset exit button state */
+      const exitBtn = document.getElementById(`exit-quiz-btn`);
+      if (exitBtn) {
+        exitBtn.dataset.armed = `false`;
+        exitBtn.innerHTML = `<i data-lucide="home" aria-hidden="true"></i> Beranda`;
+      }
+
+      /* Top bar */
+      const meta = MODE_META[currentSession.mode] || MODE_META.bab3;
+      const modeBadge = document.getElementById(`quiz-mode-badge`);
+      if (modeBadge) modeBadge.textContent = meta.title;
+
+      const counterBadge = document.getElementById(`quiz-counter-badge`);
+      if (counterBadge) counterBadge.textContent = `Soal ${idx + 1} dari ${total}`;
+
+      let correctSoFar = 0;
+      const ansKeys = Object.keys(currentSession.answers);
+      for (let i = 0; i < ansKeys.length; i++) {
+        if (currentSession.answers[ansKeys[i]].isCorrect) correctSoFar++;
+      }
+      const scoreEl = document.getElementById(`quiz-live-score`);
+      if (scoreEl) scoreEl.textContent = `Benar: ${correctSoFar}`;
+
+      const progFill = document.getElementById(`quiz-progress-fill`);
+      if (progFill) progFill.style.width = `${Math.round(((idx + 1) / total) * 100)}%`;
+
+      /* Card header & prompt */
+      const chTag = document.getElementById(`q-chapter-tag`);
+      if (chTag) chTag.textContent = q.chapterLabel;
+      const typeTag = document.getElementById(`q-type-tag`);
+      if (typeTag) typeTag.textContent = q.typeLabel;
+      const topicEl = document.getElementById(`q-topic-label`);
+      if (topicEl) topicEl.textContent = q.topic;
+      const promptEl = document.getElementById(`q-prompt-text`);
+      if (promptEl) promptEl.textContent = q.prompt;
+
+      /* Visual well */
+      const visualWell = document.getElementById(`q-visual-well`);
+      const visualSvg = document.getElementById(`q-visual-svg`);
+      const visualCap = document.getElementById(`q-visual-caption`);
+      if (visualWell && visualSvg && visualCap) {
+        if (q.visualKey) {
+          visualWell.hidden = false;
+          visualSvg.innerHTML = getIllustrationSvg(q.visualKey);
+          visualCap.textContent = q.visualCaption || ``;
+        } else {
+          visualWell.hidden = true;
+          visualSvg.innerHTML = ``;
+        }
+      }
+
+      const existingAns = currentSession.answers[q.id] || null;
+      const optionsArea = document.getElementById(`q-options-area`);
+      const matchArea = document.getElementById(`q-match-area`);
+
+      if (q.type === `match`) {
+        if (optionsArea) optionsArea.hidden = true;
+        if (matchArea) matchArea.hidden = false;
+        renderMatchBoard(q, existingAns);
+      } else {
+        if (matchArea) matchArea.hidden = true;
+        if (optionsArea) optionsArea.hidden = false;
+        renderOptionsBoard(q, existingAns);
+      }
+
+      renderFeedbackPanel(q, existingAns, idx === total - 1);
+      refreshIcons();
+    }
+
+    function renderOptionsBoard(q, existingAns) {
+      const area = document.getElementById(`q-options-area`);
+      if (!area) return;
+      const letters = [`A`, `B`, `C`, `D`];
+      let html = ``;
+      for (let i = 0; i < q.options.length; i++) {
+        let cls = `option-btn`;
+        if (existingAns) {
+          if (i === q.correctIndex) cls += ` correct`;
+          else if (i === existingAns.selectedIndex && !existingAns.isCorrect) cls += ` incorrect`;
+        }
+        html += `<button type="button" class="${cls}" ${existingAns ? `disabled` : ``} onclick="selectMcqOption(${i})">
+          <span class="option-letter">${letters[i]}</span>
+          <span>${q.options[i]}</span>
+        </button>`;
+      }
+      area.innerHTML = html;
+    }
+
+    function selectMcqOption(selectedIdx) {
+      if (!currentSession) return;
+      const qId = currentSession.questionIds[currentSession.currentIndex];
+      const q = getQuestionById(qId);
+      if (!q || currentSession.answers[q.id]) return;
+
+      const isCorrect = selectedIdx === q.correctIndex;
+      currentSession.answers[q.id] = {
+        isCorrect: isCorrect,
+        selectedIndex: selectedIdx,
+        userAnswerText: q.options[selectedIdx],
+        correctAnswerText: q.options[q.correctIndex]
+      };
+
+      persistedState.totalAnswered = (persistedState.totalAnswered || 0) + 1;
+      persistedState.activeSession = {
+        mode: currentSession.mode,
+        questionIds: currentSession.questionIds,
+        currentIndex: currentSession.currentIndex,
+        answers: currentSession.answers
+      };
+      savePersistedState();
+      renderCurrentQuestion();
+    }
+
+    /* ---------------- MATCHING / DRAG & DROP LOGIC ---------------- */
+    let activeMatchDraft = null; // { qId, shuffledRight: [...], assignments: { [rightId]: leftId } }
+
+    function renderMatchBoard(q, existingAns) {
+      const leftCol = document.getElementById(`match-left-col`);
+      const rightCol = document.getElementById(`match-right-col`);
+      const submitBtn = document.getElementById(`match-submit-btn`);
+      if (!leftCol || !rightCol || !submitBtn) return;
+
+      if (!activeMatchDraft || activeMatchDraft.qId !== q.id) {
+        selectedMatchLeft = null;
+        draggedLeftId = null;
+        activeMatchDraft = {
+          qId: q.id,
+          shuffledRight: shuffleArray(q.pairs),
+          assignments: existingAns && existingAns.assignments ? Object.assign({}, existingAns.assignments) : {}
+        };
+      }
+
+      const assignedLeftIds = Object.values(activeMatchDraft.assignments);
+      let leftHtml = ``;
+      for (let i = 0; i < q.pairs.length; i++) {
+        const pair = q.pairs[i];
+        const isUsed = assignedLeftIds.indexOf(pair.id) !== -1;
+        const isPicked = selectedMatchLeft === pair.id;
+        let cls = `match-chip`;
+        if (isUsed) cls += ` used`;
+        if (isPicked) cls += ` active-pick`;
+
+        leftHtml += `<button type="button"
+          class="${cls}"
+          draggable="${!existingAns && !isUsed ? `true` : `false`}"
+          ondragstart="onMatchDragStart(event, '${pair.id}')"
+          onclick="onMatchLeftClick('${pair.id}')"
+          ${existingAns || isUsed ? `disabled` : ``}>
+          <span>${pair.left}</span>
+          <i data-lucide="grip-vertical" aria-hidden="true"></i>
+        </button>`;
+      }
+      leftCol.innerHTML = leftHtml;
+
+      let rightHtml = ``;
+      for (let j = 0; j < activeMatchDraft.shuffledRight.length; j++) {
+        const target = activeMatchDraft.shuffledRight[j];
+        const assignedLeftId = activeMatchDraft.assignments[target.id] || null;
+        const assignedPair = assignedLeftId ? q.pairs.find(function (p) { return p.id === assignedLeftId; }) : null;
+
+        let slotCls = `match-slot`;
+        if (existingAns) {
+          slotCls += assignedLeftId === target.id ? ` slot-correct` : ` slot-incorrect`;
+        } else if (assignedPair) {
+          slotCls += ` filled`;
+        }
+
+        let controlHtml = ``;
+        if (assignedPair) {
+          const removeBtn = existingAns ? `` : `<button type="button" class="slot-clear-btn" aria-label="Lepaskan ${assignedPair.left}" onclick="clearMatchSlot('${target.id}')">×</button>`;
+          controlHtml = `<span class="slot-assigned-pill">${assignedPair.left}${removeBtn}</span>`;
+        } else if (!existingAns) {
+          controlHtml = `<button type="button" class="slot-placeholder-btn" onclick="onMatchRightClick('${target.id}')">
+            ${selectedMatchLeft ? `Pasangkan ke sini` : `Letakkan kartu di sini`}
+          </button>`;
+        }
+
+        let correctionNote = ``;
+        if (existingAns && assignedLeftId !== target.id) {
+          correctionNote = `<div style="font-size:0.82rem; font-weight:700;">Seharusnya: ${target.left}</div>`;
+        }
+
+        rightHtml += `<div class="${slotCls}"
+          ondragover="onMatchDragOver(event)"
+          ondragleave="onMatchDragLeave(event)"
+          ondrop="onMatchDrop(event, '${target.id}')">
+          <div class="match-slot-top">
+            <span style="font-weight:600; font-size:0.9375rem;">${target.right}</span>
+          </div>
+          ${controlHtml}
+          ${correctionNote}
+        </div>`;
+      }
+      rightCol.innerHTML = rightHtml;
+
+      const allPaired = Object.keys(activeMatchDraft.assignments).length === q.pairs.length;
+      submitBtn.hidden = Boolean(existingAns);
+      submitBtn.disabled = !allPaired;
+    }
+
+    function onMatchDragStart(ev, leftId) {
+      draggedLeftId = leftId;
+      selectedMatchLeft = leftId;
+      if (ev.dataTransfer) {
+        ev.dataTransfer.setData(`text/plain`, leftId);
+        ev.dataTransfer.effectAllowed = `move`;
+      }
+    }
+
+    function onMatchDragOver(ev) {
+      ev.preventDefault();
+      if (ev.currentTarget) ev.currentTarget.classList.add(`drag-over`);
+    }
+
+    function onMatchDragLeave(ev) {
+      if (ev.currentTarget) ev.currentTarget.classList.remove(`drag-over`);
+    }
+
+    function onMatchDrop(ev, rightId) {
+      ev.preventDefault();
+      if (ev.currentTarget) ev.currentTarget.classList.remove(`drag-over`);
+      const qId = currentSession ? currentSession.questionIds[currentSession.currentIndex] : null;
+      const q = qId ? getQuestionById(qId) : null;
+      if (!q || (currentSession && currentSession.answers[q.id])) return;
+
+      const droppedId = (ev.dataTransfer && ev.dataTransfer.getData(`text/plain`)) || draggedLeftId || selectedMatchLeft;
+      if (!droppedId) return;
+      assignMatchPair(q, droppedId, rightId);
+    }
+
+    function onMatchLeftClick(leftId) {
+      const qId = currentSession ? currentSession.questionIds[currentSession.currentIndex] : null;
+      const q = qId ? getQuestionById(qId) : null;
+      if (!q || (currentSession && currentSession.answers[q.id])) return;
+
+      selectedMatchLeft = selectedMatchLeft === leftId ? null : leftId;
+      renderMatchBoard(q, null);
+      refreshIcons();
+    }
+
+    function onMatchRightClick(rightId) {
+      const qId = currentSession ? currentSession.questionIds[currentSession.currentIndex] : null;
+      const q = qId ? getQuestionById(qId) : null;
+      if (!q || (currentSession && currentSession.answers[q.id]) || !selectedMatchLeft) return;
+
+      assignMatchPair(q, selectedMatchLeft, rightId);
+    }
+
+    function assignMatchPair(q, leftId, rightId) {
+      if (!activeMatchDraft) return;
+      /* Remove leftId if already assigned elsewhere */
+      const keys = Object.keys(activeMatchDraft.assignments);
+      for (let i = 0; i < keys.length; i++) {
+        if (activeMatchDraft.assignments[keys[i]] === leftId) {
+          delete activeMatchDraft.assignments[keys[i]];
+        }
+      }
+      activeMatchDraft.assignments[rightId] = leftId;
+      selectedMatchLeft = null;
+      draggedLeftId = null;
+      renderMatchBoard(q, null);
+      refreshIcons();
+    }
+
+    function clearMatchSlot(rightId) {
+      const qId = currentSession ? currentSession.questionIds[currentSession.currentIndex] : null;
+      const q = qId ? getQuestionById(qId) : null;
+      if (!q || !activeMatchDraft || (currentSession && currentSession.answers[q.id])) return;
+      delete activeMatchDraft.assignments[rightId];
+      renderMatchBoard(q, null);
+      refreshIcons();
+    }
+
+    function submitMatchQuestion() {
+      if (!currentSession || !activeMatchDraft) return;
+      const qId = currentSession.questionIds[currentSession.currentIndex];
+      const q = getQuestionById(qId);
+      if (!q || currentSession.answers[q.id]) return;
+
+      let matchedCount = 0;
+      const summaryParts = [];
+      for (let i = 0; i < q.pairs.length; i++) {
+        const pair = q.pairs[i];
+        const userLeftId = activeMatchDraft.assignments[pair.id];
+        const userPair = q.pairs.find(function (p) { return p.id === userLeftId; });
+        if (userLeftId === pair.id) matchedCount++;
+        summaryParts.push(`${userPair ? userPair.left : `-`} → ${pair.right}`);
+      }
+
+      const isCorrect = matchedCount === q.pairs.length;
+      currentSession.answers[q.id] = {
+        isCorrect: isCorrect,
+        matchedCount: matchedCount,
+        totalPairs: q.pairs.length,
+        assignments: Object.assign({}, activeMatchDraft.assignments),
+        userAnswerText: `${matchedCount}/${q.pairs.length} pasangan tepat`,
+        correctAnswerText: q.pairs.map(function (p) { return `${p.left} → ${p.right}`; }).join(`; `)
+      };
+
+      persistedState.totalAnswered = (persistedState.totalAnswered || 0) + 1;
+      persistedState.activeSession = {
+        mode: currentSession.mode,
+        questionIds: currentSession.questionIds,
+        currentIndex: currentSession.currentIndex,
+        answers: currentSession.answers
+      };
+      savePersistedState();
+      renderCurrentQuestion();
+    }
+
+    /* ---------------- INSTANT FEEDBACK & PROGRESSION ---------------- */
+    function renderFeedbackPanel(q, existingAns, isLast) {
+      const panel = document.getElementById(`q-feedback-panel`);
+      const title = document.getElementById(`q-feedback-title`);
+      const body = document.getElementById(`q-feedback-body`);
+      const nextBtn = document.getElementById(`q-next-btn`);
+      if (!panel || !title || !body || !nextBtn) return;
+
+      if (!existingAns) {
+        panel.hidden = true;
+        return;
+      }
+
+      panel.hidden = false;
+      panel.className = `feedback-panel ${existingAns.isCorrect ? `is-correct` : `is-wrong`}`;
+
+      if (existingAns.isCorrect) {
+        title.innerHTML = `<i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Tepat Sekali! Jawabanmu Benar.</span>`;
+      } else {
+        const keyHint = q.type === `match`
+          ? `Semua 4 pasangan harus sesuai.`
+          : `Jawaban yang tepat: ${q.options[q.correctIndex]}.`;
+        title.innerHTML = `<i data-lucide="x-circle" aria-hidden="true"></i> <span>Belum Tepat. ${keyHint}</span>`;
+      }
+      body.textContent = q.explanation;
+
+      nextBtn.innerHTML = isLast
+        ? `Lihat Hasil &amp; Review <i data-lucide="trophy" aria-hidden="true"></i>`
+        : `Soal Berikutnya <i data-lucide="arrow-right" aria-hidden="true"></i>`;
+    }
+
+    function goToNextQuestion() {
+      if (!currentSession) return;
+      if (currentSession.currentIndex < currentSession.questionIds.length - 1) {
+        currentSession.currentIndex++;
+        if (persistedState.activeSession) {
+          persistedState.activeSession.currentIndex = currentSession.currentIndex;
+          savePersistedState();
+        }
+        renderCurrentQuestion();
+      } else {
+        finishQuizSession();
+      }
+    }
+
+    /* ======================================================================
+       6. SCORING, ACHIEVEMENTS, RESULTS & ANSWER REVIEW
+       ====================================================================== */
+    function finishQuizSession() {
+      if (!currentSession) return;
+      const mode = currentSession.mode;
+      const questions = currentSession.questionIds.map(getQuestionById).filter(Boolean);
+      let correctCount = 0;
+      let matchAllCorrect = true;
+      let hasMatch = false;
+
+      const byChapter = {
+        bab3: { label: `Bab 3: Reproduksi Tumbuhan`, correct: 0, total: 0 },
+        bab4: { label: `Bab 4: Ekosistem`, correct: 0, total: 0 },
+        bab5: { label: `Bab 5: Lab & Campuran`, correct: 0, total: 0 }
+      };
+      const byFormat = {
+        mcq: { label: `Pilihan Ganda`, correct: 0, total: 0 },
+        visual: { label: `Tebak Gambar / Istilah`, correct: 0, total: 0 },
+        match: { label: `Mencocokkan (Drag & Drop)`, correct: 0, total: 0 }
+      };
+
+      const reviewEntries = [];
+      for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+        const ans = currentSession.answers[q.id] || { isCorrect: false, userAnswerText: `Tidak dijawab`, correctAnswerText: `` };
+        if (ans.isCorrect) correctCount++;
+
+        if (byChapter[q.chapter]) {
+          byChapter[q.chapter].total++;
+          if (ans.isCorrect) byChapter[q.chapter].correct++;
+        }
+        if (byFormat[q.type]) {
+          byFormat[q.type].total++;
+          if (ans.isCorrect) byFormat[q.type].correct++;
+        }
+        if (q.type === `match`) {
+          hasMatch = true;
+          if (!ans.isCorrect) matchAllCorrect = false;
+        }
+
+        reviewEntries.push({
+          number: i + 1,
+          question: q,
+          answer: ans
+        });
+      }
+
+      const pct = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 0;
+
+      /* Update best scores */
+      const prevBest = persistedState.bestScores[mode];
+      if (prevBest === null || pct > prevBest) {
+        persistedState.bestScores[mode] = pct;
+      }
+
+      /* Award badges */
+      function unlockBadge(id) {
+        if (persistedState.unlockedBadges.indexOf(id) === -1) {
+          persistedState.unlockedBadges.push(id);
+        }
+      }
+      if (mode === `bab3` && pct >= 80) unlockBadge(`badge_bab3`);
+      if (mode === `bab4` && pct >= 80) unlockBadge(`badge_bab4`);
+      if (mode === `bab5` && pct >= 80) unlockBadge(`badge_bab5`);
+      if (mode === `sumatif` && pct >= 80) unlockBadge(`badge_sumatif`);
+      if (pct === 100) unlockBadge(`badge_perfect`);
+      if (hasMatch && matchAllCorrect) unlockBadge(`badge_matcher`);
+
+      /* Clear active session */
+      persistedState.activeSession = null;
+      savePersistedState();
+
+      lastCompletedResult = {
+        mode: mode,
+        pct: pct,
+        correctCount: correctCount,
+        totalCount: questions.length,
+        byChapter: byChapter,
+        byFormat: byFormat,
+        reviewEntries: reviewEntries
+      };
+
+      reviewFilter = `all`;
+      showView(`view-results`);
+      renderResultsScreen();
+    }
+
+    function renderResultsScreen() {
+      if (!lastCompletedResult) return;
+      const r = lastCompletedResult;
+      const meta = MODE_META[r.mode] || MODE_META.bab3;
+
+      const badge = document.getElementById(`results-mode-badge`);
+      if (badge) badge.textContent = meta.title;
+
+      const pctEl = document.getElementById(`results-pct`);
+      if (pctEl) pctEl.textContent = `${r.pct}%`;
+
+      const rawEl = document.getElementById(`results-raw`);
+      if (rawEl) rawEl.textContent = `${r.correctCount}/${r.totalCount} Benar`;
+
+      /* Animate SVG ring (circumference = 2 * pi * 56 = 351.86) */
+      const ring = document.getElementById(`results-ring-fg`);
+      if (ring) {
+        const circ = 351.86;
+        const offset = circ - (r.pct / 100) * circ;
+        ring.style.strokeDashoffset = String(offset);
+      }
+
+      const headline = document.getElementById(`results-headline`);
+      const summary = document.getElementById(`results-summary-text`);
+      if (headline && summary) {
+        if (r.pct >= 90) {
+          headline.innerHTML = `Luar Biasa, <em>Juara</em> Sains!`;
+          summary.textContent = `Kamu menguasai hampir seluruh konsep dengan sangat akurat (${r.correctCount} dari ${r.totalCount} soal benar).`;
+        } else if (r.pct >= 75) {
+          headline.innerHTML = `Hasil Mantap, <em>Peneliti</em> Hebat!`;
+          summary.textContent = `Pemahamanmu sudah kuat (${r.correctCount} dari ${r.totalCount} soal benar). Tinjau kembali pembahasan di bawah agar makin sempurna.`;
+        } else {
+          headline.innerHTML = `Terus Semangat <em>Belajar</em>!`;
+          summary.textContent = `Kamu menjawab ${r.correctCount} dari ${r.totalCount} soal dengan tepat. Pelajari kunci jawaban di bawah lalu coba lagi ya!`;
+        }
+      }
+
+      /* Chapter Breakdown */
+      const chWrap = document.getElementById(`results-chapter-breakdown`);
+      if (chWrap) {
+        let html = ``;
+        const chKeys = [`bab3`, `bab4`, `bab5`];
+        for (let i = 0; i < chKeys.length; i++) {
+          const item = r.byChapter[chKeys[i]];
+          if (item.total === 0) continue;
+          const itemPct = Math.round((item.correct / item.total) * 100);
+          html += `<div class="breakdown-row">
+            <div class="breakdown-label">
+              <span>${item.label}</span>
+              <span class="tabular-num">${item.correct}/${item.total} (${itemPct}%)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill ${i === 0 ? `pink` : i === 1 ? `` : `grape`}" style="width:${itemPct}%;"></div>
+            </div>
+          </div>`;
+        }
+        chWrap.innerHTML = html;
+      }
+
+      /* Format Breakdown */
+      const fmtWrap = document.getElementById(`results-format-breakdown`);
+      if (fmtWrap) {
+        let html = ``;
+        const fmtKeys = [`mcq`, `visual`, `match`];
+        for (let i = 0; i < fmtKeys.length; i++) {
+          const item = r.byFormat[fmtKeys[i]];
+          if (item.total === 0) continue;
+          const itemPct = Math.round((item.correct / item.total) * 100);
+          html += `<div class="breakdown-row">
+            <div class="breakdown-label">
+              <span>${item.label}</span>
+              <span class="tabular-num">${item.correct}/${item.total} (${itemPct}%)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill ${i === 0 ? `` : i === 1 ? `pink` : `grape`}" style="width:${itemPct}%;"></div>
+            </div>
+          </div>`;
+        }
+        fmtWrap.innerHTML = html;
+      }
+
+      renderBadgeShelf(`results-badge-shelf`);
+      renderReviewList();
+    }
+
+    function setReviewFilter(filterKey) {
+      reviewFilter = filterKey;
+      const btns = document.querySelectorAll(`.seg-btn[data-filter]`);
+      for (let i = 0; i < btns.length; i++) {
+        btns[i].classList.toggle(`active`, btns[i].dataset.filter === filterKey);
+      }
+      renderReviewList();
+    }
+
+    function renderReviewList() {
+      const list = document.getElementById(`results-review-list`);
+      if (!list || !lastCompletedResult) return;
+
+      const filtered = lastCompletedResult.reviewEntries.filter(function (entry) {
+        if (reviewFilter === `wrong`) return !entry.answer.isCorrect;
+        if (reviewFilter === `correct`) return entry.answer.isCorrect;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="card" style="text-align:center; color:var(--on-surface-variant);">
+          Tidak ada soal pada kategori filter ini.
+        </div>`;
+        return;
+      }
+
+      let html = ``;
+      for (let i = 0; i < filtered.length; i++) {
+        const entry = filtered[i];
+        const q = entry.question;
+        const ans = entry.answer;
+        const statusTag = ans.isCorrect
+          ? `<span class="badge" style="background:var(--positive-container); color:var(--on-positive-container);">Benar</span>`
+          : `<span class="badge" style="background:var(--error-container); color:var(--on-error-container);">Perlu Diperbaiki</span>`;
+
+        const correctDisplay = q.type === `match`
+          ? q.pairs.map(function (p) { return `${p.left} → ${p.right}`; }).join(` • `)
+          : q.options[q.correctIndex];
+
+        html += `<article class="review-item ${ans.isCorrect ? `` : `is-wrong`}">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+            <div class="tag-row">
+              <span class="tag">${q.chapterLabel}</span>
+              <span class="tag tag-sky">${q.typeLabel}</span>
+            </div>
+            ${statusTag}
+          </div>
+          <div style="font-weight:700;">${entry.number}. ${q.prompt}</div>
+          <div style="display:grid; gap:var(--space-xs); font-size:0.93rem;">
+            <div><strong>Jawabanmu:</strong> ${ans.userAnswerText || `-`}</div>
+            <div><strong>Kunci Jawaban:</strong> ${correctDisplay}</div>
+          </div>
+          <div style="background:var(--surface-container); border-radius:var(--rounded); padding:var(--space-sm) var(--space-md); font-size:0.92rem; color:var(--on-surface-variant);">
+            <strong>Penjelasan:</strong> ${q.explanation}
+          </div>
+        </article>`;
+      }
+      list.innerHTML = html;
+    }
+
+    function retryCurrentMode() {
+      if (!lastCompletedResult) return;
+      startQuizMode(lastCompletedResult.mode);
+    }
+
+    function backToLobby() {
+      showView(`view-lobby`);
+      renderLobby();
+    }
+
+    function exportResultsReport() {
+      if (!lastCompletedResult) return;
+      const r = lastCompletedResult;
+      const meta = MODE_META[r.mode] || MODE_META.bab3;
+      const lines = [
+        `LAPORAN HASIL KUIS SAINS KELAS 6`,
+        `Mode: ${meta.title}`,
+        `Skor Akhir: ${r.pct}% (${r.correctCount} dari ${r.totalCount} benar)`,
+        ``,
+        `--- PEMBAHASAN ---`
+      ];
+      for (let i = 0; i < r.reviewEntries.length; i++) {
+        const e = r.reviewEntries[i];
+        const key = e.question.type === `match`
+          ? e.question.pairs.map(function (p) { return `${p.left} -> ${p.right}`; }).join(`; `)
+          : e.question.options[e.question.correctIndex];
+        lines.push(`${e.number}. [${e.answer.isCorrect ? `BENAR` : `SALAH`}] ${e.question.prompt}`);
+        lines.push(`   Jawabanmu: ${e.answer.userAnswerText}`);
+        lines.push(`   Kunci: ${key}`);
+        lines.push(`   Penjelasan: ${e.question.explanation}`);
+        lines.push(``);
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: lines.join(`\n`),
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `hasil-kuis-sains-kelas6-${r.mode}.txt`
+        });
+      }
+    }
+
+    /* ======================================================================
+       7. BOOTSTRAP & SHIM INITIALIZATION
+       ====================================================================== */
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            persistedState = {
+              bestScores: Object.assign({ bab3: null, bab4: null, bab5: null, sumatif: null }, saved.bestScores || {}),
+              unlockedBadges: Array.isArray(saved.unlockedBadges) ? saved.unlockedBadges : [],
+              totalAnswered: typeof saved.totalAnswered === `number` ? saved.totalAnswered : 0,
+              activeSession: saved.activeSession || null
+            };
+          }
+        }
+      } catch (err) {
+        /* Fallback cleanly to default state */
+      }
+
+      renderLobby();
+      refreshIcons();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

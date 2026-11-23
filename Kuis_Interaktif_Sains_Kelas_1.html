@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Sains Kelas 1: Tumbuhan &amp; Benda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker style) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --primary-soft: #fde8f4;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-soft: #f0e8fa;
+      --tertiary: #0096cc;
+      --tertiary-soft: #e0f4fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-soft: #fee2e2;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.2);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Semantic & Focus */
+      --positive: #15803d;
+      --on-positive: #ffffff;
+      --positive-soft: #dcfce7;
+      --warning: #b45309;
+      --warning-soft: #fef3c7;
+      --focus: #c2207f;
+
+      /* Illustration tokens */
+      --illus-green: #16a34a;
+      --illus-green-dark: #15803d;
+      --illus-green-light: #86efac;
+      --illus-soil: #854d0e;
+      --illus-soil-light: #ca8a04;
+      --illus-sun: #eab308;
+      --illus-sun-glow: #fef08a;
+      --illus-water: #0284c7;
+      --illus-water-light: #bae6fd;
+      --illus-carrot: #ea580c;
+      --illus-wood: #9a3412;
+      --illus-wood-light: #fdba74;
+      --illus-metal: #475569;
+      --illus-metal-light: #cbd5e1;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.2rem);
+      --body-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Header */
+    .hero-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-top: var(--space-xs);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .display-title {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .display-title em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      font-size: var(--body-size);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+    }
+    .card-sky { box-shadow: var(--shadow-sky); }
+    .card-grape { box-shadow: var(--shadow-grape); }
+
+    /* KPI / Scoreboard strip */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .stat-card:nth-child(2) { box-shadow: var(--shadow-sky); }
+    .stat-card:nth-child(3) { box-shadow: var(--shadow-grape); }
+    .stat-card:nth-child(4) { box-shadow: var(--shadow-pink); }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-surface-variant);
+    }
+
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.85rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    .stat-value.is-primary { color: var(--primary); }
+    .stat-value.is-grape { color: var(--secondary); }
+    .stat-value.is-positive { color: var(--positive); }
+
+    .stat-caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Lollipop progress bar */
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Filter & action bar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      background: var(--surface-container-high);
+      padding: var(--space-xs);
+      border-radius: var(--rounded-full);
+    }
+
+    .pill-tab {
+      border: none;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .pill-tab:hover {
+      transform: var(--pop-scale);
+      color: var(--on-surface);
+    }
+    .pill-tab.active {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Buttons */
+    .btn {
+      border: none;
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 44px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .btn-soft {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-grape-soft {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .btn-danger-armed {
+      background: var(--error);
+      color: var(--on-error);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Main Workspace Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Quiz Stage Card */
+    .quiz-stage {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      container-type: inline-size;
+    }
+
+    .quiz-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge-bubblegum {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .badge-grape {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+
+    .badge-sky-fill {
+      background: var(--tertiary-soft);
+      color: var(--on-surface);
+    }
+
+    .btn-speak {
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--secondary);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      min-height: 44px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .btn-speak:hover {
+      transform: var(--pop-scale);
+      background: var(--secondary-soft);
+    }
+
+    /* Question header + illustration */
+    .question-header {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .illus-box {
+      width: 140px;
+      height: 140px;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-sm);
+      flex-shrink: 0;
+    }
+
+    .illus-box svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .question-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .question-type-hint {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+    }
+
+    .question-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    @container (max-width: 520px) {
+      .question-header {
+        grid-template-columns: 1fr;
+        justify-items: start;
+      }
+      .illus-box {
+        width: 112px;
+        height: 112px;
+      }
+    }
+
+    /* Options grids */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    @container (max-width: 480px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-btn {
+      position: relative;
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      min-height: 60px;
+      text-align: left;
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-sky);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  outline var(--dur-micro) var(--ease-out);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: var(--lift);
+      background: var(--surface-container);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .option-label {
+      flex: 1;
+      line-height: 1.35;
+    }
+
+    .option-btn.selected {
+      background: var(--primary-soft);
+      outline: 3px solid var(--primary);
+      outline-offset: -2px;
+      box-shadow: var(--shadow-pink);
+    }
+    .option-btn.selected .option-letter {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .option-btn.correct {
+      background: var(--positive-soft);
+      outline: 3px solid var(--positive);
+      outline-offset: -2px;
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+
+    .option-btn.wrong {
+      background: var(--error-soft);
+      outline: 3px solid var(--error);
+      outline-offset: -2px;
+    }
+    .option-btn.wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Multi-select chips */
+    .multi-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .multi-chip {
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 48px;
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: var(--shadow-grape);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .multi-chip:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--surface-container);
+    }
+    .multi-chip.selected {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .multi-chip.correct {
+      background: var(--positive);
+      color: var(--on-positive);
+      border-color: var(--positive);
+    }
+    .multi-chip.wrong {
+      background: var(--error);
+      color: var(--on-error);
+      border-color: var(--error);
+    }
+    .multi-chip:disabled {
+      cursor: default;
+    }
+
+    .multi-submit-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-top: var(--space-xs);
+    }
+
+    .multi-counter {
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+    }
+
+    /* Immediate Feedback Box */
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+
+    .feedback-box.is-correct {
+      background: var(--positive-soft);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-positive);
+    }
+
+    .feedback-box.is-wrong {
+      background: var(--error-soft);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .feedback-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--on-primary);
+    }
+    .feedback-box.is-correct .feedback-icon { background: var(--positive); }
+    .feedback-box.is-wrong .feedback-icon { background: var(--error); }
+
+    .feedback-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .feedback-heading {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    .feedback-box.is-correct .feedback-heading { color: var(--positive); }
+    .feedback-box.is-wrong .feedback-heading { color: var(--error); }
+
+    .feedback-explain {
+      margin: 0;
+      color: var(--on-surface);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    /* Quiz Navigation Footer */
+    .quiz-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    /* Side Column: Question Map & Stickers */
+    .side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .panel-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      margin: 0 0 var(--space-xs) 0;
+      color: var(--on-surface);
+      letter-spacing: -0.01em;
+    }
+
+    .panel-desc {
+      margin: 0 0 var(--space-md) 0;
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    .q-map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .q-dot {
+      height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .q-dot:hover { transform: var(--pop-scale); }
+    .q-dot.is-current {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .q-dot.is-correct {
+      background: var(--positive);
+      border-color: var(--positive);
+      color: var(--on-positive);
+    }
+    .q-dot.is-wrong {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--on-error);
+    }
+
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--rounded-full);
+      display: inline-block;
+    }
+    .swatch-todo { background: var(--surface-container-high); border: 1px solid var(--outline); }
+    .swatch-ok { background: var(--positive); }
+    .swatch-err { background: var(--error); }
+
+    /* Stickers Grid */
+    .sticker-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .sticker-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      opacity: 0.58;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  opacity var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+
+    .sticker-item.unlocked {
+      opacity: 1;
+      background: var(--primary-soft);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .sticker-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sticker-item.unlocked .sticker-icon-wrap {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .sticker-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sticker-name {
+      font-weight: 800;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+    .sticker-rule {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Results / Summary Celebration Card */
+    .results-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+
+    .results-hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+    }
+
+    .results-headline {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .results-headline em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .results-score-bubble {
+      background: var(--primary-soft);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-xl);
+      text-align: center;
+      box-shadow: var(--shadow-pink);
+    }
+    .results-score-num {
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .results-score-sub {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--on-surface-variant);
+    }
+
+    /* Mastery horizontal lollipop bars */
+    .mastery-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .mastery-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .mastery-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+    .mastery-track {
+      height: 14px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      overflow: hidden;
+    }
+    .mastery-fill {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .fill-pink { background: var(--data-1); }
+    .fill-grape { background: var(--data-2); }
+    .fill-sky { background: var(--data-3); }
+
+    /* Review list inside results */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .review-item {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .review-item.is-wrong {
+      background: var(--error-soft);
+    }
+    .review-item.is-correct {
+      background: var(--positive-soft);
+    }
+    .review-q {
+      font-weight: 700;
+      margin: 0;
+    }
+    .review-a {
+      font-size: 0.9rem;
+      margin: 0;
+      color: var(--on-surface-variant);
+    }
+
+    /* Collapsible Study Sheet */
+    .study-section {
+      display: none;
+      flex-direction: column;
+      gap: var(--space-md);
+      animation: popIn var(--dur-long) var(--ease-out);
+    }
+    .study-section.is-open {
+      display: flex;
+    }
+
+    .study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .study-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .study-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .study-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+
+    .study-card h3 {
+      margin: 0;
+      font-size: var(--subhead-size);
+      font-weight: 800;
+      color: var(--on-surface);
+    }
+
+    .study-card ul {
+      margin: 0;
+      padding-left: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    .source-footer {
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      padding: var(--space-sm) 0 var(--space-lg) 0;
+    }
+
+    .hidden { display: none !important; }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 920px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .quiz-stage, .results-panel {
+        padding: var(--space-lg);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-sm);
+      }
+      .stat-card {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- Header -->
+    <header class="hero-header">
+      <div class="kicker">
+        <i data-lucide="sparkles" aria-hidden="true" width="16" height="16"></i>
+        <span>Sains Kelas 1 SD · Bab 4 &amp; Bab 5</span>
+      </div>
+      <h1 class="display-title">Kuis <em>Sains</em> Kelas 1: Tumbuhan &amp; Benda</h1>
+      <p class="hero-subtitle">
+        Jawab pertanyaan bergambar, kumpulkan poin dan lencana stiker, dan pelajari bagian tumbuhan serta benda-benda di sekitar kita.
+      </p>
+    </header>
+
+    <!-- Live Scoreboard Strip -->
+    <section class="stats-grid" aria-label="Ringkasan Skor Kuis">
+      <div class="stat-card">
+        <span class="stat-label">Skor Kamu</span>
+        <span class="stat-value is-primary" id="stat-score">0</span>
+        <span class="stat-caption" id="stat-score-cap">dari 180 poin maksimal</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Soal Terjawab</span>
+        <span class="stat-value" id="stat-progress">0 / 18</span>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Jawaban Benar</span>
+        <span class="stat-value is-positive" id="stat-accuracy">0%</span>
+        <span class="stat-caption" id="stat-correct-count">0 soal benar</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Lencana Stiker</span>
+        <span class="stat-value is-grape" id="stat-stickers">0 / 4</span>
+        <span class="stat-caption">Selesaikan topik untuk membuka</span>
+      </div>
+    </section>
+
+    <!-- Topic Filter & Action Bar -->
+    <section class="toolbar" aria-label="Pilih Topik Kuis">
+      <div class="topic-pills" role="tablist" aria-label="Filter Bab Kuis">
+        <button type="button" class="pill-tab active" data-topic="all" onclick="setTopicFilter('all')">
+          Semua Bab (18)
+        </button>
+        <button type="button" class="pill-tab" data-topic="bagian" onclick="setTopicFilter('bagian')">
+          Bagian Tumbuhan (6)
+        </button>
+        <button type="button" class="pill-tab" data-topic="kebutuhan" onclick="setTopicFilter('kebutuhan')">
+          Hidup Tumbuhan (5)
+        </button>
+        <button type="button" class="pill-tab" data-topic="bahan" onclick="setTopicFilter('bahan')">
+          Benda &amp; Alam (7)
+        </button>
+      </div>
+
+      <div class="toolbar-actions">
+        <button type="button" class="btn btn-grape-soft" id="btn-toggle-study" onclick="toggleStudyGuide()">
+          <i data-lucide="book-open" aria-hidden="true" width="18" height="18"></i>
+          <span>Ringkasan Materi</span>
+        </button>
+        <button type="button" class="btn btn-soft" id="btn-reset-quiz" data-armed="false" onclick="handleResetClick(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i>
+          <span id="reset-label">Ulangi Kuis</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Main Interactive Quiz Workspace -->
+    <main class="workspace-grid">
+      <!-- Left: Question Card OR Results Panel -->
+      <div>
+        <section class="quiz-stage" id="quiz-stage" aria-live="polite">
+          <div class="quiz-meta-row">
+            <div class="meta-badges">
+              <span class="badge badge-bubblegum" id="q-topic-badge">Bab 4 · Bagian Tumbuhan</span>
+              <span class="badge badge-sky-fill" id="q-index-badge">Soal 1 dari 18</span>
+            </div>
+            <button type="button" class="btn-speak" id="btn-speak" onclick="speakCurrentQuestion()">
+              <i data-lucide="volume-2" aria-hidden="true" width="18" height="18"></i>
+              <span>Bacakan Soal</span>
+            </button>
+          </div>
+
+          <div class="question-header">
+            <div class="illus-box" id="q-illustration" aria-hidden="true"></div>
+            <div class="question-text-wrap">
+              <span class="question-type-hint" id="q-type-hint">Pilih satu jawaban yang benar</span>
+              <h2 class="question-title" id="q-prompt">Memuat pertanyaan…</h2>
+            </div>
+          </div>
+
+          <!-- Options Container -->
+          <div id="options-container"></div>
+
+          <!-- Immediate Feedback Banner -->
+          <div id="feedback-container" class="hidden"></div>
+
+          <!-- Navigation Controls -->
+          <div class="quiz-nav-row">
+            <button type="button" class="btn btn-soft" id="btn-prev" onclick="goPrevQuestion()">
+              <i data-lucide="arrow-left" aria-hidden="true" width="18" height="18"></i>
+              <span>Sebelumnya</span>
+            </button>
+            <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+              <button type="button" class="btn btn-grape-soft hidden" id="btn-view-results" onclick="openResultsView()">
+                <i data-lucide="award" aria-hidden="true" width="18" height="18"></i>
+                <span>Lihat Rapor Akhir</span>
+              </button>
+              <button type="button" class="btn btn-primary" id="btn-next" onclick="goNextQuestion()">
+                <span id="btn-next-label">Soal Berikutnya</span>
+                <i data-lucide="arrow-right" aria-hidden="true" width="18" height="18"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- End-of-Quiz Results Panel (hidden while answering) -->
+        <section class="results-panel hidden" id="results-panel" aria-live="polite">
+          <div class="results-hero">
+            <div>
+              <span class="badge badge-bubblegum" id="res-badge">Rapor Sains Kelas 1</span>
+              <h2 class="results-headline" id="res-title">Hebat! Kamu <em>Juara</em> Sains!</h2>
+              <p class="hero-subtitle" id="res-subtitle">Kamu telah menyelesaikan semua pertanyaan pada topik ini.</p>
+            </div>
+            <div class="results-score-bubble">
+              <div class="results-score-num" id="res-score-num">0 / 180</div>
+              <div class="results-score-sub" id="res-accuracy-sub">0% Tepat</div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="panel-title">Penguasaan Materi per Topik</h3>
+            <div class="mastery-list" id="mastery-bars"></div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+            <button type="button" class="btn btn-primary" onclick="closeResultsToQuiz()">
+              <i data-lucide="arrow-left" aria-hidden="true" width="18" height="18"></i>
+              <span>Kembali ke Soal</span>
+            </button>
+            <button type="button" class="btn btn-secondary hidden" id="btn-retry-wrong" onclick="jumpToFirstWrong()">
+              <i data-lucide="refresh-cw" aria-hidden="true" width="18" height="18"></i>
+              <span>Lihat Soal yang Salah</span>
+            </button>
+            <button type="button" class="btn btn-soft" id="btn-reset-from-results" data-armed="false" onclick="handleResetClick(this)">
+              <i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i>
+              <span>Main Lagi dari Awal</span>
+            </button>
+          </div>
+
+          <div>
+            <h3 class="panel-title">Ulasan Jawaban</h3>
+            <div class="review-list" id="review-list"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right: Question Navigator & Sticker Badges -->
+      <aside class="side-stack" aria-label="Navigasi Soal dan Lencana">
+        <div class="card card-sky">
+          <h2 class="panel-title">Peta Nomor Soal</h2>
+          <p class="panel-desc">Ketuk angka untuk melompat ke soal tertentu.</p>
+          <div class="q-map-grid" id="q-map-grid"></div>
+          <div class="map-legend">
+            <span class="legend-item"><span class="legend-swatch swatch-todo"></span> Belum</span>
+            <span class="legend-item"><span class="legend-swatch swatch-ok"></span> Benar</span>
+            <span class="legend-item"><span class="legend-swatch swatch-err"></span> Perlu Cek</span>
+          </div>
+        </div>
+
+        <div class="card card-grape">
+          <h2 class="panel-title">Koleksi Stiker Sains</h2>
+          <p class="panel-desc">Jawab dengan benar untuk membuka semua stiker!</p>
+          <div class="sticker-list" id="sticker-list"></div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Toggleable Study Guide (Ringkasan Materi) -->
+    <section class="study-section" id="study-section" aria-label="Ringkasan Materi Bab 4 dan 5">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm);">
+        <div>
+          <span class="kicker">Catatan Belajar Kilat</span>
+          <h2 class="panel-title" style="font-size: var(--headline-size); margin: 0;">Ringkasan Bab 4 &amp; Bab 5</h2>
+        </div>
+        <button type="button" class="btn btn-soft" onclick="toggleStudyGuide()">Tutup Ringkasan</button>
+      </div>
+
+      <div class="study-grid">
+        <article class="study-card">
+          <span class="badge badge-bubblegum" style="align-self: flex-start;">Bab 4 · Bagian Tumbuhan</span>
+          <h3>5 Bagian Utama Tumbuhan</h3>
+          <ul>
+            <li><strong>Akar:</strong> di dalam tanah atau air, menyerap air dan nutrisi. Contoh akar yang bisa dimakan: <em>wortel, lobak, singkong</em>.</li>
+            <li><strong>Batang:</strong> menghubungkan akar dengan daun, bunga, dan buah. Ada yang berduri (mawar) dan ada yang dimakan (<em>kangkung</em>).</li>
+            <li><strong>Daun:</strong> memakai cahaya matahari untuk membuat makanan. Bentuknya bulat, lonjong, dan hati. Bisa dimakan: <em>kubis, bayam, selada air, seledri</em>.</li>
+            <li><strong>Bunga &amp; Buah:</strong> bunga memiliki bentuk serta warna berbeda dan akan menjadi buah.</li>
+          </ul>
+        </article>
+
+        <article class="study-card">
+          <span class="badge badge-sky-fill" style="align-self: flex-start;">Bab 4 · Hidup &amp; Tumbuh</span>
+          <h3>Kebutuhan &amp; Ukuran Tumbuhan</h3>
+          <ul>
+            <li>Tumbuhan adalah <strong>makhluk hidup</strong> yang menjaga udara tetap bersih dan lingkungan indah.</li>
+            <li>Kebutuhan tumbuhan: <strong>air, udara, cahaya matahari, dan tempat</strong> untuk hidup serta tumbuh.</li>
+            <li><strong>Tumbuhan besar &amp; tinggi:</strong> pohon nangka, pohon akasia, angsana, bambu (memberi tempat teduh).</li>
+            <li><strong>Tumbuhan kecil &amp; pendek:</strong> bunga mawar. Ada juga tumbuhan yang hidup menempel di cabang pohon lain.</li>
+          </ul>
+        </article>
+
+        <article class="study-card">
+          <span class="badge badge-grape" style="align-self: flex-start;">Bab 5 · Benda &amp; Lingkungan</span>
+          <h3>Bahan Benda &amp; Jaga Alam</h3>
+          <ul>
+            <li><strong>Dari tumbuhan:</strong> <em>kapas, kayu, karet</em>. Ada juga benda dari hewan.</li>
+            <li><strong>Dari benda mati:</strong> <em>kaca</em> (botol, bohlam, gelas — mudah pecah), <em>plastik</em> (fleksibel &amp; tahan lama — mainan, pipa, kotak), dan <em>logam</em> (tenggelam di air).</li>
+            <li><strong>Mengapung vs tenggelam:</strong> jaket pelampung dipakai saat berlayar agar tidak tenggelam.</li>
+            <li><strong>Sampah plastik:</strong> bisa termakan hewan darat/air hingga sakit dan mati. Yuk <strong>daur ulang</strong> dan <strong>gunakan kembali</strong>!</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      Sumber materi: Buku Murid Juara Sains Kelas 1 (Bab 4: Tumbuhan di Sekitar Kita &amp; Bab 5: Benda-Benda di Sekitar Kita).
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const QUESTIONS = [
+      {
+        id: `q1`,
+        topic: `bagian`,
+        topicLabel: `Bab 4 · Bagian Tumbuhan`,
+        type: `choice`,
+        svg: `root`,
+        prompt: `Bagian tumbuhan yang terletak di dalam tanah atau di dalam air untuk menyerap air dan nutrisi adalah…`,
+        options: [`Akar`, `Batang`, `Daun`, `Bunga`],
+        answer: 0,
+        explain: `Akar terletak di dalam tanah atau di dalam air. Akar menyerap air dan nutrisi untuk membantu tumbuhan tumbuh dan berkembang.`
+      },
+      {
+        id: `q2`,
+        topic: `bagian`,
+        topicLabel: `Bab 4 · Bagian Tumbuhan`,
+        type: `choice`,
+        svg: `leafSun`,
+        prompt: `Bagian tumbuhan manakah yang menggunakan cahaya matahari untuk menghasilkan makanan bagi tumbuhan?`,
+        options: [`Daun`, `Akar`, `Buah`, `Batang`],
+        answer: 0,
+        explain: `Daun menggunakan cahaya matahari untuk menghasilkan makanan bagi tumbuhan. Daun juga memiliki bentuk berbeda-beda seperti bulat, lonjong, dan hati.`
+      },
+      {
+        id: `q3`,
+        topic: `bagian`,
+        topicLabel: `Bab 4 · Bagian Tumbuhan`,
+        type: `choice`,
+        svg: `stem`,
+        prompt: `Bagian tumbuhan yang menghubungkan akar dengan daun, bunga, dan buah disebut…`,
+        options: [`Batang`, `Bunga`, `Akar`, `Buah`],
+        answer: 0,
+        explain: `Batang menghubungkan akar dengan daun, bunga, dan buah. Batang besar pada pohon disebut batang pohon, seperti pohon akasia.`
+      },
+      {
+        id: `q4`,
+        topic: `bagian`,
+        topicLabel: `Bab 4 · Bagian Tumbuhan`,
+        type: `choice`,
+        svg: `flowerFruit`,
+        prompt: `Pada tumbuhan yang berbunga, bagian bunga nantinya akan berubah menjadi…`,
+        options: [`Buah`, `Akar`, `Batang`, `Tanah`],
+        answer: 0,
+        explain: `Beberapa tumbuhan memiliki bunga dengan warna dan bentuk yang berbeda-beda. Bunga pada tumbuhan akan menjadi buah.`
+      },
+      {
+        id: `q5`,
+        topic: `bagian`,
+        topicLabel: `Bab 4 · Bagian Tumbuhan`,
+        type: `multi`,
+        svg: `carrot`,
+        requiredCount: 3,
+        prompt: `Pilih 3 contoh akar tumbuhan yang bersifat lunak dan dapat dimakan!`,
+        options: [`Wortel`, `Lobak`, `Singkong`, `Kangkung`, `Bayam`],
+        answer: [0, 1, 2],
+        explain: `Wortel, lobak, dan singkong adalah akar tumbuhan yang lunak dan dapat dimakan. Kangkung dimakan batangnya, sedangkan bayam dimakan daunnya.`
+      },
+      {
+        id: `q6`,
+        topic: `bagian`,
+        topicLabel: `Bab 4 · Bagian Tumbuhan`,
+        type: `multi`,
+        svg: `spinach`,
+        requiredCount: 3,
+        prompt: `Pilih 3 jenis tumbuhan yang daunnya dapat dimakan sebagai sayuran!`,
+        options: [`Kubis`, `Bayam`, `Selada air`, `Wortel`, `Singkong`],
+        answer: [0, 1, 2],
+        explain: `Kubis, bayam, selada air, dan seledri adalah contoh tumbuhan yang memiliki daun yang dapat dimakan.`
+      },
+      {
+        id: `q7`,
+        topic: `kebutuhan`,
+        topicLabel: `Bab 4 · Hidup Tumbuhan`,
+        type: `boolean`,
+        svg: `plantFull`,
+        prompt: `Benar atau Salah: Tumbuhan adalah makhluk hidup, sama seperti manusia dan hewan.`,
+        options: [`Benar`, `Salah`],
+        answer: 0,
+        explain: `Benar! Tumbuhan adalah makhluk hidup yang dapat tumbuh dan berkembang serta membutuhkan air, udara, cahaya matahari, dan tempat hidup.`
+      },
+      {
+        id: `q8`,
+        topic: `kebutuhan`,
+        topicLabel: `Bab 4 · Hidup Tumbuhan`,
+        type: `multi`,
+        svg: `needs`,
+        requiredCount: 3,
+        prompt: `Pilih 3 benda atau hal yang dibutuhkan tumbuhan agar bisa hidup dan berkembang!`,
+        options: [`Air`, `Cahaya matahari`, `Udara`, `Plastik`, `Kaca`],
+        answer: [0, 1, 2],
+        explain: `Tumbuhan membutuhkan air, udara, cahaya matahari, dan tempat untuk hidup serta tumbuh berkembang.`
+      },
+      {
+        id: `q9`,
+        topic: `kebutuhan`,
+        topicLabel: `Bab 4 · Hidup Tumbuhan`,
+        type: `choice`,
+        svg: `bigTree`,
+        prompt: `Manakah tumbuhan yang berukuran besar dan tinggi sehingga memberikan tempat teduh dari sinar matahari?`,
+        options: [`Pohon nangka`, `Bunga mawar`, `Bayam`, `Seledri`],
+        answer: 0,
+        explain: `Pohon nangka, akasia, dan angsana berukuran besar dan tinggi. Tumbuhan besar memberikan tempat teduh dari sinar matahari.`
+      },
+      {
+        id: `q10`,
+        topic: `kebutuhan`,
+        topicLabel: `Bab 4 · Hidup Tumbuhan`,
+        type: `choice`,
+        svg: `rose`,
+        prompt: `Tumbuhan manakah yang berukuran kecil dan pendek serta memiliki batang berduri?`,
+        options: [`Mawar`, `Pohon akasia`, `Angsana`, `Bambu`],
+        answer: 0,
+        explain: `Mawar termasuk tumbuhan berukuran kecil dan pendek. Beberapa tumbuhan seperti mawar juga memiliki batang yang berduri.`
+      },
+      {
+        id: `q11`,
+        topic: `kebutuhan`,
+        topicLabel: `Bab 4 · Hidup Tumbuhan`,
+        type: `boolean`,
+        svg: `cleanAir`,
+        prompt: `Benar atau Salah: Tumbuhan berperan menjaga udara tetap bersih dan membuat lingkungan tetap indah.`,
+        options: [`Benar`, `Salah`],
+        answer: 0,
+        explain: `Benar sekali! Tumbuhan berperan menjaga udara tetap bersih dan membuat lingkungan sekitar kita tetap indah.`
+      },
+      {
+        id: `q12`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `multi`,
+        svg: `woodCotton`,
+        requiredCount: 3,
+        prompt: `Pilih 3 bahan pembuat benda yang berasal dari tumbuhan!`,
+        options: [`Kapas`, `Kayu`, `Karet`, `Kaca`, `Logam`],
+        answer: [0, 1, 2],
+        explain: `Kapas, kayu, dan karet adalah bahan-bahan yang berasal dari tumbuhan untuk membuat berbagai benda sehari-hari.`
+      },
+      {
+        id: `q13`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `choice`,
+        svg: `glassBulb`,
+        prompt: `Botol, lampu bohlam, dan cangkir terbuat dari kaca. Apakah sifat benda yang terbuat dari kaca?`,
+        options: [`Mudah pecah`, `Sangat lentur`, `Berasal dari pohon`, `Tumbuh di air`],
+        answer: 0,
+        explain: `Kaca termasuk benda mati. Benda dari kaca seperti botol, lampu bohlam, dan cangkir bersifat mudah pecah sehingga harus dijaga hati-hati.`
+      },
+      {
+        id: `q14`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `choice`,
+        svg: `plasticPipe`,
+        prompt: `Mengapa bahan plastik sering dipakai untuk membuat mainan, pipa, dan kotak penyimpanan?`,
+        options: [`Fleksibel dan tahan lama`, `Mudah pecah saat jatuh`, `Berasal dari daun`, `Dapat dimakan hewan`],
+        answer: 0,
+        explain: `Bahan plastik sangat sering digunakan karena bersifat fleksibel (lentur) dan tahan lama.`
+      },
+      {
+        id: `q15`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `boolean`,
+        svg: `materials`,
+        prompt: `Benar atau Salah: Kaca, plastik, dan logam termasuk benda mati.`,
+        options: [`Benar`, `Salah`],
+        answer: 0,
+        explain: `Benar! Kaca, plastik, dan logam adalah benda mati yang dapat dibuat menjadi berbagai peralatan di rumah.`
+      },
+      {
+        id: `q16`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `choice`,
+        svg: `lifeJacket`,
+        prompt: `Saat naik kapal, orang memakai jaket pelampung agar mengapung. Benda manakah yang akan tenggelam di dalam air?`,
+        options: [`Sendok logam`, `Jaket pelampung`, `Botol plastik kosong`, `Bola plastik`],
+        answer: 0,
+        explain: `Benda berat dari logam akan tenggelam di dalam air, sedangkan jaket pelampung membantu kita mengapung saat berlayar.`
+      },
+      {
+        id: `q17`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `choice`,
+        svg: `oceanPlastic`,
+        prompt: `Apa yang bisa terjadi jika sampah plastik tidak dibuang pada tempatnya?`,
+        options: [
+          `Hewan bisa memakannya lalu sakit dan mati`,
+          `Udara menjadi semakin bersih`,
+          `Tumbuhan tumbuh lebih cepat`,
+          `Sampah plastik langsung menghilang`
+        ],
+        answer: 0,
+        explain: `Hewan darat dan hewan air bisa memakan sampah plastik secara tidak sengaja. Saat termakan, hewan tersebut akan sakit dan mati.`
+      },
+      {
+        id: `q18`,
+        topic: `bahan`,
+        topicLabel: `Bab 5 · Benda & Alam`,
+        type: `boolean`,
+        svg: `recycle`,
+        prompt: `Benar atau Salah: Mendaur ulang dan menggunakan kembali benda plastik membantu menjaga kelestarian alam.`,
+        options: [`Benar`, `Salah`],
+        answer: 0,
+        explain: `Benar! Kita harus mendaur ulang dan menggunakan kembali benda berbahan plastik agar sampah plastik tidak menumpuk dan alam tetap lestari.`
+      }
+    ];
+
+    const STICKERS = [
+      {
+        id: `st_bagian`,
+        name: `Sahabat Bagian Tumbuhan`,
+        rule: `Benar minimal 4 soal Bagian Tumbuhan`,
+        icon: `sprout`
+      },
+      {
+        id: `st_kebutuhan`,
+        name: `Penjaga Tumbuhan Hidup`,
+        rule: `Benar minimal 3 soal Hidup Tumbuhan`,
+        icon: `sun`
+      },
+      {
+        id: `st_bahan`,
+        name: `Detektif Benda & Alam`,
+        rule: `Benar minimal 5 soal Benda & Alam`,
+        icon: `recycle`
+      },
+      {
+        id: `st_juara`,
+        name: `Juara Sains Kelas 1`,
+        rule: `Raih minimal 140 poin (14 soal benar)`,
+        icon: `trophy`
+      }
+    ];
+
+    const LETTERS = [`A`, `B`, `C`, `D`, `E`];
+
+    let appState = {
+      topicFilter: `all`,
+      currentIndex: 0,
+      answers: {},
+      pendingMulti: {},
+      showResults: false,
+      studyOpen: false
+    };
+
+    function getIllustrationSvg(key) {
+      const svgs = {
+        root: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="10" y="62" width="100" height="46" rx="14" fill="var(--illus-soil)" opacity="0.22"/>
+          <path d="M12 62 Q60 56 108 62" stroke="var(--illus-soil)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M60 62 L60 22" stroke="var(--illus-green-dark)" stroke-width="7" stroke-linecap="round"/>
+          <path d="M60 36 C42 28 34 40 50 48 C56 50 60 44 60 36 Z" fill="var(--illus-green)"/>
+          <path d="M60 30 C78 22 86 34 70 42 C64 44 60 38 60 30 Z" fill="var(--illus-green-light)"/>
+          <path d="M60 62 C58 76 48 86 38 96 M60 62 C62 78 72 88 82 96 M60 72 L60 100 M52 80 L44 88 M68 82 L76 92" stroke="var(--illus-soil)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>`,
+        leafSun: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="88" cy="30" r="16" fill="var(--illus-sun)"/>
+          <path d="M88 6 L88 11 M88 49 L88 54 M64 30 L69 30 M107 30 L112 30 M71 13 L75 17 M101 43 L105 47 M71 47 L75 43 M101 17 L105 13" stroke="var(--illus-sun)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M24 92 C24 56 54 38 82 44 C80 74 56 96 24 92 Z" fill="var(--illus-green)"/>
+          <path d="M22 94 L68 54" stroke="var(--illus-green-light)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M40 78 L42 64 M54 66 L54 53 M44 74 L58 74" stroke="var(--illus-green-light)" stroke-width="3" stroke-linecap="round"/>
+        </svg>`,
+        stem: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="48" y="42" width="24" height="62" rx="10" fill="var(--illus-wood)"/>
+          <path d="M48 64 L30 50 M72 58 L90 44" stroke="var(--illus-wood)" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="60" cy="32" r="24" fill="var(--illus-green)"/>
+          <circle cx="38" cy="40" r="16" fill="var(--illus-green-dark)"/>
+          <circle cx="82" cy="38" r="16" fill="var(--illus-green-light)"/>
+        </svg>`,
+        flowerFruit: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="34" cy="46" r="11" fill="var(--primary-container)"/>
+          <circle cx="48" cy="34" r="11" fill="var(--primary-container)"/>
+          <circle cx="48" cy="58" r="11" fill="var(--primary-container)"/>
+          <circle cx="22" cy="34" r="11" fill="var(--primary-container)"/>
+          <circle cx="22" cy="58" r="11" fill="var(--primary-container)"/>
+          <circle cx="35" cy="46" r="9" fill="var(--illus-sun)"/>
+          <path d="M56 58 L68 58 L64 52 M68 58 L64 64" stroke="var(--secondary)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="88" cy="64" r="20" fill="var(--illus-carrot)"/>
+          <path d="M88 44 C88 36 94 30 98 30" stroke="var(--illus-green-dark)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M88 40 C78 32 72 36 78 44 Z" fill="var(--illus-green)"/>
+        </svg>`,
+        carrot: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M46 42 C46 34 74 34 74 42 L64 102 C62 108 58 108 56 102 Z" fill="var(--illus-carrot)"/>
+          <path d="M53 56 L66 56 M55 72 L64 72 M57 86 L62 86" stroke="var(--illus-sun-glow)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60 36 C50 20 42 18 40 26 C46 28 54 32 60 36 Z" fill="var(--illus-green)"/>
+          <path d="M60 36 C60 16 62 12 68 18 C66 26 62 32 60 36 Z" fill="var(--illus-green-dark)"/>
+          <path d="M60 36 C70 20 78 20 80 28 C72 30 66 34 60 36 Z" fill="var(--illus-green)"/>
+        </svg>`,
+        spinach: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M44 96 L48 64 M76 96 L72 64 M60 98 L60 54" stroke="var(--illus-green-dark)" stroke-width="4.5" stroke-linecap="round"/>
+          <ellipse cx="42" cy="52" rx="18" ry="24" transform="rotate(-18 42 52)" fill="var(--illus-green)"/>
+          <ellipse cx="78" cy="52" rx="18" ry="24" transform="rotate(18 78 52)" fill="var(--illus-green)"/>
+          <ellipse cx="60" cy="40" rx="18" ry="26" fill="var(--illus-green-light)"/>
+        </svg>`,
+        plantFull: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="34" y="76" width="52" height="30" rx="8" fill="var(--illus-carrot)"/>
+          <rect x="28" y="70" width="64" height="10" rx="5" fill="var(--illus-wood-light)"/>
+          <path d="M60 70 L60 30" stroke="var(--illus-green-dark)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M60 54 C40 44 36 58 50 62 Z" fill="var(--illus-green)"/>
+          <path d="M60 48 C80 38 84 52 70 56 Z" fill="var(--illus-green)"/>
+          <circle cx="60" cy="24" r="11" fill="var(--primary)"/>
+          <circle cx="60" cy="24" r="5" fill="var(--illus-sun)"/>
+        </svg>`,
+        needs: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="34" cy="34" r="15" fill="var(--illus-sun)"/>
+          <path d="M84 22 C84 22 98 40 98 50 C98 58 91 64 84 64 C77 64 70 58 70 50 C70 40 84 22 84 22 Z" fill="var(--illus-water)"/>
+          <path d="M24 84 Q42 74 60 84 T96 84" stroke="var(--tertiary)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M28 98 Q46 88 64 98 T96 98" stroke="var(--illus-water-light)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>`,
+        bigTree: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="50" y="58" width="20" height="48" rx="6" fill="var(--illus-wood)"/>
+          <circle cx="60" cy="40" r="30" fill="var(--illus-green)"/>
+          <circle cx="36" cy="48" r="20" fill="var(--illus-green-dark)"/>
+          <circle cx="84" cy="48" r="20" fill="var(--illus-green-dark)"/>
+          <ellipse cx="60" cy="106" rx="44" ry="7" fill="var(--outline-variant)"/>
+        </svg>`,
+        rose: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M60 102 L60 44" stroke="var(--illus-green-dark)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M60 64 L50 58 L60 56 M60 78 L70 72 L60 70" stroke="var(--illus-green-dark)" stroke-width="3.5" fill="var(--illus-green-dark)" stroke-linejoin="round"/>
+          <path d="M60 88 C42 82 40 94 54 96 Z" fill="var(--illus-green)"/>
+          <circle cx="60" cy="34" r="18" fill="var(--primary)"/>
+          <path d="M50 32 C56 24 64 24 70 32 C64 40 56 40 50 32 Z" fill="var(--primary-container)"/>
+        </svg>`,
+        cleanAir: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M22 44 L66 44 C76 44 76 30 66 30" stroke="var(--tertiary)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M18 62 L84 62 C96 62 96 46 84 46" stroke="var(--illus-water-light)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M36 96 C36 74 56 64 76 70 C74 88 58 98 36 96 Z" fill="var(--illus-green)"/>
+        </svg>`,
+        woodCotton: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="20" y="64" width="80" height="28" rx="8" fill="var(--illus-wood)"/>
+          <ellipse cx="20" cy="78" rx="8" ry="14" fill="var(--illus-wood-light)"/>
+          <circle cx="48" cy="40" r="14" fill="var(--surface-container-low)"/>
+          <circle cx="66" cy="36" r="15" fill="var(--surface-container-low)"/>
+          <circle cx="58" cy="46" r="13" fill="var(--surface-container-high)"/>
+        </svg>`,
+        glassBulb: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M60 18 C40 18 30 34 34 52 C37 64 46 70 46 80 L74 80 C74 70 83 64 86 52 C90 34 80 18 60 18 Z" fill="var(--illus-water-light)" stroke="var(--tertiary)" stroke-width="4"/>
+          <rect x="48" y="80" width="24" height="14" rx="4" fill="var(--illus-metal-light)"/>
+          <rect x="52" y="94" width="16" height="8" rx="4" fill="var(--illus-metal)"/>
+          <path d="M52 52 L58 40 L64 52" stroke="var(--illus-sun)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </svg>`,
+        plasticPipe: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="22" y="42" width="76" height="50" rx="12" fill="var(--secondary)"/>
+          <rect x="16" y="34" width="88" height="14" rx="7" fill="var(--primary-container)"/>
+          <rect x="44" y="58" width="32" height="10" rx="5" fill="var(--surface-container-low)"/>
+        </svg>`,
+        materials: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="18" y="34" width="34" height="54" rx="10" fill="var(--illus-water-light)" stroke="var(--tertiary)" stroke-width="3"/>
+          <circle cx="76" cy="46" r="18" fill="var(--primary)"/>
+          <rect x="64" y="72" width="36" height="22" rx="6" fill="var(--illus-metal)"/>
+        </svg>`,
+        lifeJacket: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M16 90 Q38 78 60 90 T104 90" stroke="var(--tertiary)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M36 28 L50 28 L52 44 L68 44 L70 28 L84 28 L90 78 L30 78 Z" fill="var(--illus-carrot)" stroke="var(--on-surface)" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="34" y="54" width="52" height="10" rx="4" fill="var(--illus-sun-glow)"/>
+        </svg>`,
+        oceanPlastic: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M14 38 Q36 28 58 38 T106 38" stroke="var(--tertiary)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="52" cy="70" rx="26" ry="16" fill="var(--illus-carrot)"/>
+          <path d="M76 70 L94 58 L94 82 Z" fill="var(--illus-carrot)"/>
+          <circle cx="40" cy="66" r="3.5" fill="var(--on-surface)"/>
+          <rect x="20" y="90" width="26" height="12" rx="4" fill="var(--primary-container)"/>
+        </svg>`,
+        recycle: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="40" fill="var(--positive-soft)"/>
+          <path d="M60 30 L76 54 L44 54 Z" fill="none" stroke="var(--positive)" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M38 78 L82 78 L60 44" fill="none" stroke="var(--illus-green)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="64" r="8" fill="var(--positive)"/>
+        </svg>`
+      };
+      return svgs[key] || svgs.plantFull;
+    }
+
+    function getFilteredQuestions() {
+      if (appState.topicFilter === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function(q) { return q.topic === appState.topicFilter; });
+    }
+
+    function isQuestionCorrect(q, ans) {
+      if (!ans) return false;
+      if (q.type === `multi`) {
+        if (!Array.isArray(ans.selected)) return false;
+        const sortedA = ans.selected.slice().sort().join(`,`);
+        const sortedB = q.answer.slice().sort().join(`,`);
+        return sortedA === sortedB;
+      }
+      return ans.selected === q.answer;
+    }
+
+    function computeStats(list) {
+      let answeredCount = 0;
+      let correctCount = 0;
+      list.forEach(function(q) {
+        const ans = appState.answers[q.id];
+        if (ans && ans.submitted) {
+          answeredCount += 1;
+          if (isQuestionCorrect(q, ans)) correctCount += 1;
+        }
+      });
+      return {
+        total: list.length,
+        answered: answeredCount,
+        correct: correctCount,
+        score: correctCount * 10,
+        maxScore: list.length * 10,
+        accuracy: answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0
+      };
+    }
+
+    function computeStickers() {
+      const byTopic = { bagian: 0, kebutuhan: 0, bahan: 0 };
+      let totalCorrect = 0;
+      QUESTIONS.forEach(function(q) {
+        const ans = appState.answers[q.id];
+        if (ans && ans.submitted && isQuestionCorrect(q, ans)) {
+          byTopic[q.topic] += 1;
+          totalCorrect += 1;
+        }
+      });
+      return {
+        st_bagian: byTopic.bagian >= 4,
+        st_kebutuhan: byTopic.kebutuhan >= 3,
+        st_bahan: byTopic.bahan >= 5,
+        st_juara: totalCorrect >= 14
+      };
+    }
+
+    async function saveState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({
+            topicFilter: appState.topicFilter,
+            currentIndex: appState.currentIndex,
+            answers: appState.answers,
+            pendingMulti: appState.pendingMulti,
+            showResults: appState.showResults,
+            studyOpen: appState.studyOpen
+          });
+        }
+      } catch (err) {
+        // Silent fallback in preview environments
+      }
+    }
+
+    function renderStatsAndStickers() {
+      const filtered = getFilteredQuestions();
+      const stats = computeStats(filtered);
+      const allStats = computeStats(QUESTIONS);
+      const stickers = computeStickers();
+
+      const elScore = document.getElementById(`stat-score`);
+      const elScoreCap = document.getElementById(`stat-score-cap`);
+      const elProgress = document.getElementById(`stat-progress`);
+      const elBar = document.getElementById(`progress-bar-fill`);
+      const elAcc = document.getElementById(`stat-accuracy`);
+      const elCorr = document.getElementById(`stat-correct-count`);
+      const elStickerCount = document.getElementById(`stat-stickers`);
+
+      if (elScore) elScore.textContent = String(stats.score);
+      if (elScoreCap) elScoreCap.textContent = `dari ` + stats.maxScore + ` poin topik ini`;
+      if (elProgress) elProgress.textContent = stats.answered + ` / ` + stats.total;
+      if (elBar) {
+        const pct = stats.total > 0 ? Math.round((stats.answered / stats.total) * 100) : 0;
+        elBar.style.width = pct + `%`;
+      }
+      if (elAcc) elAcc.textContent = stats.accuracy + `%`;
+      if (elCorr) elCorr.textContent = stats.correct + ` soal benar`;
+
+      let unlockedCount = 0;
+      STICKERS.forEach(function(st) {
+        if (stickers[st.id]) unlockedCount += 1;
+      });
+      if (elStickerCount) elStickerCount.textContent = unlockedCount + ` / ` + STICKERS.length;
+
+      const stickerListEl = document.getElementById(`sticker-list`);
+      if (stickerListEl) {
+        stickerListEl.innerHTML = STICKERS.map(function(st) {
+          const isUnlocked = Boolean(stickers[st.id]);
+          const statusText = isUnlocked ? `Terbuka!` : st.rule;
+          return `<div class="sticker-item ` + (isUnlocked ? `unlocked` : ``) + `">
+            <div class="sticker-icon-wrap">
+              <i data-lucide="` + st.icon + `" aria-hidden="true" width="22" height="22"></i>
+            </div>
+            <div class="sticker-meta">
+              <span class="sticker-name">` + st.name + `</span>
+              <span class="sticker-rule">` + statusText + `</span>
+            </div>
+          </div>`;
+        }).join(``);
+      }
+
+      // Sync topic tab active classes
+      const tabs = document.querySelectorAll(`.pill-tab`);
+      tabs.forEach(function(tab) {
+        if (tab.dataset.topic === appState.topicFilter) {
+          tab.classList.add(`active`);
+        } else {
+          tab.classList.remove(`active`);
+        }
+      });
+
+      // Sync study guide visibility
+      const studySec = document.getElementById(`study-section`);
+      const studyBtn = document.getElementById(`btn-toggle-study`);
+      if (studySec) {
+        if (appState.studyOpen) studySec.classList.add(`is-open`);
+        else studySec.classList.remove(`is-open`);
+      }
+      if (studyBtn) {
+        const span = studyBtn.querySelector(`span`);
+        if (span) span.textContent = appState.studyOpen ? `Tutup Ringkasan` : `Ringkasan Materi`;
+      }
+
+      // Show "Lihat Rapor Akhir" button if at least 1 question answered
+      const btnViewRes = document.getElementById(`btn-view-results`);
+      if (btnViewRes) {
+        if (allStats.answered > 0) btnViewRes.classList.remove(`hidden`);
+        else btnViewRes.classList.add(`hidden`);
+      }
+    }
+
+    function renderQuestionMap() {
+      const filtered = getFilteredQuestions();
+      const mapEl = document.getElementById(`q-map-grid`);
+      if (!mapEl) return;
+
+      mapEl.innerHTML = filtered.map(function(q, idx) {
+        const ans = appState.answers[q.id];
+        let cls = `q-dot`;
+        if (idx === appState.currentIndex && !appState.showResults) cls += ` is-current`;
+        if (ans && ans.submitted) {
+          cls += isQuestionCorrect(q, ans) ? ` is-correct` : ` is-wrong`;
+        }
+        return `<button type="button" class="` + cls + `" onclick="jumpToQuestion(` + idx + `)" aria-label="Soal nomor ` + (idx + 1) + `">` + (idx + 1) + `</button>`;
+      }).join(``);
+    }
+
+    function renderCurrentQuestion() {
+      const stageEl = document.getElementById(`quiz-stage`);
+      const resultsEl = document.getElementById(`results-panel`);
+      if (!stageEl || !resultsEl) return;
+
+      if (appState.showResults) {
+        stageEl.classList.add(`hidden`);
+        resultsEl.classList.remove(`hidden`);
+        renderResultsPanel();
+        return;
+      }
+
+      resultsEl.classList.add(`hidden`);
+      stageEl.classList.remove(`hidden`);
+
+      const filtered = getFilteredQuestions();
+      if (appState.currentIndex >= filtered.length) appState.currentIndex = 0;
+      if (appState.currentIndex < 0) appState.currentIndex = 0;
+
+      const q = filtered[appState.currentIndex];
+      const savedAns = appState.answers[q.id];
+      const isSubmitted = Boolean(savedAns && savedAns.submitted);
+
+      const elTopic = document.getElementById(`q-topic-badge`);
+      const elIdx = document.getElementById(`q-index-badge`);
+      const elIllus = document.getElementById(`q-illustration`);
+      const elTypeHint = document.getElementById(`q-type-hint`);
+      const elPrompt = document.getElementById(`q-prompt`);
+      const elOpts = document.getElementById(`options-container`);
+      const elFeedback = document.getElementById(`feedback-container`);
+      const btnPrev = document.getElementById(`btn-prev`);
+      const btnNext = document.getElementById(`btn-next`);
+      const btnNextLabel = document.getElementById(`btn-next-label`);
+
+      if (elTopic) elTopic.textContent = q.topicLabel;
+      if (elIdx) elIdx.textContent = `Soal ` + (appState.currentIndex + 1) + ` dari ` + filtered.length;
+      if (elIllus) elIllus.innerHTML = getIllustrationSvg(q.svg);
+      if (elPrompt) elPrompt.textContent = q.prompt;
+
+      if (elTypeHint) {
+        if (q.type === `multi`) elTypeHint.textContent = `Ketuk ` + q.requiredCount + ` jawaban yang benar, lalu tekan Periksa`;
+        else if (q.type === `boolean`) elTypeHint.textContent = `Pilih Benar atau Salah`;
+        else elTypeHint.textContent = `Pilih satu jawaban yang benar`;
+      }
+
+      if (elOpts) {
+        if (q.type === `multi`) {
+          const currentPick = isSubmitted
+            ? (savedAns.selected || [])
+            : (appState.pendingMulti[q.id] || []);
+
+          const chipsHtml = q.options.map(function(opt, idx) {
+            let cls = `multi-chip`;
+            if (isSubmitted) {
+              const isInAnswer = q.answer.indexOf(idx) !== -1;
+              const wasPicked = currentPick.indexOf(idx) !== -1;
+              if (isInAnswer) cls += ` correct`;
+              else if (wasPicked && !isInAnswer) cls += ` wrong`;
+            } else if (currentPick.indexOf(idx) !== -1) {
+              cls += ` selected`;
+            }
+            return `<button type="button" class="` + cls + `" ` + (isSubmitted ? `disabled` : ``) + ` onclick="toggleMultiChip('` + q.id + `', ` + idx + `)">
+              <span>` + opt + `</span>
+            </button>`;
+          }).join(``);
+
+          const submitRow = isSubmitted ? `` : `
+            <div class="multi-submit-row">
+              <span class="multi-counter">Dipilih: ` + currentPick.length + ` dari ` + q.requiredCount + ` jawaban</span>
+              <button type="button" class="btn btn-primary" ` + (currentPick.length === q.requiredCount ? `` : `disabled`) + ` onclick="submitMultiAnswer('` + q.id + `')">
+                <span>Periksa Jawaban</span>
+              </button>
+            </div>
+          `;
+
+          elOpts.innerHTML = `<div class="multi-chips-wrap">` + chipsHtml + `</div>` + submitRow;
+        } else {
+          const optsHtml = q.options.map(function(opt, idx) {
+            let cls = `option-btn`;
+            if (isSubmitted) {
+              if (idx === q.answer) cls += ` correct`;
+              else if (savedAns.selected === idx) cls += ` wrong`;
+            }
+            return `<button type="button" class="` + cls + `" ` + (isSubmitted ? `disabled` : ``) + ` onclick="selectSingleOption('` + q.id + `', ` + idx + `)">
+              <span class="option-letter">` + LETTERS[idx] + `</span>
+              <span class="option-label">` + opt + `</span>
+            </button>`;
+          }).join(``);
+          elOpts.innerHTML = `<div class="options-grid">` + optsHtml + `</div>`;
+        }
+      }
+
+      if (elFeedback) {
+        if (isSubmitted) {
+          const ok = isQuestionCorrect(q, savedAns);
+          elFeedback.className = `feedback-box ` + (ok ? `is-correct` : `is-wrong`);
+          const headingText = ok
+            ? `Hebat! Jawabanmu Benar (+10 poin)`
+            : `Belum tepat! Jawaban benar: ` + (q.type === `multi`
+                ? q.answer.map(function(i) { return q.options[i]; }).join(`, `)
+                : q.options[q.answer]);
+          const iconName = ok ? `check` : `x`;
+          elFeedback.innerHTML = `
+            <div class="feedback-icon">
+              <i data-lucide="` + iconName + `" aria-hidden="true" width="20" height="20"></i>
+            </div>
+            <div class="feedback-content">
+              <p class="feedback-heading">` + headingText + `</p>
+              <p class="feedback-explain">` + q.explain + `</p>
+            </div>
+          `;
+        } else {
+          elFeedback.className = `hidden`;
+          elFeedback.innerHTML = ``;
+        }
+      }
+
+      if (btnPrev) btnPrev.disabled = appState.currentIndex === 0;
+      if (btnNext && btnNextLabel) {
+        if (appState.currentIndex === filtered.length - 1) {
+          btnNextLabel.textContent = `Lihat Rapor Akhir`;
+        } else {
+          btnNextLabel.textContent = `Soal Berikutnya`;
+        }
+      }
+    }
+
+    function renderResultsPanel() {
+      const filtered = getFilteredQuestions();
+      const stats = computeStats(filtered);
+
+      const elTitle = document.getElementById(`res-title`);
+      const elSub = document.getElementById(`res-subtitle`);
+      const elScore = document.getElementById(`res-score-num`);
+      const elAcc = document.getElementById(`res-accuracy-sub`);
+      const elBars = document.getElementById(`mastery-bars`);
+      const elReview = document.getElementById(`review-list`);
+      const btnRetryWrong = document.getElementById(`btn-retry-wrong`);
+
+      if (elScore) elScore.textContent = stats.score + ` / ` + stats.maxScore;
+      if (elAcc) elAcc.textContent = stats.correct + ` dari ` + stats.total + ` benar (` + (stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0) + `%)`;
+
+      const pctTotal = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+      if (elTitle && elSub) {
+        if (pctTotal >= 80) {
+          elTitle.innerHTML = `Hebat! Kamu <em>Juara</em> Sains!`;
+          elSub.textContent = `Kamu sudah paham sekali materi Tumbuhan dan Benda Kelas 1.`;
+        } else if (pctTotal >= 50) {
+          elTitle.innerHTML = `Bagus! Penjelajah <em>Cerdas</em>!`;
+          elSub.textContent = `Sudah banyak yang benar! Yuk cek lagi soal yang masih keliru di bawah.`;
+        } else {
+          elTitle.innerHTML = `Tetap <em>Semangat</em> Belajar!`;
+          elSub.textContent = `Yuk buka Ringkasan Materi lalu coba jawab soal-soalnya lagi.`;
+        }
+      }
+
+      // Topic mastery bars across all 3 topics
+      const topicDefs = [
+        { key: `bagian`, label: `Bab 4: Bagian-Bagian Tumbuhan`, fillClass: `fill-pink` },
+        { key: `kebutuhan`, label: `Bab 4: Hidup & Kebutuhan Tumbuhan`, fillClass: `fill-sky` },
+        { key: `bahan`, label: `Bab 5: Bahan Benda & Menjaga Alam`, fillClass: `fill-grape` }
+      ];
+
+      if (elBars) {
+        elBars.innerHTML = topicDefs.map(function(td) {
+          const qs = QUESTIONS.filter(function(q) { return q.topic === td.key; });
+          const st = computeStats(qs);
+          const pct = st.total > 0 ? Math.round((st.correct / st.total) * 100) : 0;
+          return `<div class="mastery-row">
+            <div class="mastery-top">
+              <span>` + td.label + `</span>
+              <span>` + st.correct + ` / ` + st.total + ` benar (` + pct + `%)</span>
+            </div>
+            <div class="mastery-track">
+              <div class="mastery-fill ` + td.fillClass + `" style="width: ` + pct + `%;"></div>
+            </div>
+          </div>`;
+        }).join(``);
+      }
+
+      let hasWrong = false;
+      if (elReview) {
+        elReview.innerHTML = filtered.map(function(q, idx) {
+          const ans = appState.answers[q.id];
+          const isAnswered = Boolean(ans && ans.submitted);
+          const isOk = isAnswered && isQuestionCorrect(q, ans);
+          if (isAnswered && !isOk) hasWrong = true;
+
+          const correctLabel = q.type === `multi`
+            ? q.answer.map(function(i) { return q.options[i]; }).join(`, `)
+            : q.options[q.answer];
+
+          let statusCls = `review-item`;
+          let statusTag = `Belum dijawab`;
+          if (isAnswered) {
+            statusCls += isOk ? ` is-correct` : ` is-wrong`;
+            statusTag = isOk ? `Benar` : `Belum tepat`;
+          }
+
+          return `<div class="` + statusCls + `">
+            <p class="review-q">` + (idx + 1) + `. ` + q.prompt + ` (` + statusTag + `)</p>
+            <p class="review-a"><strong>Jawaban benar:</strong> ` + correctLabel + ` — ` + q.explain + `</p>
+          </div>`;
+        }).join(``);
+      }
+
+      if (btnRetryWrong) {
+        if (hasWrong) btnRetryWrong.classList.remove(`hidden`);
+        else btnRetryWrong.classList.add(`hidden`);
+      }
+    }
+
+    function renderAll() {
+      renderStatsAndStickers();
+      renderQuestionMap();
+      renderCurrentQuestion();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    /* Event Handlers (Hoisted function declarations) */
+    function selectSingleOption(questionId, optionIndex) {
+      appState.answers[questionId] = {
+        submitted: true,
+        selected: optionIndex
+      };
+      renderAll();
+      saveState();
+    }
+
+    function toggleMultiChip(questionId, optionIndex) {
+      const q = QUESTIONS.find(function(item) { return item.id === questionId; });
+      if (!q) return;
+      const cur = appState.pendingMulti[questionId] ? appState.pendingMulti[questionId].slice() : [];
+      const pos = cur.indexOf(optionIndex);
+      if (pos !== -1) {
+        cur.splice(pos, 1);
+      } else if (cur.length < q.requiredCount) {
+        cur.push(optionIndex);
+      }
+      appState.pendingMulti[questionId] = cur;
+      renderCurrentQuestion();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+      saveState();
+    }
+
+    function submitMultiAnswer(questionId) {
+      const cur = appState.pendingMulti[questionId] || [];
+      const q = QUESTIONS.find(function(item) { return item.id === questionId; });
+      if (!q || cur.length !== q.requiredCount) return;
+
+      appState.answers[questionId] = {
+        submitted: true,
+        selected: cur.slice()
+      };
+      renderAll();
+      saveState();
+    }
+
+    function goNextQuestion() {
+      const filtered = getFilteredQuestions();
+      if (appState.currentIndex < filtered.length - 1) {
+        appState.currentIndex += 1;
+        renderAll();
+        saveState();
+      } else {
+        openResultsView();
+      }
+    }
+
+    function goPrevQuestion() {
+      if (appState.currentIndex > 0) {
+        appState.currentIndex -= 1;
+        renderAll();
+        saveState();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      appState.showResults = false;
+      appState.currentIndex = idx;
+      renderAll();
+      saveState();
+    }
+
+    function setTopicFilter(topic) {
+      appState.topicFilter = topic;
+      appState.currentIndex = 0;
+      appState.showResults = false;
+      renderAll();
+      saveState();
+    }
+
+    function openResultsView() {
+      appState.showResults = true;
+      renderAll();
+      saveState();
+    }
+
+    function closeResultsToQuiz() {
+      appState.showResults = false;
+      renderAll();
+      saveState();
+    }
+
+    function jumpToFirstWrong() {
+      const filtered = getFilteredQuestions();
+      const wrongIdx = filtered.findIndex(function(q) {
+        const ans = appState.answers[q.id];
+        return ans && ans.submitted && !isQuestionCorrect(q, ans);
+      });
+      if (wrongIdx !== -1) {
+        appState.showResults = false;
+        appState.currentIndex = wrongIdx;
+        renderAll();
+        saveState();
+      }
+    }
+
+    function toggleStudyGuide() {
+      appState.studyOpen = !appState.studyOpen;
+      renderStatsAndStickers();
+      saveState();
+    }
+
+    function handleResetClick(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        const lbl = btn.querySelector(`span`);
+        if (lbl) lbl.textContent = `Klik lagi untuk ulangi`;
+        btn.classList.add(`btn-danger-armed`);
+        setTimeout(function() {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.classList.remove(`btn-danger-armed`);
+            const s = btn.querySelector(`span`);
+            if (s) s.textContent = btn.id === `btn-reset-from-results` ? `Main Lagi dari Awal` : `Ulangi Kuis`;
+          }
+        }, 3500);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.classList.remove(`btn-danger-armed`);
+      const lblDone = btn.querySelector(`span`);
+      if (lblDone) lblDone.textContent = btn.id === `btn-reset-from-results` ? `Main Lagi dari Awal` : `Ulangi Kuis`;
+
+      appState.answers = {};
+      appState.pendingMulti = {};
+      appState.currentIndex = 0;
+      appState.showResults = false;
+      renderAll();
+      saveState();
+    }
+
+    function speakCurrentQuestion() {
+      try {
+        if (!(`speechSynthesis` in window)) return;
+        const filtered = getFilteredQuestions();
+        const q = filtered[appState.currentIndex];
+        if (!q) return;
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(q.prompt);
+        utter.lang = `id-ID`;
+        utter.rate = 0.92;
+        window.speechSynthesis.speak(utter);
+      } catch (err) {
+        // Ignore if speech synthesis blocked in iframe
+      }
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (typeof saved.topicFilter === `string`) appState.topicFilter = saved.topicFilter;
+            if (typeof saved.currentIndex === `number`) appState.currentIndex = saved.currentIndex;
+            if (saved.answers && typeof saved.answers === `object`) appState.answers = saved.answers;
+            if (saved.pendingMulti && typeof saved.pendingMulti === `object`) appState.pendingMulti = saved.pendingMulti;
+            if (typeof saved.showResults === `boolean`) appState.showResults = saved.showResults;
+            if (typeof saved.studyOpen === `boolean`) appState.studyOpen = saved.studyOpen;
+          }
+        }
+      } catch (err) {
+        // Use default state
+      }
+
+      renderAll();
+
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+          window.notebookAppApi.notifyAppReady();
+        }
+      } catch (err) {
+        // Ignore
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>
