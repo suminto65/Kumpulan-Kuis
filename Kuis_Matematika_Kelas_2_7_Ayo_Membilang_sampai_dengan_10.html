@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Matematika Kelas 2 SD — Ayo Membilang sampai 100 | BBM SUMINTO</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Sticker style tokens */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #eadcf8;
+      --tertiary: #0096cc;
+      --tertiary-container: #d8f3fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fde8e8;
+      --on-error-container: #7f1d1d;
+
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-4-container: #fff0db;
+      --data-context: #c8b8d0;
+
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 26px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(10 123 84 / 0.22);
+      --shadow-tangerine: 0 4px 16px rgb(217 106 0 / 0.22);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* 2. Shared semantic & foundation tokens */
+      --positive: #0a7b54;
+      --on-positive: #ffffff;
+      --positive-container: #dff7ee;
+      --on-positive-container: #075339;
+      --warning: #b45309;
+      --warning-container: #fff2dc;
+      --on-warning-container: #78350f;
+      --focus: #c2207f;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+      --figure-lg: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 980px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .headline {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .headline em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .label-text {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .tabular-num {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header / Masthead */
+    .quiz-header {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .brand-logo-wrap {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      box-shadow: var(--shadow-grape);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      width: fit-content;
+    }
+    .brand-subtitle {
+      font-size: var(--body-size);
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons & Pills */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      border: 2px solid transparent;
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 44px;
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+    .btn:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: var(--shadow-pink-deep);
+    }
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      box-shadow: var(--shadow-grape-deep);
+    }
+    .btn-surface {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border-color: var(--outline-variant);
+    }
+    .btn-surface:hover:not(:disabled) {
+      background: var(--surface-container-high);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .btn-lg {
+      padding: var(--space-md) var(--space-xl);
+      min-height: 52px;
+      font-size: var(--subhead-size);
+    }
+
+    /* Topic Selector & HUD Strip */
+    .controls-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+    .topic-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .topic-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .topic-chip:hover {
+      transform: var(--pop-scale);
+      box-shadow: var(--shadow-sky);
+    }
+    .topic-chip.active {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    /* Stats & Progress Bar */
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .stat-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .stat-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+    .stat-value {
+      font-size: var(--figure-lg);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-value.accent {
+      color: var(--primary);
+    }
+    .progress-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .progress-track {
+      width: 100%;
+      height: 16px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      padding: 3px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    /* Main Question Card */
+    .question-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .badge-bubblegum {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag-grape {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .question-prompt {
+      font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.45rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Visual Aid Stage */
+    .visual-stage {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .visual-stage svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .sequence-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+    .seq-pill {
+      min-width: 64px;
+      min-height: 54px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-grape);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--headline-size);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .seq-pill.mystery {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      box-shadow: var(--shadow-pink);
+      border: 2px dashed var(--primary);
+    }
+    .seq-arrow {
+      font-weight: 800;
+      color: var(--secondary);
+      font-size: var(--subhead-size);
+    }
+
+    /* Place Value Comparison Visual */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+      width: 100%;
+    }
+    .pv-box {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .pv-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      width: 100%;
+      text-align: center;
+    }
+    .pv-col-head {
+      background: var(--surface-container);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .pv-digit {
+      font-size: var(--display-size);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      padding: var(--space-xs);
+      border-radius: var(--rounded);
+    }
+    .pv-digit.tens {
+      background: var(--secondary-container);
+      color: var(--secondary);
+    }
+    .pv-digit.ones {
+      background: var(--tertiary-container);
+      color: var(--on-surface);
+    }
+
+    /* Multiple Choice Options */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 60px;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-grape);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--lift);
+      box-shadow: var(--shadow-pink);
+      border-color: var(--primary);
+    }
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-letter {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: var(--body-size);
+    }
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Matching Mechanic */
+    .match-instructions {
+      font-size: var(--body-size);
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .match-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .match-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .match-col-title {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .match-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      min-height: 56px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-sky);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .match-item:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      border-color: var(--primary);
+    }
+    .match-item.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+      box-shadow: var(--shadow-pink-deep);
+    }
+    .match-item.pair-0 { background: var(--primary-container); border-color: var(--primary); }
+    .match-item.pair-1 { background: var(--secondary-container); border-color: var(--secondary); }
+    .match-item.pair-2 { background: var(--tertiary-container); border-color: var(--tertiary); }
+    .match-item.pair-3 { background: var(--data-4-container); border-color: var(--data-4); }
+    .match-item.eval-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-positive-container);
+    }
+    .match-item.eval-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+    .pair-badge {
+      flex-shrink: 0;
+      min-width: 30px;
+      height: 30px;
+      padding: 0 var(--space-xs);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--label-size);
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-grape);
+    }
+
+    /* Ordering Mechanic */
+    .order-direction-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--secondary-container);
+      color: var(--secondary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-weight: 800;
+      font-size: var(--body-size);
+      width: fit-content;
+    }
+    .order-slots-wrap {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .order-slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      min-height: 68px;
+    }
+    .order-slot {
+      min-width: 72px;
+      min-height: 60px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 2px dashed var(--outline);
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      font-size: var(--headline-size);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .order-slot.filled {
+      border-style: solid;
+      border-color: var(--primary);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      box-shadow: var(--shadow-pink);
+    }
+    .order-slot.filled:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+    .order-slot.eval-correct {
+      border-color: var(--positive);
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .order-slot.eval-wrong {
+      border-color: var(--error);
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+    .slot-index {
+      font-size: var(--label-size);
+      font-weight: 700;
+      opacity: 0.8;
+      line-height: 1;
+    }
+    .order-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .pool-chip {
+      min-width: 72px;
+      min-height: 58px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--secondary);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: var(--headline-size);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      box-shadow: var(--shadow-grape);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .pool-chip:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      box-shadow: var(--shadow-pink);
+    }
+    .pool-chip:disabled {
+      opacity: 0.3;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    /* Action Row & Feedback */
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .feedback-banner {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+    .feedback-banner.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-banner.is-wrong {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+      box-shadow: var(--shadow-tangerine);
+    }
+    .feedback-title {
+      font-size: var(--subhead-size);
+      font-weight: 800;
+      margin: 0;
+    }
+    .feedback-desc {
+      margin: 0;
+      font-size: var(--body-size);
+      line-height: 1.55;
+    }
+
+    /* Results Screen */
+    .results-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink-deep);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+    .results-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-xl) var(--space-lg);
+    }
+    .stars-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+    }
+    .star-icon {
+      width: 56px;
+      height: 56px;
+      transition: transform var(--dur-long) var(--ease-bounce);
+    }
+    .star-icon.earned {
+      transform: scale(1.1);
+    }
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .breakdown-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .review-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .review-item.ok {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .review-item.miss {
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    /* Footer */
+    .quiz-footer {
+      text-align: left;
+      padding: var(--space-md) var(--space-sm);
+      color: var(--on-surface-variant);
+      font-size: var(--label-size);
+      line-height: 1.5;
+    }
+
+    /* SVG color classes (no inline hex in body) */
+    .svg-pink { fill: var(--primary); }
+    .svg-bubblegum { fill: var(--primary-container); }
+    .svg-grape { fill: var(--secondary); }
+    .svg-grape-light { fill: var(--secondary-container); }
+    .svg-sky { fill: var(--tertiary); }
+    .svg-sky-light { fill: var(--tertiary-container); }
+    .svg-tangerine { fill: var(--data-4); }
+    .svg-tangerine-light { fill: var(--data-4-container); }
+    .svg-plum { fill: var(--on-surface); }
+    .svg-white { fill: var(--surface-container-low); }
+    .svg-pale { fill: var(--surface-container); }
+    .svg-muted { fill: var(--data-context); }
+    .svg-stroke-plum { stroke: var(--on-surface); }
+    .svg-stroke-grape { stroke: var(--secondary); }
+    .svg-stroke-pink { stroke: var(--primary); }
+    .svg-stroke-white { stroke: var(--surface-container-low); }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .quiz-header, .question-card, .results-card {
+        padding: var(--space-md);
+      }
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- Header with BBM SUMINTO Logo -->
+    <header class="quiz-header">
+      <div class="brand-group">
+        <div class="brand-logo-wrap" aria-hidden="true">
+          <svg width="50" height="50" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="56" height="56" rx="16" class="svg-pink" />
+            <path d="M14 20 C14 16, 28 16, 32 22 C36 16, 50 16, 50 20 L50 44 C46 41, 36 41, 32 46 C28 41, 18 41, 14 44 Z" class="svg-white" />
+            <line x1="32" y1="22" x2="32" y2="45" stroke-width="2.5" stroke-linecap="round" class="svg-stroke-grape" />
+            <circle cx="22" cy="29" r="3" class="svg-sky" />
+            <path d="M40 26 L40 34 M36 30 L44 30" stroke-width="3" stroke-linecap="round" class="svg-stroke-pink" />
+            <polygon points="32,7 34.5,12 40,12.5 36,16 37,21.5 32,18.5 27,21.5 28,16 24,12.5 29.5,12" class="svg-tangerine" />
+          </svg>
+        </div>
+        <div class="brand-title-wrap">
+          <span class="brand-pill">BBM SUMINTO &bull; Bimbingan Belajar SD</span>
+          <h1 class="display">Ayo Membilang sampai <em>100</em></h1>
+          <p class="brand-subtitle">Kuis Interaktif Matematika Kelas 2 SD &mdash; Bab 7 (Halaman 191&ndash;224)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="btn-sound" class="btn btn-surface" onclick="toggleSound()" aria-pressed="true">
+          <span id="sound-icon" aria-hidden="true"></span>
+          <span id="sound-label">Suara: Nyala</span>
+        </button>
+        <button type="button" id="btn-reset" class="btn btn-quiet" onclick="handleResetClick(this)">
+          Ulangi dari Awal
+        </button>
+      </div>
+    </header>
+
+    <!-- Topic Mode & Progress HUD -->
+    <section class="controls-panel" aria-label="Pilihan Materi dan Kemajuan Kuis">
+      <div class="topic-strip" role="group" aria-label="Pilih topik latihan">
+        <button type="button" class="topic-chip active" data-topic="all" onclick="selectTopic('all')">Semua Materi (16)</button>
+        <button type="button" class="topic-chip" data-topic="membilang" onclick="selectTopic('membilang')">Membilang 51&ndash;100 (4)</button>
+        <button type="button" class="topic-chip" data-topic="nilai_tempat" onclick="selectTopic('nilai_tempat')">Nilai Tempat (4)</button>
+        <button type="button" class="topic-chip" data-topic="banding_urut" onclick="selectTopic('banding_urut')">Banding &amp; Urutkan (4)</button>
+        <button type="button" class="topic-chip" data-topic="soal_cerita" onclick="selectTopic('soal_cerita')">Soal Cerita (4)</button>
+      </div>
+
+      <div class="hud-grid">
+        <div class="stat-card">
+          <span class="label-text">Skor Kamu</span>
+          <span class="stat-value accent tabular-num" id="hud-score">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="label-text">Jawaban Benar</span>
+          <span class="stat-value tabular-num" id="hud-correct">0 / 16</span>
+        </div>
+        <div class="stat-card">
+          <span class="label-text">Skor Tertinggi</span>
+          <span class="stat-value tabular-num" id="hud-best">0</span>
+        </div>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-header">
+          <span class="label-text" id="progress-label">Soal 1 dari 16</span>
+          <span class="label-text tabular-num" id="progress-pct">0% Selesai</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Question Card -->
+    <main id="quiz-stage" class="question-card" aria-live="polite"></main>
+
+    <!-- End Results Screen -->
+    <section id="results-stage" class="results-card hidden" aria-live="polite"></section>
+
+    <footer class="quiz-footer">
+      <div><strong>BBM SUMINTO</strong> &mdash; Latihan Matematika Kelas 2 SD.</div>
+      <div>Sumber materi: Buku Siswa Matematika untuk SD/MI Kelas II, Bab 7 &ldquo;Ayo Membilang sampai dengan 100&rdquo; (halaman 191&ndash;224), Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi, 2022.</div>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const TOPIC_LABELS = {
+      membilang: `Membilang 51–100`,
+      nilai_tempat: `Nilai Tempat`,
+      banding_urut: `Bandingkan & Urutkan`,
+      soal_cerita: `Soal Cerita`
+    };
+
+    const TYPE_LABELS = {
+      visual: `Kuis Visual`,
+      mcq: `Pilihan Ganda`,
+      match: `Memasangkan`,
+      order: `Mengurutkan Angka`
+    };
+
+    const QUESTIONS = [
+      {
+        id: `q1`,
+        topic: `membilang`,
+        type: `visual`,
+        visualKind: `marbles_64`,
+        prompt: `Perhatikan gambar kelereng di atas! Setiap wadah transparan berisi 10 kelereng. Berapa banyak seluruh kelereng?`,
+        options: [`54`, `64`, `46`, `74`],
+        answerIndex: 1,
+        explanation: `Ada 6 wadah isi 10 kelereng (60) ditambah 4 kelereng di luar wadah. Jadi, 60 + 4 = 64.`
+      },
+      {
+        id: `q2`,
+        topic: `membilang`,
+        type: `match`,
+        prompt: `Pasangkan nama bilangan di sebelah kiri dengan lambang bilangan yang tepat di sebelah kanan!`,
+        pairs: [
+          { left: `Delapan puluh tiga`, right: `83` },
+          { left: `Lima puluh tujuh`, right: `57` },
+          { left: `Tujuh puluh tujuh`, right: `77` },
+          { left: `Enam puluh sembilan`, right: `69` }
+        ],
+        rightOrder: [2, 0, 3, 1],
+        explanation: `Delapan puluh tiga = 83, Lima puluh tujuh = 57, Tujuh puluh tujuh = 77, dan Enam puluh sembilan = 69.`
+      },
+      {
+        id: `q3`,
+        topic: `membilang`,
+        type: `mcq`,
+        sequence: [`65`, `70`, `75`, `?`, `85`],
+        prompt: `Lengkapi urutan bilangan membilang maju loncat 5 berikut ini!`,
+        options: [`78`, `80`, `82`, `90`],
+        answerIndex: 1,
+        explanation: `Membilang loncat 5 berarti selalu ditambah 5. Setelah 75, yaitu 75 + 5 = 80.`
+      },
+      {
+        id: `q4`,
+        topic: `membilang`,
+        type: `mcq`,
+        sequence: [`94`, `92`, `90`, `?`, `86`],
+        prompt: `Lani menghitung mundur loncat 2 dari bilangan 94. Bilangan berapakah yang mengisi kotak kosong?`,
+        options: [`89`, `88`, `87`, `84`],
+        answerIndex: 1,
+        explanation: `Menghitung mundur loncat 2 artinya dikurangi 2 setiap langkah. 90 − 2 = 88.`
+      },
+      {
+        id: `q5`,
+        topic: `nilai_tempat`,
+        type: `visual`,
+        visualKind: `blocks_78`,
+        prompt: `Amati gambar balok puluhan dan kubus satuan berikut! Bilangan berapakah yang ditunjukkan?`,
+        options: [`78`, `87`, `70`, `68`],
+        answerIndex: 0,
+        explanation: `Terdapat 7 batang puluhan (nilainya 70) dan 8 kubus satuan (nilainya 8). Jadi, bilangannya adalah 78.`
+      },
+      {
+        id: `q6`,
+        topic: `nilai_tempat`,
+        type: `mcq`,
+        placeValueTarget: `68`,
+        prompt: `Perhatikan bilangan 68. Uraian nilai tempat puluhan dan satuannya yang benar adalah …`,
+        options: [
+          `6 puluhan + 8 satuan`,
+          `8 puluhan + 6 satuan`,
+          `60 puluhan + 8 satuan`,
+          `6 puluhan + 80 satuan`
+        ],
+        answerIndex: 0,
+        explanation: `Pada bilangan 68, angka 6 menempati tempat puluhan (60) dan angka 8 menempati tempat satuan (8).`
+      },
+      {
+        id: `q7`,
+        topic: `nilai_tempat`,
+        type: `match`,
+        prompt: `Pasangkan setiap bilangan di sebelah kiri dengan nilai tempat puluhan dan satuannya!`,
+        pairs: [
+          { left: `59`, right: `5 puluhan + 9 satuan` },
+          { left: `84`, right: `8 puluhan + 4 satuan` },
+          { left: `92`, right: `9 puluhan + 2 satuan` },
+          { left: `70`, right: `7 puluhan + 0 satuan` }
+        ],
+        rightOrder: [1, 3, 0, 2],
+        explanation: `Angka di depan menunjukkan puluhan, sedangkan angka di belakang menunjukkan satuan.`
+      },
+      {
+        id: `q8`,
+        topic: `nilai_tempat`,
+        type: `mcq`,
+        prompt: `Aku adalah bilangan dua angka. Angka satuanku 5 dan angka puluhanku 9. Bilangan berapakah aku?`,
+        options: [`59`, `95`, `50`, `90`],
+        answerIndex: 1,
+        explanation: `Angka puluhan ditulis di depan (9) dan angka satuan di belakang (5). Jadi, bilangannya adalah 95.`
+      },
+      {
+        id: `q9`,
+        topic: `banding_urut`,
+        type: `mcq`,
+        compareNumbers: [67, 72],
+        prompt: `Perhatikan tabel nilai tempat bilangan 67 dan 72 di atas. Kalimat perbandingan yang benar adalah …`,
+        options: [
+          `67 kurang dari 72`,
+          `67 lebih dari 72`,
+          `67 sama dengan 72`,
+          `72 kurang dari 67`
+        ],
+        answerIndex: 0,
+        explanation: `Lihat kolom puluhan: 6 puluhan lebih sedikit daripada 7 puluhan. Jadi, 67 kurang dari 72.`
+      },
+      {
+        id: `q10`,
+        topic: `banding_urut`,
+        type: `mcq`,
+        prompt: `Tika memiliki 83 kartu bilangan dan Edo memiliki 89 kartu bilangan. Siapakah yang kartunya lebih banyak?`,
+        options: [
+          `Edo, karena 89 lebih dari 83`,
+          `Tika, karena 83 lebih dari 89`,
+          `Sama banyak, karena puluhannya sama-sama 8`,
+          `Tika, karena angka 3 lebih kecil dari 9`
+        ],
+        answerIndex: 0,
+        explanation: `Karena puluhannya sama (8), kita bandingkan satuannya. 9 satuan lebih banyak daripada 3 satuan, jadi 89 lebih dari 83.`
+      },
+      {
+        id: `q11`,
+        topic: `banding_urut`,
+        type: `order`,
+        direction: `asc`,
+        pool: [65, 71, 56, 79, 60],
+        correctOrder: [56, 60, 65, 71, 79],
+        prompt: `Urutkan kelima bilangan berikut mulai dari yang paling kecil ke paling besar!`,
+        explanation: `Bandingkan puluhannya lebih dulu: 5 puluhan (56), lalu 6 puluhan (60 dan 65), lalu 7 puluhan (71 dan 79).`
+      },
+      {
+        id: `q12`,
+        topic: `banding_urut`,
+        type: `order`,
+        direction: `desc`,
+        pool: [68, 94, 75, 83],
+        correctOrder: [94, 83, 75, 68],
+        prompt: `Urutkan keempat bilangan berikut mulai dari yang paling besar ke paling kecil!`,
+        explanation: `Mulai dari puluhan terbesar: 9 puluhan (94), 8 puluhan (83), 7 puluhan (75), lalu 6 puluhan (68).`
+      },
+      {
+        id: `q13`,
+        topic: `soal_cerita`,
+        type: `mcq`,
+        prompt: `Kira menulis satu bilangan di buku tulisnya. Bilangan yang Kira tulis adalah satu kurangnya dari bilangan 80. Bilangan berapakah itu?`,
+        options: [`78`, `79`, `81`, `89`],
+        answerIndex: 1,
+        explanation: `Satu kurangnya dari 80 berarti mundur 1 angka dari 80, yaitu 80 − 1 = 79.`
+      },
+      {
+        id: `q14`,
+        topic: `soal_cerita`,
+        type: `visual`,
+        visualKind: `jambu_56`,
+        prompt: `Kira memetik jambu air dan memasukkan 10 buah ke setiap keranjang. Ada 5 keranjang penuh dan 6 jambu di luar keranjang. Berapa banyak seluruh jambu air?`,
+        options: [`56 jambu air`, `65 jambu air`, `50 jambu air`, `16 jambu air`],
+        answerIndex: 0,
+        explanation: `5 keranjang × 10 = 50 jambu air. Ditambah 6 jambu di luar keranjang menjadi 56 jambu air.`
+      },
+      {
+        id: `q15`,
+        topic: `soal_cerita`,
+        type: `mcq`,
+        prompt: `Di rak kelas 2A ada 74 buku cerita. Di rak kelas 2B ada 69 buku cerita. Rak kelas manakah yang memiliki buku cerita lebih sedikit?`,
+        options: [
+          `Rak kelas 2B (69 buku cerita)`,
+          `Rak kelas 2A (74 buku cerita)`,
+          `Kedua rak sama banyaknya`,
+          `Rak kelas 2A karena satuannya 4`
+        ],
+        answerIndex: 0,
+        explanation: `6 puluhan lebih sedikit daripada 7 puluhan, sehingga 69 kurang dari 74. Jadi, rak kelas 2B lebih sedikit.`
+      },
+      {
+        id: `q16`,
+        topic: `soal_cerita`,
+        type: `mcq`,
+        sequence: [`60`, `70`, `?`, `90`, `100`],
+        prompt: `Pak Guru menyusun stiker bintang dalam kantong isi 10 dan membilang loncat 10. Bilangan berapakah yang tepat untuk melengkapi urutan di atas?`,
+        options: [`75`, `80`, `85`, `95`],
+        answerIndex: 1,
+        explanation: `Membilang loncat 10 artinya bertambah 10 setiap langkah. Setelah 70, yaitu 70 + 10 = 80.`
+      }
+    ];
+
+    /* Runtime state */
+    let appState = {
+      topic: `all`,
+      currentIdx: 0,
+      soundOn: true,
+      bestScore: 0,
+      results: {},
+      selectedLeft: null,
+      tempMatches: {},
+      tempOrder: [],
+      finished: false
+    };
+
+    let audioCtx = null;
+
+    function getAudioCtx() {
+      if (!appState.soundOn) return null;
+      try {
+        if (!audioCtx) {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (Ctx) audioCtx = new Ctx();
+        }
+        if (audioCtx && audioCtx.state === `suspended`) {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function playTone(freq, startOffset, duration, type, volume) {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type || `sine`;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + startOffset);
+        gain.gain.setValueAtTime(0.001, ctx.currentTime + startOffset);
+        gain.gain.exponentialRampToValueAtTime(volume || 0.14, ctx.currentTime + startOffset + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + startOffset + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + startOffset);
+        osc.stop(ctx.currentTime + startOffset + duration + 0.02);
+      } catch (e) {
+        /* Safe fallback when audio is blocked */
+      }
+    }
+
+    function playClick() {
+      playTone(540, 0, 0.07, `triangle`, 0.09);
+    }
+
+    function playCorrect() {
+      playTone(523.25, 0, 0.12, `triangle`, 0.14);
+      playTone(659.25, 0.09, 0.12, `triangle`, 0.14);
+      playTone(783.99, 0.18, 0.14, `triangle`, 0.15);
+      playTone(1046.5, 0.27, 0.25, `sine`, 0.16);
+    }
+
+    function playWrong() {
+      playTone(349.23, 0, 0.15, `sine`, 0.12);
+      playTone(261.63, 0.14, 0.24, `sine`, 0.12);
+    }
+
+    function playVictory() {
+      const notes = [
+        [523.25, 0, 0.12],
+        [659.25, 0.11, 0.12],
+        [783.99, 0.22, 0.12],
+        [1046.5, 0.34, 0.22],
+        [783.99, 0.56, 0.12],
+        [1046.5, 0.68, 0.38]
+      ];
+      notes.forEach(function(n) {
+        playTone(n[0], n[1], n[2], `triangle`, 0.15);
+      });
+    }
+
+    function getActiveQuestions() {
+      if (appState.topic === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function(q) { return q.topic === appState.topic; });
+    }
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({
+            topic: appState.topic,
+            currentIdx: appState.currentIdx,
+            soundOn: appState.soundOn,
+            bestScore: appState.bestScore,
+            results: appState.results,
+            finished: appState.finished
+          });
+        }
+      } catch (e) {
+        /* Ignore storage failure in standalone preview */
+      }
+    }
+
+    function toggleSound() {
+      appState.soundOn = !appState.soundOn;
+      updateSoundButton();
+      if (appState.soundOn) playClick();
+      persistState();
+    }
+
+    function updateSoundButton() {
+      const btn = document.getElementById(`btn-sound`);
+      const iconEl = document.getElementById(`sound-icon`);
+      const labelEl = document.getElementById(`sound-label`);
+      if (!btn || !iconEl || !labelEl) return;
+      btn.setAttribute(`aria-pressed`, appState.soundOn ? `true` : `false`);
+      labelEl.textContent = appState.soundOn ? `Suara: Nyala` : `Suara: Mati`;
+      if (appState.soundOn) {
+        iconEl.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
+      } else {
+        iconEl.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+      }
+    }
+
+    function selectTopic(topic) {
+      playClick();
+      appState.topic = topic;
+      appState.currentIdx = 0;
+      appState.results = {};
+      appState.selectedLeft = null;
+      appState.tempMatches = {};
+      appState.tempOrder = [];
+      appState.finished = false;
+      const resetBtn = document.getElementById(`btn-reset`);
+      if (resetBtn) {
+        resetBtn.dataset.armed = `false`;
+        resetBtn.textContent = `Ulangi dari Awal`;
+      }
+      renderAll();
+      persistState();
+    }
+
+    function handleResetClick(btn) {
+      if (!btn) return;
+      const answeredCount = Object.keys(appState.results).length;
+      if (!appState.finished && answeredCount > 0 && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Klik lagi untuk ulangi`;
+        playClick();
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Ulangi dari Awal`;
+      restartQuiz();
+    }
+
+    function restartQuiz() {
+      playClick();
+      appState.currentIdx = 0;
+      appState.results = {};
+      appState.selectedLeft = null;
+      appState.tempMatches = {};
+      appState.tempOrder = [];
+      appState.finished = false;
+      renderAll();
+      persistState();
+    }
+
+    function calculateStats() {
+      const active = getActiveQuestions();
+      let correctCount = 0;
+      let answeredCount = 0;
+      active.forEach(function(q) {
+        const res = appState.results[q.id];
+        if (res) {
+          answeredCount += 1;
+          if (res.isCorrect) correctCount += 1;
+        }
+      });
+      const score = correctCount * 10;
+      if (score > appState.bestScore) {
+        appState.bestScore = score;
+      }
+      return {
+        total: active.length,
+        answered: answeredCount,
+        correct: correctCount,
+        score: score,
+        maxScore: active.length * 10
+      };
+    }
+
+    function updateHUD() {
+      const stats = calculateStats();
+      const scoreEl = document.getElementById(`hud-score`);
+      const correctEl = document.getElementById(`hud-correct`);
+      const bestEl = document.getElementById(`hud-best`);
+      const progLabel = document.getElementById(`progress-label`);
+      const progPct = document.getElementById(`progress-pct`);
+      const progFill = document.getElementById(`progress-fill`);
+      const progBar = document.getElementById(`progress-bar`);
+
+      if (scoreEl) scoreEl.textContent = String(stats.score);
+      if (correctEl) correctEl.textContent = `${stats.correct} / ${stats.total}`;
+      if (bestEl) bestEl.textContent = String(appState.bestScore);
+
+      const pct = stats.total > 0 ? Math.round((stats.answered / stats.total) * 100) : 0;
+      if (progLabel) {
+        progLabel.textContent = appState.finished
+          ? `Semua ${stats.total} soal selesai!`
+          : `Soal ${Math.min(appState.currentIdx + 1, stats.total)} dari ${stats.total}`;
+      }
+      if (progPct) progPct.textContent = `${pct}% Selesai`;
+      if (progFill) progFill.style.width = `${pct}%`;
+      if (progBar) progBar.setAttribute(`aria-valuenow`, String(pct));
+
+      document.querySelectorAll(`.topic-chip`).forEach(function(chip) {
+        const isActive = chip.getAttribute(`data-topic`) === appState.topic;
+        chip.classList.toggle(`active`, isActive);
+        chip.setAttribute(`aria-pressed`, isActive ? `true` : `false`);
+      });
+    }
+
+    /* Visual SVG builders */
+    function buildVisualMarkup(q) {
+      if (q.visualKind === `marbles_64`) {
+        let jars = ``;
+        const colorClasses = [`svg-pink`, `svg-sky`, `svg-grape`, `svg-tangerine`, `svg-pink`, `svg-sky`];
+        for (let j = 0; j < 6; j++) {
+          const x = 14 + j * 94;
+          let dots = ``;
+          for (let r = 0; r < 5; r++) {
+            for (let c = 0; c < 2; c++) {
+              const cx = x + 22 + c * 32;
+              const cy = 26 + r * 20;
+              dots += `<circle cx="${cx}" cy="${cy}" r="7.5" class="${colorClasses[j]}" />`;
+            }
+          }
+          jars += `
+            <g>
+              <rect x="${x}" y="8" width="76" height="116" rx="16" class="svg-white svg-stroke-grape" stroke-width="2.5" />
+              ${dots}
+              <rect x="${x + 16}" y="132" width="44" height="22" rx="11" class="svg-grape-light" />
+              <text x="${x + 38}" y="147" text-anchor="middle" font-size="13" font-weight="800" class="svg-grape">10</text>
+            </g>`;
+        }
+        let loose = ``;
+        for (let k = 0; k < 4; k++) {
+          const lx = 602 + (k % 2) * 32;
+          const ly = 44 + Math.floor(k / 2) * 34;
+          loose += `<circle cx="${lx}" cy="${ly}" r="10" class="svg-tangerine" />`;
+        }
+        loose += `
+          <rect x="592" y="132" width="54" height="22" rx="11" class="svg-tangerine-light" />
+          <text x="619" y="147" text-anchor="middle" font-size="13" font-weight="800" class="svg-plum">+ 4</text>`;
+        return `
+          <div class="visual-stage">
+            <svg viewBox="0 0 668 164" width="668" height="164" role="img" aria-label="6 wadah berisi masing-masing 10 kelereng dan 4 kelereng di luar wadah">
+              ${jars}
+              ${loose}
+            </svg>
+          </div>`;
+      }
+
+      if (q.visualKind === `blocks_78`) {
+        let rods = ``;
+        for (let r = 0; r < 7; r++) {
+          const rx = 24 + r * 44;
+          let segs = ``;
+          for (let s = 0; s < 10; s++) {
+            const sy = 16 + s * 14;
+            segs += `<rect x="${rx}" y="${sy}" width="28" height="13" rx="3" class="svg-sky svg-stroke-white" stroke-width="1.5" />`;
+          }
+          rods += `<g>${segs}</g>`;
+        }
+        let units = ``;
+        for (let u = 0; u < 8; u++) {
+          const col = u % 2;
+          const row = Math.floor(u / 2);
+          const ux = 384 + col * 36;
+          const uy = 72 + row * 22;
+          units += `<rect x="${ux}" y="${uy}" width="26" height="18" rx="4" class="svg-pink svg-stroke-white" stroke-width="1.5" />`;
+        }
+        return `
+          <div class="visual-stage">
+            <svg viewBox="0 0 490 192" width="490" height="192" role="img" aria-label="7 batang balok puluhan dan 8 kubus satuan">
+              ${rods}
+              <rect x="82" y="164" width="160" height="24" rx="12" class="svg-sky-light" />
+              <text x="162" y="180" text-anchor="middle" font-size="13" font-weight="800" class="svg-plum">7 Batang Puluhan</text>
+              ${units}
+              <rect x="352" y="164" width="124" height="24" rx="12" class="svg-bubblegum" />
+              <text x="414" y="180" text-anchor="middle" font-size="13" font-weight="800" class="svg-plum">8 Satuan</text>
+            </svg>
+          </div>`;
+      }
+
+      if (q.visualKind === `jambu_56`) {
+        let baskets = ``;
+        for (let b = 0; b < 5; b++) {
+          const bx = 18 + b * 102;
+          let fruits = ``;
+          for (let f = 0; f < 5; f++) {
+            fruits += `<circle cx="${bx + 18 + f * 12}" cy="44" r="6" class="svg-pink" />`;
+            fruits += `<circle cx="${bx + 18 + f * 12}" cy="58" r="6" class="svg-pink" />`;
+          }
+          baskets += `
+            <g>
+              <path d="M${bx + 8} 66 L${bx + 76} 66 L${bx + 68} 112 L${bx + 16} 112 Z" class="svg-tangerine-light svg-stroke-plum" stroke-width="2.5" stroke-linejoin="round" />
+              ${fruits}
+              <rect x="${bx + 20}" y="122" width="44" height="22" rx="11" class="svg-bubblegum" />
+              <text x="${bx + 42}" y="137" text-anchor="middle" font-size="13" font-weight="800" class="svg-plum">10</text>
+            </g>`;
+        }
+        let extra = ``;
+        for (let e = 0; e < 6; e++) {
+          const ex = 550 + (e % 3) * 26;
+          const ey = 60 + Math.floor(e / 3) * 26;
+          extra += `<circle cx="${ex}" cy="${ey}" r="9" class="svg-pink" />`;
+        }
+        extra += `
+          <rect x="546" y="122" width="60" height="22" rx="11" class="svg-grape-light" />
+          <text x="576" y="137" text-anchor="middle" font-size="13" font-weight="800" class="svg-grape">+ 6</text>`;
+        return `
+          <div class="visual-stage">
+            <svg viewBox="0 0 640 156" width="640" height="156" role="img" aria-label="5 keranjang berisi 10 jambu air dan 6 jambu air di luar keranjang">
+              ${baskets}
+              ${extra}
+            </svg>
+          </div>`;
+      }
+
+      if (q.sequence) {
+        const pills = q.sequence.map(function(item, idx) {
+          const isMystery = item === `?`;
+          const arrow = idx < q.sequence.length - 1 ? `<span class="seq-arrow" aria-hidden="true">&rarr;</span>` : ``;
+          return `<span class="seq-pill ${isMystery ? `mystery` : ``}">${item}</span>${arrow}`;
+        }).join(``);
+        return `<div class="visual-stage"><div class="sequence-strip">${pills}</div></div>`;
+      }
+
+      if (q.placeValueTarget) {
+        const tens = q.placeValueTarget[0];
+        const ones = q.placeValueTarget[1];
+        return `
+          <div class="visual-stage">
+            <div class="pv-box" style="max-width: 280px; width: 100%;">
+              <div class="label-text">Bilangan</div>
+              <div class="display tabular-num">${q.placeValueTarget}</div>
+              <div class="pv-table">
+                <div class="pv-col-head">Puluhan</div>
+                <div class="pv-col-head">Satuan</div>
+                <div class="pv-digit tens">${tens}</div>
+                <div class="pv-digit ones">${ones}</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      if (q.compareNumbers) {
+        const a = String(q.compareNumbers[0]);
+        const b = String(q.compareNumbers[1]);
+        return `
+          <div class="visual-stage">
+            <div class="compare-grid">
+              <div class="pv-box">
+                <div class="headline tabular-num">${a}</div>
+                <div class="pv-table">
+                  <div class="pv-col-head">Puluhan</div>
+                  <div class="pv-col-head">Satuan</div>
+                  <div class="pv-digit tens">${a[0]}</div>
+                  <div class="pv-digit ones">${a[1]}</div>
+                </div>
+              </div>
+              <div class="pv-box">
+                <div class="headline tabular-num">${b}</div>
+                <div class="pv-table">
+                  <div class="pv-col-head">Puluhan</div>
+                  <div class="pv-col-head">Satuan</div>
+                  <div class="pv-digit tens">${b[0]}</div>
+                  <div class="pv-digit ones">${b[1]}</div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      return ``;
+    }
+
+    function renderAll() {
+      updateSoundButton();
+      updateHUD();
+      const quizStage = document.getElementById(`quiz-stage`);
+      const resultsStage = document.getElementById(`results-stage`);
+      if (!quizStage || !resultsStage) return;
+
+      if (appState.finished) {
+        quizStage.classList.add(`hidden`);
+        resultsStage.classList.remove(`hidden`);
+        renderResults(resultsStage);
+      } else {
+        resultsStage.classList.add(`hidden`);
+        quizStage.classList.remove(`hidden`);
+        renderQuestion(quizStage);
+      }
+    }
+
+    function renderQuestion(container) {
+      const active = getActiveQuestions();
+      if (appState.currentIdx >= active.length) {
+        appState.finished = true;
+        renderAll();
+        return;
+      }
+      const q = active[appState.currentIdx];
+      const saved = appState.results[q.id] || null;
+      const letters = [`A`, `B`, `C`, `D`];
+
+      let interactionHTML = ``;
+
+      if (q.type === `mcq` || q.type === `visual`) {
+        const optsHTML = q.options.map(function(opt, idx) {
+          let cls = `option-btn`;
+          if (saved) {
+            if (idx === q.answerIndex) cls += ` is-correct`;
+            else if (idx === saved.chosenIndex) cls += ` is-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" ${saved ? `disabled` : ``} onclick="submitMCQ(${idx})">
+              <span class="option-letter">${letters[idx]}</span>
+              <span>${opt}</span>
+            </button>`;
+        }).join(``);
+        interactionHTML = `<div class="options-grid">${optsHTML}</div>`;
+      } else if (q.type === `match`) {
+        const matches = saved ? saved.userMatches : appState.tempMatches;
+        const leftHTML = q.pairs.map(function(p, lIdx) {
+          const pairedRight = matches[lIdx];
+          let cls = `match-item`;
+          let badge = ``;
+          if (saved) {
+            const isPairOk = pairedRight === lIdx;
+            cls += isPairOk ? ` eval-correct` : ` eval-wrong`;
+            badge = `<span class="pair-badge">${isPairOk ? `&#10003;` : `&#10007;`}</span>`;
+          } else if (appState.selectedLeft === lIdx) {
+            cls += ` is-selected`;
+            badge = `<span class="pair-badge">?</span>`;
+          } else if (pairedRight !== undefined) {
+            cls += ` pair-${lIdx % 4}`;
+            badge = `<span class="pair-badge">${lIdx + 1}</span>`;
+          }
+          return `
+            <button type="button" class="${cls}" ${saved ? `disabled` : ``} onclick="clickMatchLeft(${lIdx})">
+              <span>${p.left}</span>
+              ${badge}
+            </button>`;
+        }).join(``);
+
+        const rightHTML = q.rightOrder.map(function(origIdx) {
+          const p = q.pairs[origIdx];
+          let pairedLeft = null;
+          Object.keys(matches).forEach(function(k) {
+            if (matches[k] === origIdx) pairedLeft = Number(k);
+          });
+          let cls = `match-item`;
+          let badge = ``;
+          if (saved) {
+            const isPairOk = pairedLeft === origIdx;
+            cls += isPairOk ? ` eval-correct` : ` eval-wrong`;
+            badge = `<span class="pair-badge">${isPairOk ? `&#10003;` : `&#10007;`}</span>`;
+          } else if (pairedLeft !== null) {
+            cls += ` pair-${pairedLeft % 4}`;
+            badge = `<span class="pair-badge">${pairedLeft + 1}</span>`;
+          }
+          return `
+            <button type="button" class="${cls}" ${saved ? `disabled` : ``} onclick="clickMatchRight(${origIdx})">
+              <span>${p.right}</span>
+              ${badge}
+            </button>`;
+        }).join(``);
+
+        const allMatched = Object.keys(matches).length === q.pairs.length;
+        interactionHTML = `
+          <p class="match-instructions">Caranya: Ketuk satu kartu di <strong>kolom kiri</strong>, lalu ketuk pasangannya di <strong>kolom kanan</strong>.</p>
+          <div class="match-columns">
+            <div class="match-col">
+              <div class="match-col-title">Kolom Kiri</div>
+              ${leftHTML}
+            </div>
+            <div class="match-col">
+              <div class="match-col-title">Kolom Kanan</div>
+              ${rightHTML}
+            </div>
+          </div>
+          ${saved ? `` : `
+            <div class="action-row">
+              <button type="button" class="btn btn-quiet" onclick="clearMatchSelection()">Bersihkan Pasangan</button>
+              <button type="button" class="btn btn-primary btn-lg" ${allMatched ? `` : `disabled`} onclick="submitMatch()">Periksa Jawaban</button>
+            </div>`}`;
+      } else if (q.type === `order`) {
+        const placed = saved ? saved.userOrder : appState.tempOrder;
+        const dirText = q.direction === `asc`
+          ? `Urutkan: Terkecil &rarr; Terbesar`
+          : `Urutkan: Terbesar &rarr; Terkecil`;
+
+        const slotsHTML = q.correctOrder.map(function(targetVal, sIdx) {
+          const val = placed[sIdx];
+          let cls = `order-slot`;
+          if (val !== undefined) cls += ` filled`;
+          if (saved) {
+            cls += val === targetVal ? ` eval-correct` : ` eval-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" ${saved || val === undefined ? `disabled` : ``} onclick="removeOrderSlot(${sIdx})" aria-label="Urutan ke-${sIdx + 1}">
+              <span class="slot-index">Ke-${sIdx + 1}</span>
+              <span>${val !== undefined ? val : `?`}</span>
+            </button>`;
+        }).join(``);
+
+        const poolHTML = q.pool.map(function(num) {
+          const used = placed.indexOf(num) !== -1;
+          return `
+            <button type="button" class="pool-chip" ${saved || used ? `disabled` : ``} onclick="pickOrderNum(${num})">
+              ${num}
+            </button>`;
+        }).join(``);
+
+        const allFilled = placed.length === q.correctOrder.length;
+        interactionHTML = `
+          <div class="order-direction-banner">${dirText}</div>
+          <div class="order-slots-wrap">
+            <span class="label-text">Urutan Jawabanmu (ketuk kotak untuk membatalkan)</span>
+            <div class="order-slots">${slotsHTML}</div>
+          </div>
+          <div>
+            <div class="label-text" style="margin-bottom: var(--space-sm);">Ketuk bilangan sesuai urutan</div>
+            <div class="order-pool">${poolHTML}</div>
+          </div>
+          ${saved ? `` : `
+            <div class="action-row">
+              <button type="button" class="btn btn-quiet" onclick="clearOrderSelection()">Ulangi Urutan</button>
+              <button type="button" class="btn btn-primary btn-lg" ${allFilled ? `` : `disabled`} onclick="submitOrder()">Periksa Jawaban</button>
+            </div>`}`;
+      }
+
+      let feedbackHTML = ``;
+      if (saved) {
+        const isLast = appState.currentIdx === active.length - 1;
+        feedbackHTML = `
+          <div class="feedback-banner ${saved.isCorrect ? `is-correct` : `is-wrong`}">
+            <p class="feedback-title">${saved.isCorrect ? `Hebat! Jawabanmu Benar! (+10 Poin)` : `Belum Tepat! Ayo Kita Pelajari Bersama`}</p>
+            <p class="feedback-desc">${q.explanation}</p>
+          </div>
+          <div class="action-row">
+            <span class="label-text">${appState.currentIdx > 0 ? `Gunakan tombol di kanan untuk lanjut` : `Siap lanjut ke soal berikutnya?`}</span>
+            <button type="button" class="btn btn-primary btn-lg" onclick="nextQuestion()">
+              ${isLast ? `Lihat Hasil Akhir &rarr;` : `Soal Berikutnya &rarr;`}
+            </button>
+          </div>`;
+      }
+
+      container.innerHTML = `
+        <div class="question-meta">
+          <div class="tag-group">
+            <span class="badge-bubblegum">Soal ${appState.currentIdx + 1} / ${active.length}</span>
+            <span class="tag-grape">${TOPIC_LABELS[q.topic]}</span>
+            <span class="tag-grape">${TYPE_LABELS[q.type]}</span>
+          </div>
+        </div>
+        ${buildVisualMarkup(q)}
+        <p class="question-prompt">${q.prompt}</p>
+        ${interactionHTML}
+        ${feedbackHTML}`;
+    }
+
+    function submitMCQ(chosenIdx) {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+
+      const isCorrect = chosenIdx === q.answerIndex;
+      appState.results[q.id] = {
+        isCorrect: isCorrect,
+        chosenIndex: chosenIdx,
+        summary: q.options[chosenIdx],
+        correctSummary: q.options[q.answerIndex]
+      };
+      if (isCorrect) playCorrect();
+      else playWrong();
+
+      renderAll();
+      persistState();
+    }
+
+    function clickMatchLeft(lIdx) {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+      playClick();
+      if (appState.tempMatches[lIdx] !== undefined) {
+        delete appState.tempMatches[lIdx];
+        appState.selectedLeft = lIdx;
+      } else if (appState.selectedLeft === lIdx) {
+        appState.selectedLeft = null;
+      } else {
+        appState.selectedLeft = lIdx;
+      }
+      renderQuestion(document.getElementById(`quiz-stage`));
+    }
+
+    function clickMatchRight(rIdx) {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+      playClick();
+
+      /* If right item was already paired and nothing is selected on left, unpair it */
+      let existingLeft = null;
+      Object.keys(appState.tempMatches).forEach(function(k) {
+        if (appState.tempMatches[k] === rIdx) existingLeft = Number(k);
+      });
+
+      if (appState.selectedLeft === null) {
+        if (existingLeft !== null) {
+          delete appState.tempMatches[existingLeft];
+          renderQuestion(document.getElementById(`quiz-stage`));
+        }
+        return;
+      }
+
+      if (existingLeft !== null) {
+        delete appState.tempMatches[existingLeft];
+      }
+      appState.tempMatches[appState.selectedLeft] = rIdx;
+      appState.selectedLeft = null;
+      renderQuestion(document.getElementById(`quiz-stage`));
+    }
+
+    function clearMatchSelection() {
+      playClick();
+      appState.selectedLeft = null;
+      appState.tempMatches = {};
+      renderQuestion(document.getElementById(`quiz-stage`));
+    }
+
+    function submitMatch() {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+      if (Object.keys(appState.tempMatches).length < q.pairs.length) return;
+
+      let allOk = true;
+      q.pairs.forEach(function(_, idx) {
+        if (appState.tempMatches[idx] !== idx) allOk = false;
+      });
+
+      appState.results[q.id] = {
+        isCorrect: allOk,
+        userMatches: Object.assign({}, appState.tempMatches),
+        summary: allOk ? `Semua pasangan tepat` : `Ada pasangan yang tertukar`,
+        correctSummary: q.pairs.map(function(p) { return `${p.left} = ${p.right}`; }).join(`; `)
+      };
+
+      if (allOk) playCorrect();
+      else playWrong();
+
+      appState.selectedLeft = null;
+      appState.tempMatches = {};
+      renderAll();
+      persistState();
+    }
+
+    function pickOrderNum(num) {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+      if (appState.tempOrder.indexOf(num) !== -1) return;
+      playClick();
+      appState.tempOrder.push(num);
+      renderQuestion(document.getElementById(`quiz-stage`));
+    }
+
+    function removeOrderSlot(slotIdx) {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+      playClick();
+      appState.tempOrder.splice(slotIdx, 1);
+      renderQuestion(document.getElementById(`quiz-stage`));
+    }
+
+    function clearOrderSelection() {
+      playClick();
+      appState.tempOrder = [];
+      renderQuestion(document.getElementById(`quiz-stage`));
+    }
+
+    function submitOrder() {
+      const active = getActiveQuestions();
+      const q = active[appState.currentIdx];
+      if (!q || appState.results[q.id]) return;
+      if (appState.tempOrder.length < q.correctOrder.length) return;
+
+      let allOk = true;
+      q.correctOrder.forEach(function(val, idx) {
+        if (appState.tempOrder[idx] !== val) allOk = false;
+      });
+
+      appState.results[q.id] = {
+        isCorrect: allOk,
+        userOrder: appState.tempOrder.slice(),
+        summary: appState.tempOrder.join(` → `),
+        correctSummary: q.correctOrder.join(` → `)
+      };
+
+      if (allOk) playCorrect();
+      else playWrong();
+
+      appState.tempOrder = [];
+      renderAll();
+      persistState();
+    }
+
+    function nextQuestion() {
+      const active = getActiveQuestions();
+      if (appState.currentIdx < active.length - 1) {
+        playClick();
+        appState.currentIdx += 1;
+        appState.selectedLeft = null;
+        appState.tempMatches = {};
+        appState.tempOrder = [];
+      } else {
+        appState.finished = true;
+        playVictory();
+      }
+      renderAll();
+      persistState();
+    }
+
+    function renderResults(container) {
+      const active = getActiveQuestions();
+      const stats = calculateStats();
+      const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+
+      let starsCount = 1;
+      let titleText = `Terus Semangat Berlatih!`;
+      let subText = `Kamu sudah menyelesaikan latihan dengan baik. Yuk ulangi agar makin mahir!`;
+      if (pct >= 85) {
+        starsCount = 3;
+        titleText = `Luar Biasa! Juara Bilangan 100!`;
+        subText = `Selamat! Kamu menguasai materi Bab 7 dengan sangat baik.`;
+      } else if (pct >= 60) {
+        starsCount = 2;
+        titleText = `Hebat Sekali! Bintang Dua!`;
+        subText = `Tinggal sedikit lagi untuk meraih 3 bintang penuh. Ayo coba lagi!`;
+      }
+
+      let starsHTML = ``;
+      for (let s = 1; s <= 3; s++) {
+        const earned = s <= starsCount;
+        starsHTML += `
+          <svg class="star-icon ${earned ? `earned` : ``}" viewBox="0 0 64 64" role="img" aria-label="${earned ? `Bintang diraih` : `Bintang belum diraih`}">
+            <polygon points="32,4 40.5,21.5 60,24.3 46,38 49.3,57.5 32,48.3 14.7,57.5 18,38 4,24.3 23.5,21.5"
+              class="${earned ? `svg-tangerine` : `svg-muted`}" />
+          </svg>`;
+      }
+
+      const topicsInRun = [];
+      active.forEach(function(q) {
+        if (topicsInRun.indexOf(q.topic) === -1) topicsInRun.push(q.topic);
+      });
+
+      const breakdownHTML = topicsInRun.map(function(tKey) {
+        const qs = active.filter(function(q) { return q.topic === tKey; });
+        const ok = qs.filter(function(q) { return appState.results[q.id] && appState.results[q.id].isCorrect; }).length;
+        const tPct = Math.round((ok / qs.length) * 100);
+        return `
+          <div class="breakdown-tile">
+            <span class="label-text">${TOPIC_LABELS[tKey]}</span>
+            <span class="headline tabular-num">${ok} / ${qs.length} Benar</span>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: ${tPct}%;"></div>
+            </div>
+          </div>`;
+      }).join(``);
+
+      const reviewHTML = active.map(function(q, idx) {
+        const res = appState.results[q.id];
+        const ok = res && res.isCorrect;
+        return `
+          <div class="review-item ${ok ? `ok` : `miss`}">
+            <div>
+              <strong>Soal ${idx + 1} (${TOPIC_LABELS[q.topic]}):</strong>
+              <span>${ok ? `Benar` : `Belum Tepat`}</span>
+              ${res ? `<div style="font-size: var(--label-size); margin-top: 2px;">Jawabanmu: ${res.summary}${!ok ? ` &bull; Kunci: ${res.correctSummary}` : ``}</div>` : ``}
+            </div>
+            <span class="pair-badge">${ok ? `&#10003;` : `&#10007;`}</span>
+          </div>`;
+      }).join(``);
+
+      container.innerHTML = `
+        <div class="results-hero">
+          <span class="badge-bubblegum">Hasil Kuis BBM SUMINTO</span>
+          <div class="stars-row">${starsHTML}</div>
+          <h2 class="display">${titleText}</h2>
+          <p class="brand-subtitle">${subText}</p>
+        </div>
+
+        <div class="hud-grid">
+          <div class="stat-card">
+            <span class="label-text">Skor Akhir</span>
+            <span class="stat-value accent tabular-num">${stats.score} / ${stats.maxScore}</span>
+          </div>
+          <div class="stat-card">
+            <span class="label-text">Ketepatan</span>
+            <span class="stat-value tabular-num">${pct}%</span>
+          </div>
+          <div class="stat-card">
+            <span class="label-text">Bintang Prestasi</span>
+            <span class="stat-value tabular-num">${starsCount} dari 3</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="headline" style="margin-bottom: var(--space-md);">Capaian per Materi Bab 7</h3>
+          <div class="breakdown-grid">${breakdownHTML}</div>
+        </div>
+
+        <div>
+          <h3 class="headline" style="margin-bottom: var(--space-md);">Ulasan Jawabanmu</h3>
+          <div class="review-list">${reviewHTML}</div>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="btn btn-secondary btn-lg" onclick="selectTopic('all')">Mainkan Semua 16 Soal</button>
+          <button type="button" class="btn btn-primary btn-lg" onclick="restartQuiz()">Ulangi Kuis Ini</button>
+        </div>`;
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (saved.topic && (saved.topic === `all` || TOPIC_LABELS[saved.topic])) {
+              appState.topic = saved.topic;
+            }
+            if (typeof saved.currentIdx === `number`) appState.currentIdx = saved.currentIdx;
+            if (typeof saved.soundOn === `boolean`) appState.soundOn = saved.soundOn;
+            if (typeof saved.bestScore === `number`) appState.bestScore = saved.bestScore;
+            if (saved.results && typeof saved.results === `object`) appState.results = saved.results;
+            if (typeof saved.finished === `boolean`) appState.finished = saved.finished;
+          }
+        }
+      } catch (e) {
+        /* Start with clean default state */
+      }
+
+      renderAll();
+
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+          window.notebookAppApi.notifyAppReady();
+        }
+      } catch (e) {
+        /* Safe fallback */
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>

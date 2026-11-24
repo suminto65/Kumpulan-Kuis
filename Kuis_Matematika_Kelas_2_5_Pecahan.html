@@ -1,0 +1,2499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Petualangan Pecahan Kelas 2 SD — BBM-Suminto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Sticker style palette & tokens */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --tertiary: #0096cc;
+      --error: #c53030;
+      --on-error: #ffffff;
+
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 26px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* 2. Shared semantic & focus tokens */
+      --positive: #15803d;
+      --positive-container: #dcfce7;
+      --on-positive: #ffffff;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --error-container: #fee2e2;
+      --focus: var(--primary);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.22);
+      --shadow-error: 0 4px 16px rgb(197 48 48 / 0.22);
+
+      /* 3. Illustration semantic tokens (for inline SVGs) */
+      --viz-crust: #e8a85c;
+      --viz-crust-dark: #c97d32;
+      --viz-dough: #fde6b4;
+      --viz-slice-empty: #fff6fa;
+      --viz-apple: #e11d48;
+      --viz-apple-shine: #fda4af;
+      --viz-leaf: #16a34a;
+      --viz-stem: #78350f;
+      --viz-gold: #eab308;
+      --viz-gold-light: #fef08a;
+      --viz-choco: #6d3b1a;
+      --viz-melon-red: #f43f5e;
+      --viz-melon-rind: #15803d;
+      --viz-paper: #fdf4ff;
+      --viz-origami: #0096cc;
+      --viz-origami-alt: #f080c0;
+
+      /* 4. Type scale (tool form, cheerful legibility for Grade 2) */
+      --display-size:  clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5625rem);
+      --subhead-size:  clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+      --body-size:     clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+      --label-size:    0.75rem;
+
+      /* 5. Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* 6. Motion */
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Header & Branding (BBM-Suminto + Scoreboard) */
+    .brand-header {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg) var(--space-xl);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex: 1 1 320px;
+    }
+
+    .bbm-logo-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container);
+      padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-xs);
+      border-radius: var(--rounded-full);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .bbm-logo-svg {
+      width: 52px;
+      height: 52px;
+      display: block;
+      border-radius: var(--rounded-full);
+    }
+
+    .bbm-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .bbm-logo-name {
+      font-weight: 900;
+      font-size: 0.9375rem;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+    }
+
+    .bbm-logo-sub {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .subtitle-lead {
+      margin: 0;
+      color: var(--on-surface-variant);
+      font-size: var(--body-size);
+      max-width: 58ch;
+    }
+
+    /* Live Scoreboard Pills */
+    .scoreboard-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      min-height: 44px;
+    }
+    .stat-pill--primary {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .stat-pill--primary .stat-label {
+      color: var(--on-primary-container);
+    }
+    .stat-value {
+      font-weight: 900;
+      font-size: var(--subhead-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    /* Buttons & Interactive Pills */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: var(--body-size);
+      line-height: 1.2;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) { box-shadow: var(--shadow-grape-deep); }
+
+    .btn-ghost {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      box-shadow: none;
+    }
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+
+    .btn-positive {
+      background: var(--positive);
+      color: var(--on-positive);
+      box-shadow: var(--shadow-positive);
+    }
+
+    /* Filter & Topic Navigation Pills */
+    .control-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      background: var(--surface-container-high);
+      padding: var(--space-xs);
+      border-radius: var(--rounded-full);
+    }
+
+    .topic-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: none;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out);
+    }
+    .topic-pill:hover {
+      color: var(--on-surface);
+      transform: var(--pop-scale);
+    }
+    .topic-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .control-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Progress Bar & Question Stepper */
+    .progress-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .progress-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .progress-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      width: 0%;
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    .stepper-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+
+    .step-dot {
+      min-width: 44px;
+      height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .step-dot:hover { transform: var(--pop-scale); }
+    .step-dot.is-current {
+      border-color: var(--primary);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-weight: 900;
+    }
+    .step-dot.is-correct {
+      border-color: var(--positive);
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+    .step-dot.is-wrong {
+      border-color: var(--error);
+      background: var(--error-container);
+      color: var(--error);
+    }
+
+    /* Main Quiz Workspace Grid (Asymmetric: Wide Quiz Arena + Right Helper Card on desktop) */
+    .quiz-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .quiz-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .tag-grape {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      background: var(--surface-container-low);
+    }
+
+    .question-heading {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .story-box {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .story-illustration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-text {
+      margin: 0;
+      color: var(--on-surface);
+      font-size: var(--body-size);
+      max-width: 65ch;
+    }
+
+    /* Visual Choice Cards (Tipe A) */
+    .visual-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .visual-choice-card {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      border: 3px solid transparent;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      text-align: center;
+      min-height: 44px;
+      box-shadow: var(--shadow-grape);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .visual-choice-card:hover:not(:disabled) {
+      transform: var(--lift);
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-pink);
+    }
+    .visual-choice-card:disabled { cursor: default; }
+    .visual-choice-card.is-selected {
+      background: var(--surface-container-low);
+      box-shadow: 0 0 0 3px var(--primary), var(--shadow-pink-deep);
+    }
+    .visual-choice-card.is-correct-choice {
+      background: var(--positive-container);
+      box-shadow: 0 0 0 3px var(--positive), var(--shadow-positive);
+    }
+    .visual-choice-card.is-wrong-choice {
+      background: var(--error-container);
+      box-shadow: 0 0 0 3px var(--error), var(--shadow-error);
+    }
+
+    .choice-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--rounded-full);
+      background: var(--secondary);
+      color: var(--on-secondary);
+      font-weight: 800;
+      font-size: 0.875rem;
+    }
+
+    .choice-caption {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+
+    /* Interactive Click-to-Shade Canvas (Tipe B) */
+    .interactive-stage {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .interactive-instruction {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+      color: var(--on-surface);
+      text-align: center;
+    }
+
+    .selection-counter-pill {
+      background: var(--surface-container-low);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      box-shadow: var(--shadow-sky);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--secondary);
+    }
+
+    .interactive-items-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-md);
+      max-width: 460px;
+    }
+
+    .clickable-item-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--rounded);
+      border: none;
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-sky);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .clickable-item-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+    .clickable-item-btn.is-picked {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 3px var(--primary), var(--shadow-pink);
+      transform: var(--lift);
+    }
+    .clickable-item-btn:disabled { cursor: default; }
+
+    .svg-slice-interactive {
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  opacity var(--dur-micro) var(--ease-out);
+    }
+    .svg-slice-interactive:hover {
+      opacity: 0.9;
+    }
+
+    /* Text Pill Options (Tipe C) */
+    .text-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .text-choice-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      min-height: 56px;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: none;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: var(--body-size);
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-sky);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .text-choice-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-pink);
+    }
+    .text-choice-btn:disabled { cursor: default; }
+    .text-choice-btn.is-selected {
+      background: var(--surface-container-low);
+      box-shadow: 0 0 0 3px var(--primary), var(--shadow-pink);
+    }
+    .text-choice-btn.is-correct-choice {
+      background: var(--positive-container);
+      color: var(--positive);
+      box-shadow: 0 0 0 3px var(--positive), var(--shadow-positive);
+    }
+    .text-choice-btn.is-wrong-choice {
+      background: var(--error-container);
+      color: var(--error);
+      box-shadow: 0 0 0 3px var(--error), var(--shadow-error);
+    }
+
+    /* Feedback Banner */
+    .feedback-banner {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+    .feedback-banner.is-correct {
+      background: var(--positive-container);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-banner.is-wrong {
+      background: var(--error-container);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-error);
+    }
+    .feedback-icon-wrap {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--rounded-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--on-primary);
+    }
+    .feedback-banner.is-correct .feedback-icon-wrap { background: var(--positive); }
+    .feedback-banner.is-wrong .feedback-icon-wrap { background: var(--error); }
+
+    .feedback-title {
+      margin: 0 0 var(--space-xs) 0;
+      font-weight: 800;
+      font-size: var(--subhead-size);
+    }
+    .feedback-desc {
+      margin: 0;
+      font-size: var(--body-size);
+      max-width: 65ch;
+    }
+
+    .quiz-footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    /* Right Helper / Visual Reference Sidebar */
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .guide-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .guide-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .concept-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .concept-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+    }
+
+    .concept-fraction-badge {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--primary);
+    }
+    .frac-bar {
+      width: 20px;
+      height: 2px;
+      background: var(--on-surface);
+      margin: 2px 0;
+      border-radius: var(--rounded-full);
+    }
+
+    .concept-copy strong {
+      display: block;
+      font-weight: 800;
+      color: var(--on-surface);
+    }
+    .concept-copy span {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Interactive Sandbox Card ("Papan Eksplorasi Pecahan") */
+    .sandbox-section {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .sandbox-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .sandbox-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .sandbox-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .control-group-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    .segmented-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .sandbox-stage {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .sandbox-readout {
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      color: var(--primary);
+    }
+
+    /* Summary / Certificate Panel */
+    .summary-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink-deep);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+
+    .summary-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .summary-metric-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-grape);
+    }
+    .summary-metric-tile:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .summary-metric-tile:nth-child(3n+3) { box-shadow: var(--shadow-pink); }
+
+    .summary-big-num {
+      font-weight: 900;
+      font-size: var(--display-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .topic-breakdown-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .breakdown-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    /* Confetti Layer (short burst only, no infinite loop) */
+    .confetti-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: var(--rounded-full);
+      animation: confettiPop 950ms var(--ease-out) forwards;
+    }
+
+    .inline-confirm-note {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .source-credit {
+      text-align: left;
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      padding-bottom: var(--space-lg);
+    }
+
+    /* Container Query for adaptive internal cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 440px) {
+      .story-box {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(10px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes confettiPop {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6); }
+      70% { opacity: 1; }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.1); }
+    }
+
+    @media (max-width: 860px) {
+      .quiz-workspace {
+        grid-template-columns: 1fr;
+      }
+      .sandbox-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .brand-header, .quiz-card, .sandbox-section, .summary-card {
+        padding: var(--space-md);
+      }
+      .topic-pills {
+        border-radius: var(--rounded);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- HEADER & BRANDING (BBM-Suminto) -->
+    <header class="brand-header">
+      <div class="brand-identity">
+        <!-- Brand Emblem BBM-Suminto (inline SVG replacement for LOGO BBM-Suminto.jpg so artifact is 100% self-contained) -->
+        <div class="bbm-logo-badge" aria-label="Logo BBM-Suminto">
+          <svg class="bbm-logo-svg" viewBox="0 0 64 64" role="img" aria-label="Emblem Logo BBM-Suminto">
+            <circle cx="32" cy="32" r="30" fill="var(--primary)" />
+            <circle cx="32" cy="32" r="25" fill="var(--surface-container-low)" />
+            <!-- Split fraction circle inside emblem -->
+            <path d="M 32 13 A 19 19 0 0 1 51 32 L 32 32 Z" fill="var(--tertiary)" />
+            <path d="M 32 13 A 19 19 0 1 0 51 32 L 32 32 Z" fill="var(--primary-container)" />
+            <line x1="32" y1="13" x2="32" y2="51" stroke="var(--on-surface)" stroke-width="2.5" stroke-linecap="round" />
+            <line x1="13" y1="32" x2="51" y2="32" stroke="var(--on-surface)" stroke-width="2.5" stroke-linecap="round" />
+            <circle cx="32" cy="32" r="9.5" fill="var(--surface-container-low)" stroke="var(--on-surface)" stroke-width="2" />
+            <text x="32" y="35.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="9.5" fill="var(--primary)">BBM</text>
+          </svg>
+          <div class="bbm-logo-text">
+            <span class="bbm-logo-name">BBM-Suminto</span>
+            <span class="bbm-logo-sub">Matematika Kelas II SD</span>
+          </div>
+        </div>
+
+        <div class="title-block">
+          <h1 class="display">Petualangan <em>Pecahan</em> Bab 5</h1>
+          <p class="subtitle-lead">Belajar setengah (1/2) benda utuh, setengah dari kumpulan benda, dan seperempat (1/4) lewat kuis bergambar interaktif.</p>
+        </div>
+      </div>
+
+      <div class="scoreboard-strip" aria-label="Papan Skor Langsung">
+        <div class="stat-pill stat-pill--primary">
+          <span class="stat-label">Skor</span>
+          <span class="stat-value" id="hud-score">0</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-label">Benar</span>
+          <span class="stat-value" id="hud-correct">0/12</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-label">Beruntun</span>
+          <span class="stat-value" id="hud-streak">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- TOPIC FILTER & SOUND / RESET CONTROLS -->
+    <div class="control-bar">
+      <div class="topic-pills" role="tablist" aria-label="Pilih Materi Kuis">
+        <button type="button" class="topic-pill is-active" id="tab-all" onclick="setTopicFilter('all')">Semua Materi (12)</button>
+        <button type="button" class="topic-pill" id="tab-half_whole" onclick="setTopicFilter('half_whole')">1/2 Benda Utuh</button>
+        <button type="button" class="topic-pill" id="tab-half_group" onclick="setTopicFilter('half_group')">1/2 Kumpulan</button>
+        <button type="button" class="topic-pill" id="tab-quarter_whole" onclick="setTopicFilter('quarter_whole')">1/4 Benda Utuh</button>
+      </div>
+
+      <div class="control-actions">
+        <button type="button" class="btn btn-ghost" id="btn-sound-toggle" onclick="toggleSound()">
+          <i data-lucide="volume-2" aria-hidden="true"></i>
+          <span id="sound-label">Suara: Aktif</span>
+        </button>
+        <button type="button" class="btn btn-quiet" id="btn-reset-quiz" onclick="handleResetQuiz(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+          <span>Ulangi Kuis</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR & QUESTION STEPPER -->
+    <section class="progress-card" aria-label="Kemajuan Kuis">
+      <div class="progress-meta">
+        <span class="progress-label" id="progress-status-text">Soal 1 dari 12 • Dijawab: 0</span>
+        <span class="progress-label" id="best-score-text">Skor Terbaik: 0</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-bar-fill"></div>
+      </div>
+      <div class="stepper-dots" id="stepper-dots" aria-label="Navigasi Nomor Soal"></div>
+    </section>
+
+    <!-- MAIN WORKSPACE: QUIZ ARENA + CONCEPT GUIDE -->
+    <div class="quiz-workspace">
+      <main id="quiz-main-container" class="card-wrapper">
+        <!-- Rendered dynamically by JS -->
+      </main>
+
+      <aside class="side-column" aria-label="Panduan Ringkas Pecahan">
+        <section class="guide-card">
+          <h2 class="guide-title">Ingat Lagi Yuk!</h2>
+          <div class="concept-list">
+            <div class="concept-item">
+              <div class="concept-fraction-badge" aria-label="Setengah">
+                <span>1</span>
+                <span class="frac-bar"></span>
+                <span>2</span>
+              </div>
+              <div class="concept-copy">
+                <strong>Setengah Benda Utuh</strong>
+                <span>Satu benda utuh dipotong menjadi <strong>2 bagian sama besar</strong>.</span>
+              </div>
+            </div>
+
+            <div class="concept-item">
+              <div class="concept-fraction-badge" aria-label="Setengah Kumpulan">
+                <span>1</span>
+                <span class="frac-bar"></span>
+                <span>2</span>
+              </div>
+              <div class="concept-copy">
+                <strong>Setengah Kumpulan Benda</strong>
+                <span>Membagi seluruh benda menjadi <strong>2 kelompok sama banyak</strong>.</span>
+              </div>
+            </div>
+
+            <div class="concept-item">
+              <div class="concept-fraction-badge" aria-label="Seperempat">
+                <span>1</span>
+                <span class="frac-bar"></span>
+                <span>4</span>
+              </div>
+              <div class="concept-copy">
+                <strong>Seperempat Benda Utuh</strong>
+                <span>Satu benda utuh dipotong menjadi <strong>4 bagian sama besar</strong>.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="guide-card">
+          <h2 class="guide-title">Tips Jitu Mengerjakan</h2>
+          <p class="story-text">Perhatikan baik-baik ukuran setiap potongan! Jika besar potongannya berbeda, itu <strong>bukan</strong> pecahan setengah atau seperempat.</p>
+          <button type="button" class="btn btn-secondary" onclick="jumpToSummary()">
+            <i data-lucide="award" aria-hidden="true"></i>
+            <span>Lihat Hasil &amp; Sertifikat</span>
+          </button>
+        </section>
+      </aside>
+    </div>
+
+    <!-- INTERACTIVE SANDBOX: PAPAN EKSPLORASI PECAHAN -->
+    <section class="sandbox-section" aria-label="Papan Eksplorasi Pecahan">
+      <div class="sandbox-header">
+        <div>
+          <span class="tag-grape">Belajar Sambil Bermain</span>
+          <h2 class="question-heading" style="margin-top: var(--space-xs);">Papan Eksplorasi Potong &amp; Warnai</h2>
+          <p class="subtitle-lead">Pilih bentuk atau kumpulan benda, tentukan pembagiannya, lalu klik bagiannya untuk melihat nilai pecahannya!</p>
+        </div>
+        <button type="button" class="btn btn-ghost" onclick="resetSandbox()">
+          <i data-lucide="eraser" aria-hidden="true"></i>
+          <span>Bersihkan Warna</span>
+        </button>
+      </div>
+
+      <div class="sandbox-grid">
+        <div class="sandbox-controls">
+          <div>
+            <span class="control-group-label">1. Pilih Bentuk atau Benda</span>
+            <div class="segmented-row">
+              <button type="button" class="topic-pill is-active" id="sb-shape-circle" onclick="setSandboxShape('circle')">Lingkaran Kue</button>
+              <button type="button" class="topic-pill" id="sb-shape-square" onclick="setSandboxShape('square')">Kertas Persegi</button>
+              <button type="button" class="topic-pill" id="sb-shape-group" onclick="setSandboxShape('group')">8 Apel Segar</button>
+            </div>
+          </div>
+
+          <div id="sb-split-group">
+            <span class="control-group-label">2. Potong Menjadi Bagian Sama Besar</span>
+            <div class="segmented-row">
+              <button type="button" class="topic-pill" id="sb-split-1" onclick="setSandboxSplit(1)">Utuh (1)</button>
+              <button type="button" class="topic-pill is-active" id="sb-split-2" onclick="setSandboxSplit(2)">2 Sama Besar</button>
+              <button type="button" class="topic-pill" id="sb-split-4" onclick="setSandboxSplit(4)">4 Sama Besar</button>
+            </div>
+          </div>
+
+          <div class="story-box">
+            <div class="concept-fraction-badge" id="sb-fraction-badge">
+              <span>1</span>
+              <span class="frac-bar"></span>
+              <span>2</span>
+            </div>
+            <p class="story-text" id="sb-explanation">Kamu mewarnai <strong>1 dari 2</strong> bagian sama besar. Ini menunjukkan pecahan <strong>setengah (1/2)</strong>!</p>
+          </div>
+        </div>
+
+        <div class="sandbox-stage">
+          <div id="sb-visual-canvas"></div>
+          <div class="sandbox-readout" id="sb-readout-text">Klik bagian gambar di atas untuk mewarnai!</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-credit">
+      Materi diadaptasi dari buku pelajaran Matematika untuk SD/MI Kelas II (Kurikulum Merdeka), Bab 5: Pecahan (halaman 125–154). Branding BBM-Suminto.
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    /* =========================================================================
+       DATA SOAL BAB 5: PECAHAN (HALAMAN 125 - 154)
+       ========================================================================= */
+    const TOPIC_LABELS = {
+      half_whole: `Setengah dari Benda Utuh (1/2)`,
+      half_group: `Setengah dari Kumpulan Benda`,
+      quarter_whole: `Seperempat dari Benda Utuh (1/4)`
+    };
+
+    const QUESTIONS = [
+      // --- SUBTOPIK 1: SETENGAH DARI BENDA UTUH (1/2) ---
+      {
+        id: `q1`,
+        topic: `half_whole`,
+        type: `visual_choice`,
+        points: 10,
+        title: `Perhatikan tiga gambar kue bulat berikut. Gambar manakah yang menunjukkan pecahan setengah (1/2)?`,
+        story: `Ingat materi halaman 131: untuk menghasilkan setengah, kita memotong satu benda utuh menjadi dua bagian yang sama besar.`,
+        storyViz: `cake_intro`,
+        options: [
+          { id: `a`, label: `Gambar A`, caption: `2 bagian sama besar`, svgType: `circle_half_equal` },
+          { id: `b`, label: `Gambar B`, caption: `2 bagian tidak sama besar`, svgType: `circle_half_unequal` },
+          { id: `c`, label: `Gambar C`, caption: `1 kue utuh (belum dipotong)`, svgType: `circle_whole` }
+        ],
+        correctId: `a`,
+        feedbackCorrect: `Tepat sekali! Gambar A memotong kue lingkaran menjadi dua bagian yang sama besar, sehingga tiap bagian bernilai setengah (1/2).`,
+        feedbackWrong: `Yuk cek lagi! Gambar B memang terpotong dua, tetapi ukurannya tidak sama besar, jadi bukan setengah. Yang benar adalah Gambar A.`
+      },
+      {
+        id: `q2`,
+        topic: `half_whole`,
+        type: `visual_choice`,
+        points: 10,
+        title: `Kertas lipat berbentuk segi empat dipotong menjadi dua bagian. Manakah potongan yang menunjukkan setengah (1/2)?`,
+        story: `Siti dan Lani memotong kertas origami untuk membuat hiasan kelas.`,
+        storyViz: `origami_intro`,
+        options: [
+          { id: `a`, label: `Gambar A`, caption: `Potongan miring tidak sama`, svgType: `rect_unequal` },
+          { id: `b`, label: `Gambar B`, caption: `Potongan diagonal sama besar`, svgType: `square_diag_equal` },
+          { id: `c`, label: `Gambar C`, caption: `Potongan 3 bagian`, svgType: `rect_thirds` }
+        ],
+        correctId: `b`,
+        feedbackCorrect: `Keren! Garis diagonal dari sudut ke sudut membagi persegi menjadi dua segitiga yang sama besar, yaitu setengah (1/2).`,
+        feedbackWrong: `Hampir benar! Perhatikan Gambar B: kedua segitiga hasil potongannya sama besar, sedangkan Gambar A tidak sama besar dan Gambar C ada 3 bagian.`
+      },
+      {
+        id: `q3`,
+        topic: `half_whole`,
+        type: `interactive_shade`,
+        points: 10,
+        title: `Ibu memotong 1 loyang pizza menjadi 2 bagian sama besar. Klik bagian pizza untuk menunjukkan setengah (1/2)!`,
+        story: `Klik langsung pada potongan pizza di bawah ini, lalu tekan tombol Periksa Jawaban.`,
+        shape: `pizza_2`,
+        totalParts: 2,
+        targetCount: 1,
+        unitName: `potong pizza`,
+        feedbackCorrect: `Hebat! Kamu mewarnai 1 dari 2 potong pizza sama besar. Itu artinya setengah (1/2) bagian pizza!`,
+        feedbackWrong: `Belum tepat! Untuk menunjukkan setengah (1/2) dari 2 potong pizza sama besar, kamu cukup memilih 1 potong saja.`
+      },
+      {
+        id: `q4`,
+        topic: `half_whole`,
+        type: `text_choice`,
+        points: 10,
+        title: `Beni membawa 1 roti tawar. Ia memotong roti itu menjadi dua bagian sama besar untuk dirinya dan adiknya. Berapa bagian roti yang diterima adik Beni?`,
+        story: `Satu roti utuh dibagi adil untuk dua anak menjadi dua potong yang sama besar.`,
+        storyViz: `bread_half`,
+        options: [
+          { id: `a`, text: `Setengah (1/2) bagian` },
+          { id: `b`, text: `Seperempat (1/4) bagian` },
+          { id: `c`, text: `Dua roti utuh` },
+          { id: `d`, text: `Satu roti utuh` }
+        ],
+        correctId: `a`,
+        feedbackCorrect: `Benar! Satu roti utuh yang dibagi menjadi dua bagian sama besar menghasilkan setengah (1/2) untuk masing-masing.`,
+        feedbackWrong: `Yuk perhatikan ceritanya: 1 roti dibagi 2 sama besar, berarti masing-masing mendapat setengah (1/2) bagian.`
+      },
+
+      // --- SUBTOPIK 2: SETENGAH DARI KUMPULAN BENDA ---
+      {
+        id: `q5`,
+        topic: `half_group`,
+        type: `interactive_group`,
+        points: 10,
+        title: `Ada 6 buah apel merah di keranjang. Klik setengah (1/2) dari seluruh apel tersebut!`,
+        story: `Bagi 6 apel menjadi 2 kelompok sama banyak, lalu pilih satu kelompoknya.`,
+        itemKind: `apple`,
+        totalItems: 6,
+        targetCount: 3,
+        unitName: `apel`,
+        feedbackCorrect: `Mantap! Setengah dari 6 apel adalah 3 apel, karena 6 apel dibagi 2 kelompok sama banyak menjadi 3 apel per kelompok.`,
+        feedbackWrong: `Coba hitung lagi! Jika 6 apel dibagi menjadi 2 kelompok sama banyak, setiap kelompok berisi 3 apel.`
+      },
+      {
+        id: `q6`,
+        topic: `half_group`,
+        type: `text_choice`,
+        points: 10,
+        title: `Udin memiliki 8 butir kelereng. Setengah dari kelereng Udin berwarna biru, sisanya kuning. Berapa banyak kelereng yang berwarna biru?`,
+        story: `Udin mengelompokkan 8 kelereng miliknya menjadi dua bagian yang sama banyak.`,
+        storyViz: `marbles_8`,
+        options: [
+          { id: `a`, text: `2 butir kelereng` },
+          { id: `b`, text: `4 butir kelereng` },
+          { id: `c`, text: `6 butir kelereng` },
+          { id: `d`, text: `8 butir kelereng` }
+        ],
+        correctId: `b`,
+        feedbackCorrect: `Cerdas! Setengah dari 8 kelereng adalah 4 butir kelereng (4 biru dan 4 kuning).`,
+        feedbackWrong: `Ayo kita bagi dua sama banyak: 8 kelereng dibagi 2 kelompok menghasilkan 4 kelereng di setiap kelompok.`
+      },
+      {
+        id: `q7`,
+        topic: `half_group`,
+        type: `interactive_group`,
+        points: 10,
+        title: `Lani punya 10 pensil warna. Ia ingin memberikan setengah (1/2) pensilnya kepada Dayu. Klik banyak pensil yang diberikan!`,
+        story: `Pilih setengah dari 10 pensil warna di bawah ini.`,
+        itemKind: `pencil`,
+        totalItems: 10,
+        targetCount: 5,
+        unitName: `pensil`,
+        feedbackCorrect: `Luar biasa! Setengah dari 10 pensil adalah 5 pensil.`,
+        feedbackWrong: `Hampir! 10 pensil dibagi 2 kelompok sama banyak adalah 5 pensil, jadi klik tepat 5 pensil.`
+      },
+      {
+        id: `q8`,
+        topic: `half_group`,
+        type: `text_choice`,
+        points: 10,
+        title: `Di atas piring ada 4 kue donat cokelat. Setengah bagian donat dimakan oleh Kakak. Berapa banyak sisa donat di piring sekarang?`,
+        story: `Mula-mula ada 4 donat, lalu setengahnya dimakan Kakak.`,
+        storyViz: `donuts_4`,
+        options: [
+          { id: `a`, text: `1 kue donat` },
+          { id: `b`, text: `2 kue donat` },
+          { id: `c`, text: `3 kue donat` },
+          { id: `d`, text: `4 kue donat` }
+        ],
+        correctId: `b`,
+        feedbackCorrect: `Tepat! Setengah dari 4 donat adalah 2 donat. Jadi jika 2 dimakan, sisanya masih ada 2 kue donat.`,
+        feedbackWrong: `Ingat ya: setengah dari 4 donat adalah 2 donat. Setelah dimakan 2, sisa donat di piring ada 2 kue donat.`
+      },
+
+      // --- SUBTOPIK 3: SEPEREMPAT DARI BENDA UTUH (1/4) ---
+      {
+        id: `q9`,
+        topic: `quarter_whole`,
+        type: `visual_choice`,
+        points: 10,
+        title: `Sebuah biskuit lingkaran dibagi untuk 4 anak sama rata. Gambar manakah yang menunjukkan pecahan seperempat (1/4)?`,
+        story: `Seperempat berarti 1 benda utuh dipotong menjadi 4 bagian yang sama besar, lalu diambil 1 bagian.`,
+        storyViz: `biscuit_intro`,
+        options: [
+          { id: `a`, label: `Gambar A`, caption: `4 bagian sama besar, 1 diarsir`, svgType: `circle_quarter_equal` },
+          { id: `b`, label: `Gambar B`, caption: `4 bagian tidak sama besar`, svgType: `circle_quarter_unequal` },
+          { id: `c`, label: `Gambar C`, caption: `2 bagian sama besar (setengah)`, svgType: `circle_half_equal` }
+        ],
+        correctId: `a`,
+        feedbackCorrect: `Bagus sekali! Gambar A dibagi menjadi 4 bagian yang sama besar dan 1 bagiannya diarsir, menunjukkan seperempat (1/4).`,
+        feedbackWrong: `Perhatikan baik-baik: Gambar B terbagi 4 tetapi ukurannya berbeda-beda, sedangkan Gambar C terbagi 2. Yang benar adalah Gambar A.`
+      },
+      {
+        id: `q10`,
+        topic: `quarter_whole`,
+        type: `interactive_shade`,
+        points: 10,
+        title: `Sebuah kertas persegi dibagi menjadi 4 kotak sama besar. Klik kotak untuk menunjukkan pecahan seperempat (1/4)!`,
+        story: `Klik langsung pada salah satu bagian kotak kertas di bawah ini.`,
+        shape: `square_4`,
+        totalParts: 4,
+        targetCount: 1,
+        unitName: `bagian kotak`,
+        feedbackCorrect: `Hebat! Mewarnai 1 dari 4 bagian sama besar menunjukkan pecahan seperempat (1/4).`,
+        feedbackWrong: `Untuk menunjukkan seperempat (1/4) dari 4 kotak sama besar, kamu cukup mewarnai tepat 1 kotak saja.`
+      },
+      {
+        id: `q11`,
+        topic: `quarter_whole`,
+        type: `text_choice`,
+        points: 10,
+        title: `Ayah membeli 1 martabak manis dan memotongnya menjadi 4 potong sama besar. Edo makan 1 potong martabak. Bagian yang dimakan Edo adalah...`,
+        story: `Martabak dibagi menjadi 4 potongan yang ukurannya sama besar, Edo mengambil 1 potong.`,
+        storyViz: `martabak_4`,
+        options: [
+          { id: `a`, text: `Seperempat (1/4) bagian` },
+          { id: `b`, text: `Setengah (1/2) bagian` },
+          { id: `c`, text: `Empat bagian utuh` },
+          { id: `d`, text: `Sepertiga (1/3) bagian` }
+        ],
+        correctId: `a`,
+        feedbackCorrect: `Tepat! 1 potong dari 4 bagian martabak yang sama besar bernilai seperempat (1/4).`,
+        feedbackWrong: `Karena martabak dipotong 4 sama besar dan dimakan 1 potong, bagian yang dimakan Edo adalah seperempat (1/4).`
+      },
+      {
+        id: `q12`,
+        topic: `quarter_whole`,
+        type: `visual_choice`,
+        points: 10,
+        title: `Ibu memotong buah semangka. Siti ingin mengambil seperempat (1/4) bagian semangka. Gambar manakah yang menunjukkan pilihan Siti?`,
+        story: `Bandingkan potongan setengah dan seperempat pada gambar di bawah ini!`,
+        storyViz: `melon_intro`,
+        options: [
+          { id: `a`, label: `Gambar A`, caption: `1 dari 2 bagian sama besar`, svgType: `melon_half` },
+          { id: `b`, label: `Gambar B`, caption: `1 dari 4 bagian sama besar`, svgType: `melon_quarter` },
+          { id: `c`, label: `Gambar C`, caption: `2 dari 4 bagian sama besar`, svgType: `melon_two_quarters` }
+        ],
+        correctId: `b`,
+        feedbackCorrect: `Juara! Gambar B menunjukkan 1 bagian dari 4 potongan sama besar, yaitu seperempat (1/4).`,
+        feedbackWrong: `Ingat: Gambar A adalah setengah (1/2) dan Gambar C (2 dari 4 bagian) juga sama dengan setengah! Yang menunjukkan 1/4 adalah Gambar B.`
+      }
+    ];
+
+    /* =========================================================================
+       APPLICATION STATE (PERSISTED VIA notebookAppApi)
+       ========================================================================= */
+    const DEFAULT_STATE = {
+      topicFilter: `all`,
+      currentIndex: 0,
+      soundEnabled: true,
+      streak: 0,
+      bestScore: 0,
+      showSummary: false,
+      answers: {}, // questionId -> { selected, isCorrect, pointsEarned }
+      sandbox: {
+        shape: `circle`,
+        split: 2,
+        selectedIndices: [0]
+      }
+    };
+
+    let appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    let pendingInteraction = null; // temporary selections before clicking "Periksa Jawaban"
+    let audioCtx = null;
+
+    /* =========================================================================
+       WEB AUDIO API CHEERFUL SOUND SYNTHESIS (NO EXTERNAL FILES)
+       ========================================================================= */
+    function ensureAudioContext() {
+      if (!appState.soundEnabled) return null;
+      if (!audioCtx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) audioCtx = new AudioCtx();
+      }
+      if (audioCtx && audioCtx.state === `suspended`) {
+        audioCtx.resume().catch(function() {});
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, startOffset, duration, type, volume) {
+      const ctx = ensureAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime + startOffset;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || `sine`;
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.exponentialRampToValueAtTime(volume || 0.14, now + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + duration + 0.02);
+    }
+
+    function playPopSound() {
+      playTone(520, 0, 0.07, `triangle`, 0.09);
+    }
+
+    function playCorrectSound() {
+      // Cheerful major arpeggio: C5 - E5 - G5 - C6
+      playTone(523.25, 0, 0.14, `triangle`, 0.14);
+      playTone(659.25, 0.09, 0.14, `triangle`, 0.14);
+      playTone(783.99, 0.18, 0.16, `triangle`, 0.14);
+      playTone(1046.5, 0.28, 0.28, `sine`, 0.16);
+    }
+
+    function playWrongSound() {
+      // Gentle friendly boop: E4 -> C4
+      playTone(329.63, 0, 0.14, `sine`, 0.11);
+      playTone(261.63, 0.12, 0.22, `sine`, 0.11);
+    }
+
+    function playFanfareSound() {
+      playTone(523.25, 0, 0.12, `triangle`, 0.13);
+      playTone(659.25, 0.1, 0.12, `triangle`, 0.13);
+      playTone(783.99, 0.2, 0.12, `triangle`, 0.13);
+      playTone(1046.5, 0.32, 0.35, `triangle`, 0.16);
+    }
+
+    /* =========================================================================
+       STATE PERSISTENCE HELPERS
+       ========================================================================= */
+    async function saveState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        // Ignore transient host save errors
+      }
+    }
+
+    function getFilteredQuestions() {
+      if (appState.topicFilter === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function(q) { return q.topic === appState.topicFilter; });
+    }
+
+    function computeScoreStats() {
+      let score = 0;
+      let correctCount = 0;
+      const answeredCount = Object.keys(appState.answers).length;
+      QUESTIONS.forEach(function(q) {
+        const ans = appState.answers[q.id];
+        if (ans && ans.isCorrect) {
+          score += ans.pointsEarned || q.points;
+          correctCount += 1;
+        }
+      });
+      if (score > (appState.bestScore || 0)) {
+        appState.bestScore = score;
+      }
+      return {
+        score: score,
+        maxScore: QUESTIONS.length * 10,
+        correctCount: correctCount,
+        answeredCount: answeredCount
+      };
+    }
+
+    /* =========================================================================
+       SVG ILLUSTRATION BUILDERS (100% TOKEN-COLORED, CRISP VECTOR ART)
+       ========================================================================= */
+    function renderFractionOptionSvg(svgType) {
+      switch (svgType) {
+        case `circle_half_equal`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <path d="M 65 11 A 44 44 0 0 0 65 99 Z" fill="var(--primary)" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="65" y1="11" x2="65" y2="99" stroke="var(--on-surface)" stroke-width="3" stroke-linecap="round" />
+          </svg>`;
+
+        case `circle_half_unequal`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <path d="M 43 17 A 44 44 0 0 0 43 93 Z" fill="var(--primary)" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="43" y1="17" x2="43" y2="93" stroke="var(--on-surface)" stroke-width="3" stroke-linecap="round" />
+          </svg>`;
+
+        case `circle_whole`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="3" />
+            <circle cx="52" cy="44" r="4" fill="var(--surface-container-low)" />
+            <circle cx="76" cy="64" r="4" fill="var(--surface-container-low)" />
+          </svg>`;
+
+        case `rect_unequal`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <rect x="18" y="20" width="94" height="70" rx="8" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <path d="M 18 20 L 44 20 L 34 90 L 18 90 Z" fill="var(--secondary)" stroke="var(--on-surface)" stroke-width="3" />
+          </svg>`;
+
+        case `square_diag_equal`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <rect x="25" y="15" width="80" height="80" rx="6" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <polygon points="25,15 105,95 25,95" fill="var(--secondary)" stroke="var(--on-surface)" stroke-width="3" stroke-linejoin="round" />
+          </svg>`;
+
+        case `rect_thirds`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <rect x="18" y="20" width="94" height="70" rx="8" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <rect x="18" y="20" width="31" height="70" rx="6" fill="var(--secondary)" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="81" y1="20" x2="81" y2="90" stroke="var(--on-surface)" stroke-width="3" />
+          </svg>`;
+
+        case `circle_quarter_equal`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <path d="M 65 55 L 65 11 A 44 44 0 0 1 109 55 Z" fill="var(--tertiary)" stroke="var(--on-surface)" stroke-width="3" stroke-linejoin="round" />
+            <line x1="65" y1="11" x2="65" y2="99" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="21" y1="55" x2="109" y2="55" stroke="var(--on-surface)" stroke-width="3" />
+          </svg>`;
+
+        case `circle_quarter_unequal`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="3" />
+            <path d="M 42 17 A 44 44 0 0 0 42 93 Z" fill="var(--tertiary)" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="42" y1="17" x2="42" y2="93" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="62" y1="11" x2="62" y2="99" stroke="var(--on-surface)" stroke-width="3" />
+            <line x1="88" y1="17" x2="88" y2="93" stroke="var(--on-surface)" stroke-width="3" />
+          </svg>`;
+
+        case `melon_half`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-melon-rind)" />
+            <circle cx="65" cy="55" r="38" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <path d="M 65 17 A 38 38 0 0 0 65 93 Z" fill="var(--viz-melon-red)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <circle cx="48" cy="48" r="2.5" fill="var(--on-surface)" />
+            <circle cx="52" cy="64" r="2.5" fill="var(--on-surface)" />
+          </svg>`;
+
+        case `melon_quarter`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-melon-rind)" />
+            <circle cx="65" cy="55" r="38" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <path d="M 65 55 L 65 17 A 38 38 0 0 1 103 55 Z" fill="var(--viz-melon-red)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="65" y1="17" x2="65" y2="93" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="27" y1="55" x2="103" y2="55" stroke="var(--on-surface)" stroke-width="2.5" />
+            <circle cx="80" cy="40" r="2.5" fill="var(--on-surface)" />
+          </svg>`;
+
+        case `melon_two_quarters`:
+          return `<svg width="130" height="110" viewBox="0 0 130 110" aria-hidden="true">
+            <circle cx="65" cy="55" r="44" fill="var(--viz-melon-rind)" />
+            <circle cx="65" cy="55" r="38" fill="var(--viz-slice-empty)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <path d="M 65 55 L 65 17 A 38 38 0 0 1 103 55 Z" fill="var(--viz-melon-red)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <path d="M 65 55 L 103 55 A 38 38 0 0 1 65 93 Z" fill="var(--viz-melon-red)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="65" y1="17" x2="65" y2="93" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="27" y1="55" x2="103" y2="55" stroke="var(--on-surface)" stroke-width="2.5" />
+          </svg>`;
+
+        default:
+          return ``;
+      }
+    }
+
+    function renderStoryVisualSvg(vizType) {
+      switch (vizType) {
+        case `cake_intro`:
+          return `<svg width="88" height="72" viewBox="0 0 88 72" aria-hidden="true">
+            <ellipse cx="44" cy="48" rx="34" ry="14" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <ellipse cx="44" cy="34" rx="34" ry="14" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="44" y1="20" x2="44" y2="48" stroke="var(--on-surface)" stroke-width="2" stroke-dasharray="4 3" />
+            <circle cx="44" cy="24" r="5" fill="var(--primary)" />
+          </svg>`;
+
+        case `origami_intro`:
+          return `<svg width="88" height="72" viewBox="0 0 88 72" aria-hidden="true">
+            <rect x="16" y="10" width="52" height="52" rx="6" fill="var(--viz-origami)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="16" y1="10" x2="68" y2="62" stroke="var(--surface-container-low)" stroke-width="2.5" stroke-dasharray="4 3" />
+          </svg>`;
+
+        case `bread_half`:
+          return `<svg width="96" height="72" viewBox="0 0 96 72" aria-hidden="true">
+            <path d="M 14 34 C 14 14, 44 14, 44 34 L 44 58 L 14 58 Z" fill="var(--viz-dough)" stroke="var(--viz-crust-dark)" stroke-width="3" stroke-linejoin="round" />
+            <path d="M 52 34 C 52 14, 82 14, 82 34 L 82 58 L 52 58 Z" fill="var(--viz-dough)" stroke="var(--viz-crust-dark)" stroke-width="3" stroke-linejoin="round" />
+          </svg>`;
+
+        case `marbles_8`:
+          return `<svg width="116" height="72" viewBox="0 0 116 72" aria-hidden="true">
+            <circle cx="20" cy="22" r="10" fill="var(--tertiary)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="46" cy="22" r="10" fill="var(--tertiary)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="72" cy="22" r="10" fill="var(--tertiary)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="98" cy="22" r="10" fill="var(--tertiary)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="20" cy="50" r="10" fill="var(--viz-gold)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="46" cy="50" r="10" fill="var(--viz-gold)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="72" cy="50" r="10" fill="var(--viz-gold)" stroke="var(--on-surface)" stroke-width="2" />
+            <circle cx="98" cy="50" r="10" fill="var(--viz-gold)" stroke="var(--on-surface)" stroke-width="2" />
+          </svg>`;
+
+        case `donuts_4`:
+          return `<svg width="124" height="72" viewBox="0 0 124 72" aria-hidden="true">
+            <g transform="translate(8, 16)">
+              <circle cx="14" cy="20" r="13" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="2" />
+              <circle cx="14" cy="20" r="10" fill="var(--viz-choco)" />
+              <circle cx="14" cy="20" r="4" fill="var(--surface-container)" />
+            </g>
+            <g transform="translate(36, 16)">
+              <circle cx="14" cy="20" r="13" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="2" />
+              <circle cx="14" cy="20" r="10" fill="var(--viz-choco)" />
+              <circle cx="14" cy="20" r="4" fill="var(--surface-container)" />
+            </g>
+            <g transform="translate(64, 16)">
+              <circle cx="14" cy="20" r="13" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="2" />
+              <circle cx="14" cy="20" r="10" fill="var(--viz-choco)" />
+              <circle cx="14" cy="20" r="4" fill="var(--surface-container)" />
+            </g>
+            <g transform="translate(92, 16)">
+              <circle cx="14" cy="20" r="13" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="2" />
+              <circle cx="14" cy="20" r="10" fill="var(--viz-choco)" />
+              <circle cx="14" cy="20" r="4" fill="var(--surface-container)" />
+            </g>
+          </svg>`;
+
+        case `biscuit_intro`:
+          return `<svg width="88" height="72" viewBox="0 0 88 72" aria-hidden="true">
+            <circle cx="44" cy="36" r="28" fill="var(--viz-dough)" stroke="var(--viz-crust-dark)" stroke-width="3" />
+            <line x1="44" y1="8" x2="44" y2="64" stroke="var(--viz-crust-dark)" stroke-width="2" stroke-dasharray="4 3" />
+            <line x1="16" y1="36" x2="72" y2="36" stroke="var(--viz-crust-dark)" stroke-width="2" stroke-dasharray="4 3" />
+          </svg>`;
+
+        case `martabak_4`:
+          return `<svg width="88" height="72" viewBox="0 0 88 72" aria-hidden="true">
+            <circle cx="42" cy="38" r="28" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <circle cx="42" cy="38" r="23" fill="var(--viz-gold-light)" />
+            <path d="M 48 32 L 48 8 A 24 24 0 0 1 72 32 Z" fill="var(--viz-gold)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <line x1="42" y1="10" x2="42" y2="66" stroke="var(--on-surface)" stroke-width="2" />
+            <line x1="14" y1="38" x2="70" y2="38" stroke="var(--on-surface)" stroke-width="2" />
+          </svg>`;
+
+        case `melon_intro`:
+          return `<svg width="88" height="72" viewBox="0 0 88 72" aria-hidden="true">
+            <circle cx="44" cy="36" r="28" fill="var(--viz-melon-rind)" />
+            <circle cx="44" cy="36" r="23" fill="var(--viz-melon-red)" />
+            <circle cx="38" cy="30" r="2" fill="var(--on-surface)" />
+            <circle cx="52" cy="40" r="2" fill="var(--on-surface)" />
+            <circle cx="42" cy="46" r="2" fill="var(--on-surface)" />
+          </svg>`;
+
+        default:
+          return ``;
+      }
+    }
+
+    function renderItemIconSvg(kind, isPicked) {
+      if (kind === `apple`) {
+        const bodyFill = isPicked ? `var(--viz-apple)` : `var(--surface-container-high)`;
+        const leafFill = isPicked ? `var(--viz-leaf)` : `var(--outline-variant)`;
+        return `<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M 24 12 C 24 7, 29 5, 32 6 C 31 10, 27 12, 24 12 Z" fill="${leafFill}" />
+          <path d="M 24 13 C 16 11, 9 16, 9 25 C 9 35, 16 42, 22 41 C 23 41, 24 40, 24 40 C 24 40, 25 41, 26 41 C 32 42, 39 35, 39 25 C 39 16, 32 11, 24 13 Z" fill="${bodyFill}" stroke="var(--on-surface)" stroke-width="2.5" />
+          <line x1="24" y1="13" x2="24" y2="7" stroke="var(--viz-stem)" stroke-width="2.5" stroke-linecap="round" />
+        </svg>`;
+      }
+      // pencil
+      const shaftFill = isPicked ? `var(--tertiary)` : `var(--surface-container-high)`;
+      const tipFill = isPicked ? `var(--viz-dough)` : `var(--surface-container)`;
+      return `<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+        <g transform="rotate(-35 24 24)">
+          <rect x="19" y="10" width="10" height="24" rx="2" fill="${shaftFill}" stroke="var(--on-surface)" stroke-width="2.2" />
+          <polygon points="19,34 29,34 24,43" fill="${tipFill}" stroke="var(--on-surface)" stroke-width="2.2" stroke-linejoin="round" />
+          <rect x="19" y="6" width="10" height="5" rx="2" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="2.2" />
+        </g>
+      </svg>`;
+    }
+
+    function renderInteractiveShapeSvg(shape, selectedIndices, isLocked, clickFnName) {
+      if (shape === `pizza_2`) {
+        const leftFill = selectedIndices.indexOf(0) !== -1 ? `var(--primary)` : `var(--viz-dough)`;
+        const rightFill = selectedIndices.indexOf(1) !== -1 ? `var(--primary)` : `var(--viz-dough)`;
+        const cursorStyle = isLocked ? `default` : `pointer`;
+        const attr0 = isLocked ? `` : `tabindex="0" role="button" aria-label="Bagian 1 dari 2" onclick="${clickFnName}(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();${clickFnName}(0);}"`;
+        const attr1 = isLocked ? `` : `tabindex="0" role="button" aria-label="Bagian 2 dari 2" onclick="${clickFnName}(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();${clickFnName}(1);}"`;
+        return `<svg width="210" height="210" viewBox="0 0 210 210" role="group" aria-label="Pizza 2 bagian">
+          <circle cx="105" cy="105" r="92" fill="var(--viz-crust)" stroke="var(--on-surface)" stroke-width="3.5" />
+          <path d="M 105 21 A 84 84 0 0 0 105 189 Z"
+                fill="${leftFill}" stroke="var(--on-surface)" stroke-width="3"
+                style="cursor:${cursorStyle}" ${attr0} />
+          <path d="M 105 21 A 84 84 0 0 1 105 189 Z"
+                fill="${rightFill}" stroke="var(--on-surface)" stroke-width="3"
+                style="cursor:${cursorStyle}" ${attr1} />
+          <circle cx="72" cy="78" r="7" fill="var(--viz-apple)" pointer-events="none" />
+          <circle cx="68" cy="128" r="7" fill="var(--viz-apple)" pointer-events="none" />
+          <circle cx="138" cy="78" r="7" fill="var(--viz-apple)" pointer-events="none" />
+          <circle cx="142" cy="128" r="7" fill="var(--viz-apple)" pointer-events="none" />
+        </svg>`;
+      }
+
+      // square_4 (2x2 quadrants)
+      const qCoords = [
+        { idx: 0, x: 15, y: 15 },
+        { idx: 1, x: 105, y: 15 },
+        { idx: 2, x: 15, y: 105 },
+        { idx: 3, x: 105, y: 105 }
+      ];
+      const cursorStyle = isLocked ? `default` : `pointer`;
+      const rects = qCoords.map(function(cell) {
+        const active = selectedIndices.indexOf(cell.idx) !== -1;
+        const fill = active ? `var(--tertiary)` : `var(--surface-container-low)`;
+        const keyAttr = isLocked ? `` : `tabindex="0" role="button" aria-label="Bagian ${cell.idx + 1} dari 4" onclick="${clickFnName}(${cell.idx})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();${clickFnName}(${cell.idx});}"`;
+        return `<rect x="${cell.x}" y="${cell.y}" width="90" height="90" rx="8"
+                      fill="${fill}" stroke="var(--on-surface)" stroke-width="3.5"
+                      style="cursor:${cursorStyle}" ${keyAttr} />`;
+      }).join(``);
+
+      return `<svg width="210" height="210" viewBox="0 0 210 210" role="group" aria-label="Kertas persegi 4 bagian">
+        ${rects}
+      </svg>`;
+    }
+
+    /* =========================================================================
+       RENDER FUNCTIONS
+       ========================================================================= */
+    function updateHudAndProgress() {
+      const stats = computeScoreStats();
+      const filtered = getFilteredQuestions();
+
+      const scoreEl = document.getElementById(`hud-score`);
+      const correctEl = document.getElementById(`hud-correct`);
+      const streakEl = document.getElementById(`hud-streak`);
+      const progressTextEl = document.getElementById(`progress-status-text`);
+      const bestScoreEl = document.getElementById(`best-score-text`);
+      const fillEl = document.getElementById(`progress-bar-fill`);
+      const dotsEl = document.getElementById(`stepper-dots`);
+
+      if (scoreEl) scoreEl.textContent = String(stats.score);
+      if (correctEl) correctEl.textContent = `${stats.correctCount}/${QUESTIONS.length}`;
+      if (streakEl) streakEl.textContent = String(appState.streak || 0);
+      if (bestScoreEl) bestScoreEl.textContent = `Skor Terbaik: ${appState.bestScore || 0}`;
+
+      const safeIdx = Math.min(appState.currentIndex, Math.max(0, filtered.length - 1));
+      const answeredInFilter = filtered.filter(function(q) { return Boolean(appState.answers[q.id]); }).length;
+      const pct = filtered.length > 0 ? Math.round((answeredInFilter / filtered.length) * 100) : 0;
+
+      if (progressTextEl) {
+        progressTextEl.textContent = appState.showSummary
+          ? `Ringkasan Selesai • Terjawab ${answeredInFilter} dari ${filtered.length} soal`
+          : `Soal ${safeIdx + 1} dari ${filtered.length} • Terjawab: ${answeredInFilter}`;
+      }
+      if (fillEl) fillEl.style.width = `${pct}%`;
+
+      if (dotsEl) {
+        dotsEl.innerHTML = filtered.map(function(q, idx) {
+          const ans = appState.answers[q.id];
+          let cls = `step-dot`;
+          if (!appState.showSummary && idx === safeIdx) cls += ` is-current`;
+          if (ans) cls += ans.isCorrect ? ` is-correct` : ` is-wrong`;
+          return `<button type="button" class="${cls}" onclick="goToQuestion(${idx})" aria-label="Buka soal nomor ${idx + 1}">${idx + 1}</button>`;
+        }).join(``);
+      }
+
+      // Update topic pills active class
+      [`all`, `half_whole`, `half_group`, `quarter_whole`].forEach(function(key) {
+        const tabEl = document.getElementById(`tab-${key}`);
+        if (tabEl) {
+          if (appState.topicFilter === key) tabEl.classList.add(`is-active`);
+          else tabEl.classList.remove(`is-active`);
+        }
+      });
+
+      // Update sound label
+      const soundLabelEl = document.getElementById(`sound-label`);
+      if (soundLabelEl) {
+        soundLabelEl.textContent = appState.soundEnabled ? `Suara: Aktif` : `Suara: Hening`;
+      }
+    }
+
+    function renderQuizCard() {
+      const container = document.getElementById(`quiz-main-container`);
+      if (!container) return;
+
+      if (appState.showSummary) {
+        renderSummaryView(container);
+        updateHudAndProgress();
+        if (window.lucide) window.lucide.createIcons();
+        return;
+      }
+
+      const filtered = getFilteredQuestions();
+      if (filtered.length === 0) return;
+      if (appState.currentIndex >= filtered.length) appState.currentIndex = 0;
+
+      const q = filtered[appState.currentIndex];
+      const existingAnswer = appState.answers[q.id] || null;
+      const isAnswered = Boolean(existingAnswer);
+
+      // Initialize pending state for interactive types
+      if (!pendingInteraction || pendingInteraction.questionId !== q.id) {
+        pendingInteraction = {
+          questionId: q.id,
+          selectedIndices: existingAnswer && Array.isArray(existingAnswer.selected)
+            ? existingAnswer.selected.slice()
+            : []
+        };
+      }
+
+      const topicBadge = TOPIC_LABELS[q.topic] || `Bab 5: Pecahan`;
+      const qNumberGlobal = QUESTIONS.findIndex(function(item) { return item.id === q.id; }) + 1;
+
+      let storyHtml = ``;
+      if (q.story) {
+        const vizHtml = q.storyViz ? `<div class="story-illustration">${renderStoryVisualSvg(q.storyViz)}</div>` : ``;
+        storyHtml = `<div class="story-box">
+          ${vizHtml}
+          <p class="story-text">${q.story}</p>
+        </div>`;
+      }
+
+      let bodyInteractionHtml = ``;
+      if (q.type === `visual_choice`) {
+        const cardsHtml = q.options.map(function(opt) {
+          let cls = `visual-choice-card`;
+          if (isAnswered) {
+            if (opt.id === q.correctId) cls += ` is-correct-choice`;
+            else if (existingAnswer.selected === opt.id) cls += ` is-wrong-choice`;
+          }
+          return `<button type="button" class="${cls}" ${isAnswered ? `disabled` : ``} onclick="submitChoiceAnswer('${q.id}', '${opt.id}')">
+            <span class="choice-letter">${opt.label.replace(`Gambar `, ``)}</span>
+            ${renderFractionOptionSvg(opt.svgType)}
+            <span class="choice-caption">${opt.label}</span>
+          </button>`;
+        }).join(``);
+        bodyInteractionHtml = `<div class="visual-options-grid">${cardsHtml}</div>`;
+      } else if (q.type === `text_choice`) {
+        const btnsHtml = q.options.map(function(opt, idx) {
+          const letters = [`A`, `B`, `C`, `D`];
+          let cls = `text-choice-btn`;
+          if (isAnswered) {
+            if (opt.id === q.correctId) cls += ` is-correct-choice`;
+            else if (existingAnswer.selected === opt.id) cls += ` is-wrong-choice`;
+          }
+          return `<button type="button" class="${cls}" ${isAnswered ? `disabled` : ``} onclick="submitChoiceAnswer('${q.id}', '${opt.id}')">
+            <span class="choice-letter">${letters[idx] || ``}</span>
+            <span>${opt.text}</span>
+          </button>`;
+        }).join(``);
+        bodyInteractionHtml = `<div class="text-options-grid">${btnsHtml}</div>`;
+      } else if (q.type === `interactive_shade`) {
+        const picked = pendingInteraction.selectedIndices;
+        bodyInteractionHtml = `<div class="interactive-stage">
+          <div class="interactive-instruction">
+            <span>Bagian terpilih:</span>
+            <span class="selection-counter-pill">${picked.length} dari ${q.totalParts} ${q.unitName}</span>
+          </div>
+          ${renderInteractiveShapeSvg(q.shape, picked, isAnswered, `toggleInteractivePart`)}
+          ${isAnswered ? `` : `<button type="button" class="btn btn-primary" ${picked.length === 0 ? `disabled` : ``} onclick="submitInteractiveAnswer('${q.id}')">
+            <i data-lucide="check-circle-2" aria-hidden="true"></i>
+            <span>Periksa Jawabanku</span>
+          </button>`}
+        </div>`;
+      } else if (q.type === `interactive_group`) {
+        const picked = pendingInteraction.selectedIndices;
+        const itemsHtml = [];
+        for (let i = 0; i < q.totalItems; i++) {
+          const isPicked = picked.indexOf(i) !== -1;
+          itemsHtml.push(`<button type="button" class="clickable-item-btn ${isPicked ? `is-picked` : ``}" ${isAnswered ? `disabled` : ``} onclick="toggleInteractivePart(${i})" aria-label="${q.unitName} nomor ${i + 1}">
+            ${renderItemIconSvg(q.itemKind, isPicked)}
+          </button>`);
+        }
+        bodyInteractionHtml = `<div class="interactive-stage">
+          <div class="interactive-instruction">
+            <span>Benda terpilih:</span>
+            <span class="selection-counter-pill">${picked.length} dari ${q.totalItems} ${q.unitName}</span>
+          </div>
+          <div class="interactive-items-grid">${itemsHtml.join(``)}</div>
+          ${isAnswered ? `` : `<button type="button" class="btn btn-primary" ${picked.length === 0 ? `disabled` : ``} onclick="submitInteractiveAnswer('${q.id}')">
+            <i data-lucide="check-circle-2" aria-hidden="true"></i>
+            <span>Periksa Jawabanku</span>
+          </button>`}
+        </div>`;
+      }
+
+      let feedbackHtml = ``;
+      if (isAnswered) {
+        const ok = existingAnswer.isCorrect;
+        feedbackHtml = `<div class="feedback-banner ${ok ? `is-correct` : `is-wrong`}" role="status">
+          <div class="feedback-icon-wrap">
+            <i data-lucide="${ok ? `sparkles` : `lightbulb`}" aria-hidden="true"></i>
+          </div>
+          <div>
+            <h3 class="feedback-title">${ok ? `Hebat! Jawabanmu Benar (+${q.points} poin)` : `Yuk Belajar Lagi!`}</h3>
+            <p class="feedback-desc">${ok ? q.feedbackCorrect : q.feedbackWrong}</p>
+          </div>
+        </div>`;
+      }
+
+      const isFirst = appState.currentIndex === 0;
+      const isLast = appState.currentIndex === filtered.length - 1;
+
+      container.innerHTML = `<article class="quiz-card" id="active-quiz-card">
+        <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+        <div class="quiz-card-top">
+          <span class="badge">Soal #${qNumberGlobal}</span>
+          <span class="tag-grape">${topicBadge}</span>
+        </div>
+
+        <h2 class="question-heading">${q.title}</h2>
+        ${storyHtml}
+        ${bodyInteractionHtml}
+        ${feedbackHtml}
+
+        <div class="quiz-footer-actions">
+          <button type="button" class="btn btn-ghost" ${isFirst ? `disabled` : ``} onclick="prevQuestion()">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Sebelumnya</span>
+          </button>
+
+          ${isLast
+            ? `<button type="button" class="btn btn-positive" onclick="jumpToSummary()">
+                <i data-lucide="award" aria-hidden="true"></i>
+                <span>Selesai &amp; Lihat Nilai</span>
+              </button>`
+            : `<button type="button" class="btn btn-primary" onclick="nextQuestion()">
+                <span>Soal Berikutnya</span>
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </button>`
+          }
+        </div>
+      </article>`;
+
+      updateHudAndProgress();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderSummaryView(container) {
+      const stats = computeScoreStats();
+      const accuracy = QUESTIONS.length > 0 ? Math.round((stats.correctCount / QUESTIONS.length) * 100) : 0;
+      let starsText = `1 Bintang Semangat`;
+      let praiseHeadline = `Terus Berlatih Ya!`;
+      if (accuracy >= 85) {
+        starsText = `3 Bintang Juara`;
+        praiseHeadline = `Luar Biasa! Kamu Ahli Pecahan!`;
+      } else if (accuracy >= 55) {
+        starsText = `2 Bintang Hebat`;
+        praiseHeadline = `Bagus Sekali! Hampir Sempurna!`;
+      }
+
+      const topicKeys = [`half_whole`, `half_group`, `quarter_whole`];
+      const breakdownHtml = topicKeys.map(function(key) {
+        const list = QUESTIONS.filter(function(q) { return q.topic === key; });
+        const okCount = list.filter(function(q) {
+          return appState.answers[q.id] && appState.answers[q.id].isCorrect;
+        }).length;
+        return `<div class="breakdown-tile">
+          <span class="stat-label">${TOPIC_LABELS[key]}</span>
+          <strong style="font-size: var(--headline-size); font-weight: 900; color: var(--secondary);">${okCount} / ${list.length} Benar</strong>
+          <button type="button" class="btn btn-ghost" onclick="setTopicFilter('${key}')">Latih Topik Ini</button>
+        </div>`;
+      }).join(``);
+
+      container.innerHTML = `<section class="summary-card">
+        <div class="quiz-card-top">
+          <span class="badge">${starsText}</span>
+          <span class="tag-grape">Raport Bab 5: Pecahan</span>
+        </div>
+
+        <h2 class="display">${praiseHeadline}</h2>
+        <p class="subtitle-lead">Berikut hasil belajarmu pada materi Setengah dari Benda Utuh, Setengah dari Kumpulan Benda, dan Seperempat dari Benda Utuh.</p>
+
+        <div class="summary-stats-grid">
+          <div class="summary-metric-tile">
+            <span class="stat-label">Total Skor</span>
+            <div class="summary-big-num">${stats.score}</div>
+            <span class="subtitle-lead">dari ${stats.maxScore} poin</span>
+          </div>
+          <div class="summary-metric-tile">
+            <span class="stat-label">Ketepatan</span>
+            <div class="summary-big-num">${accuracy}%</div>
+            <span class="subtitle-lead">${stats.correctCount} dari ${QUESTIONS.length} soal benar</span>
+          </div>
+          <div class="summary-metric-tile">
+            <span class="stat-label">Skor Terbaikmu</span>
+            <div class="summary-big-num">${appState.bestScore}</div>
+            <span class="subtitle-lead">Tersimpan otomatis</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="guide-title" style="margin-bottom: var(--space-sm);">Kemampuan per Materi</h3>
+          <div class="topic-breakdown-list">${breakdownHtml}</div>
+        </div>
+
+        <div class="quiz-footer-actions">
+          <button type="button" class="btn btn-ghost" onclick="backToQuiz()">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Kembali ke Soal</span>
+          </button>
+          <button type="button" class="btn btn-primary" onclick="restartAllQuestions()">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span>Mainkan Lagi dari Awal</span>
+          </button>
+        </div>
+      </section>`;
+    }
+
+    function launchConfetti() {
+      const layer = document.getElementById(`confetti-layer`);
+      if (!layer) return;
+      const colors = [`var(--primary)`, `var(--secondary)`, `var(--tertiary)`, `var(--viz-gold)`];
+      let html = ``;
+      for (let i = 0; i < 18; i++) {
+        const angle = (i / 18) * Math.PI * 2;
+        const dist = 70 + (i % 4) * 35;
+        const tx = Math.round(Math.cos(angle) * dist);
+        const ty = Math.round(Math.sin(angle) * dist);
+        const bg = colors[i % colors.length];
+        html += `<span class="confetti-piece" style="left:50%;top:35%;background:${bg};--tx:${tx}px;--ty:${ty}px;"></span>`;
+      }
+      layer.innerHTML = html;
+    }
+
+    /* =========================================================================
+       QUIZ INTERACTION HANDLERS (HOISTED FUNCTIONS FOR INLINE ONCLICK)
+       ========================================================================= */
+    function setTopicFilter(topicKey) {
+      playPopSound();
+      appState.topicFilter = topicKey;
+      appState.currentIndex = 0;
+      appState.showSummary = false;
+      pendingInteraction = null;
+      renderQuizCard();
+      saveState();
+    }
+
+    function goToQuestion(idx) {
+      playPopSound();
+      appState.currentIndex = idx;
+      appState.showSummary = false;
+      pendingInteraction = null;
+      renderQuizCard();
+      saveState();
+    }
+
+    function prevQuestion() {
+      if (appState.currentIndex > 0) {
+        goToQuestion(appState.currentIndex - 1);
+      }
+    }
+
+    function nextQuestion() {
+      const filtered = getFilteredQuestions();
+      if (appState.currentIndex < filtered.length - 1) {
+        goToQuestion(appState.currentIndex + 1);
+      }
+    }
+
+    function jumpToSummary() {
+      playFanfareSound();
+      appState.showSummary = true;
+      renderQuizCard();
+      saveState();
+    }
+
+    function backToQuiz() {
+      playPopSound();
+      appState.showSummary = false;
+      renderQuizCard();
+      saveState();
+    }
+
+    function submitChoiceAnswer(questionId, optionId) {
+      if (appState.answers[questionId]) return;
+      const q = QUESTIONS.find(function(item) { return item.id === questionId; });
+      if (!q) return;
+
+      const isCorrect = optionId === q.correctId;
+      appState.answers[questionId] = {
+        selected: optionId,
+        isCorrect: isCorrect,
+        pointsEarned: isCorrect ? q.points : 0
+      };
+      if (isCorrect) {
+        appState.streak = (appState.streak || 0) + 1;
+        playCorrectSound();
+      } else {
+        appState.streak = 0;
+        playWrongSound();
+      }
+
+      renderQuizCard();
+      if (isCorrect) launchConfetti();
+      saveState();
+    }
+
+    function toggleInteractivePart(partIndex) {
+      const filtered = getFilteredQuestions();
+      const q = filtered[appState.currentIndex];
+      if (!q || appState.answers[q.id]) return;
+
+      playPopSound();
+      if (!pendingInteraction || pendingInteraction.questionId !== q.id) {
+        pendingInteraction = { questionId: q.id, selectedIndices: [] };
+      }
+      const pos = pendingInteraction.selectedIndices.indexOf(partIndex);
+      if (pos === -1) {
+        pendingInteraction.selectedIndices.push(partIndex);
+      } else {
+        pendingInteraction.selectedIndices.splice(pos, 1);
+      }
+      renderQuizCard();
+    }
+
+    function submitInteractiveAnswer(questionId) {
+      if (appState.answers[questionId]) return;
+      const q = QUESTIONS.find(function(item) { return item.id === questionId; });
+      if (!q || !pendingInteraction) return;
+
+      const picked = pendingInteraction.selectedIndices.slice();
+      const isCorrect = picked.length === q.targetCount;
+
+      appState.answers[questionId] = {
+        selected: picked,
+        isCorrect: isCorrect,
+        pointsEarned: isCorrect ? q.points : 0
+      };
+      if (isCorrect) {
+        appState.streak = (appState.streak || 0) + 1;
+        playCorrectSound();
+      } else {
+        appState.streak = 0;
+        playWrongSound();
+      }
+
+      renderQuizCard();
+      if (isCorrect) launchConfetti();
+      saveState();
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      if (appState.soundEnabled) playPopSound();
+      updateHudAndProgress();
+      saveState();
+    }
+
+    function handleResetQuiz(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.innerHTML = `<i data-lucide="alert-circle" aria-hidden="true"></i><span>Klik Sekali Lagi untuk Reset</span>`;
+        if (window.lucide) window.lucide.createIcons();
+        setTimeout(function() {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Ulangi Kuis</span>`;
+            if (window.lucide) window.lucide.createIcons();
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Ulangi Kuis</span>`;
+      if (window.lucide) window.lucide.createIcons();
+      restartAllQuestions();
+    }
+
+    function restartAllQuestions() {
+      playPopSound();
+      appState.answers = {};
+      appState.streak = 0;
+      appState.currentIndex = 0;
+      appState.showSummary = false;
+      pendingInteraction = null;
+      renderQuizCard();
+      saveState();
+    }
+
+    /* =========================================================================
+       INTERACTIVE SANDBOX: PAPAN EKSPLORASI PECAHAN
+       ========================================================================= */
+    function setSandboxShape(shape) {
+      playPopSound();
+      appState.sandbox.shape = shape;
+      if (shape === `group`) {
+        appState.sandbox.split = 2;
+        appState.sandbox.selectedIndices = [0, 1, 2, 3];
+      } else {
+        appState.sandbox.selectedIndices = [0];
+      }
+      renderSandbox();
+      saveState();
+    }
+
+    function setSandboxSplit(splitCount) {
+      playPopSound();
+      appState.sandbox.split = splitCount;
+      appState.sandbox.selectedIndices = [0];
+      renderSandbox();
+      saveState();
+    }
+
+    function toggleSandboxPart(idx) {
+      playPopSound();
+      const arr = appState.sandbox.selectedIndices;
+      const pos = arr.indexOf(idx);
+      if (pos === -1) arr.push(idx);
+      else arr.splice(pos, 1);
+      renderSandbox();
+      saveState();
+    }
+
+    function resetSandbox() {
+      playPopSound();
+      appState.sandbox.selectedIndices = [];
+      renderSandbox();
+      saveState();
+    }
+
+    function renderSandbox() {
+      const sb = appState.sandbox;
+      const stageEl = document.getElementById(`sb-visual-canvas`);
+      const badgeEl = document.getElementById(`sb-fraction-badge`);
+      const explEl = document.getElementById(`sb-explanation`);
+      const readoutEl = document.getElementById(`sb-readout-text`);
+      const splitGroupEl = document.getElementById(`sb-split-group`);
+      if (!stageEl || !badgeEl || !explEl || !readoutEl) return;
+
+      // Update active pills
+      [`circle`, `square`, `group`].forEach(function(s) {
+        const el = document.getElementById(`sb-shape-${s}`);
+        if (el) {
+          if (sb.shape === s) el.classList.add(`is-active`);
+          else el.classList.remove(`is-active`);
+        }
+      });
+      [1, 2, 4].forEach(function(n) {
+        const el = document.getElementById(`sb-split-${n}`);
+        if (el) {
+          if (sb.split === n) el.classList.add(`is-active`);
+          else el.classList.remove(`is-active`);
+        }
+      });
+
+      if (splitGroupEl) {
+        splitGroupEl.style.display = sb.shape === `group` ? `none` : `block`;
+      }
+
+      if (sb.shape === `group`) {
+        const total = 8;
+        const count = sb.selectedIndices.length;
+        const items = [];
+        for (let i = 0; i < total; i++) {
+          const picked = sb.selectedIndices.indexOf(i) !== -1;
+          items.push(`<button type="button" class="clickable-item-btn ${picked ? `is-picked` : ``}" onclick="toggleSandboxPart(${i})" aria-label="Apel eksplorasi ${i + 1}">
+            ${renderItemIconSvg(`apple`, picked)}
+          </button>`);
+        }
+        stageEl.innerHTML = `<div class="interactive-items-grid">${items.join(``)}</div>`;
+        badgeEl.innerHTML = `<span>${count}</span><span class="frac-bar"></span><span>${total}</span>`;
+        if (count === 4) {
+          explEl.innerHTML = `Kamu memilih <strong>4 dari 8</strong> apel. Itu sama dengan <strong>setengah (1/2)</strong> dari kumpulan apel!`;
+          readoutEl.textContent = `4 apel = Setengah (1/2) dari 8 apel`;
+        } else if (count === 2) {
+          explEl.innerHTML = `Kamu memilih <strong>2 dari 8</strong> apel. Itu sama dengan <strong>seperempat (1/4)</strong> dari kumpulan apel!`;
+          readoutEl.textContent = `2 apel = Seperempat (1/4) dari 8 apel`;
+        } else {
+          explEl.innerHTML = `Kamu memilih <strong>${count} dari 8</strong> apel. Coba pilih <strong>4 apel</strong> untuk membuat setengah!`;
+          readoutEl.textContent = `${count} dari 8 apel dipilih`;
+        }
+        return;
+      }
+
+      // Circle or Square
+      const total = sb.split;
+      const count = sb.selectedIndices.length;
+      if (sb.shape === `circle`) {
+        if (total === 1) {
+          const fill = sb.selectedIndices.indexOf(0) !== -1 ? `var(--primary)` : `var(--viz-slice-empty)`;
+          stageEl.innerHTML = `<svg width="200" height="200" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="85" fill="${fill}" stroke="var(--on-surface)" stroke-width="3.5" style="cursor:pointer" onclick="toggleSandboxPart(0)" />
+          </svg>`;
+        } else if (total === 2) {
+          const f0 = sb.selectedIndices.indexOf(0) !== -1 ? `var(--primary)` : `var(--viz-slice-empty)`;
+          const f1 = sb.selectedIndices.indexOf(1) !== -1 ? `var(--primary)` : `var(--viz-slice-empty)`;
+          stageEl.innerHTML = `<svg width="200" height="200" viewBox="0 0 200 200">
+            <path d="M 100 15 A 85 85 0 0 0 100 185 Z" fill="${f0}" stroke="var(--on-surface)" stroke-width="3.5" style="cursor:pointer" onclick="toggleSandboxPart(0)" />
+            <path d="M 100 15 A 85 85 0 0 1 100 185 Z" fill="${f1}" stroke="var(--on-surface)" stroke-width="3.5" style="cursor:pointer" onclick="toggleSandboxPart(1)" />
+          </svg>`;
+        } else {
+          const paths = [
+            `M 100 100 L 100 15 A 85 85 0 0 1 185 100 Z`,
+            `M 100 100 L 185 100 A 85 85 0 0 1 100 185 Z`,
+            `M 100 100 L 100 185 A 85 85 0 0 1 15 100 Z`,
+            `M 100 100 L 15 100 A 85 85 0 0 1 100 15 Z`
+          ];
+          const slices = paths.map(function(d, idx) {
+            const fill = sb.selectedIndices.indexOf(idx) !== -1 ? `var(--tertiary)` : `var(--viz-slice-empty)`;
+            return `<path d="${d}" fill="${fill}" stroke="var(--on-surface)" stroke-width="3.5" stroke-linejoin="round" style="cursor:pointer" onclick="toggleSandboxPart(${idx})" />`;
+          }).join(``);
+          stageEl.innerHTML = `<svg width="200" height="200" viewBox="0 0 200 200">${slices}</svg>`;
+        }
+      } else {
+        // Square
+        if (total === 1) {
+          const fill = sb.selectedIndices.indexOf(0) !== -1 ? `var(--secondary)` : `var(--viz-slice-empty)`;
+          stageEl.innerHTML = `<svg width="200" height="200" viewBox="0 0 200 200">
+            <rect x="15" y="15" width="170" height="170" rx="12" fill="${fill}" stroke="var(--on-surface)" stroke-width="3.5" style="cursor:pointer" onclick="toggleSandboxPart(0)" />
+          </svg>`;
+        } else if (total === 2) {
+          const f0 = sb.selectedIndices.indexOf(0) !== -1 ? `var(--secondary)` : `var(--viz-slice-empty)`;
+          const f1 = sb.selectedIndices.indexOf(1) !== -1 ? `var(--secondary)` : `var(--viz-slice-empty)`;
+          stageEl.innerHTML = `<svg width="200" height="200" viewBox="0 0 200 200">
+            <rect x="15" y="15" width="85" height="170" rx="8" fill="${f0}" stroke="var(--on-surface)" stroke-width="3.5" style="cursor:pointer" onclick="toggleSandboxPart(0)" />
+            <rect x="100" y="15" width="85" height="170" rx="8" fill="${f1}" stroke="var(--on-surface)" stroke-width="3.5" style="cursor:pointer" onclick="toggleSandboxPart(1)" />
+          </svg>`;
+        } else {
+          stageEl.innerHTML = renderInteractiveShapeSvg(`square_4`, sb.selectedIndices, false, `toggleSandboxPart`);
+        }
+      }
+
+      badgeEl.innerHTML = `<span>${count}</span><span class="frac-bar"></span><span>${total}</span>`;
+      if (total === 2 && count === 1) {
+        explEl.innerHTML = `Kamu mewarnai <strong>1 dari 2</strong> bagian sama besar. Ini menunjukkan pecahan <strong>setengah (1/2)</strong>!`;
+        readoutEl.textContent = `1/2 (Setengah)`;
+      } else if (total === 4 && count === 1) {
+        explEl.innerHTML = `Kamu mewarnai <strong>1 dari 4</strong> bagian sama besar. Ini menunjukkan pecahan <strong>seperempat (1/4)</strong>!`;
+        readoutEl.textContent = `1/4 (Seperempat)`;
+      } else if (total === 4 && count === 2) {
+        explEl.innerHTML = `Kamu mewarnai <strong>2 dari 4</strong> bagian sama besar. Nilainya sama besar dengan <strong>setengah (1/2)</strong>!`;
+        readoutEl.textContent = `2/4 = Setengah (1/2)`;
+      } else if (count === total && total > 0) {
+        explEl.innerHTML = `Semua bagian (${count} dari ${total}) diwarnai penuh. Ini menunjukkan <strong>1 benda utuh</strong>!`;
+        readoutEl.textContent = `1 Benda Utuh`;
+      } else {
+        explEl.innerHTML = `Kamu mewarnai <strong>${count} dari ${total}</strong> bagian sama besar. Klik bagian gambar untuk mencoba lagi!`;
+        readoutEl.textContent = `${count} dari ${total} bagian`;
+      }
+    }
+
+    /* =========================================================================
+       INITIALIZATION
+       ========================================================================= */
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+            if (!appState.answers) appState.answers = {};
+            if (!appState.sandbox) appState.sandbox = JSON.parse(JSON.stringify(DEFAULT_STATE.sandbox));
+          }
+        }
+      } catch (err) {
+        // Fallback cleanly to default state
+      }
+
+      renderQuizCard();
+      renderSandbox();
+      if (window.lucide) window.lucide.createIcons();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

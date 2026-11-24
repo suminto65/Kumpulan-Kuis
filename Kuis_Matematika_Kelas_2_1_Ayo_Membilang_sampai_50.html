@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Matematika Kelas 2 SD — Ayo Membilang sampai dengan 50</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..900;1,9..40,400..900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker style) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #ede4f8;
+      --tertiary: #0096cc;
+      --tertiary-container: #dff4fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-4-container: #fff0db;
+      --data-context: #c8b8d0;
+
+      /* Semantic */
+      --positive: #15803d;
+      --positive-container: #dcfce7;
+      --on-positive-container: #14532d;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --on-warning-container: #78350f;
+      --focus: #c2207f;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.18);
+      --shadow-warning: 0 4px 16px rgb(180 83 9 / 0.18);
+      --shadow-option: 0 4px 14px rgb(124 82 170 / 0.16);
+      --pop-scale: scale(1.03);
+      --press-scale: scale(0.97);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.65rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+      --body-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+      --label-size: 0.78rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 980px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero Header */
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-sm);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+
+    .hero-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .kicker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      font-size: var(--body-size);
+    }
+
+    /* Scoreboard & Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+    .stat-card:nth-child(2) { box-shadow: var(--shadow-sky); }
+    .stat-card:nth-child(3) { box-shadow: var(--shadow-grape); }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-surface-variant);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .stat-value-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+
+    .stat-number {
+      font-weight: 900;
+      font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .stat-number.is-pink { color: var(--primary); }
+    .stat-number.is-grape { color: var(--secondary); }
+
+    .stat-caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    /* Control Strip (Topic Filters & Utility Buttons) */
+    .controls-bar {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .utility-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Buttons & Pills */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: none;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+    .btn:active:not(:disabled) {
+      transform: var(--press-scale);
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: var(--shadow-pink-deep);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      box-shadow: var(--shadow-grape-deep);
+    }
+
+    .btn-chip {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .btn-chip:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn-chip[aria-pressed="true"] {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.9rem;
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+
+    .btn-outline-grape {
+      background: var(--surface-container-low);
+      color: var(--secondary);
+      box-shadow: inset 0 0 0 2px var(--secondary);
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.9rem;
+    }
+    .btn-outline-grape:hover:not(:disabled) {
+      background: var(--secondary-container);
+    }
+
+    /* Main Quiz Stage Card */
+    .quiz-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+      container-type: inline-size;
+    }
+
+    .quiz-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .tag-grape {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      box-shadow: inset 0 0 0 2px var(--secondary);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .question-counter-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Quick Tip Drawer */
+    .tip-panel {
+      background: var(--tertiary-container);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+      font-size: 0.95rem;
+    }
+    .tip-panel[hidden] { display: none; }
+    .tip-panel strong { color: var(--primary); }
+
+    /* Question Prompt */
+    .question-prompt {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    /* Visual Aid Stage */
+    .visual-stage {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      min-height: 130px;
+    }
+    .visual-stage[hidden] { display: none; }
+
+    /* Visual sub-components */
+    .big-number-sticker {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-md) var(--space-xl);
+      font-size: clamp(2.5rem, 2rem + 1.5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .bond-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+    }
+    .bond-node {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-full);
+      min-width: 72px;
+      height: 72px;
+      padding: 0 var(--space-md);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.6rem;
+      font-variant-numeric: tabular-nums;
+      box-shadow: var(--shadow-pink);
+      color: var(--on-surface);
+    }
+    .bond-node.is-unknown {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .bond-operator {
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--secondary);
+    }
+
+    .compare-cards-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+    }
+    .compare-entity {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-md);
+      text-align: center;
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .compare-entity-name {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+    }
+    .compare-entity-val {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .compare-entity-sub {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+    .compare-vs-badge {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-weight: 900;
+      font-size: 1.35rem;
+      width: 52px;
+      height: 52px;
+      border-radius: var(--rounded-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-pink);
+    }
+
+    .number-cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+    }
+    .mini-number-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-grape);
+      min-width: 56px;
+      height: 64px;
+      padding: 0 var(--space-md);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .mini-number-card.is-blank {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Interactive Answer Areas */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .option-btn {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: none;
+      box-shadow: var(--shadow-option), inset 0 0 0 2px var(--outline-variant);
+      border-radius: var(--rounded);
+      min-height: 60px;
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--lift);
+      box-shadow: var(--shadow-pink), inset 0 0 0 2px var(--primary);
+    }
+    .option-btn:active:not(:disabled) {
+      transform: var(--press-scale);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-letter {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+      box-shadow: var(--shadow-positive), inset 0 0 0 3px var(--positive);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+    .option-btn.is-wrong {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+      box-shadow: var(--shadow-warning), inset 0 0 0 3px var(--warning);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--warning);
+      color: var(--on-primary);
+    }
+
+    /* Interactive Place Value Builder */
+    .pv-builder {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .pv-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .pv-column {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      justify-items: center;
+    }
+    .pv-col-title {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary);
+    }
+    .pv-stepper {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .pv-step-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--rounded-full);
+      border: none;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 1.5rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-pink);
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .pv-step-btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .pv-step-btn:active:not(:disabled) { transform: var(--press-scale); }
+    .pv-step-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .pv-digit-display {
+      min-width: 56px;
+      text-align: center;
+      font-size: 2.25rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .pv-blocks-tray {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      justify-content: center;
+      min-height: 54px;
+      align-items: flex-end;
+    }
+    .pv-summary-line {
+      text-align: center;
+      font-weight: 700;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      box-shadow: var(--shadow-sky);
+    }
+
+    /* Interactive Order / Sequence Builder */
+    .order-builder {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .order-section-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .order-slots-row, .order-pool-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      align-items: center;
+    }
+    .order-slot {
+      min-width: 68px;
+      height: 68px;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      box-shadow: inset 0 0 0 2px var(--outline);
+      border: none;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .order-slot.is-filled {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .order-slot.is-filled:hover:not(:disabled) { transform: var(--pop-scale); }
+    .order-slot-index {
+      font-size: 0.7rem;
+      font-weight: 700;
+      opacity: 0.8;
+    }
+    .order-pool-card {
+      min-width: 68px;
+      height: 64px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      border: none;
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink), inset 0 0 0 2px var(--primary);
+      font-size: 1.4rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .order-pool-card:hover:not(:disabled) { transform: var(--pop-scale); }
+    .order-pool-card:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .builder-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+    }
+
+    /* Feedback & Pembahasan Box */
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      animation: popIn var(--dur-short) var(--ease-bounce) both;
+    }
+    .feedback-box[hidden] { display: none; }
+    .feedback-box.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-box.is-wrong {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+      box-shadow: var(--shadow-warning);
+    }
+    .feedback-title {
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin: 0;
+    }
+    .pembahasan-card {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .pembahasan-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+    }
+    .pembahasan-text {
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .quiz-footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Summary Report Card */
+    .summary-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+    .summary-card[hidden] { display: none; }
+
+    .summary-hero {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .summary-score-big {
+      font-size: clamp(3rem, 2.2rem + 2vw, 4rem);
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .stars-row {
+      display: flex;
+      gap: var(--space-xs);
+      color: var(--data-4);
+    }
+
+    .mastery-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .mastery-item {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .mastery-item-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .mastery-track {
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .mastery-fill {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      background: var(--data-1);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+    .mastery-item:nth-child(2) .mastery-fill { background: var(--data-2); }
+    .mastery-item:nth-child(3) .mastery-fill { background: var(--data-3); }
+    .mastery-item:nth-child(4) .mastery-fill { background: var(--data-4); }
+    .mastery-item:nth-child(5) .mastery-fill { background: var(--positive); }
+
+    .summary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    /* Footer */
+    .source-footer {
+      text-align: left;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-xs);
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @container (max-width: 480px) {
+      .compare-cards-row {
+        grid-template-columns: 1fr;
+      }
+      .compare-vs-badge {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .hero-panel, .quiz-card, .summary-card {
+        padding: var(--space-lg);
+      }
+      .controls-bar {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero Header -->
+    <header class="hero-panel">
+      <div class="hero-top-row">
+        <span class="kicker-badge">
+          <i data-lucide="sparkles" aria-hidden="true"></i>
+          Matematika Kelas 2 SD · Bab 1
+        </span>
+      </div>
+      <h1 class="display">Kuis Ayo <em>Membilang</em> sampai dengan 50</h1>
+      <p class="hero-subtitle">
+        Ayo berlatih menghitung banyak benda, membaca dan menulis bilangan, menyusun puluhan dan satuan, membandingkan, serta mengurutkan bilangan bersama-sama!
+      </p>
+    </header>
+
+    <!-- Live Scoreboard -->
+    <section class="stats-grid" aria-label="Papan Skor dan Kemajuan">
+      <div class="stat-card">
+        <span class="stat-label">
+          <i data-lucide="trophy" aria-hidden="true"></i>
+          Skor Kamu
+        </span>
+        <div class="stat-value-row">
+          <span class="stat-number is-pink" id="score-display">0</span>
+          <span class="stat-caption">dari 100 poin</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">
+          <i data-lucide="compass" aria-hidden="true"></i>
+          Kemajuan Kuis
+        </span>
+        <div class="stat-value-row">
+          <span class="stat-number" id="progress-text">0 / 15</span>
+          <span class="stat-caption" id="progress-caption">soal selesai</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">
+          <i data-lucide="flame" aria-hidden="true"></i>
+          Benar Beruntun
+        </span>
+        <div class="stat-value-row">
+          <span class="stat-number is-grape" id="streak-display">0</span>
+          <span class="stat-caption" id="streak-caption">Ayo mulai!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topic Filter & Utilities -->
+    <section class="controls-bar" aria-label="Pilihan Topik dan Pengaturan">
+      <div class="topic-pills" role="group" aria-label="Pilih topik latihan">
+        <button type="button" class="btn btn-chip" data-topic="all" aria-pressed="true" onclick="selectTopic('all')">Semua (15)</button>
+        <button type="button" class="btn btn-chip" data-topic="hitung" aria-pressed="false" onclick="selectTopic('hitung')">Hitung Benda</button>
+        <button type="button" class="btn btn-chip" data-topic="baca-tulis" aria-pressed="false" onclick="selectTopic('baca-tulis')">Baca &amp; Tulis</button>
+        <button type="button" class="btn btn-chip" data-topic="nilai-tempat" aria-pressed="false" onclick="selectTopic('nilai-tempat')">Nilai Tempat</button>
+        <button type="button" class="btn btn-chip" data-topic="bandingkan" aria-pressed="false" onclick="selectTopic('bandingkan')">Bandingkan</button>
+        <button type="button" class="btn btn-chip" data-topic="urutkan" aria-pressed="false" onclick="selectTopic('urutkan')">Urutkan</button>
+      </div>
+      <div class="utility-actions">
+        <button type="button" class="btn btn-outline-grape" id="sound-toggle-btn" onclick="toggleSound()">
+          <i data-lucide="volume-2" aria-hidden="true"></i>
+          <span id="sound-toggle-label">Suara: Nyala</span>
+        </button>
+        <button type="button" class="btn btn-quiet" id="reset-btn" onclick="handleResetClick(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+          <span id="reset-btn-label">Mulai Ulang</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Main Quiz Stage -->
+    <section class="quiz-card" id="quiz-stage" aria-live="polite">
+      <div class="quiz-header-row">
+        <span class="tag-grape" id="question-topic-tag">Hitung Benda</span>
+        <div class="utility-actions">
+          <button type="button" class="btn btn-quiet" id="tip-toggle-btn" aria-expanded="false" onclick="toggleTip()">
+            <i data-lucide="lightbulb" aria-hidden="true"></i>
+            Tips Cepat
+          </button>
+          <span class="question-counter-pill" id="question-counter-pill">Soal 1 dari 15</span>
+        </div>
+      </div>
+
+      <div class="tip-panel" id="tip-panel" hidden>
+        <strong>Ingat Tips Bab 1:</strong>
+        <span id="tip-panel-text">Kelompokkan benda setiap 10 agar mudah dihitung. Angka di sebelah kiri adalah Puluhan, dan di sebelah kanan adalah Satuan.</span>
+      </div>
+
+      <h2 class="question-prompt" id="question-prompt">Memuat soal...</h2>
+
+      <div class="visual-stage" id="visual-stage" aria-label="Ilustrasi soal"></div>
+
+      <div id="interaction-stage"></div>
+
+      <div class="feedback-box" id="feedback-box" hidden>
+        <h3 class="feedback-title" id="feedback-title"></h3>
+        <div class="pembahasan-card">
+          <span class="pembahasan-label">Pembahasan Singkat</span>
+          <p class="pembahasan-text" id="pembahasan-text"></p>
+        </div>
+      </div>
+
+      <div class="quiz-footer-row">
+        <button type="button" class="btn btn-quiet" id="prev-btn" onclick="prevQuestion()">
+          <i data-lucide="arrow-left" aria-hidden="true"></i>
+          Sebelumnya
+        </button>
+        <button type="button" class="btn btn-primary" id="next-btn" onclick="nextQuestion()" hidden>
+          <span id="next-btn-label">Soal Berikutnya</span>
+          <i data-lucide="arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Completion Report Card -->
+    <section class="summary-card" id="summary-stage" hidden aria-label="Hasil Akhir Kuis">
+      <div class="summary-hero">
+        <span class="kicker-badge">
+          <i data-lucide="award" aria-hidden="true"></i>
+          Rapor Pintar Bab 1
+        </span>
+        <div class="stars-row" id="summary-stars" aria-label="Perolehan bintang"></div>
+        <h2 class="display" id="summary-headline">Hebat <em>Sekali!</em></h2>
+        <div class="summary-score-big" id="summary-score-big">100</div>
+        <p class="hero-subtitle" id="summary-message"></p>
+      </div>
+
+      <div>
+        <h3 class="question-prompt" style="font-size: var(--subhead-size); margin-bottom: var(--space-md);">
+          Kemampuan Kamu per Topik
+        </h3>
+        <div class="mastery-list" id="mastery-list"></div>
+      </div>
+
+      <div class="summary-actions">
+        <button type="button" class="btn btn-secondary" id="retry-wrong-btn" onclick="retryWrongQuestions()" hidden>
+          <i data-lucide="refresh-cw" aria-hidden="true"></i>
+          Ulangi Soal yang Belum Tepat
+        </button>
+        <button type="button" class="btn btn-primary" onclick="restartCurrentTopic()">
+          <i data-lucide="play" aria-hidden="true"></i>
+          Main Lagi dari Awal
+        </button>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      Sumber materi: Bab 1 Ayo Membilang sampai dengan 50 (halaman 1–36), Buku Siswa Matematika untuk SD/MI Kelas II.
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const TOPIC_LABELS = {
+      hitung: `Menghitung Banyak Benda`,
+      'baca-tulis': `Membaca & Menulis Bilangan`,
+      'nilai-tempat': `Nilai Tempat (Puluhan & Satuan)`,
+      bandingkan: `Membandingkan Bilangan`,
+      urutkan: `Mengurutkan Bilangan`
+    };
+
+    const TOPIC_TIPS = {
+      hitung: `Kelompokkan benda setiap 10 agar mudah dihitung! Misalnya 2 ikatan 10 + 4 satuan = 24.`,
+      'baca-tulis': `Angka puluhan di depan dibaca "... puluh", lalu angka satuan di belakang dibaca biasa. Contoh: 29 dibaca "dua puluh sembilan".`,
+      'nilai-tempat': `Pada bilangan dua angka, angka kiri adalah Puluhan (kelompok 10) dan angka kanan adalah Satuan.`,
+      bandingkan: `Bandingkan angka puluhannya terlebih dahulu! Jika puluhannya sama, baru bandingkan satuannya.`,
+      urutkan: `Urutan maju artinya bertambah 1 setiap langkah. Urutan mundur dimulai dari bilangan paling besar ke paling kecil.`
+    };
+
+    const ENCOURAGING_CORRECT = [
+      `Hebat sekali! Jawabanmu benar!`,
+      `Keren! Kamu teliti sekali!`,
+      `Mantap! Teruskan semangat belajarmu!`,
+      `Luar biasa! Kamu paham materi ini!`
+    ];
+
+    const ENCOURAGING_WRONG = [
+      `Hampir tepat! Yuk, lihat pembahasannya bersama-sama:`,
+      `Tidak apa-apa, belajar itu perlu latihan! Yuk simak caranya:`,
+      `Bagus sudah mencoba! Ayo periksa langkahnya di bawah ini:`
+    ];
+
+    const QUESTIONS = [
+      {
+        id: `q1`,
+        topic: `hitung`,
+        type: `choice`,
+        prompt: `Setiap 1 ikat berisi 10 pensil. Perhatikan gambar ikatan pensil berikut. Berapa banyak seluruh pensil?`,
+        visual: { kind: `pencils`, tens: 2, ones: 4 },
+        options: [`22`, `24`, `26`, `42`],
+        answer: `24`,
+        explanation: `Ada 2 ikat pensil sepuluhan, artinya 10 + 10 = 20. Ditambah 4 pensil satuan di sampingnya: 20 + 4 = 24 pensil.`
+      },
+      {
+        id: `q2`,
+        topic: `hitung`,
+        type: `choice`,
+        prompt: `Lili menyusun balok menjadi menara sepuluhan. Setiap 1 susun berisi 10 balok. Berapa jumlah semua balok Lili?`,
+        visual: { kind: `blocks`, tens: 3, ones: 7 },
+        options: [`30`, `35`, `37`, `47`],
+        answer: `37`,
+        explanation: `Ada 3 susun balok sepuluhan = 30 balok. Ditambah 7 balok satuan. Jadi, 30 + 7 = 37 balok.`
+      },
+      {
+        id: `q3`,
+        topic: `hitung`,
+        type: `choice`,
+        prompt: `Kira memiliki 4 wadah telur. Setiap wadah berisi 10 telur. Di luar wadah masih ada 5 telur. Berapa banyak telur Kira seluruhnya?`,
+        visual: { kind: `eggs`, tens: 4, ones: 5 },
+        options: [`40`, `44`, `45`, `50`],
+        answer: `45`,
+        explanation: `4 wadah sepuluhan berarti 10 + 10 + 10 + 10 = 40 telur. Ditambah 5 telur satuan menjadi 40 + 5 = 45 telur.`
+      },
+      {
+        id: `q4`,
+        topic: `baca-tulis`,
+        type: `choice`,
+        prompt: `Perhatikan lambang bilangan di bawah ini. Bilangan 29 dibaca ....`,
+        visual: { kind: `big-number`, value: `29` },
+        options: [`dua puluh tujuh`, `dua puluh delapan`, `dua puluh sembilan`, `sembilan puluh dua`],
+        answer: `dua puluh sembilan`,
+        explanation: `Angka 2 di depan bernilai 20 (dua puluh) dan angka 9 di belakang bernilai 9 (sembilan). Jadi, 29 dibaca "dua puluh sembilan".`
+      },
+      {
+        id: `q5`,
+        topic: `baca-tulis`,
+        type: `choice`,
+        prompt: `Ibu membeli empat puluh dua buah apel. Lambang bilangan yang tepat untuk "empat puluh dua" adalah ....`,
+        visual: { kind: `word-card`, word: `empat puluh dua` },
+        options: [`24`, `40`, `42`, `44`],
+        answer: `42`,
+        explanation: `"Empat puluh" berarti 40, dan "dua" berarti 2. Jika digabung: 40 + 2 = 42.`
+      },
+      {
+        id: `q6`,
+        topic: `baca-tulis`,
+        type: `choice`,
+        prompt: `Lengkapi pasangan bilangan berikut agar jumlahnya tepat: 20 + ... = 27`,
+        visual: { kind: `bond`, total: `27`, left: `20`, right: `?` },
+        options: [`5`, `6`, `7`, `8`],
+        answer: `7`,
+        explanation: `Bilangan 27 terdiri dari 20 dan 7, karena 20 + 7 = 27. Dibaca "dua puluh tujuh".`
+      },
+      {
+        id: `q7`,
+        topic: `nilai-tempat`,
+        type: `place-value`,
+        prompt: `Ayo susun bilangan 32 menggunakan tombol Puluhan dan Satuan di bawah ini! (32 = ... puluhan + ... satuan)`,
+        visual: { kind: `big-number`, value: `32` },
+        targetTens: 3,
+        targetOnes: 2,
+        explanation: `Pada bilangan 32, angka 3 menempati nilai tempat puluhan (bernilai 30) dan angka 2 menempati nilai tempat satuan (bernilai 2). Jadi, 32 = 3 puluhan + 2 satuan.`
+      },
+      {
+        id: `q8`,
+        topic: `nilai-tempat`,
+        type: `place-value`,
+        prompt: `Lengkapi tabel nilai tempat untuk bilangan 43! (43 = ... puluhan + ... satuan)`,
+        visual: { kind: `big-number`, value: `43` },
+        targetTens: 4,
+        targetOnes: 3,
+        explanation: `Angka 4 di sebelah kiri adalah puluhan (40) dan angka 3 di sebelah kanan adalah satuan (3). Jadi, 43 = 4 puluhan + 3 satuan.`
+      },
+      {
+        id: `q9`,
+        topic: `nilai-tempat`,
+        type: `choice`,
+        prompt: `Perhatikan kedua kartu nilai tempat di bawah ini. Manakah bilangan yang nilainya lebih besar?`,
+        visual: {
+          kind: `compare-cards`,
+          leftTitle: `Kartu A`,
+          leftVal: `2 puluhan + 3 satuan`,
+          leftSub: `Ayo hitung nilainya`,
+          rightTitle: `Kartu B`,
+          rightVal: `1 puluhan + 14 satuan`,
+          rightSub: `Ayo hitung nilainya`
+        },
+        options: [`2 puluhan dan 3 satuan`, `1 puluhan dan 14 satuan`, `Keduanya sama besar`],
+        answer: `1 puluhan dan 14 satuan`,
+        explanation: `Kartu A = 20 + 3 = 23. Kartu B = 10 + 14 = 24. Karena 24 lebih besar dari 23, maka 1 puluhan dan 14 satuan nilainya lebih besar!`
+      },
+      {
+        id: `q10`,
+        topic: `bandingkan`,
+        type: `compare`,
+        prompt: `Kira membawa 26 permen. Tika membawa 32 permen. Bandingkan banyak permen Kira terhadap permen Tika!`,
+        visual: {
+          kind: `compare-cards`,
+          leftTitle: `Permen Kira`,
+          leftVal: `26`,
+          leftSub: `2 puluhan + 6 satuan`,
+          rightTitle: `Permen Tika`,
+          rightVal: `32`,
+          rightSub: `3 puluhan + 2 satuan`
+        },
+        options: [`Lebih kecil dari (<)`, `Sama dengan (=)`, `Lebih besar dari (>)`],
+        answer: `Lebih kecil dari (<)`,
+        explanation: `Amati puluhannya dulu! 26 punya 2 puluhan, sedangkan 32 punya 3 puluhan. Karena 2 puluhan lebih sedikit daripada 3 puluhan, maka 26 lebih kecil dari 32.`
+      },
+      {
+        id: `q11`,
+        topic: `bandingkan`,
+        type: `compare`,
+        prompt: `Bandingkan nilai bilangan di sebelah kiri dengan bilangan di sebelah kanan!`,
+        visual: {
+          kind: `compare-cards`,
+          leftTitle: `Bilangan Kiri`,
+          leftVal: `3 puluhan + 8 satuan`,
+          leftSub: `30 + 8`,
+          rightTitle: `Bilangan Kanan`,
+          rightVal: `38`,
+          rightSub: `Lambang bilangan`
+        },
+        options: [`Lebih kecil dari (<)`, `Sama dengan (=)`, `Lebih besar dari (>)`],
+        answer: `Sama dengan (=)`,
+        explanation: `3 puluhan + 8 satuan nilainya adalah 30 + 8 = 38. Jadi, kedua bilangan tersebut sama dengan (=)!`
+      },
+      {
+        id: `q12`,
+        topic: `bandingkan`,
+        type: `choice`,
+        prompt: `Tika memiliki kartu angka 1, 2, 3, 4, dan 5. Ia mengambil DUA kartu berbeda untuk membuat bilangan yang PALING BESAR. Bilangan berapa yang dihasilkan Tika?`,
+        visual: { kind: `number-cards`, items: [`1`, `2`, `3`, `4`, `5`] },
+        options: [`45`, `53`, `54`, `55`],
+        answer: `54`,
+        explanation: `Untuk membuat bilangan dua angka paling besar dari kartu berbeda, pilih dua angka terbesar yaitu 5 dan 4. Taruh 5 di puluhan dan 4 di satuan, sehingga menjadi 54!`
+      },
+      {
+        id: `q13`,
+        topic: `urutkan`,
+        type: `choice`,
+        prompt: `Lengkapi urutan bilangan maju di bawah ini agar berurutan dengan tepat!`,
+        visual: { kind: `number-cards`, items: [`28`, `?`, `30`, `?`, `32`] },
+        options: [`27 dan 31`, `29 dan 31`, `29 dan 33`, `31 dan 29`],
+        answer: `29 dan 31`,
+        explanation: `Menghitung maju berarti bertambah 1 setiap langkah: 28, lalu 29, 30, 31, dan 32. Jadi bilangan yang tepat adalah 29 dan 31.`
+      },
+      {
+        id: `q14`,
+        topic: `urutkan`,
+        type: `order`,
+        direction: `asc`,
+        prompt: `Ketuk kartu bilangan satu per satu untuk mengurutkan dari yang PALING KECIL ke paling besar!`,
+        cards: [32, 28, 23, 30, 37],
+        answer: [23, 28, 30, 32, 37],
+        explanation: `Lihat puluhannya dulu: kelompok 20-an ada 23 dan 28, lalu kelompok 30-an ada 30, 32, 37. Urutan dari terkecil: 23, 28, 30, 32, 37.`
+      },
+      {
+        id: `q15`,
+        topic: `urutkan`,
+        type: `order`,
+        direction: `desc`,
+        prompt: `Sekarang urutkan bilangan berikut secara MUNDUR dari yang PALING BESAR ke paling kecil!`,
+        cards: [41, 48, 39, 45, 36],
+        answer: [48, 45, 41, 39, 36],
+        explanation: `Mengurutkan mundur dimulai dari puluhan paling besar (40-an), yaitu 48, 45, 41, lalu kelompok 30-an yaitu 39 dan 36. Urutannya: 48, 45, 41, 39, 36.`
+      }
+    ];
+
+    /* Application State */
+    let appState = {
+      topic: `all`,
+      activeIds: QUESTIONS.map(function (q) { return q.id; }),
+      currentIdx: 0,
+      answers: {},
+      streak: 0,
+      bestStreak: 0,
+      soundEnabled: true,
+      showSummary: false
+    };
+
+    /* Temporary interactive draft state for builder questions */
+    let pvDraft = { tens: 0, ones: 0 };
+    let orderDraft = [];
+    let displayedScore = 0;
+    let scoreAnimFrame = null;
+    let audioCtx = null;
+
+    function getActiveQuestions() {
+      const idSet = appState.activeIds;
+      const list = [];
+      for (let i = 0; i < idSet.length; i++) {
+        const found = QUESTIONS.find(function (q) { return q.id === idSet[i]; });
+        if (found) list.push(found);
+      }
+      return list.length > 0 ? list : QUESTIONS;
+    }
+
+    function computeScore() {
+      const list = getActiveQuestions();
+      if (list.length === 0) return 0;
+      let correctCount = 0;
+      for (let i = 0; i < list.length; i++) {
+        const ans = appState.answers[list[i].id];
+        if (ans && ans.isCorrect) correctCount++;
+      }
+      return Math.round((correctCount / list.length) * 100);
+    }
+
+    function computeAnsweredCount() {
+      const list = getActiveQuestions();
+      let count = 0;
+      for (let i = 0; i < list.length; i++) {
+        if (appState.answers[list[i].id]) count++;
+      }
+      return count;
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState({
+            topic: appState.topic,
+            activeIds: appState.activeIds,
+            currentIdx: appState.currentIdx,
+            answers: appState.answers,
+            streak: appState.streak,
+            bestStreak: appState.bestStreak,
+            soundEnabled: appState.soundEnabled,
+            showSummary: appState.showSummary
+          });
+        } catch (err) {
+          // Ignore persistence errors silently in standalone mode
+        }
+      }
+    }
+
+    function playTone(isCorrect) {
+      if (!appState.soundEnabled) return;
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const notes = isCorrect ? [523.25, 659.25, 783.99] : [330, 293.66];
+        for (let i = 0; i < notes.length; i++) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = isCorrect ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(notes[i], now + i * 0.09);
+          gain.gain.setValueAtTime(0.001, now + i * 0.09);
+          gain.gain.exponentialRampToValueAtTime(0.14, now + i * 0.09 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.09 + 0.22);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + i * 0.09);
+          osc.stop(now + i * 0.09 + 0.24);
+        }
+      } catch (e) {
+        // Audio is optional
+      }
+    }
+
+    function animateScoreTo(targetScore) {
+      const el = document.getElementById('score-display');
+      if (!el) return;
+      if (scoreAnimFrame) cancelAnimationFrame(scoreAnimFrame);
+      const startScore = displayedScore;
+      const diff = targetScore - startScore;
+      if (diff === 0) {
+        el.textContent = String(targetScore);
+        return;
+      }
+      const duration = 420;
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(startScore + diff * eased);
+        el.textContent = String(current);
+        if (progress < 1) {
+          scoreAnimFrame = requestAnimationFrame(tick);
+        } else {
+          displayedScore = targetScore;
+        }
+      }
+      scoreAnimFrame = requestAnimationFrame(tick);
+    }
+
+    function renderStats() {
+      const list = getActiveQuestions();
+      const total = list.length;
+      const answered = computeAnsweredCount();
+      const targetScore = computeScore();
+
+      animateScoreTo(targetScore);
+
+      const progText = document.getElementById('progress-text');
+      const progCap = document.getElementById('progress-caption');
+      const progFill = document.getElementById('progress-fill');
+      if (progText) progText.textContent = answered + ` / ` + total;
+      if (progCap) progCap.textContent = answered === total ? `semua selesai!` : `soal selesai`;
+      if (progFill) {
+        const pct = total > 0 ? Math.round((answered / total) * 100) : 0;
+        progFill.style.width = pct + `%`;
+      }
+
+      const streakEl = document.getElementById('streak-display');
+      const streakCap = document.getElementById('streak-caption');
+      if (streakEl) streakEl.textContent = String(appState.streak);
+      if (streakCap) {
+        if (appState.streak >= 3) {
+          streakCap.textContent = `Wah, menyala terus!`;
+        } else if (appState.streak >= 1) {
+          streakCap.textContent = `Pertahankan!`;
+        } else {
+          streakCap.textContent = `Ayo semangat!`;
+        }
+      }
+    }
+
+    function renderTopicPills() {
+      const buttons = document.querySelectorAll('.btn-chip[data-topic]');
+      for (let i = 0; i < buttons.length; i++) {
+        const btn = buttons[i];
+        const topic = btn.getAttribute('data-topic');
+        btn.setAttribute('aria-pressed', topic === appState.topic ? 'true' : 'false');
+      }
+    }
+
+    function renderSoundButton() {
+      const label = document.getElementById('sound-toggle-label');
+      if (label) {
+        label.textContent = appState.soundEnabled ? `Suara: Nyala` : `Suara: Mati`;
+      }
+    }
+
+    function buildVisualSvg(visual) {
+      if (!visual) return '';
+
+      if (visual.kind === `pencils`) {
+        let bundles = ``;
+        for (let b = 0; b < visual.tens; b++) {
+          bundles += `
+            <g transform="translate(${b * 96}, 0)">
+              <rect x="6" y="14" width="76" height="84" rx="14" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2.5"/>
+              <g transform="translate(14, 22)">
+                <rect x="0" y="6" width="8" height="44" rx="3" fill="var(--data-3)"/>
+                <rect x="12" y="6" width="8" height="44" rx="3" fill="var(--data-1)"/>
+                <rect x="24" y="6" width="8" height="44" rx="3" fill="var(--data-4)"/>
+                <rect x="36" y="6" width="8" height="44" rx="3" fill="var(--data-2)"/>
+                <rect x="48" y="6" width="8" height="44" rx="3" fill="var(--data-3)"/>
+                <rect x="-2" y="28" width="60" height="8" rx="4" fill="var(--primary-container)"/>
+              </g>
+              <text x="44" y="90" text-anchor="middle" font-size="14" font-weight="800" fill="var(--on-surface)">10 pensil</text>
+            </g>`;
+        }
+        let singles = ``;
+        for (let s = 0; s < visual.ones; s++) {
+          const sx = visual.tens * 96 + 12 + s * 22;
+          singles += `
+            <g transform="translate(${sx}, 22)">
+              <polygon points="6,0 12,12 0,12" fill="var(--data-4)"/>
+              <rect x="1" y="12" width="10" height="52" rx="3" fill="var(--primary)"/>
+              <rect x="1" y="58" width="10" height="8" rx="2" fill="var(--secondary)"/>
+            </g>`;
+        }
+        const totalW = visual.tens * 96 + 18 + visual.ones * 22;
+        return `<svg viewBox="0 0 ${totalW} 112" width="${Math.min(totalW, 420)}" height="112" aria-hidden="true">${bundles}${singles}</svg>`;
+      }
+
+      if (visual.kind === `blocks`) {
+        let rods = ``;
+        for (let r = 0; r < visual.tens; r++) {
+          let cells = ``;
+          for (let c = 0; c < 10; c++) {
+            cells += `<rect x="4" y="${6 + c * 11}" width="22" height="9" rx="3" fill="var(--tertiary)" stroke="var(--surface-container-low)" stroke-width="1"/>`;
+          }
+          rods += `
+            <g transform="translate(${r * 42}, 0)">
+              ${cells}
+              <text x="15" y="132" text-anchor="middle" font-size="13" font-weight="800" fill="var(--on-surface)">10</text>
+            </g>`;
+        }
+        let cubes = ``;
+        for (let u = 0; u < visual.ones; u++) {
+          const col = u % 2;
+          const row = Math.floor(u / 2);
+          const cx = visual.tens * 42 + 24 + col * 24;
+          const cy = 96 - row * 22;
+          cubes += `<rect x="${cx}" y="${cy}" width="18" height="18" rx="4" fill="var(--primary)"/>`;
+        }
+        const totalW = visual.tens * 42 + 86;
+        return `<svg viewBox="0 0 ${totalW} 142" width="${Math.min(totalW, 380)}" height="142" aria-hidden="true">${rods}${cubes}</svg>`;
+      }
+
+      if (visual.kind === `eggs`) {
+        let trays = ``;
+        for (let t = 0; t < visual.tens; t++) {
+          let dots = ``;
+          for (let row = 0; row < 2; row++) {
+            for (let col = 0; col < 5; col++) {
+              dots += `<ellipse cx="${16 + col * 14}" cy="${24 + row * 18}" rx="5" ry="7" fill="var(--data-4)"/>`;
+            }
+          }
+          trays += `
+            <g transform="translate(${t * 96}, 8)">
+              <rect x="4" y="8" width="84" height="58" rx="14" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2.5"/>
+              ${dots}
+              <text x="46" y="84" text-anchor="middle" font-size="13" font-weight="800" fill="var(--on-surface)">10 telur</text>
+            </g>`;
+        }
+        let loose = ``;
+        for (let e = 0; e < visual.ones; e++) {
+          const ex = visual.tens * 96 + 16 + e * 22;
+          loose += `<ellipse cx="${ex}" cy="46" rx="8" ry="11" fill="var(--data-4)" stroke="var(--on-surface)" stroke-width="1.5"/>`;
+        }
+        const totalW = visual.tens * 96 + 24 + visual.ones * 22;
+        return `<svg viewBox="0 0 ${totalW} 102" width="${Math.min(totalW, 520)}" height="102" aria-hidden="true">${trays}${loose}</svg>`;
+      }
+
+      if (visual.kind === `big-number`) {
+        return `<div class="big-number-sticker">${visual.value}</div>`;
+      }
+
+      if (visual.kind === `word-card`) {
+        return `<div class="big-number-sticker" style="font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); color: var(--secondary);">"${visual.word}"</div>`;
+      }
+
+      if (visual.kind === `bond`) {
+        return `
+          <div class="bond-diagram">
+            <span class="bond-node">${visual.left}</span>
+            <span class="bond-operator">+</span>
+            <span class="bond-node is-unknown">${visual.right}</span>
+            <span class="bond-operator">=</span>
+            <span class="bond-node">${visual.total}</span>
+          </div>`;
+      }
+
+      if (visual.kind === `compare-cards`) {
+        return `
+          <div class="compare-cards-row">
+            <div class="compare-entity">
+              <span class="compare-entity-name">${visual.leftTitle}</span>
+              <span class="compare-entity-val">${visual.leftVal}</span>
+              <span class="compare-entity-sub">${visual.leftSub}</span>
+            </div>
+            <span class="compare-vs-badge">?</span>
+            <div class="compare-entity">
+              <span class="compare-entity-name">${visual.rightTitle}</span>
+              <span class="compare-entity-val">${visual.rightVal}</span>
+              <span class="compare-entity-sub">${visual.rightSub}</span>
+            </div>
+          </div>`;
+      }
+
+      if (visual.kind === `number-cards`) {
+        let html = `<div class="number-cards-row">`;
+        for (let i = 0; i < visual.items.length; i++) {
+          const item = visual.items[i];
+          const cls = item === `?` ? `mini-number-card is-blank` : `mini-number-card`;
+          html += `<span class="${cls}">${item}</span>`;
+        }
+        html += `</div>`;
+        return html;
+      }
+
+      return '';
+    }
+
+    function renderPlaceValueBlocks(tens, ones) {
+      let tensHtml = ``;
+      for (let i = 0; i < tens; i++) {
+        tensHtml += `<svg width="16" height="48" viewBox="0 0 16 48" aria-hidden="true"><rect x="1" y="1" width="14" height="46" rx="5" fill="var(--tertiary)"/></svg>`;
+      }
+      if (tens === 0) {
+        tensHtml = `<span class="stat-caption">Belum ada balok puluhan</span>`;
+      }
+
+      let onesHtml = ``;
+      for (let j = 0; j < ones; j++) {
+        onesHtml += `<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="1" y="1" width="16" height="16" rx="4" fill="var(--primary)"/></svg>`;
+      }
+      if (ones === 0) {
+        onesHtml = `<span class="stat-caption">Belum ada kubus satuan</span>`;
+      }
+
+      return { tensHtml: tensHtml, onesHtml: onesHtml };
+    }
+
+    function renderInteraction(q, savedAnswer) {
+      const container = document.getElementById('interaction-stage');
+      if (!container) return;
+
+      if (q.type === `choice` || q.type === `compare`) {
+        const letters = [`A`, `B`, `C`, `D`];
+        let html = `<div class="options-grid">`;
+        for (let i = 0; i < q.options.length; i++) {
+          const opt = q.options[i];
+          let stateClass = ``;
+          if (savedAnswer) {
+            if (opt === q.answer) stateClass = ` is-correct`;
+            else if (opt === savedAnswer.selected) stateClass = ` is-wrong`;
+          }
+          const disabledAttr = savedAnswer ? `disabled` : ``;
+          const letter = q.type === `compare` ? (i === 0 ? `<` : (i === 1 ? `=` : `>`)) : letters[i];
+          html += `
+            <button type="button" class="option-btn${stateClass}" ${disabledAttr} onclick="submitChoice(${i})">
+              <span class="option-letter">${letter}</span>
+              <span>${opt}</span>
+            </button>`;
+        }
+        html += `</div>`;
+        container.innerHTML = html;
+        return;
+      }
+
+      if (q.type === `place-value`) {
+        const tensVal = savedAnswer ? savedAnswer.tens : pvDraft.tens;
+        const onesVal = savedAnswer ? savedAnswer.ones : pvDraft.ones;
+        const blocks = renderPlaceValueBlocks(tensVal, onesVal);
+        const totalVal = tensVal * 10 + onesVal;
+        const disabledAttr = savedAnswer ? `disabled` : ``;
+
+        container.innerHTML = `
+          <div class="pv-builder">
+            <div class="pv-columns">
+              <div class="pv-column">
+                <span class="pv-col-title">Puluhan (kelompok 10)</span>
+                <div class="pv-stepper">
+                  <button type="button" class="pv-step-btn" ${disabledAttr} aria-label="Kurangi puluhan" onclick="adjustPlaceValue('tens', -1)">−</button>
+                  <span class="pv-digit-display" id="pv-tens-val">${tensVal}</span>
+                  <button type="button" class="pv-step-btn" ${disabledAttr} aria-label="Tambah puluhan" onclick="adjustPlaceValue('tens', 1)">+</button>
+                </div>
+                <div class="pv-blocks-tray" id="pv-tens-tray">${blocks.tensHtml}</div>
+              </div>
+
+              <div class="pv-column">
+                <span class="pv-col-title">Satuan (satuan 1)</span>
+                <div class="pv-stepper">
+                  <button type="button" class="pv-step-btn" ${disabledAttr} aria-label="Kurangi satuan" onclick="adjustPlaceValue('ones', -1)">−</button>
+                  <span class="pv-digit-display" id="pv-ones-val">${onesVal}</span>
+                  <button type="button" class="pv-step-btn" ${disabledAttr} aria-label="Tambah satuan" onclick="adjustPlaceValue('ones', 1)">+</button>
+                </div>
+                <div class="pv-blocks-tray" id="pv-ones-tray">${blocks.onesHtml}</div>
+              </div>
+            </div>
+
+            <div class="pv-summary-line" id="pv-summary-line">
+              ${tensVal} puluhan + ${onesVal} satuan = <strong>${totalVal}</strong>
+            </div>
+
+            ${savedAnswer ? `` : `
+              <div class="builder-actions">
+                <button type="button" class="btn btn-primary" onclick="submitPlaceValue()">
+                  Periksa Jawaban
+                </button>
+              </div>`}
+          </div>`;
+        return;
+      }
+
+      if (q.type === `order`) {
+        const currentOrder = savedAnswer ? savedAnswer.order : orderDraft;
+        const slotsCount = q.cards.length;
+        const directionHint = q.direction === `asc` ? `Paling Kecil → Paling Besar` : `Paling Besar → Paling Kecil`;
+
+        let slotsHtml = ``;
+        for (let s = 0; s < slotsCount; s++) {
+          const val = currentOrder[s];
+          const filled = val !== undefined;
+          const disabledAttr = savedAnswer || !filled ? `disabled` : ``;
+          slotsHtml += `
+            <button type="button" class="order-slot${filled ? ` is-filled` : ``}" ${disabledAttr} onclick="removeOrderSlot(${s})" aria-label="Urutan ke ${s + 1}">
+              <span class="order-slot-index">${s + 1}</span>
+              <span>${filled ? val : `?`}</span>
+            </button>`;
+        }
+
+        let poolHtml = ``;
+        for (let c = 0; c < q.cards.length; c++) {
+          const cardVal = q.cards[c];
+          const isUsed = currentOrder.indexOf(cardVal) !== -1;
+          const disabledAttr = savedAnswer || isUsed ? `disabled` : ``;
+          poolHtml += `
+            <button type="button" class="order-pool-card" ${disabledAttr} onclick="pickOrderCard(${cardVal})">
+              ${cardVal}
+            </button>`;
+        }
+
+        container.innerHTML = `
+          <div class="order-builder">
+            <div>
+              <div class="order-section-label">Urutan Jawabanmu (${directionHint}) — Ketuk kotak terisi untuk membatalkan</div>
+              <div class="order-slots-row">${slotsHtml}</div>
+            </div>
+            <div>
+              <div class="order-section-label">Pilihan Kartu Bilangan</div>
+              <div class="order-pool-row">${poolHtml}</div>
+            </div>
+            ${savedAnswer ? `` : `
+              <div class="builder-actions">
+                <button type="button" class="btn btn-quiet" onclick="clearOrderDraft()">Hapus Urutan</button>
+                <button type="button" class="btn btn-primary" ${currentOrder.length < slotsCount ? `disabled` : ``} onclick="submitOrder()">
+                  Periksa Urutan
+                </button>
+              </div>`}
+          </div>`;
+      }
+    }
+
+    function renderFeedback(q, savedAnswer) {
+      const box = document.getElementById('feedback-box');
+      const title = document.getElementById('feedback-title');
+      const text = document.getElementById('pembahasan-text');
+      const nextBtn = document.getElementById('next-btn');
+      const nextLabel = document.getElementById('next-btn-label');
+      if (!box || !title || !text || !nextBtn || !nextLabel) return;
+
+      if (!savedAnswer) {
+        box.hidden = true;
+        box.className = `feedback-box`;
+        nextBtn.hidden = true;
+        return;
+      }
+
+      box.hidden = false;
+      box.className = `feedback-box ` + (savedAnswer.isCorrect ? `is-correct` : `is-wrong`);
+      title.innerHTML = savedAnswer.isCorrect
+        ? `<i data-lucide="check-circle-2" aria-hidden="true"></i> ${savedAnswer.cheer}`
+        : `<i data-lucide="heart-handshake" aria-hidden="true"></i> ${savedAnswer.cheer}`;
+      text.textContent = q.explanation;
+
+      const list = getActiveQuestions();
+      const isLast = appState.currentIdx >= list.length - 1;
+      nextLabel.textContent = isLast ? `Lihat Rapor Pintar` : `Soal Berikutnya`;
+      nextBtn.hidden = false;
+    }
+
+    function renderQuizStage() {
+      const quizStage = document.getElementById('quiz-stage');
+      const summaryStage = document.getElementById('summary-stage');
+      if (!quizStage || !summaryStage) return;
+
+      if (appState.showSummary) {
+        quizStage.hidden = true;
+        summaryStage.hidden = false;
+        renderSummary();
+        return;
+      }
+
+      quizStage.hidden = false;
+      summaryStage.hidden = true;
+
+      const list = getActiveQuestions();
+      if (appState.currentIdx >= list.length) appState.currentIdx = 0;
+      const q = list[appState.currentIdx];
+      const savedAnswer = appState.answers[q.id] || null;
+
+      const tagEl = document.getElementById('question-topic-tag');
+      const counterEl = document.getElementById('question-counter-pill');
+      const promptEl = document.getElementById('question-prompt');
+      const visualEl = document.getElementById('visual-stage');
+      const tipTextEl = document.getElementById('tip-panel-text');
+      const prevBtn = document.getElementById('prev-btn');
+
+      if (tagEl) tagEl.textContent = TOPIC_LABELS[q.topic] || q.topic;
+      if (counterEl) counterEl.textContent = `Soal ` + (appState.currentIdx + 1) + ` dari ` + list.length;
+      if (promptEl) promptEl.textContent = q.prompt;
+      if (tipTextEl) tipTextEl.textContent = TOPIC_TIPS[q.topic] || ``;
+      if (prevBtn) prevBtn.disabled = appState.currentIdx === 0;
+
+      if (visualEl) {
+        const svgHtml = buildVisualSvg(q.visual);
+        if (svgHtml) {
+          visualEl.hidden = false;
+          visualEl.innerHTML = svgHtml;
+        } else {
+          visualEl.hidden = true;
+          visualEl.innerHTML = ``;
+        }
+      }
+
+      renderInteraction(q, savedAnswer);
+      renderFeedback(q, savedAnswer);
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
+
+    function renderSummary() {
+      const list = getActiveQuestions();
+      let correctCount = 0;
+      const wrongIds = [];
+      for (let i = 0; i < list.length; i++) {
+        const q = list[i];
+        const ans = appState.answers[q.id];
+        if (ans && ans.isCorrect) correctCount++;
+        else wrongIds.push(q.id);
+      }
+
+      const finalScore = list.length > 0 ? Math.round((correctCount / list.length) * 100) : 0;
+      const scoreEl = document.getElementById('summary-score-big');
+      const headlineEl = document.getElementById('summary-headline');
+      const msgEl = document.getElementById('summary-message');
+      const starsEl = document.getElementById('summary-stars');
+      const retryBtn = document.getElementById('retry-wrong-btn');
+      const masteryEl = document.getElementById('mastery-list');
+
+      if (scoreEl) scoreEl.textContent = String(finalScore);
+      if (headlineEl) {
+        if (finalScore >= 85) headlineEl.innerHTML = `Bintang <em>Matematika!</em>`;
+        else if (finalScore >= 60) headlineEl.innerHTML = `Hebat <em>Sekali!</em>`;
+        else headlineEl.innerHTML = `Tetap <em>Semangat!</em>`;
+      }
+      if (msgEl) {
+        msgEl.textContent = `Kamu berhasil menjawab ${correctCount} dari ${list.length} soal dengan benar. Runtunan benar terbaikmu: ${appState.bestStreak} soal beruntun!`;
+      }
+
+      if (starsEl) {
+        const starCount = finalScore >= 85 ? 3 : (finalScore >= 50 ? 2 : 1);
+        let starsHtml = ``;
+        for (let s = 0; s < 3; s++) {
+          const filled = s < starCount;
+          starsHtml += `<i data-lucide="star" style="width: 32px; height: 32px; ${filled ? 'fill: var(--data-4);' : 'opacity: 0.3;'}" aria-hidden="true"></i>`;
+        }
+        starsEl.innerHTML = starsHtml;
+      }
+
+      if (retryBtn) {
+        retryBtn.hidden = wrongIds.length === 0;
+      }
+
+      if (masteryEl) {
+        const topicKeys = [`hitung`, `baca-tulis`, `nilai-tempat`, `bandingkan`, `urutkan`];
+        let masteryHtml = ``;
+        for (let t = 0; t < topicKeys.length; t++) {
+          const key = topicKeys[t];
+          const tQuestions = list.filter(function (q) { return q.topic === key; });
+          if (tQuestions.length === 0) continue;
+          let tCorrect = 0;
+          for (let k = 0; k < tQuestions.length; k++) {
+            const a = appState.answers[tQuestions[k].id];
+            if (a && a.isCorrect) tCorrect++;
+          }
+          const pct = Math.round((tCorrect / tQuestions.length) * 100);
+          masteryHtml += `
+            <div class="mastery-item">
+              <div class="mastery-item-head">
+                <span>${TOPIC_LABELS[key]}</span>
+                <span>${tCorrect} / ${tQuestions.length} benar (${pct}%)</span>
+              </div>
+              <div class="mastery-track">
+                <div class="mastery-fill" style="width: ${pct}%;"></div>
+              </div>
+            </div>`;
+        }
+        masteryEl.innerHTML = masteryHtml;
+      }
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
+
+    function recordAnswer(q, isCorrect, payload) {
+      if (isCorrect) {
+        appState.streak += 1;
+        if (appState.streak > appState.bestStreak) {
+          appState.bestStreak = appState.streak;
+        }
+      } else {
+        appState.streak = 0;
+      }
+
+      const pool = isCorrect ? ENCOURAGING_CORRECT : ENCOURAGING_WRONG;
+      const cheer = pool[Math.floor(Math.random() * pool.length)];
+
+      appState.answers[q.id] = Object.assign({ isCorrect: isCorrect, cheer: cheer }, payload);
+      playTone(isCorrect);
+      renderStats();
+      renderQuizStage();
+      persistState();
+    }
+
+    /* Handler functions (all hoisted function declarations) */
+    function submitChoice(optIdx) {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      const selected = q.options[optIdx];
+      const isCorrect = selected === q.answer;
+      recordAnswer(q, isCorrect, { selected: selected });
+    }
+
+    function adjustPlaceValue(unit, delta) {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      if (unit === `tens`) {
+        pvDraft.tens = Math.max(0, Math.min(5, pvDraft.tens + delta));
+      } else {
+        pvDraft.ones = Math.max(0, Math.min(9, pvDraft.ones + delta));
+      }
+      renderInteraction(q, null);
+    }
+
+    function submitPlaceValue() {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      const isCorrect = pvDraft.tens === q.targetTens && pvDraft.ones === q.targetOnes;
+      recordAnswer(q, isCorrect, { tens: pvDraft.tens, ones: pvDraft.ones });
+    }
+
+    function pickOrderCard(val) {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      if (orderDraft.indexOf(val) !== -1) return;
+      if (orderDraft.length >= q.cards.length) return;
+      orderDraft.push(val);
+      renderInteraction(q, null);
+    }
+
+    function removeOrderSlot(slotIdx) {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      if (slotIdx < 0 || slotIdx >= orderDraft.length) return;
+      orderDraft.splice(slotIdx, 1);
+      renderInteraction(q, null);
+    }
+
+    function clearOrderDraft() {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      orderDraft = [];
+      renderInteraction(q, null);
+    }
+
+    function submitOrder() {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIdx];
+      if (!q || appState.answers[q.id]) return;
+      if (orderDraft.length !== q.answer.length) return;
+      let isCorrect = true;
+      for (let i = 0; i < q.answer.length; i++) {
+        if (orderDraft[i] !== q.answer[i]) {
+          isCorrect = false;
+          break;
+        }
+      }
+      recordAnswer(q, isCorrect, { order: orderDraft.slice() });
+    }
+
+    function resetDraftsForCurrent() {
+      pvDraft = { tens: 0, ones: 0 };
+      orderDraft = [];
+    }
+
+    function nextQuestion() {
+      const list = getActiveQuestions();
+      if (appState.currentIdx < list.length - 1) {
+        appState.currentIdx += 1;
+        resetDraftsForCurrent();
+      } else {
+        appState.showSummary = true;
+      }
+      renderQuizStage();
+      persistState();
+    }
+
+    function prevQuestion() {
+      if (appState.currentIdx > 0) {
+        appState.currentIdx -= 1;
+        resetDraftsForCurrent();
+        renderQuizStage();
+        persistState();
+      }
+    }
+
+    function selectTopic(topic) {
+      appState.topic = topic;
+      if (topic === `all`) {
+        appState.activeIds = QUESTIONS.map(function (q) { return q.id; });
+      } else {
+        appState.activeIds = QUESTIONS.filter(function (q) { return q.topic === topic; }).map(function (q) { return q.id; });
+      }
+      appState.currentIdx = 0;
+      appState.showSummary = false;
+      resetDraftsForCurrent();
+      renderTopicPills();
+      renderStats();
+      renderQuizStage();
+      persistState();
+    }
+
+    function toggleTip() {
+      const panel = document.getElementById('tip-panel');
+      const btn = document.getElementById('tip-toggle-btn');
+      if (!panel || !btn) return;
+      const isHidden = panel.hidden;
+      panel.hidden = !isHidden;
+      btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      renderSoundButton();
+      persistState();
+    }
+
+    function handleResetClick(btn) {
+      if (!btn) return;
+      const label = document.getElementById('reset-btn-label');
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        if (label) label.textContent = `Klik lagi untuk yakin`;
+        setTimeout(function () {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            if (label) label.textContent = `Mulai Ulang`;
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = 'false';
+      if (label) label.textContent = `Mulai Ulang`;
+      appState.answers = {};
+      appState.streak = 0;
+      appState.bestStreak = 0;
+      appState.currentIdx = 0;
+      appState.showSummary = false;
+      selectTopic(appState.topic);
+    }
+
+    function retryWrongQuestions() {
+      const list = getActiveQuestions();
+      const wrongIds = [];
+      for (let i = 0; i < list.length; i++) {
+        const q = list[i];
+        const ans = appState.answers[q.id];
+        if (!ans || !ans.isCorrect) {
+          wrongIds.push(q.id);
+          delete appState.answers[q.id];
+        }
+      }
+      if (wrongIds.length === 0) return;
+      appState.activeIds = wrongIds;
+      appState.currentIdx = 0;
+      appState.streak = 0;
+      appState.showSummary = false;
+      resetDraftsForCurrent();
+      renderStats();
+      renderQuizStage();
+      persistState();
+    }
+
+    function restartCurrentTopic() {
+      const list = getActiveQuestions();
+      for (let i = 0; i < list.length; i++) {
+        delete appState.answers[list[i].id];
+      }
+      appState.currentIdx = 0;
+      appState.streak = 0;
+      appState.showSummary = false;
+      resetDraftsForCurrent();
+      renderStats();
+      renderQuizStage();
+      persistState();
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            if (saved.topic) appState.topic = saved.topic;
+            if (Array.isArray(saved.activeIds) && saved.activeIds.length > 0) appState.activeIds = saved.activeIds;
+            if (typeof saved.currentIdx === 'number') appState.currentIdx = saved.currentIdx;
+            if (saved.answers && typeof saved.answers === 'object') appState.answers = saved.answers;
+            if (typeof saved.streak === 'number') appState.streak = saved.streak;
+            if (typeof saved.bestStreak === 'number') appState.bestStreak = saved.bestStreak;
+            if (typeof saved.soundEnabled === 'boolean') appState.soundEnabled = saved.soundEnabled;
+            if (typeof saved.showSummary === 'boolean') appState.showSummary = saved.showSummary;
+          }
+        } catch (err) {
+          // Proceed with fresh state
+        }
+      }
+
+      renderTopicPills();
+      renderSoundButton();
+      renderStats();
+      renderQuizStage();
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>

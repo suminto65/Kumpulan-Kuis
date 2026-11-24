@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Seru Berbagai Diagram — Matematika Kelas 2 SD</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #ede4f7;
+      --tertiary: #0096cc;
+      --tertiary-container: #dff5ff;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fee2e2;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Extra illustration palette tokens */
+      --fruit-leaf: #2e9e4b;
+      --fruit-yellow: #f4b400;
+      --fruit-brown: #7a4b2a;
+      --fruit-cream: #fff3d6;
+      --fruit-red: #e03e52;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.18);
+      --shadow-focus-pink: 0 0 0 3px rgb(194 32 127 / 0.2);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Shared tokens */
+      --positive: #15803d;
+      --positive-container: #dcfce7;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --focus: var(--primary);
+
+      /* Type scale */
+      --display-size: clamp(1.85rem, 1.4rem + 1.8vw, 2.75rem);
+      --headline-size: clamp(1.3rem, 1.1rem + 0.65vw, 1.65rem);
+      --subhead-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: 0.78rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1080px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Header bar */
+    .app-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .brand-logo-wrap {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-xs);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+    }
+
+    .header-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Pills, Badges, Buttons */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .badge-grape {
+      background: var(--secondary-container);
+      color: var(--secondary);
+    }
+
+    .badge-sky {
+      background: var(--tertiary-container);
+      color: var(--on-surface);
+    }
+
+    .badge-positive {
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      border: none;
+      border-radius: var(--rounded-full);
+      padding: 0.75rem 1.5rem;
+      min-height: 48px;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: var(--shadow-pink-deep);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      box-shadow: var(--shadow-grape-deep);
+    }
+
+    .btn-soft {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-sky);
+    }
+    .btn-soft:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      min-height: 44px;
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+
+    /* Typography */
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .lede {
+      font-size: var(--subhead-size);
+      color: var(--on-surface-variant);
+      max-width: 62ch;
+      margin: 0;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .card-sky { box-shadow: var(--shadow-sky); }
+    .card-grape { box-shadow: var(--shadow-grape); }
+
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Start screen layout */
+    .hero-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: var(--space-md);
+      justify-items: start;
+    }
+
+    .hero-mascot-card {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-sky);
+    }
+
+    /* Form controls */
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .pill-input {
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      border: 2px solid var(--outline);
+      padding: 0.75rem 1.25rem;
+      min-height: 48px;
+      color: var(--on-surface);
+      font-weight: 600;
+      width: 100%;
+      transition: border-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .pill-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-focus-pink);
+    }
+
+    /* Topic selector chips */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      width: 100%;
+    }
+
+    .topic-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      text-align: left;
+      background: var(--surface-container);
+      border: 3px solid transparent;
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 48px;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .topic-chip:hover {
+      transform: var(--lift);
+      background: var(--surface-container-high);
+    }
+    .topic-chip.selected {
+      background: var(--surface-container-low);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .topic-chip-title {
+      font-weight: 800;
+      font-size: var(--body-size);
+      color: var(--on-surface);
+    }
+    .topic-chip-meta {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Resume banner */
+    .resume-banner {
+      background: var(--tertiary-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-sky);
+    }
+
+    /* Material summary grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .guide-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+      box-shadow: var(--shadow-pink);
+    }
+    .guide-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .guide-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+
+    /* Quiz Stage */
+    .quiz-topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .progress-wrap {
+      flex: 1 1 220px;
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .progress-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .progress-track {
+      height: 16px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      padding: 2px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    .score-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--warning-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .question-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: grid;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+
+    .question-prompt {
+      font-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Visual Stimulus Container */
+    .stimulus-box {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .stimulus-title {
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .stimulus-hint {
+      font-size: 0.92rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Countable item board for Pengumpulan Data */
+    .collect-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .collect-item {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: var(--surface-container-low);
+      border: 2px solid transparent;
+      border-radius: var(--rounded);
+      padding: var(--space-sm);
+      min-width: 72px;
+      min-height: 72px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sky);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .collect-item:hover {
+      transform: var(--pop-scale);
+    }
+    .collect-item.counted {
+      border-color: var(--primary);
+      background: var(--primary-container);
+    }
+    .collect-item-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+
+    .count-helper-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+    }
+
+    /* Tables for Data & Turus & Pictogram */
+    .diagram-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+    }
+    .diagram-table th {
+      text-align: left;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-high);
+    }
+    .diagram-table th:first-child {
+      border-radius: var(--rounded) 0 0 var(--rounded);
+    }
+    .diagram-table th:last-child {
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+    }
+    .diagram-table td {
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      vertical-align: middle;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .diagram-table td:first-child {
+      border-radius: var(--rounded) 0 0 var(--rounded);
+    }
+    .diagram-table td:last-child {
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+    }
+
+    .picto-row-icons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .picto-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-md);
+      font-weight: 700;
+      font-size: 0.95rem;
+      justify-self: start;
+      box-shadow: var(--shadow-grape);
+    }
+
+    /* Interactive Builder (Tally / Pictogram builder) */
+    .builder-stage {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .builder-display {
+      min-height: 92px;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .builder-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .builder-counter {
+      font-weight: 800;
+      font-size: var(--headline-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--secondary);
+    }
+
+    /* Option Buttons Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      text-align: left;
+      background: var(--surface-container);
+      border: 3px solid transparent;
+      border-radius: var(--rounded-full);
+      padding: var(--space-md) var(--space-lg);
+      min-height: 60px;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--surface-container-high);
+      box-shadow: var(--shadow-sky);
+    }
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Feedback / Pembahasan Panel */
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      animation: popIn var(--dur-short) var(--ease-bounce) both;
+    }
+    .feedback-box.correct {
+      background: var(--positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-box.wrong {
+      background: var(--warning-container);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+    }
+    .feedback-box.correct .feedback-header { color: var(--positive); }
+    .feedback-box.wrong .feedback-header { color: var(--warning); }
+
+    .feedback-explain {
+      margin: 0;
+      color: var(--on-surface);
+      font-weight: 500;
+    }
+
+    .feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Results Screen */
+    .results-hero {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: grid;
+      gap: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+
+    .stars-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .star-badge {
+      width: 68px;
+      height: 68px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-long) var(--ease-bounce);
+    }
+    .star-badge.earned {
+      background: var(--warning-container);
+      box-shadow: var(--shadow-pink);
+      transform: scale(1.06);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .stat-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .stat-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+
+    .stat-value {
+      font-size: var(--display-size);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .topic-mastery-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .mastery-row {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .review-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .review-item {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-sky);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Confetti canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .hidden { display: none !important; }
+
+    /* Footer attribution */
+    .source-footer {
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      padding: var(--space-md) 0 var(--space-xl);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .hero-split {
+        grid-template-columns: 1fr;
+      }
+      .hero-panel, .question-card, .results-hero {
+        padding: var(--space-lg);
+      }
+      .diagram-table th, .diagram-table td {
+        padding: var(--space-sm);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas" class="hidden" aria-hidden="true"></canvas>
+
+  <div class="page-grid">
+    <!-- Header with Logo BBM Suminto -->
+    <header class="app-header">
+      <div class="brand-lockup">
+        <div class="brand-logo-wrap" title="Logo BBM Suminto">
+          <!-- Custom SVG Emblem for BBM Suminto -->
+          <svg width="50" height="50" viewBox="0 0 64 64" role="img" aria-label="Logo BBM Suminto">
+            <circle cx="32" cy="32" r="30" fill="var(--primary)"></circle>
+            <circle cx="32" cy="32" r="25" fill="var(--surface-container-low)"></circle>
+            <!-- Mini colorful chart bars inside badge -->
+            <rect x="17" y="25" width="7" height="16" rx="3.5" fill="var(--tertiary)"></rect>
+            <rect x="28.5" y="17" width="7" height="24" rx="3.5" fill="var(--primary)"></rect>
+            <rect x="40" y="21" width="7" height="20" rx="3.5" fill="var(--secondary)"></rect>
+            <!-- Banner pill for BBM -->
+            <rect x="10" y="42" width="44" height="14" rx="7" fill="var(--secondary)"></rect>
+            <text x="32" y="52.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="9.5" fill="var(--on-secondary)">BBM SUMINTO</text>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-kicker">BBM Suminto • Matematika Kelas 2 SD</span>
+          <span class="brand-title">Bab 8: Berbagai Diagram</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button type="button" id="sound-toggle-btn" class="btn btn-soft" onclick="toggleSound()" aria-pressed="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <span id="sound-toggle-label">Suara: Nyala</span>
+        </button>
+        <button type="button" id="home-btn" class="btn btn-quiet hidden" onclick="goHome()">
+          Kembali ke Awal
+        </button>
+      </div>
+    </header>
+
+    <!-- SCREEN 1: WELCOME & TOPIC SELECTION -->
+    <main id="screen-start">
+      <section class="hero-panel">
+        <div id="resume-banner" class="resume-banner hidden">
+          <div>
+            <strong>Ada kuis yang belum selesai!</strong>
+            <div id="resume-details" class="topic-chip-meta">Lanjutkan dari soal terakhir atau mulai baru.</div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+            <button type="button" class="btn btn-primary" onclick="resumeSavedQuiz()">Lanjutkan Kuis</button>
+            <button type="button" class="btn btn-soft" onclick="resetSavedState(this)">Hapus Progres</button>
+          </div>
+        </div>
+
+        <div class="hero-split">
+          <div class="hero-copy">
+            <span class="badge">Halaman 225–250 • Kurikulum Merdeka</span>
+            <h1 class="display">Ayo Bermain Kuis Berbagai <em>Diagram</em>!</h1>
+            <p class="lede">
+              Belajar mengumpulkan data, menghitung garis turus, dan membaca diagram gambar dengan cara yang ceria dan seru bersama BBM Suminto.
+            </p>
+
+            <div class="field-group">
+              <label for="student-name-input" class="field-label">Nama Lengkap Siswa (Opsional)</label>
+              <input id="student-name-input" type="text" class="pill-input" maxlength="32" oninput="handleNameInput(this.value)">
+            </div>
+          </div>
+
+          <div class="hero-mascot-card">
+            <div style="display: flex; align-items: center; gap: var(--space-sm);">
+              <span class="badge badge-grape">Bekal Data Seru</span>
+            </div>
+            <!-- Friendly visual preview of Tally + Pictogram -->
+            <svg viewBox="0 0 280 150" width="100%" aria-hidden="true">
+              <rect x="4" y="4" width="272" height="142" rx="18" fill="var(--surface-container-low)"></rect>
+              <!-- Left: Turus preview -->
+              <text x="20" y="30" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Turus = 5</text>
+              <line x1="26" y1="45" x2="26" y2="78" stroke="var(--primary)" stroke-width="4.5" stroke-linecap="round"></line>
+              <line x1="38" y1="45" x2="38" y2="78" stroke="var(--primary)" stroke-width="4.5" stroke-linecap="round"></line>
+              <line x1="50" y1="45" x2="50" y2="78" stroke="var(--primary)" stroke-width="4.5" stroke-linecap="round"></line>
+              <line x1="62" y1="45" x2="62" y2="78" stroke="var(--primary)" stroke-width="4.5" stroke-linecap="round"></line>
+              <line x1="18" y1="74" x2="72" y2="48" stroke="var(--secondary)" stroke-width="4.5" stroke-linecap="round"></line>
+
+              <!-- Right: Mini Pictogram preview -->
+              <text x="124" y="30" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Diagram Gambar</text>
+              <!-- Orange row -->
+              <circle cx="136" cy="56" r="11" fill="var(--data-4)"></circle>
+              <path d="M136 45 C139 40, 144 41, 142 46" fill="var(--fruit-leaf)"></path>
+              <circle cx="164" cy="56" r="11" fill="var(--data-4)"></circle>
+              <path d="M164 45 C167 40, 172 41, 170 46" fill="var(--fruit-leaf)"></path>
+              <circle cx="192" cy="56" r="11" fill="var(--data-4)"></circle>
+              <path d="M192 45 C195 40, 200 41, 198 46" fill="var(--fruit-leaf)"></path>
+              <!-- Grape row -->
+              <circle cx="132" cy="96" r="6" fill="var(--secondary)"></circle>
+              <circle cx="142" cy="96" r="6" fill="var(--secondary)"></circle>
+              <circle cx="137" cy="105" r="6" fill="var(--secondary)"></circle>
+              <circle cx="162" cy="96" r="6" fill="var(--secondary)"></circle>
+              <circle cx="172" cy="96" r="6" fill="var(--secondary)"></circle>
+              <circle cx="167" cy="105" r="6" fill="var(--secondary)"></circle>
+
+              <rect x="20" y="114" width="240" height="22" rx="11" fill="var(--tertiary-container)"></rect>
+              <text x="140" y="129" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="11.5" fill="var(--on-surface)">Pilih topik di bawah, lalu mulai bermain!</text>
+            </svg>
+            <div id="best-score-note" class="topic-chip-meta">Belum ada skor tersimpan. Ayo cetak rekor pertamamu!</div>
+          </div>
+        </div>
+
+        <div style="display: grid; gap: var(--space-sm);">
+          <span class="field-label">Pilih Paket Soal Kuis</span>
+          <div class="topic-grid" role="radiogroup" aria-label="Pilih Paket Soal Kuis">
+            <button type="button" class="topic-chip selected" data-mode="all" onclick="selectMode('all')">
+              <span class="topic-chip-title">Semua Materi (12 Soal)</span>
+              <span class="topic-chip-meta">Lengkap: Data, Turus, &amp; Gambar</span>
+            </button>
+            <button type="button" class="topic-chip" data-mode="data" onclick="selectMode('data')">
+              <span class="topic-chip-title">Pengumpulan Data (4 Soal)</span>
+              <span class="topic-chip-meta">Menghitung &amp; mengelompokkan benda</span>
+            </button>
+            <button type="button" class="topic-chip" data-mode="turus" onclick="selectMode('turus')">
+              <span class="topic-chip-title">Diagram Turus (4 Soal)</span>
+              <span class="topic-chip-meta">Membaca &amp; membuat garis turus</span>
+            </button>
+            <button type="button" class="topic-chip" data-mode="gambar" onclick="selectMode('gambar')">
+              <span class="topic-chip-title">Diagram Gambar (4 Soal)</span>
+              <span class="topic-chip-meta">Piktogram &amp; keterangan gambar</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md);">
+          <button type="button" id="start-quiz-btn" class="btn btn-primary" onclick="startQuiz()" style="padding: 1rem 2rem; font-size: 1.15rem;">
+            Mulai Kuis Sekarang!
+          </button>
+          <span class="topic-chip-meta" id="selected-mode-desc">12 soal interaktif dengan audio ceria dan pembahasan mudah.</span>
+        </div>
+      </section>
+
+      <!-- Materi Ringkas Bab 8 -->
+      <section style="display: grid; gap: var(--space-md); margin-top: var(--space-xl);">
+        <h2 class="section-title">Bekal Belajar Bab 8</h2>
+        <div class="card-grid">
+          <article class="guide-card">
+            <span class="badge">1. Pengumpulan Data</span>
+            <h3 style="margin: 0; font-size: var(--subhead-size);">Kelompokkan yang Sama</h3>
+            <p style="margin: 0; color: var(--on-surface-variant);">
+              Sebelum membuat diagram, kumpulkan dan hitung benda atau pilihan teman yang sejenis agar tidak ada yang terlewat.
+            </p>
+          </article>
+          <article class="guide-card">
+            <span class="badge badge-sky">2. Diagram Turus</span>
+            <h3 style="margin: 0; font-size: var(--subhead-size);">Ikat Lima Garis</h3>
+            <p style="margin: 0; color: var(--on-surface-variant);">
+              Satu garis tegak berarti 1. Setelah 4 garis tegak, garis ke-5 dicoret miring agar langsung terbaca sebagai 1 ikat bernilai 5.
+            </p>
+          </article>
+          <article class="guide-card">
+            <span class="badge badge-grape">3. Diagram Gambar</span>
+            <h3 style="margin: 0; font-size: var(--subhead-size);">Cek Keterangan Gambar</h3>
+            <p style="margin: 0; color: var(--on-surface-variant);">
+              Diagram gambar memakai ikon lucu untuk mewakili jumlah data. Selalu baca keterangan di bawah diagram, misalnya 1 gambar = 1 atau 2 benda.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- SCREEN 2: ACTIVE QUIZ -->
+    <section id="screen-quiz" class="hidden" aria-live="polite" style="display: grid; gap: var(--space-lg);">
+      <div class="quiz-topbar">
+        <span id="quiz-topic-badge" class="badge">Pengumpulan Data</span>
+        <div class="progress-wrap">
+          <div class="progress-label-row">
+            <span id="quiz-progress-text">Soal 1 dari 12</span>
+            <span id="quiz-percent-text">8%</span>
+          </div>
+          <div class="progress-track">
+            <div id="quiz-progress-fill" class="progress-fill"></div>
+          </div>
+        </div>
+        <div class="score-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--fruit-yellow)" stroke="var(--warning)" stroke-width="2" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span id="quiz-score-text">Benar: 0</span>
+        </div>
+      </div>
+
+      <article class="question-card" id="question-card">
+        <p id="question-prompt" class="question-prompt"></p>
+
+        <!-- Dynamic Visual Stimulus -->
+        <div id="stimulus-box" class="stimulus-box"></div>
+
+        <!-- Multiple Choice Options OR Interactive Builder -->
+        <div id="interaction-area"></div>
+
+        <!-- Immediate Feedback & Pembahasan -->
+        <div id="feedback-box" class="feedback-box hidden">
+          <div id="feedback-header" class="feedback-header"></div>
+          <p id="feedback-explain" class="feedback-explain"></p>
+          <div class="feedback-actions">
+            <span id="feedback-subnote" class="topic-chip-meta"></span>
+            <button type="button" id="next-question-btn" class="btn btn-primary" onclick="nextQuestion()">
+              Lanjut ke Soal Berikutnya
+            </button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- SCREEN 3: RESULTS & CELEBRATION -->
+    <section id="screen-results" class="hidden" style="display: grid; gap: var(--space-lg);">
+      <div class="results-hero">
+        <div style="display: grid; gap: var(--space-sm);">
+          <span class="badge badge-positive">Kuis Selesai!</span>
+          <h2 id="results-headline" class="display">Hebat Sekali!</h2>
+          <p id="results-subtitle" class="lede"></p>
+        </div>
+
+        <div class="stars-row" id="stars-row" aria-label="Perolehan Bintang"></div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="field-label">Nilai Kamu</span>
+            <div id="stat-score" class="stat-value">100</div>
+            <span class="topic-chip-meta">Skala nilai 0–100</span>
+          </div>
+          <div class="stat-card">
+            <span class="field-label">Jawaban Benar</span>
+            <div id="stat-correct" class="stat-value" style="color: var(--secondary);">12 / 12</div>
+            <span class="topic-chip-meta">Soal terjawab tepat</span>
+          </div>
+          <div class="stat-card">
+            <span class="field-label">Rekor Terbaik</span>
+            <div id="stat-best" class="stat-value" style="color: var(--on-surface);">100</div>
+            <span class="topic-chip-meta">Tersimpan otomatis</span>
+          </div>
+        </div>
+
+        <div style="display: grid; gap: var(--space-sm);">
+          <h3 style="margin: 0; font-size: var(--subhead-size);">Penguasaan Per Materi</h3>
+          <div id="topic-mastery-list" class="topic-mastery-list"></div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-md);">
+          <button type="button" class="btn btn-primary" onclick="restartSameMode()">Ulangi Kuis Ini</button>
+          <button type="button" class="btn btn-secondary" onclick="goHome()">Pilih Paket Soal Lain</button>
+          <button type="button" class="btn btn-soft" onclick="downloadSummary()">Simpan Rapor (.txt)</button>
+        </div>
+      </div>
+
+      <section style="display: grid; gap: var(--space-md);">
+        <h3 class="section-title">Pembahasan Semua Soal</h3>
+        <div id="review-list" class="review-list"></div>
+      </section>
+    </section>
+
+    <footer class="source-footer">
+      <span>Sumber materi: Buku Matematika untuk SD/MI Kelas II Bab 8: Berbagai Diagram (halaman 225–250), Kemendikbudristek 2022.</span>
+      <span>Disusun oleh BBM Suminto</span>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // STATE & PERSISTENCE
+    // =========================================================================
+    var appState = {
+      studentName: ``,
+      mode: `all`,
+      soundEnabled: true,
+      bestScore: 0,
+      completedRuns: 0,
+      inProgress: null
+    };
+
+    var activeQuestions = [];
+    var currentIndex = 0;
+    var currentAnswers = [];
+    var builderValue = 0;
+    var countedSet = {};
+    var audioCtx = null;
+    var confettiAnimId = null;
+
+    // =========================================================================
+    // QUESTION BANK (12 Comprehensive Questions grounded in Bab 8, p. 225-250)
+    // =========================================================================
+    var QUESTION_BANK = [
+      {
+        id: `q1`,
+        topic: `data`,
+        topicLabel: `Pengumpulan Data`,
+        type: `mcq`,
+        prompt: `Siswa kelas 2 memilih buah kesukaan mereka. Hitunglah kumpulan buah di bawah ini! Berapa banyak siswa yang menyukai buah jeruk?`,
+        stimulusType: `collect`,
+        stimulusTitle: `Data Buah Kesukaan Siswa Kelas 2`,
+        stimulusHint: `Tips: Ketuk setiap gambar buah untuk menandainya saat menghitung!`,
+        collectItems: [
+          { kind: `jeruk`, label: `Jeruk` },
+          { kind: `anggur`, label: `Anggur` },
+          { kind: `jeruk`, label: `Jeruk` },
+          { kind: `apel`, label: `Apel` },
+          { kind: `jeruk`, label: `Jeruk` },
+          { kind: `anggur`, label: `Anggur` },
+          { kind: `jeruk`, label: `Jeruk` },
+          { kind: `apel`, label: `Apel` },
+          { kind: `jeruk`, label: `Jeruk` },
+          { kind: `anggur`, label: `Anggur` },
+          { kind: `jeruk`, label: `Jeruk` },
+          { kind: `apel`, label: `Apel` }
+        ],
+        options: [`3 siswa`, `4 siswa`, `6 siswa`, `12 siswa`],
+        correctIndex: 2,
+        explanation: `Saat kita kelompokkan buah yang sama: ada 6 jeruk, 3 anggur, dan 3 apel. Jadi, siswa yang menyukai buah jeruk ada 6 siswa.`
+      },
+      {
+        id: `q2`,
+        topic: `data`,
+        topicLabel: `Pengumpulan Data`,
+        type: `mcq`,
+        prompt: `Pak Ahmad membuat kue cubit aneka rasa untuk dijual. Perhatikan tabel hasil pengumpulan data di bawah ini! Rasa kue cubit apa yang jumlahnya paling sedikit?`,
+        stimulusType: `dataTable`,
+        stimulusTitle: `Kue Cubit Buatan Pak Ahmad`,
+        columns: [`Rasa Kue Cubit`, `Banyak Kue`],
+        rows: [
+          { icon: `kueCokelat`, label: `Cokelat`, value: `9 kue` },
+          { icon: `kueKeju`, label: `Keju`, value: `4 kue` },
+          { icon: `kueStroberi`, label: `Stroberi`, value: `7 kue` }
+        ],
+        options: [`Rasa Cokelat`, `Rasa Keju`, `Rasa Stroberi`, `Semua sama banyak`],
+        correctIndex: 1,
+        explanation: `Mari kita bandingkan angkanya: Cokelat = 9, Keju = 4, Stroberi = 7. Angka yang paling kecil adalah 4, yaitu kue cubit rasa Keju.`
+      },
+      {
+        id: `q3`,
+        topic: `data`,
+        topicLabel: `Pengumpulan Data`,
+        type: `mcq`,
+        prompt: `Siti mengumpulkan alat tulis yang tertinggal di kelas. Berapa jumlah seluruh alat tulis yang dikumpulkan Siti?`,
+        stimulusType: `dataTable`,
+        stimulusTitle: `Alat Tulis yang Ditemukan Siti`,
+        columns: [`Jenis Alat Tulis`, `Jumlah`],
+        rows: [
+          { icon: `pensil`, label: `Pensil`, value: `5 buah` },
+          { icon: `buku`, label: `Buku Tulis`, value: `4 buah` },
+          { icon: `bola`, label: `Penghapus Karet`, value: `3 buah` }
+        ],
+        options: [`9 alat tulis`, `11 alat tulis`, `12 alat tulis`, `15 alat tulis`],
+        correctIndex: 2,
+        explanation: `Untuk mencari jumlah seluruhnya, kita jumlahkan semua data: 5 + 4 + 3 = 12 alat tulis.`
+      },
+      {
+        id: `q4`,
+        topic: `data`,
+        topicLabel: `Pengumpulan Data`,
+        type: `mcq`,
+        prompt: `Ibu guru mendata hewan peliharaan di rumah siswa. Berapa lebihnya banyak siswa yang memelihara kucing dibandingkan kelinci?`,
+        stimulusType: `dataTable`,
+        stimulusTitle: `Hewan Peliharaan Siswa Kelas 2`,
+        columns: [`Hewan Peliharaan`, `Banyak Siswa`],
+        rows: [
+          { icon: `kucing`, label: `Kucing`, value: `8 siswa` },
+          { icon: `kelinci`, label: `Kelinci`, value: `5 siswa` },
+          { icon: `ikan`, label: `Ikan Hias`, value: `3 siswa` }
+        ],
+        options: [`2 siswa`, `3 siswa`, `5 siswa`, `13 siswa`],
+        correctIndex: 1,
+        explanation: `Kucing ada 8 siswa dan kelinci ada 5 siswa. Selisih atau lebihnya adalah 8 dikurangi 5, yaitu 3 siswa.`
+      },
+      {
+        id: `q5`,
+        topic: `turus`,
+        topicLabel: `Diagram Turus`,
+        type: `mcq`,
+        prompt: `Perhatikan tabel turus mainan kesukaan di bawah ini! Berapa banyak siswa yang menyukai mobil-mobilan?`,
+        stimulusType: `tallyTable`,
+        stimulusTitle: `Diagram Turus Mainan Kesukaan`,
+        rows: [
+          { icon: `mobil`, label: `Mobil-mobilan`, count: 8 },
+          { icon: `bola`, label: `Bola Sepak`, count: 6 },
+          { icon: `buku`, label: `Buku Mewarnai`, count: 4 }
+        ],
+        options: [`5 siswa`, `6 siswa`, `8 siswa`, `9 siswa`],
+        correctIndex: 2,
+        explanation: `Pada baris Mobil-mobilan terdapat 1 ikat turus (bernilai 5) dan 3 garis tegak tambahan. Jadi 5 + 3 = 8 siswa.`
+      },
+      {
+        id: `q6`,
+        topic: `turus`,
+        topicLabel: `Diagram Turus`,
+        type: `builderTally`,
+        prompt: `Ayo berlatih membuat turus! Di taman sekolah terdapat 7 pot bunga mawar. Ketuk tombol + Tambah Turus sampai menunjukkan bilangan 7!`,
+        stimulusType: `builderIntro`,
+        stimulusTitle: `Buat Diagram Turus: 7 Pot Bunga Mawar`,
+        stimulusHint: `Ingat: garis ke-5 otomatis mencoret miring 4 garis pertama menjadi satu ikat!`,
+        targetValue: 7,
+        maxBuild: 15,
+        unitLabel: `turus`,
+        explanation: `Bilangan 7 ditulis dengan 1 ikat turus (5) ditambah 2 garis tegak berdiri. 5 + 2 = 7!`
+      },
+      {
+        id: `q7`,
+        topic: `turus`,
+        topicLabel: `Diagram Turus`,
+        type: `mcq`,
+        prompt: `Siswa mencatat minuman favorit di kantin menggunakan turus. Minuman apa yang paling banyak disukai siswa?`,
+        stimulusType: `tallyTable`,
+        stimulusTitle: `Diagram Turus Minuman Favorit`,
+        rows: [
+          { icon: `susu`, label: `Susu Cokelat`, count: 10 },
+          { icon: `jeruk`, label: `Jus Jeruk`, count: 7 },
+          { icon: `apel`, label: `Jus Apel`, count: 9 }
+        ],
+        options: [`Susu Cokelat (10 siswa)`, `Jus Jeruk (7 siswa)`, `Jus Apel (9 siswa)`, `Susu Cokelat (8 siswa)`],
+        correctIndex: 0,
+        explanation: `Susu Cokelat memiliki 2 ikat turus penuh, yaitu 5 + 5 = 10 siswa. Jus Jeruk ada 7 dan Jus Apel ada 9. Jadi yang paling banyak adalah Susu Cokelat (10 siswa).`
+      },
+      {
+        id: `q8`,
+        topic: `turus`,
+        topicLabel: `Diagram Turus`,
+        type: `builderTally`,
+        prompt: `Tika mendata ada 12 siswa yang gemar membaca buku cerita. Ketuk tombol + Tambah Turus sampai turus menunjukkan angka 12!`,
+        stimulusType: `builderIntro`,
+        stimulusTitle: `Buat Diagram Turus: 12 Siswa Gemar Membaca`,
+        stimulusHint: `Hitung per ikat 5: 5, 10, lalu tambah 2 garis tegak!`,
+        targetValue: 12,
+        maxBuild: 15,
+        unitLabel: `turus`,
+        explanation: `Bilangan 12 terdiri dari 2 ikat penuh (5 + 5 = 10) ditambah 2 garis tegak. Jadi 10 + 2 = 12.`
+      },
+      {
+        id: `q9`,
+        topic: `gambar`,
+        topicLabel: `Diagram Gambar`,
+        type: `mcq`,
+        prompt: `Perhatikan diagram gambar buah kesukaan siswa kelas 2 berikut ini! Buah apa yang paling sedikit disukai siswa?`,
+        stimulusType: `pictoTable`,
+        stimulusTitle: `Diagram Gambar Buah Kesukaan`,
+        legendIcon: `jeruk`,
+        legendText: `Keterangan: 1 gambar buah = 1 siswa`,
+        rows: [
+          { label: `Anggur`, icon: `anggur`, count: 5 },
+          { label: `Jeruk`, icon: `jeruk`, count: 8 },
+          { label: `Apel`, icon: `apel`, count: 4 },
+          { label: `Pisang`, icon: `pisang`, count: 6 }
+        ],
+        options: [`Anggur`, `Jeruk`, `Apel`, `Pisang`],
+        correctIndex: 2,
+        explanation: `Karena 1 gambar = 1 siswa: Anggur = 5, Jeruk = 8, Apel = 4, Pisang = 6. Gambar paling sedikit ada pada baris Apel (4 siswa).`
+      },
+      {
+        id: `q10`,
+        topic: `gambar`,
+        topicLabel: `Diagram Gambar`,
+        type: `mcq`,
+        prompt: `Diagram gambar berikut menunjukkan buku yang dibaca tiga sahabat minggu ini. Berapa selisih banyak buku yang dibaca oleh Kira dan Budi?`,
+        stimulusType: `pictoTable`,
+        stimulusTitle: `Banyak Buku yang Dibaca Minggu Ini`,
+        legendIcon: `buku`,
+        legendText: `Keterangan: 1 gambar buku = 1 buku`,
+        rows: [
+          { label: `Tika`, icon: `buku`, count: 6 },
+          { label: `Kira`, icon: `buku`, count: 9 },
+          { label: `Budi`, icon: `buku`, count: 4 }
+        ],
+        options: [`3 buku`, `4 buku`, `5 buku`, `13 buku`],
+        correctIndex: 2,
+        explanation: `Kira membaca 9 buku dan Budi membaca 4 buku. Selisihnya adalah 9 - 4 = 5 buku.`
+      },
+      {
+        id: `q11`,
+        topic: `gambar`,
+        topicLabel: `Diagram Gambar`,
+        type: `builderPicto`,
+        prompt: `Ayo lengkapi diagram gambar! Pada hari Senin, terjual 5 kue cubit stroberi milik Pak Ahmad. Ketuk + Tambah Kue sampai gambar kue berjumlah 5!`,
+        stimulusType: `builderIntro`,
+        stimulusTitle: `Susun Diagram Gambar Kue Cubit Stroberi`,
+        stimulusHint: `Keterangan: 1 gambar kue = 1 kue cubit stroberi.`,
+        targetValue: 5,
+        maxBuild: 10,
+        pictoIcon: `kueStroberi`,
+        unitLabel: `kue`,
+        explanation: `Karena 1 gambar mewakili 1 kue, maka untuk menunjukkan 5 kue kita menampilkan tepat 5 gambar kue cubit stroberi.`
+      },
+      {
+        id: `q12`,
+        topic: `gambar`,
+        topicLabel: `Diagram Gambar`,
+        type: `mcq`,
+        prompt: `Perhatikan keterangan diagram dengan teliti! Berapa banyak siswa Kelas 2 yang berkunjung ke perpustakaan?`,
+        stimulusType: `pictoTable`,
+        stimulusTitle: `Pengunjung Perpustakaan Sekolah`,
+        legendIcon: `anak`,
+        legendText: `Keterangan: 1 gambar anak = 2 siswa`,
+        rows: [
+          { label: `Kelas 1`, icon: `anak`, count: 3 },
+          { label: `Kelas 2`, icon: `anak`, count: 4 },
+          { label: `Kelas 3`, icon: `anak`, count: 2 }
+        ],
+        options: [`4 siswa`, `6 siswa`, `8 siswa`, `10 siswa`],
+        correctIndex: 2,
+        explanation: `Perhatikan keterangannya: 1 gambar anak mewakili 2 siswa! Di baris Kelas 2 ada 4 gambar anak, maka banyak siswanya = 2 + 2 + 2 + 2 = 8 siswa.`
+      }
+    ];
+
+    // =========================================================================
+    // SVG ILLUSTRATION HELPERS (All colors reference CSS tokens!)
+    // =========================================================================
+    function getItemSVG(kind, size) {
+      var s = size || 36;
+      if (kind === `jeruk`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="22" r="13" fill="var(--data-4)"></circle>
+          <path d="M20 9 C24 3, 31 5, 28 11 C25 12, 21 11, 20 9 Z" fill="var(--fruit-leaf)"></path>
+          <circle cx="15" cy="18" r="2.2" fill="var(--surface-container-low)"></circle>
+        </svg>`;
+      }
+      if (kind === `anggur`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 5 L20 11" stroke="var(--fruit-leaf)" stroke-width="3" stroke-linecap="round"></path>
+          <circle cx="15" cy="16" r="5" fill="var(--secondary)"></circle>
+          <circle cx="25" cy="16" r="5" fill="var(--secondary)"></circle>
+          <circle cx="20" cy="15" r="5" fill="var(--primary)"></circle>
+          <circle cx="17" cy="24" r="5" fill="var(--secondary)"></circle>
+          <circle cx="23" cy="24" r="5" fill="var(--primary)"></circle>
+          <circle cx="20" cy="31" r="5" fill="var(--secondary)"></circle>
+        </svg>`;
+      }
+      if (kind === `apel`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 12 C14 9, 8 14, 9 22 C10 30, 15 35, 20 33 C25 35, 30 30, 31 22 C32 14, 26 9, 20 12 Z" fill="var(--fruit-red)"></path>
+          <path d="M20 12 C20 7, 25 5, 28 7 C26 11, 23 12, 20 12 Z" fill="var(--fruit-leaf)"></path>
+          <circle cx="14" cy="18" r="2" fill="var(--surface-container-low)"></circle>
+        </svg>`;
+      }
+      if (kind === `pisang`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M10 28 C16 33, 29 27, 32 11 C28 14, 21 23, 10 28 Z" fill="var(--fruit-yellow)" stroke="var(--warning)" stroke-width="1.5" stroke-linejoin="round"></path>
+          <rect x="29" y="8" width="4" height="4" rx="1" fill="var(--fruit-brown)"></rect>
+        </svg>`;
+      }
+      if (kind === `kueCokelat`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="21" r="13" fill="var(--fruit-brown)"></circle>
+          <circle cx="15" cy="17" r="2.2" fill="var(--fruit-cream)"></circle>
+          <circle cx="24" cy="18" r="2.2" fill="var(--fruit-cream)"></circle>
+          <circle cx="19" cy="25" r="2.2" fill="var(--fruit-cream)"></circle>
+        </svg>`;
+      }
+      if (kind === `kueKeju`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="21" r="13" fill="var(--fruit-yellow)"></circle>
+          <rect x="13" y="15" width="6" height="3" rx="1.5" fill="var(--fruit-cream)"></rect>
+          <rect x="21" y="21" width="6" height="3" rx="1.5" fill="var(--fruit-cream)"></rect>
+        </svg>`;
+      }
+      if (kind === `kueStroberi`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="21" r="13" fill="var(--primary-container)"></circle>
+          <circle cx="20" cy="16" r="4" fill="var(--primary)"></circle>
+          <circle cx="14" cy="24" r="2" fill="var(--surface-container-low)"></circle>
+          <circle cx="25" cy="24" r="2" fill="var(--surface-container-low)"></circle>
+        </svg>`;
+      }
+      if (kind === `pensil`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="10" y="14" width="18" height="10" rx="2" transform="rotate(-35 20 20)" fill="var(--fruit-yellow)"></rect>
+          <polygon points="29,10 34,15 26,18" fill="var(--fruit-cream)"></polygon>
+          <circle cx="32" cy="12" r="2" fill="var(--on-surface)"></circle>
+        </svg>`;
+      }
+      if (kind === `buku`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="9" y="8" width="22" height="25" rx="4" fill="var(--tertiary)"></rect>
+          <rect x="13" y="8" width="3" height="25" fill="var(--secondary)"></rect>
+          <rect x="19" y="14" width="9" height="4" rx="2" fill="var(--surface-container-low)"></rect>
+        </svg>`;
+      }
+      if (kind === `bola`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="13" fill="var(--surface-container-low)" stroke="var(--on-surface)" stroke-width="2"></circle>
+          <polygon points="20,14 25,18 23,24 17,24 15,18" fill="var(--on-surface)"></polygon>
+        </svg>`;
+      }
+      if (kind === `kucing`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="10,16 13,7 19,14" fill="var(--data-4)"></polygon>
+          <polygon points="30,16 27,7 21,14" fill="var(--data-4)"></polygon>
+          <circle cx="20" cy="22" r="11" fill="var(--data-4)"></circle>
+          <circle cx="16" cy="20" r="1.8" fill="var(--on-surface)"></circle>
+          <circle cx="24" cy="20" r="1.8" fill="var(--on-surface)"></circle>
+          <polygon points="18,24 22,24 20,26.5" fill="var(--primary)"></polygon>
+        </svg>`;
+      }
+      if (kind === `kelinci`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <ellipse cx="15" cy="11" rx="3.5" ry="9" fill="var(--primary-container)"></ellipse>
+          <ellipse cx="25" cy="11" rx="3.5" ry="9" fill="var(--primary-container)"></ellipse>
+          <circle cx="20" cy="25" r="10" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"></circle>
+          <circle cx="16.5" cy="23.5" r="1.6" fill="var(--on-surface)"></circle>
+          <circle cx="23.5" cy="23.5" r="1.6" fill="var(--on-surface)"></circle>
+          <circle cx="20" cy="26.5" r="1.8" fill="var(--primary)"></circle>
+        </svg>`;
+      }
+      if (kind === `ikan`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="8,20 3,13 3,27" fill="var(--tertiary)"></polygon>
+          <ellipse cx="21" cy="20" rx="12" ry="8" fill="var(--tertiary)"></ellipse>
+          <circle cx="27" cy="18" r="2" fill="var(--surface-container-low)"></circle>
+          <circle cx="27.5" cy="18" r="1" fill="var(--on-surface)"></circle>
+        </svg>`;
+      }
+      if (kind === `mobil`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M8 22 L12 13 L26 13 L31 22 Z" fill="var(--tertiary)"></path>
+          <rect x="6" y="20" width="28" height="9" rx="4" fill="var(--primary)"></rect>
+          <circle cx="13" cy="30" r="4" fill="var(--on-surface)"></circle>
+          <circle cx="27" cy="30" r="4" fill="var(--on-surface)"></circle>
+        </svg>`;
+      }
+      if (kind === `susu`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="12" y="12" width="16" height="22" rx="3" fill="var(--fruit-brown)"></rect>
+          <polygon points="12,12 20,6 28,12" fill="var(--fruit-cream)"></polygon>
+          <circle cx="20" cy="23" r="4" fill="var(--fruit-cream)"></circle>
+        </svg>`;
+      }
+      if (kind === `anak`) {
+        return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="13" r="7" fill="var(--fruit-cream)" stroke="var(--on-surface)" stroke-width="1.5"></circle>
+          <path d="M13 12 C14 6, 26 6, 27 12" fill="var(--on-surface)"></path>
+          <path d="M10 34 C10 24, 30 24, 30 34 Z" fill="var(--primary)"></path>
+          <circle cx="17.5" cy="13" r="1.2" fill="var(--on-surface)"></circle>
+          <circle cx="22.5" cy="13" r="1.2" fill="var(--on-surface)"></circle>
+        </svg>`;
+      }
+      return `<svg width="${s}" height="${s}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="12" fill="var(--primary)"></circle></svg>`;
+    }
+
+    function renderTallySVG(count) {
+      if (count <= 0) {
+        return `<span style="color: var(--on-surface-variant); font-weight: 600;">Belum ada garis turus (0). Ketuk + Tambah Turus!</span>`;
+      }
+      var groups = Math.floor(count / 5);
+      var rem = count % 5;
+      var groupWidth = 54;
+      var remWidth = rem > 0 ? rem * 11 + 8 : 0;
+      var totalWidth = Math.max(60, groups * (groupWidth + 12) + remWidth);
+      var svgParts = [];
+      var xOffset = 6;
+
+      for (var g = 0; g < groups; g++) {
+        for (var i = 0; i < 4; i++) {
+          var lx = xOffset + i * 11;
+          svgParts.push(`<line x1="${lx}" y1="8" x2="${lx}" y2="38" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"></line>`);
+        }
+        var slashEnd = xOffset + 38;
+        svgParts.push(`<line x1="${xOffset - 4}" y1="35" x2="${slashEnd}" y2="11" stroke="var(--secondary)" stroke-width="4" stroke-linecap="round"></line>`);
+        xOffset += groupWidth + 12;
+      }
+
+      for (var r = 0; r < rem; r++) {
+        var rx = xOffset + r * 11;
+        svgParts.push(`<line x1="${rx}" y1="8" x2="${rx}" y2="38" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"></line>`);
+      }
+
+      return `<svg width="${totalWidth}" height="46" viewBox="0 0 ${totalWidth} 46" role="img" aria-label="Turus berjumlah ${count}">${svgParts.join(``)}</svg>`;
+    }
+
+    // =========================================================================
+    // WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    function ensureAudioContext() {
+      if (!appState.soundEnabled) return null;
+      try {
+        var Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return null;
+        if (!audioCtx) {
+          audioCtx = new Ctx();
+        }
+        if (audioCtx && audioCtx.state === `suspended` && typeof audioCtx.resume === `function`) {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function playNote(freq, startDelay, duration, type, volume) {
+      var ctx = ensureAudioContext();
+      if (!ctx) return;
+      try {
+        var now = ctx.currentTime + (startDelay || 0);
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = type || `triangle`;
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(volume || 0.16, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + duration + 0.02);
+      } catch (e) {}
+    }
+
+    function playClickSound() {
+      playNote(587.33, 0, 0.07, `sine`, 0.1);
+    }
+
+    function playCorrectSound() {
+      playNote(523.25, 0, 0.14, `triangle`, 0.18);
+      playNote(659.25, 0.09, 0.14, `triangle`, 0.18);
+      playNote(783.99, 0.18, 0.18, `triangle`, 0.2);
+      playNote(1046.5, 0.27, 0.28, `triangle`, 0.2);
+    }
+
+    function playWrongSound() {
+      playNote(349.23, 0, 0.16, `sine`, 0.14);
+      playNote(277.18, 0.14, 0.24, `sine`, 0.14);
+    }
+
+    function playFanfareSound() {
+      playNote(523.25, 0, 0.12, `triangle`, 0.18);
+      playNote(659.25, 0.1, 0.12, `triangle`, 0.18);
+      playNote(783.99, 0.2, 0.12, `triangle`, 0.18);
+      playNote(1046.5, 0.32, 0.2, `triangle`, 0.22);
+      playNote(783.99, 0.5, 0.12, `triangle`, 0.16);
+      playNote(1046.5, 0.62, 0.38, `triangle`, 0.24);
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      updateSoundButtonUI();
+      if (appState.soundEnabled) {
+        playClickSound();
+      }
+      persistState();
+    }
+
+    function updateSoundButtonUI() {
+      var btn = document.getElementById(`sound-toggle-btn`);
+      var label = document.getElementById(`sound-toggle-label`);
+      if (btn) btn.setAttribute(`aria-pressed`, appState.soundEnabled ? `true` : `false`);
+      if (label) label.textContent = appState.soundEnabled ? `Suara: Nyala` : `Suara: Mati`;
+    }
+
+    // =========================================================================
+    // STATE PERSISTENCE HELPERS
+    // =========================================================================
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (e) {}
+      }
+    }
+
+    async function loadSavedState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          var saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (typeof saved.studentName === `string`) appState.studentName = saved.studentName;
+            if (typeof saved.mode === `string`) appState.mode = saved.mode;
+            if (typeof saved.soundEnabled === `boolean`) appState.soundEnabled = saved.soundEnabled;
+            if (typeof saved.bestScore === `number`) appState.bestScore = saved.bestScore;
+            if (typeof saved.completedRuns === `number`) appState.completedRuns = saved.completedRuns;
+            if (saved.inProgress && Array.isArray(saved.inProgress.answers)) {
+              appState.inProgress = saved.inProgress;
+            }
+          }
+        } catch (e) {}
+      }
+      applyLoadedStateToUI();
+    }
+
+    function applyLoadedStateToUI() {
+      var nameInput = document.getElementById(`student-name-input`);
+      if (nameInput) nameInput.value = appState.studentName || ``;
+
+      selectMode(appState.mode || `all`, true);
+      updateSoundButtonUI();
+
+      var bestNote = document.getElementById(`best-score-note`);
+      if (bestNote) {
+        if (appState.completedRuns > 0) {
+          bestNote.textContent = `Skor terbaikmu: ${appState.bestScore} (sudah bermain ${appState.completedRuns} kali).`;
+        } else {
+          bestNote.textContent = `Belum ada skor tersimpan. Ayo cetak rekor pertamamu!`;
+        }
+      }
+
+      var resumeBanner = document.getElementById(`resume-banner`);
+      var resumeDetails = document.getElementById(`resume-details`);
+      if (resumeBanner && appState.inProgress && appState.inProgress.answers.length < getQuestionsForMode(appState.inProgress.mode).length) {
+        resumeBanner.classList.remove(`hidden`);
+        if (resumeDetails) {
+          var totalQ = getQuestionsForMode(appState.inProgress.mode).length;
+          resumeDetails.textContent = `Sudah menjawab ${appState.inProgress.answers.length} dari ${totalQ} soal.`;
+        }
+      } else if (resumeBanner) {
+        resumeBanner.classList.add(`hidden`);
+      }
+    }
+
+    // =========================================================================
+    // NAVIGATION & START SCREEN ACTIONS
+    // =========================================================================
+    function handleNameInput(val) {
+      appState.studentName = String(val || ``).slice(0, 32);
+      persistState();
+    }
+
+    function selectMode(mode, silent) {
+      appState.mode = mode;
+      var chips = document.querySelectorAll(`.topic-chip`);
+      chips.forEach(function(chip) {
+        if (chip.dataset.mode === mode) {
+          chip.classList.add(`selected`);
+        } else {
+          chip.classList.remove(`selected`);
+        }
+      });
+
+      var desc = document.getElementById(`selected-mode-desc`);
+      if (desc) {
+        if (mode === `all`) desc.textContent = `12 soal interaktif lengkap: Pengumpulan Data, Diagram Turus, dan Diagram Gambar.`;
+        else if (mode === `data`) desc.textContent = `4 soal fokus menghitung, mengelompokkan, dan membandingkan data.`;
+        else if (mode === `turus`) desc.textContent = `4 soal fokus membaca dan menyusun garis turus kelipatan 5.`;
+        else desc.textContent = `4 soal fokus membaca dan melengkapi diagram gambar (piktogram).`;
+      }
+
+      if (!silent) {
+        playClickSound();
+        persistState();
+      }
+    }
+
+    function getQuestionsForMode(mode) {
+      if (mode === `all`) return QUESTION_BANK.slice();
+      return QUESTION_BANK.filter(function(q) { return q.topic === mode; });
+    }
+
+    function showScreen(screenId) {
+      var screens = [`screen-start`, `screen-quiz`, `screen-results`];
+      screens.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+          if (id === screenId) el.classList.remove(`hidden`);
+          else el.classList.add(`hidden`);
+        }
+      });
+      var homeBtn = document.getElementById(`home-btn`);
+      if (homeBtn) {
+        if (screenId === `screen-start`) homeBtn.classList.add(`hidden`);
+        else homeBtn.classList.remove(`hidden`);
+      }
+      stopConfetti();
+    }
+
+    function goHome() {
+      playClickSound();
+      applyLoadedStateToUI();
+      showScreen(`screen-start`);
+    }
+
+    function startQuiz() {
+      playClickSound();
+      activeQuestions = getQuestionsForMode(appState.mode);
+      currentIndex = 0;
+      currentAnswers = [];
+      appState.inProgress = {
+        mode: appState.mode,
+        answers: []
+      };
+      persistState();
+      showScreen(`screen-quiz`);
+      renderCurrentQuestion();
+    }
+
+    function resumeSavedQuiz() {
+      if (!appState.inProgress) return;
+      playClickSound();
+      appState.mode = appState.inProgress.mode || `all`;
+      activeQuestions = getQuestionsForMode(appState.mode);
+      currentAnswers = appState.inProgress.answers.slice();
+      currentIndex = Math.min(currentAnswers.length, activeQuestions.length - 1);
+      showScreen(`screen-quiz`);
+      renderCurrentQuestion();
+    }
+
+    function resetSavedState(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Ketuk lagi untuk hapus`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Hapus Progres`;
+      }
+      appState.inProgress = null;
+      persistState();
+      applyLoadedStateToUI();
+    }
+
+    function restartSameMode() {
+      startQuiz();
+    }
+
+    // =========================================================================
+    // QUESTION RENDERING & INTERACTIONS
+    // =========================================================================
+    function renderCurrentQuestion() {
+      var q = activeQuestions[currentIndex];
+      if (!q) return;
+
+      builderValue = 0;
+      countedSet = {};
+
+      var total = activeQuestions.length;
+      var num = currentIndex + 1;
+      var pct = Math.round((num / total) * 100);
+      var correctCount = currentAnswers.filter(function(a) { return a.isCorrect; }).length;
+
+      var badgeEl = document.getElementById(`quiz-topic-badge`);
+      if (badgeEl) {
+        badgeEl.textContent = q.topicLabel;
+        badgeEl.className = q.topic === `turus` ? `badge badge-sky` : (q.topic === `gambar` ? `badge badge-grape` : `badge`);
+      }
+
+      var progText = document.getElementById(`quiz-progress-text`);
+      if (progText) progText.textContent = `Soal ${num} dari ${total}`;
+
+      var pctText = document.getElementById(`quiz-percent-text`);
+      if (pctText) pctText.textContent = `${pct}%`;
+
+      var progFill = document.getElementById(`quiz-progress-fill`);
+      if (progFill) progFill.style.width = `${pct}%`;
+
+      var scoreText = document.getElementById(`quiz-score-text`);
+      if (scoreText) scoreText.textContent = `Benar: ${correctCount}`;
+
+      var promptEl = document.getElementById(`question-prompt`);
+      if (promptEl) promptEl.textContent = q.prompt;
+
+      renderStimulus(q);
+      renderInteractionArea(q);
+
+      var fbBox = document.getElementById(`feedback-box`);
+      if (fbBox) fbBox.classList.add(`hidden`);
+    }
+
+    function renderStimulus(q) {
+      var box = document.getElementById(`stimulus-box`);
+      if (!box) return;
+
+      var html = `<h3 class="stimulus-title">${q.stimulusTitle}</h3>`;
+
+      if (q.stimulusType === `collect`) {
+        html += `<p class="stimulus-hint">${q.stimulusHint}</p>`;
+        html += `<div class="collect-grid">`;
+        q.collectItems.forEach(function(item, idx) {
+          html += `<button type="button" class="collect-item" id="collect-item-${idx}" onclick="toggleCollectItem(${idx})">
+            ${getItemSVG(item.kind, 38)}
+            <span class="collect-item-label">${item.label}</span>
+          </button>`;
+        });
+        html += `</div>`;
+        html += `<div class="count-helper-bar">
+          <span id="collect-counter-text" style="font-weight: 700;">Ditandai: 0 gambar</span>
+          <button type="button" class="btn btn-quiet" onclick="clearCollectItems()">Reset Tanda</button>
+        </div>`;
+      } else if (q.stimulusType === `dataTable`) {
+        html += `<table class="diagram-table">
+          <thead><tr><th>${q.columns[0]}</th><th>${q.columns[1]}</th></tr></thead>
+          <tbody>`;
+        q.rows.forEach(function(r) {
+          html += `<tr>
+            <td><span style="display: inline-flex; align-items: center; gap: var(--space-sm);">${getItemSVG(r.icon, 30)} ${r.label}</span></td>
+            <td style="font-weight: 800; color: var(--primary);">${r.value}</td>
+          </tr>`;
+        });
+        html += `</tbody></table>`;
+      } else if (q.stimulusType === `tallyTable`) {
+        html += `<table class="diagram-table">
+          <thead><tr><th>Kategori</th><th>Turus</th></tr></thead>
+          <tbody>`;
+        q.rows.forEach(function(r) {
+          html += `<tr>
+            <td><span style="display: inline-flex; align-items: center; gap: var(--space-sm);">${getItemSVG(r.icon, 30)} ${r.label}</span></td>
+            <td>${renderTallySVG(r.count)}</td>
+          </tr>`;
+        });
+        html += `</tbody></table>`;
+      } else if (q.stimulusType === `pictoTable`) {
+        html += `<table class="diagram-table">
+          <thead><tr><th>Kategori</th><th>Gambar</th></tr></thead>
+          <tbody>`;
+        q.rows.forEach(function(r) {
+          var icons = ``;
+          for (var i = 0; i < r.count; i++) {
+            icons += getItemSVG(r.icon, 32);
+          }
+          html += `<tr>
+            <td><strong>${r.label}</strong></td>
+            <td><div class="picto-row-icons">${icons}</div></td>
+          </tr>`;
+        });
+        html += `</tbody></table>`;
+        html += `<div class="picto-legend">${getItemSVG(q.legendIcon, 26)} <span>${q.legendText}</span></div>`;
+      } else if (q.stimulusType === `builderIntro`) {
+        html += `<p class="stimulus-hint">${q.stimulusHint}</p>`;
+      }
+
+      box.innerHTML = html;
+    }
+
+    function toggleCollectItem(idx) {
+      playClickSound();
+      countedSet[idx] = !countedSet[idx];
+      var btn = document.getElementById(`collect-item-${idx}`);
+      if (btn) {
+        if (countedSet[idx]) btn.classList.add(`counted`);
+        else btn.classList.remove(`counted`);
+      }
+      var count = Object.keys(countedSet).filter(function(k) { return countedSet[k]; }).length;
+      var counterEl = document.getElementById(`collect-counter-text`);
+      if (counterEl) counterEl.textContent = `Ditandai: ${count} gambar`;
+    }
+
+    function clearCollectItems() {
+      playClickSound();
+      countedSet = {};
+      var items = document.querySelectorAll(`.collect-item`);
+      items.forEach(function(el) { el.classList.remove(`counted`); });
+      var counterEl = document.getElementById(`collect-counter-text`);
+      if (counterEl) counterEl.textContent = `Ditandai: 0 gambar`;
+    }
+
+    function renderInteractionArea(q) {
+      var area = document.getElementById(`interaction-area`);
+      if (!area) return;
+
+      if (q.type === `mcq`) {
+        var letters = [`A`, `B`, `C`, `D`];
+        var html = `<div class="options-grid">`;
+        q.options.forEach(function(opt, idx) {
+          html += `<button type="button" class="option-btn" id="opt-btn-${idx}" onclick="submitMCQ(${idx})">
+            <span class="option-letter">${letters[idx]}</span>
+            <span>${opt}</span>
+          </button>`;
+        });
+        html += `</div>`;
+        area.innerHTML = html;
+      } else {
+        var addLabel = q.type === `builderTally` ? `+ Tambah Turus` : `+ Tambah Kue`;
+        var subLabel = q.type === `builderTally` ? `- Kurangi` : `- Kurangi`;
+        area.innerHTML = `<div class="builder-stage">
+          <div class="builder-display" id="builder-display">${renderBuilderPreview(q)}</div>
+          <div class="builder-controls">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm);">
+              <button type="button" id="builder-minus-btn" class="btn btn-soft" onclick="adjustBuilder(-1)">${subLabel}</button>
+              <button type="button" id="builder-plus-btn" class="btn btn-secondary" onclick="adjustBuilder(1)">${addLabel}</button>
+              <span class="builder-counter" id="builder-count-text">0 ${q.unitLabel}</span>
+            </div>
+            <button type="button" id="builder-submit-btn" class="btn btn-primary" onclick="submitBuilder()">
+              Periksa Jawaban
+            </button>
+          </div>
+        </div>`;
+      }
+    }
+
+    function renderBuilderPreview(q) {
+      if (q.type === `builderTally`) {
+        return renderTallySVG(builderValue);
+      }
+      if (builderValue <= 0) {
+        return `<span style="color: var(--on-surface-variant); font-weight: 600;">Belum ada gambar. Ketuk + Tambah Kue!</span>`;
+      }
+      var out = ``;
+      for (var i = 0; i < builderValue; i++) {
+        out += getItemSVG(q.pictoIcon || `kueStroberi`, 42);
+      }
+      return out;
+    }
+
+    function adjustBuilder(delta) {
+      var q = activeQuestions[currentIndex];
+      if (!q || currentAnswers[currentIndex]) return;
+      var next = builderValue + delta;
+      if (next < 0) next = 0;
+      if (next > (q.maxBuild || 15)) next = q.maxBuild || 15;
+      builderValue = next;
+      playClickSound();
+
+      var display = document.getElementById(`builder-display`);
+      if (display) display.innerHTML = renderBuilderPreview(q);
+
+      var countEl = document.getElementById(`builder-count-text`);
+      if (countEl) countEl.textContent = `${builderValue} ${q.unitLabel}`;
+    }
+
+    function submitMCQ(chosenIdx) {
+      var q = activeQuestions[currentIndex];
+      if (!q || currentAnswers[currentIndex]) return;
+
+      var isCorrect = chosenIdx === q.correctIndex;
+      for (var i = 0; i < q.options.length; i++) {
+        var btn = document.getElementById(`opt-btn-${i}`);
+        if (!btn) continue;
+        btn.disabled = true;
+        if (i === q.correctIndex) {
+          btn.classList.add(`is-correct`);
+        } else if (i === chosenIdx && !isCorrect) {
+          btn.classList.add(`is-wrong`);
+        }
+      }
+
+      recordAnswer(q, isCorrect, q.options[chosenIdx], q.options[q.correctIndex]);
+    }
+
+    function submitBuilder() {
+      var q = activeQuestions[currentIndex];
+      if (!q || currentAnswers[currentIndex]) return;
+
+      var isCorrect = builderValue === q.targetValue;
+      var plusBtn = document.getElementById(`builder-plus-btn`);
+      var minusBtn = document.getElementById(`builder-minus-btn`);
+      var subBtn = document.getElementById(`builder-submit-btn`);
+      if (plusBtn) plusBtn.disabled = true;
+      if (minusBtn) minusBtn.disabled = true;
+      if (subBtn) subBtn.disabled = true;
+
+      recordAnswer(q, isCorrect, `${builderValue} ${q.unitLabel}`, `${q.targetValue} ${q.unitLabel}`);
+    }
+
+    function recordAnswer(q, isCorrect, givenLabel, expectedLabel) {
+      var entry = {
+        id: q.id,
+        topic: q.topic,
+        topicLabel: q.topicLabel,
+        prompt: q.prompt,
+        isCorrect: isCorrect,
+        givenLabel: givenLabel,
+        expectedLabel: expectedLabel,
+        explanation: q.explanation
+      };
+      currentAnswers[currentIndex] = entry;
+
+      appState.inProgress = {
+        mode: appState.mode,
+        answers: currentAnswers.slice()
+      };
+      persistState();
+
+      if (isCorrect) playCorrectSound();
+      else playWrongSound();
+
+      var correctCount = currentAnswers.filter(function(a) { return a.isCorrect; }).length;
+      var scoreText = document.getElementById(`quiz-score-text`);
+      if (scoreText) scoreText.textContent = `Benar: ${correctCount}`;
+
+      showFeedback(q, isCorrect);
+    }
+
+    function showFeedback(q, isCorrect) {
+      var fbBox = document.getElementById(`feedback-box`);
+      var fbHeader = document.getElementById(`feedback-header`);
+      var fbExplain = document.getElementById(`feedback-explain`);
+      var fbSub = document.getElementById(`feedback-subnote`);
+      var nextBtn = document.getElementById(`next-question-btn`);
+
+      if (!fbBox) return;
+      fbBox.classList.remove(`hidden`, `correct`, `wrong`);
+      fbBox.classList.add(isCorrect ? `correct` : `wrong`);
+
+      if (fbHeader) {
+        fbHeader.innerHTML = isCorrect
+          ? `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Hebat! Jawabanmu Benar!</span>`
+          : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg><span>Yuk Belajar Cara Menghitungnya!</span>`;
+      }
+
+      if (fbExplain) fbExplain.textContent = q.explanation;
+      if (fbSub) fbSub.textContent = isCorrect ? `Kamu mendapat 1 bintang!` : `Terus semangat, ya!`;
+      if (nextBtn) {
+        var isLast = currentIndex >= activeQuestions.length - 1;
+        nextBtn.textContent = isLast ? `Lihat Hasil & Bintang!` : `Lanjut ke Soal Berikutnya`;
+      }
+    }
+
+    function nextQuestion() {
+      playClickSound();
+      if (currentIndex < activeQuestions.length - 1) {
+        currentIndex += 1;
+        renderCurrentQuestion();
+        if (window.scrollTo) window.scrollTo({ top: 0, behavior: `smooth` });
+      } else {
+        finishQuiz();
+        if (window.scrollTo) window.scrollTo({ top: 0, behavior: `smooth` });
+      }
+    }
+
+    // =========================================================================
+    // RESULTS & CONFETTI CELEBRATION
+    // =========================================================================
+    function finishQuiz() {
+      var total = activeQuestions.length;
+      var correct = currentAnswers.filter(function(a) { return a.isCorrect; }).length;
+      var score = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      if (score > appState.bestScore) appState.bestScore = score;
+      appState.completedRuns += 1;
+      appState.inProgress = null;
+      persistState();
+
+      var starsEarned = score >= 80 ? 3 : (score >= 50 ? 2 : 1);
+      var nameDisplay = appState.studentName ? appState.studentName : `Juara Matematika`;
+
+      var headlineEl = document.getElementById(`results-headline`);
+      if (headlineEl) {
+        headlineEl.innerHTML = score >= 80
+          ? `Luar Biasa, <em>${escapeHtml(nameDisplay)}</em>!`
+          : (score >= 50 ? `Kerja Bagus, <em>${escapeHtml(nameDisplay)}</em>!` : `Terus Semangat, <em>${escapeHtml(nameDisplay)}</em>!`);
+      }
+
+      var subEl = document.getElementById(`results-subtitle`);
+      if (subEl) {
+        subEl.textContent = score >= 80
+          ? `Kamu sudah sangat mahir membaca dan membuat berbagai diagram!`
+          : `Kamu sudah menyelesaikan kuis Bab 8! Ayo baca pembahasan di bawah agar makin jago.`;
+      }
+
+      var starsRow = document.getElementById(`stars-row`);
+      if (starsRow) {
+        var starsHtml = ``;
+        for (var s = 1; s <= 3; s++) {
+          var earned = s <= starsEarned;
+          starsHtml += `<div class="star-badge ${earned ? `earned` : ``}">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="${earned ? `var(--fruit-yellow)` : `var(--outline-variant)`}" stroke="${earned ? `var(--warning)` : `var(--outline)`}" stroke-width="1.8" aria-hidden="true">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>`;
+        }
+        starsHtml += `<span class="badge badge-grape">${starsEarned} dari 3 Bintang</span>`;
+        starsRow.innerHTML = starsHtml;
+      }
+
+      var statScore = document.getElementById(`stat-score`);
+      if (statScore) statScore.textContent = String(score);
+      var statCorrect = document.getElementById(`stat-correct`);
+      if (statCorrect) statCorrect.textContent = `${correct} / ${total}`;
+      var statBest = document.getElementById(`stat-best`);
+      if (statBest) statBest.textContent = String(appState.bestScore);
+
+      renderTopicMastery();
+      renderReviewList();
+
+      showScreen(`screen-results`);
+      playFanfareSound();
+      startConfetti();
+    }
+
+    function renderTopicMastery() {
+      var container = document.getElementById(`topic-mastery-list`);
+      if (!container) return;
+
+      var topics = [
+        { key: `data`, label: `Pengumpulan Data` },
+        { key: `turus`, label: `Diagram Turus` },
+        { key: `gambar`, label: `Diagram Gambar` }
+      ];
+
+      var html = ``;
+      topics.forEach(function(t) {
+        var items = currentAnswers.filter(function(a) { return a.topic === t.key; });
+        if (items.length === 0) return;
+        var ok = items.filter(function(a) { return a.isCorrect; }).length;
+        var pct = Math.round((ok / items.length) * 100);
+        html += `<div class="mastery-row">
+          <div class="progress-label-row">
+            <span>${t.label}</span>
+            <span>${ok} / ${items.length} benar (${pct}%)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: ${pct}%; background: ${t.key === `data` ? `var(--data-1)` : (t.key === `turus` ? `var(--data-3)` : `var(--data-2)`)};"></div>
+          </div>
+        </div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderReviewList() {
+      var list = document.getElementById(`review-list`);
+      if (!list) return;
+
+      var html = ``;
+      currentAnswers.forEach(function(ans, i) {
+        html += `<article class="review-item">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm);">
+            <span class="badge ${ans.isCorrect ? `badge-positive` : ``}">
+              Soal ${i + 1}: ${ans.isCorrect ? `Benar` : `Perlu Latihan`}
+            </span>
+            <span class="topic-chip-meta">${ans.topicLabel}</span>
+          </div>
+          <div style="font-weight: 700;">${ans.prompt}</div>
+          <div style="font-size: 0.95rem;">
+            Jawabanmu: <strong>${ans.givenLabel}</strong> • Jawaban tepat: <strong style="color: var(--positive);">${ans.expectedLabel}</strong>
+          </div>
+          <div style="font-size: 0.95rem; color: var(--on-surface-variant);">
+            Pembahasan: ${ans.explanation}
+          </div>
+        </article>`;
+      });
+      list.innerHTML = html;
+    }
+
+    function downloadSummary() {
+      playClickSound();
+      var total = activeQuestions.length;
+      var correct = currentAnswers.filter(function(a) { return a.isCorrect; }).length;
+      var score = total > 0 ? Math.round((correct / total) * 100) : 0;
+      var name = appState.studentName || `Siswa Kelas 2`;
+      var lines = [
+        `HASIL KUIS MATEMATIKA KELAS 2 SD — BBM SUMINTO`,
+        `Materi: Bab 8 Berbagai Diagram (Hal. 225-250)`,
+        `Nama Siswa: ${name}`,
+        `Nilai Akhir: ${score} (${correct} dari ${total} benar)`,
+        `--------------------------------------------------`
+      ];
+      currentAnswers.forEach(function(ans, idx) {
+        lines.push(`${idx + 1}. [${ans.isCorrect ? `BENAR` : `SALAH`}] ${ans.prompt}`);
+        lines.push(`   Jawabanmu: ${ans.givenLabel} | Kunci: ${ans.expectedLabel}`);
+        lines.push(`   Pembahasan: ${ans.explanation}`);
+      });
+      var content = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `rapor-kuis-diagram-kelas2.txt`
+        });
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    // =========================================================================
+    // CONFETTI CANVAS ANIMATION (Respects reduced motion & single loop owner)
+    // =========================================================================
+    function stopConfetti() {
+      if (confettiAnimId) {
+        cancelAnimationFrame(confettiAnimId);
+        confettiAnimId = null;
+      }
+      var canvas = document.getElementById(`confetti-canvas`);
+      if (canvas) canvas.classList.add(`hidden`);
+    }
+
+    function startConfetti() {
+      if (window.matchMedia && window.matchMedia(`(prefers-reduced-motion: reduce)`).matches) {
+        return;
+      }
+      var canvas = document.getElementById(`confetti-canvas`);
+      if (!canvas) return;
+      var ctx = canvas.getContext(`2d`);
+      if (!ctx) return;
+
+      cancelAnimationFrame(confettiAnimId);
+      canvas.classList.remove(`hidden`);
+      canvas.width = window.innerWidth || 800;
+      canvas.height = window.innerHeight || 600;
+
+      var cs = getComputedStyle(document.documentElement);
+      var palette = [
+        cs.getPropertyValue(`--primary`).trim(),
+        cs.getPropertyValue(`--secondary`).trim(),
+        cs.getPropertyValue(`--tertiary`).trim(),
+        cs.getPropertyValue(`--fruit-yellow`).trim(),
+        cs.getPropertyValue(`--fruit-leaf`).trim()
+      ].filter(Boolean);
+
+      var particles = [];
+      for (var i = 0; i < 90; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * 0.5,
+          w: 8 + Math.random() * 7,
+          h: 6 + Math.random() * 6,
+          vx: (Math.random() - 0.5) * 3,
+          vy: 2.5 + Math.random() * 3.5,
+          rot: Math.random() * Math.PI * 2,
+          vrot: (Math.random() - 0.5) * 0.14,
+          color: palette[i % palette.length]
+        });
+      }
+
+      var frame = 0;
+      function tick() {
+        frame += 1;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var j = 0; j < particles.length; j++) {
+          var p = particles[j];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vrot;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+        if (frame < 160) {
+          confettiAnimId = requestAnimationFrame(tick);
+        } else {
+          stopConfetti();
+        }
+      }
+      confettiAnimId = requestAnimationFrame(tick);
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    async function initApp() {
+      await loadSavedState();
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>

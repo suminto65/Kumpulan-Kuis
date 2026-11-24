@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Pintar: Bentuk di Sekitar Kita — Matematika Kelas 2 SD</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker style) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #ebe0f7;
+      --tertiary: #0096cc;
+      --tertiary-container: #d8f2fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fee2e2;
+      --error-ink: #7f1d1d;
+
+      /* Semantic */
+      --positive: #15803d;
+      --on-positive: #ffffff;
+      --positive-container: #dcfce7;
+      --positive-ink: #14532d;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --warning-ink: #78350f;
+      --focus: #c2207f;
+
+      /* Data series, in order of use */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.875rem, 1.35rem + 1.8vw, 2.5rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+      --body-size: clamp(0.95rem, 0.92rem + 0.15vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.2);
+      --pop-scale: scale(1.03);
+      --press-scale: scale(0.97);
+      --lift: translateY(-4px);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    header { position: static !important; }
+
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1080px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Header */
+    .quiz-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+    }
+
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .brand-logo-fallback {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      white-space: nowrap;
+    }
+
+    .badge-grape {
+      background: var(--secondary-container);
+      color: var(--secondary);
+    }
+
+    .badge-sky {
+      background: var(--tertiary-container);
+      color: var(--on-surface);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border: none;
+      border-radius: var(--rounded-full);
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: var(--press-scale);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: var(--shadow-pink-deep);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      box-shadow: var(--shadow-grape-deep);
+    }
+
+    .btn-soft {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      box-shadow: none;
+    }
+
+    .btn-soft:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+
+    .btn-warning-armed {
+      background: var(--warning-container);
+      color: var(--warning-ink);
+    }
+
+    /* Hero & Control Bar */
+    .hero-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .display-title {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0 0 var(--space-sm) 0;
+      color: var(--on-surface);
+    }
+
+    .display-title em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      margin: 0 0 var(--space-md) 0;
+      color: var(--on-surface-variant);
+      max-width: 60ch;
+    }
+
+    .mode-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .mode-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .mode-pill:hover {
+      transform: var(--pop-scale);
+      border-color: var(--primary);
+    }
+
+    .mode-pill.is-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Live Scoreboard Stats */
+    .stats-cluster {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .stat-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      text-align: left;
+    }
+
+    .stat-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    .stat-value {
+      display: block;
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      line-height: 1.1;
+    }
+
+    .stat-value-pink {
+      color: var(--primary);
+    }
+
+    .stat-value-grape {
+      color: var(--secondary);
+    }
+
+    /* Quiz Stage Card */
+    .quiz-card-wrapper {
+      container-type: inline-size;
+    }
+
+    .quiz-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-sky);
+      display: grid;
+      gap: var(--space-lg);
+      animation: cardEnter var(--dur-long) var(--ease-bounce);
+    }
+
+    @keyframes cardEnter {
+      0% { opacity: 0; transform: translateY(10px) scale(0.99); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .quiz-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .question-counter {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Lollipop Progress Bar */
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    /* Question Dot Pills */
+    .dot-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .q-dot {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+
+    .q-dot:hover {
+      transform: var(--pop-scale);
+      border-color: var(--secondary);
+    }
+
+    .q-dot.is-current {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .q-dot.is-correct {
+      border-color: var(--positive);
+      background: var(--positive-container);
+      color: var(--positive-ink);
+    }
+
+    .q-dot.is-wrong {
+      border-color: var(--error);
+      background: var(--error-container);
+      color: var(--error-ink);
+    }
+
+    /* Two-column internal layout via Container Query */
+    .quiz-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    @container (min-width: 680px) {
+      .quiz-body {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      }
+    }
+
+    .visual-well {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-well svg {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+    }
+
+    .visual-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin: 0;
+    }
+
+    .question-pane {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .question-text {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .options-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 54px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      text-align: left;
+      font-size: var(--body-size);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .option-btn:active:not(:disabled) {
+      transform: var(--press-scale);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9375rem;
+    }
+
+    .option-label {
+      flex: 1;
+      line-height: 1.35;
+    }
+
+    .option-status-icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--positive-ink);
+      box-shadow: var(--shadow-positive);
+    }
+
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error-ink);
+      animation: gentleShake 340ms var(--ease-in-out);
+    }
+
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    .option-btn.is-dimmed {
+      opacity: 0.62;
+    }
+
+    @keyframes gentleShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Feedback Box */
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .feedback-box.is-correct {
+      background: var(--positive-container);
+      color: var(--positive-ink);
+    }
+
+    .feedback-box.is-wrong {
+      background: var(--error-container);
+      color: var(--error-ink);
+    }
+
+    .feedback-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 800;
+      font-size: 1.0625rem;
+      margin: 0;
+    }
+
+    .feedback-explain {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+    }
+
+    .quiz-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    /* Recap Section */
+    .recap-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .recap-hero {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: grid;
+      gap: var(--space-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .star-row {
+      display: inline-flex;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .star-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--rounded-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-container);
+      color: var(--outline);
+    }
+
+    .star-badge.is-lit {
+      background: var(--warning-container);
+      color: var(--data-4);
+      animation: starPop var(--dur-long) var(--ease-bounce);
+    }
+
+    @keyframes starPop {
+      0% { transform: scale(0.5) rotate(-15deg); }
+      70% { transform: scale(1.15) rotate(6deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    .recap-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .metric-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .metric-card:nth-child(3n+2) {
+      box-shadow: var(--shadow-sky);
+    }
+
+    .metric-card:nth-child(3n+3) {
+      box-shadow: var(--shadow-grape);
+    }
+
+    .metric-caption {
+      margin: var(--space-xs) 0 0 0;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .recap-two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-grape);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .panel-card-sky {
+      box-shadow: var(--shadow-sky);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    /* Breakdown bars */
+    .breakdown-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .breakdown-item {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .breakdown-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+
+    .breakdown-score {
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface-variant);
+    }
+
+    .lollipop-track {
+      height: 14px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      overflow: hidden;
+    }
+
+    .lollipop-bar {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    .lollipop-bar-1 { background: var(--data-1); }
+    .lollipop-bar-2 { background: var(--data-2); }
+    .lollipop-bar-3 { background: var(--data-3); }
+
+    /* Catatanku checklist (page 99) */
+    .checklist-grid {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .check-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+    }
+
+    .check-statement {
+      flex: 1 1 220px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .check-toggle-group {
+      display: inline-flex;
+      gap: var(--space-xs);
+    }
+
+    .check-chip {
+      min-height: 36px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+
+    .check-chip:hover {
+      transform: var(--pop-scale);
+    }
+
+    .check-chip.is-yes {
+      background: var(--positive);
+      border-color: var(--positive);
+      color: var(--on-positive);
+    }
+
+    .check-chip.is-no {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--on-secondary);
+    }
+
+    /* Review list */
+    .review-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .review-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .review-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .review-status-pill {
+      border-radius: var(--rounded-full);
+      padding: 2px var(--space-sm);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .review-status-pill.is-correct {
+      background: var(--positive-container);
+      color: var(--positive-ink);
+    }
+
+    .review-status-pill.is-wrong {
+      background: var(--error-container);
+      color: var(--error-ink);
+    }
+
+    .review-question {
+      font-weight: 700;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .review-answers {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .recap-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    /* Confetti canvas overlay */
+    .confetti-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Footer */
+    .source-footer {
+      text-align: left;
+      padding: var(--space-md) var(--space-sm);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    /* Inline status toast */
+    .inline-notice {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--secondary);
+      margin: 0;
+    }
+
+    /* Animated helper highlights inside SVGs */
+    .svg-cut-line {
+      transition: opacity var(--dur-long) var(--ease-out);
+    }
+
+    .is-revealed .svg-highlight-pulse {
+      animation: shapePulse var(--dur-long) var(--ease-bounce);
+    }
+
+    @keyframes shapePulse {
+      0% { transform: scale(0.96); }
+      60% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive Mobile */
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: var(--space-lg);
+      }
+      .stats-cluster {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .quiz-card {
+        padding: var(--space-md);
+      }
+      .recap-two-col {
+        grid-template-columns: 1fr;
+      }
+      .quiz-header {
+        padding: var(--space-md);
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <div class="page-grid">
+    <!-- Header with Transparent PNG BBM Suminto Logo -->
+    <header class="quiz-header">
+      <div class="brand-cluster">
+        <div class="brand-logo-wrap" id="logo-wrap">
+          <img id="bbm-logo-img" class="brand-logo-img" alt="Logo BBM Suminto" hidden>
+          <svg id="bbm-logo-fallback" class="brand-logo-fallback" width="196" height="48" viewBox="0 0 196 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo BBM Suminto">
+            <circle cx="22" cy="24" r="19" fill="var(--primary)"/>
+            <polygon points="22,11 32,29 12,29" fill="var(--on-primary)"/>
+            <rect x="33" y="24" width="12" height="12" rx="3" fill="var(--tertiary)"/>
+            <text x="54" y="23" font-family="DM Sans, sans-serif" font-weight="900" font-size="16" fill="var(--on-surface)">BBM</text>
+            <text x="54" y="39" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--secondary)">Suminto</text>
+          </svg>
+        </div>
+        <span class="badge">Matematika Kelas 2 SD</span>
+        <span class="badge badge-grape">Bab 3 · Hlm. 65–100</span>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="sound-toggle-btn" class="btn btn-soft" onclick="toggleSound()">
+          <i data-lucide="volume-2" aria-hidden="true"></i>
+          <span id="sound-toggle-label">Suara Nyala</span>
+        </button>
+        <button type="button" id="reset-btn" class="btn btn-ghost" onclick="handleResetClick(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+          <span>Ulangi Kuis</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Title, Mode Selector, and Live Scoreboard -->
+    <section class="hero-card" aria-label="Pengaturan dan Skor Kuis">
+      <div>
+        <h1 class="display-title">Kuis Pintar: <em>Bentuk</em> di Sekitar Kita</h1>
+        <p class="hero-subtitle">
+          Ayo berlatih mengenal bangun datar, mengurai dan menyusun bentuk, serta bangun ruang bersama BBM Suminto!
+        </p>
+        <div class="mode-pills" role="group" aria-label="Pilih Topik Latihan">
+          <button type="button" class="mode-pill is-active" data-mode="all" onclick="switchMode('all')">Semua Materi (15)</button>
+          <button type="button" class="mode-pill" data-mode="datar" onclick="switchMode('datar')">A. Bangun Datar (5)</button>
+          <button type="button" class="mode-pill" data-mode="urai" onclick="switchMode('urai')">B. Mengurai &amp; Menyusun (5)</button>
+          <button type="button" class="mode-pill" data-mode="ruang" onclick="switchMode('ruang')">C. Bangun Ruang (5)</button>
+        </div>
+      </div>
+
+      <div class="stats-cluster" aria-live="polite">
+        <div class="stat-tile">
+          <span class="stat-label">Skor Kamu</span>
+          <span class="stat-value stat-value-pink" id="stat-score">0</span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Terjawab</span>
+          <span class="stat-value" id="stat-answered">0/15</span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Runtunan</span>
+          <span class="stat-value stat-value-grape" id="stat-streak">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Quiz Area -->
+    <main id="quiz-stage" class="quiz-card-wrapper">
+      <article class="quiz-card" id="quiz-card">
+        <div class="quiz-meta-bar">
+          <span class="badge badge-sky" id="q-topic-badge">A. Bangun Datar</span>
+          <span class="question-counter" id="q-counter">Soal 1 dari 15</span>
+        </div>
+
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-wrap">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <nav class="dot-nav" id="dot-nav" aria-label="Navigasi Nomor Soal"></nav>
+
+        <div class="quiz-body">
+          <div class="visual-well" id="visual-well">
+            <div id="visual-svg-host" aria-hidden="true"></div>
+            <p class="visual-caption" id="visual-caption"></p>
+          </div>
+
+          <div class="question-pane">
+            <h2 class="question-text" id="question-text"></h2>
+            <div class="options-list" id="options-list" role="group" aria-label="Pilihan Jawaban"></div>
+            <div class="feedback-box" id="feedback-box" hidden aria-live="polite">
+              <p class="feedback-title" id="feedback-title"></p>
+              <p class="feedback-explain" id="feedback-explain"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-footer-nav">
+          <button type="button" class="btn btn-soft" id="prev-btn" onclick="goPrevQuestion()">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Sebelumnya</span>
+          </button>
+
+          <p class="inline-notice" id="quiz-hint-notice">Pilih salah satu jawaban A, B, C, atau D.</p>
+
+          <button type="button" class="btn btn-primary" id="next-btn" onclick="goNextQuestion()">
+            <span id="next-btn-label">Soal Berikutnya</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <!-- Final Score Recap View -->
+    <section id="recap-section" class="recap-grid" hidden aria-label="Rekap Skor Akhir">
+      <div class="recap-hero">
+        <div class="star-row" id="recap-stars" aria-label="Pencapaian Bintang">
+          <span class="star-badge" id="star-1"><i data-lucide="star" aria-hidden="true"></i></span>
+          <span class="star-badge" id="star-2"><i data-lucide="star" aria-hidden="true"></i></span>
+          <span class="star-badge" id="star-3"><i data-lucide="star" aria-hidden="true"></i></span>
+        </div>
+        <h2 class="display-title" id="recap-headline">Hebat! Kamu Menyelesaikan <em>Kuis</em></h2>
+        <p class="hero-subtitle" id="recap-message"></p>
+        <div class="recap-actions">
+          <button type="button" class="btn btn-primary" onclick="replayCurrentMode()">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span>Main Lagi</span>
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="backToQuizReview()">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Lihat Soal Kembali</span>
+          </button>
+          <button type="button" class="btn btn-soft" onclick="exportSummary()">
+            <i data-lucide="download" aria-hidden="true"></i>
+            <span>Simpan Hasil (.txt)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="recap-metrics">
+        <div class="metric-card">
+          <span class="stat-label">Skor Akhir</span>
+          <span class="stat-value stat-value-pink" id="recap-final-score">0</span>
+          <p class="metric-caption">Skala nilai 0–100</p>
+        </div>
+        <div class="metric-card">
+          <span class="stat-label">Jawaban Benar</span>
+          <span class="stat-value" id="recap-correct-count">0 dari 15</span>
+          <p class="metric-caption" id="recap-accuracy-caption">Ketepatan 0%</p>
+        </div>
+        <div class="metric-card">
+          <span class="stat-label">Runtunan Terbaik</span>
+          <span class="stat-value stat-value-grape" id="recap-best-streak">0</span>
+          <p class="metric-caption">Jawaban benar beruntun</p>
+        </div>
+      </div>
+
+      <div class="recap-two-col">
+        <div class="panel-card">
+          <h3 class="section-heading">Penguasaan Per Materi</h3>
+          <div class="breakdown-list" id="breakdown-list"></div>
+        </div>
+
+        <div class="panel-card panel-card-sky">
+          <h3 class="section-heading">Refleksi Catatanku (Hlm. 99)</h3>
+          <p class="hero-subtitle" style="margin-bottom: 0;">Centang kemampuan yang sudah kamu kuasai setelah berlatih:</p>
+          <div class="checklist-grid" id="catatanku-list"></div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <h3 class="section-heading">Pembahasan Setiap Soal</h3>
+        <div class="review-list" id="review-list"></div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      Sumber materi: Buku Siswa Matematika untuk SD/MI Kelas II (Kurikulum Merdeka, Kemendikbudristek 2022) — Bab 3: Bentuk di Sekitar Kita, halaman 65–100.
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // 1. DATA: 15 Soal Komprehensif Bab 3 (Hlm. 65-100)
+    // =========================================================================
+    const QUESTIONS = [
+      {
+        id: `q1`,
+        category: `datar`,
+        topicLabel: `A. Bangun Datar`,
+        text: `Bangun datar pada gambar dibatasi oleh garis lurus. Apa nama garis lurus yang membatasi bangun datar tersebut?`,
+        caption: `Amati bagian yang ditunjuk tanda panah.`,
+        options: [
+          `Titik`,
+          `Sisi`,
+          `Lengkungan`,
+          `Bayangan`
+        ],
+        correctIndex: 1,
+        explanation: `Garis lurus pada bangun datar dinamakan sisi. Bangun datar yang dibatasi oleh beberapa sisi dinamakan segi banyak (hlm. 68).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="130,28 216,162 44,162" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="5" stroke-linejoin="round"/>
+            <line x1="176" y1="88" x2="225" y2="68" stroke="var(--on-surface)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="173" cy="90" r="5" fill="var(--on-surface)"/>
+            <rect x="196" y="42" width="44" height="32" rx="14" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2.5"/>
+            <text x="218" y="63" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="16" fill="var(--secondary)">?</text>
+            <text x="130" y="186" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Garis lurus pembatas bangun</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q2`,
+        category: `datar`,
+        topicLabel: `A. Bangun Datar`,
+        text: `Manakah di antara bangun datar berikut yang termasuk segi banyak?`,
+        caption: `Ingat: segi banyak dibatasi oleh garis lurus.`,
+        options: [
+          `Bangun A (Lingkaran)`,
+          `Bangun B (Bentuk awan)`,
+          `Bangun C (Segi empat)`,
+          `Bangun D (Setengah lingkaran)`
+        ],
+        correctIndex: 2,
+        explanation: `Bangun C adalah segi banyak karena seluruh batasnya berupa sisi (garis lurus). Bangun A, B, dan D termasuk bentuk lengkung (hlm. 68–71).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="72" cy="56" r="34" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="4"/>
+            <text x="72" y="61" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="16" fill="var(--on-surface)">A</text>
+            <path d="M168,68 C162,48 184,32 204,40 C216,28 242,38 238,58 C252,66 244,86 226,84 L182,84 C168,84 162,76 168,68 Z" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="4"/>
+            <text x="206" y="66" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="16" fill="var(--on-surface)">B</text>
+            <rect x="36" y="114" width="76" height="58" rx="2" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="4"/>
+            <text x="74" y="149" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="16" fill="var(--on-surface)">C</text>
+            <path d="M166,162 A40,40 0 0,1 246,162 Z" fill="var(--warning-container)" stroke="var(--data-4)" stroke-width="4" stroke-linejoin="round"/>
+            <text x="206" y="150" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="16" fill="var(--on-surface)">D</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q3`,
+        category: `datar`,
+        topicLabel: `A. Bangun Datar`,
+        text: `Perhatikan bangun segi empat pada gambar. Berapakah banyak sisi yang membatasi bangun segi empat tersebut?`,
+        caption: `Hitung sisi-sisi lurus yang diberi tanda.`,
+        options: [
+          `3 sisi`,
+          `4 sisi`,
+          `5 sisi`,
+          `6 sisi`
+        ],
+        correctIndex: 1,
+        explanation: `Segi empat adalah segi banyak yang dibatasi oleh 4 sisi dan memiliki 4 sudut. Contohnya persegi, persegi panjang, dan trapesium (hlm. 71).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="74,44 190,44 218,154 46,154" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="74" cy="44" r="7" fill="var(--primary)"/>
+            <circle cx="190" cy="44" r="7" fill="var(--primary)"/>
+            <circle cx="218" cy="154" r="7" fill="var(--primary)"/>
+            <circle cx="46" cy="154" r="7" fill="var(--primary)"/>
+            <text x="132" y="32" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Sisi 1</text>
+            <text x="226" y="102" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Sisi 2</text>
+            <text x="132" y="178" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Sisi 3</text>
+            <text x="38" y="102" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Sisi 4</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q4`,
+        category: `datar`,
+        topicLabel: `A. Bangun Datar`,
+        text: `Rumah burung dan kantong teh celup pada buku teks memiliki bentuk dengan 5 sisi lurus. Apa nama bangun datar yang mempunyai 5 sisi?`,
+        caption: `Bandingkan banyak sisi bangun kiri dan kanan.`,
+        options: [
+          `Segitiga`,
+          `Segi empat`,
+          `Segi lima`,
+          `Segi enam`
+        ],
+        correctIndex: 2,
+        explanation: `Bangun datar yang dibatasi 5 sisi dinamakan segi lima (contohnya rumah burung dan teh celup), sedangkan yang dibatasi 6 sisi dinamakan segi enam (hlm. 73).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="78,34 128,72 108,136 48,136 28,72" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="78" cy="96" r="14" fill="var(--surface-container-low)"/>
+            <text x="78" y="168" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--primary)">5 Sisi (?)</text>
+            <polygon points="204,34 248,60 248,112 204,138 160,112 160,60" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="4" stroke-linejoin="round"/>
+            <text x="204" y="92" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--secondary)">6 Sisi</text>
+            <text x="204" y="168" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Segi enam</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q5`,
+        category: `datar`,
+        topicLabel: `A. Bangun Datar`,
+        text: `Kira mencetak uang logam 500 Rupiah di kertas, lalu memutar uang logam di atas cetakannya. Mengapa bentuknya selalu sama dengan cetakannya?`,
+        caption: `Uang logam adalah contoh bangun lingkaran.`,
+        options: [
+          `Karena uang logam memiliki 4 sisi lurus`,
+          `Karena permukaan lingkaran terlihat bulat sempurna`,
+          `Karena bentuk lonjong juga bulat sempurna`,
+          `Karena uang logam berbentuk segitiga`
+        ],
+        correctIndex: 1,
+        explanation: `Uang logam adalah contoh lingkaran. Berbeda dengan bentuk lengkung lainnya seperti oval, permukaan lingkaran bulat sempurna sehingga tetap sama saat diputar (hlm. 75–76).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="88" cy="92" r="52" fill="var(--warning-container)" stroke="var(--data-4)" stroke-width="5"/>
+            <circle cx="88" cy="92" r="40" fill="none" stroke="var(--data-4)" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="88" y="88" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="20" fill="var(--warning-ink)">500</text>
+            <text x="88" y="108" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="11" fill="var(--warning-ink)">Rupiah</text>
+            <text x="88" y="170" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Lingkaran</text>
+            <ellipse cx="212" cy="92" rx="44" ry="26" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="4"/>
+            <text x="212" y="170" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Lengkung lain</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q6`,
+        category: `urai`,
+        topicLabel: `B. Mengurai & Menyusun`,
+        text: `Perhatikan bangun datar yang diurai mengikuti garis putus-putus pada gambar. Bangun datar apa saja yang dihasilkan?`,
+        caption: `Hitung bangun di sebelah kiri, tengah, dan kanan garis putus-putus.`,
+        options: [
+          `2 segitiga dan 1 segi empat`,
+          `3 lingkaran dan 1 segitiga`,
+          `4 segitiga saja`,
+          `1 segi lima dan 1 lingkaran`
+        ],
+        correctIndex: 0,
+        explanation: `Seperti pada contoh buku teks halaman 81, bangun trapesium/gabungan tersebut diurai menjadi 2 segitiga di ujung kiri-kanan dan 1 segi empat di tengah.`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="84,48 196,48 242,144 38,144" fill="var(--tertiary-container)" stroke="var(--on-surface)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon class="svg-highlight-pulse" points="84,48 84,144 38,144" fill="var(--primary-container)" opacity="0.85"/>
+            <polygon class="svg-highlight-pulse" points="196,48 242,144 196,144" fill="var(--primary-container)" opacity="0.85"/>
+            <line x1="84" y1="48" x2="84" y2="144" stroke="var(--primary)" stroke-width="4" stroke-dasharray="7 5"/>
+            <line x1="196" y1="48" x2="196" y2="144" stroke="var(--primary)" stroke-width="4" stroke-dasharray="7 5"/>
+            <text x="68" y="128" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="13" fill="var(--on-surface)">1</text>
+            <text x="140" y="102" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="14" fill="var(--on-surface)">2</text>
+            <text x="212" y="128" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="13" fill="var(--on-surface)">3</text>
+            <text x="140" y="176" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Garis putus-putus = garis potong</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q7`,
+        category: `urai`,
+        topicLabel: `B. Mengurai & Menyusun`,
+        text: `Jika sebuah persegi panjang diurai tepat melalui garis putus-putus miring dari sudut ke sudut, bangun datar apakah yang terbentuk?`,
+        caption: `Amati dua bagian yang dipisahkan garis miring.`,
+        options: [
+          `2 lingkaran`,
+          `2 segitiga`,
+          `2 segi lima`,
+          `1 lingkaran dan 1 segi enam`
+        ],
+        correctIndex: 1,
+        explanation: `Mengurai persegi panjang dari satu sudut ke sudut seberangnya menghasilkan 2 buah bangun segitiga (hlm. 81–82).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="44,44 216,44 44,152" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="216,44 216,152 44,152" fill="var(--secondary-container)" stroke="var(--on-surface)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="216" y1="44" x2="44" y2="152" stroke="var(--primary)" stroke-width="4.5" stroke-dasharray="8 5"/>
+            <text x="95" y="90" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="15" fill="var(--on-surface)">A</text>
+            <text x="165" y="126" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="15" fill="var(--on-surface)">B</text>
+            <text x="130" y="180" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Diurai melalui garis diagonal</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q8`,
+        category: `urai`,
+        topicLabel: `B. Mengurai & Menyusun`,
+        text: `Dina ingin menyusun kepingan bangun datar menjadi gambar sebuah rumah seperti pada gambar. Kepingan apa yang disusun Dina?`,
+        caption: `Lihat bagian atap dan dinding rumah.`,
+        options: [
+          `1 lingkaran dan 1 segi lima`,
+          `1 segitiga dan 1 segi empat`,
+          `2 buah segi enam`,
+          `3 buah lingkaran`
+        ],
+        correctIndex: 1,
+        explanation: `Kita dapat menyusun beberapa bangun datar menjadi satu bentuk baru. Bagian atap rumah tersusun dari 1 segitiga dan dindingnya dari 1 segi empat (hlm. 84).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="62,40 96,90 28,90" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="34" y="106" width="56" height="50" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="4"/>
+            <path d="M114,98 L146,98" stroke="var(--on-surface)" stroke-width="4" stroke-linecap="round"/>
+            <polyline points="136,88 148,98 136,108" fill="none" stroke="var(--on-surface)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="212,44 256,96 168,96" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="178" y="96" width="68" height="62" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="4"/>
+            <rect x="202" y="122" width="20" height="36" fill="var(--surface-container-low)" stroke="var(--on-surface)" stroke-width="3"/>
+          </svg>`;
+        }
+      },
+      {
+        id: `q9`,
+        category: `urai`,
+        topicLabel: `B. Mengurai & Menyusun`,
+        text: `Dua buah segitiga sama besar disusun berhimpitan hingga menyatu seperti pada gambar. Bangun datar baru apakah yang dihasilkan?`,
+        caption: `Perhatikan bentuk luar setelah kedua segitiga digabungkan.`,
+        options: [
+          `Lingkaran`,
+          `Segi lima`,
+          `Segi empat`,
+          `Bentuk lengkung`
+        ],
+        correctIndex: 2,
+        explanation: `Dua buah segitiga siku-siku yang sama besar jika disusun berhimpitan pada sisi miringnya akan membentuk bangun segi empat.`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="28,54 96,54 28,136" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="104,64 104,146 36,146" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M124,100 L156,100" stroke="var(--on-surface)" stroke-width="4" stroke-linecap="round"/>
+            <polyline points="146,90 158,100 146,110" fill="none" stroke="var(--on-surface)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="174,56 248,56 174,144" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="248,56 248,144 174,144" fill="var(--secondary-container)" stroke="var(--on-surface)" stroke-width="3.5" stroke-linejoin="round"/>
+            <text x="211" y="172" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">Bangun Baru (?)</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q10`,
+        category: `urai`,
+        topicLabel: `B. Mengurai & Menyusun`,
+        text: `Sebuah bangun datar yang sama dapat diurai dengan dua cara berbeda seperti pada gambar. Manakah pernyataan yang benar?`,
+        caption: `Bandingkan cara kiri dan cara kanan.`,
+        options: [
+          `Satu bangun datar hanya bisa diurai dengan 1 cara`,
+          `Cara mengurai berbeda dapat menghasilkan bangun yang berbeda`,
+          `Mengurai selalu menghasilkan bangun lingkaran`,
+          `Semua hasil uraian pasti memiliki jumlah bangun yang sama`
+        ],
+        correctIndex: 1,
+        explanation: `Ketika mengurai sebuah bangun datar, kita dapat menggunakan beberapa cara. Cara yang digunakan akan memengaruhi hasil bangun datarnya (hlm. 81–82).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="26" y="42" width="96" height="96" fill="var(--tertiary-container)" stroke="var(--on-surface)" stroke-width="3.5"/>
+            <line x1="74" y1="42" x2="74" y2="138" stroke="var(--primary)" stroke-width="3.5" stroke-dasharray="6 4"/>
+            <text x="74" y="164" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="12" fill="var(--on-surface-variant)">Cara 1: 2 persegi panjang</text>
+            <rect x="158" y="42" width="96" height="96" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="3.5"/>
+            <line x1="158" y1="42" x2="254" y2="138" stroke="var(--secondary)" stroke-width="3.5" stroke-dasharray="6 4"/>
+            <line x1="254" y1="42" x2="158" y2="138" stroke="var(--secondary)" stroke-width="3.5" stroke-dasharray="6 4"/>
+            <text x="206" y="164" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="12" fill="var(--on-surface-variant)">Cara 2: 4 segitiga</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q11`,
+        category: `ruang`,
+        topicLabel: `C. Bangun Ruang`,
+        text: `Benda-benda di samping diletakkan di lantai lalu didorong. Benda manakah yang mudah menggelinding karena memiliki permukaan lengkung?`,
+        caption: `Amati bentuk permukaan masing-masing benda.`,
+        options: [
+          `Dadu (Kubus)`,
+          `Kotak kado (Balok)`,
+          `Bola`,
+          `Tidak ada yang bisa menggelinding`
+        ],
+        correctIndex: 2,
+        explanation: `Bangun ruang dibedakan berdasarkan permukaannya. Bola memiliki permukaan lengkung sehingga mudah menggelinding, sedangkan kubus dan balok berpermukaan datar (hlm. 90–91).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="156" x2="260" y2="156" stroke="var(--outline)" stroke-width="4" stroke-linecap="round"/>
+            <rect x="34" y="102" width="46" height="46" rx="4" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="3.5"/>
+            <polygon points="34,102 52,88 98,88 80,102" fill="var(--surface-container-low)" stroke="var(--tertiary)" stroke-width="3"/>
+            <polygon points="80,102 98,88 98,134 80,148" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="3"/>
+            <text x="64" y="178" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="12" fill="var(--on-surface-variant)">Kubus</text>
+            <rect x="122" y="114" width="58" height="34" rx="3" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="3.5"/>
+            <polygon points="122,114 136,102 194,102 180,114" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="3"/>
+            <polygon points="180,114 194,102 194,136 180,148" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="3"/>
+            <text x="156" y="178" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="12" fill="var(--on-surface-variant)">Balok</text>
+            <circle cx="234" cy="124" r="28" fill="var(--positive-container)" stroke="var(--positive)" stroke-width="3.5"/>
+            <path d="M214,108 Q234,124 254,108" fill="none" stroke="var(--positive)" stroke-width="2.5"/>
+            <path d="M214,140 Q234,124 254,140" fill="none" stroke="var(--positive)" stroke-width="2.5"/>
+            <text x="234" y="178" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="12" fill="var(--on-surface)">Bola</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q12`,
+        category: `ruang`,
+        topicLabel: `C. Bangun Ruang`,
+        text: `Kubus dan balok sama-sama memiliki permukaan datar. Apa ciri khusus yang dimiliki bangun ruang kubus?`,
+        caption: `Bandingkan ukuran permukaan kubus (kiri) dan balok (kanan).`,
+        options: [
+          `Permukaannya berbentuk segi empat yang sama ukurannya`,
+          `Permukaannya berbentuk lingkaran yang melengkung`,
+          `Memiliki satu ujung yang runcing`,
+          `Hanya memiliki 2 buah sisi`
+        ],
+        correctIndex: 0,
+        explanation: `Kubus mempunyai permukaan berbentuk segi empat yang sama ukurannya (contoh: dadu), sedangkan balok mempunyai permukaan segi empat yang berbeda ukurannya (hlm. 92).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="34" y="68" width="64" height="64" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="4"/>
+            <polygon points="34,68 58,48 122,48 98,68" fill="var(--surface-container-low)" stroke="var(--tertiary)" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="98,68 122,48 122,112 98,132" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="3.5" stroke-linejoin="round"/>
+            <text x="74" y="162" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">Kubus</text>
+            <rect x="150" y="84" width="84" height="48" fill="var(--error-container)" stroke="var(--error)" stroke-width="4"/>
+            <polygon points="150,84 170,66 254,66 234,84" fill="var(--surface-container-low)" stroke="var(--error)" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="234,84 254,66 254,114 234,132" fill="var(--error-container)" stroke="var(--error)" stroke-width="3.5" stroke-linejoin="round"/>
+            <text x="198" y="162" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">Balok</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q13`,
+        category: `ruang`,
+        topicLabel: `C. Bangun Ruang`,
+        text: `Kaleng susu dan gelas memiliki alas dan tutup berbentuk lingkaran serta selimut permukaan lengkung. Apa nama bangun ruang tersebut?`,
+        caption: `Benda ini dapat menggelinding saat direbahkan.`,
+        options: [
+          `Kerucut`,
+          `Kubus`,
+          `Tabung`,
+          `Balok`
+        ],
+        correctIndex: 2,
+        explanation: `Bangun ruang dengan alas dan tutup lingkaran serta permukaan lengkung disebut tabung. Contoh benda berbentuk tabung adalah kaleng susu, gelas, dan baterai (hlm. 92–93).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M84,54 L84,142 A46,16 0 0,0 176,142 L176,54 Z" fill="var(--warning-container)" stroke="var(--data-4)" stroke-width="4" stroke-linejoin="round"/>
+            <ellipse cx="130" cy="54" rx="46" ry="16" fill="var(--surface-container-low)" stroke="var(--data-4)" stroke-width="4"/>
+            <rect x="92" y="86" width="76" height="32" rx="8" fill="var(--surface-container-low)" stroke="var(--data-4)" stroke-width="2.5"/>
+            <text x="130" y="107" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--warning-ink)">SUSU</text>
+            <text x="130" y="182" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Kaleng susu berbentuk ....</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q14`,
+        category: `ruang`,
+        topicLabel: `C. Bangun Ruang`,
+        text: `Topi ulang tahun yang bagian bawahnya berbentuk lingkaran dan ujung atasnya runcing berbentuk bangun ruang ....`,
+        caption: `Amati bentuk topi pesta yang meruncing ke atas.`,
+        options: [
+          `Bola`,
+          `Tabung`,
+          `Balok`,
+          `Kerucut`
+        ],
+        correctIndex: 3,
+        explanation: `Kerucut adalah bangun ruang dengan permukaan lengkung, memiliki alas berbentuk lingkaran, dan ujungnya runcing (hlm. 92–93).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M130,30 L74,144 A56,16 0 0,0 186,144 Z" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="130" cy="26" r="10" fill="var(--primary)"/>
+            <circle cx="116" cy="94" r="6" fill="var(--primary)"/>
+            <circle cx="144" cy="112" r="6" fill="var(--tertiary)"/>
+            <circle cx="104" cy="126" r="6" fill="var(--data-4)"/>
+            <circle cx="136" cy="76" r="5" fill="var(--positive)"/>
+            <text x="130" y="182" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Topi ulang tahun</text>
+          </svg>`;
+        }
+      },
+      {
+        id: `q15`,
+        category: `ruang`,
+        topicLabel: `C. Bangun Ruang`,
+        text: `Dari pilihan berikut, pasangan bangun ruang manakah yang semuanya termasuk bangun ruang dengan permukaan datar?`,
+        caption: `Ingat pengelompokan permukaan datar dan permukaan lengkung.`,
+        options: [
+          `Tabung dan Kerucut`,
+          `Kubus dan Balok`,
+          `Bola dan Tabung`,
+          `Kerucut dan Bola`
+        ],
+        correctIndex: 1,
+        explanation: `Kubus dan balok adalah bangun ruang dengan permukaan datar. Sedangkan tabung, kerucut, dan bola adalah bangun ruang dengan permukaan lengkung (hlm. 91–93).`,
+        renderSvg: function () {
+          return `<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="24" y="48" width="96" height="106" rx="14" fill="var(--surface-container-low)" stroke="var(--tertiary)" stroke-width="3"/>
+            <text x="72" y="72" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="12" fill="var(--on-surface)">Datar</text>
+            <rect x="48" y="88" width="44" height="44" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="3"/>
+            <rect x="144" y="48" width="112" height="106" rx="14" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="3"/>
+            <text x="200" y="72" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="12" fill="var(--primary)">Lengkung</text>
+            <circle cx="176" cy="112" r="20" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="3"/>
+            <polygon points="226,88 206,132 246,132" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="3"/>
+            <text x="140" y="182" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" fill="var(--on-surface-variant)">Kelompok permukaan datar vs lengkung</text>
+          </svg>`;
+        }
+      }
+    ];
+
+    const CATATANKU_ITEMS = [
+      { id: `c1`, text: `Aku dapat membedakan segi banyak dan bentuk lengkung.` },
+      { id: `c2`, text: `Aku dapat membedakan segi banyak berdasarkan sisinya.` },
+      { id: `c3`, text: `Aku dapat menunjukkan perbedaan lingkaran dengan bentuk lengkung lainnya.` },
+      { id: `c4`, text: `Aku dapat mengurai satu bangun datar menjadi beberapa bangun datar.` },
+      { id: `c5`, text: `Aku dapat menyusun beberapa bangun datar menjadi satu bentuk.` },
+      { id: `c6`, text: `Aku dapat memberi nama bangun ruang sesuai dengan ciri-cirinya.` }
+    ];
+
+    const LETTERS = [`A`, `B`, `C`, `D`];
+
+    // =========================================================================
+    // 2. APPLICATION STATE
+    // =========================================================================
+    let appState = {
+      mode: `all`,
+      currentIndex: 0,
+      answers: {},
+      checklist: {},
+      soundEnabled: true,
+      showingRecap: false
+    };
+
+    let audioCtx = null;
+    let confettiFrameId = null;
+
+    // =========================================================================
+    // 3. LOGO BBM SUMINTO (Transparent PNG via High-DPI Canvas)
+    // =========================================================================
+    function generateBbmSumintoPngLogo() {
+      const img = document.getElementById('bbm-logo-img');
+      const fallback = document.getElementById('bbm-logo-fallback');
+      if (!img) return;
+
+      try {
+        const scale = 3;
+        const w = 212;
+        const h = 52;
+        const canvas = document.createElement('canvas');
+        canvas.width = w * scale;
+        canvas.height = h * scale;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        ctx.scale(scale, scale);
+        ctx.clearRect(0, 0, w, h);
+
+        const styles = getComputedStyle(document.documentElement);
+        const primary = styles.getPropertyValue('--primary').trim() || '#c2207f';
+        const secondary = styles.getPropertyValue('--secondary').trim() || '#7c52aa';
+        const tertiary = styles.getPropertyValue('--tertiary').trim() || '#0096cc';
+        const onSurface = styles.getPropertyValue('--on-surface').trim() || '#2e1a28';
+        const onPrimary = styles.getPropertyValue('--on-primary').trim() || '#ffffff';
+
+        // Transparent background circle mark with geometric triangle + rounded square
+        ctx.fillStyle = primary;
+        ctx.beginPath();
+        ctx.arc(24, 26, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // White triangle inside emblem
+        ctx.fillStyle = onPrimary;
+        ctx.beginPath();
+        ctx.moveTo(24, 13);
+        ctx.lineTo(35, 32);
+        ctx.lineTo(13, 32);
+        ctx.closePath();
+        ctx.fill();
+
+        // Sky blue mini square sticker accent
+        ctx.fillStyle = tertiary;
+        ctx.beginPath();
+        ctx.roundRect(34, 28, 13, 13, 4);
+        ctx.fill();
+
+        // Wordmark "BBM" & "Suminto"
+        ctx.fillStyle = onSurface;
+        ctx.font = '900 18px "DM Sans", sans-serif';
+        ctx.textBaseline = 'top';
+        ctx.fillText('BBM', 56, 7);
+
+        ctx.fillStyle = secondary;
+        ctx.font = '700 14px "DM Sans", sans-serif';
+        ctx.fillText('Suminto', 56, 28);
+
+        const pngDataUrl = canvas.toDataURL('image/png');
+        img.src = pngDataUrl;
+        img.hidden = false;
+        if (fallback) fallback.style.display = 'none';
+      } catch (e) {
+        // Fallback inline SVG remains visible
+      }
+    }
+
+    // =========================================================================
+    // 4. SOUND EFFECTS (Pure Web Audio API, no external URLs)
+    // =========================================================================
+    function playChime(isCorrect) {
+      if (!appState.soundEnabled) return;
+      try {
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtor) return;
+        if (!audioCtx) audioCtx = new AudioCtor();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const notes = isCorrect ? [523.25, 659.25, 783.99] : [330, 261.63];
+        notes.forEach(function (freq, idx) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = isCorrect ? 'triangle' : 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.12, now + idx * 0.08 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.22);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.24);
+        });
+      } catch (e) {
+        // Ignore audio failures gracefully
+      }
+    }
+
+    // =========================================================================
+    // 5. CONFETTI CELEBRATION
+    // =========================================================================
+    function launchConfetti(count) {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+      const canvas = document.getElementById('confetti-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const styles = getComputedStyle(document.documentElement);
+      const palette = [
+        styles.getPropertyValue('--data-1').trim() || '#c2207f',
+        styles.getPropertyValue('--data-2').trim() || '#7c52aa',
+        styles.getPropertyValue('--data-3').trim() || '#0096cc',
+        styles.getPropertyValue('--data-4').trim() || '#d96a00',
+        styles.getPropertyValue('--positive').trim() || '#15803d'
+      ];
+
+      const pieces = [];
+      for (let i = 0; i < count; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: -10 - Math.random() * 60,
+          vx: (Math.random() - 0.5) * 5,
+          vy: 3 + Math.random() * 4.5,
+          size: 6 + Math.random() * 6,
+          rot: Math.random() * Math.PI * 2,
+          vrot: (Math.random() - 0.5) * 0.2,
+          color: palette[i % palette.length],
+          alpha: 1
+        });
+      }
+
+      if (confettiFrameId) cancelAnimationFrame(confettiFrameId);
+
+      let frame = 0;
+      function step() {
+        frame++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = 0;
+        for (let i = 0; i < pieces.length; i++) {
+          const p = pieces[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.08;
+          p.rot += p.vrot;
+          if (frame > 55) p.alpha = Math.max(0, p.alpha - 0.025);
+          if (p.alpha > 0 && p.y < canvas.height + 30) {
+            active++;
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+            ctx.restore();
+          }
+        }
+        if (active > 0 && frame < 120) {
+          confettiFrameId = requestAnimationFrame(step);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      confettiFrameId = requestAnimationFrame(step);
+    }
+
+    // =========================================================================
+    // 6. HELPERS & COMPUTATIONS
+    // =========================================================================
+    function getActiveQuestions() {
+      if (appState.mode === 'all') return QUESTIONS;
+      return QUESTIONS.filter(function (q) { return q.category === appState.mode; });
+    }
+
+    function computeStats(list) {
+      let answeredCount = 0;
+      let correctCount = 0;
+      let currentStreak = 0;
+      let bestStreak = 0;
+
+      for (let i = 0; i < list.length; i++) {
+        const q = list[i];
+        const chosen = appState.answers[q.id];
+        if (typeof chosen === 'number') {
+          answeredCount++;
+          if (chosen === q.correctIndex) {
+            correctCount++;
+            currentStreak++;
+            if (currentStreak > bestStreak) bestStreak = currentStreak;
+          } else {
+            currentStreak = 0;
+          }
+        }
+      }
+
+      const score = list.length > 0 ? Math.round((correctCount / list.length) * 100) : 0;
+      return {
+        total: list.length,
+        answeredCount: answeredCount,
+        correctCount: correctCount,
+        currentStreak: currentStreak,
+        bestStreak: bestStreak,
+        score: score
+      };
+    }
+
+    function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        window.notebookAppApi.setAppState({
+          mode: appState.mode,
+          currentIndex: appState.currentIndex,
+          answers: appState.answers,
+          checklist: appState.checklist,
+          soundEnabled: appState.soundEnabled,
+          showingRecap: appState.showingRecap
+        });
+      }
+    }
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
+
+    // =========================================================================
+    // 7. RENDER FUNCTIONS
+    // =========================================================================
+    function renderHeaderStats() {
+      const list = getActiveQuestions();
+      const stats = computeStats(list);
+
+      const scoreEl = document.getElementById('stat-score');
+      const answeredEl = document.getElementById('stat-answered');
+      const streakEl = document.getElementById('stat-streak');
+      if (scoreEl) scoreEl.textContent = String(stats.score);
+      if (answeredEl) answeredEl.textContent = stats.answeredCount + '/' + stats.total;
+      if (streakEl) streakEl.textContent = String(stats.currentStreak);
+
+      const modeButtons = document.querySelectorAll('.mode-pill');
+      modeButtons.forEach(function (btn) {
+        if (btn.dataset.mode === appState.mode) {
+          btn.classList.add('is-active');
+        } else {
+          btn.classList.remove('is-active');
+        }
+      });
+
+      const soundLabel = document.getElementById('sound-toggle-label');
+      const soundBtn = document.getElementById('sound-toggle-btn');
+      if (soundLabel) {
+        soundLabel.textContent = appState.soundEnabled ? 'Suara Nyala' : 'Suara Mati';
+      }
+      if (soundBtn) {
+        soundBtn.innerHTML = appState.soundEnabled
+          ? '<i data-lucide="volume-2" aria-hidden="true"></i><span id="sound-toggle-label">Suara Nyala</span>'
+          : '<i data-lucide="volume-x" aria-hidden="true"></i><span id="sound-toggle-label">Suara Mati</span>';
+      }
+    }
+
+    function renderQuizStage() {
+      const list = getActiveQuestions();
+      if (list.length === 0) return;
+
+      if (appState.currentIndex >= list.length) appState.currentIndex = list.length - 1;
+      if (appState.currentIndex < 0) appState.currentIndex = 0;
+
+      const q = list[appState.currentIndex];
+      const chosen = appState.answers[q.id];
+      const isAnswered = typeof chosen === 'number';
+      const stats = computeStats(list);
+
+      const quizStage = document.getElementById('quiz-stage');
+      const recapSection = document.getElementById('recap-section');
+      if (quizStage) quizStage.hidden = appState.showingRecap;
+      if (recapSection) recapSection.hidden = !appState.showingRecap;
+
+      if (appState.showingRecap) {
+        renderRecap();
+        return;
+      }
+
+      const topicBadge = document.getElementById('q-topic-badge');
+      const counter = document.getElementById('q-counter');
+      if (topicBadge) topicBadge.textContent = q.topicLabel;
+      if (counter) counter.textContent = 'Soal ' + (appState.currentIndex + 1) + ' dari ' + list.length;
+
+      // Progress bar reflects answered questions
+      const pct = Math.round((stats.answeredCount / list.length) * 100);
+      const fill = document.getElementById('progress-fill');
+      const barWrap = document.getElementById('progress-bar-wrap');
+      if (fill) fill.style.width = pct + '%';
+      if (barWrap) barWrap.setAttribute('aria-valuenow', String(pct));
+
+      // Dot navigation
+      const dotNav = document.getElementById('dot-nav');
+      if (dotNav) {
+        let dotHtml = '';
+        for (let i = 0; i < list.length; i++) {
+          const item = list[i];
+          const ans = appState.answers[item.id];
+          let cls = 'q-dot';
+          if (i === appState.currentIndex) cls += ' is-current';
+          else if (typeof ans === 'number') {
+            cls += (ans === item.correctIndex) ? ' is-correct' : ' is-wrong';
+          }
+          dotHtml += '<button type="button" class="' + cls + '" onclick="jumpToQuestion(' + i + ')" aria-label="Soal ' + (i + 1) + '">' + (i + 1) + '</button>';
+        }
+        dotNav.innerHTML = dotHtml;
+      }
+
+      // Visual illustration
+      const svgHost = document.getElementById('visual-svg-host');
+      const visualWell = document.getElementById('visual-well');
+      const visualCaption = document.getElementById('visual-caption');
+      if (svgHost) svgHost.innerHTML = q.renderSvg();
+      if (visualCaption) visualCaption.textContent = q.caption;
+      if (visualWell) {
+        if (isAnswered) visualWell.classList.add('is-revealed');
+        else visualWell.classList.remove('is-revealed');
+      }
+
+      // Question text & options
+      const qText = document.getElementById('question-text');
+      if (qText) qText.textContent = q.text;
+
+      const optionsList = document.getElementById('options-list');
+      if (optionsList) {
+        let optHtml = '';
+        for (let idx = 0; idx < q.options.length; idx++) {
+          let cls = 'option-btn';
+          let iconHtml = '';
+          if (isAnswered) {
+            if (idx === q.correctIndex) {
+              cls += ' is-correct';
+              iconHtml = '<span class="option-status-icon"><i data-lucide="check-circle-2" aria-hidden="true"></i></span>';
+            } else if (idx === chosen) {
+              cls += ' is-wrong';
+              iconHtml = '<span class="option-status-icon"><i data-lucide="x-circle" aria-hidden="true"></i></span>';
+            } else {
+              cls += ' is-dimmed';
+            }
+          }
+          optHtml += '<button type="button" class="' + cls + '" ' + (isAnswered ? 'disabled' : '') + ' onclick="selectOption(' + idx + ')">'
+            + '<span class="option-letter">' + LETTERS[idx] + '</span>'
+            + '<span class="option-label">' + q.options[idx] + '</span>'
+            + iconHtml
+            + '</button>';
+        }
+        optionsList.innerHTML = optHtml;
+      }
+
+      // Feedback banner
+      const feedbackBox = document.getElementById('feedback-box');
+      const feedbackTitle = document.getElementById('feedback-title');
+      const feedbackExplain = document.getElementById('feedback-explain');
+      const hintNotice = document.getElementById('quiz-hint-notice');
+
+      if (feedbackBox && feedbackTitle && feedbackExplain) {
+        if (isAnswered) {
+          const isRight = chosen === q.correctIndex;
+          feedbackBox.hidden = false;
+          feedbackBox.className = 'feedback-box ' + (isRight ? 'is-correct' : 'is-wrong');
+          feedbackTitle.innerHTML = isRight
+            ? '<i data-lucide="sparkles" aria-hidden="true"></i><span>Benar Sekali! Hebat!</span>'
+            : '<i data-lucide="lightbulb" aria-hidden="true"></i><span>Belum Tepat. Jawaban benar: ' + LETTERS[q.correctIndex] + '</span>';
+          feedbackExplain.textContent = q.explanation;
+          if (hintNotice) hintNotice.textContent = isRight ? 'Terus lanjutkan semangat belajarmu!' : 'Yuk baca penjelasannya agar makin paham!';
+        } else {
+          feedbackBox.hidden = true;
+          if (hintNotice) hintNotice.textContent = 'Pilih salah satu jawaban A, B, C, atau D.';
+        }
+      }
+
+      // Navigation buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const nextLabel = document.getElementById('next-btn-label');
+
+      if (prevBtn) prevBtn.disabled = appState.currentIndex === 0;
+      if (nextBtn && nextLabel) {
+        const isLast = appState.currentIndex === list.length - 1;
+        if (isLast && stats.answeredCount === list.length) {
+          nextLabel.textContent = 'Lihat Rekap Skor';
+        } else if (isLast) {
+          nextLabel.textContent = 'Selesai & Rekap';
+        } else {
+          nextLabel.textContent = 'Soal Berikutnya';
+        }
+      }
+
+      refreshIcons();
+    }
+
+    function renderRecap() {
+      const list = getActiveQuestions();
+      const stats = computeStats(list);
+
+      const finalScoreEl = document.getElementById('recap-final-score');
+      const correctCountEl = document.getElementById('recap-correct-count');
+      const accuracyEl = document.getElementById('recap-accuracy-caption');
+      const bestStreakEl = document.getElementById('recap-best-streak');
+      const headlineEl = document.getElementById('recap-headline');
+      const msgEl = document.getElementById('recap-message');
+
+      if (finalScoreEl) finalScoreEl.textContent = String(stats.score);
+      if (correctCountEl) correctCountEl.textContent = stats.correctCount + ' dari ' + stats.total;
+      if (accuracyEl) accuracyEl.textContent = 'Ketepatan ' + stats.score + '%';
+      if (bestStreakEl) bestStreakEl.textContent = String(stats.bestStreak);
+
+      let starsEarned = 1;
+      let headline = 'Terus <em>Semangat</em> Berlatih!';
+      let msg = 'Kamu sudah mencoba dengan baik. Yuk baca lagi pembahasan di bawah dan ulangi kuisnya agar semakin mahir!';
+      if (stats.score >= 80) {
+        starsEarned = 3;
+        headline = 'Luar Biasa! Kamu <em>Juara</em> Bentuk!';
+        msg = 'Hebat sekali! Kamu sudah sangat memahami bangun datar, cara mengurai dan menyusun bangun, serta bangun ruang.';
+      } else if (stats.score >= 60) {
+        starsEarned = 2;
+        headline = 'Bagus Sekali! Hampir <em>Sempurna</em>!';
+        msg = 'Kerja bagus! Periksa kembali beberapa soal yang belum tepat agar pemahamanmu makin mantap.';
+      }
+
+      if (headlineEl) headlineEl.innerHTML = headline;
+      if (msgEl) msgEl.textContent = msg;
+
+      for (let s = 1; s <= 3; s++) {
+        const starEl = document.getElementById('star-' + s);
+        if (starEl) {
+          if (s <= starsEarned) starEl.classList.add('is-lit');
+          else starEl.classList.remove('is-lit');
+        }
+      }
+
+      // Sub-chapter breakdown
+      const categories = [
+        { key: 'datar', title: 'A. Bangun Datar', barClass: 'lollipop-bar-1' },
+        { key: 'urai', title: 'B. Mengurai & Menyusun', barClass: 'lollipop-bar-2' },
+        { key: 'ruang', title: 'C. Bangun Ruang', barClass: 'lollipop-bar-3' }
+      ];
+
+      const breakdownHost = document.getElementById('breakdown-list');
+      if (breakdownHost) {
+        let bHtml = '';
+        categories.forEach(function (cat) {
+          const items = list.filter(function (q) { return q.category === cat.key; });
+          if (items.length === 0) return;
+          let right = 0;
+          items.forEach(function (q) {
+            if (appState.answers[q.id] === q.correctIndex) right++;
+          });
+          const pct = Math.round((right / items.length) * 100);
+          bHtml += '<div class="breakdown-item">'
+            + '<div class="breakdown-head"><span>' + cat.title + '</span><span class="breakdown-score">' + right + '/' + items.length + ' (' + pct + '%)</span></div>'
+            + '<div class="lollipop-track"><div class="lollipop-bar ' + cat.barClass + '" style="width:' + pct + '%"></div></div>'
+            + '</div>';
+        });
+        breakdownHost.innerHTML = bHtml;
+      }
+
+      // Catatanku self-reflection (page 99)
+      const catatankuHost = document.getElementById('catatanku-list');
+      if (catatankuHost) {
+        let cHtml = '';
+        CATATANKU_ITEMS.forEach(function (item) {
+          const val = appState.checklist[item.id];
+          cHtml += '<div class="check-row">'
+            + '<p class="check-statement">' + item.text + '</p>'
+            + '<div class="check-toggle-group">'
+            + '<button type="button" class="check-chip ' + (val === 'yes' ? 'is-yes' : '') + '" onclick="setChecklist(\'' + item.id + '\', \'yes\')">Iya</button>'
+            + '<button type="button" class="check-chip ' + (val === 'no' ? 'is-no' : '') + '" onclick="setChecklist(\'' + item.id + '\', \'no\')">Belum</button>'
+            + '</div>'
+            + '</div>';
+        });
+        catatankuHost.innerHTML = cHtml;
+      }
+
+      // Review list
+      const reviewHost = document.getElementById('review-list');
+      if (reviewHost) {
+        let rHtml = '';
+        list.forEach(function (q, idx) {
+          const chosen = appState.answers[q.id];
+          const answered = typeof chosen === 'number';
+          const isRight = answered && chosen === q.correctIndex;
+          const userLabel = answered ? (LETTERS[chosen] + '. ' + q.options[chosen]) : 'Belum dijawab';
+          const rightLabel = LETTERS[q.correctIndex] + '. ' + q.options[q.correctIndex];
+
+          rHtml += '<div class="review-item">'
+            + '<div class="review-item-head">'
+            + '<span class="badge badge-grape">Soal ' + (idx + 1) + ' · ' + q.topicLabel + '</span>'
+            + '<span class="review-status-pill ' + (isRight ? 'is-correct' : 'is-wrong') + '">' + (isRight ? 'Benar' : (answered ? 'Kurang Tepat' : 'Kosong')) + '</span>'
+            + '</div>'
+            + '<p class="review-question">' + q.text + '</p>'
+            + '<p class="review-answers"><strong>Jawabanmu:</strong> ' + userLabel + ' &nbsp;|&nbsp; <strong>Kunci:</strong> ' + rightLabel + '</p>'
+            + '<p class="review-answers">' + q.explanation + '</p>'
+            + '</div>';
+        });
+        reviewHost.innerHTML = rHtml;
+      }
+
+      refreshIcons();
+    }
+
+    function renderAll() {
+      renderHeaderStats();
+      renderQuizStage();
+    }
+
+    // =========================================================================
+    // 8. INTERACTION HANDLERS (Hoisted function declarations)
+    // =========================================================================
+    function selectOption(optionIdx) {
+      const list = getActiveQuestions();
+      const q = list[appState.currentIndex];
+      if (!q) return;
+      if (typeof appState.answers[q.id] === 'number') return;
+
+      appState.answers[q.id] = optionIdx;
+      const isCorrect = optionIdx === q.correctIndex;
+
+      playChime(isCorrect);
+      if (isCorrect) launchConfetti(32);
+
+      persistState();
+      renderAll();
+    }
+
+    function goNextQuestion() {
+      const list = getActiveQuestions();
+      if (appState.currentIndex < list.length - 1) {
+        appState.currentIndex++;
+        persistState();
+        renderAll();
+      } else {
+        appState.showingRecap = true;
+        persistState();
+        renderAll();
+        const stats = computeStats(list);
+        if (stats.score >= 60) launchConfetti(60);
+      }
+    }
+
+    function goPrevQuestion() {
+      if (appState.currentIndex > 0) {
+        appState.currentIndex--;
+        persistState();
+        renderAll();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      const list = getActiveQuestions();
+      if (idx >= 0 && idx < list.length) {
+        appState.currentIndex = idx;
+        appState.showingRecap = false;
+        persistState();
+        renderAll();
+      }
+    }
+
+    function switchMode(newMode) {
+      if (appState.mode === newMode && !appState.showingRecap) return;
+      appState.mode = newMode;
+      appState.currentIndex = 0;
+      appState.showingRecap = false;
+      persistState();
+      renderAll();
+    }
+
+    function replayCurrentMode() {
+      const list = getActiveQuestions();
+      list.forEach(function (q) {
+        delete appState.answers[q.id];
+      });
+      appState.currentIndex = 0;
+      appState.showingRecap = false;
+      persistState();
+      renderAll();
+    }
+
+    function backToQuizReview() {
+      appState.showingRecap = false;
+      appState.currentIndex = 0;
+      persistState();
+      renderAll();
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      if (appState.soundEnabled) playChime(true);
+      persistState();
+      renderHeaderStats();
+      refreshIcons();
+    }
+
+    function handleResetClick(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.classList.add('btn-warning-armed');
+        btn.innerHTML = '<i data-lucide="alert-circle" aria-hidden="true"></i><span>Klik Lagi untuk Ulang</span>';
+        refreshIcons();
+        setTimeout(function () {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            btn.classList.remove('btn-warning-armed');
+            btn.innerHTML = '<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Ulangi Kuis</span>';
+            refreshIcons();
+          }
+        }, 3500);
+        return;
+      }
+
+      btn.dataset.armed = 'false';
+      btn.classList.remove('btn-warning-armed');
+      btn.innerHTML = '<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Ulangi Kuis</span>';
+      appState.answers = {};
+      appState.checklist = {};
+      appState.currentIndex = 0;
+      appState.showingRecap = false;
+      persistState();
+      renderAll();
+    }
+
+    function setChecklist(id, value) {
+      appState.checklist[id] = value;
+      persistState();
+      renderRecap();
+    }
+
+    function exportSummary() {
+      const list = getActiveQuestions();
+      const stats = computeStats(list);
+      let lines = [
+        'REKAP HASIL KUIS PINTAR: BENTUK DI SEKITAR KITA',
+        'Matematika Kelas 2 SD — Bab 3 (Halaman 65-100)',
+        'BBM Suminto',
+        '---------------------------------------------',
+        'Skor Akhir        : ' + stats.score + ' / 100',
+        'Jawaban Benar     : ' + stats.correctCount + ' dari ' + stats.total,
+        'Runtunan Terbaik  : ' + stats.bestStreak,
+        '',
+        'RINCIAN JAWABAN:'
+      ];
+
+      list.forEach(function (q, idx) {
+        const chosen = appState.answers[q.id];
+        const answered = typeof chosen === 'number';
+        const status = answered ? (chosen === q.correctIndex ? 'BENAR' : 'SALAH') : 'BELUM DIJAWAB';
+        lines.push((idx + 1) + '. [' + status + '] ' + q.text);
+        lines.push('   Kunci: ' + LETTERS[q.correctIndex] + '. ' + q.options[q.correctIndex]);
+      });
+
+      const content = lines.join('\n');
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'rekap-kuis-bentuk-kelas2.txt'
+        });
+      }
+    }
+
+    // Keyboard shortcuts (A/B/C/D or 1/2/3/4, Enter/ArrowRight)
+    document.addEventListener('keydown', function (ev) {
+      if (appState.showingRecap) return;
+      const key = ev.key.toUpperCase();
+      const map = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+      if (typeof map[key] === 'number') {
+        selectOption(map[key]);
+      } else if (ev.key === 'ArrowRight') {
+        goNextQuestion();
+      } else if (ev.key === 'ArrowLeft') {
+        goPrevQuestion();
+      }
+    });
+
+    // =========================================================================
+    // 9. BOOTSTRAP & STATE RESTORATION
+    // =========================================================================
+    async function initApp() {
+      generateBbmSumintoPngLogo();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            if (typeof saved.mode === 'string') appState.mode = saved.mode;
+            if (typeof saved.currentIndex === 'number') appState.currentIndex = saved.currentIndex;
+            if (saved.answers && typeof saved.answers === 'object') appState.answers = saved.answers;
+            if (saved.checklist && typeof saved.checklist === 'object') appState.checklist = saved.checklist;
+            if (typeof saved.soundEnabled === 'boolean') appState.soundEnabled = saved.soundEnabled;
+            if (typeof saved.showingRecap === 'boolean') appState.showingRecap = saved.showingRecap;
+          }
+        } catch (e) {
+          // Proceed with fresh state
+        }
+      }
+
+      renderAll();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>

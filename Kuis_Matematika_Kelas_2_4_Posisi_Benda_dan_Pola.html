@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Petualangan Posisi &amp; Pola — Kuis Matematika Kelas 2 SD (Bab 4)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #ede2fa;
+      --tertiary: #0096cc;
+      --tertiary-soft: #dff4fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Semantic */
+      --positive: #15803d;
+      --positive-bg: #dcfce7;
+      --warning: #b45309;
+      --warning-bg: #fef3c7;
+      --focus: #c2207f;
+
+      /* SVG scene palette tokens */
+      --viz-sky: #dff4ff;
+      --viz-grass: #bbf7d0;
+      --viz-grass-dark: #16a34a;
+      --viz-sun: #facc15;
+      --viz-wood: #d97706;
+      --viz-wood-light: #fde68a;
+      --viz-wall: #fff5f9;
+      --viz-floor: #f3e8ff;
+      --viz-bed: #a855f7;
+      --viz-orange: #f97316;
+      --viz-brown: #92400e;
+      --viz-skin: #fed7aa;
+      --viz-white: #ffffff;
+      --viz-ink: #2e1a28;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.2);
+      --focus-ring-shadow: 0 0 0 3px rgb(194 32 127 / 0.2);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Top Header */
+    .app-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg) var(--space-xl);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex: 1 1 320px;
+    }
+
+    .bbm-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      box-shadow: var(--shadow-grape);
+      flex-shrink: 0;
+    }
+
+    .bbm-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .bbm-logo-title {
+      font-weight: 900;
+      font-size: var(--label-size);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .bbm-logo-sub {
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+
+    .title-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .display-title {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+    }
+    .display-title em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: var(--body-size);
+      color: var(--on-surface-variant);
+      max-width: 60ch;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Mode Segmented Control */
+    .mode-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .segmented {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs);
+    }
+
+    .seg-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: var(--body-size);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .seg-btn:hover {
+      transform: var(--pop-scale);
+      color: var(--on-surface);
+    }
+    .seg-btn[aria-pressed="true"] {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Main Workspace Grid */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+    }
+    .card-sky { box-shadow: var(--shadow-sky); }
+    .card-grape { box-shadow: var(--shadow-grape); }
+
+    .quiz-stage {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    /* Progress & Tags */
+    .stage-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tag-grape {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--secondary-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .progress-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .progress-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      padding: 2px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    /* Question Prompt */
+    .question-heading {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--on-surface);
+    }
+
+    .question-sub {
+      margin: 0;
+      color: var(--on-surface-variant);
+      font-size: var(--body-size);
+    }
+
+    /* Scene Container */
+    .scene-well {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .scene-svg {
+      width: 100%;
+      max-width: 620px;
+      height: auto;
+      display: block;
+      border-radius: var(--rounded);
+      background: var(--viz-white);
+    }
+
+    .scene-caption {
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      text-align: center;
+    }
+
+    /* Interactive hotspots inside room SVG */
+    .room-hotspot {
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce), opacity var(--dur-short) var(--ease-out);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .room-hotspot:hover {
+      transform: scale(1.07);
+    }
+    .room-hotspot.is-selected circle.spot-ring,
+    .room-hotspot.is-selected rect.spot-ring {
+      stroke: var(--primary);
+      stroke-width: 4;
+    }
+
+    /* Answer Options Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .option-pill {
+      appearance: none;
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 52px;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      text-align: left;
+      box-shadow: var(--shadow-grape);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .option-pill:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .option-pill:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    .option-pill.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .option-pill.is-correct {
+      background: var(--positive-bg);
+      border-color: var(--positive);
+      color: var(--positive);
+      box-shadow: var(--shadow-positive);
+    }
+
+    .option-pill.is-wrong {
+      background: var(--surface-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .option-pill:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-size: var(--label-size);
+      flex-shrink: 0;
+    }
+
+    .option-pill.is-selected .option-letter {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .option-pill.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+    .option-pill.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Buttons */
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 46px;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .btn-quiet {
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Hint & Feedback Boxes */
+    .hint-box {
+      background: var(--secondary-container);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+    .feedback-box.is-correct {
+      background: var(--positive-bg);
+      color: var(--on-surface);
+    }
+    .feedback-box.is-wrong {
+      background: var(--warning-bg);
+      color: var(--on-surface);
+    }
+    .feedback-title {
+      margin: 0 0 var(--space-xs) 0;
+      font-weight: 800;
+      font-size: var(--subhead-size);
+    }
+    .feedback-box.is-correct .feedback-title { color: var(--positive); }
+    .feedback-box.is-wrong .feedback-title { color: var(--warning); }
+    .feedback-desc {
+      margin: 0;
+      font-size: var(--body-size);
+      color: var(--on-surface);
+    }
+
+    /* Sidebar */
+    .sidebar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .pill-input {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      border: 2px solid var(--outline);
+      color: var(--on-surface);
+      font-weight: 600;
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .pill-input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: var(--focus-ring-shadow);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .stat-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-sm);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .stat-value {
+      font-weight: 900;
+      font-size: var(--headline-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .stat-value.is-grape { color: var(--secondary); }
+
+    /* Navigator Dots */
+    .nav-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .q-dot {
+      appearance: none;
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--rounded-full);
+      font-weight: 800;
+      font-size: var(--label-size);
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+    .q-dot:hover { transform: var(--pop-scale); }
+    .q-dot.is-current {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .q-dot.is-right {
+      border-color: var(--positive);
+      background: var(--positive-bg);
+      color: var(--positive);
+    }
+    .q-dot.is-missed {
+      border-color: var(--warning);
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+    .q-dot.is-current.is-right,
+    .q-dot.is-current.is-missed {
+      box-shadow: 0 0 0 3px var(--primary-container);
+    }
+
+    /* Helper Card (Kartu Pengingat) */
+    .helper-tabs {
+      display: flex;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      padding: var(--space-xs);
+      border-radius: var(--rounded-full);
+    }
+
+    .helper-tab {
+      flex: 1 1 0;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: var(--label-size);
+      padding: var(--space-sm);
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      min-height: 40px;
+    }
+    .helper-tab[aria-selected="true"] {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .pos-chip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-xs);
+    }
+
+    .pos-chip {
+      appearance: none;
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-sm);
+      min-height: 40px;
+      font-weight: 700;
+      font-size: var(--label-size);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce), background-color var(--dur-short) var(--ease-out);
+    }
+    .pos-chip:hover { transform: var(--pop-scale); }
+    .pos-chip[aria-pressed="true"] {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+
+    /* Summary View */
+    .summary-hero {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+    }
+
+    .summary-score-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+    }
+
+    .big-score {
+      font-weight: 900;
+      font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .mastery-bars {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .mastery-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .review-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .review-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      font-weight: 700;
+    }
+
+    .pill-status {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-size: var(--label-size);
+      font-weight: 800;
+    }
+    .pill-status.is-ok { background: var(--positive-bg); color: var(--positive); }
+    .pill-status.is-no { background: var(--warning-bg); color: var(--warning); }
+
+    /* Step animator controls for Q6 */
+    .step-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+
+    .source-footer {
+      text-align: left;
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.95) translateY(6px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .workspace-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .app-header {
+        padding: var(--space-md);
+      }
+      .quiz-stage {
+        padding: var(--space-md);
+      }
+      .options-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="brand-group">
+        <!-- Logo Emblem BBM Suminto (Vektor Bersih) -->
+        <div class="bbm-logo-badge" role="img" aria-label="Logo BBM Suminto">
+          <svg width="44" height="44" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="2" y="2" width="44" height="44" rx="14" fill="var(--primary)" />
+            <circle cx="36" cy="12" r="6" fill="var(--viz-sun)" />
+            <path d="M12 31 C12 22, 23 20, 24 27 C25 20, 36 22, 36 31 L36 36 C30 33, 25 34, 24 37 C23 34, 18 33, 12 36 Z" fill="var(--viz-white)" />
+            <path d="M24 11 L26 16 L31 16 L27 19 L28.5 24 L24 21 L19.5 24 L21 19 L17 16 L22 16 Z" fill="var(--viz-sun)" />
+          </svg>
+          <div class="bbm-logo-text">
+            <span class="bbm-logo-title">BBM Suminto</span>
+            <span class="bbm-logo-sub">Sahabat Belajar SD</span>
+          </div>
+        </div>
+
+        <div class="title-stack">
+          <h1 class="display-title">Petualangan <em>Posisi</em> &amp; Pola</h1>
+          <p class="subtitle">Kuis Interaktif Matematika Kelas 2 SD · Bab 4 (Halaman 101–124)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="sound-toggle-btn" class="btn btn-quiet" onclick="toggleSound()">
+          <i data-lucide="volume-2" aria-hidden="true"></i>
+          <span id="sound-toggle-label">Suara Aktif</span>
+        </button>
+        <button type="button" id="reset-quiz-btn" class="btn btn-quiet" onclick="handleResetQuiz(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+          <span>Ulangi Kuis</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- TOPIC MODE BAR -->
+    <nav class="mode-bar" aria-label="Pilih Materi Kuis">
+      <div class="segmented" role="group" aria-label="Filter Topik Bab 4">
+        <button type="button" id="mode-all" class="seg-btn" aria-pressed="true" onclick="setMode('all')">
+          <i data-lucide="sparkles" aria-hidden="true"></i>
+          <span>Semua Materi (12 Soal)</span>
+        </button>
+        <button type="button" id="mode-posisi" class="seg-btn" aria-pressed="false" onclick="setMode('posisi')">
+          <i data-lucide="compass" aria-hidden="true"></i>
+          <span>4A. Posisi Benda (6 Soal)</span>
+        </button>
+        <button type="button" id="mode-pola" class="seg-btn" aria-pressed="false" onclick="setMode('pola')">
+          <i data-lucide="shapes" aria-hidden="true"></i>
+          <span>4B. Pola di Sekitar (6 Soal)</span>
+        </button>
+      </div>
+
+      <span class="tag-grape" id="best-score-badge">Skor Terbaik: 0</span>
+    </nav>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="workspace-grid">
+      <!-- LEFT: QUIZ STAGE OR SUMMARY -->
+      <section id="quiz-stage" class="quiz-stage" aria-live="polite"></section>
+
+      <!-- RIGHT: SCOREBOARD & HELPER -->
+      <aside class="sidebar-stack" aria-label="Papan Skor dan Kartu Pengingat">
+        <!-- Scoreboard Card -->
+        <div class="card card-sky">
+          <div class="field-group" style="margin-bottom: var(--space-md);">
+            <label for="student-name" class="field-label">Nama Siswa</label>
+            <input id="student-name" type="text" class="pill-input" maxlength="32" placeholder="Tulis namamu di sini…" oninput="updateStudentName(this.value)">
+          </div>
+
+          <div class="stats-grid" style="margin-bottom: var(--space-md);">
+            <div class="stat-tile">
+              <span class="stat-label">Skor</span>
+              <span id="stat-score" class="stat-value">0</span>
+            </div>
+            <div class="stat-tile">
+              <span class="stat-label">Benar</span>
+              <span id="stat-correct" class="stat-value is-grape">0/12</span>
+            </div>
+            <div class="stat-tile">
+              <span class="stat-label">Runtun</span>
+              <span id="stat-streak" class="stat-value">0</span>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Peta Soal</span>
+            <div id="question-nav-dots" class="nav-dots"></div>
+          </div>
+        </div>
+
+        <!-- Quick Reference Helper Card -->
+        <div class="card card-grape">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+            <h2 style="margin: 0; font-size: var(--subhead-size); font-weight: 800;">Kartu Pengingat Bab 4</h2>
+            <span class="badge">Belajar Kilat</span>
+          </div>
+
+          <div class="helper-tabs" role="tablist" aria-label="Pilih Pengingat" style="margin-bottom: var(--space-md);">
+            <button type="button" id="htab-posisi" class="helper-tab" role="tab" aria-selected="true" onclick="setHelperTab('posisi')">Kata Posisi</button>
+            <button type="button" id="htab-pola" class="helper-tab" role="tab" aria-selected="false" onclick="setHelperTab('pola')">Jenis Pola</button>
+          </div>
+
+          <div id="helper-content"></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="source-footer">
+      Sumber materi: Buku Siswa <em>Matematika untuk SD/MI Kelas II</em> (Dara Retno Wulan &amp; Rasfaniwaty, Kemendikbudristek, 2022), Bab 4: Posisi Benda dan Pola di Sekitar Kita, halaman 101–124.
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // DATA SOAL KOMPREHENSIF BAB 4 (HLN 101 - 124)
+    // =========================================================================
+    const QUESTIONS = [
+      {
+        id: 'q1',
+        topic: 'posisi',
+        topicLabel: `4A · Posisi Benda`,
+        refPage: `Hlm. 107`,
+        type: 'mcq',
+        prompt: `Perhatikan gambar! Di manakah posisi kucing terhadap sepeda?`,
+        subtitle: `Amati letak kucing dan bola di sekitar sepeda.`,
+        hint: `Lihat apakah kucing berada di bagian atas sadel atau di bawah roda sepeda.`,
+        options: [
+          { value: `atas`, label: `Di atas sepeda` },
+          { value: `bawah`, label: `Di bawah sepeda` },
+          { value: `depan`, label: `Di depan sepeda` },
+          { value: `belakang`, label: `Di belakang sepeda` }
+        ],
+        answer: `atas`,
+        explanation: `Kucing duduk manis di atas sadel sepeda, sedangkan bola berada di bawah sepeda.`
+      },
+      {
+        id: 'q2',
+        topic: 'posisi',
+        topicLabel: `4A · Posisi Benda`,
+        refPage: `Hlm. 108`,
+        type: 'mcq',
+        prompt: `Lihat halaman rumah Pak Budi! Pohon pisang berada di sebelah ___ kandang.`,
+        subtitle: `Amati gambar dari sisi kita saat melihat layar.`,
+        hint: `Kandang ada di sisi kiri gambar, lalu lihat ke sisi seberangnya.`,
+        options: [
+          { value: `kanan`, label: `Kanan` },
+          { value: `kiri`, label: `Kiri` },
+          { value: `atas`, label: `Atas` },
+          { value: `bawah`, label: `Bawah` }
+        ],
+        answer: `kanan`,
+        explanation: `Kandang ada di sebelah kiri, dan pohon pisang berada di sebelah kanan kandang.`
+      },
+      {
+        id: 'q3',
+        topic: 'posisi',
+        topicLabel: `4A · Posisi Benda`,
+        refPage: `Hlm. 107–109`,
+        type: 'mcq',
+        prompt: `Kelinci, kura-kura, dan bebek berbaris menghadap papan DEPAN (ke kiri). Di manakah posisi bebek terhadap kura-kura?`,
+        subtitle: `Semua hewan menghadap ke arah yang sama menuju papan DEPAN.`,
+        hint: `Perhatikan arah kepala hewan-hewan tersebut! Siapa yang paling depan dan paling belakang?`,
+        options: [
+          { value: `belakang`, label: `Di belakang kura-kura` },
+          { value: `depan`, label: `Di depan kura-kura` },
+          { value: `atas`, label: `Di atas kura-kura` },
+          { value: `bawah`, label: `Di bawah kura-kura` }
+        ],
+        answer: `belakang`,
+        explanation: `Karena menghadap ke kiri (depan), kelinci paling depan, diikuti kura-kura, dan bebek berada di belakang kura-kura.`
+      },
+      {
+        id: 'q4',
+        topic: 'posisi',
+        topicLabel: `4A · Coba Pikirkan`,
+        refPage: `Hlm. 113`,
+        type: 'room',
+        prompt: `Coba tebak, benda apakah aku? "Aku di atas lemari. Aku di bawah lukisan. Aku di sebelah kiri akuarium ikan."`,
+        subtitle: `Kamu boleh klik langsung bendanya di gambar kamar atau pilih tombol di bawah!`,
+        hint: `Cari lemari cokelat di sisi kiri kamar, lalu lihat benda tepat di atasnya dan di sebelah kiri akuarium.`,
+        options: [
+          { value: `vas`, label: `Vas Bunga` },
+          { value: `jam`, label: `Jam Dinding` },
+          { value: `boneka`, label: `Boneka Beruang` },
+          { value: `bantal`, label: `Bantal Putih` }
+        ],
+        answer: `vas`,
+        explanation: `Tepat sekali! Vas bunga terletak di atas lemari, di bawah lukisan gunung, dan di sebelah kiri akuarium ikan.`
+      },
+      {
+        id: 'q5',
+        topic: 'posisi',
+        topicLabel: `4A · Coba Pikirkan`,
+        refPage: `Hlm. 113`,
+        type: 'room',
+        prompt: `Tebak lagi! "Aku di atas tempat tidur. Aku di sebelah kanan lemari. Aku di bawah jam dinding. Aku di sebelah kiri bantal putih."`,
+        subtitle: `Klik benda yang dimaksud pada gambar kamar atau pilih tombol jawaban!`,
+        hint: `Lihat bagian atas kasur ungu. Ada dua benda di atas kasur: yang mana yang di sebelah kiri bantal putih?`,
+        options: [
+          { value: `boneka`, label: `Boneka Beruang` },
+          { value: `bantal`, label: `Bantal Putih` },
+          { value: `akuarium`, label: `Akuarium Ikan` },
+          { value: `vas`, label: `Vas Bunga` }
+        ],
+        answer: `boneka`,
+        explanation: `Benar! Boneka beruang berada di atas tempat tidur, di sebelah kanan lemari, di bawah jam dinding, dan di sebelah kiri bantal putih.`
+      },
+      {
+        id: 'q6',
+        topic: 'posisi',
+        topicLabel: `4A · Ayo Bermain`,
+        refPage: `Hlm. 111`,
+        type: 'steps',
+        prompt: `Ikuti petunjuk perpindahan pensil: (1) Di atas meja → (2) Di bawah meja → (3) Di kanan kursi → (4) Di kiri kursi. Di mana pensil sekarang?`,
+        subtitle: `Kamu bisa menekan tombol "Simulasi Langkah" untuk membantu melihat pergerakan pensil.`,
+        hint: `Ingat-ingat posisi paling akhir yang disebutkan pada langkah nomor 4!`,
+        options: [
+          { value: `kiri-kursi`, label: `Di sebelah kiri kursi` },
+          { value: `atas-meja`, label: `Di atas meja` },
+          { value: `bawah-meja`, label: `Di bawah meja` },
+          { value: `kanan-kursi`, label: `Di sebelah kanan kursi` }
+        ],
+        answer: `kiri-kursi`,
+        explanation: `Hebat! Mengikuti urutan langkah 1 sampai 4, posisi akhir pensil adalah di sebelah kiri kursi.`
+      },
+      {
+        id: 'q7',
+        topic: 'pola',
+        topicLabel: `4B · Pola Warna`,
+        refPage: `Hlm. 115`,
+        type: 'pattern',
+        patternKind: 'shirt-color',
+        prompt: `Amati deretan warna kaus berikut! Warna kaus apa yang tepat mengisi tanda tanya?`,
+        subtitle: `Pola berulang teratur: Merah muda, Biru, Merah muda, Biru, Merah muda, …`,
+        hint: `Lihat warna kaus setelah warna Merah muda pada urutan sebelumnya.`,
+        options: [
+          { value: `biru`, label: `Kaus Biru` },
+          { value: `pink`, label: `Kaus Merah Muda` },
+          { value: `kuning`, label: `Kaus Kuning` },
+          { value: `ungu`, label: `Kaus Ungu` }
+        ],
+        answer: `biru`,
+        explanation: `Pola warnanya berselang-seling 2 warna: Merah muda, Biru, Merah muda, Biru, Merah muda, lalu Kaus Biru!`
+      },
+      {
+        id: 'q8',
+        topic: 'pola',
+        topicLabel: `4B · Pola Bentuk`,
+        refPage: `Hlm. 115`,
+        type: 'pattern',
+        patternKind: 'shapes',
+        prompt: `Perhatikan pola bentuk bangun datar! Bentuk apa yang tepat melengkapi tanda tanya?`,
+        subtitle: `Urutannya: Lingkaran, Segitiga, Persegi, Lingkaran, Segitiga, …`,
+        hint: `Kelompokkan setiap 3 bentuk: (1) Lingkaran, (2) Segitiga, (3) Persegi.`,
+        options: [
+          { value: `persegi`, label: `Persegi` },
+          { value: `lingkaran`, label: `Lingkaran` },
+          { value: `segitiga`, label: `Segitiga` },
+          { value: `bintang`, label: `Bintang` }
+        ],
+        answer: `persegi`,
+        explanation: `Polanya mengulang 3 bangun datar secara teratur: Lingkaran → Segitiga → Persegi.`
+      },
+      {
+        id: 'q9',
+        topic: 'pola',
+        topicLabel: `4B · Pola Barisan`,
+        refPage: `Hlm. 114`,
+        type: 'pattern',
+        patternKind: 'friends',
+        prompt: `Upe, Lili, Halim, Kira, dan Malosi berbaris dengan pola: Laki-laki, Perempuan, Laki-laki, Perempuan, Laki-laki. Siapa teman di posisi ke-6?`,
+        subtitle: `Keenam sekawan sedang memanen padi bersama.`,
+        hint: `Setelah Malosi (Laki-laki), giliran siswa Perempuan atau Laki-laki?`,
+        options: [
+          { value: `tika`, label: `Tika (Perempuan)` },
+          { value: `upe`, label: `Upe (Laki-laki)` },
+          { value: `halim`, label: `Halim (Laki-laki)` },
+          { value: `malosi`, label: `Malosi (Laki-laki)` }
+        ],
+        answer: `tika`,
+        explanation: `Polanya berselang-seling Laki-laki dan Perempuan. Setelah Malosi (Laki-laki), posisi ke-6 adalah Tika (Perempuan)!`
+      },
+      {
+        id: 'q10',
+        topic: 'pola',
+        topicLabel: `4B · Pola Gerakan`,
+        refPage: `Hlm. 116`,
+        type: 'pattern',
+        patternKind: 'motion',
+        prompt: `Amati pola gerakan senam: Membungkuk, Berdiri, Membungkuk, Berdiri, Membungkuk. Gerakan apa selanjutnya?`,
+        subtitle: `Gerakan tubuh juga dapat membentuk pola yang teratur.`,
+        hint: `Setelah gerakan membungkuk, gerakan berikutnya selalu…`,
+        options: [
+          { value: `berdiri`, label: `Berdiri` },
+          { value: `membungkuk`, label: `Membungkuk` },
+          { value: `duduk`, label: `Duduk` },
+          { value: `tidur`, label: `Tidur` }
+        ],
+        answer: `berdiri`,
+        explanation: `Pola gerakannya berulang teratur: Membungkuk, Berdiri, Membungkuk, Berdiri, Membungkuk, lalu Berdiri!`
+      },
+      {
+        id: 'q11',
+        topic: 'pola',
+        topicLabel: `4B · Pola Benda`,
+        refPage: `Hlm. 117–120`,
+        type: 'pattern',
+        patternKind: 'fruit-middle',
+        prompt: `Ada satu buah yang hilang di tengah pola! Buah apakah yang harus mengisi kotak tanda tanya?`,
+        subtitle: `Amati kelompok pola berulang: Apel, Apel, Pisang.`,
+        hint: `Setiap kelompok memiliki 2 Apel lalu 1 Pisang. Cek kelompok kedua di tengah!`,
+        options: [
+          { value: `apel`, label: `Apel` },
+          { value: `pisang`, label: `Pisang` },
+          { value: `jeruk`, label: `Jeruk` },
+          { value: `anggur`, label: `Anggur` }
+        ],
+        answer: `apel`,
+        explanation: `Polanya adalah Apel, Apel, Pisang. Di kelompok tengah baru ada 1 Apel sebelum Pisang, jadi isinya adalah Apel!`
+      },
+      {
+        id: 'q12',
+        topic: 'pola',
+        topicLabel: `4B · Detektif Pola`,
+        refPage: `Hlm. 121–124`,
+        type: 'pattern',
+        patternKind: 'spot-error',
+        prompt: `Jadilah detektif pola! Pola seharusnya berselang-seling: Bintang Ungu, Hati Pink, Bintang Ungu, Hati Pink… Kartu nomor berapa yang SALAH?`,
+        subtitle: `Periksa kartu bernomor 1 sampai 6 dengan teliti.`,
+        hint: `Perhatikan kartu bernomor genap (2, 4, 6). Seharusnya semuanya bergambar Hati Pink.`,
+        options: [
+          { value: `4`, label: `Nomor 4` },
+          { value: `2`, label: `Nomor 2` },
+          { value: `3`, label: `Nomor 3` },
+          { value: `5`, label: `Nomor 5` }
+        ],
+        answer: `4`,
+        explanation: `Jeli sekali! Kartu nomor 4 seharusnya bergambar Hati Pink agar polanya tetap berselang-seling teratur.`
+      }
+    ];
+
+    // =========================================================================
+    // STATE APLIKASI & PERSISTENSI
+    // =========================================================================
+    const state = {
+      studentName: ``,
+      mode: `all`, // 'all' | 'posisi' | 'pola'
+      currentIndex: 0,
+      selectedOption: null,
+      answers: {}, // { [qId]: { chosen: string, isCorrect: boolean } }
+      hintsUsed: {}, // { [qId]: true }
+      showHint: false,
+      helperTab: `posisi`,
+      helperPos: `atas`,
+      stepSimIndex: 0,
+      soundEnabled: true,
+      bestScore: 0,
+      showSummary: false
+    };
+
+    const HELPER_POSITIONS = {
+      atas: `Benda berada di bagian paling tinggi atau di permukaan atas benda lain (contoh: kucing di atas meja).`,
+      bawah: `Benda berada di bagian lebih rendah atau di kolong benda lain (contoh: bola di bawah meja).`,
+      depan: `Benda berada di sisi hadap atau di muka benda lain (contoh: Pak Budi berdiri di depan kandang).`,
+      belakang: `Benda berada di sisi punggung atau di balik benda lain (contoh: bebek berbaris di belakang kura-kura).`,
+      kanan: `Benda berada di sisi tangan kanan saat kita memandang gambar (contoh: pohon pisang di kanan kandang).`,
+      kiri: `Benda berada di sisi tangan kiri saat kita memandang gambar (contoh: vas bunga di kiri akuarium).`
+    };
+
+    let audioCtx = null;
+
+    function getFilteredQuestions() {
+      if (state.mode === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function (q) { return q.topic === state.mode; });
+    }
+
+    // =========================================================================
+    // AUDIO FEEDBACK (WEB AUDIO SYNTHESIS - TANPA URL EKSTERNAL)
+    // =========================================================================
+    function playTone(kind) {
+      if (!state.soundEnabled) return;
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === `suspended`) audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const freqs = kind === `correct` ? [523.25, 659.25, 783.99]
+                    : kind === `wrong` ? [329.63, 277.18]
+                    : [440];
+
+        freqs.forEach(function (freq, idx) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = kind === `wrong` ? `triangle` : `sine`;
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.11, now + idx * 0.08 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.18);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.2);
+        });
+      } catch (e) {
+        // Ignore audio errors on restricted devices
+      }
+    }
+
+    // =========================================================================
+    // SHIM PERSISTENCE
+    // =========================================================================
+    async function loadSavedState() {
+      if (!window.notebookAppApi || typeof window.notebookAppApi.getAppState !== `function`) return null;
+      try {
+        const saved = await window.notebookAppApi.getAppState();
+        return saved;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function persistState() {
+      if (!window.notebookAppApi || typeof window.notebookAppApi.setAppState !== `function`) return;
+      try {
+        await window.notebookAppApi.setAppState({
+          studentName: state.studentName,
+          mode: state.mode,
+          currentIndex: state.currentIndex,
+          answers: state.answers,
+          hintsUsed: state.hintsUsed,
+          soundEnabled: state.soundEnabled,
+          bestScore: state.bestScore,
+          showSummary: state.showSummary
+        });
+      } catch (e) {
+        // Ignore persistence errors
+      }
+    }
+
+    // =========================================================================
+    // RENDERER ILUSTRASI SVG PER SOAL
+    // =========================================================================
+    function renderQuestionVisual(q) {
+      if (q.id === `q1`) {
+        return `
+          <svg class="scene-svg" viewBox="0 0 560 250" role="img" aria-label="Sepeda dengan kucing di atas sadel dan bola di bawah sepeda">
+            <rect width="560" height="190" fill="var(--viz-sky)" />
+            <rect y="190" width="560" height="60" fill="var(--viz-grass)" />
+            <circle cx="485" cy="48" r="24" fill="var(--viz-sun)" />
+            <!-- Awan -->
+            <ellipse cx="105" cy="48" rx="34" ry="16" fill="var(--viz-white)" />
+            <ellipse cx="130" cy="44" rx="26" ry="18" fill="var(--viz-white)" />
+            <!-- Sepeda -->
+            <circle cx="195" cy="175" r="38" fill="none" stroke="var(--viz-ink)" stroke-width="6" />
+            <circle cx="345" cy="175" r="38" fill="none" stroke="var(--viz-ink)" stroke-width="6" />
+            <circle cx="195" cy="175" r="7" fill="var(--primary)" />
+            <circle cx="345" cy="175" r="7" fill="var(--primary)" />
+            <path d="M195 175 L258 175 L302 124 L232 124 Z" fill="none" stroke="var(--tertiary)" stroke-width="7" stroke-linejoin="round" />
+            <path d="M232 124 L224 102 M302 124 L318 98 L338 98 M302 124 L345 175" fill="none" stroke="var(--tertiary)" stroke-width="7" stroke-linecap="round" />
+            <!-- Sadel -->
+            <rect x="206" y="96" width="38" height="10" rx="5" fill="var(--viz-ink)" />
+            <!-- Kucing di atas sepeda -->
+            <g transform="translate(208, 42)">
+              <ellipse cx="22" cy="42" rx="16" ry="14" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="22" cy="22" r="13" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <polygon points="11,14 15,2 21,11" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="2.5" stroke-linejoin="round" />
+              <polygon points="23,11 29,2 33,14" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="2.5" stroke-linejoin="round" />
+              <circle cx="17" cy="21" r="2.2" fill="var(--viz-ink)" />
+              <circle cx="27" cy="21" r="2.2" fill="var(--viz-ink)" />
+              <path d="M19 26 Q22 29 25 26" fill="none" stroke="var(--viz-ink)" stroke-width="2" stroke-linecap="round" />
+              <path d="M36 46 Q50 38 46 25" fill="none" stroke="var(--viz-orange)" stroke-width="5" stroke-linecap="round" />
+            </g>
+            <!-- Bola di bawah sepeda -->
+            <circle cx="272" cy="195" r="14" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <path d="M262 187 Q272 195 282 187" fill="none" stroke="var(--viz-white)" stroke-width="2" />
+            <!-- Label benda -->
+            <rect x="195" y="12" width="68" height="24" rx="12" fill="var(--viz-white)" />
+            <text x="229" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="var(--viz-ink)">Kucing</text>
+          </svg>
+        `;
+      }
+
+      if (q.id === `q2`) {
+        return `
+          <svg class="scene-svg" viewBox="0 0 560 255" role="img" aria-label="Halaman rumah Pak Budi: kandang di kiri, pohon pisang di kanan">
+            <rect width="560" height="195" fill="var(--viz-sky)" />
+            <rect y="195" width="560" height="60" fill="var(--viz-grass)" />
+            <circle cx="72" cy="45" r="22" fill="var(--viz-sun)" />
+            <!-- Kandang di kiri -->
+            <g transform="translate(88, 108)">
+              <polygon points="0,30 65,0 130,30" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="3" stroke-linejoin="round" />
+              <rect x="10" y="30" width="110" height="66" rx="6" fill="var(--viz-wood-light)" stroke="var(--viz-ink)" stroke-width="3" />
+              <line x1="38" y1="30" x2="38" y2="96" stroke="var(--viz-brown)" stroke-width="4" />
+              <line x1="65" y1="30" x2="65" y2="96" stroke="var(--viz-brown)" stroke-width="4" />
+              <line x1="92" y1="30" x2="92" y2="96" stroke="var(--viz-brown)" stroke-width="4" />
+            </g>
+            <rect x="104" y="212" width="98" height="26" rx="13" fill="var(--viz-white)" />
+            <text x="153" y="229" text-anchor="middle" font-size="13" font-weight="800" fill="var(--viz-ink)">Kandang</text>
+
+            <!-- Pak Budi di depan kandang -->
+            <g transform="translate(238, 125)">
+              <rect x="10" y="32" width="24" height="38" rx="8" fill="var(--tertiary)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="22" cy="18" r="14" fill="var(--viz-skin)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <path d="M8 15 Q22 2 36 15" fill="var(--viz-brown)" />
+              <circle cx="17" cy="18" r="2" fill="var(--viz-ink)" />
+              <circle cx="27" cy="18" r="2" fill="var(--viz-ink)" />
+              <path d="M18 24 Q22 27 26 24" fill="none" stroke="var(--viz-ink)" stroke-width="2" stroke-linecap="round" />
+            </g>
+            <rect x="220" y="212" width="80" height="26" rx="13" fill="var(--viz-white)" />
+            <text x="260" y="229" text-anchor="middle" font-size="13" font-weight="800" fill="var(--viz-ink)">Pak Budi</text>
+
+            <!-- Pohon pisang di kanan -->
+            <g transform="translate(365, 58)">
+              <rect x="44" y="48" width="18" height="98" rx="6" fill="var(--viz-grass-dark)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <ellipse cx="26" cy="54" rx="34" ry="14" transform="rotate(-22 26 54)" fill="var(--viz-grass-dark)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <ellipse cx="82" cy="54" rx="34" ry="14" transform="rotate(22 82 54)" fill="var(--viz-grass-dark)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <ellipse cx="53" cy="34" rx="18" ry="28" fill="var(--viz-grass-dark)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            </g>
+            <rect x="364" y="212" width="112" height="26" rx="13" fill="var(--viz-white)" />
+            <text x="420" y="229" text-anchor="middle" font-size="13" font-weight="800" fill="var(--viz-ink)">Pohon Pisang</text>
+
+            <!-- Burung di atas pohon -->
+            <path d="M405 32 Q418 20 426 32 Q434 20 447 32" fill="none" stroke="var(--secondary)" stroke-width="3.5" stroke-linecap="round" />
+          </svg>
+        `;
+      }
+
+      if (q.id === `q3`) {
+        return `
+          <svg class="scene-svg" viewBox="0 0 560 245" role="img" aria-label="Barisan kelinci, kura-kura, dan bebek menghadap ke kiri menuju papan DEPAN">
+            <rect width="560" height="185" fill="var(--viz-sky)" />
+            <rect y="185" width="560" height="60" fill="var(--viz-grass)" />
+            <!-- Papan DEPAN di kiri -->
+            <rect x="40" y="112" width="10" height="78" rx="4" fill="var(--viz-brown)" />
+            <rect x="18" y="82" width="76" height="36" rx="14" fill="var(--primary)" />
+            <text x="56" y="105" text-anchor="middle" font-size="14" font-weight="900" fill="var(--viz-white)">DEPAN</text>
+            <!-- Panah arah hadap -->
+            <path d="M145 50 L95 50 L110 38 M95 50 L110 62" fill="none" stroke="var(--secondary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <text x="160" y="55" font-size="13" font-weight="800" fill="var(--secondary)">Arah menghadap semua hewan</text>
+
+            <!-- 1. Kelinci (paling depan, hadap kiri) -->
+            <g transform="translate(145, 118)">
+              <ellipse cx="28" cy="48" rx="20" ry="18" fill="var(--viz-white)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="18" cy="28" r="14" fill="var(--viz-white)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <ellipse cx="18" cy="8" rx="5" ry="14" fill="var(--viz-white)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <ellipse cx="27" cy="9" rx="5" ry="14" fill="var(--viz-white)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="12" cy="26" r="2.2" fill="var(--viz-ink)" />
+              <circle cx="50" cy="48" r="6" fill="var(--primary-container)" />
+            </g>
+            <rect x="136" y="202" width="76" height="26" rx="13" fill="var(--viz-white)" />
+            <text x="174" y="219" text-anchor="middle" font-size="12" font-weight="800" fill="var(--viz-ink)">Kelinci</text>
+
+            <!-- 2. Kura-kura (tengah, hadap kiri) -->
+            <g transform="translate(268, 134)">
+              <path d="M12 40 C12 14, 62 14, 62 40 Z" fill="var(--viz-grass-dark)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="8" cy="34" r="10" fill="var(--viz-wood-light)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="5" cy="32" r="2" fill="var(--viz-ink)" />
+              <rect x="18" y="40" width="10" height="12" rx="4" fill="var(--viz-wood-light)" stroke="var(--viz-ink)" stroke-width="2" />
+              <rect x="46" y="40" width="10" height="12" rx="4" fill="var(--viz-wood-light)" stroke="var(--viz-ink)" stroke-width="2" />
+            </g>
+            <rect x="256" y="202" width="96" height="26" rx="13" fill="var(--viz-white)" />
+            <text x="304" y="219" text-anchor="middle" font-size="12" font-weight="800" fill="var(--viz-ink)">Kura-kura</text>
+
+            <!-- 3. Bebek (paling belakang, hadap kiri) -->
+            <g transform="translate(404, 126)">
+              <ellipse cx="34" cy="44" rx="22" ry="15" fill="var(--viz-sun)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="18" cy="24" r="12" fill="var(--viz-sun)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <polygon points="7,23 -4,27 8,30" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="14" cy="22" r="2" fill="var(--viz-ink)" />
+            </g>
+            <rect x="398" y="202" width="76" height="26" rx="13" fill="var(--viz-white)" />
+            <text x="436" y="219" text-anchor="middle" font-size="12" font-weight="800" fill="var(--viz-ink)">Bebek</text>
+          </svg>
+        `;
+      }
+
+      if (q.type === `room`) {
+        const chosen = state.selectedOption || (state.answers[q.id] ? state.answers[q.id].chosen : null);
+        return `
+          <svg class="scene-svg" viewBox="0 0 580 280" role="img" aria-label="Gambar kamar tidur berisi lemari, lukisan, vas bunga, akuarium ikan, tempat tidur, boneka beruang, bantal putih, dan jam dinding">
+            <!-- Dinding & Lantai -->
+            <rect width="580" height="215" fill="var(--viz-wall)" />
+            <rect y="215" width="580" height="65" fill="var(--viz-floor)" />
+            <line x1="0" y1="215" x2="580" y2="215" stroke="var(--outline-variant)" stroke-width="3" />
+
+            <!-- Lukisan di dinding kiri (atas vas) -->
+            <g transform="translate(54, 22)">
+              <rect width="92" height="58" rx="8" fill="var(--viz-sky)" stroke="var(--viz-brown)" stroke-width="4" />
+              <polygon points="10,50 38,20 62,50" fill="var(--viz-grass-dark)" />
+              <polygon points="40,50 64,26 84,50" fill="var(--secondary)" />
+              <circle cx="72" cy="18" r="7" fill="var(--viz-sun)" />
+              <text x="46" y="72" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">Lukisan</text>
+            </g>
+
+            <!-- Lemari di kiri bawah -->
+            <g transform="translate(46, 138)">
+              <rect width="180" height="92" rx="10" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="3" />
+              <line x1="90" y1="0" x2="90" y2="92" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <circle cx="80" cy="46" r="4" fill="var(--viz-sun)" />
+              <circle cx="100" cy="46" r="4" fill="var(--viz-sun)" />
+              <text x="90" y="108" text-anchor="middle" font-size="12" font-weight="800" fill="var(--viz-ink)">Lemari</text>
+            </g>
+
+            <!-- Hotspot: Vas Bunga (di atas lemari, bawah lukisan, kiri akuarium) -->
+            <g class="room-hotspot ${chosen === 'vas' ? 'is-selected' : ''}" onclick="selectRoomHotspot('vas')" onkeydown="handleHotspotKey(event, 'vas')" tabindex="0" role="button" aria-label="Pilih Vas Bunga">
+              <rect class="spot-ring" x="68" y="88" width="64" height="50" rx="14" fill="var(--viz-white)" fill-opacity="0.7" stroke="var(--outline-variant)" stroke-width="2" />
+              <path d="M88 134 L92 114 L108 114 L112 134 Z" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2" />
+              <circle cx="100" cy="103" r="8" fill="var(--viz-sun)" stroke="var(--viz-ink)" stroke-width="2" />
+              <circle cx="91" cy="107" r="6" fill="var(--primary-container)" stroke="var(--viz-ink)" stroke-width="1.5" />
+              <circle cx="109" cy="107" r="6" fill="var(--primary-container)" stroke="var(--viz-ink)" stroke-width="1.5" />
+            </g>
+
+            <!-- Hotspot: Akuarium Ikan (di atas lemari, kanan vas) -->
+            <g class="room-hotspot ${chosen === 'akuarium' ? 'is-selected' : ''}" onclick="selectRoomHotspot('akuarium')" onkeydown="handleHotspotKey(event, 'akuarium')" tabindex="0" role="button" aria-label="Pilih Akuarium Ikan">
+              <rect class="spot-ring" x="148" y="92" width="68" height="46" rx="12" fill="var(--viz-sky)" stroke="var(--tertiary)" stroke-width="2.5" />
+              <ellipse cx="180" cy="116" rx="12" ry="7" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="1.8" />
+              <polygon points="191,116 200,110 200,122" fill="var(--viz-orange)" stroke="var(--viz-ink)" stroke-width="1.8" />
+              <circle cx="174" cy="114" r="1.8" fill="var(--viz-ink)" />
+              <text x="182" y="87" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">Akuarium</text>
+            </g>
+
+            <!-- Hotspot: Jam Dinding (di atas boneka & ranjang) -->
+            <g class="room-hotspot ${chosen === 'jam' ? 'is-selected' : ''}" onclick="selectRoomHotspot('jam')" onkeydown="handleHotspotKey(event, 'jam')" tabindex="0" role="button" aria-label="Pilih Jam Dinding">
+              <circle class="spot-ring" cx="352" cy="54" r="28" fill="var(--viz-white)" stroke="var(--secondary)" stroke-width="3.5" />
+              <line x1="352" y1="54" x2="352" y2="38" stroke="var(--viz-ink)" stroke-width="3" stroke-linecap="round" />
+              <line x1="352" y1="54" x2="365" y2="54" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" />
+              <circle cx="352" cy="54" r="3" fill="var(--viz-ink)" />
+              <text x="352" y="96" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">Jam Dinding</text>
+            </g>
+
+            <!-- Tempat Tidur (kanan lemari) -->
+            <g transform="translate(278, 152)">
+              <rect x="0" y="16" width="256" height="62" rx="14" fill="var(--viz-bed)" stroke="var(--viz-ink)" stroke-width="3" />
+              <rect x="234" y="-12" width="22" height="90" rx="8" fill="var(--viz-brown)" stroke="var(--viz-ink)" stroke-width="3" />
+              <rect x="12" y="8" width="226" height="26" rx="10" fill="var(--viz-white)" stroke="var(--viz-ink)" stroke-width="2.5" />
+              <text x="128" y="95" text-anchor="middle" font-size="12" font-weight="800" fill="var(--viz-ink)">Tempat Tidur</text>
+            </g>
+
+            <!-- Hotspot: Boneka Beruang (di atas tempat tidur, kiri bantal, bawah jam) -->
+            <g class="room-hotspot ${chosen === 'boneka' ? 'is-selected' : ''}" onclick="selectRoomHotspot('boneka')" onkeydown="handleHotspotKey(event, 'boneka')" tabindex="0" role="button" aria-label="Pilih Boneka Beruang">
+              <rect class="spot-ring" x="316" y="106" width="72" height="56" rx="16" fill="var(--viz-white)" fill-opacity="0.7" stroke="var(--outline-variant)" stroke-width="2" />
+              <circle cx="342" cy="116" r="6" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="2" />
+              <circle cx="362" cy="116" r="6" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="2" />
+              <ellipse cx="352" cy="144" rx="16" ry="13" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="2" />
+              <circle cx="352" cy="126" r="13" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="2" />
+              <circle cx="347" cy="124" r="2" fill="var(--viz-ink)" />
+              <circle cx="357" cy="124" r="2" fill="var(--viz-ink)" />
+              <ellipse cx="352" cy="129" rx="5" ry="3.5" fill="var(--viz-wood-light)" />
+            </g>
+
+            <!-- Hotspot: Bantal Putih (di atas tempat tidur, kanan boneka) -->
+            <g class="room-hotspot ${chosen === 'bantal' ? 'is-selected' : ''}" onclick="selectRoomHotspot('bantal')" onkeydown="handleHotspotKey(event, 'bantal')" tabindex="0" role="button" aria-label="Pilih Bantal Putih">
+              <rect class="spot-ring" x="424" y="128" width="76" height="36" rx="16" fill="var(--viz-white)" stroke="var(--outline)" stroke-width="3" />
+              <text x="462" y="150" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">Bantal Putih</text>
+            </g>
+          </svg>
+        `;
+      }
+
+      if (q.type === `steps`) {
+        const coords = [
+          { x: 165, y: 102, label: `Langkah 1: Di atas meja` },
+          { x: 165, y: 185, label: `Langkah 2: Di bawah meja` },
+          { x: 430, y: 150, label: `Langkah 3: Di kanan kursi` },
+          { x: 295, y: 150, label: `Langkah 4: Di kiri kursi` }
+        ];
+        const pos = coords[state.stepSimIndex] || coords[0];
+        return `
+          <svg class="scene-svg" viewBox="0 0 560 240" role="img" aria-label="Simulasi posisi pensil terhadap meja dan kursi">
+            <rect width="560" height="190" fill="var(--viz-wall)" />
+            <rect y="190" width="560" height="50" fill="var(--viz-floor)" />
+            <!-- Meja (kiri) -->
+            <rect x="96" y="118" width="144" height="16" rx="6" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="3" />
+            <rect x="110" y="134" width="14" height="72" rx="4" fill="var(--viz-brown)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <rect x="212" y="134" width="14" height="72" rx="4" fill="var(--viz-brown)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <text x="168" y="226" text-anchor="middle" font-size="13" font-weight="800" fill="var(--viz-ink)">Meja</text>
+
+            <!-- Kursi (kanan) -->
+            <rect x="342" y="142" width="70" height="14" rx="6" fill="var(--secondary)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <rect x="398" y="88" width="14" height="68" rx="5" fill="var(--secondary)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <rect x="348" y="156" width="12" height="50" rx="4" fill="var(--secondary)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <rect x="396" y="156" width="12" height="50" rx="4" fill="var(--secondary)" stroke="var(--viz-ink)" stroke-width="2.5" />
+            <text x="377" y="226" text-anchor="middle" font-size="13" font-weight="800" fill="var(--viz-ink)">Kursi</text>
+
+            <!-- Pensil bergerak -->
+            <g transform="translate(${pos.x}, ${pos.y})">
+              <circle cx="0" cy="0" r="24" fill="var(--primary-container)" fill-opacity="0.45" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="4 3" />
+              <g transform="rotate(-25)">
+                <rect x="-18" y="-5" width="32" height="10" rx="3" fill="var(--viz-sun)" stroke="var(--viz-ink)" stroke-width="2" />
+                <polygon points="14,-5 24,0 14,5" fill="var(--viz-skin)" stroke="var(--viz-ink)" stroke-width="2" />
+              </g>
+            </g>
+
+            <!-- Banner status simulasi -->
+            <rect x="130" y="14" width="300" height="32" rx="16" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            <text x="280" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="var(--primary)">${pos.label}</text>
+          </svg>
+          <div class="step-controls">
+            <button type="button" class="btn btn-quiet" onclick="setSimStep(0)">1. Atas Meja</button>
+            <button type="button" class="btn btn-quiet" onclick="setSimStep(1)">2. Bawah Meja</button>
+            <button type="button" class="btn btn-quiet" onclick="setSimStep(2)">3. Kanan Kursi</button>
+            <button type="button" class="btn btn-secondary" onclick="setSimStep(3)">4. Kiri Kursi</button>
+          </div>
+        `;
+      }
+
+      if (q.type === `pattern`) {
+        return renderPatternScene(q);
+      }
+
+      return ``;
+    }
+
+    function renderPatternTile(kind, token, indexLabel) {
+      if (token === `?`) {
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--primary-container)" fill-opacity="0.35" stroke="var(--primary)" stroke-width="3" stroke-dasharray="6 4" />
+            <text x="42" y="60" text-anchor="middle" font-size="32" font-weight="900" fill="var(--primary)">?</text>
+          </g>
+        `;
+      }
+
+      if (kind === `shirt-color`) {
+        const fill = token === `pink` ? `var(--primary)`
+                   : token === `biru` ? `var(--tertiary)`
+                   : token === `kuning` ? `var(--viz-sun)`
+                   : `var(--secondary)`;
+        const label = token === `pink` ? `Pink` : token === `biru` ? `Biru` : token === `kuning` ? `Kuning` : `Ungu`;
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            <path d="M24 22 L33 18 Q42 24 51 18 L60 22 L68 36 L58 42 L55 34 L55 68 L29 68 L29 34 L26 42 L16 36 Z" fill="${fill}" stroke="var(--viz-ink)" stroke-width="2.2" stroke-linejoin="round" />
+            <text x="42" y="86" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">${label}</text>
+          </g>
+        `;
+      }
+
+      if (kind === `shapes`) {
+        let shapeEl = ``;
+        let label = ``;
+        if (token === `lingkaran`) {
+          shapeEl = `<circle cx="42" cy="42" r="21" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2.5" />`;
+          label = `Lingkaran`;
+        } else if (token === `segitiga`) {
+          shapeEl = `<polygon points="42,19 64,62 20,62" fill="var(--tertiary)" stroke="var(--viz-ink)" stroke-width="2.5" stroke-linejoin="round" />`;
+          label = `Segitiga`;
+        } else if (token === `persegi`) {
+          shapeEl = `<rect x="22" y="22" width="40" height="40" rx="6" fill="var(--viz-sun)" stroke="var(--viz-ink)" stroke-width="2.5" />`;
+          label = `Persegi`;
+        } else {
+          shapeEl = `<polygon points="42,18 48,34 65,34 51,44 56,61 42,51 28,61 33,44 19,34 36,34" fill="var(--secondary)" stroke="var(--viz-ink)" stroke-width="2" />`;
+          label = `Bintang`;
+        }
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            ${shapeEl}
+            <text x="42" y="86" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">${label}</text>
+          </g>
+        `;
+      }
+
+      if (kind === `friends`) {
+        const isBoy = (token === `upe` || token === `halim` || token === `malosi`);
+        const names = { upe: `Upe`, lili: `Lili`, halim: `Halim`, kira: `Kira`, malosi: `Malosi`, tika: `Tika` };
+        const shirt = isBoy ? `var(--tertiary)` : `var(--primary)`;
+        const role = isBoy ? `Laki-laki` : `Perempuan`;
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            <rect x="25" y="42" width="34" height="26" rx="10" fill="${shirt}" stroke="var(--viz-ink)" stroke-width="2" />
+            <circle cx="42" cy="28" r="13" fill="var(--viz-skin)" stroke="var(--viz-ink)" stroke-width="2" />
+            ${isBoy
+              ? `<path d="M29 25 Q42 12 55 25" fill="var(--viz-ink)" />`
+              : `<path d="M27 28 Q42 10 57 28 L59 38 L52 35 L42 22 L32 35 L25 38 Z" fill="var(--viz-ink)" />`
+            }
+            <circle cx="38" cy="28" r="1.8" fill="var(--viz-ink)" />
+            <circle cx="46" cy="28" r="1.8" fill="var(--viz-ink)" />
+            <text x="42" y="80" text-anchor="middle" font-size="11" font-weight="900" fill="var(--viz-ink)">${names[token] || token}</text>
+            <text x="42" y="92" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--on-surface-variant)">${role}</text>
+          </g>
+        `;
+      }
+
+      if (kind === `motion`) {
+        const isBend = (token === `membungkuk`);
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            ${isBend
+              ? `<circle cx="24" cy="40" r="9" fill="var(--viz-skin)" stroke="var(--viz-ink)" stroke-width="2" />
+                 <path d="M32 42 L54 42 L54 68" fill="none" stroke="var(--primary)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                 <line x1="34" y1="44" x2="28" y2="62" stroke="var(--viz-ink)" stroke-width="3.5" stroke-linecap="round" />`
+              : `<circle cx="42" cy="22" r="9" fill="var(--viz-skin)" stroke="var(--viz-ink)" stroke-width="2" />
+                 <line x1="42" y1="32" x2="42" y2="54" stroke="var(--secondary)" stroke-width="7" stroke-linecap="round" />
+                 <line x1="42" y1="54" x2="34" y2="70" stroke="var(--viz-ink)" stroke-width="3.5" stroke-linecap="round" />
+                 <line x1="42" y1="54" x2="50" y2="70" stroke="var(--viz-ink)" stroke-width="3.5" stroke-linecap="round" />
+                 <line x1="27" y1="38" x2="57" y2="38" stroke="var(--viz-ink)" stroke-width="3.5" stroke-linecap="round" />`
+            }
+            <text x="42" y="87" text-anchor="middle" font-size="10" font-weight="800" fill="var(--viz-ink)">${isBend ? `Membungkuk` : `Berdiri`}</text>
+          </g>
+        `;
+      }
+
+      if (kind === `fruit-middle`) {
+        if (token === `apel`) {
+          return `
+            <g>
+              <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+              <circle cx="42" cy="46" r="18" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2.2" />
+              <path d="M42 28 Q47 18 55 22 Q50 30 42 28 Z" fill="var(--viz-grass-dark)" stroke="var(--viz-ink)" stroke-width="1.5" />
+              <text x="42" y="84" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">Apel</text>
+            </g>
+          `;
+        }
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            <path d="M24 52 Q42 68 62 32 Q52 46 28 44 Z" fill="var(--viz-sun)" stroke="var(--viz-ink)" stroke-width="2.2" stroke-linejoin="round" />
+            <text x="42" y="84" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-ink)">Pisang</text>
+          </g>
+        `;
+      }
+
+      if (kind === `spot-error`) {
+        const isStar = (token === `star`);
+        return `
+          <g>
+            <rect x="4" y="4" width="76" height="92" rx="18" fill="var(--viz-white)" stroke="var(--outline-variant)" stroke-width="2" />
+            ${isStar
+              ? `<polygon points="42,20 48,35 64,35 51,45 56,61 42,51 28,61 33,45 20,35 36,35" fill="var(--secondary)" stroke="var(--viz-ink)" stroke-width="2" />`
+              : `<path d="M42 60 C22 47, 18 28, 30 22 C36 19, 41 24, 42 28 C43 24, 48 19, 54 22 C66 28, 62 47, 42 60 Z" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2" />`
+            }
+            <circle cx="42" cy="80" r="11" fill="var(--surface-container-high)" />
+            <text x="42" y="84" text-anchor="middle" font-size="12" font-weight="900" fill="var(--viz-ink)">${indexLabel}</text>
+          </g>
+        `;
+      }
+
+      return ``;
+    }
+
+    function renderPatternScene(q) {
+      const answered = state.answers[q.id];
+      const previewVal = answered ? answered.chosen : state.selectedOption;
+
+      let seq = [];
+      let replaceIdx = -1;
+      if (q.patternKind === `shirt-color`) {
+        seq = [`pink`, `biru`, `pink`, `biru`, `pink`, `?`];
+        replaceIdx = 5;
+      } else if (q.patternKind === `shapes`) {
+        seq = [`lingkaran`, `segitiga`, `persegi`, `lingkaran`, `segitiga`, `?`];
+        replaceIdx = 5;
+      } else if (q.patternKind === `friends`) {
+        seq = [`upe`, `lili`, `halim`, `kira`, `malosi`, `?`];
+        replaceIdx = 5;
+      } else if (q.patternKind === `motion`) {
+        seq = [`membungkuk`, `berdiri`, `membungkuk`, `berdiri`, `membungkuk`, `?`];
+        replaceIdx = 5;
+      } else if (q.patternKind === `fruit-middle`) {
+        seq = [`apel`, `apel`, `pisang`, `apel`, `?`, `pisang`];
+        replaceIdx = 4;
+      } else if (q.patternKind === `spot-error`) {
+        seq = [`star`, `heart`, `star`, `star`, `star`, `heart`];
+      }
+
+      if (replaceIdx >= 0 && previewVal && q.patternKind !== `spot-error`) {
+        seq[replaceIdx] = previewVal;
+      }
+
+      const tiles = seq.map(function (tok, i) {
+        return `<g transform="translate(${14 + i * 88}, 18)">${renderPatternTile(q.patternKind, tok, String(i + 1))}</g>`;
+      }).join(``);
+
+      return `
+        <svg class="scene-svg" viewBox="0 0 554 136" role="img" aria-label="Deretan gambar pola berulang">
+          <rect width="554" height="136" rx="16" fill="var(--surface-container-low)" />
+          ${tiles}
+        </svg>
+      `;
+    }
+
+    // =========================================================================
+    // RENDERER KARTU PENGINGAT (SIDEBAR)
+    // =========================================================================
+    function renderHelper() {
+      const container = document.getElementById(`helper-content`);
+      if (!container) return;
+
+      const tabPos = document.getElementById(`htab-posisi`);
+      const tabPola = document.getElementById(`htab-pola`);
+      if (tabPos) tabPos.setAttribute(`aria-selected`, state.helperTab === `posisi` ? `true` : `false`);
+      if (tabPola) tabPola.setAttribute(`aria-selected`, state.helperTab === `pola` ? `true` : `false`);
+
+      if (state.helperTab === `posisi`) {
+        const keys = [`atas`, `bawah`, `depan`, `belakang`, `kanan`, `kiri`];
+        const chips = keys.map(function (k) {
+          const label = k.charAt(0).toUpperCase() + k.slice(1);
+          const pressed = state.helperPos === k ? `true` : `false`;
+          return `<button type="button" class="pos-chip" aria-pressed="${pressed}" onclick="setHelperPos('${k}')">${label}</button>`;
+        }).join(``);
+
+        const p = state.helperPos;
+        const ballPos = p === `atas` ? { x: 110, y: 38 }
+                      : p === `bawah` ? { x: 110, y: 116 }
+                      : p === `kiri` ? { x: 44, y: 78 }
+                      : p === `kanan` ? { x: 176, y: 78 }
+                      : p === `depan` ? { x: 110, y: 95 }
+                      : { x: 110, y: 58 };
+
+        container.innerHTML = `
+          <div class="pos-chip-grid" style="margin-bottom: var(--space-sm);">${chips}</div>
+          <div style="background: var(--surface-container); border-radius: var(--rounded); padding: var(--space-sm); margin-bottom: var(--space-sm);">
+            <svg viewBox="0 0 220 140" width="100%" aria-hidden="true" style="display: block;">
+              <rect width="220" height="140" rx="12" fill="var(--viz-white)" />
+              ${p === `belakang`
+                ? `<circle cx="${ballPos.x}" cy="${ballPos.y}" r="14" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2" />
+                   <rect x="80" y="60" width="60" height="36" rx="8" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="2.5" />`
+                : `<rect x="80" y="60" width="60" height="36" rx="8" fill="var(--viz-wood)" stroke="var(--viz-ink)" stroke-width="2.5" />
+                   <circle cx="${ballPos.x}" cy="${ballPos.y}" r="14" fill="var(--primary)" stroke="var(--viz-ink)" stroke-width="2" />`
+              }
+              <text x="110" y="82" text-anchor="middle" font-size="11" font-weight="800" fill="var(--viz-white)">Kotak</text>
+            </svg>
+          </div>
+          <p style="margin: 0; font-size: var(--label-size); color: var(--on-surface-variant);">${HELPER_POSITIONS[p]}</p>
+        `;
+      } else {
+        container.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <div style="background: var(--surface-container); border-radius: var(--rounded); padding: var(--space-sm) var(--space-md);">
+              <strong style="color: var(--primary); font-size: var(--body-size);">Apa itu Pola?</strong>
+              <p style="margin: var(--space-xs) 0 0 0; font-size: var(--label-size); color: var(--on-surface-variant);">
+                Hal yang <strong>berulang dan teratur</strong> dinamakan pola (hlm. 114).
+              </p>
+            </div>
+            <div style="background: var(--surface-container); border-radius: var(--rounded); padding: var(--space-sm) var(--space-md);">
+              <strong style="color: var(--secondary); font-size: var(--body-size);">3 Jenis Pola Bab 4:</strong>
+              <ul style="margin: var(--space-xs) 0 0 0; padding-left: var(--space-md); font-size: var(--label-size); color: var(--on-surface-variant);">
+                <li><strong>Pola Warna</strong>: merah, biru, merah, biru…</li>
+                <li><strong>Pola Bentuk/Benda</strong>: lingkaran, segitiga, lingkaran, segitiga…</li>
+                <li><strong>Pola Gerakan</strong>: membungkuk, berdiri, membungkuk, berdiri…</li>
+              </ul>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // =========================================================================
+    // RENDERER UTAMA KUIS & RINGKASAN
+    // =========================================================================
+    function renderAll() {
+      renderModeTabs();
+      renderSidebar();
+      if (state.showSummary) {
+        renderSummary();
+      } else {
+        renderStage();
+      }
+      renderHelper();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function renderModeTabs() {
+      const mAll = document.getElementById(`mode-all`);
+      const mPos = document.getElementById(`mode-posisi`);
+      const mPol = document.getElementById(`mode-pola`);
+      if (mAll) mAll.setAttribute(`aria-pressed`, state.mode === `all` ? `true` : `false`);
+      if (mPos) mPos.setAttribute(`aria-pressed`, state.mode === `posisi` ? `true` : `false`);
+      if (mPol) mPol.setAttribute(`aria-pressed`, state.mode === `pola` ? `true` : `false`);
+
+      const bestBadge = document.getElementById(`best-score-badge`);
+      if (bestBadge) bestBadge.textContent = `Skor Terbaik: ` + state.bestScore;
+
+      const soundLabel = document.getElementById(`sound-toggle-label`);
+      if (soundLabel) soundLabel.textContent = state.soundEnabled ? `Suara Aktif` : `Suara Mati`;
+    }
+
+    function renderSidebar() {
+      const list = getFilteredQuestions();
+      const total = list.length;
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      list.forEach(function (q) {
+        if (state.answers[q.id]) {
+          answeredCount += 1;
+          if (state.answers[q.id].isCorrect) correctCount += 1;
+        }
+      });
+
+      const score = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+      // Compute current streak up to last answered
+      let streak = 0;
+      for (let i = 0; i < list.length; i += 1) {
+        const ans = state.answers[list[i].id];
+        if (!ans) continue;
+        if (ans.isCorrect) streak += 1;
+        else streak = 0;
+      }
+
+      const nameInput = document.getElementById(`student-name`);
+      if (nameInput && nameInput.value !== state.studentName) {
+        nameInput.value = state.studentName;
+      }
+
+      const statScore = document.getElementById(`stat-score`);
+      const statCorrect = document.getElementById(`stat-correct`);
+      const statStreak = document.getElementById(`stat-streak`);
+      if (statScore) statScore.textContent = String(score);
+      if (statCorrect) statCorrect.textContent = `${correctCount}/${total}`;
+      if (statStreak) statStreak.textContent = String(streak);
+
+      const dotsWrap = document.getElementById(`question-nav-dots`);
+      if (dotsWrap) {
+        dotsWrap.innerHTML = list.map(function (q, idx) {
+          const ans = state.answers[q.id];
+          let cls = `q-dot`;
+          if (!state.showSummary && idx === state.currentIndex) cls += ` is-current`;
+          if (ans) cls += ans.isCorrect ? ` is-right` : ` is-missed`;
+          return `<button type="button" class="${cls}" onclick="jumpToQuestion(${idx})" aria-label="Soal ${idx + 1}">${idx + 1}</button>`;
+        }).join(``);
+      }
+    }
+
+    function renderStage() {
+      const stage = document.getElementById(`quiz-stage`);
+      if (!stage) return;
+
+      const list = getFilteredQuestions();
+      if (state.currentIndex >= list.length) state.currentIndex = 0;
+      const q = list[state.currentIndex];
+      const answered = state.answers[q.id] || null;
+      const chosen = answered ? answered.chosen : state.selectedOption;
+
+      const answeredInMode = list.filter(function (item) { return Boolean(state.answers[item.id]); }).length;
+      const pct = Math.round((answeredInMode / list.length) * 100);
+
+      const letters = [`A`, `B`, `C`, `D`];
+      const optionsHtml = q.options.map(function (opt, idx) {
+        let cls = `option-pill`;
+        if (answered) {
+          if (opt.value === q.answer) cls += ` is-correct`;
+          else if (opt.value === answered.chosen) cls += ` is-wrong`;
+        } else if (chosen === opt.value) {
+          cls += ` is-selected`;
+        }
+        const disabledAttr = answered ? `disabled` : ``;
+        return `
+          <button type="button" class="${cls}" ${disabledAttr} onclick="selectOption('${opt.value}')">
+            <span class="option-letter">${letters[idx]}</span>
+            <span>${opt.label}</span>
+          </button>
+        `;
+      }).join(``);
+
+      const hintHtml = state.showHint ? `
+        <div class="hint-box">
+          <i data-lucide="lightbulb" aria-hidden="true" style="flex-shrink:0; color: var(--secondary);"></i>
+          <div>
+            <strong>Petunjuk:</strong> ${q.hint}
+          </div>
+        </div>
+      ` : ``;
+
+      let feedbackHtml = ``;
+      if (answered) {
+        if (answered.isCorrect) {
+          feedbackHtml = `
+            <div class="feedback-box is-correct">
+              <i data-lucide="check-circle-2" aria-hidden="true" style="flex-shrink:0; color: var(--positive);"></i>
+              <div>
+                <p class="feedback-title">Hore, Jawabanmu Benar!</p>
+                <p class="feedback-desc">${q.explanation}</p>
+              </div>
+            </div>
+          `;
+        } else {
+          feedbackHtml = `
+            <div class="feedback-box is-wrong">
+              <i data-lucide="sparkles" aria-hidden="true" style="flex-shrink:0; color: var(--warning);"></i>
+              <div>
+                <p class="feedback-title">Hampir Tepat! Yuk Belajar Bersama</p>
+                <p class="feedback-desc">${q.explanation}</p>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      const isLast = state.currentIndex === list.length - 1;
+      const nextBtnText = isLast ? `Lihat Hasil Akhir` : `Soal Berikutnya`;
+
+      stage.innerHTML = `
+        <div class="stage-meta">
+          <span class="badge">${q.topicLabel} · ${q.refPage}</span>
+          <span class="tag-grape">Soal ${state.currentIndex + 1} dari ${list.length}</span>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-label-row">
+            <span>Kemajuan Kuis</span>
+            <span>${answeredInMode}/${list.length} Terjawab (${pct}%)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: ${pct}%;"></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="question-heading">${q.prompt}</h2>
+          <p class="question-sub">${q.subtitle}</p>
+        </div>
+
+        <div class="scene-well">
+          ${renderQuestionVisual(q)}
+          ${q.type === `room` ? `<span class="scene-caption">Tips: Ketuk langsung benda di gambar kamar atau pilih tombol di bawah!</span>` : ``}
+        </div>
+
+        <div class="options-grid">
+          ${optionsHtml}
+        </div>
+
+        ${hintHtml}
+        ${feedbackHtml}
+
+        <div class="action-row">
+          <div class="action-group">
+            <button type="button" class="btn btn-quiet" onclick="toggleHint()" ${answered ? `disabled` : ``}>
+              <i data-lucide="lightbulb" aria-hidden="true"></i>
+              <span>${state.showHint ? `Tutup Petunjuk` : `Beri Petunjuk`}</span>
+            </button>
+          </div>
+          <div class="action-group">
+            ${state.currentIndex > 0 ? `
+              <button type="button" class="btn btn-quiet" onclick="prevQuestion()">
+                <i data-lucide="arrow-left" aria-hidden="true"></i>
+                <span>Sebelumnya</span>
+              </button>
+            ` : ``}
+            ${!answered ? `
+              <button type="button" class="btn btn-primary" onclick="checkAnswer()" ${!chosen ? `disabled` : ``}>
+                <i data-lucide="check" aria-hidden="true"></i>
+                <span>Cek Jawabanku</span>
+              </button>
+            ` : `
+              <button type="button" class="btn btn-primary" onclick="nextQuestion()">
+                <span>${nextBtnText}</span>
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSummary() {
+      const stage = document.getElementById(`quiz-stage`);
+      if (!stage) return;
+
+      const list = getFilteredQuestions();
+      const total = list.length;
+      let correct = 0;
+      let posTotal = 0;
+      let posOk = 0;
+      let polaTotal = 0;
+      let polaOk = 0;
+
+      list.forEach(function (q) {
+        const ans = state.answers[q.id];
+        if (q.topic === `posisi`) {
+          posTotal += 1;
+          if (ans && ans.isCorrect) posOk += 1;
+        } else {
+          polaTotal += 1;
+          if (ans && ans.isCorrect) polaOk += 1;
+        }
+        if (ans && ans.isCorrect) correct += 1;
+      });
+
+      const score = total > 0 ? Math.round((correct / total) * 100) : 0;
+      const stars = score >= 85 ? 3 : score >= 60 ? 2 : score >= 25 ? 1 : 0;
+      const nameText = state.studentName.trim() ? state.studentName.trim() : `Juara Cilik`;
+      const praise = stars === 3 ? `Luar biasa, ${nameText}! Kamu menguasai Posisi Benda & Pola dengan sangat baik!`
+                   : stars === 2 ? `Bagus sekali, ${nameText}! Sedikit latihan lagi supaya makin mahir!`
+                   : `Semangat terus, ${nameText}! Yuk lihat ulasan soal dan coba lagi!`;
+
+      const posPct = posTotal > 0 ? Math.round((posOk / posTotal) * 100) : 0;
+      const polaPct = polaTotal > 0 ? Math.round((polaOk / polaTotal) * 100) : 0;
+
+      const starIcons = [1, 2, 3].map(function (n) {
+        const active = n <= stars;
+        return `
+          <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+            <polygon points="12,2 15,9 22,9 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9 9,9"
+              fill="${active ? `var(--viz-sun)` : `var(--surface-container-high)`}"
+              stroke="${active ? `var(--viz-wood)` : `var(--outline-variant)`}"
+              stroke-width="1.5" stroke-linejoin="round" />
+          </svg>
+        `;
+      }).join(``);
+
+      const reviewItems = list.map(function (q, idx) {
+        const ans = state.answers[q.id];
+        const ok = ans && ans.isCorrect;
+        return `
+          <div class="review-item">
+            <div class="review-head">
+              <span>Soal ${idx + 1}: ${q.topicLabel}</span>
+              <span class="pill-status ${ok ? `is-ok` : `is-no`}">${ok ? `Benar` : `Perlu Latihan`}</span>
+            </div>
+            <p style="margin: 0; font-size: var(--body-size);">${q.prompt}</p>
+            <p style="margin: 0; font-size: var(--label-size); color: var(--on-surface-variant);">${q.explanation}</p>
+          </div>
+        `;
+      }).join(``);
+
+      stage.innerHTML = `
+        <div class="summary-hero">
+          <div class="stage-meta">
+            <span class="badge">Laporan Hasil Belajar</span>
+            <div style="display:flex; gap: var(--space-xs);" aria-label="Raihan ${stars} dari 3 bintang">${starIcons}</div>
+          </div>
+
+          <div class="summary-score-row">
+            <div>
+              <h2 class="question-heading" style="margin-bottom: var(--space-xs);">${praise}</h2>
+              <p class="question-sub">Kamu menjawab benar <strong>${correct} dari ${total} soal</strong> pada mode ini.</p>
+            </div>
+            <div style="text-align: right;">
+              <div class="stat-label">Skor Akhir</div>
+              <div class="big-score">${score}</div>
+            </div>
+          </div>
+
+          <div class="mastery-bars">
+            ${posTotal > 0 ? `
+              <div class="mastery-row">
+                <div class="progress-label-row">
+                  <span>Bab 4A: Posisi Benda (Depan, Belakang, Atas, Bawah, Kanan, Kiri)</span>
+                  <span>${posOk}/${posTotal} (${posPct}%)</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: ${posPct}%;"></div>
+                </div>
+              </div>
+            ` : ``}
+            ${polaTotal > 0 ? `
+              <div class="mastery-row">
+                <div class="progress-label-row">
+                  <span>Bab 4B: Pola Berulang (Warna, Bentuk, Benda, Gerakan)</span>
+                  <span>${polaOk}/${polaTotal} (${polaPct}%)</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: ${polaPct}%; background: var(--secondary);"></div>
+                </div>
+              </div>
+            ` : ``}
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="btn btn-primary" onclick="restartCurrentMode()">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span>Main Lagi</span>
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="exportReport()">
+            <i data-lucide="download" aria-hidden="true"></i>
+            <span>Unduh Catatan Hasil</span>
+          </button>
+        </div>
+
+        <div>
+          <h3 style="margin: 0 0 var(--space-sm) 0; font-size: var(--subhead-size); font-weight: 800;">Ulasan Pembahasan Soal</h3>
+          <div class="review-list">${reviewItems}</div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // HANDLER INTERAKSI (HOISTED FUNCTIONS)
+    // =========================================================================
+    function setMode(mode) {
+      state.mode = mode;
+      state.currentIndex = 0;
+      state.selectedOption = null;
+      state.showHint = false;
+      state.showSummary = false;
+      state.stepSimIndex = 0;
+      playTone(`click`);
+      renderAll();
+      persistState();
+    }
+
+    function selectOption(val) {
+      const list = getFilteredQuestions();
+      const q = list[state.currentIndex];
+      if (!q || state.answers[q.id]) return;
+      state.selectedOption = val;
+      playTone(`click`);
+      renderStage();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function selectRoomHotspot(val) {
+      selectOption(val);
+    }
+
+    function handleHotspotKey(evt, val) {
+      if (evt.key === `Enter` || evt.key === ` `) {
+        evt.preventDefault();
+        selectRoomHotspot(val);
+      }
+    }
+
+    function checkAnswer() {
+      const list = getFilteredQuestions();
+      const q = list[state.currentIndex];
+      if (!q || !state.selectedOption || state.answers[q.id]) return;
+
+      const isCorrect = state.selectedOption === q.answer;
+      state.answers[q.id] = { chosen: state.selectedOption, isCorrect: isCorrect };
+      state.selectedOption = null;
+
+      // Update best score
+      let correctCount = 0;
+      list.forEach(function (item) {
+        if (state.answers[item.id] && state.answers[item.id].isCorrect) correctCount += 1;
+      });
+      const currentScore = list.length > 0 ? Math.round((correctCount / list.length) * 100) : 0;
+      if (currentScore > state.bestScore) state.bestScore = currentScore;
+
+      playTone(isCorrect ? `correct` : `wrong`);
+      renderAll();
+      persistState();
+    }
+
+    function nextQuestion() {
+      const list = getFilteredQuestions();
+      if (state.currentIndex < list.length - 1) {
+        state.currentIndex += 1;
+        state.selectedOption = null;
+        state.showHint = false;
+        state.stepSimIndex = 0;
+      } else {
+        state.showSummary = true;
+      }
+      playTone(`click`);
+      renderAll();
+      persistState();
+    }
+
+    function prevQuestion() {
+      if (state.currentIndex > 0) {
+        state.currentIndex -= 1;
+        state.selectedOption = null;
+        state.showHint = false;
+        state.stepSimIndex = 0;
+        playTone(`click`);
+        renderAll();
+        persistState();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      const list = getFilteredQuestions();
+      if (idx < 0 || idx >= list.length) return;
+      state.showSummary = false;
+      state.currentIndex = idx;
+      state.selectedOption = null;
+      state.showHint = false;
+      state.stepSimIndex = 0;
+      playTone(`click`);
+      renderAll();
+      persistState();
+    }
+
+    function toggleHint() {
+      const list = getFilteredQuestions();
+      const q = list[state.currentIndex];
+      state.showHint = !state.showHint;
+      if (q && state.showHint) state.hintsUsed[q.id] = true;
+      playTone(`click`);
+      renderStage();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+      persistState();
+    }
+
+    function setSimStep(idx) {
+      state.stepSimIndex = idx;
+      playTone(`click`);
+      renderStage();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function setHelperTab(tab) {
+      state.helperTab = tab;
+      playTone(`click`);
+      renderHelper();
+    }
+
+    function setHelperPos(pos) {
+      state.helperPos = pos;
+      playTone(`click`);
+      renderHelper();
+    }
+
+    function updateStudentName(val) {
+      state.studentName = val;
+      persistState();
+    }
+
+    function toggleSound() {
+      state.soundEnabled = !state.soundEnabled;
+      if (state.soundEnabled) playTone(`click`);
+      renderModeTabs();
+      persistState();
+    }
+
+    function restartCurrentMode() {
+      const list = getFilteredQuestions();
+      list.forEach(function (q) {
+        delete state.answers[q.id];
+        delete state.hintsUsed[q.id];
+      });
+      state.currentIndex = 0;
+      state.selectedOption = null;
+      state.showHint = false;
+      state.showSummary = false;
+      state.stepSimIndex = 0;
+      playTone(`click`);
+      renderAll();
+      persistState();
+    }
+
+    function handleResetQuiz(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        const span = btn.querySelector(`span`);
+        if (span) span.textContent = `Klik lagi untuk ulang`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            const s = btn.querySelector(`span`);
+            if (s) s.textContent = `Ulangi Kuis`;
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      const span = btn.querySelector(`span`);
+      if (span) span.textContent = `Ulangi Kuis`;
+      state.answers = {};
+      state.hintsUsed = {};
+      state.currentIndex = 0;
+      state.selectedOption = null;
+      state.showHint = false;
+      state.showSummary = false;
+      state.stepSimIndex = 0;
+      playTone(`click`);
+      renderAll();
+      persistState();
+    }
+
+    function exportReport() {
+      const list = getFilteredQuestions();
+      let correct = 0;
+      const lines = [
+        `LAPORAN HASIL KUIS MATEMATIKA KELAS 2 SD — BAB 4`,
+        `Nama Siswa: ${state.studentName.trim() || `Siswa Kelas 2`}`,
+        `Mode: ${state.mode.toUpperCase()}`,
+        `----------------------------------------`
+      ];
+      list.forEach(function (q, i) {
+        const ans = state.answers[q.id];
+        const status = ans ? (ans.isCorrect ? `BENAR` : `SALAH`) : `BELUM DIJAWAB`;
+        if (ans && ans.isCorrect) correct += 1;
+        lines.push(`${i + 1}. [${status}] ${q.prompt}`);
+      });
+      const score = list.length > 0 ? Math.round((correct / list.length) * 100) : 0;
+      lines.push(`----------------------------------------`);
+      lines.push(`Total Benar: ${correct} / ${list.length}`);
+      lines.push(`Skor Akhir: ${score}`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: lines.join(`\n`),
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `hasil-kuis-bab4-kelas2.txt`
+        });
+      }
+    }
+
+    // =========================================================================
+    // INISIALISASI
+    // =========================================================================
+    document.addEventListener(`DOMContentLoaded`, async function () {
+      const saved = await loadSavedState();
+      if (saved && typeof saved === `object`) {
+        if (typeof saved.studentName === `string`) state.studentName = saved.studentName;
+        if (saved.mode === `all` || saved.mode === `posisi` || saved.mode === `pola`) state.mode = saved.mode;
+        if (typeof saved.currentIndex === `number`) state.currentIndex = saved.currentIndex;
+        if (saved.answers && typeof saved.answers === `object`) state.answers = saved.answers;
+        if (saved.hintsUsed && typeof saved.hintsUsed === `object`) state.hintsUsed = saved.hintsUsed;
+        if (typeof saved.soundEnabled === `boolean`) state.soundEnabled = saved.soundEnabled;
+        if (typeof saved.bestScore === `number`) state.bestScore = saved.bestScore;
+        if (typeof saved.showSummary === `boolean`) state.showSummary = saved.showSummary;
+      }
+
+      renderAll();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    });
+  </script>
+</body>
+</html>

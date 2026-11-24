@@ -1,0 +1,2322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Seru Penjumlahan dan Pengurangan — Kelas 2 SD</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #ede4f7;
+      --tertiary: #0096cc;
+      --tertiary-container: #e0f5fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fee2e2;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Semantic */
+      --positive: #15803d;
+      --on-positive: #ffffff;
+      --positive-container: #dcfce7;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+
+      /* Focus */
+      --focus: #c2207f;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Type scale (Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.95rem, 0.9rem + 0.15vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.2);
+      --shadow-error: 0 4px 16px rgb(197 48 48 / 0.2);
+      --pop-scale: scale(1.03);
+      --press-scale: scale(0.97);
+      --lift: translateY(-4px);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    h2 {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    h3 {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .label-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-surface-variant);
+    }
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Hero Card */
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .hero-subtitle {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 60ch;
+      font-size: var(--body-size);
+    }
+    .hero-illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    /* Badges & Tags */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--secondary-container);
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .tag-pink {
+      background: var(--surface-container);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .tag-amber {
+      background: var(--warning-container);
+      color: var(--warning);
+      border-color: var(--warning);
+    }
+
+    /* Stats Strip */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+    .stat-card:nth-child(2) { box-shadow: var(--shadow-sky); animation-delay: 50ms; }
+    .stat-card:nth-child(3) { box-shadow: var(--shadow-grape); animation-delay: 100ms; }
+    .stat-card:nth-child(4) { box-shadow: var(--shadow-pink); animation-delay: 150ms; }
+
+    .stat-value {
+      font-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+    }
+    .stat-value-pink { color: var(--primary); }
+    .stat-value-grape { color: var(--secondary); }
+    .stat-caption {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    /* Lollipop Progress Bar */
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      width: 0%;
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+    .progress-fill-pink { background: var(--primary); }
+    .progress-fill-grape { background: var(--secondary); }
+
+    /* Toolbar / Filter Bar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-sm) var(--space-md);
+      box-shadow: var(--shadow-grape);
+    }
+    .segmented {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs);
+    }
+    .seg-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border: none;
+      border-radius: var(--rounded-full);
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .seg-btn:hover {
+      transform: var(--pop-scale);
+      color: var(--on-surface);
+    }
+    .seg-btn.active {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border: none;
+      border-radius: var(--rounded-full);
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: var(--press-scale); }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) { box-shadow: var(--shadow-grape-deep); }
+
+    .btn-soft {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-sky);
+    }
+    .btn-soft:hover:not(:disabled) { background: var(--surface-container-high); }
+
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .btn-danger-armed {
+      background: var(--error);
+      color: var(--on-error);
+      box-shadow: var(--shadow-error);
+    }
+
+    /* Main Workspace Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Question Card */
+    .quiz-card-wrapper {
+      container-type: inline-size;
+    }
+    .quiz-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .quiz-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .question-num {
+      font-weight: 800;
+      color: var(--on-surface-variant);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .question-prompt {
+      font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.45rem);
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Visual Helper Well */
+    .visual-stage {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .visual-stage-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .visual-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .mini-pill-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .mini-pill-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--primary-container);
+    }
+    .mini-pill-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Interactive Number Line */
+    .number-line-wrap {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: var(--space-xs);
+    }
+    .number-line-svg {
+      width: 100%;
+      min-width: 480px;
+      height: auto;
+      display: block;
+    }
+    .hop-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container-low);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-weight: 700;
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Place Value Vertical Math + Blocks */
+    .place-value-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .vertical-math-box {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-grape);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pv-table {
+      border-collapse: collapse;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .pv-table th {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-xs) var(--space-md);
+      color: var(--on-surface-variant);
+    }
+    .pv-table th.col-puluhan { color: var(--secondary); }
+    .pv-table th.col-satuan { color: var(--primary); }
+    .pv-table td {
+      font-size: 2rem;
+      font-weight: 900;
+      padding: var(--space-xs) var(--space-md);
+      line-height: 1.15;
+    }
+    .pv-row-line td {
+      border-bottom: 4px solid var(--on-surface);
+    }
+    .pv-op-cell {
+      font-size: 1.5rem !important;
+      color: var(--primary);
+      padding-left: var(--space-sm) !important;
+    }
+    .pv-answer-cell {
+      color: var(--primary);
+    }
+    .blocks-stage {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sky);
+    }
+    .blocks-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-md);
+      text-align: center;
+    }
+    .blocks-col {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-sm);
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .rods-wrap {
+      display: flex;
+      gap: var(--space-xs);
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .ten-rod {
+      width: 18px;
+      height: 68px;
+      border-radius: var(--rounded-full);
+      background: var(--secondary);
+      display: inline-block;
+    }
+    .cubes-wrap {
+      display: flex;
+      gap: var(--space-xs);
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 130px;
+    }
+    .one-cube {
+      width: 16px;
+      height: 16px;
+      border-radius: var(--space-xs);
+      background: var(--primary);
+      display: inline-block;
+    }
+    .one-cube-added {
+      background: var(--tertiary);
+    }
+    .one-cube-crossed {
+      background: var(--data-context);
+      position: relative;
+      opacity: 0.45;
+    }
+
+    /* Options Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    @container (max-width: 440px) {
+      .options-grid { grid-template-columns: 1fr; }
+      .place-value-grid { grid-template-columns: 1fr; }
+    }
+    .option-btn {
+      min-height: 64px;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 3px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 1.25rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      text-align: left;
+      box-shadow: var(--shadow-sky);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--surface-container);
+      box-shadow: var(--shadow-pink);
+    }
+    .option-btn:active:not(:disabled) {
+      transform: var(--press-scale);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-letter {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-positive);
+      animation: bounceWin var(--dur-long) var(--ease-bounce);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-error);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Hint & Feedback Banners */
+    .hint-box {
+      background: var(--warning-container);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      font-weight: 600;
+      display: none;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .hint-box.visible {
+      display: flex;
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+
+    .feedback-banner {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: none;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .feedback-banner.visible {
+      display: flex;
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+    .feedback-banner.correct {
+      background: var(--positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-banner.wrong {
+      background: var(--error-container);
+      box-shadow: var(--shadow-error);
+    }
+    .feedback-title {
+      font-size: 1.125rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .feedback-banner.correct .feedback-title { color: var(--positive); }
+    .feedback-banner.wrong .feedback-title { color: var(--error); }
+
+    .quiz-card-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    /* Sidebar Panel */
+    .sidebar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .side-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-grape);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .side-card:nth-child(2) { box-shadow: var(--shadow-sky); }
+    .side-card:nth-child(3) { box-shadow: var(--shadow-pink); }
+
+    .q-map-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .q-map-dot {
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .q-map-dot:hover { transform: var(--pop-scale); }
+    .q-map-dot.is-current {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .q-map-dot.is-right {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--positive);
+    }
+    .q-map-dot.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .topic-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .topic-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .guide-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .guide-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.9rem;
+    }
+    .guide-item strong {
+      color: var(--primary);
+      display: block;
+    }
+
+    /* Final Report Card */
+    .report-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-2xl) var(--space-xl);
+      box-shadow: var(--shadow-pink-deep);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-lg);
+    }
+    .report-card.visible {
+      display: flex;
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+    .report-score-big {
+      font-size: clamp(2.5rem, 2rem + 2vw, 3.75rem);
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .report-breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+      width: 100%;
+      max-width: 760px;
+    }
+    .report-stat-pill {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .source-footer {
+      text-align: left;
+      color: var(--on-surface-variant);
+      font-size: var(--label-size);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    /* Animations */
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(10px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes bounceWin {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .workspace-grid { grid-template-columns: 1fr; }
+      .hero-panel { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .hero-panel { padding: var(--space-lg); }
+      .quiz-card { padding: var(--space-lg); }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .report-breakdown { grid-template-columns: 1fr; }
+      .place-value-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- Hero Header -->
+    <header class="hero-panel">
+      <div class="hero-copy">
+        <span class="badge">
+          <i data-lucide="sparkles" aria-hidden="true" width="14" height="14"></i>
+          Matematika Kelas 2 SD · Bab 2
+        </span>
+        <h1 class="display">Kuis Seru Penjumlahan dan <em>Pengurangan</em></h1>
+        <p class="hero-subtitle">
+          Ayo berlatih menghitung maju, nilai tempat puluhan &amp; satuan, menghitung mundur, dan soal cerita seru bersama Tika, Kira, dan Malosi!
+        </p>
+      </div>
+      <div class="hero-illustration" aria-hidden="true">
+        <svg viewBox="0 0 260 130" width="260" height="130" xmlns="http://www.w3.org/2000/svg">
+          <!-- Playful sticker-style math blocks & number cards -->
+          <rect x="14" y="22" width="70" height="84" rx="18" fill="var(--primary)" />
+          <text x="49" y="75" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="34" fill="var(--on-primary)">12</text>
+          <circle cx="104" cy="64" r="18" fill="var(--tertiary)" />
+          <text x="104" y="73" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="26" fill="var(--on-primary)">+</text>
+          <rect x="132" y="22" width="54" height="84" rx="18" fill="var(--secondary)" />
+          <text x="159" y="75" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="34" fill="var(--on-secondary)">6</text>
+          <circle cx="204" cy="64" r="14" fill="var(--primary-container)" />
+          <text x="204" y="71" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="22" fill="var(--on-surface)">=</text>
+          <rect x="224" y="34" width="28" height="60" rx="14" fill="var(--positive)" />
+          <text x="238" y="72" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="20" fill="var(--on-positive)">?</text>
+        </svg>
+      </div>
+    </header>
+
+    <!-- Live Scoreboard -->
+    <section class="stats-grid" aria-label="Ringkasan Skor Kuis">
+      <div class="stat-card">
+        <span class="label-kicker">Skor Kamu</span>
+        <span class="stat-value stat-value-pink tabular" id="stat-score">0</span>
+        <span class="stat-caption" id="stat-score-cap">dari 150 poin</span>
+      </div>
+      <div class="stat-card">
+        <span class="label-kicker">Jawaban Benar</span>
+        <span class="stat-value tabular" id="stat-correct">0 / 15</span>
+        <span class="stat-caption" id="stat-answered-cap">0 soal sudah dijawab</span>
+      </div>
+      <div class="stat-card">
+        <span class="label-kicker">Benar Beruntun</span>
+        <span class="stat-value stat-value-grape tabular" id="stat-streak">0</span>
+        <span class="stat-caption" id="stat-best-streak">Terbaik: 0 beruntun</span>
+      </div>
+      <div class="stat-card">
+        <span class="label-kicker">Kemajuan Kuis</span>
+        <span class="stat-value tabular" id="stat-progress-pct">0%</span>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="main-progress-bar">
+          <div class="progress-fill" id="main-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topic Filter & Utility Controls -->
+    <nav class="toolbar" aria-label="Pilih topik latihan dan pengaturan">
+      <div class="segmented" role="group" aria-label="Filter materi kuis">
+        <button type="button" class="seg-btn active" id="filter-all" onclick="setFilter('all')">
+          Semua (15)
+        </button>
+        <button type="button" class="seg-btn" id="filter-add" onclick="setFilter('add')">
+          Penjumlahan (5)
+        </button>
+        <button type="button" class="seg-btn" id="filter-sub" onclick="setFilter('sub')">
+          Pengurangan (5)
+        </button>
+        <button type="button" class="seg-btn" id="filter-story" onclick="setFilter('story')">
+          Soal Cerita (5)
+        </button>
+      </div>
+      <div class="toolbar-actions">
+        <button type="button" class="btn btn-soft" id="sound-toggle-btn" onclick="toggleSound()">
+          <i data-lucide="volume-2" aria-hidden="true" width="18" height="18"></i>
+          <span id="sound-label">Suara: Nyala</span>
+        </button>
+        <button type="button" class="btn btn-quiet" id="report-open-btn" onclick="toggleReportView()">
+          <i data-lucide="award" aria-hidden="true" width="18" height="18"></i>
+          Lihat Rapor
+        </button>
+        <button type="button" class="btn btn-quiet" id="reset-quiz-btn" onclick="handleResetClick(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i>
+          Ulangi Kuis
+        </button>
+      </div>
+    </nav>
+
+    <!-- Final Report Card (shown when finished or requested) -->
+    <section class="report-card" id="report-card" aria-live="polite">
+      <span class="badge">Rapor Akhir Bab 2</span>
+      <div id="report-trophy-wrap" aria-hidden="true"></div>
+      <h2 id="report-title">Selamat! Kamu Sudah Menyelesaikan Kuis!</h2>
+      <div class="report-score-big tabular" id="report-score-text">0 / 150 Poin</div>
+      <p class="hero-subtitle" id="report-message" style="text-align:center;">
+        Terus semangat berlatih penjumlahan dan pengurangan ya!
+      </p>
+      <div class="report-breakdown" id="report-breakdown"></div>
+      <div class="toolbar-actions">
+        <button type="button" class="btn btn-primary" onclick="closeReportAndContinue()">
+          <i data-lucide="arrow-left" aria-hidden="true" width="18" height="18"></i>
+          Kembali ke Soal
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="downloadReport()">
+          <i data-lucide="download" aria-hidden="true" width="18" height="18"></i>
+          Simpan Rapor (.txt)
+        </button>
+        <button type="button" class="btn btn-soft" onclick="restartQuizImmediately()">
+          <i data-lucide="refresh-cw" aria-hidden="true" width="18" height="18"></i>
+          Main Lagi dari Awal
+        </button>
+      </div>
+    </section>
+
+    <!-- Main Interactive Workspace -->
+    <main class="workspace-grid" id="workspace-main">
+      <!-- Active Question Card -->
+      <div class="quiz-card-wrapper">
+        <article class="quiz-card" aria-live="polite">
+          <div class="quiz-card-header">
+            <span class="tag" id="q-category-tag">Menghitung Maju</span>
+            <span class="question-num tabular" id="q-counter">Soal 1 dari 15</span>
+          </div>
+
+          <h2 class="question-prompt" id="q-prompt">Memuat soal…</h2>
+
+          <!-- Interactive Visual Helper Area -->
+          <div class="visual-stage" id="q-visual-stage"></div>
+
+          <!-- Hint toggle & box -->
+          <div>
+            <button type="button" class="mini-pill-btn" id="hint-toggle-btn" onclick="toggleHint()">
+              <i data-lucide="lightbulb" aria-hidden="true" width="16" height="16"></i>
+              <span id="hint-btn-text">Buka Petunjuk</span>
+            </button>
+          </div>
+          <div class="hint-box" id="q-hint-box" role="note">
+            <i data-lucide="sparkles" aria-hidden="true" width="20" height="20"></i>
+            <span id="q-hint-text"></span>
+          </div>
+
+          <!-- 4 Big Kid-Friendly Answer Pills -->
+          <div class="options-grid" id="q-options" role="group" aria-label="Pilihan jawaban"></div>
+
+          <!-- Immediate Fun Feedback -->
+          <div class="feedback-banner" id="q-feedback" role="status">
+            <div class="feedback-title" id="q-feedback-title"></div>
+            <div id="q-feedback-text"></div>
+          </div>
+
+          <!-- Card Footer Navigation -->
+          <div class="quiz-card-footer">
+            <button type="button" class="btn btn-soft" id="prev-btn" onclick="goPrev()">
+              <i data-lucide="arrow-left" aria-hidden="true" width="18" height="18"></i>
+              Sebelumnya
+            </button>
+            <button type="button" class="btn btn-primary" id="next-btn" onclick="goNext()">
+              <span id="next-btn-label">Soal Berikutnya</span>
+              <i data-lucide="arrow-right" aria-hidden="true" width="18" height="18"></i>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Right Sidebar: Map, Sub-topic Mastery & Mini Reference -->
+      <aside class="sidebar-stack" aria-label="Peta soal dan ringkasan materi">
+        <section class="side-card">
+          <div class="quiz-card-header">
+            <h3>Peta Nomor Soal</h3>
+            <span class="label-kicker" id="map-filter-label">Semua</span>
+          </div>
+          <div class="q-map-grid" id="q-map-grid"></div>
+        </section>
+
+        <section class="side-card">
+          <h3>Penguasaan Materi Bab 2</h3>
+          <div class="topic-row">
+            <div class="topic-row-head">
+              <span>A. Berbagai Cara Penjumlahan</span>
+              <span class="tabular" id="mastery-add-label">0 / 5</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill progress-fill-pink" id="mastery-add-fill"></div>
+            </div>
+          </div>
+          <div class="topic-row">
+            <div class="topic-row-head">
+              <span>B. Berbagai Cara Pengurangan</span>
+              <span class="tabular" id="mastery-sub-label">0 / 5</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill progress-fill-grape" id="mastery-sub-fill"></div>
+            </div>
+          </div>
+          <div class="topic-row">
+            <div class="topic-row-head">
+              <span>C. Soal Cerita</span>
+              <span class="tabular" id="mastery-story-label">0 / 5</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="mastery-story-fill"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-card">
+          <h3>Ingat Kembali</h3>
+          <ul class="guide-list">
+            <li class="guide-item">
+              <strong>Menghitung Maju &amp; Mundur</strong>
+              Tambah = lompat ke kanan (maju). Kurang = lompat ke kiri (mundur).
+            </li>
+            <li class="guide-item">
+              <strong>Nilai Tempat (Bersusun)</strong>
+              10 satuan = 1 puluhan. Hitung satuan dulu, lalu puluhan!
+            </li>
+            <li class="guide-item">
+              <strong>Kata Kunci Soal Cerita</strong>
+              <em>Lebihnya</em> &amp; <em>Jumlah</em> → tambah (+). <em>Kurangnya</em> &amp; <em>Selisih</em> → kurang (−).
+            </li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="source-footer">
+      Materi kuis disusun dari Bab 2: Penjumlahan dan Pengurangan (halaman 37–64), Buku Matematika untuk SD/MI Kelas II (Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi, 2022).
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // 1. CURRICULUM DATA (15 Comprehensive Questions from Bab 2, pp. 37-64)
+    // =========================================================================
+    const QUESTIONS = [
+      // --- A. Berbagai Cara Penjumlahan (5 soal) ---
+      {
+        id: 1,
+        topic: `add`,
+        methodTag: `Menghitung Maju`,
+        tagStyle: `tag-pink`,
+        prompt: `Gunakan garis bilangan untuk menghitung maju: 12 + 4 = …`,
+        visualType: `numberline`,
+        nlMin: 10,
+        nlMax: 20,
+        nlStart: 12,
+        nlDelta: 4,
+        nlDir: 1,
+        hint: `Mulai berdiri di angka 12, lalu lompat maju (ke kanan) sebanyak 4 langkah!`,
+        options: [15, 16, 17, 18],
+        answer: 16,
+        explanation: `Mulai dari angka 12, lompat maju 4 langkah: 13, 14, 15, 16. Jadi, 12 + 4 = 16.`
+      },
+      {
+        id: 2,
+        topic: `add`,
+        methodTag: `Menghitung Maju`,
+        tagStyle: `tag-pink`,
+        prompt: `Hitung maju dengan garis bilangan: 11 + 9 = …`,
+        visualType: `numberline`,
+        nlMin: 10,
+        nlMax: 20,
+        nlStart: 11,
+        nlDelta: 9,
+        nlDir: 1,
+        hint: `Dari angka 11, klik tombol lompat maju sampai 9 kali. Di angka berapa kamu berhenti?`,
+        options: [18, 19, 20, 21],
+        answer: 20,
+        explanation: `Mulai dari angka 11 dan lompat maju 9 langkah menuju kanan: berakhir tepat di 20. Jadi, 11 + 9 = 20.`
+      },
+      {
+        id: 3,
+        topic: `add`,
+        methodTag: `Penjumlahan Bersusun`,
+        tagStyle: `tag-pink`,
+        prompt: `Hitung penjumlahan bersusun dengan nilai tempat: 13 + 7 = … (Ingat: 10 satuan = 1 puluhan!)`,
+        visualType: `placevalue`,
+        pvOp: `+`,
+        pvA: 13,
+        pvB: 7,
+        pvResult: 20,
+        hint: `Jumlahkan satuannya dahulu: 3 + 7 = 10 satuan. Pindahkan 10 satuan menjadi 1 puluhan!`,
+        options: [19, 20, 21, 10],
+        answer: 20,
+        explanation: `Satuan: 3 + 7 = 10 satuan, ditukar menjadi 1 puluhan dan 0 satuan. Puluhan: 1 + 1 = 2 puluhan. Jadi, 13 + 7 = 20!`
+      },
+      {
+        id: 4,
+        topic: `add`,
+        methodTag: `Penjumlahan Bersusun`,
+        tagStyle: `tag-pink`,
+        prompt: `Berapa hasil penjumlahan bersusun berikut: 13 + 5 = …`,
+        visualType: `placevalue`,
+        pvOp: `+`,
+        pvA: 13,
+        pvB: 5,
+        pvResult: 18,
+        hint: `Hitung kolom satuan dulu (3 + 5), lalu gabungkan dengan 1 puluhan di depan.`,
+        options: [16, 17, 18, 19],
+        answer: 18,
+        explanation: `Kolom satuan: 3 + 5 = 8 satuan. Kolom puluhan: tetap 1 puluhan. Jadi, 13 + 5 = 18.`
+      },
+      {
+        id: 5,
+        topic: `add`,
+        methodTag: `Pasangan Bilangan`,
+        tagStyle: `tag-pink`,
+        prompt: `Hitung 14 + 3 dengan cara pasangan bilangan! 14 dipecah menjadi 10 dan 4. Berapa hasil akhirnya?`,
+        visualType: `numberbond`,
+        nbWhole: 14,
+        nbTens: 10,
+        nbOnes: 4,
+        nbAdd: 3,
+        nbResult: 17,
+        hint: `Langkah 1: jumlahkan satuannya (4 + 3 = 7). Langkah 2: tambahkan 10 + 7!`,
+        options: [16, 17, 18, 19],
+        answer: 17,
+        explanation: `Pecah 14 menjadi 10 dan 4. Lalu 4 + 3 = 7, sehingga 10 + 7 = 17. Jadi, 14 + 3 = 17!`
+      },
+
+      // --- B. Berbagai Cara Pengurangan (5 soal) ---
+      {
+        id: 6,
+        topic: `sub`,
+        methodTag: `Menghitung Mundur`,
+        tagStyle: ``,
+        prompt: `Gunakan garis bilangan untuk menghitung mundur: 12 − 6 = …`,
+        visualType: `numberline`,
+        nlMin: 6,
+        nlMax: 20,
+        nlStart: 12,
+        nlDelta: 6,
+        nlDir: -1,
+        hint: `Mulai dari angka 12, lalu lompat mundur (ke kiri) sebanyak 6 langkah!`,
+        options: [5, 6, 7, 8],
+        answer: 6,
+        explanation: `Mulai di 12, lompat mundur 6 langkah ke kiri: 11, 10, 9, 8, 7, 6. Jadi, 12 − 6 = 6.`
+      },
+      {
+        id: 7,
+        topic: `sub`,
+        methodTag: `Menghitung Mundur`,
+        tagStyle: ``,
+        prompt: `Hitung mundur pada garis bilangan: 20 − 6 = …`,
+        visualType: `numberline`,
+        nlMin: 6,
+        nlMax: 20,
+        nlStart: 20,
+        nlDelta: 6,
+        nlDir: -1,
+        hint: `Mulai di ujung kanan (20) dan lompat mundur 6 langkah ke kiri!`,
+        options: [12, 13, 14, 15],
+        answer: 14,
+        explanation: `Dari 20 lompat mundur 6 langkah: 19, 18, 17, 16, 15, 14. Jadi, 20 − 6 = 14.`
+      },
+      {
+        id: 8,
+        topic: `sub`,
+        methodTag: `Pengurangan Bersusun`,
+        tagStyle: ``,
+        prompt: `Hitunglah pengurangan bersusun berikut: 14 − 3 = …`,
+        visualType: `placevalue`,
+        pvOp: `-`,
+        pvA: 14,
+        pvB: 3,
+        pvResult: 11,
+        hint: `Kurangkan satuannya dahulu: 4 satuan dikurangi 3 satuan, lalu puluhannya tetap 1.`,
+        options: [10, 11, 12, 13],
+        answer: 11,
+        explanation: `Kolom satuan: 4 − 3 = 1 satuan. Kolom puluhan: tetap 1 puluhan. Jadi, 14 − 3 = 11.`
+      },
+      {
+        id: 9,
+        topic: `sub`,
+        methodTag: `Pengurangan Bersusun`,
+        tagStyle: ``,
+        prompt: `Berapa hasil pengurangan bersusun dari 16 − 2 = …`,
+        visualType: `placevalue`,
+        pvOp: `-`,
+        pvA: 16,
+        pvB: 2,
+        pvResult: 14,
+        hint: `Kurangkan angka pada kolom satuan: 6 − 2 = 4. Jangan lupa angka puluhannya!`,
+        options: [12, 13, 14, 15],
+        answer: 14,
+        explanation: `Kolom satuan: 6 − 2 = 4 satuan. Kolom puluhan: tetap 1 puluhan. Jadi, 16 − 2 = 14.`
+      },
+      {
+        id: 10,
+        topic: `sub`,
+        methodTag: `Pengurangan Bersusun`,
+        tagStyle: ``,
+        prompt: `Hitunglah pengurangan dua bilangan ini: 15 − 13 = …`,
+        visualType: `placevalue`,
+        pvOp: `-`,
+        pvA: 15,
+        pvB: 13,
+        pvResult: 2,
+        hint: `Kurangkan satuannya (5 − 3) dan kurangkan juga puluhannya (1 − 1)!`,
+        options: [1, 2, 3, 4],
+        answer: 2,
+        explanation: `Satuan: 5 − 3 = 2. Puluhan: 1 − 1 = 0. Jadi, 15 − 13 = 2!`
+      },
+
+      // --- C. Soal Cerita Penjumlahan & Pengurangan (5 soal) ---
+      {
+        id: 11,
+        topic: `story`,
+        methodTag: `Soal Cerita · Lebihnya`,
+        tagStyle: `tag-amber`,
+        prompt: `Tika memetik 12 buah jambu air. Kira memetik 6 lebihnya dari banyak buah jambu air milik Tika. Berapa banyak jambu air yang dipetik Kira?`,
+        visualType: `story_jambu`,
+        hint: `Perhatikan kata "6 lebihnya" — berarti banyak jambu Tika (12) ditambah 6!`,
+        options: [6, 16, 18, 19],
+        answer: 18,
+        explanation: `Kata "6 lebihnya" artinya kita menjumlahkan: 12 + 6 = 18. Jadi, Kira memetik 18 buah jambu air.`
+      },
+      {
+        id: 12,
+        topic: `story`,
+        methodTag: `Soal Cerita · Kurangnya`,
+        tagStyle: `tag-amber`,
+        prompt: `Tika mempunyai 12 donat. Malosi mempunyai 5 kurangnya dari banyak donat milik Tika. Berapa banyak donat milik Malosi?`,
+        visualType: `story_donat`,
+        hint: `Perhatikan kata "5 kurangnya" — berarti 12 donat Tika dikurangi 5!`,
+        options: [6, 7, 8, 17],
+        answer: 7,
+        explanation: `Kata "5 kurangnya" artinya kita mengurangkan: 12 − 5 = 7. Jadi, Malosi mempunyai 7 donat.`
+      },
+      {
+        id: 13,
+        topic: `story`,
+        methodTag: `Soal Cerita · Selisih`,
+        tagStyle: `tag-amber`,
+        prompt: `Di taman ada 4 burung hijau dan 5 burung merah. Berapa selisih banyak burung hijau dan burung merah?`,
+        visualType: `story_burung`,
+        storyFocus: `selisih`,
+        hint: `Selisih artinya beda banyaknya: kurangkan jumlah burung yang lebih banyak dengan yang lebih sedikit (5 − 4).`,
+        options: [1, 2, 8, 9],
+        answer: 1,
+        explanation: `Selisih burung merah dan burung hijau adalah 5 − 4 = 1 ekor burung.`
+      },
+      {
+        id: 14,
+        topic: `story`,
+        methodTag: `Soal Cerita · Jumlah`,
+        tagStyle: `tag-amber`,
+        prompt: `Banyak burung hijau ada 4 ekor dan burung merah ada 5 ekor. Berapa jumlah seluruh burung hijau dan burung merah?`,
+        visualType: `story_burung`,
+        storyFocus: `jumlah`,
+        hint: `Kata "jumlah" artinya digabungkan semuanya: tambahkan 4 + 5!`,
+        options: [1, 8, 9, 10],
+        answer: 9,
+        explanation: `Kata "jumlah" artinya dijumlahkan: 4 + 5 = 9 ekor burung seluruhnya.`
+      },
+      {
+        id: 15,
+        topic: `story`,
+        methodTag: `Soal Cerita · Kartu Bilangan`,
+        tagStyle: `tag-amber`,
+        prompt: `Tika memilih kartu bilangan 14 dan kartu bilangan 4. Jika kedua bilangan itu dijumlahkan, berapa hasilnya?`,
+        visualType: `numberbond`,
+        nbWhole: 14,
+        nbTens: 10,
+        nbOnes: 4,
+        nbAdd: 4,
+        nbResult: 18,
+        hint: `Pecah 14 menjadi 10 dan 4. Jumlahkan 4 + 4 dulu, lalu tambahkan ke 10!`,
+        options: [10, 16, 18, 20],
+        answer: 18,
+        explanation: `Dengan pasangan bilangan: 4 + 4 = 8, lalu 10 + 8 = 18. Jadi, 14 + 4 = 18!`
+      }
+    ];
+
+    const LETTERS = [`A`, `B`, `C`, `D`];
+
+    // =========================================================================
+    // 2. STATE MANAGEMENT (Persisted via notebookAppApi)
+    // =========================================================================
+    let appState = {
+      filter: `all`,
+      currentQuestionId: 1,
+      answers: {},       // { [questionId]: selectedNumber }
+      streak: 0,
+      bestStreak: 0,
+      soundEnabled: true,
+      showReport: false
+    };
+
+    // Transient UI state (not persisted)
+    let currentHopSteps = 0;
+    let pvBundledTen = false;
+    let hintOpen = false;
+    let audioCtx = null;
+
+    function getFilteredQuestions() {
+      if (appState.filter === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function(q) { return q.topic === appState.filter; });
+    }
+
+    function getCurrentQuestion() {
+      const list = getFilteredQuestions();
+      let found = list.find(function(q) { return q.id === appState.currentQuestionId; });
+      if (!found && list.length > 0) {
+        found = list[0];
+        appState.currentQuestionId = found.id;
+      }
+      return found;
+    }
+
+    function saveState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        window.notebookAppApi.setAppState({
+          filter: appState.filter,
+          currentQuestionId: appState.currentQuestionId,
+          answers: appState.answers,
+          streak: appState.streak,
+          bestStreak: appState.bestStreak,
+          soundEnabled: appState.soundEnabled,
+          showReport: appState.showReport
+        });
+      }
+    }
+
+    // =========================================================================
+    // 3. GENTLE KID-FRIENDLY WEB AUDIO FEEDBACK (No external files!)
+    // =========================================================================
+    function playChime(type) {
+      if (!appState.soundEnabled) return;
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === `suspended`) audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const notes = type === `win`
+          ? [523.25, 659.25, 783.99]
+          : type === `hop`
+            ? [440]
+            : [329.63, 277.18];
+
+        notes.forEach(function(freq, idx) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = type === `wrong` ? `triangle` : `sine`;
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.12, now + idx * 0.08 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.22);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.24);
+        });
+      } catch (e) {
+        // Silently ignore if browser blocks audio
+      }
+    }
+
+    // =========================================================================
+    // 4. INTERACTIVE VISUAL HELPERS RENDERERS
+    // =========================================================================
+    function renderVisualStage(q) {
+      const stage = document.getElementById(`q-visual-stage`);
+      if (!stage) return;
+
+      const userAns = appState.answers[q.id];
+      const isAnswered = userAns !== undefined;
+
+      if (q.visualType === `numberline`) {
+        renderNumberLineVisual(stage, q, isAnswered);
+      } else if (q.visualType === `placevalue`) {
+        renderPlaceValueVisual(stage, q, isAnswered);
+      } else if (q.visualType === `numberbond`) {
+        renderNumberBondVisual(stage, q, isAnswered);
+      } else if (q.visualType === `story_jambu`) {
+        renderStoryJambuVisual(stage, q, isAnswered);
+      } else if (q.visualType === `story_donat`) {
+        renderStoryDonatVisual(stage, q, isAnswered);
+      } else if (q.visualType === `story_burung`) {
+        renderStoryBurungVisual(stage, q, isAnswered);
+      }
+    }
+
+    function renderNumberLineVisual(stage, q, isAnswered) {
+      const dirWord = q.nlDir > 0 ? `Maju (+1)` : `Mundur (−1)`;
+      const effectiveSteps = isAnswered ? q.nlDelta : currentHopSteps;
+      const currentPos = q.nlStart + effectiveSteps * q.nlDir;
+
+      const count = q.nlMax - q.nlMin + 1;
+      const padX = 28;
+      const svgW = 620;
+      const stepX = (svgW - padX * 2) / (count - 1);
+      const lineY = 92;
+
+      let arcsSvg = ``;
+      for (let s = 0; s < effectiveSteps; s++) {
+        const fromVal = q.nlStart + s * q.nlDir;
+        const toVal = fromVal + q.nlDir;
+        const x1 = padX + (fromVal - q.nlMin) * stepX;
+        const x2 = padX + (toVal - q.nlMin) * stepX;
+        const midX = (x1 + x2) / 2;
+        const arcColor = q.nlDir > 0 ? `var(--primary)` : `var(--secondary)`;
+        arcsSvg += `<path d="M ${x1} ${lineY - 12} Q ${midX} ${lineY - 46} ${x2} ${lineY - 12}" fill="none" stroke="${arcColor}" stroke-width="3.5" stroke-linecap="round" />`;
+      }
+
+      let ticksSvg = ``;
+      for (let val = q.nlMin; val <= q.nlMax; val++) {
+        const cx = padX + (val - q.nlMin) * stepX;
+        const isStart = val === q.nlStart;
+        const isCurrent = val === currentPos;
+        let dotFill = `var(--surface-container-low)`;
+        let dotStroke = `var(--outline)`;
+        let dotR = 13;
+        let textFill = `var(--on-surface)`;
+
+        if (isStart) {
+          dotFill = `var(--secondary)`;
+          dotStroke = `var(--secondary)`;
+          textFill = `var(--on-secondary)`;
+        }
+        if (isCurrent && effectiveSteps > 0) {
+          dotFill = `var(--primary)`;
+          dotStroke = `var(--primary)`;
+          dotR = 16;
+          textFill = `var(--on-primary)`;
+        }
+
+        ticksSvg += `
+          <g>
+            <circle cx="${cx}" cy="${lineY}" r="${dotR}" fill="${dotFill}" stroke="${dotStroke}" stroke-width="3" />
+            <text x="${cx}" y="${lineY + 5}" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="${textFill}">${val}</text>
+          </g>
+        `;
+      }
+
+      const startCx = padX + (q.nlStart - q.nlMin) * stepX;
+      const curCx = padX + (currentPos - q.nlMin) * stepX;
+
+      stage.innerHTML = `
+        <div class="visual-stage-header">
+          <span class="label-kicker">Alat Bantu: Garis Bilangan</span>
+          <div class="visual-controls">
+            <span class="hop-status-pill tabular">
+              Mulai: ${q.nlStart} · Lompatan: ${effectiveSteps} · Posisi: ${currentPos}
+            </span>
+            <button type="button" class="mini-pill-btn" onclick="stepHop()" ${effectiveSteps >= q.nlDelta ? `disabled` : ``}>
+              Lompat ${dirWord}
+            </button>
+            <button type="button" class="mini-pill-btn" onclick="resetHop()" ${effectiveSteps === 0 || isAnswered ? `disabled` : ``}>
+              Ulang
+            </button>
+          </div>
+        </div>
+        <div class="number-line-wrap">
+          <svg class="number-line-svg" viewBox="0 0 ${svgW} 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Garis bilangan dari ${q.nlMin} sampai ${q.nlMax}">
+            <line x1="${padX}" y1="${lineY}" x2="${svgW - padX}" y2="${lineY}" stroke="var(--outline-variant)" stroke-width="5" stroke-linecap="round" />
+            ${arcsSvg}
+            ${ticksSvg}
+            <text x="${startCx}" y="24" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="12" fill="var(--secondary)">Mulai</text>
+            ${effectiveSteps > 0 ? `<text x="${curCx}" y="24" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="12" fill="var(--primary)">${isAnswered ? `Hasil!` : `Langkah ${effectiveSteps}`}</text>` : ``}
+          </svg>
+        </div>
+      `;
+    }
+
+    function renderPlaceValueVisual(stage, q, isAnswered) {
+      const aTens = Math.floor(q.pvA / 10);
+      const aOnes = q.pvA % 10;
+      const bTens = Math.floor(q.pvB / 10);
+      const bOnes = q.pvB % 10;
+
+      const isCarry = q.pvOp === `+` && (aOnes + bOnes >= 10);
+      const showBundled = isCarry && (pvBundledTen || isAnswered);
+      const ansTensDisplay = isAnswered ? Math.floor(q.pvResult / 10) : `?`;
+      const ansOnesDisplay = isAnswered ? (q.pvResult % 10) : `?`;
+
+      let rodsCount = aTens;
+      let onesHtml = ``;
+
+      if (q.pvOp === `+`) {
+        if (showBundled) {
+          rodsCount = aTens + bTens + 1;
+          const remainOnes = (aOnes + bOnes) - 10;
+          for (let i = 0; i < remainOnes; i++) {
+            onesHtml += `<span class="one-cube"></span>`;
+          }
+          if (remainOnes === 0) {
+            onesHtml = `<span class="label-kicker">0 satuan (sudah pindah ke puluhan!)</span>`;
+          }
+        } else {
+          rodsCount = aTens + bTens;
+          for (let i = 0; i < aOnes; i++) onesHtml += `<span class="one-cube"></span>`;
+          for (let j = 0; j < bOnes; j++) onesHtml += `<span class="one-cube one-cube-added"></span>`;
+        }
+      } else {
+        // Subtraction
+        const remTens = aTens - bTens;
+        rodsCount = remTens;
+        const keptOnes = aOnes - bOnes;
+        for (let i = 0; i < keptOnes; i++) onesHtml += `<span class="one-cube"></span>`;
+        for (let j = 0; j < bOnes; j++) onesHtml += `<span class="one-cube one-cube-crossed" title="Dikurangi"></span>`;
+      }
+
+      let rodsHtml = ``;
+      for (let r = 0; r < rodsCount; r++) {
+        rodsHtml += `<span class="ten-rod"></span>`;
+      }
+      if (rodsCount === 0) {
+        rodsHtml = `<span class="label-kicker">0 puluhan</span>`;
+      }
+
+      const bundleBtnHtml = isCarry && !isAnswered
+        ? `<button type="button" class="mini-pill-btn" onclick="toggleBundleTen()">
+            ${pvBundledTen ? `Pisahkan Kembali` : `Gabung 10 Satuan → 1 Puluhan!`}
+           </button>`
+        : ``;
+
+      stage.innerHTML = `
+        <div class="visual-stage-header">
+          <span class="label-kicker">Alat Bantu: Nilai Tempat Puluhan &amp; Satuan</span>
+          ${bundleBtnHtml}
+        </div>
+        <div class="place-value-grid">
+          <div class="vertical-math-box">
+            <table class="pv-table" aria-label="Perhitungan bersusun">
+              <thead>
+                <tr>
+                  <th class="col-puluhan">Puluhan</th>
+                  <th class="col-satuan">Satuan</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>${aTens}</td>
+                  <td>${aOnes}</td>
+                  <td></td>
+                </tr>
+                <tr class="pv-row-line">
+                  <td>${bTens > 0 ? bTens : ``}</td>
+                  <td>${bOnes}</td>
+                  <td class="pv-op-cell">${q.pvOp === `-` ? `−` : `+`}</td>
+                </tr>
+                <tr>
+                  <td class="pv-answer-cell">${ansTensDisplay}</td>
+                  <td class="pv-answer-cell">${ansOnesDisplay}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="blocks-stage">
+            <div class="blocks-columns">
+              <div class="blocks-col">
+                <span class="label-kicker">Puluhan (${rodsCount})</span>
+                <div class="rods-wrap">${rodsHtml}</div>
+              </div>
+              <div class="blocks-col">
+                <span class="label-kicker">Satuan</span>
+                <div class="cubes-wrap">${onesHtml}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderNumberBondVisual(stage, q, isAnswered) {
+      const step1 = q.nbOnes + q.nbAdd;
+      const step2Text = isAnswered ? q.nbResult : `?`;
+      stage.innerHTML = `
+        <div class="visual-stage-header">
+          <span class="label-kicker">Alat Bantu: Pasangan Bilangan</span>
+        </div>
+        <svg viewBox="0 0 540 165" width="540" height="165" style="width:100%;height:auto;max-width:540px;margin:0 auto;display:block;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram pasangan bilangan ${q.nbWhole} ditambah ${q.nbAdd}">
+          <!-- Whole -->
+          <rect x="65" y="10" width="90" height="44" rx="22" fill="var(--primary)" />
+          <text x="110" y="39" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="22" fill="var(--on-primary)">${q.nbWhole}</text>
+          <!-- Branches -->
+          <line x1="92" y1="54" x2="55" y2="96" stroke="var(--outline)" stroke-width="3.5" stroke-linecap="round" />
+          <line x1="128" y1="54" x2="165" y2="96" stroke="var(--outline)" stroke-width="3.5" stroke-linecap="round" />
+          <!-- Parts -->
+          <rect x="18" y="96" width="74" height="44" rx="22" fill="var(--secondary)" />
+          <text x="55" y="125" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="20" fill="var(--on-secondary)">${q.nbTens}</text>
+          <rect x="128" y="96" width="74" height="44" rx="22" fill="var(--tertiary)" />
+          <text x="165" y="125" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="20" fill="var(--on-primary)">${q.nbOnes}</text>
+
+          <!-- Steps box -->
+          <rect x="240" y="14" width="284" height="134" rx="20" fill="var(--surface-container-low)" />
+          <text x="262" y="48" font-family="DM Sans, sans-serif" font-weight="700" font-size="16" fill="var(--on-surface-variant)">Langkah 1 (Satuan):</text>
+          <text x="262" y="74" font-family="DM Sans, sans-serif" font-weight="900" font-size="21" fill="var(--primary)">${q.nbOnes} + ${q.nbAdd} = ${isAnswered ? step1 : `?`}</text>
+          <text x="262" y="108" font-family="DM Sans, sans-serif" font-weight="700" font-size="16" fill="var(--on-surface-variant)">Langkah 2 (Gabungkan):</text>
+          <text x="262" y="134" font-family="DM Sans, sans-serif" font-weight="900" font-size="21" fill="var(--secondary)">${q.nbTens} + ${isAnswered ? step1 : `?`} = ${step2Text}</text>
+        </svg>
+      `;
+    }
+
+    function renderStoryJambuVisual(stage, q, isAnswered) {
+      let tikaFruits = ``;
+      for (let i = 0; i < 12; i++) {
+        const cx = 26 + (i % 6) * 32;
+        const cy = 54 + Math.floor(i / 6) * 34;
+        tikaFruits += `<circle cx="${cx}" cy="${cy}" r="11" fill="var(--primary)" /><path d="M ${cx} ${cy - 11} Q ${cx + 5} ${cy - 18} ${cx + 8} ${cy - 13}" stroke="var(--positive)" stroke-width="2.5" fill="none" stroke-linecap="round" />`;
+      }
+      let extraFruits = ``;
+      for (let j = 0; j < 6; j++) {
+        const cx = 290 + (j % 3) * 34;
+        const cy = 54 + Math.floor(j / 3) * 34;
+        extraFruits += `<circle cx="${cx}" cy="${cy}" r="11" fill="var(--tertiary)" /><path d="M ${cx} ${cy - 11} Q ${cx + 5} ${cy - 18} ${cx + 8} ${cy - 13}" stroke="var(--positive)" stroke-width="2.5" fill="none" stroke-linecap="round" />`;
+      }
+      stage.innerHTML = `
+        <div class="visual-stage-header">
+          <span class="label-kicker">Ilustrasi Soal Cerita · Jambu Air Tika &amp; Kira</span>
+        </div>
+        <svg viewBox="0 0 540 120" width="540" height="120" style="width:100%;height:auto;max-width:540px;margin:0 auto;display:block;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="12 jambu air Tika ditambah 6 lebihnya milik Kira">
+          <rect x="6" y="8" width="218" height="104" rx="18" fill="var(--surface-container-low)" />
+          <text x="20" y="30" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">Jambu Tika (12)</text>
+          ${tikaFruits}
+          <circle cx="248" cy="60" r="16" fill="var(--secondary)" />
+          <text x="248" y="67" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="22" fill="var(--on-secondary)">+</text>
+          <rect x="272" y="8" width="128" height="104" rx="18" fill="var(--surface-container-low)" />
+          <text x="284" y="30" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--secondary)">6 Lebihnya</text>
+          ${extraFruits}
+          <rect x="414" y="28" width="118" height="64" rx="20" fill="var(--primary-container)" />
+          <text x="473" y="68" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="24" fill="var(--on-primary-container)">= ${isAnswered ? `18` : `?`}</text>
+        </svg>
+      `;
+    }
+
+    function renderStoryDonatVisual(stage, q, isAnswered) {
+      let donuts = ``;
+      for (let i = 0; i < 12; i++) {
+        const cx = 36 + (i % 6) * 44;
+        const cy = 52 + Math.floor(i / 6) * 42;
+        const isRemoved = i >= 7;
+        donuts += `
+          <g opacity="${isRemoved ? `0.38` : `1`}">
+            <circle cx="${cx}" cy="${cy}" r="14" fill="${isRemoved ? `var(--data-context)` : `var(--data-4)`}" />
+            <circle cx="${cx}" cy="${cy}" r="5" fill="var(--surface-container-low)" />
+            ${isRemoved ? `<line x1="${cx - 12}" y1="${cy - 12}" x2="${cx + 12}" y2="${cy + 12}" stroke="var(--error)" stroke-width="3" stroke-linecap="round" />` : ``}
+          </g>
+        `;
+      }
+      stage.innerHTML = `
+        <div class="visual-stage-header">
+          <span class="label-kicker">Ilustrasi Soal Cerita · Donat Tika &amp; Malosi</span>
+        </div>
+        <svg viewBox="0 0 540 120" width="540" height="120" style="width:100%;height:auto;max-width:540px;margin:0 auto;display:block;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="12 donat dikurangi 5 kurangnya">
+          <rect x="8" y="8" width="300" height="106" rx="18" fill="var(--surface-container-low)" />
+          <text x="24" y="28" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">12 Donat Tika (5 disilang)</text>
+          ${donuts}
+          <rect x="324" y="24" width="206" height="74" rx="20" fill="var(--secondary-container)" />
+          <text x="427" y="54" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="14" fill="var(--secondary)">Donat Malosi (12 − 5)</text>
+          <text x="427" y="84" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="26" fill="var(--primary)">${isAnswered ? `7 Donat` : `? Donat`}</text>
+        </svg>
+      `;
+    }
+
+    function renderStoryBurungVisual(stage, q, isAnswered) {
+      let greenBirds = ``;
+      for (let i = 0; i < 4; i++) {
+        const cx = 36 + i * 44;
+        greenBirds += `
+          <circle cx="${cx}" cy="46" r="13" fill="var(--positive)" />
+          <polygon points="${cx + 12},44 ${cx + 20},47 ${cx + 12},50" fill="var(--data-4)" />
+          <circle cx="${cx + 5}" cy="42" r="2.2" fill="var(--on-positive)" />
+        `;
+      }
+      let redBirds = ``;
+      for (let j = 0; j < 5; j++) {
+        const cx = 36 + j * 44;
+        redBirds += `
+          <circle cx="${cx}" cy="92" r="13" fill="var(--error)" />
+          <polygon points="${cx + 12},90 ${cx + 20},93 ${cx + 12},96" fill="var(--data-4)" />
+          <circle cx="${cx + 5}" cy="88" r="2.2" fill="var(--on-error)" />
+        `;
+      }
+      const badgeLabel = q.storyFocus === `selisih` ? `Selisih = 5 − 4` : `Jumlah = 4 + 5`;
+      const badgeAnswer = isAnswered ? (q.storyFocus === `selisih` ? `1 Ekor` : `9 Ekor`) : `? Ekor`;
+      stage.innerHTML = `
+        <div class="visual-stage-header">
+          <span class="label-kicker">Ilustrasi Soal Cerita · Burung Hijau &amp; Burung Merah</span>
+        </div>
+        <svg viewBox="0 0 540 124" width="540" height="124" style="width:100%;height:auto;max-width:540px;margin:0 auto;display:block;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="4 burung hijau dan 5 burung merah">
+          <rect x="8" y="8" width="290" height="108" rx="18" fill="var(--surface-container-low)" />
+          <text x="236" y="51" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--positive)">4 Hijau</text>
+          <text x="236" y="97" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--error)">5 Merah</text>
+          ${greenBirds}
+          ${redBirds}
+          <rect x="314" y="24" width="216" height="76" rx="20" fill="var(--primary-container)" />
+          <text x="422" y="54" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="15" fill="var(--on-primary-container)">${badgeLabel}</text>
+          <text x="422" y="84" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="25" fill="var(--primary)">${badgeAnswer}</text>
+        </svg>
+      `;
+    }
+
+    // =========================================================================
+    // 5. RENDERING & INTERACTION HANDLERS (All hoisted function declarations)
+    // =========================================================================
+    function renderAll() {
+      const q = getCurrentQuestion();
+      if (!q) return;
+
+      const list = getFilteredQuestions();
+      const idxInList = list.findIndex(function(item) { return item.id === q.id; });
+      const userAns = appState.answers[q.id];
+      const isAnswered = userAns !== undefined;
+
+      // Update Filter Buttons
+      [`all`, `add`, `sub`, `story`].forEach(function(key) {
+        const btn = document.getElementById(`filter-` + key);
+        if (btn) {
+          if (appState.filter === key) btn.classList.add(`active`);
+          else btn.classList.remove(`active`);
+        }
+      });
+
+      // Update Sound Button
+      const soundLabel = document.getElementById(`sound-label`);
+      if (soundLabel) {
+        soundLabel.textContent = appState.soundEnabled ? `Suara: Nyala` : `Suara: Mati`;
+      }
+
+      // Category Tag & Counter
+      const tagEl = document.getElementById(`q-category-tag`);
+      if (tagEl) {
+        tagEl.className = `tag ` + (q.tagStyle || ``);
+        tagEl.textContent = q.methodTag;
+      }
+      const counterEl = document.getElementById(`q-counter`);
+      if (counterEl) {
+        counterEl.textContent = `Soal ` + (idxInList + 1) + ` dari ` + list.length;
+      }
+
+      // Prompt
+      const promptEl = document.getElementById(`q-prompt`);
+      if (promptEl) promptEl.textContent = q.prompt;
+
+      // Visual Stage
+      renderVisualStage(q);
+
+      // Hint Box
+      const hintBox = document.getElementById(`q-hint-box`);
+      const hintText = document.getElementById(`q-hint-text`);
+      const hintBtnText = document.getElementById(`hint-btn-text`);
+      if (hintText) hintText.textContent = q.hint;
+      if (hintBox) {
+        if (hintOpen) hintBox.classList.add(`visible`);
+        else hintBox.classList.remove(`visible`);
+      }
+      if (hintBtnText) {
+        hintBtnText.textContent = hintOpen ? `Tutup Petunjuk` : `Buka Petunjuk`;
+      }
+
+      // Options Grid
+      const optionsGrid = document.getElementById(`q-options`);
+      if (optionsGrid) {
+        let html = ``;
+        q.options.forEach(function(opt, idx) {
+          let cls = `option-btn`;
+          if (isAnswered) {
+            if (opt === q.answer) cls += ` is-correct`;
+            else if (opt === userAns) cls += ` is-wrong`;
+          }
+          html += `
+            <button type="button" class="${cls}" onclick="selectAnswer(${q.id}, ${opt})" ${isAnswered ? `disabled` : ``}>
+              <span class="option-letter">${LETTERS[idx]}</span>
+              <span class="tabular">${opt}</span>
+            </button>
+          `;
+        });
+        optionsGrid.innerHTML = html;
+      }
+
+      // Feedback Banner
+      const fbEl = document.getElementById(`q-feedback`);
+      const fbTitle = document.getElementById(`q-feedback-title`);
+      const fbText = document.getElementById(`q-feedback-text`);
+      if (fbEl && fbTitle && fbText) {
+        if (isAnswered) {
+          const isCorrect = userAns === q.answer;
+          fbEl.className = `feedback-banner visible ` + (isCorrect ? `correct` : `wrong`);
+          fbTitle.textContent = isCorrect
+            ? `Hebat! Jawabanmu Benar (+10 Poin)`
+            : `Hampir Tepat! Jawaban yang benar adalah ${q.answer}`;
+          fbText.textContent = q.explanation;
+        } else {
+          fbEl.className = `feedback-banner`;
+        }
+      }
+
+      // Prev / Next Buttons
+      const prevBtn = document.getElementById(`prev-btn`);
+      const nextBtn = document.getElementById(`next-btn`);
+      const nextLabel = document.getElementById(`next-btn-label`);
+      if (prevBtn) prevBtn.disabled = idxInList <= 0;
+      if (nextBtn && nextLabel) {
+        const isLast = idxInList >= list.length - 1;
+        nextLabel.textContent = isLast ? `Lihat Rapor Akhir` : `Soal Berikutnya`;
+      }
+
+      // Scoreboard, Mastery & Map
+      updateStatsAndSidebar(list, q);
+
+      // Report view toggle
+      const reportCard = document.getElementById(`report-card`);
+      const workspaceMain = document.getElementById(`workspace-main`);
+      if (reportCard && workspaceMain) {
+        if (appState.showReport) {
+          renderReportCard();
+          reportCard.classList.add(`visible`);
+          workspaceMain.style.display = `none`;
+        } else {
+          reportCard.classList.remove(`visible`);
+          workspaceMain.style.display = ``;
+        }
+      }
+
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function updateStatsAndSidebar(filteredList, activeQ) {
+      let totalCorrect = 0;
+      let totalAnswered = 0;
+      const topicCounts = {
+        add: { correct: 0, total: 5 },
+        sub: { correct: 0, total: 5 },
+        story: { correct: 0, total: 5 }
+      };
+
+      QUESTIONS.forEach(function(item) {
+        const ans = appState.answers[item.id];
+        if (ans !== undefined) {
+          totalAnswered++;
+          if (ans === item.answer) {
+            totalCorrect++;
+            topicCounts[item.topic].correct++;
+          }
+        }
+      });
+
+      const score = totalCorrect * 10;
+      const pct = Math.round((totalAnswered / QUESTIONS.length) * 100);
+
+      const statScore = document.getElementById(`stat-score`);
+      const statCorrect = document.getElementById(`stat-correct`);
+      const statAnsweredCap = document.getElementById(`stat-answered-cap`);
+      const statStreak = document.getElementById(`stat-streak`);
+      const statBestStreak = document.getElementById(`stat-best-streak`);
+      const statPct = document.getElementById(`stat-progress-pct`);
+      const progressBar = document.getElementById(`main-progress-bar`);
+      const progressFill = document.getElementById(`main-progress-fill`);
+
+      if (statScore) statScore.textContent = String(score);
+      if (statCorrect) statCorrect.textContent = totalCorrect + ` / ` + QUESTIONS.length;
+      if (statAnsweredCap) statAnsweredCap.textContent = totalAnswered + ` soal sudah dijawab`;
+      if (statStreak) statStreak.textContent = String(appState.streak);
+      if (statBestStreak) statBestStreak.textContent = `Terbaik: ` + appState.bestStreak + ` beruntun`;
+      if (statPct) statPct.textContent = pct + `%`;
+      if (progressBar) progressBar.setAttribute(`aria-valuenow`, String(pct));
+      if (progressFill) progressFill.style.width = pct + `%`;
+
+      // Topic Mastery Bars
+      [`add`, `sub`, `story`].forEach(function(t) {
+        const lbl = document.getElementById(`mastery-` + t + `-label`);
+        const fill = document.getElementById(`mastery-` + t + `-fill`);
+        if (lbl) lbl.textContent = topicCounts[t].correct + ` / ` + topicCounts[t].total;
+        if (fill) fill.style.width = Math.round((topicCounts[t].correct / topicCounts[t].total) * 100) + `%`;
+      });
+
+      // Question Map
+      const mapLabel = document.getElementById(`map-filter-label`);
+      const filterNames = { all: `Semua`, add: `Penjumlahan`, sub: `Pengurangan`, story: `Soal Cerita` };
+      if (mapLabel) mapLabel.textContent = filterNames[appState.filter] || `Semua`;
+
+      const mapGrid = document.getElementById(`q-map-grid`);
+      if (mapGrid) {
+        let mapHtml = ``;
+        filteredList.forEach(function(item, idx) {
+          const ans = appState.answers[item.id];
+          let cls = `q-map-dot tabular`;
+          if (item.id === activeQ.id) cls += ` is-current`;
+          else if (ans !== undefined && ans === item.answer) cls += ` is-right`;
+          else if (ans !== undefined && ans !== item.answer) cls += ` is-wrong`;
+          mapHtml += `<button type="button" class="${cls}" onclick="jumpToQuestion(${item.id})" aria-label="Soal nomor ${idx + 1}">${idx + 1}</button>`;
+        });
+        mapGrid.innerHTML = mapHtml;
+      }
+    }
+
+    function renderReportCard() {
+      let totalCorrect = 0;
+      const byTopic = { add: 0, sub: 0, story: 0 };
+      QUESTIONS.forEach(function(item) {
+        if (appState.answers[item.id] === item.answer) {
+          totalCorrect++;
+          byTopic[item.topic]++;
+        }
+      });
+
+      const score = totalCorrect * 10;
+      const scoreText = document.getElementById(`report-score-text`);
+      const titleEl = document.getElementById(`report-title`);
+      const msgEl = document.getElementById(`report-message`);
+      const trophyEl = document.getElementById(`report-trophy-wrap`);
+      const breakdownEl = document.getElementById(`report-breakdown`);
+
+      if (scoreText) scoreText.textContent = score + ` / 150 Poin`;
+
+      let title = `Terus Semangat Berlatih!`;
+      let message = `Kamu sudah menjawab dengan berani! Coba periksa kembali soal yang masih salah menggunakan alat bantu garis bilangan dan nilai tempat ya.`;
+      if (totalCorrect >= 13) {
+        title = `Luar Biasa! Juara Matematika Kelas 2!`;
+        message = `Kamu sudah sangat menguasai penjumlahan, pengurangan, nilai tempat, dan soal cerita Bab 2!`;
+      } else if (totalCorrect >= 9) {
+        title = `Hebat Sekali! Kerjamu Bagus!`;
+        message = `Sebagian besar jawabanmu sudah tepat. Sedikit latihan lagi pasti bisa mendapat nilai sempurna!`;
+      }
+
+      if (titleEl) titleEl.textContent = title;
+      if (msgEl) msgEl.textContent = message;
+
+      if (trophyEl) {
+        trophyEl.innerHTML = `
+          <svg viewBox="0 0 120 100" width="120" height="100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="50" r="44" fill="var(--primary-container)" />
+            <polygon points="60,18 69,38 91,41 75,56 79,78 60,67 41,78 45,56 29,41 51,38" fill="var(--primary)" />
+          </svg>
+        `;
+      }
+
+      if (breakdownEl) {
+        breakdownEl.innerHTML = `
+          <div class="report-stat-pill">
+            <span class="label-kicker">Penjumlahan</span>
+            <strong class="stat-value stat-value-pink tabular">${byTopic.add} / 5</strong>
+          </div>
+          <div class="report-stat-pill">
+            <span class="label-kicker">Pengurangan</span>
+            <strong class="stat-value stat-value-grape tabular">${byTopic.sub} / 5</strong>
+          </div>
+          <div class="report-stat-pill">
+            <span class="label-kicker">Soal Cerita</span>
+            <strong class="stat-value tabular">${byTopic.story} / 5</strong>
+          </div>
+        `;
+      }
+    }
+
+    // --- Interactive Controls ---
+    function selectAnswer(questionId, selectedVal) {
+      if (appState.answers[questionId] !== undefined) return;
+      const q = QUESTIONS.find(function(item) { return item.id === questionId; });
+      if (!q) return;
+
+      appState.answers[questionId] = selectedVal;
+      if (selectedVal === q.answer) {
+        appState.streak++;
+        if (appState.streak > appState.bestStreak) {
+          appState.bestStreak = appState.streak;
+        }
+        playChime(`win`);
+      } else {
+        appState.streak = 0;
+        playChime(`wrong`);
+      }
+
+      saveState();
+      renderAll();
+    }
+
+    function stepHop() {
+      const q = getCurrentQuestion();
+      if (!q || q.visualType !== `numberline`) return;
+      if (currentHopSteps < q.nlDelta) {
+        currentHopSteps++;
+        playChime(`hop`);
+        renderVisualStage(q);
+      }
+    }
+
+    function resetHop() {
+      const q = getCurrentQuestion();
+      if (!q || q.visualType !== `numberline`) return;
+      currentHopSteps = 0;
+      renderVisualStage(q);
+    }
+
+    function toggleBundleTen() {
+      const q = getCurrentQuestion();
+      if (!q || q.visualType !== `placevalue`) return;
+      pvBundledTen = !pvBundledTen;
+      playChime(`hop`);
+      renderVisualStage(q);
+    }
+
+    function toggleHint() {
+      hintOpen = !hintOpen;
+      renderAll();
+    }
+
+    function jumpToQuestion(questionId) {
+      appState.currentQuestionId = questionId;
+      appState.showReport = false;
+      currentHopSteps = 0;
+      pvBundledTen = false;
+      hintOpen = false;
+      saveState();
+      renderAll();
+    }
+
+    function goPrev() {
+      const list = getFilteredQuestions();
+      const idx = list.findIndex(function(q) { return q.id === appState.currentQuestionId; });
+      if (idx > 0) {
+        jumpToQuestion(list[idx - 1].id);
+      }
+    }
+
+    function goNext() {
+      const list = getFilteredQuestions();
+      const idx = list.findIndex(function(q) { return q.id === appState.currentQuestionId; });
+      if (idx >= 0 && idx < list.length - 1) {
+        jumpToQuestion(list[idx + 1].id);
+      } else {
+        appState.showReport = true;
+        saveState();
+        renderAll();
+      }
+    }
+
+    function setFilter(filterKey) {
+      appState.filter = filterKey;
+      appState.showReport = false;
+      const list = getFilteredQuestions();
+      if (list.length > 0) {
+        appState.currentQuestionId = list[0].id;
+      }
+      currentHopSteps = 0;
+      pvBundledTen = false;
+      hintOpen = false;
+      saveState();
+      renderAll();
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      if (appState.soundEnabled) playChime(`hop`);
+      saveState();
+      renderAll();
+    }
+
+    function toggleReportView() {
+      appState.showReport = !appState.showReport;
+      saveState();
+      renderAll();
+    }
+
+    function closeReportAndContinue() {
+      appState.showReport = false;
+      saveState();
+      renderAll();
+    }
+
+    function handleResetClick(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.classList.remove(`btn-quiet`);
+        btn.classList.add(`btn-danger-armed`);
+        btn.textContent = `Klik lagi untuk ulangi`;
+        setTimeout(function() {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.classList.remove(`btn-danger-armed`);
+            btn.classList.add(`btn-quiet`);
+            btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i> Ulangi Kuis`;
+            if (window.lucide && typeof window.lucide.createIcons === `function`) {
+              window.lucide.createIcons();
+            }
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.classList.remove(`btn-danger-armed`);
+      btn.classList.add(`btn-quiet`);
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i> Ulangi Kuis`;
+      restartQuizImmediately();
+    }
+
+    function restartQuizImmediately() {
+      appState.filter = `all`;
+      appState.currentQuestionId = 1;
+      appState.answers = {};
+      appState.streak = 0;
+      appState.bestStreak = 0;
+      appState.showReport = false;
+      currentHopSteps = 0;
+      pvBundledTen = false;
+      hintOpen = false;
+      saveState();
+      renderAll();
+    }
+
+    function downloadReport() {
+      let totalCorrect = 0;
+      const lines = [
+        `RAPOR KUIS MATEMATIKA KELAS 2 SD - BAB 2`,
+        `Materi: Penjumlahan dan Pengurangan (Hal. 37-64)`,
+        `===================================================`,
+        ``
+      ];
+      QUESTIONS.forEach(function(q, i) {
+        const ans = appState.answers[q.id];
+        const status = ans === undefined
+          ? `Belum dijawab`
+          : (ans === q.answer ? `BENAR (+10)` : `SALAH (Jawabanmu: ${ans}, Benar: ${q.answer})`);
+        if (ans === q.answer) totalCorrect++;
+        lines.push(`Soal ${i + 1} [${q.methodTag}]: ${status}`);
+      });
+      lines.push(``);
+      lines.push(`Total Benar: ${totalCorrect} dari ${QUESTIONS.length}`);
+      lines.push(`Skor Akhir: ${totalCorrect * 10} / 150 Poin`);
+      lines.push(`Benar Beruntun Terbaik: ${appState.bestStreak}`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: lines.join(`\n`),
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `rapor-kuis-matematika-bab2.txt`
+        });
+      }
+    }
+
+    // =========================================================================
+    // 6. INITIALIZATION
+    // =========================================================================
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (saved.filter) appState.filter = saved.filter;
+            if (saved.currentQuestionId) appState.currentQuestionId = saved.currentQuestionId;
+            if (saved.answers && typeof saved.answers === `object`) appState.answers = saved.answers;
+            if (typeof saved.streak === `number`) appState.streak = saved.streak;
+            if (typeof saved.bestStreak === `number`) appState.bestStreak = saved.bestStreak;
+            if (typeof saved.soundEnabled === `boolean`) appState.soundEnabled = saved.soundEnabled;
+            if (typeof saved.showReport === `boolean`) appState.showReport = saved.showReport;
+          }
+        }
+      } catch (e) {
+        // Fallback to clean state
+      }
+
+      renderAll();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
