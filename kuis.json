@@ -14,6 +14,34 @@
               "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas1_ASAS1A.html",
               "jumlahSoal": 25,
               "tanggal": "2026-11-20"
+            },
+            {
+              "judul": "Kuis Pecahan",
+              "bab": "Pecahan dan Desimal",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_6_1_Pecahan_dan_Desimal.html",
+              "jumlahSoal": 16,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Rasio",
+              "bab": "Rasio",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_6_2_Rasio.html",
+              "jumlahSoal": 18,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Kubus dan Balok",
+              "bab": "Kubus dan Balok",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_6_3_Kubus_dan_Balok.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Peluang",
+              "bab": "Peluang",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_6_4_Peluang.html",
+              "jumlahSoal": 16,
+              "tanggal": "2026-11-24"
             }
           ]
         },
