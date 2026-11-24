@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Jelajah Kubus &amp; Balok — Kuis Interaktif Matematika Kelas 6 SD</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --primary-soft: #fde8f4;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-soft: #f3eafc;
+      --tertiary: #0096cc;
+      --tertiary-soft: #e2f5fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-soft: #fee2e2;
+      --on-error-soft: #7f1d1d;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-4-soft: #fff0e0;
+      --data-context: #c8b8d0;
+
+      /* Semantic */
+      --positive: #15803d;
+      --on-positive: #ffffff;
+      --positive-soft: #dcfce7;
+      --on-positive-soft: #14532d;
+      --warning: #b45309;
+      --warning-soft: #fef3c7;
+      --on-warning-soft: #78350f;
+
+      /* Focus ring */
+      --focus: var(--primary);
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.2);
+      --shadow-error: 0 4px 16px rgb(197 48 48 / 0.2);
+      --pop-scale: scale(1.03);
+      --press-scale: scale(0.97);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Type scale (Focused Tool with >=16px body per Sticker voice) */
+      --display-size: clamp(2rem, 1.45rem + 1.8vw, 2.85rem);
+      --headline-size: clamp(1.3rem, 1.15rem + 0.55vw, 1.625rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.2rem);
+      --body-size: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    header { position: static !important; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      color: var(--on-surface);
+      background-color: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero header */
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl) var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-sm) 0;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-lede {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
+
+    /* Live scoreboard cards inside hero */
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .stat-card:nth-child(1) { box-shadow: var(--shadow-pink); background: var(--primary-soft); }
+    .stat-card:nth-child(2) { box-shadow: var(--shadow-sky); background: var(--tertiary-soft); }
+    .stat-card:nth-child(3) { box-shadow: var(--shadow-grape); background: var(--secondary-soft); }
+    .stat-card:nth-child(4) { box-shadow: var(--shadow-positive); background: var(--positive-soft); }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--on-surface-variant);
+    }
+
+    .stat-value {
+      font-weight: 900;
+      font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.75rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .stat-value--pink { color: var(--primary); }
+    .stat-value--grape { color: var(--secondary); }
+    .stat-value--positive { color: var(--positive); }
+
+    .stat-sub {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    /* Progress track */
+    .progress-wrap {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .progress-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      width: 0%;
+      transition: width var(--dur-short) var(--ease-bounce);
+    }
+
+    /* Topic filter bar & formula drawer toggle */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons & Chips */
+    .btn, .chip, .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+
+    .btn { padding: var(--space-sm) var(--space-lg); }
+    .chip { padding: var(--space-xs) var(--space-md); font-size: 0.875rem; }
+
+    .btn:hover:not(:disabled), .chip:hover:not(:disabled), .nav-pill:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+    .btn:active:not(:disabled), .chip:active:not(:disabled), .nav-pill:active:not(:disabled) {
+      transform: var(--press-scale);
+    }
+    .btn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) { box-shadow: var(--shadow-grape-deep); }
+
+    .btn-quiet {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      border-color: var(--outline-variant);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-danger-soft {
+      background: var(--error-soft);
+      color: var(--on-error-soft);
+      box-shadow: var(--shadow-error);
+    }
+
+    .chip {
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      box-shadow: var(--shadow-grape);
+    }
+    .chip.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Formula Drawer */
+    .formula-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .formula-card[hidden] { display: none; }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .formula-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .formula-item h3 {
+      margin: 0 0 var(--space-xs) 0;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+    .formula-item p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--on-surface);
+      line-height: 1.5;
+    }
+
+    /* Main Workspace Split */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+    }
+    .card--sky { box-shadow: var(--shadow-sky); }
+    .card--grape { box-shadow: var(--shadow-grape); }
+
+    /* Question Card */
+    .question-card {
+      display: grid;
+      gap: var(--space-lg);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      background: var(--surface-container-low);
+    }
+
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border-radius: var(--rounded-full);
+      padding: 0.3rem 0.85rem;
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .badge-bubblegum {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .badge-grape {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+    }
+    .badge-sky-fill {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .badge-positive {
+      background: var(--positive-soft);
+      color: var(--on-positive-soft);
+    }
+    .badge-error {
+      background: var(--error-soft);
+      color: var(--on-error-soft);
+    }
+
+    .question-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .question-prompt {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--on-surface);
+    }
+
+    /* Visual Diagram Well */
+    .diagram-well {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+
+    .diagram-well svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .diagram-caption {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin: 0;
+    }
+
+    /* Hint box */
+    .hint-box {
+      background: var(--warning-soft);
+      color: var(--on-warning-soft);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .hint-box[hidden] { display: none; }
+
+    /* Multiple Choice Options */
+    .options-container { container-type: inline-size; }
+    .options-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+    @container (min-width: 520px) {
+      .options-grid--visual {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .option-btn {
+      width: 100%;
+      min-height: 52px;
+      text-align: left;
+      background: var(--surface-container);
+      border: 2px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-weight: 600;
+      color: var(--on-surface);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+    .option-btn--visual {
+      flex-direction: column;
+      align-items: stretch;
+      padding: var(--space-md);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--lift);
+      box-shadow: var(--shadow-grape);
+      border-color: var(--secondary);
+    }
+    .option-btn:disabled { cursor: default; }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--secondary);
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-grape);
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-soft);
+      border-color: var(--positive);
+      color: var(--on-positive-soft);
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+      box-shadow: none;
+    }
+
+    .option-btn.is-wrong {
+      background: var(--error-soft);
+      border-color: var(--error);
+      color: var(--on-error-soft);
+      box-shadow: var(--shadow-error);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+      box-shadow: none;
+    }
+
+    .option-btn.is-dimmed {
+      opacity: 0.65;
+    }
+
+    /* Numeric Input Form */
+    .numeric-form {
+      display: grid;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: var(--space-md);
+    }
+
+    .input-group {
+      flex: 1 1 220px;
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .input-label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+
+    .input-with-unit {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .pill-input {
+      width: 100%;
+      min-height: 48px;
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline);
+      background: var(--surface-container-low);
+      padding: var(--space-sm) var(--space-lg);
+      font-weight: 800;
+      font-size: 1.15rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+      transition: border-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .pill-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+    .pill-input.is-correct {
+      border-color: var(--positive);
+      background: var(--positive-soft);
+      color: var(--on-positive-soft);
+    }
+    .pill-input.is-wrong {
+      border-color: var(--error);
+      background: var(--error-soft);
+      color: var(--on-error-soft);
+    }
+
+    .unit-pill {
+      flex-shrink: 0;
+      min-height: 48px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-help {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+
+    .inline-error {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--error);
+    }
+    .inline-error[hidden] { display: none; }
+
+    /* Feedback & Step-by-Step Explanation */
+    .feedback-panel {
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+    .feedback-panel[hidden] { display: none; }
+    .feedback-panel--correct {
+      background: var(--positive-soft);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-panel--wrong {
+      background: var(--error-soft);
+      box-shadow: var(--shadow-error);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .feedback-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .feedback-title {
+      margin: 0;
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .feedback-panel--correct .feedback-title { color: var(--on-positive-soft); }
+    .feedback-panel--wrong .feedback-title { color: var(--on-error-soft); }
+
+    .steps-box {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .steps-heading {
+      margin: 0;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+    }
+    .steps-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: grid;
+      gap: var(--space-xs);
+      color: var(--on-surface);
+    }
+    .steps-list li { line-height: 1.55; }
+
+    /* Question Footer Nav */
+    .question-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .question-nav-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Sidebar Panel */
+    .sidebar-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin: 0 0 var(--space-md) 0;
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .nav-pill {
+      min-height: 44px;
+      padding: 0;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+    }
+    .nav-pill.is-current {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .nav-pill.is-correct {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+    .nav-pill.is-wrong {
+      background: var(--error);
+      color: var(--on-error);
+    }
+    .nav-pill.is-current.is-correct,
+    .nav-pill.is-current.is-wrong {
+      outline: 3px solid var(--on-surface);
+      outline-offset: 2px;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+      font-size: 0.82rem;
+      color: var(--on-surface-variant);
+      font-weight: 600;
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: var(--rounded-full);
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    .dot-empty { background: var(--surface-container-high); }
+    .dot-correct { background: var(--positive); }
+    .dot-wrong { background: var(--error); }
+
+    /* Mastery bars */
+    .mastery-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .mastery-item {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .mastery-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .mastery-track {
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .mastery-fill {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      background: var(--tertiary);
+      transition: width var(--dur-short) var(--ease-bounce);
+    }
+
+    .sidebar-actions {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Final Review Section */
+    .review-shell {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .review-shell[hidden], .quiz-shell[hidden] { display: none; }
+
+    .review-hero {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink-deep);
+      padding: var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .score-ring-box {
+      background: var(--primary-soft);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      display: grid;
+      gap: var(--space-xs);
+      box-shadow: var(--shadow-pink);
+    }
+    .big-score {
+      font-weight: 900;
+      font-size: clamp(3rem, 2.2rem + 2.5vw, 4.25rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .review-cards-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .review-item {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-grape);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .review-item--correct { box-shadow: var(--shadow-positive); }
+    .review-item--wrong { box-shadow: var(--shadow-error); }
+
+    .review-answers-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .review-ans-col {
+      flex: 1 1 200px;
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* SVG geometry styling via tokens */
+    .svg-face-pink { fill: var(--primary-soft); stroke: var(--primary); stroke-width: 2.2; stroke-linejoin: round; }
+    .svg-face-pink-mid { fill: var(--primary-container); stroke: var(--primary); stroke-width: 2.2; stroke-linejoin: round; }
+    .svg-face-sky { fill: var(--tertiary-soft); stroke: var(--tertiary); stroke-width: 2.2; stroke-linejoin: round; }
+    .svg-face-sky-deep { fill: var(--tertiary); stroke: var(--on-surface); stroke-width: 2; stroke-linejoin: round; }
+    .svg-face-grape { fill: var(--secondary-soft); stroke: var(--secondary); stroke-width: 2.2; stroke-linejoin: round; }
+    .svg-face-grape-deep { fill: var(--secondary); stroke: var(--on-surface); stroke-width: 2; stroke-linejoin: round; }
+    .svg-face-orange { fill: var(--data-4-soft); stroke: var(--data-4); stroke-width: 2.2; stroke-linejoin: round; }
+    .svg-face-white { fill: var(--surface-container-low); stroke: var(--outline); stroke-width: 2; stroke-linejoin: round; }
+    .svg-edge-main { stroke: var(--on-surface); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .svg-edge-dashed { stroke: var(--outline); stroke-width: 2; stroke-dasharray: 6 5; stroke-linecap: round; fill: none; }
+    .svg-diag { stroke: var(--primary); stroke-width: 3; stroke-dasharray: 7 5; stroke-linecap: round; fill: none; }
+    .svg-label { fill: var(--on-surface); font-family: var(--font-body); font-size: 13px; font-weight: 800; }
+    .svg-label-pink { fill: var(--primary); font-family: var(--font-body); font-size: 13px; font-weight: 800; }
+    .svg-label-grape { fill: var(--secondary); font-family: var(--font-body); font-size: 13px; font-weight: 800; }
+    .svg-dot { fill: var(--primary); }
+    .svg-dot-grape { fill: var(--secondary); }
+
+    /* Footer source attribution */
+    .footer-note {
+      text-align: left;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      padding: var(--space-md) var(--space-sm);
+    }
+
+    @media (max-width: 900px) {
+      .hero-panel, .workspace-grid, .review-hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid { padding: var(--space-md); gap: var(--space-md); }
+      .hero-panel, .question-card, .review-hero { padding: var(--space-lg); }
+      .hud-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); }
+      .nav-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Live Scoreboard -->
+    <header class="hero-panel">
+      <div>
+        <p class="kicker">
+          <i data-lucide="box" aria-hidden="true" width="16" height="16"></i>
+          Matematika Kelas 6 SD · Bab 3
+        </p>
+        <h1 class="display">Jelajah Kubus &amp; <em>Balok</em></h1>
+        <p class="hero-lede">
+          Uji pemahamanmu tentang unsur-unsur bangun ruang, jaring-jaring, luas permukaan, volume, serta tantangan spasial dari buku Matematika SD Kelas VI. Setiap soal dilengkapi gambar interaktif dan langkah pembahasan lengkap.
+        </p>
+      </div>
+
+      <div class="hud-grid" aria-label="Ringkasan skor langsung">
+        <div class="stat-card">
+          <span class="stat-label">Nilai Sementara</span>
+          <span class="stat-value stat-value--pink" id="hud-score">0</span>
+          <span class="stat-sub" id="hud-score-sub">Skala 0–100</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Soal Terjawab</span>
+          <span class="stat-value" id="hud-answered">0 / 15</span>
+          <span class="stat-sub" id="hud-mode-label">Semua Topik</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Runtutan Benar</span>
+          <span class="stat-value stat-value--grape" id="hud-streak">0</span>
+          <span class="stat-sub" id="hud-best-streak">Terbaik: 0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Jawaban Benar</span>
+          <span class="stat-value stat-value--positive" id="hud-correct">0</span>
+          <span class="stat-sub" id="hud-wrong">Salah: 0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Progress Track -->
+    <section class="progress-wrap" aria-label="Progres pengerjaan kuis">
+      <div class="progress-head">
+        <span class="stat-label" id="progress-text">Progres pengerjaan: 0% (0 dari 15 soal)</span>
+        <span class="stat-sub" id="current-pos-label">Sedang membuka Soal 1</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-role">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- Topic Filters & Quick Formula Toggle -->
+    <section class="controls-bar" aria-label="Filter topik dan bantuan rumus">
+      <div class="filter-pills" id="topic-filters" role="group" aria-label="Pilih topik soal">
+        <button type="button" class="chip is-active" data-topic="all" onclick="setTopicFilter('all')">Semua Topik (15)</button>
+        <button type="button" class="chip" data-topic="unsur" onclick="setTopicFilter('unsur')">Unsur &amp; Sifat (3)</button>
+        <button type="button" class="chip" data-topic="jaring" onclick="setTopicFilter('jaring')">Jaring-Jaring (3)</button>
+        <button type="button" class="chip" data-topic="luas" onclick="setTopicFilter('luas')">Luas Permukaan (3)</button>
+        <button type="button" class="chip" data-topic="volume" onclick="setTopicFilter('volume')">Volume (3)</button>
+        <button type="button" class="chip" data-topic="kontekstual" onclick="setTopicFilter('kontekstual')">Kontekstual &amp; Spasial (3)</button>
+      </div>
+
+      <button type="button" class="btn btn-quiet" id="btn-toggle-formula" aria-expanded="false" onclick="toggleFormulaDrawer()">
+        <i data-lucide="book-open" aria-hidden="true" width="18" height="18"></i>
+        Kartu Rumus Cepat
+      </button>
+    </section>
+
+    <!-- Collapsible Quick Formula Reference -->
+    <section class="formula-card" id="formula-drawer" hidden aria-label="Ringkasan rumus kubus dan balok">
+      <div class="progress-head">
+        <h2 class="section-title" style="margin: 0;">
+          <i data-lucide="sparkles" aria-hidden="true" width="20" height="20"></i>
+          Ringkasan Konsep &amp; Rumus Kubus &amp; Balok
+        </h2>
+        <button type="button" class="chip" onclick="toggleFormulaDrawer()">Tutup</button>
+      </div>
+      <div class="formula-grid">
+        <div class="formula-item">
+          <h3>Unsur Kubus &amp; Balok</h3>
+          <p>Keduanya memiliki <strong>6 sisi</strong>, <strong>12 rusuk</strong>, <strong>8 titik sudut</strong>, dan <strong>12 diagonal bidang</strong>. Total panjang kerangka balok = 4 × (p + l + t).</p>
+        </div>
+        <div class="formula-item">
+          <h3>Luas Permukaan</h3>
+          <p><strong>Kubus:</strong> L = 6 × s × s<br><strong>Balok:</strong> L = 2 × (p·l + p·t + l·t)<br><em>Catatan:</em> Jika tanpa tutup, kurangi 1 kali luas alas (p × l).</p>
+        </div>
+        <div class="formula-item">
+          <h3>Volume &amp; Satuan</h3>
+          <p><strong>Kubus:</strong> V = s × s × s<br><strong>Balok:</strong> V = p × l × t<br><strong>Konversi:</strong> 1 liter = 1 dm³ = 1.000 cm³.</p>
+        </div>
+        <div class="formula-item">
+          <h3>Visualisasi Spasial (Bab 3)</h3>
+          <p>Bangun ruang dapat dilihat dari arah <strong>depan, kanan, dan atas</strong>. Susunan bertingkat dihitung dengan menjumlahkan kubus di tiap kolom.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Quiz Workspace -->
+    <div class="quiz-shell" id="quiz-shell">
+      <div class="workspace-grid">
+        <!-- Main Question Card -->
+        <article class="question-card" id="question-card" aria-live="polite">
+          <div class="question-meta">
+            <div class="meta-badges">
+              <span class="badge badge-bubblegum" id="q-number-badge">Soal 1 dari 15</span>
+              <span class="badge badge-grape" id="q-topic-badge">Unsur &amp; Sifat</span>
+              <span class="badge badge-sky-fill" id="q-type-badge">Pilihan Ganda</span>
+            </div>
+            <button type="button" class="chip" id="btn-hint" onclick="toggleHint()">
+              <i data-lucide="lightbulb" aria-hidden="true" width="16" height="16"></i>
+              Petunjuk
+            </button>
+          </div>
+
+          <h2 class="question-title" id="q-title">Judul Soal</h2>
+          <p class="question-prompt" id="q-prompt">Isi pertanyaan akan muncul di sini.</p>
+
+          <!-- Custom Geometric SVG Diagram -->
+          <div class="diagram-well" id="q-diagram-well">
+            <div id="q-diagram"></div>
+            <p class="diagram-caption" id="q-diagram-caption"></p>
+          </div>
+
+          <!-- Optional Hint -->
+          <div class="hint-box" id="q-hint-box" hidden>
+            <i data-lucide="lightbulb" aria-hidden="true" width="20" height="20" style="flex-shrink:0; margin-top:2px;"></i>
+            <div>
+              <strong>Petunjuk:</strong> <span id="q-hint-text"></span>
+            </div>
+          </div>
+
+          <!-- Multiple Choice Area -->
+          <div class="options-container" id="mc-area">
+            <div class="options-grid" id="mc-options"></div>
+          </div>
+
+          <!-- Numeric Input Area -->
+          <form class="numeric-form" id="numeric-area" onsubmit="handleNumericSubmit(event)" hidden>
+            <div class="input-row">
+              <div class="input-group">
+                <label class="input-label" for="numeric-input" id="numeric-label">Tuliskan jawabanmu dalam bentuk angka:</label>
+                <div class="input-with-unit">
+                  <input type="text" inputmode="decimal" class="pill-input" id="numeric-input" autocomplete="off" aria-describedby="numeric-help numeric-error">
+                  <span class="unit-pill" id="numeric-unit">cm</span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="btn-check-numeric">
+                <i data-lucide="check-circle" aria-hidden="true" width="18" height="18"></i>
+                Periksa Jawaban
+              </button>
+            </div>
+            <p class="input-help" id="numeric-help">Masukkan angka saja tanpa satuan atau titik pemisah ribuan (contoh: 1200).</p>
+            <p class="inline-error" id="numeric-error" hidden></p>
+          </form>
+
+          <!-- Immediate Verdict & Step-by-Step Solution -->
+          <div class="feedback-panel" id="feedback-panel" hidden>
+            <div class="feedback-header">
+              <h3 class="feedback-title" id="feedback-title">Hebat!</h3>
+              <span class="badge" id="feedback-badge">Benar</span>
+            </div>
+            <p id="feedback-summary" style="margin: 0; font-weight: 600;"></p>
+            <div class="steps-box">
+              <p class="steps-heading">Langkah Penyelesaian</p>
+              <ol class="steps-list" id="feedback-steps"></ol>
+            </div>
+          </div>
+
+          <!-- Bottom Navigation -->
+          <div class="question-nav">
+            <button type="button" class="btn btn-quiet" id="btn-prev" onclick="goRelative(-1)">
+              <i data-lucide="arrow-left" aria-hidden="true" width="18" height="18"></i>
+              Sebelumnya
+            </button>
+            <div class="question-nav-group">
+              <button type="button" class="btn btn-secondary" id="btn-open-review" onclick="openReview()">
+                <i data-lucide="clipboard-check" aria-hidden="true" width="18" height="18"></i>
+                Review Hasil Akhir
+              </button>
+              <button type="button" class="btn btn-primary" id="btn-next" onclick="goRelative(1)">
+                Berikutnya
+                <i data-lucide="arrow-right" aria-hidden="true" width="18" height="18"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right Sidebar: Question Navigator & Mastery -->
+        <aside class="sidebar-stack" aria-label="Navigasi dan penguasaan materi">
+          <section class="card card--sky">
+            <h2 class="section-title">
+              <i data-lucide="grid" aria-hidden="true" width="20" height="20"></i>
+              Peta Nomor Soal
+            </h2>
+            <div class="nav-grid" id="nav-grid"></div>
+            <div class="legend-row">
+              <span><span class="legend-dot dot-empty"></span>Belum</span>
+              <span><span class="legend-dot dot-correct"></span>Benar</span>
+              <span><span class="legend-dot dot-wrong"></span>Salah</span>
+            </div>
+          </section>
+
+          <section class="card card--grape">
+            <h2 class="section-title">
+              <i data-lucide="bar-chart-3" aria-hidden="true" width="20" height="20"></i>
+              Penguasaan per Topik
+            </h2>
+            <div class="mastery-list" id="mastery-list"></div>
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">
+              <i data-lucide="sliders-horizontal" aria-hidden="true" width="20" height="20"></i>
+              Kontrol Kuis
+            </h2>
+            <div class="sidebar-actions">
+              <button type="button" class="btn btn-secondary" onclick="openReview()">
+                <i data-lucide="award" aria-hidden="true" width="18" height="18"></i>
+                Lihat Rapor &amp; Review Akhir
+              </button>
+              <button type="button" class="btn btn-danger-soft" id="btn-reset-quiz" onclick="handleResetQuiz(this)">
+                <i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i>
+                Ulangi Kuis dari Awal
+              </button>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Final Review & Score Report View -->
+    <section class="review-shell" id="review-shell" hidden aria-label="Review hasil akhir kuis">
+      <div class="review-hero">
+        <div>
+          <p class="kicker">Rapor Belajar Matematika Kelas 6</p>
+          <h2 class="display" style="font-size: var(--headline-size); margin-bottom: var(--space-sm);" id="review-headline">
+            Hasil Latihan Kubus &amp; <em>Balok</em>
+          </h2>
+          <p id="review-message" style="margin: 0 0 var(--space-md) 0; color: var(--on-surface-variant);"></p>
+          <div class="question-nav-group">
+            <button type="button" class="btn btn-primary" onclick="closeReview()">
+              <i data-lucide="arrow-left" aria-hidden="true" width="18" height="18"></i>
+              Kembali ke Soal
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="exportReport()">
+              <i data-lucide="download" aria-hidden="true" width="18" height="18"></i>
+              Unduh Rapor (.txt)
+            </button>
+            <button type="button" class="btn btn-danger-soft" id="btn-reset-review" onclick="handleResetQuiz(this)">
+              <i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i>
+              Kerjakan Ulang
+            </button>
+          </div>
+        </div>
+
+        <div class="score-ring-box">
+          <span class="stat-label">Nilai Akhir</span>
+          <span class="big-score" id="review-final-score">0</span>
+          <span class="badge badge-bubblegum" style="justify-self:center;" id="review-predicate">Belum Selesai</span>
+          <span class="stat-sub" id="review-detail-counts">0 benar · 0 salah · 15 belum dijawab</span>
+        </div>
+      </div>
+
+      <!-- Per-Topic Analysis Card -->
+      <section class="card card--grape">
+        <h3 class="section-title">
+          <i data-lucide="target" aria-hidden="true" width="20" height="20"></i>
+          Analisis Penguasaan Materi per Topik
+        </h3>
+        <div class="mastery-list" id="review-mastery-list"></div>
+      </section>
+
+      <!-- Filterable Question-by-Question Review -->
+      <section class="controls-bar">
+        <h3 class="section-title" style="margin: 0;">
+          <i data-lucide="list-checks" aria-hidden="true" width="20" height="20"></i>
+          Pembahasan Lengkap Setiap Nomor
+        </h3>
+        <div class="filter-pills" id="review-filter-pills" role="group" aria-label="Filter daftar review">
+          <button type="button" class="chip is-active" data-rfilter="all" onclick="setReviewFilter('all')">Semua Soal</button>
+          <button type="button" class="chip" data-rfilter="wrong" onclick="setReviewFilter('wrong')">Perlu Diperbaiki</button>
+          <button type="button" class="chip" data-rfilter="correct" onclick="setReviewFilter('correct')">Sudah Benar</button>
+          <button type="button" class="chip" data-rfilter="unanswered" onclick="setReviewFilter('unanswered')">Belum Dijawab</button>
+        </div>
+      </section>
+
+      <div class="review-cards-list" id="review-cards-list"></div>
+    </section>
+
+    <footer class="footer-note">
+      Disusun berdasarkan Buku Siswa Matematika untuk SD/MI Kelas VI Kurikulum Merdeka, Bab 3: Kubus dan Balok (Dicky Susanto dkk., Kemdikbudristek, 2022).
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    // =========================================================================
+    // 1. SVG GEOMETRY GENERATORS (100% token-styled, no inline hex)
+    // =========================================================================
+
+    function svgCubeLabeled() {
+      return `
+        <svg width="290" height="215" viewBox="0 0 290 215" role="img" aria-label="Gambar bangun ruang kubus ABCD.EFGH dengan sisi, rusuk, dan titik sudut">
+          <!-- Back dashed edges -->
+          <line x1="95" y1="35" x2="95" y2="125" class="svg-edge-dashed" />
+          <line x1="95" y1="125" x2="215" y2="125" class="svg-edge-dashed" />
+          <line x1="95" y1="125" x2="55" y2="165" class="svg-edge-dashed" />
+          <!-- Visible faces -->
+          <polygon points="95,35 215,35 175,75 55,75" class="svg-face-sky" fill-opacity="0.72" />
+          <polygon points="55,75 175,75 175,165 55,165" class="svg-face-pink" fill-opacity="0.75" />
+          <polygon points="175,75 215,35 215,125 175,165" class="svg-face-grape" fill-opacity="0.72" />
+          <!-- Solid front edges -->
+          <polygon points="55,75 175,75 175,165 55,165" class="svg-edge-main" />
+          <polyline points="55,75 95,35 215,35 215,125 175,165" class="svg-edge-main" />
+          <line x1="175" y1="75" x2="215" y2="35" class="svg-edge-main" />
+          <!-- Vertices dots -->
+          <circle cx="55" cy="165" r="4" class="svg-dot" />
+          <circle cx="175" cy="165" r="4" class="svg-dot" />
+          <circle cx="215" cy="125" r="4" class="svg-dot" />
+          <circle cx="55" cy="75" r="4" class="svg-dot" />
+          <circle cx="175" cy="75" r="4" class="svg-dot" />
+          <circle cx="215" cy="35" r="4" class="svg-dot" />
+          <circle cx="95" cy="35" r="4" class="svg-dot" />
+          <!-- Vertex labels -->
+          <text x="38" y="172" class="svg-label">A</text>
+          <text x="178" y="181" class="svg-label">B</text>
+          <text x="222" y="130" class="svg-label">C</text>
+          <text x="86" y="122" class="svg-label">D</text>
+          <text x="38" y="75" class="svg-label">E</text>
+          <text x="168" y="67" class="svg-label">F</text>
+          <text x="222" y="38" class="svg-label">G</text>
+          <text x="88" y="27" class="svg-label">H</text>
+          <!-- Callout annotations -->
+          <text x="228" y="88" class="svg-label-grape">Sisi Kanan</text>
+          <text x="85" y="198" class="svg-label-pink">Rusuk AB</text>
+        </svg>`;
+    }
+
+    function svgCubeDiagonal() {
+      return `
+        <svg width="280" height="210" viewBox="0 0 280 210" role="img" aria-label="Kubus dengan diagonal bidang AC dan BD pada sisi alas">
+          <polygon points="90,30 200,30 165,65 55,65" class="svg-face-white" fill-opacity="0.6" />
+          <polygon points="55,65 165,65 165,165 55,165" class="svg-face-sky" fill-opacity="0.35" />
+          <polygon points="165,65 200,30 200,130 165,165" class="svg-face-grape" fill-opacity="0.35" />
+          <!-- Bottom highlighted face -->
+          <polygon points="55,165 165,165 200,130 90,130" class="svg-face-pink" fill-opacity="0.6" />
+          <!-- Dashed back edges -->
+          <line x1="90" y1="30" x2="90" y2="130" class="svg-edge-dashed" />
+          <line x1="90" y1="130" x2="200" y2="130" class="svg-edge-dashed" />
+          <line x1="90" y1="130" x2="55" y2="165" class="svg-edge-dashed" />
+          <!-- Diagonals AC and BD -->
+          <line x1="55" y1="165" x2="200" y2="130" class="svg-diag" />
+          <line x1="165" y1="165" x2="90" y2="130" class="svg-diag" />
+          <!-- Outer edges -->
+          <polygon points="55,65 165,65 165,165 55,165" class="svg-edge-main" />
+          <polyline points="55,65 90,30 200,30 200,130 165,165" class="svg-edge-main" />
+          <line x1="165" y1="65" x2="200" y2="30" class="svg-edge-main" />
+          <!-- Equal tick marks on cube edges -->
+          <line x1="106" y1="160" x2="114" y2="170" class="svg-edge-main" />
+          <line x1="50" y1="112" x2="60" y2="118" class="svg-edge-main" />
+          <line x1="178" y1="143" x2="188" y2="151" class="svg-edge-main" />
+          <!-- Labels -->
+          <text x="40" y="172" class="svg-label">A</text>
+          <text x="168" y="182" class="svg-label">B</text>
+          <text x="206" y="135" class="svg-label">C</text>
+          <text x="76" y="125" class="svg-label">D</text>
+          <text x="72" y="198" class="svg-label-pink">Diagonal Bidang (AC &amp; BD)</text>
+        </svg>`;
+    }
+
+    function svgBalokWireframe(p, l, t, showUnknownT) {
+      var tLabel = showUnknownT ? `t = ?` : `${t} cm`;
+      return `
+        <svg width="310" height="205" viewBox="0 0 310 205" role="img" aria-label="Balok dengan ukuran panjang ${p}, lebar ${l}, dan tinggi ${tLabel}">
+          <polygon points="95,35 235,35 195,70 55,70" class="svg-face-sky" fill-opacity="0.5" />
+          <polygon points="55,70 195,70 195,155 55,155" class="svg-face-pink" fill-opacity="0.45" />
+          <polygon points="195,70 235,35 235,120 195,155" class="svg-face-grape" fill-opacity="0.5" />
+          <line x1="95" y1="35" x2="95" y2="120" class="svg-edge-dashed" />
+          <line x1="95" y1="120" x2="235" y2="120" class="svg-edge-dashed" />
+          <line x1="95" y1="120" x2="55" y2="155" class="svg-edge-dashed" />
+          <polygon points="55,70 195,70 195,155 55,155" class="svg-edge-main" />
+          <polyline points="55,70 95,35 235,35 235,120 195,155" class="svg-edge-main" />
+          <line x1="195" y1="70" x2="235" y2="35" class="svg-edge-main" />
+          <text x="108" y="178" class="svg-label-pink">p = ${p} cm</text>
+          <text x="220" y="148" class="svg-label-grape">l = ${l} cm</text>
+          <text x="242" y="84" class="svg-label">${tLabel}</text>
+        </svg>`;
+    }
+
+    function svgCubeDim(s, isWater) {
+      var waterPoly = isWater
+        ? `<polygon points="65,85 165,85 165,165 65,165" class="svg-face-sky" fill-opacity="0.82" />
+           <polygon points="165,85 200,50 200,130 165,165" class="svg-face-sky" fill-opacity="0.65" />
+           <polygon points="100,50 200,50 165,85 65,85" class="svg-face-sky" fill-opacity="0.95" />`
+        : `<polygon points="100,30 200,30 165,65 65,65" class="svg-face-sky" fill-opacity="0.65" />
+           <polygon points="65,65 165,65 165,165 65,165" class="svg-face-pink" fill-opacity="0.65" />
+           <polygon points="165,65 200,30 200,130 165,165" class="svg-face-grape" fill-opacity="0.65" />`;
+      return `
+        <svg width="275" height="205" viewBox="0 0 275 205" role="img" aria-label="Kubus dengan panjang rusuk ${s} cm">
+          ${waterPoly}
+          <line x1="100" y1="30" x2="100" y2="130" class="svg-edge-dashed" />
+          <line x1="100" y1="130" x2="200" y2="130" class="svg-edge-dashed" />
+          <line x1="100" y1="130" x2="65" y2="165" class="svg-edge-dashed" />
+          <polygon points="65,65 165,65 165,165 65,165" class="svg-edge-main" />
+          <polyline points="65,65 100,30 200,30 200,130 165,165" class="svg-edge-main" />
+          <line x1="165" y1="65" x2="200" y2="30" class="svg-edge-main" />
+          <text x="95" y="188" class="svg-label-pink">s = ${s} cm</text>
+          <text x="208" y="88" class="svg-label">${s} cm</text>
+        </svg>`;
+    }
+
+    function svgAquariumOpen(p, l, t) {
+      return `
+        <svg width="310" height="205" viewBox="0 0 310 205" role="img" aria-label="Akuarium balok tanpa tutup berukuran ${p} x ${l} x ${t} cm">
+          <polygon points="55,155 195,155 235,120 95,120" class="svg-face-pink" fill-opacity="0.5" />
+          <polygon points="55,70 195,70 195,155 55,155" class="svg-face-sky" fill-opacity="0.45" />
+          <polygon points="195,70 235,35 235,120 195,155" class="svg-face-sky" fill-opacity="0.3" />
+          <line x1="95" y1="35" x2="95" y2="120" class="svg-edge-dashed" />
+          <line x1="95" y1="120" x2="235" y2="120" class="svg-edge-dashed" />
+          <line x1="95" y1="120" x2="55" y2="155" class="svg-edge-dashed" />
+          <polygon points="55,70 195,70 195,155 55,155" class="svg-edge-main" />
+          <polyline points="55,70 95,35 235,35 235,120 195,155" class="svg-edge-main" />
+          <line x1="195" y1="70" x2="235" y2="35" class="svg-edge-main" />
+          <text x="112" y="57" class="svg-label-pink">(Terbuka / Tanpa Tutup)</text>
+          <text x="104" y="178" class="svg-label">p = ${p} cm</text>
+          <text x="220" y="148" class="svg-label-grape">l = ${l} cm</text>
+          <text x="242" y="84" class="svg-label">t = ${t} cm</text>
+        </svg>`;
+    }
+
+    function svgNetSquares(cells, cellSize, labeledMap) {
+      var sz = cellSize || 24;
+      var maxC = 0, maxR = 0;
+      cells.forEach(function (c) {
+        if (c[0] > maxC) maxC = c[0];
+        if (c[1] > maxR) maxR = c[1];
+      });
+      var w = (maxC + 1) * sz + 16;
+      var h = (maxR + 1) * sz + 16;
+      var rects = cells.map(function (c, idx) {
+        var x = 8 + c[0] * sz;
+        var y = 8 + c[1] * sz;
+        var lbl = labeledMap && labeledMap[idx] ? labeledMap[idx] : '';
+        var cls = lbl === '3' ? 'svg-face-pink-mid' : (idx % 2 === 0 ? 'svg-face-sky' : 'svg-face-grape');
+        var textEl = lbl
+          ? `<text x="${x + sz / 2}" y="${y + sz / 2 + 5}" text-anchor="middle" class="svg-label">${lbl}</text>`
+          : '';
+        return `<rect x="${x}" y="${y}" width="${sz}" height="${sz}" rx="3" class="${cls}" />${textEl}`;
+      }).join('');
+      return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true">${rects}</svg>`;
+    }
+
+    function svgBalokNet() {
+      return `
+        <svg width="310" height="190" viewBox="0 0 310 190" role="img" aria-label="Jaring-jaring balok dengan pasangan sisi berwarna">
+          <!-- Back (Sky) 80x35 -->
+          <rect x="85" y="15" width="80" height="35" rx="4" class="svg-face-sky" />
+          <!-- Left (Grape) 45x60 -->
+          <rect x="40" y="50" width="45" height="60" rx="4" class="svg-face-grape" />
+          <!-- Bottom / Alas (Pink) 80x60 -->
+          <rect x="85" y="50" width="80" height="60" rx="4" class="svg-face-pink-mid" />
+          <text x="125" y="84" text-anchor="middle" class="svg-label">Alas</text>
+          <!-- Right (Grape) 45x60 -->
+          <rect x="165" y="50" width="45" height="60" rx="4" class="svg-face-grape" />
+          <!-- Top / Tutup (Pink) 80x60 -->
+          <rect x="210" y="50" width="80" height="60" rx="4" class="svg-face-pink" />
+          <text x="250" y="84" text-anchor="middle" class="svg-label-pink">Tutup</text>
+          <!-- Front (Sky) 80x35 -->
+          <rect x="85" y="110" width="80" height="35" rx="4" class="svg-face-sky" />
+          <text x="125" y="172" text-anchor="middle" class="svg-label">Alas = 10 cm × 6 cm</text>
+        </svg>`;
+    }
+
+    // Isometric unit-cube stack renderer (back-to-front painter's algorithm)
+    function renderIsoCubeStack(heightMatrix, colorMatrix) {
+      var rows = heightMatrix.length;
+      var cols = heightMatrix[0].length;
+      var dx = 28;
+      var dy = 14;
+      var dz = 28;
+      var originX = 145;
+      var originY = 145;
+      var polys = [];
+
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          var h = heightMatrix[r][c];
+          for (var z = 0; z < h; z++) {
+            var cx = originX + (c - r) * dx;
+            var cy = originY + (c + r) * dy - z * dz;
+            var customColor = colorMatrix && colorMatrix[r] && colorMatrix[r][c] && colorMatrix[r][c][z];
+            var topCls = 'svg-face-sky';
+            var leftCls = 'svg-face-pink';
+            var rightCls = 'svg-face-grape';
+            if (customColor === 'pink') { topCls = 'svg-face-pink-mid'; leftCls = 'svg-face-pink'; rightCls = 'svg-face-pink'; }
+            if (customColor === 'sky') { topCls = 'svg-face-sky-deep'; leftCls = 'svg-face-sky'; rightCls = 'svg-face-sky'; }
+            if (customColor === 'grape') { topCls = 'svg-face-grape-deep'; leftCls = 'svg-face-grape'; rightCls = 'svg-face-grape'; }
+            if (customColor === 'orange') { topCls = 'svg-face-orange'; leftCls = 'svg-face-orange'; rightCls = 'svg-face-orange'; }
+
+            // Top diamond
+            var pTop = `${cx},${cy - dz} ${cx + dx},${cy + dy - dz} ${cx},${cy + 2 * dy - dz} ${cx - dx},${cy + dy - dz}`;
+            // Left face
+            var pLeft = `${cx - dx},${cy + dy - dz} ${cx},${cy + 2 * dy - dz} ${cx},${cy + 2 * dy} ${cx - dx},${cy + dy}`;
+            // Right face
+            var pRight = `${cx},${cy + 2 * dy - dz} ${cx + dx},${cy + dy - dz} ${cx + dx},${cy + dy} ${cx},${cy + 2 * dy}`;
+
+            polys.push(`<polygon points="${pLeft}" class="${leftCls}" />`);
+            polys.push(`<polygon points="${pRight}" class="${rightCls}" />`);
+            polys.push(`<polygon points="${pTop}" class="${topCls}" />`);
+          }
+        }
+      }
+      return `
+        <svg width="290" height="225" viewBox="0 0 290 225" role="img" aria-label="Susunan kubus satuan bertingkat dalam tampak isometrik">
+          ${polys.join('')}
+          <text x="145" y="212" text-anchor="middle" class="svg-label-pink">Arah Depan ↗</text>
+        </svg>`;
+    }
+
+    function svgTopViewGrid(cells2x2) {
+      // cells2x2: [topLeft, topRight, bottomLeft, bottomRight] with color class or 'empty'
+      var sz = 36;
+      var rects = cells2x2.map(function (c, i) {
+        var col = i % 2;
+        var row = Math.floor(i / 2);
+        var x = 8 + col * sz;
+        var y = 8 + row * sz;
+        var cls = c === 'empty' ? 'svg-face-white' : `svg-face-${c}`;
+        var dash = c === 'empty' ? 'stroke-dasharray="4 3"' : '';
+        return `<rect x="${x}" y="${y}" width="${sz}" height="${sz}" rx="4" class="${cls}" ${dash} />`;
+      }).join('');
+      return `<svg width="88" height="88" viewBox="0 0 88 88" aria-hidden="true">${rects}</svg>`;
+    }
+
+    function svgPakHasanCrate() {
+      return `
+        <svg width="315" height="195" viewBox="0 0 315 195" role="img" aria-label="Ilustrasi tumpukan kardus Pak Hasan berukuran 20 x 30 x 50 cm di gudang setinggi 3,1 m">
+          <!-- Gudang height limit line -->
+          <line x1="25" y1="22" x2="290" y2="22" class="svg-diag" />
+          <text x="155" y="15" text-anchor="middle" class="svg-label-pink">Batas Tinggi Gudang = 3,1 m (310 cm)</text>
+          <!-- Floor line -->
+          <line x1="25" y1="170" x2="290" y2="170" class="svg-edge-main" />
+          <!-- Stack of crates -->
+          <rect x="60" y="146" width="52" height="24" rx="3" class="svg-face-orange" />
+          <rect x="60" y="122" width="52" height="24" rx="3" class="svg-face-pink" />
+          <rect x="60" y="98" width="52" height="24" rx="3" class="svg-face-orange" />
+          <rect x="60" y="74" width="52" height="24" rx="3" class="svg-face-pink" />
+          <rect x="60" y="50" width="52" height="24" rx="3" class="svg-face-orange" />
+          <rect x="60" y="26" width="52" height="24" rx="3" class="svg-face-pink" />
+          <!-- Second column preview -->
+          <rect x="116" y="146" width="52" height="24" rx="3" class="svg-face-sky" />
+          <rect x="116" y="122" width="52" height="24" rx="3" class="svg-face-grape" />
+          <rect x="116" y="98" width="52" height="24" rx="3" class="svg-face-sky" />
+          <rect x="116" y="74" width="52" height="24" rx="3" class="svg-face-grape" />
+          <rect x="116" y="50" width="52" height="24" rx="3" class="svg-face-sky" />
+          <rect x="116" y="26" width="52" height="24" rx="3" class="svg-face-grape" />
+          <!-- Single crate dimension callout -->
+          <rect x="200" y="100" width="55" height="70" rx="4" class="svg-face-sky" />
+          <text x="228" y="140" text-anchor="middle" class="svg-label">50 cm</text>
+          <text x="228" y="185" text-anchor="middle" class="svg-label-grape">20 × 30 cm</text>
+          <text x="112" y="185" text-anchor="middle" class="svg-label">Total = 30 kardus</text>
+        </svg>`;
+    }
+
+    // =========================================================================
+    // 2. COMPREHENSIVE QUESTION BANK (15 Questions across 5 Bab 3 topics)
+    // =========================================================================
+
+    var TOPIC_META = {
+      unsur: { label: `Unsur & Sifat` },
+      jaring: { label: `Jaring-Jaring` },
+      luas: { label: `Luas Permukaan` },
+      volume: { label: `Volume` },
+      kontekstual: { label: `Kontekstual & Spasial` }
+    };
+
+    var QUESTIONS = [
+      // --- TOPIK 1: UNSUR & SIFAT (3) ---
+      {
+        id: `q1`,
+        topic: `unsur`,
+        type: `mc`,
+        title: `Mengenal Sisi, Rusuk, dan Titik Sudut`,
+        prompt: `Perhatikan gambar bangun ruang ABCD.EFGH di bawah ini. Berapakah jumlah sisi, rusuk, dan titik sudut yang dimiliki oleh sebuah kubus maupun balok?`,
+        diagram: svgCubeLabeled(),
+        caption: `Bangun ruang kubus ABCD.EFGH`,
+        hint: `Hitung sisi seperti kotak dadu (atas, bawah, 4 tegak), rusuk adalah garis kerangkanya, dan titik sudut adalah pojoknya.`,
+        options: [
+          { key: `A`, text: `6 sisi, 12 rusuk, dan 8 titik sudut` },
+          { key: `B`, text: `6 sisi, 8 rusuk, dan 12 titik sudut` },
+          { key: `C`, text: `8 sisi, 12 rusuk, dan 6 titik sudut` },
+          { key: `D`, text: `4 sisi, 12 rusuk, dan 8 titik sudut` }
+        ],
+        correct: `A`,
+        steps: [
+          `Setiap kubus dan balok memiliki 6 bidang sisi (alas, tutup, depan, belakang, kiri, dan kanan).`,
+          `Terdapat 12 ruas garis pembentuk kerangka yang disebut rusuk (4 di alas, 4 di atas, dan 4 rusuk tegak).`,
+          `Pojok pertemuan tiga rusuk berjumlah 8 buah, yaitu titik sudut A, B, C, D, E, F, G, dan H.`
+        ]
+      },
+      {
+        id: `q2`,
+        topic: `unsur`,
+        type: `mc`,
+        title: `Sifat Kubus vs Balok dan Diagonal Bidang`,
+        prompt: `Garis putus-putus AC dan BD pada sisi alas kubus merupakan contoh diagonal bidang (diagonal sisi). Manakah pernyataan yang paling tepat mengenai sifat kubus?`,
+        diagram: svgCubeDiagonal(),
+        caption: `Diagonal bidang AC dan BD pada sisi alas ABCD`,
+        hint: `Ingat bahwa setiap sisi kubus berbentuk persegi yang sama besar, dan setiap sisi memiliki 2 diagonal bidang.`,
+        options: [
+          { key: `A`, text: `Kubus memiliki 12 rusuk sama panjang, 6 sisi persegi kongruen, dan 12 diagonal bidang yang sama panjang` },
+          { key: `B`, text: `Kubus hanya memiliki 6 diagonal bidang, sedangkan balok memiliki 12 diagonal bidang` },
+          { key: `C`, text: `Semua sisi pada balok selalu berbentuk persegi, sama seperti kubus` },
+          { key: `D`, text: `Kubus memiliki 8 rusuk sama panjang dan 4 diagonal bidang` }
+        ],
+        correct: `A`,
+        steps: [
+          `Ciri utama kubus adalah seluruh 12 rusuknya sama panjang sehingga ke-6 sisinya berbentuk persegi yang kongruen (sama bentuk dan ukuran).`,
+          `Setiap sisi persegi memiliki 2 buah diagonal bidang. Karena ada 6 sisi, maka jumlah seluruh diagonal bidang = 6 × 2 = 12 buah.`,
+          `Pada balok, sisi-sisinya berbentuk persegi panjang (atau sepasang persegi), sehingga hanya sisi berhadapan yang kongruen.`
+        ]
+      },
+      {
+        id: `q3`,
+        topic: `unsur`,
+        type: `numeric`,
+        title: `Panjang Kawat Kerangka Balok`,
+        prompt: `Raka ingin membuat satu kerangka balok dari kawat berukuran panjang 15 cm, lebar 10 cm, dan tinggi 8 cm. Berapa sentimeter total panjang kawat yang dibutuhkan Raka?`,
+        diagram: svgBalokWireframe(15, 10, 8, false),
+        caption: `Kerangka balok dengan p = 15 cm, l = 10 cm, dan t = 8 cm`,
+        hint: `Satu balok mempunyai 4 rusuk panjang, 4 rusuk lebar, dan 4 rusuk tinggi.`,
+        unit: `cm`,
+        correct: 132,
+        steps: [
+          `Diketahui: panjang (p) = 15 cm, lebar (l) = 10 cm, dan tinggi (t) = 8 cm.`,
+          `Balok memiliki 12 rusuk yang terdiri dari 4 rusuk panjang, 4 rusuk lebar, dan 4 rusuk tinggi.`,
+          `Total panjang kawat = 4 × (p + l + t) = 4 × (15 + 10 + 8) = 4 × 33 = 132 cm.`
+        ]
+      },
+
+      // --- TOPIK 2: JARING-JARING (3) ---
+      {
+        id: `q4`,
+        topic: `jaring`,
+        type: `mc`,
+        visualOptions: true,
+        title: `Memilih Jaring-Jaring Kubus yang Benar`,
+        prompt: `Perhatikan empat gambar rangkaian persegi di bawah ini. Manakah pola yang merupakan jaring-jaring kubus sehingga dapat dilipat menjadi kubus tertutup sempurna?`,
+        diagram: ``,
+        caption: ``,
+        hint: `Bayangkan melipat ke atas semua sisi di sekitar persegi tengah. Pastikan tidak ada dua sisi yang bertumpuk di tempat yang sama!`,
+        options: [
+          { key: `A`, text: `Pola I (bentuk T)`, visual: svgNetSquares([[0,1],[1,1],[2,1],[3,1],[1,0],[1,2]], 22) },
+          { key: `B`, text: `Pola II (dua tutup di sisi atas)`, visual: svgNetSquares([[0,1],[1,1],[2,1],[3,1],[1,0],[2,0]], 22) },
+          { key: `C`, text: `Pola III (lima berjajar lurus)`, visual: svgNetSquares([[0,1],[1,1],[2,1],[3,1],[4,1],[2,0]], 20) },
+          { key: `D`, text: `Pola IV (blok 2 × 3 penuh)`, visual: svgNetSquares([[0,0],[1,0],[2,0],[0,1],[1,1],[2,1]], 24) }
+        ],
+        correct: `A`,
+        steps: [
+          `Pola I memiliki 4 persegi berjajar membentuk badan kubus dan masing-masing 1 persegi di sisi atas dan bawahnya (pola 1-4-1). Saat dilipat, ke-6 sisi menutup tepat tanpa bertumpuk.`,
+          `Pola II memiliki dua persegi di sisi yang sama (atas semua), sehingga saat dilipat keduanya bertumpuk dan bagian bawah berlubang.`,
+          `Pola III memiliki 5 persegi sejajar (lebih dari 4 sisi keliling) dan Pola IV membentuk blok 2×3 yang saling bertumpuk saat dilipat.`
+        ]
+      },
+      {
+        id: `q5`,
+        topic: `jaring`,
+        type: `mc`,
+        title: `Menentukan Tutup Kubus dari Jaring-Jaring`,
+        prompt: `Perhatikan jaring-jaring kubus bernomor 1 sampai 6 di bawah ini. Jika persegi bernomor 3 dijadikan sebagai alas (bawah) kubus, persegi nomor berapakah yang akan menjadi tutup (atas) kubus?`,
+        diagram: svgNetSquares([[1,0],[0,1],[1,1],[2,1],[3,1],[1,2]], 38, [`1`,`2`,`3`,`4`,`5`,`6`]),
+        caption: `Persegi nomor 3 berwarna merah muda sebagai alas`,
+        hint: `Lipat nomor 2, 4, 1, dan 6 tegak lurus ke atas sebagai dinding. Nomor mana yang melengkung menutup bagian atas?`,
+        options: [
+          { key: `A`, text: `Nomor 1` },
+          { key: `B`, text: `Nomor 4` },
+          { key: `C`, text: `Nomor 5` },
+          { key: `D`, text: `Nomor 6` }
+        ],
+        correct: `C`,
+        steps: [
+          `Letakkan persegi nomor 3 datar sebagai alas.`,
+          `Persegi nomor 1 melipat ke atas menjadi dinding belakang, berhadapan dengan nomor 6 (dinding depan).`,
+          `Persegi nomor 2 melipat ke atas menjadi dinding kiri, berhadapan dengan nomor 4 (dinding kanan).`,
+          `Persegi nomor 5 yang menempel di sisi kanan nomor 4 akan terlipat mendatar ke kiri menjadi tutup (atas) yang berhadapan dengan alas nomor 3.`
+        ]
+      },
+      {
+        id: `q6`,
+        topic: `jaring`,
+        type: `mc`,
+        title: `Pasangan Sisi Sama pada Jaring-Jaring Balok`,
+        prompt: `Gambar di bawah adalah jaring-jaring sebuah balok. Jika ukuran sisi Alas adalah 10 cm × 6 cm, sisi manakah yang pasti memiliki ukuran tepat sama yaitu 10 cm × 6 cm?`,
+        diagram: svgBalokNet(),
+        caption: `Jaring-jaring balok dengan sisi berwarna berpasangan`,
+        hint: `Pada balok, sisi yang saling berhadapan selalu sejajar dan memiliki ukuran yang sama persis.`,
+        options: [
+          { key: `A`, text: `Sisi Tutup (atas) yang berhadapan dengan Alas` },
+          { key: `B`, text: `Sisi Depan saja` },
+          { key: `C`, text: `Sisi Samping Kiri dan Samping Kanan` },
+          { key: `D`, text: `Kelima sisi lainnya pasti berukuran 10 cm × 6 cm` }
+        ],
+        correct: `A`,
+        steps: [
+          `Balok memiliki 3 pasang sisi yang saling berhadapan dan kongruen (ukurannya sama persis).`,
+          `Sisi Alas berhadapan langsung dengan sisi Tutup (atas), sehingga ukurannya harus sama-sama 10 cm × 6 cm.`,
+          `Sisi depan-belakang dan kiri-kanan memiliki ukuran berbeda yang bergantung pada tinggi balok.`
+        ]
+      },
+
+      // --- TOPIK 3: LUAS PERMUKAAN (3) ---
+      {
+        id: `q7`,
+        topic: `luas`,
+        type: `numeric`,
+        title: `Luas Permukaan Kotak Kado Kubus`,
+        prompt: `Tenri ingin membungkus seluruh permukaan kotak kado berbentuk kubus dengan kertas warna. Jika panjang rusuk kubus adalah 12 cm, berapa cm² luas kertas minimal yang dibutuhkan?`,
+        diagram: svgCubeDim(12, false),
+        caption: `Kotak kado kubus dengan rusuk s = 12 cm`,
+        hint: `Kubus memiliki 6 sisi berbentuk persegi yang sama besar. Kalikan 6 dengan luas satu persegi (s × s).`,
+        unit: `cm²`,
+        correct: 864,
+        steps: [
+          `Diketahui panjang rusuk kubus (s) = 12 cm.`,
+          `Luas satu sisi persegi = s × s = 12 × 12 = 144 cm².`,
+          `Luas permukaan kubus = 6 × luas satu sisi = 6 × 144 = 864 cm².`
+        ]
+      },
+      {
+        id: `q8`,
+        topic: `luas`,
+        type: `numeric`,
+        title: `Luas Permukaan Kardus Balok`,
+        prompt: `Sebuah kardus berbentuk balok memiliki panjang 20 cm, lebar 10 cm, dan tinggi 5 cm. Hitunglah luas permukaan seluruh kardus tersebut dalam satuan cm²!`,
+        diagram: svgBalokWireframe(20, 10, 5, false),
+        caption: `Kardus balok dengan p = 20 cm, l = 10 cm, dan t = 5 cm`,
+        hint: `Gunakan rumus L = 2 × (p·l + p·t + l·t). Hitung dulu luas masing-masing pasangan sisi!`,
+        unit: `cm²`,
+        correct: 700,
+        steps: [
+          `Diketahui: p = 20 cm, l = 10 cm, t = 5 cm.`,
+          `Hitung luas tiga pasang sisi: p×l = 20×10 = 200; p×t = 20×5 = 100; l×t = 10×5 = 50.`,
+          `Jumlahkan ketiganya lalu kalikan 2: L = 2 × (200 + 100 + 50) = 2 × 350 = 700 cm².`
+        ]
+      },
+      {
+        id: `q9`,
+        topic: `luas`,
+        type: `mc`,
+        title: `Luas Kaca Akuarium Tanpa Tutup`,
+        prompt: `Sebuah akuarium kaca berbentuk balok tanpa tutup memiliki panjang 40 cm, lebar 25 cm, dan tinggi 30 cm. Berapakah luas kaca yang diperlukan untuk membuat akuarium tersebut?`,
+        diagram: svgAquariumOpen(40, 25, 30),
+        caption: `Akuarium balok tanpa tutup (hanya memiliki 5 sisi kaca)`,
+        hint: `Karena tanpa tutup, sisi alas (40 × 25) hanya dihitung 1 kali, sedangkan sisi depan-belakang dan kiri-kanan tetap 2 kali.`,
+        options: [
+          { key: `A`, text: `3.900 cm²` },
+          { key: `B`, text: `4.900 cm²` },
+          { key: `C`, text: `5.900 cm²` },
+          { key: `D`, text: `30.000 cm²` }
+        ],
+        correct: `B`,
+        steps: [
+          `Akuarium tanpa tutup hanya terdiri dari 5 sisi: 1 alas + 2 sisi depan-belakang + 2 sisi kiri-kanan.`,
+          `Luas alas = 40 × 25 = 1.000 cm².`,
+          `Luas sisi depan & belakang = 2 × (40 × 30) = 2.400 cm².`,
+          `Luas sisi kiri & kanan = 2 × (25 × 30) = 1.500 cm².`,
+          `Total luas kaca = 1.000 + 2.400 + 1.500 = 4.900 cm².`
+        ]
+      },
+
+      // --- TOPIK 4: VOLUME (3) ---
+      {
+        id: `q10`,
+        topic: `volume`,
+        type: `numeric`,
+        title: `Volume Bak Mandi Kubus`,
+        prompt: `Sebuah bak mandi berbentuk kubus memiliki panjang rusuk bagian dalam 50 cm. Jika bak mandi tersebut diisi air hingga penuh, berapa cm³ volume air di dalamnya?`,
+        diagram: svgCubeDim(50, true),
+        caption: `Bak mandi kubus terisi penuh dengan s = 50 cm`,
+        hint: `Kalikan rusuk sebanyak tiga kali: V = s × s × s.`,
+        unit: `cm³`,
+        correct: 125000,
+        steps: [
+          `Diketahui panjang rusuk kubus (s) = 50 cm.`,
+          `Rumus volume kubus: V = s × s × s.`,
+          `V = 50 × 50 × 50 = 2.500 × 50 = 125.000 cm³.`
+        ]
+      },
+      {
+        id: `q11`,
+        topic: `volume`,
+        type: `numeric`,
+        title: `Volume Wadah Air dalam Satuan Liter`,
+        prompt: `Sebuah wadah air berbentuk balok memiliki panjang 60 cm, lebar 40 cm, dan tinggi 50 cm. Berapa liter volume maksimal air yang dapat ditampung wadah tersebut? (Ingat: 1 liter = 1.000 cm³)`,
+        diagram: svgBalokWireframe(60, 40, 50, false),
+        caption: `Wadah balok dengan p = 60 cm, l = 40 cm, dan t = 50 cm`,
+        hint: `Hitung volume dalam cm³ terlebih dahulu (p × l × t), lalu bagi dengan 1.000 untuk mengubahnya ke liter.`,
+        unit: `liter`,
+        correct: 120,
+        steps: [
+          `Hitung volume dalam cm³: V = p × l × t = 60 × 40 × 50 = 120.000 cm³.`,
+          `Karena 1 liter = 1 dm³ = 1.000 cm³, bagilah hasil volume dengan 1.000.`,
+          `Volume dalam liter = 120.000 ÷ 1.000 = 120 liter.`
+        ]
+      },
+      {
+        id: `q12`,
+        topic: `volume`,
+        type: `numeric`,
+        title: `Menentukan Tinggi Balok dari Volume`,
+        prompt: `Diketahui volume sebuah balok adalah 1.440 cm³. Jika panjang balok 15 cm dan lebarnya 12 cm, berapakah tinggi balok tersebut?`,
+        diagram: svgBalokWireframe(15, 12, 8, true),
+        caption: `Volume balok = 1.440 cm³, p = 15 cm, l = 12 cm`,
+        hint: `Hitung dulu luas alas (p × l = 15 × 12), lalu bagi volume dengan luas alas tersebut.`,
+        unit: `cm`,
+        correct: 8,
+        steps: [
+          `Diketahui: V = 1.440 cm³, p = 15 cm, dan l = 12 cm.`,
+          `Luas alas balok = p × l = 15 × 12 = 180 cm².`,
+          `Tinggi balok (t) = V ÷ (p × l) = 1.440 ÷ 180 = 8 cm.`
+        ]
+      },
+
+      // --- TOPIK 5: KONTEKSTUAL & SPASIAL BAB 3 (3) ---
+      {
+        id: `q13`,
+        topic: `kontekstual`,
+        type: `numeric`,
+        title: `Menghitung Kubus Satuan Susunan Bertingkat`,
+        prompt: `Perhatikan susunan bangun ruang yang dibentuk dari kubus-kubus satuan identik pada gambar di bawah ini (mengacu pada Bab 3 Latihan 3.1). Berapakah jumlah seluruh kubus satuan yang menyusun bangun tersebut?`,
+        diagram: renderIsoCubeStack([[3, 2, 1], [1, 1, 0]]),
+        caption: `Susunan kubus bertingkat (semua menumpuk rapi sampai dasar meja)`,
+        hint: `Hitung jumlah kubus pada tiap kolom dari belakang ke depan: kolom kiri-belakang (3), tengah-belakang (2), kanan-belakang (1), ditambah kolom baris depan!`,
+        unit: `kubus`,
+        correct: 8,
+        steps: [
+          `Pisahkan susunan menjadi kolom-kolom vertikal yang menyentuh lantai:`,
+          `Baris belakang (kiri ke kanan): kolom tinggi 3 kubus + kolom tinggi 2 kubus + kolom tinggi 1 kubus = 6 kubus.`,
+          `Baris depan: terdapat 2 kolom di bagian kiri dan tengah yang masing-masing setinggi 1 kubus = 2 kubus.`,
+          `Jumlah seluruh kubus satuan = 6 + 2 = 8 kubus.`
+        ]
+      },
+      {
+        id: `q14`,
+        topic: `kontekstual`,
+        type: `mc`,
+        visualOptions: true,
+        title: `Visualisasi Spasial: Tampak Atas Susunan Kubus`,
+        prompt: `Anike menyusun 4 buah kubus berwarna di atas meja seperti tampak pada gambar (Bab 3 Eksplorasi 3.2). Jika dilihat tepat dari arah atas (Tampak Atas), manakah gambar yang benar?`,
+        diagram: renderIsoCubeStack(
+          [[2, 1], [1, 0]],
+          [[['pink', 'sky'], ['orange']], [['grape']]]
+        ),
+        caption: `Susunan 4 kubus berwarna dilihat dari depan-kanan`,
+        hint: `Kolom kiri-belakang bertumpuk 2 kubus (merah muda di bawah, biru di atas). Dari atas, yang terlihat hanyalah warna kubus paling atas!`,
+        options: [
+          { key: `A`, text: `Tampak Atas A`, visual: svgTopViewGrid([`sky`, `orange`, `grape`, `empty`]) },
+          { key: `B`, text: `Tampak Atas B`, visual: svgTopViewGrid([`pink`, `orange`, `grape`, `empty`]) },
+          { key: `C`, text: `Tampak Atas C`, visual: svgTopViewGrid([`orange`, `sky`, `empty`, `grape`]) },
+          { key: `D`, text: `Tampak Atas D`, visual: svgTopViewGrid([`sky`, `grape`, `orange`, `empty`]) }
+        ],
+        correct: `A`,
+        steps: [
+          `Dari arah atas, posisi pojok kiri-belakang berisi menara 2 kubus sehingga yang tampak hanyalah kubus paling atas berwarna Biru Langit.`,
+          `Di sebelah kanan pojok kiri-belakang terdapat kubus berwarna Oranye.`,
+          `Di sebelah depan pojok kiri-belakang terdapat kubus berwarna Ungu, sedangkan pojok kanan-depan kosong.`
+        ]
+      },
+      {
+        id: `q15`,
+        topic: `kontekstual`,
+        type: `numeric`,
+        title: `Tantangan Gudang Pak Hasan (Bab 3 Latihan 3.1)`,
+        prompt: `Di gudang Pak Hasan yang tingginya 3,1 m (310 cm) terdapat 30 kardus identik berukuran 20 cm × 30 cm × 50 cm. Pak Hasan ingin menumpuk seluruh kardus setinggi mungkin agar luas lantai yang terpakai minimal. Berapa cm² luas lantai minimal yang dibutuhkan untuk ke-30 kardus tersebut?`,
+        diagram: svgPakHasanCrate(),
+        caption: `Ilustrasi penumpukan 30 kardus dengan batas tinggi gudang 310 cm`,
+        hint: `Misal sisi 50 cm berdiri tegak: maksimal tumpukan ke atas = 310 ÷ 50 = 6 kardus (sisa 10 cm). Ada berapa tumpukan di lantai jika totalnya 30 kardus? Lalu kalikan dengan luas alas 20 × 30 cm!`,
+        unit: `cm²`,
+        correct: 3000,
+        steps: [
+          `Misalkan kardus ditumpuk berdiri (tinggi 50 cm, alas 20 cm × 30 cm = 600 cm²).`,
+          `Tinggi maksimal gudang = 310 cm, sehingga 1 kolom paling banyak menumpuk 310 ÷ 50 = 6 kardus (total tinggi 300 cm).`,
+          `Untuk 30 kardus, diperlukan 30 ÷ 6 = 5 kolom tumpukan di lantai.`,
+          `Luas lantai minimal = 5 × 600 cm² = 3.000 cm². (Cara tidur pun menghasilkan luas minimal sama: 3 kolom × 1.000 cm² = 3.000 cm², atau 2 kolom × 1.500 cm² = 3.000 cm²!)`
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 3. STATE MANAGEMENT & PERSISTENCE (notebookAppApi)
+    // =========================================================================
+
+    var appState = {
+      topicFilter: `all`,
+      currentIndex: 0,
+      answers: {},       // { qId: { value: ..., isCorrect: boolean } }
+      hintsOpen: {},     // { qId: boolean }
+      formulaOpen: false,
+      reviewMode: false,
+      reviewFilter: `all`,
+      streak: 0,
+      bestStreak: 0
+    };
+
+    function getFilteredQuestions() {
+      if (appState.topicFilter === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function (q) { return q.topic === appState.topicFilter; });
+    }
+
+    function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        window.notebookAppApi.setAppState({
+          topicFilter: appState.topicFilter,
+          currentIndex: appState.currentIndex,
+          answers: appState.answers,
+          hintsOpen: appState.hintsOpen,
+          formulaOpen: appState.formulaOpen,
+          reviewMode: appState.reviewMode,
+          reviewFilter: appState.reviewFilter,
+          streak: appState.streak,
+          bestStreak: appState.bestStreak
+        }).catch(function () {});
+      }
+    }
+
+    // Parse numeric input forgivingly for Indonesian students (e.g., "125.000" -> 125000, "3,5" -> 3.5)
+    function parseStudentNumber(raw) {
+      var trimmed = String(raw || ``).trim();
+      if (!trimmed) return NaN;
+      // Remove spaces
+      var cleaned = trimmed.replace(/\s+/g, ``);
+      // If format matches Indonesian thousands separator like 125.000 or 3.000
+      if (/^\d{1,3}(\.\d{3})+$/.test(cleaned)) {
+        cleaned = cleaned.replace(/\./g, ``);
+      } else {
+        cleaned = cleaned.replace(/,/g, `.`);
+      }
+      if (!/^-?\d+(\.\d+)?$/.test(cleaned)) return NaN;
+      return Number(cleaned);
+    }
+
+    function computeStats(questionList) {
+      var list = questionList || QUESTIONS;
+      var total = list.length;
+      var answered = 0;
+      var correct = 0;
+      var wrong = 0;
+
+      list.forEach(function (q) {
+        var ans = appState.answers[q.id];
+        if (ans) {
+          answered += 1;
+          if (ans.isCorrect) correct += 1;
+          else wrong += 1;
+        }
+      });
+
+      var score100 = total > 0 ? Math.round((correct / total) * 100) : 0;
+      var progressPct = total > 0 ? Math.round((answered / total) * 100) : 0;
+      return {
+        total: total,
+        answered: answered,
+        correct: correct,
+        wrong: wrong,
+        unanswered: total - answered,
+        score100: score100,
+        progressPct: progressPct
+      };
+    }
+
+    // =========================================================================
+    // 4. RENDERING FUNCTIONS
+    // =========================================================================
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function renderHUD() {
+      var activeList = getFilteredQuestions();
+      var stats = computeStats(activeList);
+
+      var elScore = document.getElementById(`hud-score`);
+      var elAnswered = document.getElementById(`hud-answered`);
+      var elMode = document.getElementById(`hud-mode-label`);
+      var elStreak = document.getElementById(`hud-streak`);
+      var elBestStreak = document.getElementById(`hud-best-streak`);
+      var elCorrect = document.getElementById(`hud-correct`);
+      var elWrong = document.getElementById(`hud-wrong`);
+      var elProgText = document.getElementById(`progress-text`);
+      var elProgFill = document.getElementById(`progress-fill`);
+      var elProgRole = document.getElementById(`progress-bar-role`);
+      var elPosLabel = document.getElementById(`current-pos-label`);
+
+      if (elScore) elScore.textContent = String(stats.score100);
+      if (elAnswered) elAnswered.textContent = `${stats.answered} / ${stats.total}`;
+      if (elMode) {
+        elMode.textContent = appState.topicFilter === `all`
+          ? `Semua Topik`
+          : TOPIC_META[appState.topicFilter].label;
+      }
+      if (elStreak) elStreak.textContent = String(appState.streak);
+      if (elBestStreak) elBestStreak.textContent = `Terbaik: ${appState.bestStreak}`;
+      if (elCorrect) elCorrect.textContent = String(stats.correct);
+      if (elWrong) elWrong.textContent = `Salah: ${stats.wrong}`;
+      if (elProgText) elProgText.textContent = `Progres pengerjaan: ${stats.progressPct}% (${stats.answered} dari ${stats.total} soal)`;
+      if (elProgFill) elProgFill.style.width = `${stats.progressPct}%`;
+      if (elProgRole) elProgRole.setAttribute(`aria-valuenow`, String(stats.progressPct));
+      if (elPosLabel) {
+        elPosLabel.textContent = appState.reviewMode
+          ? `Mode Review Hasil Akhir`
+          : `Sedang membuka Soal ${appState.currentIndex + 1}`;
+      }
+    }
+
+    function renderTopicFilterChips() {
+      var chips = document.querySelectorAll(`#topic-filters .chip`);
+      chips.forEach(function (btn) {
+        var isMatch = btn.getAttribute(`data-topic`) === appState.topicFilter;
+        btn.classList.toggle(`is-active`, isMatch);
+        btn.setAttribute(`aria-pressed`, isMatch ? `true` : `false`);
+      });
+    }
+
+    function renderFormulaDrawer() {
+      var drawer = document.getElementById(`formula-drawer`);
+      var btn = document.getElementById(`btn-toggle-formula`);
+      if (drawer) drawer.hidden = !appState.formulaOpen;
+      if (btn) btn.setAttribute(`aria-expanded`, appState.formulaOpen ? `true` : `false`);
+    }
+
+    function renderNavigator() {
+      var navGrid = document.getElementById(`nav-grid`);
+      if (!navGrid) return;
+      var list = getFilteredQuestions();
+
+      navGrid.innerHTML = list.map(function (q, idx) {
+        var ans = appState.answers[q.id];
+        var cls = [`nav-pill`];
+        if (idx === appState.currentIndex) cls.push(`is-current`);
+        if (ans) cls.push(ans.isCorrect ? `is-correct` : `is-wrong`);
+        var statusText = ans ? (ans.isCorrect ? `benar` : `salah`) : `belum dijawab`;
+        return `<button type="button" class="${cls.join(` `)}" onclick="jumpToQuestion(${idx})" aria-label="Soal ${idx + 1}, ${statusText}">${idx + 1}</button>`;
+      }).join(``);
+    }
+
+    function renderMasteryList(containerId) {
+      var el = document.getElementById(containerId);
+      if (!el) return;
+
+      var keys = [`unsur`, `jaring`, `luas`, `volume`, `kontekstual`];
+      el.innerHTML = keys.map(function (key) {
+        var qs = QUESTIONS.filter(function (q) { return q.topic === key; });
+        var st = computeStats(qs);
+        var pct = st.total > 0 ? Math.round((st.correct / st.total) * 100) : 0;
+        return `
+          <div class="mastery-item">
+            <div class="mastery-row">
+              <span>${TOPIC_META[key].label}</span>
+              <span>${st.correct} / ${st.total} benar</span>
+            </div>
+            <div class="mastery-track">
+              <div class="mastery-fill" style="width: ${pct}%;"></div>
+            </div>
+          </div>`;
+      }).join(``);
+    }
+
+    function renderCurrentQuestion() {
+      var list = getFilteredQuestions();
+      if (appState.currentIndex >= list.length) appState.currentIndex = 0;
+      if (appState.currentIndex < 0) appState.currentIndex = 0;
+      var q = list[appState.currentIndex];
+      var ans = appState.answers[q.id];
+
+      var elNumBadge = document.getElementById(`q-number-badge`);
+      var elTopicBadge = document.getElementById(`q-topic-badge`);
+      var elTypeBadge = document.getElementById(`q-type-badge`);
+      var elTitle = document.getElementById(`q-title`);
+      var elPrompt = document.getElementById(`q-prompt`);
+      var elDiagWell = document.getElementById(`q-diagram-well`);
+      var elDiag = document.getElementById(`q-diagram`);
+      var elDiagCap = document.getElementById(`q-diagram-caption`);
+      var elHintBox = document.getElementById(`q-hint-box`);
+      var elHintText = document.getElementById(`q-hint-text`);
+      var elMcArea = document.getElementById(`mc-area`);
+      var elMcOptions = document.getElementById(`mc-options`);
+      var elNumArea = document.getElementById(`numeric-area`);
+      var elNumInput = document.getElementById(`numeric-input`);
+      var elNumUnit = document.getElementById(`numeric-unit`);
+      var elNumBtn = document.getElementById(`btn-check-numeric`);
+      var elNumErr = document.getElementById(`numeric-error`);
+      var elFeedback = document.getElementById(`feedback-panel`);
+      var elFbTitle = document.getElementById(`feedback-title`);
+      var elFbBadge = document.getElementById(`feedback-badge`);
+      var elFbSummary = document.getElementById(`feedback-summary`);
+      var elFbSteps = document.getElementById(`feedback-steps`);
+      var elBtnPrev = document.getElementById(`btn-prev`);
+      var elBtnNext = document.getElementById(`btn-next`);
+
+      if (elNumBadge) elNumBadge.textContent = `Soal ${appState.currentIndex + 1} dari ${list.length}`;
+      if (elTopicBadge) elTopicBadge.textContent = TOPIC_META[q.topic].label;
+      if (elTypeBadge) elTypeBadge.textContent = q.type === `mc` ? `Pilihan Ganda` : `Isian Angka`;
+      if (elTitle) elTitle.textContent = q.title;
+      if (elPrompt) elPrompt.textContent = q.prompt;
+
+      if (elDiagWell && elDiag && elDiagCap) {
+        if (q.diagram) {
+          elDiagWell.hidden = false;
+          elDiag.innerHTML = q.diagram;
+          elDiagCap.textContent = q.caption || ``;
+        } else {
+          elDiagWell.hidden = true;
+          elDiag.innerHTML = ``;
+        }
+      }
+
+      if (elHintBox && elHintText) {
+        elHintText.textContent = q.hint;
+        elHintBox.hidden = !appState.hintsOpen[q.id];
+      }
+
+      if (q.type === `mc`) {
+        if (elMcArea) elMcArea.hidden = false;
+        if (elNumArea) elNumArea.hidden = true;
+        if (elMcOptions) {
+          elMcOptions.className = q.visualOptions ? `options-grid options-grid--visual` : `options-grid`;
+          elMcOptions.innerHTML = q.options.map(function (opt) {
+            var cls = [`option-btn`];
+            if (q.visualOptions) cls.push(`option-btn--visual`);
+            if (ans) {
+              if (opt.key === q.correct) cls.push(`is-correct`);
+              else if (opt.key === ans.value && !ans.isCorrect) cls.push(`is-wrong`);
+              else cls.push(`is-dimmed`);
+            }
+            var disabledAttr = ans ? `disabled` : ``;
+            var visualHtml = opt.visual ? `<div style="display:flex;justify-content:center;padding:6px 0;">${opt.visual}</div>` : ``;
+            return `
+              <button type="button" class="${cls.join(` `)}" onclick="handleMcChoice('${opt.key}')" ${disabledAttr}>
+                <div style="display:flex;align-items:center;gap:12px;width:100%;">
+                  <span class="option-letter">${opt.key}</span>
+                  <span>${opt.text}</span>
+                </div>
+                ${visualHtml}
+              </button>`;
+          }).join(``);
+        }
+      } else {
+        if (elMcArea) elMcArea.hidden = true;
+        if (elNumArea) elNumArea.hidden = false;
+        if (elNumUnit) elNumUnit.textContent = q.unit || ``;
+        if (elNumErr) { elNumErr.hidden = true; elNumErr.textContent = ``; }
+
+        if (elNumInput && elNumBtn) {
+          elNumInput.classList.remove(`is-correct`, `is-wrong`);
+          if (ans) {
+            elNumInput.value = String(ans.rawInput !== undefined ? ans.rawInput : ans.value);
+            elNumInput.disabled = true;
+            elNumBtn.disabled = true;
+            elNumInput.classList.add(ans.isCorrect ? `is-correct` : `is-wrong`);
+          } else {
+            elNumInput.value = ``;
+            elNumInput.disabled = false;
+            elNumBtn.disabled = false;
+          }
+        }
+      }
+
+      // Render immediate feedback & step-by-step explanation
+      if (elFeedback && elFbTitle && elFbBadge && elFbSummary && elFbSteps) {
+        if (ans) {
+          elFeedback.hidden = false;
+          elFeedback.className = ans.isCorrect
+            ? `feedback-panel feedback-panel--correct`
+            : `feedback-panel feedback-panel--wrong`;
+
+          if (ans.isCorrect) {
+            elFbTitle.innerHTML = `<i data-lucide="check-circle-2" aria-hidden="true" width="22" height="22"></i> Hebat! Jawabanmu Benar`;
+            elFbBadge.className = `badge badge-positive`;
+            elFbBadge.textContent = `Tepat`;
+            elFbSummary.textContent = q.type === `mc`
+              ? `Kamu memilih jawaban ${q.correct}, tepat sekali!`
+              : `Jawabanmu ${q.correct} ${q.unit || ``} sudah benar!`;
+          } else {
+            elFbTitle.innerHTML = `<i data-lucide="x-circle" aria-hidden="true" width="22" height="22"></i> Belum Tepat, Ayo Pelajari!`;
+            elFbBadge.className = `badge badge-error`;
+            elFbBadge.textContent = `Perlu Diperbaiki`;
+            elFbSummary.textContent = q.type === `mc`
+              ? `Jawaban kamu: ${ans.value}. Jawaban yang benar adalah: ${q.correct}.`
+              : `Jawaban kamu: ${ans.value} ${q.unit || ``}. Jawaban yang benar adalah: ${q.correct} ${q.unit || ``}.`;
+          }
+          elFbSteps.innerHTML = q.steps.map(function (st) { return `<li>${st}</li>`; }).join(``);
+        } else {
+          elFeedback.hidden = true;
+        }
+      }
+
+      if (elBtnPrev) elBtnPrev.disabled = appState.currentIndex === 0;
+      if (elBtnNext) {
+        if (appState.currentIndex === list.length - 1) {
+          elBtnNext.innerHTML = `Lihat Review Akhir <i data-lucide="award" aria-hidden="true" width="18" height="18"></i>`;
+        } else {
+          elBtnNext.innerHTML = `Berikutnya <i data-lucide="arrow-right" aria-hidden="true" width="18" height="18"></i>`;
+        }
+      }
+    }
+
+    function renderReviewScreen() {
+      var stats = computeStats(QUESTIONS);
+      var elScore = document.getElementById(`review-final-score`);
+      var elPred = document.getElementById(`review-predicate`);
+      var elMsg = document.getElementById(`review-message`);
+      var elCounts = document.getElementById(`review-detail-counts`);
+      var elList = document.getElementById(`review-cards-list`);
+
+      if (elScore) elScore.textContent = String(stats.score100);
+      if (elCounts) {
+        elCounts.textContent = `${stats.correct} benar · ${stats.wrong} salah · ${stats.unanswered} belum dijawab`;
+      }
+
+      var predicate = `Ayo Terus Berlatih!`;
+      var msg = `Masih ada beberapa soal yang belum tepat atau belum dikerjakan. Periksa kembali langkah penyelesaian di bawah untuk memahami konsepnya.`;
+      if (stats.answered < stats.total) {
+        predicate = `Progres ${stats.progressPct}%`;
+        msg = `Kamu sudah menyelesaikan ${stats.answered} dari ${stats.total} soal. Kamu bisa kembali ke kuis kapan saja untuk melengkapi sisanya!`;
+      } else if (stats.score100 >= 90) {
+        predicate = `Luar Biasa! (Predikat A)`;
+        msg = `Mantap sekali! Kamu sudah menguasai unsur, jaring-jaring, luas permukaan, volume, dan visualisasi spasial kubus & balok dengan sangat baik.`;
+      } else if (stats.score100 >= 75) {
+        predicate = `Bagus Sekali! (Predikat B)`;
+        msg = `Pemahamanmu sudah baik! Pelajari ulang beberapa soal yang keliru agar penguasaanmu mencapai nilai sempurna.`;
+      }
+
+      if (elPred) elPred.textContent = predicate;
+      if (elMsg) elMsg.textContent = msg;
+
+      renderMasteryList(`review-mastery-list`);
+
+      var filterBtns = document.querySelectorAll(`#review-filter-pills .chip`);
+      filterBtns.forEach(function (b) {
+        b.classList.toggle(`is-active`, b.getAttribute(`data-rfilter`) === appState.reviewFilter);
+      });
+
+      if (!elList) return;
+      var filtered = QUESTIONS.filter(function (q) {
+        var ans = appState.answers[q.id];
+        if (appState.reviewFilter === `correct`) return ans && ans.isCorrect;
+        if (appState.reviewFilter === `wrong`) return ans && !ans.isCorrect;
+        if (appState.reviewFilter === `unanswered`) return !ans;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        elList.innerHTML = `
+          <div class="card">
+            <p style="margin:0; font-weight:700;">Tidak ada soal dalam kategori filter ini.</p>
+            <p style="margin:6px 0 0 0; color:var(--on-surface-variant);">Pilih tombol filter lain di atas untuk melihat daftar soal.</p>
+          </div>`;
+        return;
+      }
+
+      elList.innerHTML = filtered.map(function (q) {
+        var realIdx = QUESTIONS.findIndex(function (item) { return item.id === q.id; });
+        var ans = appState.answers[q.id];
+        var itemCls = `review-item`;
+        var statusBadge = `<span class="badge badge-grape">Belum Dijawab</span>`;
+        var yourAnsText = `Belum dijawab`;
+
+        if (ans) {
+          itemCls += ans.isCorrect ? ` review-item--correct` : ` review-item--wrong`;
+          statusBadge = ans.isCorrect
+            ? `<span class="badge badge-positive">Benar</span>`
+            : `<span class="badge badge-error">Salah</span>`;
+          yourAnsText = q.type === `mc`
+            ? `Pilihan ${ans.value}`
+            : `${ans.value} ${q.unit || ``}`;
+        }
+
+        var rightAnsText = q.type === `mc`
+          ? `Pilihan ${q.correct}`
+          : `${q.correct} ${q.unit || ``}`;
+
+        return `
+          <article class="${itemCls}">
+            <div class="question-meta">
+              <div class="meta-badges">
+                <span class="badge badge-bubblegum">Soal ${realIdx + 1}</span>
+                <span class="badge badge-grape">${TOPIC_META[q.topic].label}</span>
+                ${statusBadge}
+              </div>
+              <button type="button" class="chip" onclick="jumpFromReview('${q.id}')">Buka Soal</button>
+            </div>
+            <h4 class="question-title" style="font-size:1.15rem;">${q.title}</h4>
+            <p style="margin:0;">${q.prompt}</p>
+            <div class="review-answers-row">
+              <div class="review-ans-col">
+                <span class="stat-label">Jawabanmu</span>
+                <strong>${yourAnsText}</strong>
+              </div>
+              <div class="review-ans-col">
+                <span class="stat-label">Jawaban Benar</span>
+                <strong style="color:var(--positive);">${rightAnsText}</strong>
+              </div>
+            </div>
+            <div class="steps-box">
+              <p class="steps-heading">Pembahasan Langkah Demi Langkah</p>
+              <ol class="steps-list">
+                ${q.steps.map(function (s) { return `<li>${s}</li>`; }).join(``)}
+              </ol>
+            </div>
+          </article>`;
+      }).join(``);
+    }
+
+    function renderAll() {
+      var quizShell = document.getElementById(`quiz-shell`);
+      var reviewShell = document.getElementById(`review-shell`);
+      if (quizShell) quizShell.hidden = appState.reviewMode;
+      if (reviewShell) reviewShell.hidden = !appState.reviewMode;
+
+      renderHUD();
+      renderTopicFilterChips();
+      renderFormulaDrawer();
+
+      if (appState.reviewMode) {
+        renderReviewScreen();
+      } else {
+        renderCurrentQuestion();
+        renderNavigator();
+        renderMasteryList(`mastery-list`);
+      }
+      refreshIcons();
+    }
+
+    // =========================================================================
+    // 5. HOISTED INTERACTION HANDLERS
+    // =========================================================================
+
+    function recordAnswer(q, value, rawInput, isCorrect) {
+      appState.answers[q.id] = {
+        value: value,
+        rawInput: rawInput,
+        isCorrect: isCorrect
+      };
+      if (isCorrect) {
+        appState.streak += 1;
+        if (appState.streak > appState.bestStreak) appState.bestStreak = appState.streak;
+      } else {
+        appState.streak = 0;
+      }
+      persistState();
+      renderAll();
+    }
+
+    function handleMcChoice(key) {
+      var list = getFilteredQuestions();
+      var q = list[appState.currentIndex];
+      if (!q || appState.answers[q.id]) return;
+      var isCorrect = key === q.correct;
+      recordAnswer(q, key, key, isCorrect);
+    }
+
+    function handleNumericSubmit(event) {
+      if (event) event.preventDefault();
+      var list = getFilteredQuestions();
+      var q = list[appState.currentIndex];
+      if (!q || appState.answers[q.id]) return;
+
+      var inputEl = document.getElementById(`numeric-input`);
+      var errEl = document.getElementById(`numeric-error`);
+      if (!inputEl) return;
+
+      var raw = inputEl.value;
+      var parsed = parseStudentNumber(raw);
+      if (Number.isNaN(parsed)) {
+        if (errEl) {
+          errEl.textContent = `Ups! Masukkan angka yang valid terlebih dahulu (contoh: 120 atau 864), tanpa huruf atau satuan.`;
+          errEl.hidden = false;
+        }
+        inputEl.focus();
+        return;
+      }
+
+      if (errEl) errEl.hidden = true;
+      var isCorrect = Math.abs(parsed - q.correct) < 0.001;
+      recordAnswer(q, parsed, raw.trim(), isCorrect);
+    }
+
+    function toggleHint() {
+      var list = getFilteredQuestions();
+      var q = list[appState.currentIndex];
+      if (!q) return;
+      appState.hintsOpen[q.id] = !appState.hintsOpen[q.id];
+      persistState();
+      renderCurrentQuestion();
+      refreshIcons();
+    }
+
+    function toggleFormulaDrawer() {
+      appState.formulaOpen = !appState.formulaOpen;
+      persistState();
+      renderFormulaDrawer();
+    }
+
+    function setTopicFilter(topic) {
+      appState.topicFilter = topic;
+      appState.currentIndex = 0;
+      appState.reviewMode = false;
+      persistState();
+      renderAll();
+    }
+
+    function jumpToQuestion(idx) {
+      var list = getFilteredQuestions();
+      if (idx < 0 || idx >= list.length) return;
+      appState.currentIndex = idx;
+      persistState();
+      renderAll();
+    }
+
+    function goRelative(delta) {
+      var list = getFilteredQuestions();
+      var nextIdx = appState.currentIndex + delta;
+      if (nextIdx >= list.length) {
+        openReview();
+        return;
+      }
+      if (nextIdx < 0) nextIdx = 0;
+      appState.currentIndex = nextIdx;
+      persistState();
+      renderAll();
+    }
+
+    function openReview() {
+      appState.reviewMode = true;
+      persistState();
+      renderAll();
+      window.scrollTo({ top: 0, behavior: `smooth` });
+    }
+
+    function closeReview() {
+      appState.reviewMode = false;
+      persistState();
+      renderAll();
+    }
+
+    function setReviewFilter(mode) {
+      appState.reviewFilter = mode;
+      persistState();
+      renderReviewScreen();
+      refreshIcons();
+    }
+
+    function jumpFromReview(qId) {
+      appState.topicFilter = `all`;
+      var idx = QUESTIONS.findIndex(function (q) { return q.id === qId; });
+      appState.currentIndex = idx >= 0 ? idx : 0;
+      appState.reviewMode = false;
+      persistState();
+      renderAll();
+      window.scrollTo({ top: 0, behavior: `smooth` });
+    }
+
+    function handleResetQuiz(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Klik sekali lagi untuk mengulang`;
+        setTimeout(function () {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i> Ulangi Kuis dari Awal`;
+            refreshIcons();
+          }
+        }, 4000);
+        return;
+      }
+      if (btn) btn.dataset.armed = `false`;
+      appState.answers = {};
+      appState.hintsOpen = {};
+      appState.currentIndex = 0;
+      appState.reviewMode = false;
+      appState.reviewFilter = `all`;
+      appState.streak = 0;
+      appState.bestStreak = 0;
+      persistState();
+      renderAll();
+      if (btn) {
+        btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true" width="18" height="18"></i> Ulangi Kuis dari Awal`;
+        refreshIcons();
+      }
+    }
+
+    function exportReport() {
+      var stats = computeStats(QUESTIONS);
+      var lines = [
+        `RAPOR KUIS MATEMATIKA KELAS 6 SD — BAB 3: KUBUS DAN BALOK`,
+        `===========================================================`,
+        `Nilai Akhir : ${stats.score100} / 100`,
+        `Benar       : ${stats.correct} dari ${stats.total} soal`,
+        `Salah       : ${stats.wrong} soal`,
+        `Belum Dijawab: ${stats.unanswered} soal`,
+        `Runtutan Benar Terbaik: ${appState.bestStreak}`,
+        ``,
+        `RINCIAN PER TOPIK:`,
+        `unsur|jaring|luas|volume|kontekstual`.split(`|`).map(function (k) {
+          var st = computeStats(QUESTIONS.filter(function (q) { return q.topic === k; }));
+          return `- ${TOPIC_META[k].label}: ${st.correct}/${st.total} benar`;
+        }).join(`\n`),
+        ``,
+        `RINCIAN SETIAP NOMOR:`
+      ];
+
+      QUESTIONS.forEach(function (q, i) {
+        var ans = appState.answers[q.id];
+        var status = ans ? (ans.isCorrect ? `BENAR` : `SALAH`) : `BELUM DIJAWAB`;
+        var yourAns = ans ? `${ans.value}${q.unit ? ` ` + q.unit : ``}` : `-`;
+        var rightAns = `${q.correct}${q.unit ? ` ` + q.unit : ``}`;
+        lines.push(`${i + 1}. [${TOPIC_META[q.topic].label}] ${q.title}`);
+        lines.push(`   Status: ${status} | Jawabanmu: ${yourAns} | Kunci: ${rightAns}`);
+      });
+
+      var content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `rapor-kubus-balok-kelas6.txt`
+        });
+      }
+    }
+
+    // =========================================================================
+    // 6. INITIALIZATION
+    // =========================================================================
+
+    (async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          var saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (saved.topicFilter && (saved.topicFilter === `all` || TOPIC_META[saved.topicFilter])) {
+              appState.topicFilter = saved.topicFilter;
+            }
+            if (typeof saved.currentIndex === `number`) appState.currentIndex = saved.currentIndex;
+            if (saved.answers && typeof saved.answers === `object`) appState.answers = saved.answers;
+            if (saved.hintsOpen && typeof saved.hintsOpen === `object`) appState.hintsOpen = saved.hintsOpen;
+            if (typeof saved.formulaOpen === `boolean`) appState.formulaOpen = saved.formulaOpen;
+            if (typeof saved.reviewMode === `boolean`) appState.reviewMode = saved.reviewMode;
+            if (typeof saved.reviewFilter === `string`) appState.reviewFilter = saved.reviewFilter;
+            if (typeof saved.streak === `number`) appState.streak = saved.streak;
+            if (typeof saved.bestStreak === `number`) appState.bestStreak = saved.bestStreak;
+          }
+        }
+      } catch (e) {
+        // Fallback smoothly to default empty state
+      }
+
+      renderAll();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    })();
+  </script>
+</body>
+</html>

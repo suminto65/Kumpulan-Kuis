@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Interaktif Rasio — Matematika Kelas VI SD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #efe6fa;
+      --on-secondary-container: #4a2d6b;
+      --tertiary: #0096cc;
+      --tertiary-container: #dff4fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fdeaea;
+      --on-error-container: #9b1c1c;
+
+      /* Semantic */
+      --positive: #137947;
+      --on-positive: #ffffff;
+      --positive-container: #e4f7ec;
+      --on-positive-container: #0f5c36;
+      --warning: #9a4a00;
+      --warning-container: #fff2df;
+      --on-warning-container: #7a3900;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 26px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(19 121 71 / 0.18);
+      --pop-scale: scale(1.03);
+      --press-scale: scale(0.97);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Focus */
+      --focus: var(--primary);
+
+      /* Type scale (Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero panel */
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      margin-bottom: var(--space-sm);
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-lede {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 60ch;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .metric-tile {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .metric-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .metric-value {
+      font-weight: 900;
+      font-size: var(--headline-size);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      line-height: 1.1;
+    }
+    .metric-value.is-pink { color: var(--primary); }
+    .metric-value.is-grape { color: var(--secondary); }
+
+    /* Topic & Controls Strip */
+    .controls-bar {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .chip {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: 0.875rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .chip:hover {
+      transform: var(--pop-scale);
+      background: var(--surface-container);
+    }
+    .chip:active {
+      transform: var(--press-scale);
+    }
+    .chip.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .utility-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: none;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: var(--press-scale); }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) { box-shadow: var(--shadow-grape-deep); }
+
+    .btn-soft {
+      background: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .btn-soft:hover:not(:disabled) { background: var(--surface-container-high); }
+
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .btn-quiet:hover:not(:disabled) { background: var(--surface-container); }
+
+    .btn-danger-arm {
+      background: var(--error);
+      color: var(--on-error);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Collapsible Formula Reference */
+    .formula-drawer {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-grape);
+    }
+    .formula-drawer[hidden] { display: none; }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .formula-card {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .formula-card h3 {
+      margin: 0 0 var(--space-xs) 0;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+    .formula-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--on-surface);
+    }
+
+    /* Main Workspace Layout */
+    .quiz-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-pink);
+    }
+    .card.shadow-grape { box-shadow: var(--shadow-grape); }
+    .card.shadow-sky { box-shadow: var(--shadow-sky); }
+
+    /* Progress Bar (Lollipop style) */
+    .progress-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-lg);
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Question Header & Tags */
+    .q-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .q-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .tag-grape {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-bubblegum {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .q-context {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      color: var(--on-surface);
+    }
+
+    .q-prompt {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+
+    /* Hint box */
+    .hint-box {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-size: 0.9375rem;
+    }
+    .hint-box[hidden] { display: none; }
+
+    /* Visual Diagram Panel inside Question */
+    .q-visual {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .q-visual svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Interactive Answer Containers */
+    .quiz-stage { container-type: inline-size; }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    @container (min-width: 560px) {
+      .options-grid.two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-md);
+      }
+    }
+
+    .option-btn {
+      min-height: 52px;
+      width: 100%;
+      text-align: left;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--lift);
+      background: var(--surface-container);
+      box-shadow: var(--shadow-grape);
+    }
+    .option-btn.is-selected {
+      background: var(--secondary-container);
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+    .option-btn:disabled { cursor: default; }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .option-btn.is-selected .option-letter {
+      background: var(--secondary);
+      color: var(--on-secondary);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Pill Inputs for Ratio / Number / Ratio Table */
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-width: 130px;
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+    }
+
+    .pill-input {
+      min-height: 48px;
+      width: 100%;
+      max-width: 180px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-size: 1.125rem;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .pill-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+      background: var(--surface-container-low);
+    }
+    .pill-input.is-correct {
+      border-color: var(--positive);
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .pill-input.is-wrong {
+      border-color: var(--error);
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    .ratio-colon {
+      font-weight: 900;
+      font-size: 1.75rem;
+      line-height: 48px;
+      color: var(--primary);
+      padding: 0 var(--space-xs);
+    }
+
+    .unit-text {
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      line-height: 48px;
+    }
+
+    /* Ratio Table Styling */
+    .ratio-table-wrap {
+      overflow-x: auto;
+      margin-bottom: var(--space-lg);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+    }
+
+    .ratio-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 var(--space-xs);
+      font-variant-numeric: tabular-nums;
+    }
+    .ratio-table th {
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-sm) var(--space-md);
+      text-align: center;
+    }
+    .ratio-table th:first-child { border-radius: var(--rounded-full) 0 0 var(--rounded-full); }
+    .ratio-table th:last-child { border-radius: 0 var(--rounded-full) var(--rounded-full) 0; }
+
+    .ratio-table td {
+      padding: var(--space-sm) var(--space-md);
+      text-align: center;
+      font-weight: 700;
+      background: var(--surface-container-low);
+      vertical-align: bottom;
+    }
+    .ratio-table tr.is-op-row td {
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+      font-size: 0.875rem;
+      font-weight: 800;
+      padding: var(--space-xs) var(--space-md);
+    }
+    .ratio-table tr.is-op-row td:first-child { border-radius: var(--rounded-full) 0 0 var(--rounded-full); }
+    .ratio-table tr.is-op-row td:last-child { border-radius: 0 var(--rounded-full) var(--rounded-full) 0; }
+
+    .ratio-table .table-field {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .ratio-table .pill-input {
+      max-width: 120px;
+      min-height: 44px;
+      font-size: 1rem;
+    }
+
+    /* Inline Form Validation Alert */
+    .inline-msg {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-md);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: var(--space-md);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .inline-msg[hidden] { display: none; }
+
+    /* Action Row */
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .nav-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Immediate Feedback Panel */
+    .feedback-panel {
+      margin-top: var(--space-lg);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      animation: popIn var(--dur-long) var(--ease-bounce);
+    }
+    .feedback-panel[hidden] { display: none; }
+    .feedback-panel.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .feedback-panel.is-wrong {
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    .feedback-title {
+      margin: 0 0 var(--space-xs) 0;
+      font-weight: 900;
+      font-size: var(--subhead-size);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .feedback-body {
+      margin: 0;
+      color: var(--on-surface);
+      line-height: 1.6;
+    }
+
+    /* Sidebar */
+    .quiz-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .sidebar-title {
+      margin: 0 0 var(--space-md) 0;
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+    }
+
+    .q-map-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .q-map-btn {
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .q-map-btn:hover { transform: var(--pop-scale); }
+    .q-map-btn.is-current {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+      color: var(--primary);
+      background: var(--surface-container-low);
+    }
+    .q-map-btn.is-correct {
+      background: var(--positive);
+      border-color: var(--positive);
+      color: var(--on-positive);
+    }
+    .q-map-btn.is-wrong {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Topic Mastery Bars */
+    .mastery-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .mastery-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .mastery-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    .mastery-track {
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .mastery-fill {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      background: var(--primary);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .mastery-fill.color-2 { background: var(--secondary); }
+    .mastery-fill.color-3 { background: var(--tertiary); }
+    .mastery-fill.color-4 { background: var(--data-4); }
+
+    /* Final Report View */
+    .results-panel {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .results-panel[hidden] { display: none; }
+
+    .score-hero {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink-deep);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .score-circle {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: center;
+    }
+    .score-big {
+      font-weight: 900;
+      font-size: clamp(3rem, 2.5rem + 2vw, 4.25rem);
+      color: var(--primary);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.04em;
+    }
+    .score-caption {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-sm);
+    }
+
+    .chart-box {
+      width: 100%;
+      min-height: 250px;
+    }
+
+    /* Reflection Checklist */
+    .reflection-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .reflection-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      cursor: pointer;
+    }
+    .reflection-item input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .source-footer {
+      text-align: left;
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      padding: var(--space-md) 0;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-panel { grid-template-columns: 1fr; }
+      .quiz-workspace { grid-template-columns: 1fr; }
+      .score-hero { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid { padding: var(--space-md); gap: var(--space-md); }
+      .hero-panel { padding: var(--space-lg); }
+      .hero-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-sm); }
+      .q-map-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .controls-bar { padding: var(--space-md); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- Hero Panel -->
+    <header class="hero-panel">
+      <div>
+        <div class="kicker-pill">Matematika Kelas VI SD • Bab 2 (Hlm. 59–88)</div>
+        <h1 class="display">Petualangan Kuis <em>Rasio</em></h1>
+        <p class="hero-lede">
+          Latih pemahamanmu tentang konsep rasio, tabel kesamaan rasio, rasio satuan, perbandingan bagian terhadap keseluruhan, hingga rasio durasi waktu dengan pembahasan langkah demi langkah.
+        </p>
+      </div>
+      <div class="hero-metrics" aria-label="Ringkasan Progres Kuis">
+        <div class="metric-tile">
+          <span class="metric-label">Terjawab</span>
+          <span class="metric-value" id="stat-answered">0 / 18</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Skor</span>
+          <span class="metric-value is-pink" id="stat-score">0</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Beruntun</span>
+          <span class="metric-value is-grape" id="stat-streak">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Topic Selector & Utility Controls -->
+    <section class="controls-bar" aria-label="Filter Topik dan Alat Bantu">
+      <div class="topic-pills" id="topic-pills" role="group" aria-label="Pilih topik latihan">
+        <button type="button" class="chip is-active" data-topic="all" onclick="setTopicFilter('all')">Semua Topik (18)</button>
+        <button type="button" class="chip" data-topic="konsep" onclick="setTopicFilter('konsep')">1. Konsep Rasio</button>
+        <button type="button" class="chip" data-topic="pengertian" onclick="setTopicFilter('pengertian')">2. Pengertian a : b</button>
+        <button type="button" class="chip" data-topic="kesamaan" onclick="setTopicFilter('kesamaan')">3. Tabel Rasio</button>
+        <button type="button" class="chip" data-topic="satuan" onclick="setTopicFilter('satuan')">4. Rasio Satuan</button>
+        <button type="button" class="chip" data-topic="bagian" onclick="setTopicFilter('bagian')">5. Bagian &amp; Total</button>
+        <button type="button" class="chip" data-topic="waktu" onclick="setTopicFilter('waktu')">6. Durasi Waktu</button>
+      </div>
+      <div class="utility-actions">
+        <button type="button" class="btn btn-soft" id="btn-toggle-formula" aria-expanded="false" onclick="toggleFormulaDrawer()">Ringkasan Rumus</button>
+        <button type="button" class="btn btn-secondary" id="btn-view-report" onclick="toggleResultsView(true)">Lihat Rapor</button>
+        <button type="button" class="btn btn-quiet" id="btn-reset-quiz" onclick="handleResetQuiz(this)">Ulangi Kuis</button>
+      </div>
+    </section>
+
+    <!-- Collapsible Quick Formula Reference -->
+    <section class="formula-drawer" id="formula-drawer" hidden aria-label="Ringkasan Materi Bab 2 Rasio">
+      <div class="q-header">
+        <h2 class="q-prompt" style="margin:0;">Catatan Cepat Bab 2: Rasio</h2>
+        <button type="button" class="btn btn-quiet" onclick="toggleFormulaDrawer()">Tutup Catatan</button>
+      </div>
+      <div class="formula-grid">
+        <div class="formula-card">
+          <h3>Pengertian Rasio (a : b)</h3>
+          <p>Perbandingan dua besaran. Urutan sangat penting: <strong>a : b</strong> berbeda maknanya dengan <strong>b : a</strong>. Sederhanakan dengan membagi kedua bilangan dengan FPB-nya.</p>
+        </div>
+        <div class="formula-card">
+          <h3>Kesamaan &amp; Tabel Rasio</h3>
+          <p>Gunakan prinsip pecahan senilai: kalikan atau bagi kedua sisi rasio dengan bilangan yang sama agar perbandingan tetap konsisten.</p>
+        </div>
+        <div class="formula-card">
+          <h3>Rasio Satuan (Unit Rate)</h3>
+          <p>Salah satu kuantitas bernilai <strong>1</strong> (misalnya harga 1 bibit, bibit per 1 jam, atau ml sirup per 1 sendok teh). Berguna untuk membandingkan paket termurah.</p>
+        </div>
+        <div class="formula-card">
+          <h3>Bagian &amp; Keseluruhan</h3>
+          <p><em>Part to part</em> membandingkan dua kelompok (A : B). <em>Part to whole</em> membandingkan satu bagian terhadap total (A : (A + B)).</p>
+        </div>
+        <div class="formula-card">
+          <h3>Rasio Durasi Waktu</h3>
+          <p>Samakan satuan waktunya dulu! Ingat: 1 jam = 60 menit, 1 hari = 24 jam, 1 minggu = 7 hari (168 jam), 1 tahun = 12 bulan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Quiz Workspace -->
+    <main class="quiz-workspace" id="quiz-workspace">
+      <section class="card quiz-stage" aria-live="polite">
+        <!-- Progress Bar -->
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span class="metric-label" id="progress-text">Soal 1 dari 18</span>
+            <span class="metric-label" id="progress-pct">0% selesai</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-aria">
+            <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Question Header -->
+        <div class="q-header">
+          <div class="q-tags">
+            <span class="tag-grape" id="q-topic-label">Konsep Rasio</span>
+            <span class="badge-bubblegum" id="q-type-label">Pilihan Ganda</span>
+          </div>
+          <button type="button" class="btn btn-soft" id="btn-hint" onclick="toggleHint()">Lihat Petunjuk</button>
+        </div>
+
+        <!-- Hint Box -->
+        <div class="hint-box" id="hint-box" hidden>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:2px;">
+            <path d="M9 18h6"></path>
+            <path d="M10 22h4"></path>
+            <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+          </svg>
+          <div>
+            <strong>Petunjuk:</strong> <span id="hint-text"></span>
+          </div>
+        </div>
+
+        <!-- Context & Question -->
+        <div class="q-context" id="q-context"></div>
+        <h2 class="q-prompt" id="q-prompt"></h2>
+
+        <!-- Optional Visual SVG -->
+        <div class="q-visual" id="q-visual" hidden></div>
+
+        <!-- Dynamic Answer Area -->
+        <div id="answer-area"></div>
+
+        <!-- Inline validation message -->
+        <div class="inline-msg" id="inline-msg" hidden></div>
+
+        <!-- Action Buttons -->
+        <div class="action-row">
+          <div class="nav-btns">
+            <button type="button" class="btn btn-soft" id="btn-prev" onclick="navigateQuestion(-1)">← Sebelumnya</button>
+            <button type="button" class="btn btn-primary" id="btn-submit" onclick="submitCurrentAnswer()">Periksa Jawaban</button>
+          </div>
+          <div class="nav-btns">
+            <button type="button" class="btn btn-secondary" id="btn-next" onclick="navigateQuestion(1)">Soal Berikutnya →</button>
+          </div>
+        </div>
+
+        <!-- Immediate Feedback -->
+        <div class="feedback-panel" id="feedback-panel" hidden>
+          <h3 class="feedback-title" id="feedback-title"></h3>
+          <p class="feedback-body" id="feedback-body"></p>
+        </div>
+      </section>
+
+      <!-- Sidebar: Navigator + Mastery -->
+      <aside class="quiz-sidebar" aria-label="Navigasi dan Penguasaan Topik">
+        <div class="card shadow-grape">
+          <h2 class="sidebar-title">Peta Nomor Soal</h2>
+          <div class="q-map-grid" id="q-map-grid"></div>
+        </div>
+
+        <div class="card shadow-sky">
+          <h2 class="sidebar-title">Penguasaan 6 Subtopik</h2>
+          <div class="mastery-list" id="mastery-list"></div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Final Results & Reflection Panel -->
+    <section class="results-panel" id="results-panel" hidden aria-label="Rapor Hasil Kuis Rasio">
+      <div class="score-hero">
+        <div class="score-circle">
+          <div class="score-big" id="final-score-num">0</div>
+          <div class="score-caption">Skor Akhir (Skala 100)</div>
+          <div style="margin-top: var(--space-md);">
+            <span class="badge-bubblegum" id="final-predicate">Mulai Berlatih</span>
+          </div>
+          <p id="final-summary-text" style="margin: var(--space-md) 0 0 0; color: var(--on-surface-variant); font-size: 0.9375rem;"></p>
+        </div>
+        <div class="card shadow-sky" style="box-shadow:none; background: var(--surface-container);">
+          <h2 class="sidebar-title" style="margin-bottom: var(--space-sm);">Grafik Penguasaan per Subtopik</h2>
+          <div class="chart-box" id="mastery-chart-svg"></div>
+        </div>
+      </div>
+
+      <div class="card shadow-grape">
+        <h2 class="sidebar-title">Ayo Berefleksi (Cek Pemahamanmu)</h2>
+        <p style="margin: 0 0 var(--space-md) 0; color: var(--on-surface-variant);">Tandai kemampuan yang sudah kamu kuasai setelah mengerjakan kuis Bab 2 ini:</p>
+        <div class="reflection-list" id="reflection-list"></div>
+        <div class="action-row" style="margin-top: var(--space-lg);">
+          <div class="nav-btns">
+            <button type="button" class="btn btn-soft" onclick="toggleResultsView(false)">← Kembali ke Soal</button>
+            <button type="button" class="btn btn-secondary" id="btn-retry-wrong" onclick="retryWrongQuestions()">Ulangi Soal yang Salah</button>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-restart-all" onclick="handleResetQuiz(this)">Mulai Kuis dari Awal</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      Sumber materi: Bab 2 Rasio (Halaman 59–88), Buku Siswa Matematika untuk SD/MI Kelas VI Kurikulum Merdeka (Dicky Susanto dkk., Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi, 2022).
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const TOPIC_META = [
+      { id: `konsep`, label: `Konsep Rasio`, short: `1. Konsep`, colorClass: `` },
+      { id: `pengertian`, label: `Pengertian Rasio (a : b)`, short: `2. Pengertian a : b`, colorClass: `color-2` },
+      { id: `kesamaan`, label: `Kesamaan & Tabel Rasio`, short: `3. Tabel Rasio`, colorClass: `color-3` },
+      { id: `satuan`, label: `Rasio Satuan`, short: `4. Rasio Satuan`, colorClass: `color-4` },
+      { id: `bagian`, label: `Bagian & Keseluruhan`, short: `5. Bagian & Total`, colorClass: `` },
+      { id: `waktu`, label: `Rasio Durasi Waktu`, short: `6. Durasi Waktu`, colorClass: `color-2` }
+    ];
+
+    const REFLECTION_ITEMS = [
+      `Saya memahami pengertian rasio dan cara membandingkan dua besaran.`,
+      `Saya dapat menyatakan dan menyederhanakan rasio (a : b) dengan benar.`,
+      `Saya dapat melengkapi tabel kesamaan rasio menggunakan perkalian atau pembagian.`,
+      `Saya dapat menentukan rasio satuan (unit rate) untuk membandingkan harga atau kecepatan.`,
+      `Saya dapat membedakan rasio bagian terhadap bagian dan bagian terhadap keseluruhan.`,
+      `Saya ingat untuk menyamakan satuan waktu terlebih dahulu sebelum menghitung rasio durasi waktu.`
+    ];
+
+    const QUESTIONS = [
+      {
+        id: `q1`,
+        topic: `konsep`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Dalam kegiatan Gerakan Satu Juta Pohon di sekolah, siswa menanam 4 pohon pucuk merah dan 6 pohon cemara.`,
+        prompt: `Manakah pernyataan perbandingan yang tepat mengenai pohon yang ditanam?`,
+        visual: `trees`,
+        options: [
+          `Jumlah pohon pucuk merah lebih banyak dari pohon cemara.`,
+          `Untuk setiap 2 pohon pucuk merah, terdapat 3 pohon cemara.`,
+          `Selisih kedua jenis pohon tersebut adalah 4 pohon.`,
+          `Jumlah seluruh pohon yang ditanam adalah 8 pohon.`
+        ],
+        correctIndex: 1,
+        hint: `Bandingkan 4 pohon pucuk merah dan 6 pohon cemara, lalu coba bagi kedua angkanya dengan 2.`,
+        explanation: `Terdapat 4 pohon pucuk merah dan 6 pohon cemara. Selisihnya adalah 6 − 4 = 2 pohon, dan totalnya 4 + 6 = 10 pohon. Jika dibandingkan sebagai rasio 4 : 6 lalu disederhanakan (: 2), diperoleh 2 : 3, artinya setiap 2 pohon pucuk merah terdapat 3 pohon cemara.`
+      },
+      {
+        id: `q2`,
+        topic: `konsep`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Dalam kehidupan sehari-hari, kita bisa membandingkan dua besaran yang sama (satu jenis) maupun dua besaran yang berbeda.`,
+        prompt: `Manakah pasangan berikut yang membandingkan dua besaran yang sama?`,
+        visual: null,
+        options: [
+          `3 bibit tanaman dengan harga Rp37.500,00.`,
+          `Jarak tempuh 120 km dengan waktu 2 jam.`,
+          `16 anggota klub Sains dengan 24 anggota klub Seni.`,
+          `6 bibit tanaman dengan waktu mengemas 1,5 jam.`
+        ],
+        correctIndex: 2,
+        hint: `Cari pasangan yang membandingkan benda atau satuan sejenis (misalnya sama-sama banyak siswa).`,
+        explanation: `Anggota klub Sains (16 siswa) dan anggota klub Seni (24 siswa) sama-sama menyatakan banyak orang (besaran yang sama). Pilihan lain membandingkan besaran berbeda (bibit dengan uang, jarak dengan waktu, bibit dengan jam).`
+      },
+      {
+        id: `q3`,
+        topic: `konsep`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Di taman hiburan tercatat 24 orang mengantre di wahana roller coaster dan 18 orang mengantre di komidi putar.`,
+        prompt: `Jika Udin berkata, "Pengantre roller coaster 6 orang lebih banyak daripada komidi putar," cara membandingkan apakah yang ia pakai?`,
+        visual: null,
+        options: [
+          `Membandingkan dengan selisih (pengurangan).`,
+          `Membandingkan dengan rasio satuan.`,
+          `Membandingkan bagian terhadap keseluruhan.`,
+          `Membandingkan kesamaan rasio.`
+        ],
+        correctIndex: 0,
+        hint: `Perhatikan operasi hitung 24 − 18 = 6.`,
+        explanation: `Menyebut "6 orang lebih banyak" berasal dari pengurangan 24 − 18 = 6, yaitu perbandingan menggunakan selisih. Sedangkan perbandingan rasio menggunakan pembagian (24 : 18 = 4 : 3).`
+      },
+      {
+        id: `q4`,
+        topic: `pengertian`,
+        type: `ratio`,
+        typeLabel: `Tulis Rasio (a : b)`,
+        context: `Di taman hiburan terdapat 24 pengunjung mengantre wahana roller coaster dan 18 pengunjung mengantre wahana komidi putar.`,
+        prompt: `Tuliskan rasio pengunjung roller coaster terhadap komidi putar dalam bentuk paling sederhana!`,
+        visual: null,
+        labelA: `Roller Coaster`,
+        labelB: `Komidi Putar`,
+        correctA: 4,
+        correctB: 3,
+        hint: `Cari FPB dari 24 dan 18 (yaitu 6), lalu bagi kedua bilangan dengan 6.`,
+        explanation: `Rasio awal adalah 24 : 18. FPB dari 24 dan 18 adalah 6. Membagi kedua besaran dengan 6 menghasilkan 24 ÷ 6 = 4 dan 18 ÷ 6 = 3. Jadi bentuk paling sederhananya adalah 4 : 3.`
+      },
+      {
+        id: `q5`,
+        topic: `pengertian`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Diketahui rasio banyak pohon pucuk merah terhadap pohon cemara di taman sekolah adalah 2 : 3.`,
+        prompt: `Apa makna yang benar jika pertanyaannya dibalik menjadi rasio pohon cemara terhadap pohon pucuk merah?`,
+        visual: null,
+        options: [
+          `Tetap 2 : 3 karena angkanya tidak berubah.`,
+          `Menjadi 3 : 2, artinya setiap 3 pohon cemara terdapat 2 pohon pucuk merah.`,
+          `Menjadi 2 : 5 karena dihitung dengan total pohon.`,
+          `Menjadi 1 : 1 karena selisihnya hanya 1.`
+        ],
+        correctIndex: 1,
+        hint: `Dalam penulisan rasio, urutan sangat berpengaruh: rasio a : b berbeda artinya dengan b : a.`,
+        explanation: `Rasio a : b berbeda maknanya dengan b : a. Karena pucuk merah : cemara = 2 : 3, maka jika dibalik menjadi cemara : pucuk merah rasionya menjadi 3 : 2 (setiap 3 pohon cemara terdapat 2 pohon pucuk merah).`
+      },
+      {
+        id: `q6`,
+        topic: `pengertian`,
+        type: `ratio`,
+        typeLabel: `Tulis Rasio (a : b)`,
+        context: `Data klub di sekolah menunjukkan klub Sains memiliki 16 anggota dan klub Seni memiliki 24 anggota.`,
+        prompt: `Tuliskan rasio paling sederhana dari anggota klub Sains terhadap anggota klub Seni!`,
+        visual: null,
+        labelA: `Klub Sains`,
+        labelB: `Klub Seni`,
+        correctA: 2,
+        correctB: 3,
+        hint: `FPB dari 16 dan 24 adalah 8. Bagilah kedua bilangan dengan 8.`,
+        explanation: `Rasio awal adalah 16 : 24. Dengan membagi kedua bilangan oleh FPB-nya yaitu 8, diperoleh (16 ÷ 8) : (24 ÷ 8) = 2 : 3.`
+      },
+      {
+        id: `q7`,
+        topic: `kesamaan`,
+        type: `table`,
+        typeLabel: `Lengkapi Tabel Rasio`,
+        context: `Sebuah lahan seluas 10 m² dapat menampung 12 bibit tanaman. Sekolah berencana menanam 30 bibit tanaman dengan kepadatan yang sama.`,
+        prompt: `Lengkapi dua kotak kosong pada tabel rasio di bawah ini untuk mengetahui luas lahan yang diperlukan!`,
+        visual: null,
+        headers: [`Luas Lahan (m²)`, `Banyak Bibit Tanaman`],
+        rows: [
+          { type: `data`, cells: [{ kind: `text`, value: `10` }, { kind: `text`, value: `12` }] },
+          { type: `op`, cells: [`: 2`, `: 2`] },
+          { type: `data`, cells: [{ kind: `input`, key: `a`, label: `Lahan (÷2)` }, { kind: `text`, value: `6` }] },
+          { type: `op`, cells: [`× 5`, `× 5`] },
+          { type: `data`, cells: [{ kind: `input`, key: `b`, label: `Lahan (×5)` }, { kind: `text`, value: `30` }] }
+        ],
+        answers: { a: 5, b: 25 },
+        hint: `Pada baris tengah, bagi 10 dengan 2. Kemudian pada baris bawah, kalikan hasil tersebut dengan 5!`,
+        explanation: `Langkah 1: Sederhanakan 10 : 12 dengan membagi 2 menjadi 5 : 6 (lahan 5 m² menampung 6 bibit). Langkah 2: Untuk 30 bibit (6 × 5), luas lahan juga dikalikan 5 menjadi 5 × 5 = 25 m².`
+      },
+      {
+        id: `q8`,
+        topic: `kesamaan`,
+        type: `table`,
+        typeLabel: `Lengkapi Tabel Rasio`,
+        context: `Diketahui rasio pengunjung yang antre di wahana bianglala terhadap roller coaster adalah 4 : 3. Saat ini ada 24 orang di roller coaster.`,
+        prompt: `Tentukan bilangan pengali yang tepat serta jumlah pengunjung di wahana bianglala!`,
+        visual: null,
+        headers: [`Bianglala`, `Roller Coaster`],
+        rows: [
+          { type: `data`, cells: [{ kind: `text`, value: `4` }, { kind: `text`, value: `3` }] },
+          { type: `data`, cells: [{ kind: `input`, key: `a`, label: `Pengali (×)` }, { kind: `text`, value: `× 8` }] },
+          { type: `data`, cells: [{ kind: `input`, key: `b`, label: `Jumlah Bianglala` }, { kind: `text`, value: `24` }] }
+        ],
+        answers: { a: 8, b: 32 },
+        hint: `Karena 3 × 8 = 24 pada roller coaster, maka pengali pada sisi bianglala juga harus sama.`,
+        explanation: `Jika rasio pada salah satu besaran dikalikan 8 (3 × 8 = 24), maka besaran lainnya juga dikalikan 8. Jadi pengalinya 8, dan jumlah pengunjung bianglala = 4 × 8 = 32 orang.`
+      },
+      {
+        id: `q9`,
+        topic: `kesamaan`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Banyu menyiapkan 6 liter minuman untuk 15 orang teman di pagi hari. Pada siang hari, akan datang 10 orang teman dengan porsi minuman yang sama.`,
+        prompt: `Berapa liter minuman yang harus disiapkan Banyu untuk 10 orang teman di siang hari?`,
+        visual: null,
+        options: [
+          `3 liter`,
+          `4 liter`,
+          `5 liter`,
+          `8 liter`
+        ],
+        correctIndex: 1,
+        hint: `Sederhanakan dulu rasio 6 : 15 dengan membaginya dengan 3 (FPB), lalu kalikan agar jumlah temannya menjadi 10.`,
+        explanation: `Rasio awal 6 liter : 15 orang disederhanakan (: 3) menjadi 2 liter : 5 orang. Untuk 10 orang (5 × 2), minuman yang dibutuhkan adalah 2 × 2 = 4 liter.`
+      },
+      {
+        id: `q10`,
+        topic: `satuan`,
+        type: `mcq`,
+        typeLabel: `Bandingkan Rasio Satuan`,
+        context: `Anike ingin membeli bibit jahe merah dengan harga satuan termurah. Toko menawarkan Paket A (3 bibit seharga Rp37.500,00) dan Paket B (5 bibit seharga Rp58.000,00).`,
+        prompt: `Paket manakah yang lebih murah harga per bibitnya?`,
+        visual: `packages`,
+        options: [
+          `Paket A (3 bibit), karena harga satuannya Rp12.500,00 per bibit.`,
+          `Paket B (5 bibit), karena harga satuannya Rp11.600,00 per bibit.`,
+          `Keduanya sama murah per bibitnya.`,
+          `Paket A (3 bibit), karena total harganya lebih kecil.`
+        ],
+        correctIndex: 1,
+        hint: `Hitung harga 1 bibit (rasio satuan) dengan membagi total harga oleh banyak bibit di masing-masing paket.`,
+        explanation: `Harga satuan Paket A = Rp37.500 ÷ 3 = Rp12.500,00/bibit. Harga satuan Paket B = Rp58.000 ÷ 5 = Rp11.600,00/bibit. Karena Rp11.600 lebih rendah dari Rp12.500, Paket B (5 bibit) lebih hemat!`
+      },
+      {
+        id: `q11`,
+        topic: `satuan`,
+        type: `number`,
+        typeLabel: `Isian Angka`,
+        context: `Pegawai toko tanaman membutuhkan waktu 1,5 jam untuk mengemas 6 bibit tanaman secara merata.`,
+        prompt: `Dengan kecepatan yang sama, berapa bibit tanaman yang selesai dikemas dalam waktu 4 jam?`,
+        visual: null,
+        label: `Banyak bibit dalam 4 jam`,
+        unit: `bibit`,
+        correctValue: 16,
+        hint: `Hitung dulu rasio satuan per 1 jam: 6 ÷ 1,5 = … bibit/jam, lalu kalikan dengan 4 jam.`,
+        explanation: `Rasio satuan = 6 bibit ÷ 1,5 jam = 4 bibit/jam (rasio 4 : 1). Dalam waktu 4 jam, banyak bibit yang dikemas adalah 4 × 4 = 16 bibit.`
+      },
+      {
+        id: `q12`,
+        topic: `satuan`,
+        type: `mcq`,
+        typeLabel: `Bandingkan Rasio Satuan`,
+        context: `Dony membuat susu cokelat dengan 30 ml sirup cokelat untuk setiap 2 sendok teh susu. Hana menambahkan 65 ml sirup cokelat untuk setiap 5 sendok teh susu.`,
+        prompt: `Susu cokelat milik siapa yang lebih terasa cokelatnya?`,
+        visual: `chocolate`,
+        options: [
+          `Milik Dony, karena mengandung 15 ml sirup per 1 sendok teh susu.`,
+          `Milik Hana, karena total sirupnya 65 ml lebih banyak dari 30 ml.`,
+          `Milik Hana, karena mengandung 13 ml sirup per 1 sendok teh susu.`,
+          `Rasanya sama karena perbandingannya seimbang.`
+        ],
+        correctIndex: 0,
+        hint: `Cari rasio satuan sirup (ml) untuk setiap 1 sendok teh susu pada takaran Dony dan Hana.`,
+        explanation: `Rasio satuan Dony = 30 ÷ 2 = 15 ml per 1 sendok teh susu. Rasio satuan Hana = 65 ÷ 5 = 13 ml per 1 sendok teh susu. Karena 15 ml > 13 ml, susu cokelat milik Dony lebih terasa cokelatnya.`
+      },
+      {
+        id: `q13`,
+        topic: `bagian`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Di Toko Herbal Tani, rasio penjualan bibit tanaman hias terhadap tanaman obat pada bulan Juni adalah 4 : 5.`,
+        prompt: `Berapakah rasio jumlah tanaman hias terhadap seluruh tanaman yang terjual (bagian terhadap keseluruhan)?`,
+        visual: `partwhole`,
+        options: [
+          `4 : 5`,
+          `5 : 9`,
+          `4 : 9`,
+          `9 : 4`
+        ],
+        correctIndex: 2,
+        hint: `Pada rasio bagian terhadap keseluruhan (part to whole), jumlahkan kedua angka rasio untuk menemukan rasio totalnya (4 + 5).`,
+        explanation: `Rasio total seluruh tanaman = 4 + 5 = 9 bagian. Oleh karena itu, rasio tanaman hias (4 bagian) terhadap seluruh tanaman (9 bagian) adalah 4 : 9.`
+      },
+      {
+        id: `q14`,
+        topic: `bagian`,
+        type: `table`,
+        typeLabel: `Lengkapi Tabel Rasio`,
+        context: `Total pengunjung pasar malam berjumlah 390 orang, terdiri atas anak-anak dan orang dewasa. Untuk setiap 9 anak-anak terdapat 4 orang dewasa.`,
+        prompt: `Lengkapi total bagian rasio dan hitung jumlah pengunjung anak-anak sebenarnya!`,
+        visual: null,
+        headers: [`Anak-anak`, `Dewasa`, `Total Pengunjung`],
+        rows: [
+          { type: `data`, cells: [{ kind: `text`, value: `9` }, { kind: `text`, value: `4` }, { kind: `input`, key: `a`, label: `Total Rasio` }] },
+          { type: `op`, cells: [`× 30`, `× 30`, `× 30`] },
+          { type: `data`, cells: [{ kind: `input`, key: `b`, label: `Jumlah Anak` }, { kind: `text`, value: `120` }, { kind: `text`, value: `390` }] }
+        ],
+        answers: { a: 13, b: 270 },
+        hint: `Total rasio adalah 9 + 4 = 13. Karena 13 × 30 = 390, kalikan 9 dengan 30 untuk mendapat jumlah anak-anak.`,
+        explanation: `Total rasio = 9 + 4 = 13. Karena total pengunjung sebenarnya 390 orang (390 ÷ 13 = 30), maka pengalinya 30. Jumlah anak-anak = 9 × 30 = 270 orang.`
+      },
+      {
+        id: `q15`,
+        topic: `bagian`,
+        type: `dual-number`,
+        typeLabel: `Isian Dua Angka`,
+        context: `Toko Buku Pustaka hanya menjual novel dan komik. Rasio banyak novel terhadap komik adalah 11 : 4, dan jumlah seluruh buku di toko adalah 120 buku.`,
+        prompt: `Tentukan banyak buku novel dan banyak buku komik di Toko Buku Pustaka!`,
+        visual: null,
+        labelA: `Banyak Novel`,
+        labelB: `Banyak Komik`,
+        unitA: `buku`,
+        unitB: `buku`,
+        correctA: 88,
+        correctB: 32,
+        hint: `Jumlahkan rasio 11 + 4 = 15 bagian. Lalu bagi 120 dengan 15 untuk mengetahui nilai 1 bagian rasio.`,
+        explanation: `Total bagian rasio = 11 + 4 = 15. Nilai tiap 1 bagian = 120 ÷ 15 = 8 buku. Maka banyak novel = 11 × 8 = 88 buku, dan banyak komik = 4 × 8 = 32 buku (88 + 32 = 120).`
+      },
+      {
+        id: `q16`,
+        topic: `waktu`,
+        type: `ratio`,
+        typeLabel: `Tulis Rasio (a : b)`,
+        context: `Untuk menanam bibit tanaman obat, Ayah membutuhkan waktu 10 menit, sedangkan Tigor menghabiskan waktu 2/3 jam.`,
+        prompt: `Samakan satuan ke menit, lalu tuliskan rasio paling sederhana dari waktu Ayah terhadap waktu Tigor!`,
+        visual: `timebar`,
+        labelA: `Waktu Ayah`,
+        labelB: `Waktu Tigor`,
+        correctA: 1,
+        correctB: 4,
+        hint: `1 jam = 60 menit. Ubahlah 2/3 jam menjadi menit (2/3 × 60), lalu sederhanakan rasio terhadap 10 menit!`,
+        explanation: `Waktu Tigor = (2/3) × 60 menit = 40 menit. Rasio waktu Ayah : Tigor = 10 menit : 40 menit. Setelah dibagi 10, diperoleh bentuk paling sederhana 1 : 4 (Ayah 4 kali lebih cepat daripada Tigor).`
+      },
+      {
+        id: `q17`,
+        topic: `waktu`,
+        type: `mcq`,
+        typeLabel: `Pilihan Ganda`,
+        context: `Menurut tabel masa panen tanaman obat khas daerah, jahe merah dipanen dalam 3 bulan, sedangkan lengkuas dipanen dalam 1,5 tahun.`,
+        prompt: `Berapakah rasio masa panen jahe merah terhadap lengkuas dalam bentuk paling sederhana?`,
+        visual: null,
+        options: [
+          `3 : 1,5`,
+          `2 : 1`,
+          `1 : 6`,
+          `1 : 5`
+        ],
+        correctIndex: 2,
+        hint: `Satuan waktu harus sama! Ubah 1,5 tahun ke dalam satuan bulan terlebih dahulu (1 tahun = 12 bulan).`,
+        explanation: `Karena 1 tahun = 12 bulan, maka 1,5 tahun = 1,5 × 12 = 18 bulan. Rasio jahe merah : lengkuas = 3 bulan : 18 bulan. Jika dibagi 3, hasilnya adalah 1 : 6.`
+      },
+      {
+        id: `q18`,
+        topic: `waktu`,
+        type: `table`,
+        typeLabel: `Lengkapi Tabel Konversi`,
+        context: `Ingat bahwa 1 hari = 24 jam dan 1 minggu = 7 hari. Gunakan tabel rasio berikut untuk mengonversi satuan waktu dari minggu ke jam dan sebaliknya.`,
+        prompt: `Lengkapi jumlah jam dalam 1 minggu dan jumlah minggu untuk 840 jam!`,
+        visual: null,
+        headers: [`Durasi (Jam)`, `Durasi (Minggu)`],
+        rows: [
+          { type: `data`, cells: [{ kind: `input`, key: `a`, label: `Jam (1 mgg)` }, { kind: `text`, value: `1` }] },
+          { type: `data`, cells: [{ kind: `text`, value: `504` }, { kind: `text`, value: `3` }] },
+          { type: `data`, cells: [{ kind: `text`, value: `840` }, { kind: `input`, key: `b`, label: `Minggu (840 j)` }] }
+        ],
+        answers: { a: 168, b: 5 },
+        hint: `Hitung 7 hari × 24 jam untuk 1 minggu. Lalu bagi 840 dengan hasil tersebut!`,
+        explanation: `Dalam 1 minggu terdapat 7 × 24 = 168 jam. Untuk 840 jam, banyak minggunya adalah 840 ÷ 168 = 5 minggu (cek: 3 minggu = 3 × 168 = 504 jam).`
+      }
+    ];
+
+    /* Application State */
+    let appState = {
+      topicFilter: `all`,
+      currentIndex: 0,
+      responses: {}, /* { [qid]: { correct: bool, userAnswer: any } } */
+      streak: 0,
+      showHint: false,
+      showFormula: false,
+      viewResults: false,
+      reflections: {}
+    };
+
+    function getFilteredQuestions() {
+      if (appState.topicFilter === `all`) return QUESTIONS;
+      return QUESTIONS.filter(function(q) { return q.topic === appState.topicFilter; });
+    }
+
+    function getTopicLabel(topicId) {
+      for (let i = 0; i < TOPIC_META.length; i++) {
+        if (TOPIC_META[i].id === topicId) return TOPIC_META[i].label;
+      }
+      return topicId;
+    }
+
+    async function saveAppState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (e) {
+          /* ignore persistence errors gracefully */
+        }
+      }
+    }
+
+    function renderVisual(visualKey) {
+      if (!visualKey) return ``;
+      if (visualKey === `trees`) {
+        return `
+          <svg width="440" height="120" viewBox="0 0 440 120" role="img" aria-label="4 pohon pucuk merah dan 6 pohon cemara">
+            <text x="16" y="22" font-size="13" font-weight="700" fill="var(--primary)">Pucuk Merah (4 pohon)</text>
+            <g transform="translate(18, 34)">
+              <rect x="13" y="34" width="6" height="16" rx="3" fill="var(--data-4)"></rect>
+              <circle cx="16" cy="22" r="16" fill="var(--primary)"></circle>
+              <rect x="55" y="34" width="6" height="16" rx="3" fill="var(--data-4)"></rect>
+              <circle cx="58" cy="22" r="16" fill="var(--primary)"></circle>
+              <rect x="97" y="34" width="6" height="16" rx="3" fill="var(--data-4)"></rect>
+              <circle cx="100" cy="22" r="16" fill="var(--primary)"></circle>
+              <rect x="139" y="34" width="6" height="16" rx="3" fill="var(--data-4)"></rect>
+              <circle cx="142" cy="22" r="16" fill="var(--primary)"></circle>
+            </g>
+            <text x="220" y="22" font-size="13" font-weight="700" fill="var(--secondary)">Pohon Cemara (6 pohon)</text>
+            <g transform="translate(220, 34)">
+              <rect x="12" y="36" width="6" height="14" rx="3" fill="var(--data-4)"></rect>
+              <polygon points="15,4 3,38 27,38" fill="var(--secondary)"></polygon>
+              <rect x="46" y="36" width="6" height="14" rx="3" fill="var(--data-4)"></rect>
+              <polygon points="49,4 37,38 61,38" fill="var(--secondary)"></polygon>
+              <rect x="80" y="36" width="6" height="14" rx="3" fill="var(--data-4)"></rect>
+              <polygon points="83,4 71,38 95,38" fill="var(--secondary)"></polygon>
+              <rect x="114" y="36" width="6" height="14" rx="3" fill="var(--data-4)"></rect>
+              <polygon points="117,4 105,38 129,38" fill="var(--secondary)"></polygon>
+              <rect x="148" y="36" width="6" height="14" rx="3" fill="var(--data-4)"></rect>
+              <polygon points="151,4 139,38 163,38" fill="var(--secondary)"></polygon>
+              <rect x="182" y="36" width="6" height="14" rx="3" fill="var(--data-4)"></rect>
+              <polygon points="185,4 173,38 197,38" fill="var(--secondary)"></polygon>
+            </g>
+          </svg>
+        `;
+      }
+      if (visualKey === `packages`) {
+        return `
+          <svg width="460" height="110" viewBox="0 0 460 110" role="img" aria-label="Perbandingan Paket A 3 bibit Rp37.500 dan Paket B 5 bibit Rp58.000">
+            <rect x="8" y="10" width="208" height="90" rx="18" fill="var(--surface-container-low)"></rect>
+            <text x="24" y="36" font-size="13" font-weight="800" fill="var(--primary)">PAKET A — 3 Bibit</text>
+            <text x="24" y="64" font-size="20" font-weight="900" fill="var(--on-surface)">Rp37.500,00</text>
+            <text x="24" y="86" font-size="12" font-weight="600" fill="var(--on-surface-variant)">Berapa harga 1 bibit?</text>
+
+            <rect x="244" y="10" width="208" height="90" rx="18" fill="var(--surface-container-low)"></rect>
+            <text x="260" y="36" font-size="13" font-weight="800" fill="var(--secondary)">PAKET B — 5 Bibit</text>
+            <text x="260" y="64" font-size="20" font-weight="900" fill="var(--on-surface)">Rp58.000,00</text>
+            <text x="260" y="86" font-size="12" font-weight="600" fill="var(--on-surface-variant)">Berapa harga 1 bibit?</text>
+          </svg>
+        `;
+      }
+      if (visualKey === `chocolate`) {
+        return `
+          <svg width="460" height="106" viewBox="0 0 460 106" role="img" aria-label="Resep Dony 30 ml sirup dan 2 sendok teh susu dibanding Hana 65 ml sirup dan 5 sendok teh susu">
+            <rect x="8" y="8" width="208" height="90" rx="18" fill="var(--surface-container-low)"></rect>
+            <text x="24" y="34" font-size="14" font-weight="800" fill="var(--primary)">Racikan Dony</text>
+            <text x="24" y="58" font-size="15" font-weight="700" fill="var(--on-surface)">30 ml sirup cokelat</text>
+            <text x="24" y="80" font-size="13" font-weight="600" fill="var(--on-surface-variant)">untuk 2 sendok teh susu</text>
+
+            <rect x="244" y="8" width="208" height="90" rx="18" fill="var(--surface-container-low)"></rect>
+            <text x="260" y="34" font-size="14" font-weight="800" fill="var(--secondary)">Racikan Hana</text>
+            <text x="260" y="58" font-size="15" font-weight="700" fill="var(--on-surface)">65 ml sirup cokelat</text>
+            <text x="260" y="80" font-size="13" font-weight="600" fill="var(--on-surface-variant)">untuk 5 sendok teh susu</text>
+          </svg>
+        `;
+      }
+      if (visualKey === `partwhole`) {
+        return `
+          <svg width="460" height="92" viewBox="0 0 460 92" role="img" aria-label="Diagram batang 4 bagian tanaman hias dan 5 bagian tanaman obat menjadi 9 bagian keseluruhan">
+            <text x="12" y="22" font-size="13" font-weight="700" fill="var(--on-surface)">Tanaman Hias (4 bagian) + Tanaman Obat (5 bagian) = Seluruhnya (9 bagian)</text>
+            <rect x="12" y="34" width="184" height="36" rx="18" fill="var(--primary)"></rect>
+            <text x="104" y="57" text-anchor="middle" font-size="13" font-weight="800" fill="var(--on-primary)">Hias: 4</text>
+            <rect x="204" y="34" width="236" height="36" rx="18" fill="var(--secondary)"></rect>
+            <text x="322" y="57" text-anchor="middle" font-size="13" font-weight="800" fill="var(--on-secondary)">Obat: 5</text>
+          </svg>
+        `;
+      }
+      if (visualKey === `timebar`) {
+        return `
+          <svg width="460" height="96" viewBox="0 0 460 96" role="img" aria-label="Perbandingan durasi waktu Ayah 10 menit dan Tigor dua pertiga jam">
+            <text x="14" y="26" font-size="13" font-weight="800" fill="var(--primary)">Ayah: 10 menit</text>
+            <rect x="140" y="12" width="70" height="22" rx="11" fill="var(--primary)"></rect>
+            <text x="14" y="68" font-size="13" font-weight="800" fill="var(--secondary)">Tigor: 2/3 jam</text>
+            <rect x="140" y="54" width="280" height="22" rx="11" fill="var(--tertiary)"></rect>
+            <text x="280" y="69" text-anchor="middle" font-size="12" font-weight="800" fill="var(--on-surface)">= … menit?</text>
+          </svg>
+        `;
+      }
+      return ``;
+    }
+
+    function renderMetrics() {
+      const total = QUESTIONS.length;
+      let answered = 0;
+      let correct = 0;
+      for (let i = 0; i < total; i++) {
+        const res = appState.responses[QUESTIONS[i].id];
+        if (res) {
+          answered++;
+          if (res.correct) correct++;
+        }
+      }
+      const score = Math.round((correct / total) * 100);
+
+      const elAns = document.getElementById(`stat-answered`);
+      if (elAns) elAns.textContent = answered + ` / ` + total;
+
+      const elScore = document.getElementById(`stat-score`);
+      if (elScore) elScore.textContent = String(score);
+
+      const elStreak = document.getElementById(`stat-streak`);
+      if (elStreak) elStreak.textContent = String(appState.streak);
+    }
+
+    function renderTopicPills() {
+      const container = document.getElementById(`topic-pills`);
+      if (!container) return;
+      const buttons = container.querySelectorAll(`button[data-topic]`);
+      for (let i = 0; i < buttons.length; i++) {
+        const btn = buttons[i];
+        if (btn.getAttribute(`data-topic`) === appState.topicFilter) {
+          btn.classList.add(`is-active`);
+        } else {
+          btn.classList.remove(`is-active`);
+        }
+      }
+    }
+
+    function renderQuestionMap() {
+      const mapEl = document.getElementById(`q-map-grid`);
+      if (!mapEl) return;
+      const list = getFilteredQuestions();
+      let html = ``;
+      for (let i = 0; i < list.length; i++) {
+        const q = list[i];
+        const res = appState.responses[q.id];
+        let cls = `q-map-btn`;
+        if (i === appState.currentIndex) cls += ` is-current`;
+        if (res) {
+          cls += res.correct ? ` is-correct` : ` is-wrong`;
+        }
+        html += `<button type="button" class="` + cls + `" onclick="jumpToQuestion(` + i + `)" aria-label="Buka soal ` + (i + 1) + `">` + (i + 1) + `</button>`;
+      }
+      mapEl.innerHTML = html;
+    }
+
+    function renderMasterySidebar() {
+      const listEl = document.getElementById(`mastery-list`);
+      if (!listEl) return;
+      let html = ``;
+      for (let t = 0; t < TOPIC_META.length; t++) {
+        const meta = TOPIC_META[t];
+        const topicQs = QUESTIONS.filter(function(q) { return q.topic === meta.id; });
+        let right = 0;
+        for (let j = 0; j < topicQs.length; j++) {
+          const r = appState.responses[topicQs[j].id];
+          if (r && r.correct) right++;
+        }
+        const pct = Math.round((right / topicQs.length) * 100);
+        html += `
+          <div class="mastery-item">
+            <div class="mastery-head">
+              <span>` + meta.short + `</span>
+              <span>` + right + `/` + topicQs.length + `</span>
+            </div>
+            <div class="mastery-track">
+              <div class="mastery-fill ` + meta.colorClass + `" style="width: ` + pct + `%;"></div>
+            </div>
+          </div>
+        `;
+      }
+      listEl.innerHTML = html;
+    }
+
+    function renderAnswerArea(q) {
+      const area = document.getElementById(`answer-area`);
+      if (!area) return;
+      const saved = appState.responses[q.id];
+      const locked = Boolean(saved);
+
+      if (q.type === `mcq`) {
+        const letters = [`A`, `B`, `C`, `D`];
+        const twoCol = q.options.every(function(opt) { return opt.length < 48; });
+        let html = `<div class="options-grid` + (twoCol ? ` two-col` : ``) + `" role="radiogroup" aria-label="Pilihan jawaban">`;
+        for (let i = 0; i < q.options.length; i++) {
+          let cls = `option-btn`;
+          if (locked) {
+            if (i === q.correctIndex) cls += ` is-correct`;
+            else if (saved.userAnswer === i && !saved.correct) cls += ` is-wrong`;
+          } else if (window.pendingMcqIndex === i) {
+            cls += ` is-selected`;
+          }
+          html += `
+            <button type="button" class="` + cls + `" ` + (locked ? `disabled` : `onclick="selectMcqOption(` + i + `)"`) + `>
+              <span class="option-letter">` + letters[i] + `</span>
+              <span>` + q.options[i] + `</span>
+            </button>
+          `;
+        }
+        html += `</div>`;
+        area.innerHTML = html;
+      } else if (q.type === `ratio`) {
+        const valA = locked ? saved.userAnswer.a : ``;
+        const valB = locked ? saved.userAnswer.b : ``;
+        let clsA = `pill-input`;
+        let clsB = `pill-input`;
+        if (locked) {
+          clsA += (Number(valA) === q.correctA) ? ` is-correct` : ` is-wrong`;
+          clsB += (Number(valB) === q.correctB) ? ` is-correct` : ` is-wrong`;
+        }
+        area.innerHTML = `
+          <div class="input-row">
+            <div class="field-group">
+              <label class="field-label" for="inp-ratio-a">` + q.labelA + `</label>
+              <input id="inp-ratio-a" type="number" inputmode="numeric" class="` + clsA + `" value="` + valA + `" ` + (locked ? `disabled` : ``) + `>
+            </div>
+            <span class="ratio-colon" aria-hidden="true">:</span>
+            <div class="field-group">
+              <label class="field-label" for="inp-ratio-b">` + q.labelB + `</label>
+              <input id="inp-ratio-b" type="number" inputmode="numeric" class="` + clsB + `" value="` + valB + `" ` + (locked ? `disabled` : ``) + `>
+            </div>
+          </div>
+        `;
+      } else if (q.type === `number`) {
+        const val = locked ? saved.userAnswer : ``;
+        let cls = `pill-input`;
+        if (locked) cls += saved.correct ? ` is-correct` : ` is-wrong`;
+        area.innerHTML = `
+          <div class="input-row">
+            <div class="field-group">
+              <label class="field-label" for="inp-single-num">` + q.label + `</label>
+              <input id="inp-single-num" type="number" inputmode="numeric" class="` + cls + `" value="` + val + `" ` + (locked ? `disabled` : ``) + `>
+            </div>
+            <span class="unit-text">` + q.unit + `</span>
+          </div>
+        `;
+      } else if (q.type === `dual-number`) {
+        const valA = locked ? saved.userAnswer.a : ``;
+        const valB = locked ? saved.userAnswer.b : ``;
+        let clsA = `pill-input`;
+        let clsB = `pill-input`;
+        if (locked) {
+          clsA += (Number(valA) === q.correctA) ? ` is-correct` : ` is-wrong`;
+          clsB += (Number(valB) === q.correctB) ? ` is-correct` : ` is-wrong`;
+        }
+        area.innerHTML = `
+          <div class="input-row">
+            <div class="field-group">
+              <label class="field-label" for="inp-dual-a">` + q.labelA + `</label>
+              <input id="inp-dual-a" type="number" inputmode="numeric" class="` + clsA + `" value="` + valA + `" ` + (locked ? `disabled` : ``) + `>
+            </div>
+            <span class="unit-text">` + q.unitA + `</span>
+            <div class="field-group">
+              <label class="field-label" for="inp-dual-b">` + q.labelB + `</label>
+              <input id="inp-dual-b" type="number" inputmode="numeric" class="` + clsB + `" value="` + valB + `" ` + (locked ? `disabled` : ``) + `>
+            </div>
+            <span class="unit-text">` + q.unitB + `</span>
+          </div>
+        `;
+      } else if (q.type === `table`) {
+        let html = `<div class="ratio-table-wrap"><table class="ratio-table"><thead><tr>`;
+        for (let h = 0; h < q.headers.length; h++) {
+          html += `<th>` + q.headers[h] + `</th>`;
+        }
+        html += `</tr></thead><tbody>`;
+        for (let r = 0; r < q.rows.length; r++) {
+          const row = q.rows[r];
+          if (row.type === `op`) {
+            html += `<tr class="is-op-row">`;
+            for (let c = 0; c < row.cells.length; c++) {
+              html += `<td>` + row.cells[c] + `</td>`;
+            }
+            html += `</tr>`;
+          } else {
+            html += `<tr>`;
+            for (let c = 0; c < row.cells.length; c++) {
+              const cell = row.cells[c];
+              if (cell.kind === `text`) {
+                html += `<td>` + cell.value + `</td>`;
+              } else {
+                const key = cell.key;
+                const val = locked ? saved.userAnswer[key] : ``;
+                let cls = `pill-input`;
+                if (locked) {
+                  cls += (Number(val) === q.answers[key]) ? ` is-correct` : ` is-wrong`;
+                }
+                const inpId = `inp-tbl-` + key;
+                html += `
+                  <td>
+                    <div class="table-field">
+                      <label class="field-label" for="` + inpId + `">` + cell.label + `</label>
+                      <input id="` + inpId + `" type="number" inputmode="numeric" class="` + cls + `" value="` + val + `" ` + (locked ? `disabled` : ``) + `>
+                    </div>
+                  </td>
+                `;
+              }
+            }
+            html += `</tr>`;
+          }
+        }
+        html += `</tbody></table></div>`;
+        area.innerHTML = html;
+      }
+    }
+
+    function renderCurrentQuestion() {
+      const list = getFilteredQuestions();
+      if (appState.currentIndex >= list.length) appState.currentIndex = 0;
+      const q = list[appState.currentIndex];
+      window.pendingMcqIndex = null;
+
+      /* Progress bar */
+      let answeredInList = 0;
+      for (let i = 0; i < list.length; i++) {
+        if (appState.responses[list[i].id]) answeredInList++;
+      }
+      const pct = Math.round((answeredInList / list.length) * 100);
+      const progText = document.getElementById(`progress-text`);
+      if (progText) progText.textContent = `Soal ` + (appState.currentIndex + 1) + ` dari ` + list.length;
+      const progPct = document.getElementById(`progress-pct`);
+      if (progPct) progPct.textContent = pct + `% selesai`;
+      const progFill = document.getElementById(`progress-fill`);
+      if (progFill) progFill.style.width = pct + `%`;
+      const progAria = document.getElementById(`progress-bar-aria`);
+      if (progAria) progAria.setAttribute(`aria-valuenow`, String(pct));
+
+      /* Tags & Text */
+      const topicEl = document.getElementById(`q-topic-label`);
+      if (topicEl) topicEl.textContent = getTopicLabel(q.topic);
+      const typeEl = document.getElementById(`q-type-label`);
+      if (typeEl) typeEl.textContent = q.typeLabel;
+      const ctxEl = document.getElementById(`q-context`);
+      if (ctxEl) ctxEl.textContent = q.context;
+      const promptEl = document.getElementById(`q-prompt`);
+      if (promptEl) promptEl.textContent = q.prompt;
+
+      /* Hint */
+      const hintBox = document.getElementById(`hint-box`);
+      const hintTxt = document.getElementById(`hint-text`);
+      if (hintTxt) hintTxt.textContent = q.hint;
+      if (hintBox) hintBox.hidden = !appState.showHint;
+
+      /* Visual */
+      const visEl = document.getElementById(`q-visual`);
+      if (visEl) {
+        const svgMarkup = renderVisual(q.visual);
+        if (svgMarkup) {
+          visEl.innerHTML = svgMarkup;
+          visEl.hidden = false;
+        } else {
+          visEl.innerHTML = ``;
+          visEl.hidden = true;
+        }
+      }
+
+      /* Inline msg reset */
+      const inlineMsg = document.getElementById(`inline-msg`);
+      if (inlineMsg) inlineMsg.hidden = true;
+
+      renderAnswerArea(q);
+
+      /* Buttons & Feedback */
+      const saved = appState.responses[q.id];
+      const submitBtn = document.getElementById(`btn-submit`);
+      if (submitBtn) submitBtn.disabled = Boolean(saved);
+
+      const prevBtn = document.getElementById(`btn-prev`);
+      if (prevBtn) prevBtn.disabled = appState.currentIndex === 0;
+
+      const nextBtn = document.getElementById(`btn-next`);
+      if (nextBtn) {
+        if (appState.currentIndex === list.length - 1) {
+          nextBtn.textContent = `Lihat Rapor Akhir →`;
+        } else {
+          nextBtn.textContent = `Soal Berikutnya →`;
+        }
+      }
+
+      const fbPanel = document.getElementById(`feedback-panel`);
+      const fbTitle = document.getElementById(`feedback-title`);
+      const fbBody = document.getElementById(`feedback-body`);
+      if (fbPanel && fbTitle && fbBody) {
+        if (saved) {
+          fbPanel.hidden = false;
+          fbPanel.className = `feedback-panel ` + (saved.correct ? `is-correct` : `is-wrong`);
+          fbTitle.textContent = saved.correct
+            ? `Benar! Hebat sekali!`
+            : `Belum Tepat — Yuk Pelajari Caranya`;
+          fbBody.textContent = q.explanation;
+        } else {
+          fbPanel.hidden = true;
+        }
+      }
+
+      renderQuestionMap();
+      renderMasterySidebar();
+      renderMetrics();
+    }
+
+    function selectMcqOption(idx) {
+      window.pendingMcqIndex = idx;
+      const area = document.getElementById(`answer-area`);
+      if (!area) return;
+      const btns = area.querySelectorAll(`.option-btn`);
+      for (let i = 0; i < btns.length; i++) {
+        if (i === idx) btns[i].classList.add(`is-selected`);
+        else btns[i].classList.remove(`is-selected`);
+      }
+      const inlineMsg = document.getElementById(`inline-msg`);
+      if (inlineMsg) inlineMsg.hidden = true;
+    }
+
+    function showInlineError(text) {
+      const msg = document.getElementById(`inline-msg`);
+      if (!msg) return;
+      msg.textContent = text;
+      msg.hidden = false;
+    }
+
+    function submitCurrentAnswer() {
+      const list = getFilteredQuestions();
+      const q = list[appState.currentIndex];
+      if (!q || appState.responses[q.id]) return;
+
+      let isCorrect = false;
+      let userAnswer = null;
+
+      if (q.type === `mcq`) {
+        if (window.pendingMcqIndex === null || window.pendingMcqIndex === undefined) {
+          showInlineError(`Pilih salah satu jawaban (A, B, C, atau D) terlebih dahulu!`);
+          return;
+        }
+        userAnswer = window.pendingMcqIndex;
+        isCorrect = (userAnswer === q.correctIndex);
+      } else if (q.type === `ratio`) {
+        const elA = document.getElementById(`inp-ratio-a`);
+        const elB = document.getElementById(`inp-ratio-b`);
+        if (!elA || !elB || elA.value.trim() === `` || elB.value.trim() === ``) {
+          showInlineError(`Isi kedua kotak angka rasio terlebih dahulu!`);
+          return;
+        }
+        const a = Number(elA.value);
+        const b = Number(elB.value);
+        userAnswer = { a: a, b: b };
+        isCorrect = (a === q.correctA && b === q.correctB);
+      } else if (q.type === `number`) {
+        const el = document.getElementById(`inp-single-num`);
+        if (!el || el.value.trim() === ``) {
+          showInlineError(`Masukkan jawaban angkanya terlebih dahulu!`);
+          return;
+        }
+        userAnswer = Number(el.value);
+        isCorrect = (userAnswer === q.correctValue);
+      } else if (q.type === `dual-number`) {
+        const elA = document.getElementById(`inp-dual-a`);
+        const elB = document.getElementById(`inp-dual-b`);
+        if (!elA || !elB || elA.value.trim() === `` || elB.value.trim() === ``) {
+          showInlineError(`Lengkapi kedua kotak jumlah buku terlebih dahulu!`);
+          return;
+        }
+        const a = Number(elA.value);
+        const b = Number(elB.value);
+        userAnswer = { a: a, b: b };
+        isCorrect = (a === q.correctA && b === q.correctB);
+      } else if (q.type === `table`) {
+        const elA = document.getElementById(`inp-tbl-a`);
+        const elB = document.getElementById(`inp-tbl-b`);
+        if (!elA || !elB || elA.value.trim() === `` || elB.value.trim() === ``) {
+          showInlineError(`Isi kedua kotak kosong pada tabel rasio terlebih dahulu!`);
+          return;
+        }
+        const a = Number(elA.value);
+        const b = Number(elB.value);
+        userAnswer = { a: a, b: b };
+        isCorrect = (a === q.answers.a && b === q.answers.b);
+      }
+
+      appState.responses[q.id] = { correct: isCorrect, userAnswer: userAnswer };
+      if (isCorrect) appState.streak = appState.streak + 1;
+      else appState.streak = 0;
+
+      appState.showHint = false;
+      renderCurrentQuestion();
+      saveAppState();
+    }
+
+    function navigateQuestion(delta) {
+      const list = getFilteredQuestions();
+      if (delta > 0 && appState.currentIndex === list.length - 1) {
+        toggleResultsView(true);
+        return;
+      }
+      const next = appState.currentIndex + delta;
+      if (next >= 0 && next < list.length) {
+        appState.currentIndex = next;
+        appState.showHint = false;
+        renderCurrentQuestion();
+        saveAppState();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      const list = getFilteredQuestions();
+      if (idx >= 0 && idx < list.length) {
+        appState.currentIndex = idx;
+        appState.showHint = false;
+        toggleResultsView(false);
+        renderCurrentQuestion();
+        saveAppState();
+      }
+    }
+
+    function setTopicFilter(topicId) {
+      appState.topicFilter = topicId;
+      appState.currentIndex = 0;
+      appState.showHint = false;
+      appState.viewResults = false;
+      renderTopicPills();
+      toggleResultsView(false);
+      renderCurrentQuestion();
+      saveAppState();
+    }
+
+    function toggleHint() {
+      appState.showHint = !appState.showHint;
+      const box = document.getElementById(`hint-box`);
+      if (box) box.hidden = !appState.showHint;
+    }
+
+    function toggleFormulaDrawer() {
+      appState.showFormula = !appState.showFormula;
+      const drawer = document.getElementById(`formula-drawer`);
+      const btn = document.getElementById(`btn-toggle-formula`);
+      if (drawer) drawer.hidden = !appState.showFormula;
+      if (btn) btn.setAttribute(`aria-expanded`, String(appState.showFormula));
+    }
+
+    function renderResultsChart() {
+      const box = document.getElementById(`mastery-chart-svg`);
+      if (!box) return;
+      const colors = [`var(--data-1)`, `var(--data-2)`, `var(--data-3)`, `var(--data-4)`, `var(--data-1)`, `var(--data-2)`];
+      let svg = `<svg width="100%" height="240" viewBox="0 0 520 240" role="img" aria-label="Grafik batang penguasaan 6 subtopik rasio">`;
+
+      for (let i = 0; i < TOPIC_META.length; i++) {
+        const meta = TOPIC_META[i];
+        const topicQs = QUESTIONS.filter(function(q) { return q.topic === meta.id; });
+        let right = 0;
+        for (let j = 0; j < topicQs.length; j++) {
+          const r = appState.responses[topicQs[j].id];
+          if (r && r.correct) right++;
+        }
+        const pct = Math.round((right / topicQs.length) * 100);
+        const y = 14 + i * 37;
+        const barMax = 250;
+        const barW = Math.max(12, Math.round((pct / 100) * barMax));
+
+        svg += `<text x="6" y="` + (y + 16) + `" font-size="13" font-weight="700" fill="var(--on-surface)">` + meta.short + `</text>`;
+        svg += `<rect x="165" y="` + (y + 2) + `" width="` + barMax + `" height="18" rx="9" fill="var(--surface-container-high)"></rect>`;
+        if (right > 0) {
+          svg += `<rect x="165" y="` + (y + 2) + `" width="` + barW + `" height="18" rx="9" fill="` + colors[i] + `"></rect>`;
+        }
+        svg += `<text x="428" y="` + (y + 16) + `" font-size="13" font-weight="800" fill="var(--on-surface)">` + right + `/` + topicQs.length + ` (` + pct + `%)</text>`;
+      }
+
+      svg += `</svg>`;
+      box.innerHTML = svg;
+    }
+
+    function renderReflectionList() {
+      const listEl = document.getElementById(`reflection-list`);
+      if (!listEl) return;
+      let html = ``;
+      for (let i = 0; i < REFLECTION_ITEMS.length; i++) {
+        const checked = Boolean(appState.reflections[i]);
+        html += `
+          <label class="reflection-item">
+            <input type="checkbox" ` + (checked ? `checked` : ``) + ` onchange="toggleReflection(` + i + `, this.checked)">
+            <span>` + REFLECTION_ITEMS[i] + `</span>
+          </label>
+        `;
+      }
+      listEl.innerHTML = html;
+    }
+
+    function toggleReflection(idx, checked) {
+      appState.reflections[idx] = checked;
+      saveAppState();
+    }
+
+    function toggleResultsView(show) {
+      appState.viewResults = show;
+      const ws = document.getElementById(`quiz-workspace`);
+      const rp = document.getElementById(`results-panel`);
+      if (ws) ws.hidden = show;
+      if (rp) rp.hidden = !show;
+
+      if (show) {
+        let answered = 0;
+        let correct = 0;
+        let wrong = 0;
+        for (let i = 0; i < QUESTIONS.length; i++) {
+          const r = appState.responses[QUESTIONS[i].id];
+          if (r) {
+            answered++;
+            if (r.correct) correct++;
+            else wrong++;
+          }
+        }
+        const score = Math.round((correct / QUESTIONS.length) * 100);
+        const elScore = document.getElementById(`final-score-num`);
+        if (elScore) elScore.textContent = String(score);
+
+        const elPred = document.getElementById(`final-predicate`);
+        if (elPred) {
+          if (answered === 0) elPred.textContent = `Belum Ada Jawaban`;
+          else if (score >= 85) elPred.textContent = `Bintang Rasio!`;
+          else if (score >= 70) elPred.textContent = `Hebat & Terus Berlatih`;
+          else elPred.textContent = `Ayo Ulangi Lagi!`;
+        }
+
+        const elSum = document.getElementById(`final-summary-text`);
+        if (elSum) {
+          elSum.textContent = `Kamu menjawab benar ` + correct + ` soal, salah ` + wrong + ` soal, dan belum menjawab ` + (QUESTIONS.length - answered) + ` soal dari total 18 soal.`;
+        }
+
+        const retryBtn = document.getElementById(`btn-retry-wrong`);
+        if (retryBtn) retryBtn.disabled = (wrong === 0);
+
+        renderResultsChart();
+        renderReflectionList();
+      }
+      saveAppState();
+    }
+
+    function retryWrongQuestions() {
+      let firstWrongTopic = null;
+      for (let i = 0; i < QUESTIONS.length; i++) {
+        const q = QUESTIONS[i];
+        const r = appState.responses[q.id];
+        if (r && !r.correct) {
+          delete appState.responses[q.id];
+          if (firstWrongTopic === null) firstWrongTopic = i;
+        }
+      }
+      appState.topicFilter = `all`;
+      appState.currentIndex = firstWrongTopic !== null ? firstWrongTopic : 0;
+      appState.streak = 0;
+      renderTopicPills();
+      toggleResultsView(false);
+      renderCurrentQuestion();
+      saveAppState();
+    }
+
+    function handleResetQuiz(btn) {
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.classList.add(`btn-danger-arm`);
+        btn.textContent = `Klik lagi untuk konfirmasi`;
+        window.setTimeout(function() {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.classList.remove(`btn-danger-arm`);
+            btn.textContent = btn.id === `btn-restart-all` ? `Mulai Kuis dari Awal` : `Ulangi Kuis`;
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.classList.remove(`btn-danger-arm`);
+      btn.textContent = btn.id === `btn-restart-all` ? `Mulai Kuis dari Awal` : `Ulangi Kuis`;
+
+      appState = {
+        topicFilter: `all`,
+        currentIndex: 0,
+        responses: {},
+        streak: 0,
+        showHint: false,
+        showFormula: false,
+        viewResults: false,
+        reflections: {}
+      };
+      renderTopicPills();
+      toggleResultsView(false);
+      renderCurrentQuestion();
+      saveAppState();
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState.topicFilter = saved.topicFilter || `all`;
+            appState.currentIndex = typeof saved.currentIndex === `number` ? saved.currentIndex : 0;
+            appState.responses = saved.responses && typeof saved.responses === `object` ? saved.responses : {};
+            appState.streak = typeof saved.streak === `number` ? saved.streak : 0;
+            appState.showFormula = Boolean(saved.showFormula);
+            appState.viewResults = Boolean(saved.viewResults);
+            appState.reflections = saved.reflections && typeof saved.reflections === `object` ? saved.reflections : {};
+          }
+        } catch (e) {
+          /* start fresh on error */
+        }
+      }
+
+      renderTopicPills();
+      const drawer = document.getElementById(`formula-drawer`);
+      if (drawer) drawer.hidden = !appState.showFormula;
+      renderCurrentQuestion();
+      if (appState.viewResults) {
+        toggleResultsView(true);
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

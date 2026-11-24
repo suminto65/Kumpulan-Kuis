@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Interaktif Peluang — Matematika Kelas VI SD</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-container: #eadcf8;
+      --tertiary: #0096cc;
+      --tertiary-container: #dcf4fc;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fde8e8;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(21 128 61 / 0.18);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Shared semantic tokens */
+      --positive: #15803d;
+      --on-positive: #ffffff;
+      --positive-container: #dcfce7;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --focus: #c2207f;
+
+      /* Illustration tokens */
+      --ball-red: #e11d48;
+      --ball-blue: #0284c7;
+      --ball-yellow: #eab308;
+      --ball-green: #16a34a;
+      --ball-purple: #7c52aa;
+      --ball-white: #ffffff;
+      --gold-accent: #f59e0b;
+
+      /* Type scale (Focused Tool with Sticker prominence) */
+      --display-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.5rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Header & Title */
+    .hero-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: flex-start;
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      background: var(--surface-container-low);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+    }
+
+    /* Live Metrics Strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      animation: cardEnter var(--dur-long) var(--ease-bounce) both;
+    }
+
+    .stat-card:nth-child(2) {
+      box-shadow: var(--shadow-sky);
+      animation-delay: 60ms;
+    }
+
+    .stat-card:nth-child(3) {
+      box-shadow: var(--shadow-grape);
+      animation-delay: 120ms;
+    }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .stat-value-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .stat-value {
+      font-weight: 900;
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    .stat-value.accent {
+      color: var(--primary);
+    }
+
+    .stat-caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+
+    /* Topic Filter & Toolbar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .segmented {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      padding: var(--space-xs);
+      border-radius: var(--rounded-full);
+    }
+
+    .seg-btn {
+      border: none;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .seg-btn:hover {
+      color: var(--on-surface);
+      transform: var(--pop-scale);
+    }
+
+    .seg-btn.active {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      border: none;
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 44px;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    .btn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: var(--shadow-pink-deep);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .btn-outline {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+
+    /* Main Workspace */
+    .quiz-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .quiz-stage {
+      container-type: inline-size;
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .stage-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .stage-meta-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .q-counter {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-pill.unanswered {
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+    }
+
+    .status-pill.correct {
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+
+    .status-pill.wrong {
+      background: var(--error-container);
+      color: var(--error);
+    }
+
+    .question-context {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+    }
+
+    .question-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .visual-well {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .visual-well svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .visual-caption {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin: 0;
+    }
+
+    /* Options List */
+    .options-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .option-btn {
+      width: 100%;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      text-align: left;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border: 2px solid transparent;
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--surface-container-low);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--primary);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-pink);
+    }
+
+    .option-text {
+      flex: 1;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .option-state-icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-positive);
+    }
+
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+      box-shadow: none;
+    }
+
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+      box-shadow: none;
+    }
+
+    .option-btn.is-dimmed {
+      opacity: 0.62;
+    }
+
+    /* Instant Feedback Banner */
+    .feedback-panel {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      animation: popIn var(--dur-short) var(--ease-bounce) both;
+    }
+
+    .feedback-panel.correct {
+      background: var(--positive-container);
+      color: var(--on-surface);
+    }
+
+    .feedback-panel.wrong {
+      background: var(--warning-container);
+      color: var(--on-surface);
+    }
+
+    .feedback-head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+    }
+
+    .feedback-head.correct { color: var(--positive); }
+    .feedback-head.wrong { color: var(--warning); }
+
+    .feedback-body {
+      margin: 0;
+      line-height: 1.55;
+      color: var(--on-surface);
+    }
+
+    /* Stage Navigation Footer */
+    .stage-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    .stage-nav-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Side Column */
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .side-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-grape);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .side-card.sky-shadow {
+      box-shadow: var(--shadow-sky);
+    }
+
+    .side-heading {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .q-pill-btn {
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid transparent;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+
+    .q-pill-btn:hover {
+      transform: var(--pop-scale);
+    }
+
+    .q-pill-btn.current {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    .q-pill-btn.correct {
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+
+    .q-pill-btn.wrong {
+      background: var(--error-container);
+      color: var(--error);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-md);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--rounded-full);
+      display: inline-block;
+    }
+
+    .legend-dot.idle { background: var(--surface-container-high); }
+    .legend-dot.done-ok { background: var(--positive); }
+    .legend-dot.done-err { background: var(--error); }
+
+    /* Interactive Mini Probability Scale */
+    .scale-lab {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .scale-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .scale-slider {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    .scale-readout {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .scale-category {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .scale-example {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Data Table for Soal 7 */
+    .book-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--rounded);
+      overflow: hidden;
+      background: var(--surface-container-low);
+      font-size: 0.9rem;
+    }
+
+    .book-table th {
+      background: var(--surface-container-high);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .book-table td {
+      padding: var(--space-sm) var(--space-md);
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    .book-table tr:nth-child(even) td {
+      background: var(--surface-container);
+    }
+
+    /* Results / Rapor View */
+    .results-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-pink-deep);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      animation: popIn var(--dur-long) var(--ease-bounce) both;
+    }
+
+    .results-hero {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .score-medal {
+      width: 150px;
+      height: 150px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      box-shadow: var(--shadow-pink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-md);
+    }
+
+    .score-big {
+      font-weight: 900;
+      font-size: 2.75rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .score-sub {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+
+    .mastery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .mastery-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .mastery-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+
+    .mastery-score {
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .results-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .review-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+
+    .review-chip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      border: none;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-align: left;
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+
+    .review-chip:hover {
+      transform: var(--pop-scale);
+    }
+
+    .review-chip.ok {
+      background: var(--positive-container);
+      color: var(--positive);
+    }
+
+    .review-chip.err {
+      background: var(--error-container);
+      color: var(--error);
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      padding-top: var(--space-sm);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @container (max-width: 480px) {
+      .stage-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .stage-nav-group {
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .quiz-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .stats-strip {
+        grid-template-columns: 1fr;
+      }
+      .quiz-stage, .results-panel {
+        padding: var(--space-lg);
+      }
+      .results-hero {
+        grid-template-columns: 1fr;
+        justify-items: start;
+      }
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Header -->
+    <header class="hero-header">
+      <div class="kicker-row">
+        <span class="badge">Matematika Kelas VI SD</span>
+        <span class="tag">Bab 4: Peluang</span>
+      </div>
+      <h1 class="display">Kuis Interaktif <em>Peluang</em></h1>
+      <p class="subtitle">
+        Uji pemahamanmu tentang derajat kemungkinan, skala peluang 0 hingga 1, peluang kejadian sederhana, serta pengambilan keputusan sehari-hari dengan umpan balik dan pembahasan instan.
+      </p>
+    </header>
+
+    <!-- Live Scoreboard -->
+    <section class="stats-strip" aria-label="Ringkasan Skor Langsung">
+      <article class="stat-card">
+        <span class="stat-label">Skor Langsung</span>
+        <div class="stat-value-row">
+          <span id="stat-score" class="stat-value accent">0</span>
+          <span id="stat-score-max" class="stat-caption">dari 160 poin</span>
+        </div>
+        <span id="stat-accuracy" class="stat-caption">Belum ada soal dijawab</span>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Progres Kuis</span>
+        <div class="stat-value-row">
+          <span id="stat-progress-text" class="stat-value">0 / 16</span>
+          <span class="stat-caption">soal selesai</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="stat-progress-bar" class="progress-fill"></div>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-label">Runtunan Benar</span>
+        <div class="stat-value-row">
+          <span id="stat-streak" class="stat-value">0</span>
+          <span id="stat-best-note" class="stat-caption">jawab tepat berturut-turut</span>
+        </div>
+        <span id="stat-record" class="stat-caption">Skor tertinggi: 0%</span>
+      </article>
+    </section>
+
+    <!-- Toolbar: Topic Filter + Actions -->
+    <section class="toolbar" aria-label="Filter Topik dan Kontrol Kuis">
+      <div class="segmented" role="tablist" aria-label="Pilih Topik Soal">
+        <button type="button" class="seg-btn active" data-topic="all" onclick="setTopicFilter('all')">Semua (16)</button>
+        <button type="button" class="seg-btn" data-topic="konsep" onclick="setTopicFilter('konsep')">Konsep Dasar</button>
+        <button type="button" class="seg-btn" data-topic="skala" onclick="setTopicFilter('skala')">Skala 0–1</button>
+        <button type="button" class="seg-btn" data-topic="sederhana" onclick="setTopicFilter('sederhana')">Kejadian Sederhana</button>
+        <button type="button" class="seg-btn" data-topic="keputusan" onclick="setTopicFilter('keputusan')">Keputusan Nyata</button>
+      </div>
+
+      <div class="toolbar-actions">
+        <button type="button" id="btn-show-results" class="btn btn-secondary" onclick="openResultsView()">
+          <i data-lucide="award" aria-hidden="true"></i>
+          <span>Lihat Skor Akhir</span>
+        </button>
+        <button type="button" id="btn-reset-inline" class="btn btn-outline" onclick="handleInlineReset(this)">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+          <span>Mulai Ulang</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Main Quiz Workspace -->
+    <section id="quiz-workspace" class="quiz-workspace">
+      <!-- Active Question Card -->
+      <article class="quiz-stage" aria-live="polite">
+        <div class="stage-meta">
+          <div class="stage-meta-left">
+            <span id="q-counter" class="q-counter">Soal 1 dari 16</span>
+            <span id="q-topic-tag" class="tag">Konsep Dasar</span>
+          </div>
+          <span id="q-status-pill" class="status-pill unanswered">Belum Dijawab</span>
+        </div>
+
+        <div id="q-context" class="question-context"></div>
+        <h2 id="q-title" class="question-title"></h2>
+
+        <div id="q-visual" class="visual-well hidden"></div>
+
+        <div id="q-options" class="options-list" role="group" aria-label="Pilihan Jawaban"></div>
+
+        <div id="q-feedback" class="feedback-panel hidden"></div>
+
+        <nav class="stage-nav" aria-label="Navigasi Soal">
+          <div class="stage-nav-group">
+            <button type="button" id="btn-prev" class="btn btn-outline" onclick="prevQuestion()">
+              <i data-lucide="arrow-left" aria-hidden="true"></i>
+              <span>Sebelumnya</span>
+            </button>
+            <button type="button" id="btn-next" class="btn btn-primary" onclick="nextQuestion()">
+              <span>Selanjutnya</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <button type="button" id="btn-finish-now" class="btn btn-quiet hidden" onclick="openResultsView()">
+            Selesai &amp; Lihat Rapor
+          </button>
+        </nav>
+      </article>
+
+      <!-- Side Column: Question Map + Interactive Probability Scale Helper -->
+      <aside class="side-column" aria-label="Navigasi Nomor dan Alat Bantu Skala">
+        <div class="side-card">
+          <h3 class="side-heading">Navigasi Nomor Soal</h3>
+          <div id="q-nav-grid" class="nav-grid"></div>
+          <div class="legend-row">
+            <span class="legend-item"><span class="legend-dot idle"></span>Belum</span>
+            <span class="legend-item"><span class="legend-dot done-ok"></span>Benar</span>
+            <span class="legend-item"><span class="legend-dot done-err"></span>Salah</span>
+          </div>
+        </div>
+
+        <div class="side-card sky-shadow">
+          <h3 class="side-heading">Cek Skala Peluang (0–1)</h3>
+          <div class="scale-lab">
+            <div class="scale-label-row">
+              <label for="scale-explorer" class="stat-label">Geser nilai peluang</label>
+              <strong id="scale-numeric-val">0,50 (50%)</strong>
+            </div>
+            <input id="scale-explorer" class="scale-slider" type="range" min="0" max="100" step="5" value="50" oninput="updateScaleExplorer(this.value)">
+            <div class="scale-readout">
+              <span id="scale-cat-name" class="scale-category">Sama mungkinnya (50:50)</span>
+              <p id="scale-cat-desc" class="scale-example">Contoh: Melempar koin Rp500 seimbang, peluang muncul sisi Garuda adalah 1 dari 2 (0,5).</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Results / Final Score View -->
+    <section id="results-panel" class="results-panel hidden" aria-label="Rapor Skor Akhir">
+      <div class="results-hero">
+        <div class="score-medal">
+          <span id="final-percent" class="score-big">0%</span>
+          <span class="score-sub">Nilai Akhir</span>
+        </div>
+        <div>
+          <span id="final-badge" class="badge">Hasil Kuis Peluang</span>
+          <h2 id="final-headline" class="question-title" style="margin-top: var(--space-sm);"></h2>
+          <p id="final-summary" class="subtitle" style="margin-top: var(--space-xs);"></p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="side-heading" style="margin-bottom: var(--space-md);">Penguasaan per Sub-Materi Bab 4</h3>
+        <div id="mastery-grid" class="mastery-grid"></div>
+      </div>
+
+      <div>
+        <h3 class="side-heading" style="margin-bottom: var(--space-md);">Tinjauan Cepat Semua Soal (Klik untuk melihat pembahasan)</h3>
+        <div id="review-list" class="review-list"></div>
+      </div>
+
+      <div class="results-actions">
+        <button type="button" class="btn btn-primary" onclick="restartQuiz(false)">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+          <span>Coba Kuis Kembali</span>
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="restartQuiz(true)">
+          <i data-lucide="shuffle" aria-hidden="true"></i>
+          <span>Coba Lagi (Acak Soal)</span>
+        </button>
+        <button type="button" id="btn-retry-wrong" class="btn btn-outline hidden" onclick="retryWrongOnly()">
+          <i data-lucide="target" aria-hidden="true"></i>
+          <span>Latih Soal yang Salah Saja</span>
+        </button>
+        <button type="button" class="btn btn-quiet" onclick="backToQuiz()">
+          Kembali ke Soal
+        </button>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      Disusun berdasarkan materi Bab 4 Peluang (halaman 113–140), buku <em>Matematika untuk SD/MI Kelas VI</em> (Dicky Susanto dkk., Kemdikbudristek, 2022).
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const QUESTION_BANK = [
+      {
+        id: 1,
+        topic: `konsep`,
+        topicLabel: `Konsep Dasar`,
+        context: `Dalam kehidupan sehari-hari, kita sering memprediksi seberapa mungkin suatu kejadian akan terjadi (Eksplorasi 4.1).`,
+        question: `Manakah pernyataan berikut yang merupakan kejadian "Pasti Terjadi"?`,
+        options: [
+          `Besok, matahari terbit di pagi hari`,
+          `Saat liburan sekolah, selalu turun hujan deras`,
+          `Setiap orang yang ikut undian pasti menang hadiah utama`,
+          `Melempar koin Rp500 selalu memunculkan sisi Gambar`
+        ],
+        correctIndex: 0,
+        explanation: `Kejadian "Pasti Terjadi" adalah kejadian yang selalu terjadi tanpa pengecualian dalam keadaan normal, seperti matahari terbit setiap pagi. Hujan saat liburan atau menang undian hanyalah "mungkin" terjadi.`,
+        visualType: `none`
+      },
+      {
+        id: 2,
+        topic: `konsep`,
+        topicLabel: `Konsep Dasar`,
+        context: `Di dalam sebuah tas tertutup terdapat 5 bola biru dan 3 bola kuning. Tidak ada warna bola lainnya di dalam tas.`,
+        question: `Jika kamu mengambil 1 bola secara acak tanpa melihat, bagaimana derajat kemungkinan terambilnya bola berwarna merah?`,
+        options: [
+          `Tidak mungkin (mustahil)`,
+          `Kurang mungkin`,
+          `Sama mungkinnya`,
+          `Sangat mungkin`
+        ],
+        correctIndex: 0,
+        explanation: `Karena tidak ada satu pun bola merah di dalam tas (0 dari 8 bola), maka mustahil bola merah bisa terambil. Kejadian ini termasuk kategori Tidak Mungkin (peluang = 0).`,
+        visualType: `balls`,
+        visualData: {
+          groups: [
+            { color: `var(--ball-blue)`, label: `5 Biru`, count: 5 },
+            { color: `var(--ball-yellow)`, label: `3 Kuning`, count: 3 }
+          ],
+          caption: `Isi tas: 5 bola biru dan 3 bola kuning (total 8 bola)`
+        }
+      },
+      {
+        id: 3,
+        topic: `konsep`,
+        topicLabel: `Konsep Dasar`,
+        context: `Rak buku Dhien berisi 6 buku merah, 3 buku putih, dan 1 buku kuning. Dhien menaruh semua bukunya di lantai lalu mengambil 1 buku secara acak.`,
+        question: `Warna buku manakah yang memiliki peluang paling besar (sangat mungkin) terambil oleh Dhien?`,
+        options: [
+          `Buku berwarna merah`,
+          `Buku berwarna putih`,
+          `Buku berwarna kuning`,
+          `Semua warna memiliki peluang yang sama besar`
+        ],
+        correctIndex: 0,
+        explanation: `Dari total 10 buku, buku merah paling banyak jumlahnya yaitu 6 buah (6 dari 10). Oleh karena itu, terambilnya buku merah berada pada kategori Sangat Mungkin, jauh lebih besar dibanding buku putih (3) maupun kuning (1).`,
+        visualType: `books`
+      },
+      {
+        id: 4,
+        topic: `konsep`,
+        topicLabel: `Konsep Dasar`,
+        context: `Latihan 4.1: Sebuah dadu khusus berbentuk 8 sisi memiliki tulisan angka 5 pada seluruh kedelapan sisinya (5, 5, 5, 5, 5, 5, 5, 5).`,
+        question: `Jika dadu 8 sisi tersebut dilempar satu kali, bagaimana kategori peluang munculnya angka 5?`,
+        options: [
+          `Pasti terjadi`,
+          `Sangat mungkin terjadi`,
+          `Kurang mungkin terjadi`,
+          `Tidak mungkin terjadi`
+        ],
+        correctIndex: 0,
+        explanation: `Seluruh sisi dadu tersebut bertuliskan angka 5 (8 dari 8 kemungkinan). Angka berapa pun yang muncul di atas, hasilnya pasti angka 5 (peluang = 1).`,
+        visualType: `dice`,
+        visualData: {
+          title: `Kedelapan sisi dadu:`,
+          faces: [5, 5, 5, 5, 5, 5, 5, 5],
+          caption: `Semua 8 sisi bernilai sama, yaitu angka 5`
+        }
+      },
+      {
+        id: 5,
+        topic: `skala`,
+        topicLabel: `Skala 0–1`,
+        context: `Skala peluang membentang dari 0 (Tidak mungkin) sampai 1 (Pasti), dengan titik tengah 1/2 atau 0,5 (Sama mungkinnya / 50:50).`,
+        question: `Saat melempar sebuah koin Rp500 yang seimbang, di titik manakah letak peluang munculnya sisi Garuda pada skala 0 hingga 1?`,
+        options: [
+          `Tepat di titik 0,5 atau 1/2 (Sama mungkinnya / 50:50)`,
+          `Di titik 0 (Tidak mungkin)`,
+          `Di antara 0 dan 0,5 (Kurang mungkin)`,
+          `Tepat di titik 1 (Pasti)`
+        ],
+        correctIndex: 0,
+        explanation: `Koin memiliki 2 sisi yang seimbang: sisi Garuda dan sisi Angka. Peluang muncul sisi Garuda adalah 1 dari 2 kemungkinan = 1/2 = 0,5 (50:50), tepat di tengah skala peluang.`,
+        visualType: `scale`,
+        visualData: {
+          pins: [
+            { pos: 50, label: `Sisi Garuda (1/2 = 0,5)`, color: `var(--primary)` }
+          ],
+          caption: `Skala peluang menunjukkan 1/2 berada tepat di tengah antara 0 dan 1`
+        }
+      },
+      {
+        id: 6,
+        topic: `skala`,
+        topicLabel: `Skala 0–1`,
+        context: `Terdapat 10 bola di dalam sebuah tas. Pada skala peluang, terambilnya bola hijau ada di kategori "Kurang mungkin" (sekitar 0,2) dan bola ungu ada di kategori "Sangat mungkin" (sekitar 0,8).`,
+        question: `Komposisi isi tas manakah yang paling tepat sesuai dengan skala peluang tersebut?`,
+        options: [
+          `2 bola hijau dan 8 bola ungu`,
+          `5 bola hijau dan 5 bola ungu`,
+          `8 bola hijau dan 2 bola ungu`,
+          `10 bola hijau dan 0 bola ungu`
+        ],
+        correctIndex: 0,
+        explanation: `Dari 10 bola total, 2 bola hijau berarti peluangnya 2/10 = 0,2 (Kurang mungkin), sedangkan 8 bola ungu berarti peluangnya 8/10 = 0,8 (Sangat mungkin).`,
+        visualType: `scale`,
+        visualData: {
+          pins: [
+            { pos: 20, label: `Hijau (2/10)`, color: `var(--ball-green)` },
+            { pos: 80, label: `Ungu (8/10)`, color: `var(--ball-purple)` }
+          ],
+          caption: `Posisi peluang bola hijau (0,2) dan bola ungu (0,8) pada skala 0–1`
+        }
+      },
+      {
+        id: 7,
+        topic: `skala`,
+        topicLabel: `Skala 0–1`,
+        context: `Perhatikan data banyaknya bencana alam berdasarkan desa/kelurahan di Sulawesi Tengah (Latihan 4.1) pada tabel di bawah ini.`,
+        question: `Berdasarkan data tersebut, kejadian mana yang berada di titik 0 (Tidak mungkin) dan mana yang masuk kategori Sangat Mungkin?`,
+        options: [
+          `Tidak mungkin: Tsunami & Gunung meletus; Sangat mungkin: Banjir & Gempa bumi`,
+          `Tidak mungkin: Tanah longsor; Sangat mungkin: Tsunami`,
+          `Tidak mungkin: Banjir; Sangat mungkin: Gunung meletus`,
+          `Semua kejadian berada tepat di titik 0,5 (Sama mungkinnya)`
+        ],
+        correctIndex: 0,
+        explanation: `Pada tabel tercatat 0 kejadian untuk Tsunami dan Gunung meletus sehingga berada di skala 0 (tidak terjadi dalam catatan data tersebut). Sebaliknya, Banjir (567) dan Gempa bumi (556) terjadi sangat sering sehingga masuk kategori Sangat Mungkin.`,
+        visualType: `disasterTable`
+      },
+      {
+        id: 8,
+        topic: `skala`,
+        topicLabel: `Skala 0–1`,
+        context: `Sebuah dadu 6 sisi memiliki skala peluang: angka 1 = Tidak mungkin (0), angka 2 = Kurang mungkin (1/6), angka 4 = Mungkin (2/6), dan angka 3 = Sangat mungkin (3/6).`,
+        question: `Perkiraan angka yang tertera pada keenam sisi dadu tersebut adalah…`,
+        options: [
+          `2, 3, 3, 3, 4, 4`,
+          `1, 2, 3, 4, 5, 6`,
+          `1, 1, 2, 3, 4, 4`,
+          `2, 2, 2, 3, 4, 4`
+        ],
+        correctIndex: 0,
+        explanation: `Karena angka 1 tidak mungkin muncul, maka angka 1 tidak ada di dadu. Susunan 2, 3, 3, 3, 4, 4 memberikan 3 sisi angka 3 (3/6 = Sangat mungkin), 2 sisi angka 4 (2/6), dan 1 sisi angka 2 (1/6 = Kurang mungkin).`,
+        visualType: `scale`,
+        visualData: {
+          pins: [
+            { pos: 0, label: `Angka 1 (0)`, color: `var(--error)` },
+            { pos: 17, label: `Angka 2 (1/6)`, color: `var(--data-4)` },
+            { pos: 33, label: `Angka 4 (2/6)`, color: `var(--data-3)` },
+            { pos: 55, label: `Angka 3 (3/6)`, color: `var(--primary)` }
+          ],
+          caption: `Petunjuk skala peluang untuk keenam sisi dadu`
+        }
+      },
+      {
+        id: 9,
+        topic: `sederhana`,
+        topicLabel: `Kejadian Sederhana`,
+        context: `Pada Eksplorasi 4.2, kamu dapat memilih melempar koin (menang jika sisi Gambar) atau melempar dadu 6 sisi biasa (menang jika muncul angka 6).`,
+        question: `Mengapa peluang menang dengan melempar koin jauh lebih besar daripada melempar dadu?`,
+        options: [
+          `Koin hanya punya 2 kemungkinan hasil (peluang 1/2), sedangkan dadu punya 6 kemungkinan (peluang 1/6)`,
+          `Dadu lebih sulit dilempar karena berbentuk kubus bersudut tajam`,
+          `Peluang koin adalah 1/6, sedangkan peluang dadu adalah 1/2`,
+          `Koin selalu berhenti pada sisi Gambar apabila dilempar ke atas`
+        ],
+        correctIndex: 0,
+        explanation: `Pada koin hanya ada 2 hasil (Gambar atau Angka), sehingga peluang menang adalah 1 dari 2 (1/2 = 0,5). Pada dadu biasa ada 6 angka (1–6), sehingga peluang mendapat angka 6 hanya 1 dari 6 (1/6 ≈ 0,17).`,
+        visualType: `coinVsDice`
+      },
+      {
+        id: 10,
+        topic: `sederhana`,
+        topicLabel: `Kejadian Sederhana`,
+        context: `Kelompok Dhien melakukan percobaan dengan kantong berisi 3 permen merah, 2 permen biru, dan 1 permen hijau.`,
+        question: `Jika diambil 1 permen secara acak dari kantong tersebut, berapakah peluang terambilnya permen berwarna merah?`,
+        options: [
+          `3 dari 6 kemungkinan (atau 1/2)`,
+          `1 dari 6 kemungkinan`,
+          `2 dari 6 kemungkinan (atau 1/3)`,
+          `3 dari 3 kemungkinan (pasti)`
+        ],
+        correctIndex: 0,
+        explanation: `Jumlah seluruh permen ada 3 + 2 + 1 = 6 permen. Karena ada 3 permen merah, maka peluang terambilnya permen merah adalah 3 dari 6 kemungkinan (dapat disederhanakan menjadi 1/2 atau 50%).`,
+        visualType: `balls`,
+        visualData: {
+          groups: [
+            { color: `var(--ball-red)`, label: `3 Merah`, count: 3 },
+            { color: `var(--ball-blue)`, label: `2 Biru`, count: 2 },
+            { color: `var(--ball-green)`, label: `1 Hijau`, count: 1 }
+          ],
+          caption: `Percobaan permen kelompok Dhien: 3 merah, 2 biru, 1 hijau`
+        }
+      },
+      {
+        id: 11,
+        topic: `sederhana`,
+        topicLabel: `Kejadian Sederhana`,
+        context: `Kelas Dhien mengundi pemilihan ketua kelas memakai roda putar seperti gambar: bagian Reimon setengah lingkaran (1/2), Maryam seperempat (1/4), sedangkan Abdillah dan Tuti masing-masing seperdelapan (1/8).`,
+        question: `Siapa yang peluang menangnya paling besar, dan apakah roda putar ini adil untuk pemilihan ketua kelas?`,
+        options: [
+          `Reimon paling besar peluangnya; tidak adil karena luas tiap bagian calon tidak sama besar`,
+          `Tuti paling besar peluangnya; adil karena keempat nama tertulis di roda`,
+          `Semua calon punya peluang sama; adil karena panah diputar secara acak`,
+          `Maryam paling besar peluangnya; tidak adil karena warnanya berbeda`
+        ],
+        correctIndex: 0,
+        explanation: `Undian atau permainan disebut adil jika semua peserta memiliki peluang yang sama besar. Karena luas bagian Reimon paling lebar (1/2 lingkaran), peluang Reimon menang paling besar sehingga undian ini tidak adil. Agar adil, roda harus dibagi 4 sama rata.`,
+        visualType: `spinner`
+      },
+      {
+        id: 12,
+        topic: `sederhana`,
+        topicLabel: `Kejadian Sederhana`,
+        context: `Terdapat 8 buah kartu angka bertuliskan bilangan 1, 2, 3, 4, 5, 6, 7, dan 8 yang diletakkan terbalik secara acak.`,
+        question: `Jika kamu mengambil 1 kartu secara acak, kejadian manakah yang memiliki peluang paling besar?`,
+        options: [
+          `Terambil kartu bernomor lebih dari 2`,
+          `Terambil kartu bernomor genap`,
+          `Terambil kartu bernomor kurang dari 4`,
+          `Terambil kartu bernomor 8`
+        ],
+        correctIndex: 0,
+        explanation: `Mari kita hitung jumlah kartu untuk setiap kejadian: lebih dari 2 ada 6 kartu (3, 4, 5, 6, 7, 8 → 6/8); genap ada 4 kartu (2, 4, 6, 8 → 4/8); kurang dari 4 ada 3 kartu (1, 2, 3 → 3/8); bernomor 8 hanya 1 kartu (1/8). Jadi peluang terbesar adalah kartu bernomor lebih dari 2!`,
+        visualType: `cards`
+      },
+      {
+        id: 13,
+        topic: `keputusan`,
+        topicLabel: `Keputusan Nyata`,
+        context: `Dhien mengikuti lomba menyanyi di kategori SD kelas 4–6 yang diikuti 12 peserta. Sementara kategori SMP diikuti 35 peserta, dan kategori SMA diikuti 27 peserta.`,
+        question: `Jika kemampuan peserta dianggap merata, di kategori manakah seorang peserta memiliki peluang menang paling besar?`,
+        options: [
+          `Kategori SD (1 dari 12), karena jumlah pesertanya paling sedikit`,
+          `Kategori SMP (1 dari 35), karena pesertanya paling ramai`,
+          `Kategori SMA (1 dari 27), karena jumlah pesertanya di tengah`,
+          `Peluang menang di semua kategori sama besar`
+        ],
+        correctIndex: 0,
+        explanation: `Di kategori SD, Dhien hanya bersaing dengan 11 peserta lain sehingga peluang menangnya 1/12. Nilai 1/12 lebih besar dibandingkan 1/27 (SMA) maupun 1/35 (SMP). Semakin sedikit pesaing, semakin besar peluang menang!`,
+        visualType: `participants`
+      },
+      {
+        id: 14,
+        topic: `keputusan`,
+        topicLabel: `Keputusan Nyata`,
+        context: `Di Toko Sukamaju tersedia dua kotak hadiah tertutup. Kotak X berisi 4 set pensil dan 2 buku bacaan. Kotak Y berisi 2 set pensil dan 6 buku bacaan.`,
+        question: `Jika seorang anak sangat menginginkan hadiah buku bacaan saat mengambil 1 barang secara acak, kotak mana yang sebaiknya dipilih?`,
+        options: [
+          `Kotak Y, karena peluang buku bacaannya 6/8 (3/4), lebih besar dari Kotak X (2/6 = 1/3)`,
+          `Kotak X, karena jumlah barang di dalamnya lebih sedikit sehingga lebih mudah diraih`,
+          `Kotak X, karena memiliki 4 set pensil yang lebih banyak`,
+          `Sama saja karena kedua kotak sama-sama memiliki buku bacaan`
+        ],
+        correctIndex: 0,
+        explanation: `Bandingkan peluang mendapat buku bacaan: di Kotak X ada 2 buku dari 6 barang (2/6 = 1/3 atau 33%). Di Kotak Y ada 6 buku dari 8 barang (6/8 = 3/4 atau 75%). Maka memilih Kotak Y memberi peluang jauh lebih besar!`,
+        visualType: `boxes`
+      },
+      {
+        id: 15,
+        topic: `keputusan`,
+        topicLabel: `Keputusan Nyata`,
+        context: `Dalam permainan dadu (Uji Kompetensi), syarat menangnya adalah mendapat angka 6. Kamu boleh memilih Dadu Pilihan 1 (sisi: 1, 2, 3, 4, 5, 6) atau Dadu Pilihan 2 (sisi: 1, 1, 3, 3, 6, 6).`,
+        question: `Dadu manakah yang harus kamu pilih agar peluang menangmu paling besar?`,
+        options: [
+          `Dadu Pilihan 2, karena angka 6 muncul di 2 sisi (peluang 2/6 = 1/3), dua kali lebih besar dari Dadu Pilihan 1`,
+          `Dadu Pilihan 1, karena angkanya lengkap berurutan dari 1 sampai 6`,
+          `Keduanya sama saja karena jumlah sisi kedua dadu sama-sama 6`,
+          `Dadu Pilihan 1, karena angka 6 berada di sisi terakhir`
+        ],
+        correctIndex: 0,
+        explanation: `Pada Dadu Pilihan 1, hanya ada 1 sisi berangka 6 (peluang 1/6). Pada Dadu Pilihan 2, terdapat 2 sisi berangka 6 (peluang 2/6 = 1/3). Memilih Dadu Pilihan 2 menggandakan peluang menangmu!`,
+        visualType: `diceCompare`
+      },
+      {
+        id: 16,
+        topic: `keputusan`,
+        topicLabel: `Keputusan Nyata`,
+        context: `Pada permainan lempar 1 dadu biasa (angka 1–6): Pemain 1 menang jika muncul angka 1; Pemain 2 menang jika muncul angka 2 atau 3; Pemain 3 menang jika muncul angka 4, 5, atau 6.`,
+        question: `Peran pemain manakah yang paling menguntungkan untuk dipilih, dan apakah aturan permainan ini adil?`,
+        options: [
+          `Pemain 3 paling menguntungkan (peluang 3/6 = 1/2), dan permainan ini kurang adil karena peluang tiap pemain berbeda`,
+          `Pemain 1 paling menguntungkan (peluang 1/6), karena cukup menunggu satu angka saja`,
+          `Pemain 2 paling menguntungkan (peluang 2/6), karena angkanya berada di tengah`,
+          `Permainan ini adil karena semua pemain memakai dadu 6 sisi yang sama`
+        ],
+        correctIndex: 0,
+        explanation: `Pemain 3 memiliki 3 angka kemenangan dari 6 sisi (peluang 3/6 = 1/2 = 50%), lebih besar daripada Pemain 2 (2/6) dan Pemain 1 (1/6). Karena peluang menang ketiganya tidak sama rata, permainan ini kurang adil.`,
+        visualType: `threePlayers`
+      }
+    ];
+
+    const TOPIC_INFO = [
+      { key: `konsep`, title: `Konsep Dasar Peluang` },
+      { key: `skala`, title: `Skala Peluang 0–1` },
+      { key: `sederhana`, title: `Peluang Kejadian Sederhana` },
+      { key: `keputusan`, title: `Pengambilan Keputusan` }
+    ];
+
+    const LETTERS = [`A`, `B`, `C`, `D`];
+
+    let appState = {
+      order: QUESTION_BANK.map((q) => q.id),
+      optionMaps: {},
+      answers: {},
+      topicFilter: `all`,
+      currentIndex: 0,
+      showResults: false,
+      bestPercent: 0
+    };
+
+    function createDefaultOptionMaps() {
+      const maps = {};
+      for (let i = 0; i < QUESTION_BANK.length; i++) {
+        maps[QUESTION_BANK[i].id] = [0, 1, 2, 3];
+      }
+      return maps;
+    }
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function createShuffledOptionMaps() {
+      const maps = {};
+      for (let i = 0; i < QUESTION_BANK.length; i++) {
+        maps[QUESTION_BANK[i].id] = shuffleArray([0, 1, 2, 3]);
+      }
+      return maps;
+    }
+
+    function getQuestionById(id) {
+      for (let i = 0; i < QUESTION_BANK.length; i++) {
+        if (QUESTION_BANK[i].id === id) return QUESTION_BANK[i];
+      }
+      return QUESTION_BANK[0];
+    }
+
+    function getActiveList() {
+      const ordered = appState.order.map((id) => getQuestionById(id));
+      if (appState.topicFilter === `all`) return ordered;
+      if (appState.topicFilter === `wrong`) {
+        return ordered.filter((q) => {
+          const ans = appState.answers[q.id];
+          return ans !== undefined && ans !== q.correctIndex;
+        });
+      }
+      return ordered.filter((q) => q.topic === appState.topicFilter);
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Non-fatal in preview environments
+        }
+      }
+    }
+
+    function calculateMetrics() {
+      let answeredCount = 0;
+      let correctCount = 0;
+      let streak = 0;
+
+      for (let i = 0; i < appState.order.length; i++) {
+        const q = getQuestionById(appState.order[i]);
+        const ans = appState.answers[q.id];
+        if (ans !== undefined) {
+          answeredCount++;
+          if (ans === q.correctIndex) {
+            correctCount++;
+            streak++;
+          } else {
+            streak = 0;
+          }
+        }
+      }
+
+      const totalQuestions = QUESTION_BANK.length;
+      const points = correctCount * 10;
+      const maxPoints = totalQuestions * 10;
+      const percent = Math.round((correctCount / totalQuestions) * 100);
+      const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+
+      if (percent > appState.bestPercent) {
+        appState.bestPercent = percent;
+      }
+
+      return {
+        answeredCount,
+        correctCount,
+        streak,
+        totalQuestions,
+        points,
+        maxPoints,
+        percent,
+        accuracy
+      };
+    }
+
+    function renderStats() {
+      const m = calculateMetrics();
+      const elScore = document.getElementById(`stat-score`);
+      const elScoreMax = document.getElementById(`stat-score-max`);
+      const elAcc = document.getElementById(`stat-accuracy`);
+      const elProgText = document.getElementById(`stat-progress-text`);
+      const elProgBar = document.getElementById(`stat-progress-bar`);
+      const elStreak = document.getElementById(`stat-streak`);
+      const elRecord = document.getElementById(`stat-record`);
+
+      if (elScore) elScore.textContent = String(m.points);
+      if (elScoreMax) elScoreMax.textContent = `dari ${m.maxPoints} poin`;
+      if (elAcc) {
+        elAcc.textContent = m.answeredCount === 0
+          ? `Belum ada soal dijawab`
+          : `${m.correctCount} benar (${m.accuracy}% akurasi)`;
+      }
+      if (elProgText) elProgText.textContent = `${m.answeredCount} / ${m.totalQuestions}`;
+      if (elProgBar) {
+        const pct = Math.round((m.answeredCount / m.totalQuestions) * 100);
+        elProgBar.style.width = `${pct}%`;
+      }
+      if (elStreak) elStreak.textContent = String(m.streak);
+      if (elRecord) elRecord.textContent = `Skor tertinggi: ${appState.bestPercent}%`;
+    }
+
+    function renderVisualHTML(q) {
+      if (!q || q.visualType === `none`) return ``;
+
+      if (q.visualType === `balls`) {
+        const groups = q.visualData.groups;
+        const balls = [];
+        for (let g = 0; g < groups.length; g++) {
+          for (let c = 0; c < groups[g].count; c++) {
+            balls.push(groups[g].color);
+          }
+        }
+        const total = balls.length;
+        const spacing = 42;
+        const startX = 210 - ((total - 1) * spacing) / 2;
+        let circlesSvg = ``;
+        for (let i = 0; i < total; i++) {
+          const cx = startX + i * spacing;
+          circlesSvg += `<circle cx="${cx}" cy="52" r="16" fill="${balls[i]}" stroke="var(--on-surface)" stroke-width="2" />`;
+        }
+        let pills = ``;
+        for (let g = 0; g < groups.length; g++) {
+          pills += `<span class="tag" style="border-color: ${groups[g].color}; color: var(--on-surface);">${groups[g].label}</span>`;
+        }
+        return `
+          <svg viewBox="0 0 420 100" width="420" height="100" aria-hidden="true">
+            <rect x="16" y="14" width="388" height="76" rx="22" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="2" />
+            ${circlesSvg}
+          </svg>
+          <div style="display:flex; flex-wrap:wrap; gap:var(--space-sm); justify-content:center;">${pills}</div>
+          <p class="visual-caption">${q.visualData.caption}</p>
+        `;
+      }
+
+      if (q.visualType === `books`) {
+        const colors = [
+          `var(--ball-red)`, `var(--ball-red)`, `var(--ball-red)`,
+          `var(--ball-red)`, `var(--ball-red)`, `var(--ball-red)`,
+          `var(--ball-white)`, `var(--ball-white)`, `var(--ball-white)`,
+          `var(--ball-yellow)`
+        ];
+        let booksSvg = ``;
+        for (let i = 0; i < colors.length; i++) {
+          const x = 35 + i * 36;
+          booksSvg += `<rect x="${x}" y="20" width="26" height="72" rx="6" fill="${colors[i]}" stroke="var(--on-surface)" stroke-width="2" />`;
+          booksSvg += `<line x1="${x + 6}" y1="34" x2="${x + 20}" y2="34" stroke="var(--on-surface)" stroke-width="2" stroke-linecap="round" />`;
+        }
+        return `
+          <svg viewBox="0 0 420 112" width="420" height="112" aria-hidden="true">
+            <rect x="20" y="92" width="380" height="10" rx="5" fill="var(--secondary)" />
+            ${booksSvg}
+          </svg>
+          <p class="visual-caption">Rak buku Dhien: 6 buku merah, 3 buku putih, dan 1 buku kuning (total 10 buku)</p>
+        `;
+      }
+
+      if (q.visualType === `dice`) {
+        const faces = q.visualData.faces;
+        let diceSvg = ``;
+        for (let i = 0; i < faces.length; i++) {
+          const x = 22 + i * 48;
+          diceSvg += `
+            <rect x="${x}" y="22" width="40" height="40" rx="10" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2.5" />
+            <text x="${x + 20}" y="48" text-anchor="middle" font-family="var(--font-headline)" font-weight="800" font-size="18" fill="var(--on-surface)">${faces[i]}</text>
+          `;
+        }
+        return `
+          <svg viewBox="0 0 420 82" width="420" height="82" aria-hidden="true">
+            ${diceSvg}
+          </svg>
+          <p class="visual-caption">${q.visualData.caption}</p>
+        `;
+      }
+
+      if (q.visualType === `scale`) {
+        const pins = q.visualData.pins || [];
+        let pinsSvg = ``;
+        for (let i = 0; i < pins.length; i++) {
+          const px = 40 + (pins[i].pos / 100) * 400;
+          const labelY = i % 2 === 0 ? 22 : 96;
+          const lineY2 = i % 2 === 0 ? 28 : 80;
+          pinsSvg += `
+            <line x1="${px}" y1="54" x2="${px}" y2="${lineY2}" stroke="${pins[i].color}" stroke-width="3" stroke-linecap="round" />
+            <circle cx="${px}" cy="54" r="9" fill="${pins[i].color}" stroke="var(--surface-container-low)" stroke-width="2.5" />
+            <text x="${px}" y="${labelY}" text-anchor="middle" font-family="var(--font-label)" font-weight="700" font-size="11" fill="var(--on-surface)">${pins[i].label}</text>
+          `;
+        }
+        return `
+          <svg viewBox="0 0 480 112" width="480" height="112" aria-hidden="true">
+            <rect x="40" y="48" width="400" height="12" rx="6" fill="var(--outline-variant)" />
+            <rect x="40" y="48" width="200" height="12" rx="6" fill="var(--tertiary)" opacity="0.45" />
+            <circle cx="40" cy="54" r="5" fill="var(--on-surface-variant)" />
+            <circle cx="240" cy="54" r="5" fill="var(--on-surface-variant)" />
+            <circle cx="440" cy="54" r="5" fill="var(--on-surface-variant)" />
+            <text x="40" y="75" text-anchor="middle" font-family="var(--font-label)" font-weight="700" font-size="11" fill="var(--on-surface-variant)">0 (Mustahil)</text>
+            <text x="240" y="75" text-anchor="middle" font-family="var(--font-label)" font-weight="700" font-size="11" fill="var(--on-surface-variant)">0,5 (50:50)</text>
+            <text x="440" y="75" text-anchor="middle" font-family="var(--font-label)" font-weight="700" font-size="11" fill="var(--on-surface-variant)">1 (Pasti)</text>
+            ${pinsSvg}
+          </svg>
+          <p class="visual-caption">${q.visualData.caption}</p>
+        `;
+      }
+
+      if (q.visualType === `disasterTable`) {
+        return `
+          <table class="book-table" aria-label="Data Bencana Alam Sulawesi Tengah">
+            <thead>
+              <tr>
+                <th>Jenis Bencana</th>
+                <th>Tanah Longsor</th>
+                <th>Banjir</th>
+                <th>Gempa Bumi</th>
+                <th>Tsunami</th>
+                <th>Gunung Meletus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Banyak Kejadian</strong></td>
+                <td>133</td>
+                <td>567</td>
+                <td>556</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="visual-caption">Sumber data: Tabel Latihan 4.1 — Banyaknya Bencana Alam Berdasarkan Desa/Kelurahan di Sulawesi Tengah</p>
+        `;
+      }
+
+      if (q.visualType === `coinVsDice`) {
+        return `
+          <svg viewBox="0 0 460 120" width="460" height="120" aria-hidden="true">
+            <rect x="16" y="14" width="196" height="92" rx="18" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2" />
+            <circle cx="64" cy="60" r="26" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2.5" />
+            <text x="64" y="65" text-anchor="middle" font-weight="900" font-size="13" fill="var(--on-surface)">Rp500</text>
+            <text x="104" y="52" font-weight="800" font-size="14" fill="var(--on-surface)">Koin (2 sisi)</text>
+            <text x="104" y="72" font-weight="700" font-size="13" fill="var(--primary)">Menang: 1 dari 2</text>
+
+            <rect x="248" y="14" width="196" height="92" rx="18" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2" />
+            <rect x="270" y="34" width="52" height="52" rx="12" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="2.5" />
+            <text x="296" y="66" text-anchor="middle" font-weight="900" font-size="20" fill="var(--secondary)">6</text>
+            <text x="336" y="52" font-weight="800" font-size="14" fill="var(--on-surface)">Dadu (6 sisi)</text>
+            <text x="336" y="72" font-weight="700" font-size="13" fill="var(--secondary)">Menang: 1 dari 6</text>
+          </svg>
+          <p class="visual-caption">Perbandingan peluang menang: melempar koin (1/2) vs melempar dadu 6 sisi (1/6)</p>
+        `;
+      }
+
+      if (q.visualType === `spinner`) {
+        return `
+          <svg viewBox="0 0 360 220" width="360" height="220" aria-hidden="true">
+            <!-- Reimon: top half (180 deg) from left (180) to right (0) via top -->
+            <path d="M180,110 L90,110 A90,90 0 0,1 270,110 Z" fill="var(--primary-container)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <!-- Maryam: bottom right quarter (90 deg) from right (270,110) to bottom (180,200) -->
+            <path d="M180,110 L270,110 A90,90 0 0,1 180,200 Z" fill="var(--tertiary-container)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <!-- Abdillah: 45 deg from bottom (180,200) to bottom-left (116.36,173.64) -->
+            <path d="M180,110 L180,200 A90,90 0 0,1 116.4,173.6 Z" fill="var(--secondary-container)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <!-- Tuti: 45 deg from bottom-left (116.36,173.64) to left (90,110) -->
+            <path d="M180,110 L116.4,173.6 A90,90 0 0,1 90,110 Z" fill="var(--warning-container)" stroke="var(--on-surface)" stroke-width="2.5" />
+            <!-- Labels -->
+            <text x="180" y="68" text-anchor="middle" font-weight="800" font-size="14" fill="var(--on-surface)">Reimon (1/2)</text>
+            <text x="224" y="148" text-anchor="middle" font-weight="700" font-size="12" fill="var(--on-surface)">Maryam (1/4)</text>
+            <text x="155" y="176" text-anchor="middle" font-weight="700" font-size="11" fill="var(--on-surface)">Abdillah</text>
+            <text x="122" y="140" text-anchor="middle" font-weight="700" font-size="11" fill="var(--on-surface)">Tuti</text>
+            <!-- Center pin & arrow -->
+            <line x1="180" y1="110" x2="215" y2="75" stroke="var(--on-surface)" stroke-width="4" stroke-linecap="round" />
+            <circle cx="180" cy="110" r="8" fill="var(--primary)" stroke="var(--surface-container-low)" stroke-width="2" />
+          </svg>
+          <p class="visual-caption">Roda putar pemilihan ketua kelas: Reimon (1/2), Maryam (1/4), Abdillah (1/8), dan Tuti (1/8)</p>
+        `;
+      }
+
+      if (q.visualType === `cards`) {
+        let cardsSvg = ``;
+        for (let i = 1; i <= 8; i++) {
+          const x = 18 + (i - 1) * 52;
+          cardsSvg += `
+            <rect x="${x}" y="16" width="42" height="58" rx="10" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2.5" />
+            <text x="${x + 21}" y="52" text-anchor="middle" font-weight="900" font-size="18" fill="var(--on-surface)">${i}</text>
+          `;
+        }
+        return `
+          <svg viewBox="0 0 442 90" width="442" height="90" aria-hidden="true">
+            ${cardsSvg}
+          </svg>
+          <p class="visual-caption">8 kartu bernomor 1 hingga 8 dalam keadaan tertutup</p>
+        `;
+      }
+
+      if (q.visualType === `participants`) {
+        return `
+          <svg viewBox="0 0 460 126" width="460" height="126" aria-hidden="true">
+            <text x="16" y="34" font-weight="700" font-size="13" fill="var(--on-surface)">Kategori SD</text>
+            <rect x="120" y="18" width="96" height="22" rx="11" fill="var(--primary)" />
+            <text x="226" y="34" font-weight="800" font-size="13" fill="var(--primary)">12 peserta (1/12)</text>
+
+            <text x="16" y="70" font-weight="700" font-size="13" fill="var(--on-surface)">Kategori SMP</text>
+            <rect x="120" y="54" width="280" height="22" rx="11" fill="var(--data-context)" />
+            <text x="408" y="70" font-weight="700" font-size="13" fill="var(--on-surface-variant)">35</text>
+
+            <text x="16" y="106" font-weight="700" font-size="13" fill="var(--on-surface)">Kategori SMA</text>
+            <rect x="120" y="90" width="216" height="22" rx="11" fill="var(--secondary)" />
+            <text x="344" y="106" font-weight="700" font-size="13" fill="var(--secondary)">27 peserta</text>
+          </svg>
+          <p class="visual-caption">Perbandingan jumlah peserta lomba menyanyi tiap kategori</p>
+        `;
+      }
+
+      if (q.visualType === `boxes`) {
+        return `
+          <svg viewBox="0 0 460 120" width="460" height="120" aria-hidden="true">
+            <rect x="16" y="12" width="204" height="96" rx="18" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2" />
+            <text x="118" y="38" text-anchor="middle" font-weight="900" font-size="15" fill="var(--secondary)">KOTAK X (6 isi)</text>
+            <text x="118" y="64" text-anchor="middle" font-weight="600" font-size="13" fill="var(--on-surface)">4 Set Pensil</text>
+            <text x="118" y="86" text-anchor="middle" font-weight="700" font-size="13" fill="var(--primary)">2 Buku Bacaan</text>
+
+            <rect x="240" y="12" width="204" height="96" rx="18" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2" />
+            <text x="342" y="38" text-anchor="middle" font-weight="900" font-size="15" fill="var(--primary)">KOTAK Y (8 isi)</text>
+            <text x="342" y="64" text-anchor="middle" font-weight="600" font-size="13" fill="var(--on-surface)">2 Set Pensil</text>
+            <text x="342" y="86" text-anchor="middle" font-weight="700" font-size="13" fill="var(--primary)">6 Buku Bacaan</text>
+          </svg>
+          <p class="visual-caption">Perbandingan isi Kotak X dan Kotak Y di Toko Sukamaju</p>
+        `;
+      }
+
+      if (q.visualType === `diceCompare`) {
+        const d1 = [1, 2, 3, 4, 5, 6];
+        const d2 = [1, 1, 3, 3, 6, 6];
+        let s1 = ``;
+        let s2 = ``;
+        for (let i = 0; i < 6; i++) {
+          const x = 18 + i * 33;
+          const isSix1 = d1[i] === 6;
+          s1 += `<rect x="${x}" y="38" width="28" height="28" rx="7" fill="${isSix1 ? `var(--primary-container)` : `var(--surface-container)`}" stroke="${isSix1 ? `var(--primary)` : `var(--outline)`}" stroke-width="1.5" />`;
+          s1 += `<text x="${x + 14}" y="57" text-anchor="middle" font-weight="800" font-size="13" fill="var(--on-surface)">${d1[i]}</text>`;
+
+          const x2 = 248 + i * 33;
+          const isSix2 = d2[i] === 6;
+          s2 += `<rect x="${x2}" y="38" width="28" height="28" rx="7" fill="${isSix2 ? `var(--primary-container)` : `var(--surface-container)`}" stroke="${isSix2 ? `var(--primary)` : `var(--outline)`}" stroke-width="1.5" />`;
+          s2 += `<text x="${x2 + 14}" y="57" text-anchor="middle" font-weight="800" font-size="13" fill="var(--on-surface)">${d2[i]}</text>`;
+        }
+        return `
+          <svg viewBox="0 0 462 84" width="462" height="84" aria-hidden="true">
+            <text x="114" y="24" text-anchor="middle" font-weight="800" font-size="13" fill="var(--secondary)">Dadu Pilihan 1</text>
+            ${s1}
+            <text x="344" y="24" text-anchor="middle" font-weight="800" font-size="13" fill="var(--primary)">Dadu Pilihan 2</text>
+            ${s2}
+          </svg>
+          <p class="visual-caption">Sisi angka 6 ditandai warna merah muda pada masing-masing pilihan dadu</p>
+        `;
+      }
+
+      if (q.visualType === `threePlayers`) {
+        return `
+          <svg viewBox="0 0 460 100" width="460" height="100" aria-hidden="true">
+            <rect x="14" y="14" width="128" height="72" rx="16" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="2" />
+            <text x="78" y="38" text-anchor="middle" font-weight="800" font-size="13" fill="var(--on-surface)">Pemain 1</text>
+            <text x="78" y="64" text-anchor="middle" font-weight="700" font-size="14" fill="var(--secondary)">Angka: 1</text>
+
+            <rect x="166" y="14" width="128" height="72" rx="16" fill="var(--surface-container-low)" stroke="var(--secondary)" stroke-width="2" />
+            <text x="230" y="38" text-anchor="middle" font-weight="800" font-size="13" fill="var(--on-surface)">Pemain 2</text>
+            <text x="230" y="64" text-anchor="middle" font-weight="700" font-size="14" fill="var(--secondary)">Angka: 2, 3</text>
+
+            <rect x="318" y="14" width="128" height="72" rx="16" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2" />
+            <text x="382" y="38" text-anchor="middle" font-weight="800" font-size="13" fill="var(--on-surface)">Pemain 3</text>
+            <text x="382" y="64" text-anchor="middle" font-weight="800" font-size="14" fill="var(--primary)">Angka: 4, 5, 6</text>
+          </svg>
+          <p class="visual-caption">Pembagian angka kemenangan pada 1 dadu biasa untuk 3 pemain</p>
+        `;
+      }
+
+      return ``;
+    }
+
+    function renderQuestion() {
+      const list = getActiveList();
+      if (list.length === 0) {
+        appState.topicFilter = `all`;
+        appState.currentIndex = 0;
+      }
+      const activeList = getActiveList();
+      if (appState.currentIndex >= activeList.length) appState.currentIndex = activeList.length - 1;
+      if (appState.currentIndex < 0) appState.currentIndex = 0;
+
+      const q = activeList[appState.currentIndex];
+      const userAns = appState.answers[q.id];
+      const isAnswered = userAns !== undefined;
+      const isCorrect = isAnswered && userAns === q.correctIndex;
+
+      const elCounter = document.getElementById(`q-counter`);
+      const elTag = document.getElementById(`q-topic-tag`);
+      const elPill = document.getElementById(`q-status-pill`);
+      const elCtx = document.getElementById(`q-context`);
+      const elTitle = document.getElementById(`q-title`);
+      const elVisual = document.getElementById(`q-visual`);
+      const elOpts = document.getElementById(`q-options`);
+      const elFeedback = document.getElementById(`q-feedback`);
+      const elPrev = document.getElementById(`btn-prev`);
+      const elNext = document.getElementById(`btn-next`);
+      const elFinishNow = document.getElementById(`btn-finish-now`);
+
+      if (elCounter) elCounter.textContent = `Soal ${appState.currentIndex + 1} dari ${activeList.length}`;
+      if (elTag) elTag.textContent = q.topicLabel;
+
+      if (elPill) {
+        elPill.className = `status-pill ${!isAnswered ? `unanswered` : isCorrect ? `correct` : `wrong`}`;
+        elPill.textContent = !isAnswered ? `Belum Dijawab` : isCorrect ? `Benar +10 Poin` : `Perlu Dipelajari`;
+      }
+
+      if (elCtx) elCtx.textContent = q.context;
+      if (elTitle) elTitle.textContent = q.question;
+
+      if (elVisual) {
+        const visHtml = renderVisualHTML(q);
+        if (visHtml) {
+          elVisual.innerHTML = visHtml;
+          elVisual.classList.remove(`hidden`);
+        } else {
+          elVisual.innerHTML = ``;
+          elVisual.classList.add(`hidden`);
+        }
+      }
+
+      const map = appState.optionMaps[q.id] || [0, 1, 2, 3];
+      if (elOpts) {
+        let html = ``;
+        for (let displayIdx = 0; displayIdx < map.length; displayIdx++) {
+          const origIdx = map[displayIdx];
+          let cls = `option-btn`;
+          let iconHtml = ``;
+
+          if (isAnswered) {
+            if (origIdx === q.correctIndex) {
+              cls += ` is-correct`;
+              iconHtml = `<span class="option-state-icon" aria-label="Jawaban Benar"><i data-lucide="check-circle-2" aria-hidden="true"></i></span>`;
+            } else if (origIdx === userAns) {
+              cls += ` is-wrong`;
+              iconHtml = `<span class="option-state-icon" aria-label="Pilihan Salah"><i data-lucide="x-circle" aria-hidden="true"></i></span>`;
+            } else {
+              cls += ` is-dimmed`;
+            }
+          }
+
+          html += `
+            <button type="button" class="${cls}" ${isAnswered ? `disabled` : ``} onclick="selectOption(${q.id}, ${origIdx})">
+              <span class="option-letter">${LETTERS[displayIdx]}</span>
+              <span class="option-text">${q.options[origIdx]}</span>
+              ${iconHtml}
+            </button>
+          `;
+        }
+        elOpts.innerHTML = html;
+      }
+
+      if (elFeedback) {
+        if (isAnswered) {
+          elFeedback.className = `feedback-panel ${isCorrect ? `correct` : `wrong`}`;
+          elFeedback.innerHTML = `
+            <div class="feedback-head ${isCorrect ? `correct` : `wrong`}">
+              <i data-lucide="${isCorrect ? `sparkles` : `lightbulb`}" aria-hidden="true"></i>
+              <span>${isCorrect ? `Hebat! Jawabanmu Tepat (+10 Poin)` : `Hampir tepat! Yuk pelajari penjelasannya:`}</span>
+            </div>
+            <p class="feedback-body">${q.explanation}</p>
+          `;
+        } else {
+          elFeedback.className = `feedback-panel hidden`;
+          elFeedback.innerHTML = ``;
+        }
+      }
+
+      if (elPrev) elPrev.disabled = appState.currentIndex === 0;
+      if (elNext) {
+        const isLast = appState.currentIndex === activeList.length - 1;
+        elNext.innerHTML = isLast
+          ? `<span>Lihat Skor Akhir</span><i data-lucide="award" aria-hidden="true"></i>`
+          : `<span>Selanjutnya</span><i data-lucide="arrow-right" aria-hidden="true"></i>`;
+      }
+
+      if (elFinishNow) {
+        const m = calculateMetrics();
+        if (m.answeredCount > 0 && appState.currentIndex < activeList.length - 1) {
+          elFinishNow.classList.remove(`hidden`);
+        } else {
+          elFinishNow.classList.add(`hidden`);
+        }
+      }
+
+      renderNavGrid();
+      renderTopicTabs();
+      refreshIcons();
+    }
+
+    function renderNavGrid() {
+      const grid = document.getElementById(`q-nav-grid`);
+      if (!grid) return;
+
+      const list = getActiveList();
+      let html = ``;
+      for (let i = 0; i < list.length; i++) {
+        const q = list[i];
+        const ans = appState.answers[q.id];
+        let cls = `q-pill-btn`;
+        if (i === appState.currentIndex) cls += ` current`;
+        if (ans !== undefined) {
+          cls += ans === q.correctIndex ? ` correct` : ` wrong`;
+        }
+        html += `<button type="button" class="${cls}" aria-label="Ke soal nomor ${i + 1}" onclick="goToQuestion(${i})">${i + 1}</button>`;
+      }
+      grid.innerHTML = html;
+    }
+
+    function renderTopicTabs() {
+      const buttons = document.querySelectorAll(`.seg-btn`);
+      for (let i = 0; i < buttons.length; i++) {
+        const btn = buttons[i];
+        if (btn.dataset.topic === appState.topicFilter) {
+          btn.classList.add(`active`);
+        } else {
+          btn.classList.remove(`active`);
+        }
+      }
+    }
+
+    function renderResults() {
+      const m = calculateMetrics();
+      const elFinalPct = document.getElementById(`final-percent`);
+      const elBadge = document.getElementById(`final-badge`);
+      const elHeadline = document.getElementById(`final-headline`);
+      const elSummary = document.getElementById(`final-summary`);
+      const elMastery = document.getElementById(`mastery-grid`);
+      const elReview = document.getElementById(`review-list`);
+      const elRetryWrong = document.getElementById(`btn-retry-wrong`);
+
+      if (elFinalPct) elFinalPct.textContent = `${m.percent}%`;
+
+      let badgeTxt = `Terus Berlatih`;
+      let headTxt = `Bagus sudah mencoba, yuk pelajari lagi pembahasannya!`;
+      if (m.percent >= 85) {
+        badgeTxt = `Juara Peluang Kelas VI`;
+        headTxt = `Luar biasa! Kamu sangat menguasai materi Peluang Bab 4.`;
+      } else if (m.percent >= 65) {
+        badgeTxt = `Hebat & Cakap`;
+        headTxt = `Kerja bagus! Sebagian besar konsep peluang sudah kamu kuasai.`;
+      }
+
+      if (elBadge) elBadge.textContent = badgeTxt;
+      if (elHeadline) elHeadline.textContent = headTxt;
+      if (elSummary) {
+        elSummary.textContent = `Kamu menjawab benar ${m.correctCount} dari ${m.totalQuestions} soal (${m.points} dari ${m.maxPoints} poin). Total soal yang sudah dikerjakan: ${m.answeredCount}.`;
+      }
+
+      if (elMastery) {
+        let html = ``;
+        for (let t = 0; t < TOPIC_INFO.length; t++) {
+          const info = TOPIC_INFO[t];
+          const qs = QUESTION_BANK.filter((q) => q.topic === info.key);
+          let ok = 0;
+          for (let j = 0; j < qs.length; j++) {
+            if (appState.answers[qs[j].id] === qs[j].correctIndex) ok++;
+          }
+          const pct = Math.round((ok / qs.length) * 100);
+          html += `
+            <div class="mastery-item">
+              <div class="mastery-head">
+                <span>${info.title}</span>
+                <span class="mastery-score">${ok} / ${qs.length} (${pct}%)</span>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" style="width: ${pct}%; background: ${pct >= 75 ? `var(--positive)` : pct >= 50 ? `var(--tertiary)` : `var(--primary)`};"></div>
+              </div>
+            </div>
+          `;
+        }
+        elMastery.innerHTML = html;
+      }
+
+      let wrongCount = 0;
+      if (elReview) {
+        let revHtml = ``;
+        for (let i = 0; i < appState.order.length; i++) {
+          const q = getQuestionById(appState.order[i]);
+          const ans = appState.answers[q.id];
+          let cls = `review-chip`;
+          let statusTxt = `Belum`;
+          if (ans !== undefined) {
+            if (ans === q.correctIndex) {
+              cls += ` ok`;
+              statusTxt = `Benar`;
+            } else {
+              cls += ` err`;
+              statusTxt = `Salah`;
+              wrongCount++;
+            }
+          }
+          revHtml += `
+            <button type="button" class="${cls}" onclick="jumpToReview(${i})">
+              <span>Soal ${i + 1}: ${q.topicLabel}</span>
+              <strong>${statusTxt}</strong>
+            </button>
+          `;
+        }
+        elReview.innerHTML = revHtml;
+      }
+
+      if (elRetryWrong) {
+        if (wrongCount > 0) {
+          elRetryWrong.classList.remove(`hidden`);
+        } else {
+          elRetryWrong.classList.add(`hidden`);
+        }
+      }
+    }
+
+    function updateViewMode() {
+      const ws = document.getElementById(`quiz-workspace`);
+      const rp = document.getElementById(`results-panel`);
+      if (!ws || !rp) return;
+
+      if (appState.showResults) {
+        ws.classList.add(`hidden`);
+        rp.classList.remove(`hidden`);
+        renderResults();
+      } else {
+        rp.classList.add(`hidden`);
+        ws.classList.remove(`hidden`);
+        renderQuestion();
+      }
+      renderStats();
+      refreshIcons();
+    }
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    /* Hoisted interaction handlers */
+    function selectOption(questionId, origOptionIdx) {
+      if (appState.answers[questionId] !== undefined) return;
+      appState.answers[questionId] = origOptionIdx;
+      renderStats();
+      renderQuestion();
+      persistState();
+    }
+
+    function goToQuestion(idx) {
+      appState.currentIndex = idx;
+      appState.showResults = false;
+      updateViewMode();
+      persistState();
+    }
+
+    function prevQuestion() {
+      if (appState.currentIndex > 0) {
+        appState.currentIndex--;
+        renderQuestion();
+        persistState();
+      }
+    }
+
+    function nextQuestion() {
+      const list = getActiveList();
+      if (appState.currentIndex < list.length - 1) {
+        appState.currentIndex++;
+        renderQuestion();
+        persistState();
+      } else {
+        openResultsView();
+      }
+    }
+
+    function setTopicFilter(topic) {
+      appState.topicFilter = topic;
+      appState.currentIndex = 0;
+      appState.showResults = false;
+      updateViewMode();
+      persistState();
+    }
+
+    function openResultsView() {
+      appState.showResults = true;
+      updateViewMode();
+      persistState();
+    }
+
+    function backToQuiz() {
+      appState.showResults = false;
+      updateViewMode();
+      persistState();
+    }
+
+    function jumpToReview(orderIdx) {
+      appState.topicFilter = `all`;
+      appState.currentIndex = orderIdx;
+      appState.showResults = false;
+      updateViewMode();
+      persistState();
+    }
+
+    function handleInlineReset(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        const span = btn.querySelector(`span`);
+        if (span) span.textContent = `Klik Lagi untuk Reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            const s = btn.querySelector(`span`);
+            if (s) s.textContent = `Mulai Ulang`;
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      const span = btn.querySelector(`span`);
+      if (span) span.textContent = `Mulai Ulang`;
+      restartQuiz(false);
+    }
+
+    function restartQuiz(shuffled) {
+      appState.answers = {};
+      appState.topicFilter = `all`;
+      appState.currentIndex = 0;
+      appState.showResults = false;
+      if (shuffled) {
+        appState.order = shuffleArray(QUESTION_BANK.map((q) => q.id));
+        appState.optionMaps = createShuffledOptionMaps();
+      } else {
+        appState.order = QUESTION_BANK.map((q) => q.id);
+        appState.optionMaps = createDefaultOptionMaps();
+      }
+      updateViewMode();
+      persistState();
+    }
+
+    function retryWrongOnly() {
+      const wrongIds = [];
+      for (let i = 0; i < appState.order.length; i++) {
+        const q = getQuestionById(appState.order[i]);
+        const ans = appState.answers[q.id];
+        if (ans !== undefined && ans !== q.correctIndex) {
+          wrongIds.push(q.id);
+        }
+      }
+      if (wrongIds.length === 0) return;
+
+      for (let i = 0; i < wrongIds.length; i++) {
+        delete appState.answers[wrongIds[i]];
+      }
+      appState.topicFilter = `all`;
+      for (let i = 0; i < appState.order.length; i++) {
+        if (appState.order[i] === wrongIds[0]) {
+          appState.currentIndex = i;
+          break;
+        }
+      }
+      appState.showResults = false;
+      updateViewMode();
+      persistState();
+    }
+
+    function updateScaleExplorer(rawVal) {
+      const num = Number(rawVal);
+      const dec = (num / 100).toFixed(2).replace(`.`, `,`);
+      const elVal = document.getElementById(`scale-numeric-val`);
+      const elCat = document.getElementById(`scale-cat-name`);
+      const elDesc = document.getElementById(`scale-cat-desc`);
+
+      if (elVal) elVal.textContent = `${dec} (${num}%)`;
+
+      let cat = `Mungkin`;
+      let desc = `Kejadian bisa terjadi dengan peluang sedang.`;
+
+      if (num === 0) {
+        cat = `Tidak Mungkin / Mustahil (0)`;
+        desc = `Contoh: Mengambil bola merah dari kotak yang hanya berisi bola biru.`;
+      } else if (num > 0 && num < 40) {
+        cat = `Kurang Mungkin`;
+        desc = `Contoh: Mendapat angka 6 saat melempar dadu biasa (1 dari 6 ≈ 0,17).`;
+      } else if (num >= 40 && num <= 60) {
+        cat = `Sama Mungkinnya (50:50)`;
+        desc = `Contoh: Melempar koin Rp500 seimbang, peluang sisi Garuda adalah 1 dari 2 (0,50).`;
+      } else if (num > 60 && num < 100) {
+        cat = `Sangat Mungkin`;
+        desc = `Contoh: Mengambil buku merah secara acak dari rak berisi 6 buku merah, 3 putih, 1 kuning.`;
+      } else {
+        cat = `Pasti Terjadi (1)`;
+        desc = `Contoh: Besok pagi matahari terbit, atau melempar dadu yang seluruh sisinya berangka 5.`;
+      }
+
+      if (elCat) elCat.textContent = cat;
+      if (elDesc) elDesc.textContent = desc;
+    }
+
+    async function initApp() {
+      appState.optionMaps = createDefaultOptionMaps();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.order) && saved.order.length === QUESTION_BANK.length) {
+              appState.order = saved.order;
+            }
+            if (saved.optionMaps && typeof saved.optionMaps === `object`) {
+              appState.optionMaps = saved.optionMaps;
+            }
+            if (saved.answers && typeof saved.answers === `object`) {
+              appState.answers = saved.answers;
+            }
+            if (typeof saved.topicFilter === `string`) {
+              appState.topicFilter = saved.topicFilter;
+            }
+            if (typeof saved.currentIndex === `number`) {
+              appState.currentIndex = saved.currentIndex;
+            }
+            if (typeof saved.showResults === `boolean`) {
+              appState.showResults = saved.showResults;
+            }
+            if (typeof saved.bestPercent === `number`) {
+              appState.bestPercent = saved.bestPercent;
+            }
+          }
+        } catch (err) {
+          // Fallback to clean initial state
+        }
+      }
+
+      updateViewMode();
+      updateScaleExplorer(50);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Pecahan Kelas 6 SD — Matematika Interaktif</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Sticker) */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --secondary-container: #efe6fa;
+      --on-secondary-container: #381e54;
+      --tertiary: #0096cc;
+      --tertiary-container: #def4fc;
+      --on-tertiary-container: #0c3d52;
+      --error: #c53030;
+      --on-error: #ffffff;
+      --error-container: #fde8e8;
+      --on-error-container: #7f1d1d;
+
+      /* Semantic */
+      --positive: #13795b;
+      --on-positive: #ffffff;
+      --positive-container: #dcfce7;
+      --on-positive-container: #0b4f3b;
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --on-warning-container: #78350f;
+      --focus: #c2207f;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.32);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(19 121 91 / 0.2);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.85rem, 1.45rem + 1.5vw, 2.5rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.55rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.2rem);
+      --body-size: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero / Header Panel */
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .kicker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      width: fit-content;
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: var(--space-xs) 0 0 0;
+      color: var(--on-surface);
+    }
+
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      margin: var(--space-xs) 0 0 0;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      font-size: var(--body-size);
+    }
+
+    /* Key Figures / Scoreboard Strip */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-bounce);
+    }
+    .stat-card:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .stat-card:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .stat-value.is-primary { color: var(--primary); }
+    .stat-value.is-secondary { color: var(--secondary); }
+
+    .stat-caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+      width: 0%;
+    }
+
+    /* Filter Pills Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: 0.925rem;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .pill-btn:hover {
+      transform: var(--pop-scale);
+      background: var(--surface-container);
+    }
+
+    .pill-btn:active { transform: scale(0.97); }
+
+    .pill-btn.active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Main Two-Column Asymmetric Workspace */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+    }
+    .card.shadow-grape { box-shadow: var(--shadow-grape); }
+    .card.shadow-sky { box-shadow: var(--shadow-sky); }
+
+    /* Question Navigator Strip */
+    .q-nav-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .q-dot {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .q-dot:hover { transform: var(--pop-scale); }
+    .q-dot.is-current {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .q-dot.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-positive-container);
+    }
+    .q-dot.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+    .q-dot.is-current.is-correct {
+      background: var(--positive);
+      border-color: var(--positive);
+      color: var(--on-positive);
+      box-shadow: var(--shadow-positive);
+    }
+    .q-dot.is-current.is-wrong {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Question Header & Tags */
+    .q-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .tag-topic {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .tag-level {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .q-source {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    .q-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--headline-size);
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      margin: 0 0 var(--space-lg) 0;
+      color: var(--on-surface);
+    }
+
+    /* Clean Math Fractions */
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 0.18em;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+    }
+    .frac-num {
+      padding: 0 0.22em 0.08em 0.22em;
+      border-bottom: 2px solid currentColor;
+      font-size: 0.85em;
+    }
+    .frac-den {
+      padding: 0.08em 0.22em 0 0.22em;
+      font-size: 0.85em;
+    }
+    .mixed-whole {
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      margin-right: 0.06em;
+    }
+
+    /* Prompt Optional Visual Figure */
+    .prompt-diagram {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Multiple Choice Options */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 56px;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded);
+      border: 2px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      text-align: left;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      transform: var(--lift);
+      background: var(--surface-container);
+      box-shadow: var(--shadow-grape);
+    }
+
+    .option-btn:active:not(:disabled) { transform: scale(0.98); }
+
+    .option-btn:disabled { cursor: default; }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-positive-container);
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+
+    .option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Direct Input Questions */
+    .input-panel {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: var(--space-md);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      flex: 1 1 130px;
+      max-width: 210px;
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .pill-input {
+      width: 100%;
+      min-height: 46px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 2px solid var(--outline);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      transition: box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .pill-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-container);
+      outline: none;
+    }
+
+    .slash-divider {
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--secondary);
+      padding-bottom: var(--space-xs);
+    }
+
+    .input-inline-msg {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--warning);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: none;
+      font-weight: 700;
+      font-size: var(--body-size);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) { box-shadow: var(--shadow-grape-deep); }
+
+    .btn-ghost {
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+    .btn-ghost:hover:not(:disabled) { background: var(--surface-container-high); }
+
+    /* Evaluation & Step-by-step Feedback */
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .feedback-box.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+
+    .feedback-box.is-wrong {
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .feedback-status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+    }
+
+    .steps-card {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .steps-heading {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin: 0;
+    }
+
+    .steps-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .visual-explain {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .visual-caption {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .q-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    /* Sidebar Modules */
+    .sidebar-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.01em;
+      margin: 0 0 var(--space-md) 0;
+      color: var(--on-surface);
+    }
+
+    .mastery-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .mastery-item {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .mastery-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .mastery-stat {
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface-variant);
+      font-size: 0.85rem;
+    }
+
+    .mastery-bar-fill {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+      width: 0%;
+    }
+    .fill-pink { background: var(--data-1); }
+    .fill-grape { background: var(--data-2); }
+    .fill-sky { background: var(--data-3); }
+    .fill-tangerine { background: var(--data-4); }
+
+    /* Formula Reference Accordion */
+    .formula-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .formula-item {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .formula-name {
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: var(--secondary);
+      margin: 0 0 var(--space-xs) 0;
+    }
+
+    .formula-eq {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .action-stack {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Summary View */
+    .summary-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink-deep);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .summary-banner {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+
+    .review-table th {
+      text-align: left;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .review-table td {
+      padding: var(--space-sm) var(--space-md);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .review-table tr:nth-child(even) td {
+      background: var(--surface-container);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .status-pill.ok {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .status-pill.no {
+      background: var(--error-container);
+      color: var(--on-error-container);
+    }
+    .status-pill.pending {
+      background: var(--surface-container-high);
+      color: var(--on-surface-variant);
+    }
+
+    .footer-note {
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) 0 var(--space-lg) 0;
+    }
+
+    /* Container query inside workspace */
+    .quiz-main-col { container-type: inline-size; }
+    @container (max-width: 480px) {
+      .options-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .hero-panel { padding: var(--space-lg); }
+      .workspace-grid { grid-template-columns: 1fr; }
+      .card { padding: var(--space-md); }
+    }
+
+    /* Tablet / narrow container */
+    @media (max-width: 900px) {
+      .workspace-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero Header -->
+    <header class="hero-panel">
+      <div class="hero-top">
+        <div>
+          <span class="kicker-badge">
+            <i data-lucide="sparkles" width="14" height="14" aria-hidden="true"></i>
+            Matematika Kelas 6 SD · Kurikulum Merdeka
+          </span>
+          <h1 class="display">Kuis Pecahan <em>Kelas 6</em> Interaktif</h1>
+          <p class="hero-subtitle">
+            Latihan komprehensif perkalian pecahan, pembagian dan bilangan kebalikan, konversi serta operasi campuran pecahan–desimal, lengkap dengan diagram visual dan pembahasan langkah demi langkah.
+          </p>
+        </div>
+        <button type="button" class="btn btn-secondary" id="toggle-summary-btn" onclick="toggleSummaryView()">
+          <i data-lucide="bar-chart-2" width="18" height="18" aria-hidden="true"></i>
+          Lihat Rapor Skor
+        </button>
+      </div>
+
+      <!-- Filter Topik -->
+      <nav class="filter-bar" aria-label="Filter topik kuis">
+        <button type="button" class="pill-btn active" data-filter="all" onclick="setTopicFilter('all')">Semua Topik (16)</button>
+        <button type="button" class="pill-btn" data-filter="perkalian" onclick="setTopicFilter('perkalian')">Perkalian Pecahan</button>
+        <button type="button" class="pill-btn" data-filter="pembagian" onclick="setTopicFilter('pembagian')">Pembagian &amp; Kebalikan</button>
+        <button type="button" class="pill-btn" data-filter="desimal" onclick="setTopicFilter('desimal')">Desimal &amp; Campuran</button>
+        <button type="button" class="pill-btn" data-filter="cerita" onclick="setTopicFilter('cerita')">Soal Cerita Kontekstual</button>
+      </nav>
+    </header>
+
+    <!-- Live Scoreboard Strip -->
+    <section class="stats-grid" aria-label="Ringkasan skor kuis">
+      <div class="stat-card">
+        <span class="stat-label">Skor Otomatis</span>
+        <span class="stat-value is-primary" id="stat-score">0 / 100</span>
+        <span class="stat-caption" id="stat-score-caption">Belum ada soal terjawab</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Progres Pengerjaan</span>
+        <span class="stat-value" id="stat-progress">0 / 16</span>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="stat-progress-bar"></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Ketepatan &amp; Beruntun</span>
+        <span class="stat-value is-secondary" id="stat-streak">0 Benar</span>
+        <span class="stat-caption" id="stat-streak-caption">Rekor beruntun: 0 soal</span>
+      </div>
+    </section>
+
+    <!-- Summary Report View (Hidden until toggled or finished) -->
+    <section id="summary-section" class="summary-card" style="display: none;" aria-label="Rapor hasil kuis">
+      <div class="summary-banner">
+        <div>
+          <span class="kicker-badge">Rapor Latihanmu</span>
+          <h2 class="q-title" id="summary-headline" style="margin-top: var(--space-sm); margin-bottom: var(--space-xs);"></h2>
+          <p id="summary-subtext" style="margin: 0; color: var(--on-surface-variant);"></p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+          <button type="button" class="btn btn-primary" onclick="toggleSummaryView()">
+            <i data-lucide="arrow-left" width="18" height="18" aria-hidden="true"></i>
+            Kembali ke Soal
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="downloadScoreReport()">
+            <i data-lucide="download" width="18" height="18" aria-hidden="true"></i>
+            Unduh Rapor (.txt)
+          </button>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="review-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Topik</th>
+              <th>Ringkasan Soal</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="summary-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Main Interactive Workspace -->
+    <section id="quiz-workspace" class="workspace-grid">
+      <!-- Left: Active Question Card -->
+      <div class="quiz-main-col">
+        <article class="card" id="question-card" aria-live="polite">
+          <!-- Question Number Pills -->
+          <div class="q-nav-wrap" id="q-navigator" aria-label="Navigasi nomor soal"></div>
+
+          <!-- Metadata -->
+          <div class="q-meta">
+            <div class="tag-group">
+              <span class="tag-topic" id="q-topic-badge">Topik</span>
+              <span class="tag-level" id="q-level-badge">Level</span>
+            </div>
+            <span class="q-source" id="q-source-text"></span>
+          </div>
+
+          <!-- Question Prompt -->
+          <h2 class="q-title" id="q-prompt"></h2>
+
+          <!-- Optional Visual in Prompt (Geometry / Diagram) -->
+          <div class="prompt-diagram" id="q-prompt-diagram" style="display: none;"></div>
+
+          <!-- Interactive Answer Area -->
+          <div id="q-answer-area"></div>
+
+          <!-- Evaluation & Step-by-Step Solution -->
+          <div id="q-feedback-area" style="display: none;"></div>
+
+          <!-- Footer Navigation -->
+          <div class="q-footer">
+            <button type="button" class="btn btn-ghost" id="btn-prev" onclick="prevQuestion()">
+              <i data-lucide="chevron-left" width="18" height="18" aria-hidden="true"></i>
+              Sebelumnya
+            </button>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+              <button type="button" class="btn btn-ghost" id="btn-hint" onclick="toggleHint()">
+                <i data-lucide="lightbulb" width="18" height="18" aria-hidden="true"></i>
+                Petunjuk Rumus
+              </button>
+              <button type="button" class="btn btn-primary" id="btn-next" onclick="nextQuestion()">
+                Soal Berikutnya
+                <i data-lucide="chevron-right" width="18" height="18" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Collapsible Quick Hint inside card -->
+          <div id="q-hint-box" class="steps-card" style="display: none; margin-top: var(--space-md); background: var(--surface-container);">
+            <p class="steps-heading">Petunjuk Pengerjaan</p>
+            <div id="q-hint-text"></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Right: Sidebar Mastery + Quick Formula Book + Actions -->
+      <aside class="sidebar-stack">
+        <!-- Mastery Card -->
+        <section class="card shadow-sky" aria-label="Penguasaan per topik">
+          <h3 class="section-title">Penguasaan Materi</h3>
+          <div class="mastery-list" id="mastery-list"></div>
+        </section>
+
+        <!-- Buku Saku Rumus Cepat -->
+        <section class="card shadow-grape" aria-label="Buku saku rumus pecahan">
+          <h3 class="section-title">Buku Saku Rumus Cepat</h3>
+          <div class="formula-list">
+            <div class="formula-item">
+              <p class="formula-name">1. Perkalian Pecahan</p>
+              <p class="formula-eq">
+                <span class="frac"><span class="frac-num">a</span><span class="frac-den">b</span></span> &times;
+                <span class="frac"><span class="frac-num">c</span><span class="frac-den">d</span></span> =
+                <span class="frac"><span class="frac-num">a &times; c</span><span class="frac-den">b &times; d</span></span>
+              </p>
+            </div>
+            <div class="formula-item">
+              <p class="formula-name">2. Bilangan Kebalikan</p>
+              <p class="formula-eq">
+                Kebalikan <span class="frac"><span class="frac-num">a</span><span class="frac-den">b</span></span> adalah
+                <span class="frac"><span class="frac-num">b</span><span class="frac-den">a</span></span>
+                (hasil kalinya = 1)
+              </p>
+            </div>
+            <div class="formula-item">
+              <p class="formula-name">3. Pembagian Pecahan</p>
+              <p class="formula-eq">
+                <span class="frac"><span class="frac-num">a</span><span class="frac-den">b</span></span> &divide;
+                <span class="frac"><span class="frac-num">c</span><span class="frac-den">d</span></span> =
+                <span class="frac"><span class="frac-num">a</span><span class="frac-den">b</span></span> &times;
+                <span class="frac"><span class="frac-num">d</span><span class="frac-den">c</span></span>
+              </p>
+            </div>
+            <div class="formula-item">
+              <p class="formula-name">4. Campuran Pecahan &amp; Desimal</p>
+              <p class="formula-eq">
+                Samakan bentuknya. Jika desimalnya tak berakhir (seperti 1/3 atau 1/6), ubah ke pecahan biasa.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Actions Card -->
+        <section class="card" aria-label="Pengaturan kuis">
+          <h3 class="section-title">Pengaturan Latihan</h3>
+          <div class="action-stack">
+            <button type="button" class="btn btn-secondary" onclick="shuffleQuestions()">
+              <i data-lucide="shuffle" width="18" height="18" aria-hidden="true"></i>
+              Acak Urutan Soal
+            </button>
+            <button type="button" class="btn btn-ghost" onclick="downloadScoreReport()">
+              <i data-lucide="download" width="18" height="18" aria-hidden="true"></i>
+              Unduh Catatan Nilai
+            </button>
+            <button type="button" class="btn btn-ghost" id="btn-reset" onclick="resetQuiz(this)">
+              <i data-lucide="rotate-ccw" width="18" height="18" aria-hidden="true"></i>
+              Reset Semua Jawaban
+            </button>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="footer-note">
+      Disusun berdasarkan buku Matematika untuk SD/MI Kelas VI (Dicky Susanto dkk., Kemendikbudristek 2022, hlm. 15–58) dan Belajar Bersama Temanmu Matematika untuk SD Kelas VI Volume 1 (Tim Gakkotosho / Wuli Oktiningrum, Kemendikbudristek 2022, hlm. 29–62).
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    function f(num, den) {
+      return `<span class="frac" aria-label="${num} per ${den}"><span class="frac-num">${num}</span><span class="frac-den">${den}</span></span>`;
+    }
+    function mf(whole, num, den) {
+      return `<span class="mixed-whole">${whole}</span>${f(num, den)}`;
+    }
+
+    const TOPIC_META = {
+      perkalian: { label: `Perkalian Pecahan`, fillClass: `fill-pink` },
+      pembagian: { label: `Pembagian & Kebalikan`, fillClass: `fill-grape` },
+      desimal: { label: `Desimal & Campuran`, fillClass: `fill-sky` },
+      cerita: { label: `Soal Cerita Kontekstual`, fillClass: `fill-tangerine` }
+    };
+
+    const QUESTIONS = [
+      {
+        id: `q1`,
+        topic: `perkalian`,
+        level: `Dasar`,
+        source: `Sumber 1 · hlm. 15–18`,
+        type: `mc`,
+        shortTitle: `Menyiram kebun: 4 × 3/5 m²`,
+        prompt: `Agam membantu ayahnya menyiram kebun. Satu ember kecil air dapat menyiram ${f(3, 5)} m² kebun. Jika Agam menggunakan 4 ember kecil air, berapa luas kebun yang dapat disiram?`,
+        hint: `Mengalikan bilangan asli dengan pecahan berarti menggandakan bagian pecahan: a × ${f(`b`, `c`)} = ${f(`a × b`, `c`)}.`,
+        options: [
+          `${f(12, 5)} m² (atau ${mf(2, 2, 5)} m²)`,
+          `${f(12, 20)} m²`,
+          `${f(7, 5)} m²`,
+          `${f(3, 20)} m²`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Kalimat matematikanya adalah 4 × ${f(3, 5)}.`,
+          `Kalikan bilangan asli dengan pembilang, dan biarkan penyebutnya tetap: ${f(`4 × 3`, 5)} = ${f(12, 5)}.`,
+          `Jika diubah ke pecahan campuran: ${f(12, 5)} = ${mf(2, 2, 5)} m².`
+        ],
+        visualType: `bars-4x3_5`,
+        visualCaption: `4 ember air masing-masing menyiram 3/5 m², totalnya 12 bagian dari 1/5 m² = 12/5 m².`
+      },
+      {
+        id: `q2`,
+        topic: `perkalian`,
+        level: `Menengah`,
+        source: `Sumber 1 · hlm. 21`,
+        type: `mc`,
+        shortTitle: `Pohon mangga: 2/3 × 15 pohon`,
+        prompt: `Agam menghitung ada 15 pohon mangga di kebunnya. Sebanyak ${f(2, 3)} dari seluruh pohon mangga tersebut adalah jenis mangga manalagi. Berapa banyak pohon mangga manalagi milik Agam?`,
+        hint: `Kalikan pembilang dengan bilangan asli, lalu bagi dengan penyebutnya: ${f(`a`, `c`)} × b = ${f(`a × b`, `c`)}.`,
+        options: [
+          `10 pohon`,
+          `5 pohon`,
+          `12 pohon`,
+          `9 pohon`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Banyak pohon mangga manalagi = ${f(2, 3)} × 15.`,
+          `Hitung pembilang × bilangan asli: ${f(`2 × 15`, 3)} = ${f(30, 3)}.`,
+          `Sederhanakan: 30 ÷ 3 = 10 pohon.`
+        ],
+        visualType: `dots-2_3x15`,
+        visualCaption: `15 pohon dibagi 3 kelompok sama banyak (masing-masing 5 pohon). 2 kelompok = 10 pohon.`
+      },
+      {
+        id: `q3`,
+        topic: `perkalian`,
+        level: `Menengah`,
+        source: `Sumber 2 · hlm. 29–32`,
+        type: `mc`,
+        shortTitle: `Mengecat pagar: 4/5 × 2/3`,
+        prompt: `Sebanyak 1 dℓ cat merah dapat menutup ${f(4, 5)} m² pagar. Berapa luas pagar (dalam m²) yang dapat tertutup oleh ${f(2, 3)} dℓ cat merah?`,
+        hint: `Saat mengalikan pecahan dengan pecahan, kalikan pembilang dengan pembilang dan penyebut dengan penyebut.`,
+        options: [
+          `${f(8, 15)} m²`,
+          `${f(6, 8)} m²`,
+          `${f(12, 10)} m²`,
+          `${f(6, 15)} m²`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Kalimat matematikanya adalah ${f(4, 5)} × ${f(2, 3)}.`,
+          `Kalikan pembilang dengan pembilang: 4 × 2 = 8.`,
+          `Kalikan penyebut dengan penyebut: 5 × 3 = 15.`,
+          `Jadi, luas pagar yang tertutup adalah ${f(8, 15)} m².`
+        ],
+        visualType: `grid-4_5x2_3`,
+        visualCaption: `Model luas Ide Kadek: kotak 5 × 3 = 15 petak. Bagian tercat = 4 × 2 = 8 petak (8/15 m²).`
+      },
+      {
+        id: `q4`,
+        topic: `perkalian`,
+        level: `Menengah`,
+        source: `Sumber 2 · hlm. 32–33`,
+        type: `fraction`,
+        shortTitle: `Sederhanakan: 3/4 × 4/9`,
+        prompt: `Hitunglah hasil perkalian antarpecahan berikut dalam bentuk pecahan paling sederhana: ${f(3, 4)} × ${f(4, 9)} = …`,
+        hint: `Kalikan pembilang dengan pembilang dan penyebut dengan penyebut, lalu sederhanakan dengan FPB-nya (atau coret angka yang sama sebelum mengalikan).`,
+        correctNum: 1,
+        correctDen: 3,
+        steps: [
+          `Kalikan langsung: ${f(`3 × 4`, `4 × 9`)} = ${f(12, 36)}.`,
+          `Sederhanakan dengan membagi pembilang dan penyebut dengan 12: ${f(`12 ÷ 12`, `36 ÷ 12`)} = ${f(1, 3)}.`,
+          `(Cara cepat: angka 4 pada penyebut dan pembilang saling membagi menjadi 1, dan 3/9 disederhanakan menjadi ${f(1, 3)}).`
+        ],
+        visualType: `grid-3_4x4_9`,
+        visualCaption: `12 bagian dari 36 petak sama besar nilainya dengan 1/3 bagian keseluruhan.`
+      },
+      {
+        id: `q5`,
+        topic: `pembagian`,
+        level: `Dasar`,
+        source: `Sumber 1 & Sumber 2 · hlm. 33, 51`,
+        type: `fraction`,
+        shortTitle: `Bilangan kebalikan dari 5/8`,
+        prompt: `Agar hasil perkalian ${f(5, 8)} × ${f(`?`, `?`)} = 1, berapakah bilangan kebalikan dari ${f(5, 8)}?`,
+        hint: `Bilangan kebalikan diperoleh dengan menukar posisi pembilang dan penyebut: kebalikan dari ${f(`a`, `b`)} adalah ${f(`b`, `a`)}.`,
+        correctNum: 8,
+        correctDen: 5,
+        steps: [
+          `Tukar pembilang (5) dan penyebut (8) menjadi ${f(8, 5)}.`,
+          `Cek hasilnya: ${f(5, 8)} × ${f(8, 5)} = ${f(40, 40)} = 1.`,
+          `Jadi, bilangan kebalikan dari ${f(5, 8)} adalah ${f(8, 5)}.`
+        ],
+        visualType: `reciprocal-5_8`,
+        visualCaption: `5/8 dikalikan kebalikannya 8/5 menghasilkan 40/40 = 1 satuan penuh.`
+      },
+      {
+        id: `q6`,
+        topic: `pembagian`,
+        level: `Dasar`,
+        source: `Sumber 1 · Latihan 1.2`,
+        type: `mc`,
+        shortTitle: `Membagi 3/4 tanah untuk 3 anak`,
+        prompt: `Pak Rudi membagi ${f(3, 4)} bagian tanah miliknya kepada 3 orang anaknya secara adil. Berapa bagian tanah yang diterima masing-masing anak?`,
+        hint: `Membagi dengan bilangan asli 3 sama dengan mengalikan dengan kebalikan 3, yaitu ${f(1, 3)}.`,
+        options: [
+          `${f(1, 4)} bagian`,
+          `${f(9, 4)} bagian`,
+          `${f(3, 7)} bagian`,
+          `${f(1, 12)} bagian`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Kalimat matematikanya adalah ${f(3, 4)} ÷ 3.`,
+          `Ubah menjadi perkalian dengan kebalikan 3: ${f(3, 4)} × ${f(1, 3)} = ${f(3, 12)}.`,
+          `Sederhanakan dengan membagi 3: ${f(3, 12)} = ${f(1, 4)} bagian.`
+        ],
+        visualType: `share-3_4by3`,
+        visualCaption: `Dari 3 petak seperempat, tiap anak mendapat tepat 1 petak (1/4 bagian).`
+      },
+      {
+        id: `q7`,
+        topic: `pembagian`,
+        level: `Menengah`,
+        source: `Sumber 1 · hlm. 40–42`,
+        type: `mc`,
+        shortTitle: `Pembagian bilangan asli: 3 ÷ 2/5`,
+        prompt: `Hitunglah hasil pembagian bilangan asli dengan pecahan berikut: 3 ÷ ${f(2, 5)} = …`,
+        hint: `Untuk membagi bilangan asli dengan pecahan, kalikan bilangan asli tersebut dengan kebalikan dari pecahannya.`,
+        options: [
+          `${f(15, 2)} (atau ${mf(7, 1, 2)})`,
+          `${f(6, 5)}`,
+          `${f(2, 15)}`,
+          `${f(5, 6)}`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Kebalikan dari ${f(2, 5)} adalah ${f(5, 2)}.`,
+          `Ubah operasi pembagian menjadi perkalian: 3 ÷ ${f(2, 5)} = 3 × ${f(5, 2)}.`,
+          `Kalikan pembilang dengan bilangan asli: ${f(`3 × 5`, 2)} = ${f(15, 2)} = ${mf(7, 1, 2)}.`
+        ],
+        visualType: `div-3by2_5`,
+        visualCaption: `3 satuan utuh = 15 perlima. Jika dikelompokkan per 2/5, terbentuk 7 kelompok utuh dan 1/2 kelompok.`
+      },
+      {
+        id: `q8`,
+        topic: `pembagian`,
+        level: `Menengah`,
+        source: `Sumber 2 · hlm. 51`,
+        type: `mc`,
+        shortTitle: `Pembagian pecahan: 8/3 ÷ 12/5`,
+        prompt: `Hitunglah hasil dari ${f(8, 3)} ÷ ${f(12, 5)} dalam bentuk pecahan paling sederhana!`,
+        hint: `Gunakan rumus ${f(`B`, `A`)} ÷ ${f(`D`, `C`)} = ${f(`B`, `A`)} × ${f(`C`, `D`)}, lalu sederhanakan hasilnya.`,
+        options: [
+          `${f(10, 9)}`,
+          `${f(32, 15)}`,
+          `${f(9, 10)}`,
+          `${f(96, 15)}`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Balikkan pecahan pembagi ${f(12, 5)} menjadi ${f(5, 12)}.`,
+          `Kalikan: ${f(8, 3)} × ${f(5, 12)} = ${f(40, 36)}.`,
+          `Sederhanakan dengan membagi pembilang dan penyebut dengan 4: ${f(`40 ÷ 4`, `36 ÷ 4`)} = ${f(10, 9)} (atau ${mf(1, 1, 9)}).`
+        ],
+        visualType: `invert-arrow`,
+        visualCaption: `Pembagian antarpecahan diselesaikan dengan mengalikan pecahan pertama dengan kebalikan pecahan pembagi.`
+      },
+      {
+        id: `q9`,
+        topic: `desimal`,
+        level: `Dasar`,
+        source: `Sumber 1 · hlm. 56–58`,
+        type: `mc`,
+        shortTitle: `Konversi pecahan 1/6 ke desimal`,
+        prompt: `Rani memiliki ${f(1, 6)} liter jus jambu dan ingin mengubahnya menjadi bentuk desimal. Manakah bentuk desimal yang tepat untuk ${f(1, 6)}?`,
+        hint: `Pecahan ${f(1, 6)} berarti 1 ÷ 6. Lakukan pembagian bersusun hingga pola angkanya berulang.`,
+        options: [
+          `0,1666…`,
+          `0,6`,
+          `0,15`,
+          `0,25`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Bentuk ${f(1, 6)} sama artinya dengan pembagian 1 ÷ 6.`,
+          `10 ÷ 6 = 1 sisa 4 (jadi 0,1…).`,
+          `40 ÷ 6 = 6 sisa 4 terus berulang, sehingga hasilnya 0,1666…`
+        ],
+        visualType: `dec-1_6`,
+        visualCaption: `Pembagian 1 ÷ 6 menghasilkan angka 6 yang berulang tanpa henti: 0,1666…`
+      },
+      {
+        id: `q10`,
+        topic: `desimal`,
+        level: `Dasar`,
+        source: `Sumber 2 · hlm. 59`,
+        type: `mc`,
+        shortTitle: `Penjumlahan campuran: 2/5 + 0,5`,
+        prompt: `Hitunglah hasil dari ${f(2, 5)} + 0,5!`,
+        hint: `Samakan bentuk keduanya: ubah ${f(2, 5)} menjadi desimal (${f(4, 10)} = 0,4), atau ubah 0,5 menjadi pecahan (${f(1, 2)}).`,
+        options: [
+          `0,9 (atau ${f(9, 10)})`,
+          `0,7`,
+          `0,25`,
+          `1,1`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Cara Desimal: ubah ${f(2, 5)} = ${f(4, 10)} = 0,4. Lalu 0,4 + 0,5 = 0,9.`,
+          `Cara Pecahan: ubah 0,5 = ${f(1, 2)}. Samakan penyebut: ${f(2, 5)} + ${f(1, 2)} = ${f(4, 10)} + ${f(5, 10)} = ${f(9, 10)}.`,
+          `Keduanya bernilai sama, yaitu 0,9 atau ${f(9, 10)}.`
+        ],
+        visualType: `dec-bar-0_9`,
+        visualCaption: `0,4 (dari 2/5) ditambah 0,5 menutupi 9 dari 10 bagian = 0,9.`
+      },
+      {
+        id: `q11`,
+        topic: `desimal`,
+        level: `Menengah`,
+        source: `Sumber 2 · hlm. 59`,
+        type: `mc`,
+        shortTitle: `Operasi tepat: 0,2 − 1/6`,
+        prompt: `Manakah cara paling tepat beserta hasil eksak untuk menghitung 0,2 − ${f(1, 6)}?`,
+        hint: `Ingat aturan Sumber 2: jika sebuah pecahan tidak dapat diubah menjadi desimal yang berakhir tepat (seperti ${f(1, 6)} = 0,1666…), ubahlah semua bilangan ke pecahan biasa.`,
+        options: [
+          `Ubah 0,2 = ${f(1, 5)}, hasilnya ${f(1, 30)}`,
+          `Ubah ${f(1, 6)} = 0,16, hasilnya 0,04`,
+          `Kurangkan pembilangnya langsung, hasilnya 0,1`,
+          `Ubah 0,2 = ${f(2, 6)}, hasilnya ${f(1, 6)}`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Karena ${f(1, 6)} = 0,1666… adalah desimal berulang tak berakhir, jangan dibulatkan di awal.`,
+          `Ubah 0,2 ke pecahan biasa: 0,2 = ${f(2, 10)} = ${f(1, 5)}.`,
+          `Samakan penyebut menjadi 30: ${f(1, 5)} − ${f(1, 6)} = ${f(6, 30)} − ${f(5, 30)} = ${f(1, 30)}.`
+        ],
+        visualType: `mix-1_5minus1_6`,
+        visualCaption: `Mengubah ke pecahan biasa (6/30 − 5/30 = 1/30) menjaga ketepatan perhitungan tanpa galat pembulatan.`
+      },
+      {
+        id: `q12`,
+        topic: `desimal`,
+        level: `Menengah`,
+        source: `Sumber 2 · hlm. 61`,
+        type: `decimal`,
+        shortTitle: `Berantai desimal: 0,7 ÷ 0,35 ÷ 0,5`,
+        prompt: `Hitunglah hasil operasi pembagian berantai berikut: 0,7 ÷ 0,35 ÷ 0,5 = …`,
+        hint: `Kerjakan dari kiri ke kanan, atau ubah ke pecahan: ${f(7, 10)} ÷ ${f(35, 100)} ÷ ${f(5, 10)}.`,
+        correctDecimal: 4,
+        steps: [
+          `Langkah 1: Hitung 0,7 ÷ 0,35. Kalikan keduanya dengan 100 menjadi 70 ÷ 35 = 2.`,
+          `Langkah 2: Hitung 2 ÷ 0,5. Kalikan keduanya dengan 10 menjadi 20 ÷ 5 = 4.`,
+          `(Cara pecahan: ${f(7, 10)} × ${f(100, 35)} × ${f(10, 5)} = 2 × 2 = 4).`
+        ],
+        visualType: `chain-div`,
+        visualCaption: `0,7 ÷ 0,35 = 2, lalu 2 dibagi setengah (0,5) menghasilkan 4.`
+      },
+      {
+        id: `q13`,
+        topic: `cerita`,
+        level: `Kontekstual`,
+        source: `Sumber 1 · hlm. 25`,
+        type: `mc`,
+        shortTitle: `Ekstrakurikuler musik & melukis SD Melati`,
+        prompt: `Ada 180 siswa kelas 6 di SD Melati. Sebanyak ${f(1, 6)} dari seluruh siswa memilih ekstrakurikuler musik, dan ${f(2, 3)} dari siswa yang memilih musik juga memilih ekstrakurikuler melukis. Berapa banyak siswa yang memilih melukis?`,
+        hint: `Hitung dulu banyak siswa musik (${f(1, 6)} × 180), lalu kalikan hasilnya dengan ${f(2, 3)}.`,
+        options: [
+          `20 siswa`,
+          `30 siswa`,
+          `120 siswa`,
+          `15 siswa`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Banyak siswa ekstrakurikuler musik = ${f(1, 6)} × 180 = 30 siswa.`,
+          `Banyak siswa yang juga memilih melukis = ${f(2, 3)} × 30 = ${f(60, 3)} = 20 siswa.`,
+          `Bentuk pecahan dari seluruh siswa = ${f(1, 6)} × ${f(2, 3)} = ${f(2, 18)} = ${f(1, 9)} bagian (atau 20 dari 180 siswa).`
+        ],
+        visualType: `story-melati`,
+        visualCaption: `180 siswa → 1/6 ikut musik (30 siswa) → 2/3 dari 30 ikut melukis (20 siswa).`
+      },
+      {
+        id: `q14`,
+        topic: `cerita`,
+        level: `Kontekstual`,
+        source: `Sumber 2 · hlm. 57`,
+        type: `mc`,
+        shortTitle: `Mencari panjang alas jajargenjang`,
+        prompt: `Diketahui sebuah jajargenjang memiliki luas 19,8 cm² dan tinggi 3,6 cm. Berapakah panjang alas (x) jajargenjang tersebut?`,
+        hint: `Ingat rumus Luas jajargenjang = alas × tinggi, sehingga alas = Luas ÷ tinggi.`,
+        promptDiagram: `parallelogram`,
+        options: [
+          `5,5 cm`,
+          `4,5 cm`,
+          `6,2 cm`,
+          `16,2 cm`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Gunakan rumus alas: x = Luas ÷ tinggi = 19,8 ÷ 3,6.`,
+          `Kalikan bilangan yang dibagi dan pembagi dengan 10 agar menjadi bilangan bulat: 198 ÷ 36.`,
+          `198 ÷ 36 = 5,5 cm. Cek kembali: 5,5 × 3,6 = 19,8 cm².`
+        ],
+        visualType: `none`,
+        visualCaption: ``
+      },
+      {
+        id: `q15`,
+        topic: `cerita`,
+        level: `Kontekstual`,
+        source: `Sumber 2 · hlm. 62`,
+        type: `mc`,
+        shortTitle: `Panjang diagonal belah ketupat`,
+        prompt: `Sebuah belah ketupat memiliki luas 4 cm² dan panjang salah satu diagonalnya ${mf(3, 1, 5)} cm. Berapakah panjang diagonal lainnya?`,
+        hint: `Luas belah ketupat = ${f(1, 2)} × d₁ × d₂. Maka d₂ = (2 × Luas) ÷ d₁.`,
+        promptDiagram: `rhombus`,
+        options: [
+          `${mf(2, 1, 2)} cm (atau 2,5 cm)`,
+          `${mf(1, 1, 4)} cm`,
+          `${mf(3, 1, 5)} cm`,
+          `${mf(5, 1, 2)} cm`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Ubah pecahan campuran ke pecahan biasa: ${mf(3, 1, 5)} = ${f(16, 5)} cm.`,
+          `Karena Luas = ${f(1, 2)} × d₁ × d₂, maka 4 = ${f(1, 2)} × ${f(16, 5)} × d₂ = ${f(8, 5)} × d₂.`,
+          `Hitung d₂ = 4 ÷ ${f(8, 5)} = 4 × ${f(5, 8)} = ${f(20, 8)} = ${f(5, 2)} = ${mf(2, 1, 2)} cm (atau 2,5 cm).`
+        ],
+        visualType: `none`,
+        visualCaption: ``
+      },
+      {
+        id: `q16`,
+        topic: `cerita`,
+        level: `Penalaran Kritis`,
+        source: `Sumber 1 · hlm. 19 (Ayo Berpikir Kritis)`,
+        type: `mc`,
+        shortTitle: `Benarkah perkalian pecahan selalu mengecil?`,
+        prompt: `Perhatikan pernyataan berikut: “Jika kalian mengalikan bilangan asli dengan sebuah pecahan, hasil perkaliannya akan selalu lebih kecil daripada bilangan asli semula.” Apakah pernyataan ini benar?`,
+        hint: `Coba uji dengan dua jenis pecahan: pecahan yang kurang dari 1 (seperti ${f(1, 2)}) dan pecahan yang lebih dari 1 (seperti ${f(3, 2)}).`,
+        options: [
+          `Salah, hanya lebih kecil jika pecahannya kurang dari 1 (pecahan sejati)`,
+          `Benar, karena semua pecahan selalu memperkecil bilangan asli`,
+          `Salah, hasilnya selalu lebih besar daripada bilangan asli semula`,
+          `Benar, kecuali jika bilangan aslinya angka 1`
+        ],
+        correctIndex: 0,
+        steps: [
+          `Uji dengan pecahan sejati (< 1): 4 × ${f(1, 2)} = 2. Hasilnya lebih kecil dari 4.`,
+          `Uji dengan pecahan tidak sejati (> 1): 4 × ${f(3, 2)} = 6. Hasilnya justru lebih besar dari 4!`,
+          `Jadi pernyataan tersebut salah: hasil kali hanya lebih kecil jika dikalikan pecahan kurang dari 1.`
+        ],
+        visualType: `critical-compare`,
+        visualCaption: `Bandingkan 4 × 1/2 = 2 (mengecil) dengan 4 × 3/2 = 6 (membesar).`
+      }
+    ];
+
+    const quizState = {
+      order: QUESTIONS.map((_, i) => i),
+      activeFilter: `all`,
+      currentIndex: 0,
+      answers: {}, // { qId: { correct: boolean, selectedIndex?: number, num?: number, den?: number, decimal?: number } }
+      streak: 0,
+      bestStreak: 0,
+      showSummary: false,
+      hintVisible: false
+    };
+
+    function getFilteredIndices() {
+      if (quizState.activeFilter === `all`) return quizState.order;
+      return quizState.order.filter(idx => QUESTIONS[idx].topic === quizState.activeFilter);
+    }
+
+    function getQuestionByFilteredPos(pos) {
+      const list = getFilteredIndices();
+      if (!list.length) return null;
+      const safePos = Math.max(0, Math.min(pos, list.length - 1));
+      return QUESTIONS[list[safePos]];
+    }
+
+    function renderPromptDiagram(type) {
+      if (type === `parallelogram`) {
+        return `
+          <svg width="300" height="140" viewBox="0 0 300 140" role="img" aria-label="Gambar jajargenjang dengan luas 19,8 cm persegi, tinggi 3,6 cm, dan alas x cm">
+            <polygon points="60,25 260,25 220,105 20,105" fill="var(--tertiary-container)" stroke="var(--secondary)" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="60" y1="25" x2="60" y2="105" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="5,4"/>
+            <polyline points="60,93 72,93 72,105" fill="none" stroke="var(--primary)" stroke-width="2"/>
+            <text x="68" y="70" fill="var(--primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">3,6 cm</text>
+            <text x="145" y="70" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" text-anchor="middle">Luas = 19,8 cm²</text>
+            <text x="120" y="128" fill="var(--secondary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" text-anchor="middle">alas = x cm</text>
+          </svg>
+        `;
+      }
+      if (type === `rhombus`) {
+        return `
+          <svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Gambar belah ketupat dengan luas 4 cm persegi dan salah satu diagonal 3 1/5 cm">
+            <polygon points="140,15 245,75 140,135 35,75" fill="var(--secondary-container)" stroke="var(--secondary)" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="35" y1="75" x2="245" y2="75" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="5,4"/>
+            <line x1="140" y1="15" x2="140" y2="135" stroke="var(--tertiary)" stroke-width="2.5" stroke-dasharray="5,4"/>
+            <text x="182" y="66" fill="var(--primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">d₁ = 3⅕ cm</text>
+            <text x="148" y="42" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">d₂ = ? cm</text>
+            <text x="72" y="132" fill="var(--on-surface-variant)" font-family="DM Sans, sans-serif" font-weight="700" font-size="13">Luas = 4 cm²</text>
+          </svg>
+        `;
+      }
+      return ``;
+    }
+
+    function renderExplanationVisual(type) {
+      if (type === `bars-4x3_5`) {
+        let bars = ``;
+        for (let b = 0; b < 4; b++) {
+          const y = 10 + b * 28;
+          for (let s = 0; s < 5; s++) {
+            const x = 10 + s * 46;
+            const fill = s < 3 ? `var(--primary)` : `var(--surface-container-low)`;
+            bars += `<rect x="${x}" y="${y}" width="42" height="20" rx="5" fill="${fill}" stroke="var(--outline)" stroke-width="1.5"/>`;
+          }
+          bars += `<text x="248" y="${y + 15}" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="700" font-size="12">Ember ${b + 1}: 3/5</text>`;
+        }
+        return `<svg width="330" height="125" viewBox="0 0 330 125" aria-hidden="true">${bars}</svg>`;
+      }
+
+      if (type === `dots-2_3x15`) {
+        let dots = ``;
+        for (let r = 0; r < 3; r++) {
+          const active = r < 2;
+          for (let c = 0; c < 5; c++) {
+            const cx = 32 + c * 42;
+            const cy = 24 + r * 34;
+            dots += `<circle cx="${cx}" cy="${cy}" r="11" fill="${active ? `var(--primary)` : `var(--data-context)`}"/>`;
+          }
+          dots += `<text x="235" y="${28 + r * 34}" fill="${active ? `var(--primary)` : `var(--on-surface-variant)`}" font-family="DM Sans, sans-serif" font-weight="700" font-size="12">${active ? `Manalagi (5)` : `Lainnya (5)`}</text>`;
+        }
+        return `<svg width="330" height="114" viewBox="0 0 330 114" aria-hidden="true">${dots}</svg>`;
+      }
+
+      if (type === `grid-4_5x2_3`) {
+        let cells = ``;
+        for (let r = 0; r < 3; r++) {
+          for (let c = 0; c < 5; c++) {
+            const x = 16 + c * 44;
+            const y = 14 + r * 32;
+            const inWidth = c < 4;
+            const inHeight = r < 2;
+            let fill = `var(--surface-container-low)`;
+            if (inWidth && inHeight) fill = `var(--primary)`;
+            else if (inWidth) fill = `var(--primary-container)`;
+            cells += `<rect x="${x}" y="${y}" width="40" height="28" rx="6" fill="${fill}" stroke="var(--outline)" stroke-width="1.5"/>`;
+          }
+        }
+        return `<svg width="260" height="120" viewBox="0 0 260 120" aria-hidden="true">${cells}</svg>`;
+      }
+
+      if (type === `grid-3_4x4_9`) {
+        let cells = ``;
+        for (let r = 0; r < 4; r++) {
+          for (let c = 0; c < 9; c++) {
+            const x = 14 + c * 28;
+            const y = 10 + r * 24;
+            const shaded = r < 3 && c < 4;
+            cells += `<rect x="${x}" y="${y}" width="24" height="20" rx="4" fill="${shaded ? `var(--secondary)` : `var(--surface-container-low)`}" stroke="var(--outline)" stroke-width="1.2"/>`;
+          }
+        }
+        return `<svg width="280" height="110" viewBox="0 0 280 110" aria-hidden="true">${cells}</svg>`;
+      }
+
+      if (type === `reciprocal-5_8`) {
+        return `
+          <svg width="310" height="72" viewBox="0 0 310 72" aria-hidden="true">
+            <rect x="10" y="14" width="70" height="44" rx="14" fill="var(--primary-container)"/>
+            <text x="45" y="42" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="800" font-size="18">5 / 8</text>
+            <text x="102" y="42" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="900" font-size="18">×</text>
+            <rect x="122" y="14" width="70" height="44" rx="14" fill="var(--secondary)"/>
+            <text x="157" y="42" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="18">8 / 5</text>
+            <text x="214" y="42" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="900" font-size="18">=</text>
+            <rect x="234" y="14" width="64" height="44" rx="14" fill="var(--positive)"/>
+            <text x="266" y="42" text-anchor="middle" fill="var(--on-positive)" font-family="DM Sans, sans-serif" font-weight="900" font-size="18">1</text>
+          </svg>
+        `;
+      }
+
+      if (type === `share-3_4by3`) {
+        let blocks = ``;
+        for (let i = 0; i < 4; i++) {
+          const x = 14 + i * 68;
+          const fill = i < 3 ? `var(--tertiary)` : `var(--surface-container-low)`;
+          blocks += `<rect x="${x}" y="14" width="60" height="36" rx="8" fill="${fill}" stroke="var(--outline)" stroke-width="1.5"/>`;
+          if (i < 3) {
+            blocks += `<text x="${x + 30}" y="37" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="12">Anak ${i + 1}</text>`;
+          } else {
+            blocks += `<text x="${x + 30}" y="37" text-anchor="middle" fill="var(--on-surface-variant)" font-family="DM Sans, sans-serif" font-weight="700" font-size="11">Sisa</text>`;
+          }
+        }
+        return `<svg width="296" height="66" viewBox="0 0 296 66" aria-hidden="true">${blocks}</svg>`;
+      }
+
+      if (type === `div-3by2_5`) {
+        let cells = ``;
+        for (let i = 0; i < 15; i++) {
+          const x = 10 + i * 19;
+          const group = Math.floor(i / 2);
+          const fill = i === 14 ? `var(--primary-container)` : (group % 2 === 0 ? `var(--primary)` : `var(--secondary)`);
+          cells += `<rect x="${x}" y="16" width="16" height="32" rx="4" fill="${fill}"/>`;
+        }
+        return `
+          <svg width="304" height="72" viewBox="0 0 304 72" aria-hidden="true">
+            ${cells}
+            <text x="152" y="64" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="700" font-size="12">7 pasang utuh (2/5) + 1/2 pasang = 7½</text>
+          </svg>
+        `;
+      }
+
+      if (type === `invert-arrow`) {
+        return `
+          <svg width="310" height="72" viewBox="0 0 310 72" aria-hidden="true">
+            <rect x="10" y="14" width="115" height="44" rx="14" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="2"/>
+            <text x="67" y="41" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="800" font-size="15">8/3 ÷ 12/5</text>
+            <text x="150" y="42" text-anchor="middle" fill="var(--primary)" font-family="DM Sans, sans-serif" font-weight="900" font-size="20">→</text>
+            <rect x="175" y="14" width="125" height="44" rx="14" fill="var(--primary)"/>
+            <text x="237" y="41" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="15">8/3 × 5/12</text>
+          </svg>
+        `;
+      }
+
+      if (type === `dec-bar-0_9`) {
+        let cells = ``;
+        for (let i = 0; i < 10; i++) {
+          const x = 12 + i * 28;
+          let fill = `var(--surface-container-low)`;
+          if (i < 4) fill = `var(--primary)`;
+          else if (i < 9) fill = `var(--tertiary)`;
+          cells += `<rect x="${x}" y="14" width="24" height="32" rx="6" fill="${fill}" stroke="var(--outline)" stroke-width="1.2"/>`;
+        }
+        return `
+          <svg width="300" height="70" viewBox="0 0 300 70" aria-hidden="true">
+            ${cells}
+            <text x="150" y="63" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="700" font-size="12">4/10 (0,4) + 5/10 (0,5) = 9/10 (0,9)</text>
+          </svg>
+        `;
+      }
+
+      if (type === `story-melati`) {
+        return `
+          <svg width="320" height="74" viewBox="0 0 320 74" aria-hidden="true">
+            <rect x="6" y="14" width="88" height="46" rx="14" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"/>
+            <text x="50" y="34" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">180 Siswa</text>
+            <text x="50" y="50" text-anchor="middle" fill="var(--on-surface-variant)" font-family="DM Sans, sans-serif" font-weight="600" font-size="11">Kelas 6</text>
+            <text x="108" y="42" text-anchor="middle" fill="var(--primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="14">×⅙</text>
+            <rect x="122" y="14" width="84" height="46" rx="14" fill="var(--secondary)"/>
+            <text x="164" y="34" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">30 Siswa</text>
+            <text x="164" y="50" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="600" font-size="11">Musik</text>
+            <text x="220" y="42" text-anchor="middle" fill="var(--primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="14">×⅔</text>
+            <rect x="234" y="14" width="80" height="46" rx="14" fill="var(--primary)"/>
+            <text x="274" y="34" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">20 Siswa</text>
+            <text x="274" y="50" text-anchor="middle" fill="var(--on-primary)" font-family="DM Sans, sans-serif" font-weight="600" font-size="11">Melukis</text>
+          </svg>
+        `;
+      }
+
+      if (type === `critical-compare`) {
+        return `
+          <svg width="310" height="82" viewBox="0 0 310 82" aria-hidden="true">
+            <rect x="10" y="12" width="136" height="58" rx="14" fill="var(--positive-container)" stroke="var(--positive)" stroke-width="2"/>
+            <text x="78" y="35" text-anchor="middle" fill="var(--on-positive-container)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">4 × 1/2 = 2</text>
+            <text x="78" y="55" text-anchor="middle" fill="var(--on-positive-container)" font-family="DM Sans, sans-serif" font-weight="600" font-size="11">Mengecil (pecahan &lt; 1)</text>
+            <rect x="164" y="12" width="136" height="58" rx="14" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2"/>
+            <text x="232" y="35" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="800" font-size="13">4 × 3/2 = 6</text>
+            <text x="232" y="55" text-anchor="middle" fill="var(--on-surface)" font-family="DM Sans, sans-serif" font-weight="600" font-size="11">Membesar (pecahan &gt; 1)</text>
+          </svg>
+        `;
+      }
+      return ``;
+    }
+
+    function updateScoreboard() {
+      const totalQuestions = QUESTIONS.length;
+      const answeredCount = Object.keys(quizState.answers).length;
+      const correctCount = Object.values(quizState.answers).filter(a => a.correct).length;
+      const score = Math.round((correctCount / totalQuestions) * 100);
+      const pct = Math.round((answeredCount / totalQuestions) * 100);
+
+      const elScore = document.getElementById(`stat-score`);
+      const elScoreCap = document.getElementById(`stat-score-caption`);
+      const elProgress = document.getElementById(`stat-progress`);
+      const elBar = document.getElementById(`stat-progress-bar`);
+      const elStreak = document.getElementById(`stat-streak`);
+      const elStreakCap = document.getElementById(`stat-streak-caption`);
+
+      if (elScore) elScore.textContent = `${score} / 100`;
+      if (elScoreCap) {
+        if (answeredCount === 0) elScoreCap.textContent = `Belum ada soal terjawab`;
+        else elScoreCap.textContent = `${correctCount} benar dari ${answeredCount} soal dijawab`;
+      }
+      if (elProgress) elProgress.textContent = `${answeredCount} / ${totalQuestions}`;
+      if (elBar) elBar.style.width = `${pct}%`;
+      if (elStreak) elStreak.textContent = `${correctCount} Benar`;
+      if (elStreakCap) elStreakCap.textContent = `Beruntun saat ini: ${quizState.streak} · Rekor: ${quizState.bestStreak}`;
+    }
+
+    function renderMasterySidebar() {
+      const container = document.getElementById(`mastery-list`);
+      if (!container) return;
+
+      const topics = [`perkalian`, `pembagian`, `desimal`, `cerita`];
+      container.innerHTML = topics.map(t => {
+        const meta = TOPIC_META[t];
+        const qs = QUESTIONS.filter(q => q.topic === t);
+        const correct = qs.filter(q => quizState.answers[q.id]?.correct).length;
+        const pct = Math.round((correct / qs.length) * 100);
+        return `
+          <div class="mastery-item">
+            <div class="mastery-row">
+              <span>${meta.label}</span>
+              <span class="mastery-stat">${correct}/${qs.length} (${pct}%)</span>
+            </div>
+            <div class="progress-track">
+              <div class="mastery-bar-fill ${meta.fillClass}" style="width: ${pct}%;"></div>
+            </div>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function renderNavigator(filteredIndices) {
+      const nav = document.getElementById(`q-navigator`);
+      if (!nav) return;
+
+      nav.innerHTML = filteredIndices.map((qIdx, pos) => {
+        const q = QUESTIONS[qIdx];
+        const ans = quizState.answers[q.id];
+        let cls = `q-dot`;
+        if (pos === quizState.currentIndex) cls += ` is-current`;
+        if (ans) cls += ans.correct ? ` is-correct` : ` is-wrong`;
+        return `<button type="button" class="${cls}" onclick="goToQuestion(${pos})" aria-label="Soal nomor ${pos + 1}">${pos + 1}</button>`;
+      }).join(``);
+    }
+
+    function renderQuestion() {
+      const filtered = getFilteredIndices();
+      if (!filtered.length) return;
+      if (quizState.currentIndex >= filtered.length) quizState.currentIndex = 0;
+
+      renderNavigator(filtered);
+      const q = getQuestionByFilteredPos(quizState.currentIndex);
+      if (!q) return;
+
+      const topicBadge = document.getElementById(`q-topic-badge`);
+      const levelBadge = document.getElementById(`q-level-badge`);
+      const sourceText = document.getElementById(`q-source-text`);
+      const promptEl = document.getElementById(`q-prompt`);
+      const promptDiagEl = document.getElementById(`q-prompt-diagram`);
+      const answerArea = document.getElementById(`q-answer-area`);
+      const feedbackArea = document.getElementById(`q-feedback-area`);
+      const hintBox = document.getElementById(`q-hint-box`);
+      const hintText = document.getElementById(`q-hint-text`);
+      const btnPrev = document.getElementById(`btn-prev`);
+      const btnNext = document.getElementById(`btn-next`);
+
+      if (topicBadge) topicBadge.textContent = TOPIC_META[q.topic].label;
+      if (levelBadge) levelBadge.textContent = q.level;
+      if (sourceText) sourceText.textContent = q.source;
+      if (promptEl) promptEl.innerHTML = q.prompt;
+
+      if (promptDiagEl) {
+        if (q.promptDiagram) {
+          promptDiagEl.innerHTML = renderPromptDiagram(q.promptDiagram);
+          promptDiagEl.style.display = `flex`;
+        } else {
+          promptDiagEl.innerHTML = ``;
+          promptDiagEl.style.display = `none`;
+        }
+      }
+
+      if (hintText) hintText.innerHTML = q.hint;
+      if (hintBox) hintBox.style.display = quizState.hintVisible ? `grid` : `none`;
+
+      const existing = quizState.answers[q.id];
+
+      if (answerArea) {
+        if (q.type === `mc`) {
+          const letters = [`A`, `B`, `C`, `D`];
+          answerArea.innerHTML = `
+            <div class="options-grid">
+              ${q.options.map((opt, idx) => {
+                let cls = `option-btn`;
+                if (existing) {
+                  if (idx === q.correctIndex) cls += ` is-correct`;
+                  else if (idx === existing.selectedIndex && !existing.correct) cls += ` is-wrong`;
+                }
+                return `
+                  <button type="button" class="${cls}" ${existing ? `disabled` : ``} onclick="submitMultipleChoice('${q.id}', ${idx})">
+                    <span class="option-letter">${letters[idx]}</span>
+                    <span>${opt}</span>
+                  </button>
+                `;
+              }).join(``)}
+            </div>
+          `;
+        } else if (q.type === `fraction`) {
+          const numVal = existing && existing.num !== undefined ? existing.num : ``;
+          const denVal = existing && existing.den !== undefined ? existing.den : ``;
+          answerArea.innerHTML = `
+            <div class="input-panel">
+              <div class="input-row">
+                <div class="field-group">
+                  <label class="field-label" for="input-num">Pembilang (Atas)</label>
+                  <input type="number" id="input-num" class="pill-input" min="0" step="1" value="${numVal}" ${existing ? `disabled` : ``}>
+                </div>
+                <span class="slash-divider" aria-hidden="true">/</span>
+                <div class="field-group">
+                  <label class="field-label" for="input-den">Penyebut (Bawah)</label>
+                  <input type="number" id="input-den" class="pill-input" min="1" step="1" value="${denVal}" ${existing ? `disabled` : ``}>
+                </div>
+                ${!existing ? `
+                  <button type="button" class="btn btn-primary" onclick="submitFractionAnswer('${q.id}')">
+                    Periksa Jawaban
+                  </button>
+                ` : ``}
+              </div>
+              <p id="input-inline-msg" class="input-inline-msg" style="display: none;"></p>
+            </div>
+          `;
+        } else if (q.type === `decimal`) {
+          const decVal = existing && existing.decimalStr !== undefined ? existing.decimalStr : ``;
+          answerArea.innerHTML = `
+            <div class="input-panel">
+              <div class="input-row">
+                <div class="field-group">
+                  <label class="field-label" for="input-dec">Hasil Angka / Desimal</label>
+                  <input type="text" id="input-dec" class="pill-input" inputmode="decimal" value="${decVal}" ${existing ? `disabled` : ``}>
+                </div>
+                ${!existing ? `
+                  <button type="button" class="btn btn-primary" onclick="submitDecimalAnswer('${q.id}')">
+                    Periksa Jawaban
+                  </button>
+                ` : ``}
+              </div>
+              <p id="input-inline-msg" class="input-inline-msg" style="display: none;"></p>
+            </div>
+          `;
+        }
+      }
+
+      if (feedbackArea) {
+        if (existing) {
+          const visualMarkup = q.visualType && q.visualType !== `none` ? renderExplanationVisual(q.visualType) : ``;
+          feedbackArea.innerHTML = `
+            <div class="feedback-box ${existing.correct ? `is-correct` : `is-wrong`}">
+              <div class="feedback-header">
+                <span class="feedback-status">
+                  ${existing.correct ? `Mantap! Jawabanmu Benar` : `Belum Tepat — Yuk Pelajari Pembahasannya!`}
+                </span>
+                <span class="tag-level">${existing.correct ? `+1 Poin` : `0 Poin`}</span>
+              </div>
+              <div class="steps-card">
+                <p class="steps-heading">Langkah Pengerjaan</p>
+                <ol class="steps-list">
+                  ${q.steps.map(s => `<li>${s}</li>`).join(``)}
+                </ol>
+              </div>
+              ${visualMarkup ? `
+                <div class="visual-explain">
+                  ${visualMarkup}
+                  <p class="visual-caption">${q.visualCaption}</p>
+                </div>
+              ` : ``}
+            </div>
+          `;
+          feedbackArea.style.display = `block`;
+        } else {
+          feedbackArea.innerHTML = ``;
+          feedbackArea.style.display = `none`;
+        }
+      }
+
+      if (btnPrev) btnPrev.disabled = quizState.currentIndex === 0;
+      if (btnNext) {
+        const isLast = quizState.currentIndex === filtered.length - 1;
+        btnNext.innerHTML = isLast
+          ? `Lihat Rapor Skor <i data-lucide="bar-chart-2" width="18" height="18" aria-hidden="true"></i>`
+          : `Soal Berikutnya <i data-lucide="chevron-right" width="18" height="18" aria-hidden="true"></i>`;
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function recordResult(qId, isCorrect, extra) {
+      quizState.answers[qId] = Object.assign({ correct: isCorrect }, extra);
+      if (isCorrect) {
+        quizState.streak += 1;
+        if (quizState.streak > quizState.bestStreak) quizState.bestStreak = quizState.streak;
+      } else {
+        quizState.streak = 0;
+      }
+      updateScoreboard();
+      renderMasterySidebar();
+      renderQuestion();
+      savePersistedState();
+    }
+
+    function submitMultipleChoice(qId, selectedIdx) {
+      if (quizState.answers[qId]) return;
+      const q = QUESTIONS.find(item => item.id === qId);
+      if (!q) return;
+      const isCorrect = selectedIdx === q.correctIndex;
+      recordResult(qId, isCorrect, { selectedIndex: selectedIdx });
+    }
+
+    function submitFractionAnswer(qId) {
+      if (quizState.answers[qId]) return;
+      const q = QUESTIONS.find(item => item.id === qId);
+      if (!q) return;
+      const numEl = document.getElementById(`input-num`);
+      const denEl = document.getElementById(`input-den`);
+      const msgEl = document.getElementById(`input-inline-msg`);
+      if (!numEl || !denEl) return;
+
+      const num = parseInt(numEl.value, 10);
+      const den = parseInt(denEl.value, 10);
+
+      if (Number.isNaN(num) || Number.isNaN(den)) {
+        if (msgEl) {
+          msgEl.textContent = `Isi kedua kotak pembilang dan penyebut dengan angka bulat terlebih dahulu.`;
+          msgEl.style.display = `block`;
+        }
+        return;
+      }
+      if (den <= 0) {
+        if (msgEl) {
+          msgEl.textContent = `Penyebut harus lebih besar dari 0.`;
+          msgEl.style.display = `block`;
+        }
+        return;
+      }
+
+      if (num === q.correctNum && den === q.correctDen) {
+        recordResult(qId, true, { num, den });
+        return;
+      }
+
+      // Check if mathematically equivalent but unsimplified (e.g., 12/36 instead of 1/3)
+      if (num * q.correctDen === q.correctNum * den) {
+        if (msgEl) {
+          msgEl.textContent = `Nilaimu sudah tepat (${num}/${den}), tetapi belum paling sederhana! Coba sederhanakan lagi ya.`;
+          msgEl.style.display = `block`;
+        }
+        return;
+      }
+
+      recordResult(qId, false, { num, den });
+    }
+
+    function submitDecimalAnswer(qId) {
+      if (quizState.answers[qId]) return;
+      const q = QUESTIONS.find(item => item.id === qId);
+      if (!q) return;
+      const decEl = document.getElementById(`input-dec`);
+      const msgEl = document.getElementById(`input-inline-msg`);
+      if (!decEl) return;
+
+      const raw = decEl.value.trim().replace(`,`, `.`);
+      if (!raw) {
+        if (msgEl) {
+          msgEl.textContent = `Masukkan angka jawabanmu terlebih dahulu sebelum memeriksa.`;
+          msgEl.style.display = `block`;
+        }
+        return;
+      }
+      const val = Number(raw);
+      if (Number.isNaN(val)) {
+        if (msgEl) {
+          msgEl.textContent = `Format angka belum valid. Gunakan angka atau tanda koma desimal (contoh: 4 atau 2,5).`;
+          msgEl.style.display = `block`;
+        }
+        return;
+      }
+
+      const isCorrect = Math.abs(val - q.correctDecimal) < 0.001;
+      recordResult(qId, isCorrect, { decimalStr: decEl.value.trim() });
+    }
+
+    function setTopicFilter(topic) {
+      quizState.activeFilter = topic;
+      quizState.currentIndex = 0;
+      quizState.hintVisible = false;
+      quizState.showSummary = false;
+
+      const btns = document.querySelectorAll(`.pill-btn[data-filter]`);
+      btns.forEach(b => {
+        if (b.dataset.filter === topic) b.classList.add(`active`);
+        else b.classList.remove(`active`);
+      });
+
+      syncSummaryVisibility();
+      renderQuestion();
+      savePersistedState();
+    }
+
+    function goToQuestion(pos) {
+      quizState.currentIndex = pos;
+      quizState.hintVisible = false;
+      quizState.showSummary = false;
+      syncSummaryVisibility();
+      renderQuestion();
+      savePersistedState();
+    }
+
+    function prevQuestion() {
+      if (quizState.currentIndex > 0) {
+        quizState.currentIndex -= 1;
+        quizState.hintVisible = false;
+        renderQuestion();
+        savePersistedState();
+      }
+    }
+
+    function nextQuestion() {
+      const filtered = getFilteredIndices();
+      if (quizState.currentIndex < filtered.length - 1) {
+        quizState.currentIndex += 1;
+        quizState.hintVisible = false;
+        renderQuestion();
+        savePersistedState();
+      } else {
+        quizState.showSummary = true;
+        syncSummaryVisibility();
+        savePersistedState();
+      }
+    }
+
+    function toggleHint() {
+      quizState.hintVisible = !quizState.hintVisible;
+      const box = document.getElementById(`q-hint-box`);
+      if (box) box.style.display = quizState.hintVisible ? `grid` : `none`;
+    }
+
+    function toggleSummaryView() {
+      quizState.showSummary = !quizState.showSummary;
+      syncSummaryVisibility();
+      savePersistedState();
+    }
+
+    function syncSummaryVisibility() {
+      const sumEl = document.getElementById(`summary-section`);
+      const wsEl = document.getElementById(`quiz-workspace`);
+      const toggleBtn = document.getElementById(`toggle-summary-btn`);
+      if (!sumEl || !wsEl) return;
+
+      if (quizState.showSummary) {
+        renderSummaryTable();
+        sumEl.style.display = `grid`;
+        wsEl.style.display = `none`;
+        if (toggleBtn) toggleBtn.innerHTML = `<i data-lucide="arrow-left" width="18" height="18" aria-hidden="true"></i> Kembali ke Kuis`;
+      } else {
+        sumEl.style.display = `none`;
+        wsEl.style.display = `grid`;
+        if (toggleBtn) toggleBtn.innerHTML = `<i data-lucide="bar-chart-2" width="18" height="18" aria-hidden="true"></i> Lihat Rapor Skor`;
+      }
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderSummaryTable() {
+      const headline = document.getElementById(`summary-headline`);
+      const subtext = document.getElementById(`summary-subtext`);
+      const tbody = document.getElementById(`summary-table-body`);
+      if (!tbody) return;
+
+      const total = QUESTIONS.length;
+      const answered = Object.keys(quizState.answers).length;
+      const correct = Object.values(quizState.answers).filter(a => a.correct).length;
+      const score = Math.round((correct / total) * 100);
+
+      let predikat = `Terus Semangat Berlatih!`;
+      if (answered === 0) predikat = `Belum Ada Soal yang Dijawab`;
+      else if (score >= 85) predikat = `Hebat! Kamu Jagoan Pecahan Kelas 6!`;
+      else if (score >= 65) predikat = `Bagus! Tinggal Sedikit Lagi Sempurna`;
+
+      if (headline) headline.textContent = `${predikat} (Skor: ${score})`;
+      if (subtext) subtext.textContent = `Kamu telah menjawab ${answered} dari ${total} soal dengan ${correct} jawaban benar (rekor beruntun terbaik: ${quizState.bestStreak}).`;
+
+      tbody.innerHTML = quizState.order.map((qIdx, pos) => {
+        const q = QUESTIONS[qIdx];
+        const ans = quizState.answers[q.id];
+        let pill = `<span class="status-pill pending">Belum Dijawab</span>`;
+        if (ans) {
+          pill = ans.correct
+            ? `<span class="status-pill ok">Benar</span>`
+            : `<span class="status-pill no">Perlu Diulas</span>`;
+        }
+        return `
+          <tr>
+            <td><strong>${pos + 1}</strong></td>
+            <td>${TOPIC_META[q.topic].label}</td>
+            <td>${q.shortTitle}</td>
+            <td>${pill}</td>
+            <td>
+              <button type="button" class="btn btn-ghost" style="min-height: 36px; padding: var(--space-xs) var(--space-md);" onclick="jumpFromSummary(${pos})">
+                Buka Soal
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join(``);
+    }
+
+    function jumpFromSummary(orderPos) {
+      quizState.activeFilter = `all`;
+      const btns = document.querySelectorAll(`.pill-btn[data-filter]`);
+      btns.forEach(b => {
+        if (b.dataset.filter === `all`) b.classList.add(`active`);
+        else b.classList.remove(`active`);
+      });
+      quizState.currentIndex = orderPos;
+      quizState.showSummary = false;
+      syncSummaryVisibility();
+      renderQuestion();
+      savePersistedState();
+    }
+
+    function shuffleQuestions() {
+      const arr = [...quizState.order];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+      }
+      quizState.order = arr;
+      quizState.currentIndex = 0;
+      quizState.hintVisible = false;
+      renderQuestion();
+      savePersistedState();
+    }
+
+    function resetQuiz(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Klik Sekali Lagi untuk Reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.innerHTML = `<i data-lucide="rotate-ccw" width="18" height="18" aria-hidden="true"></i> Reset Semua Jawaban`;
+            if (window.lucide) window.lucide.createIcons();
+          }
+        }, 3500);
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.innerHTML = `<i data-lucide="rotate-ccw" width="18" height="18" aria-hidden="true"></i> Reset Semua Jawaban`;
+      }
+      quizState.answers = {};
+      quizState.streak = 0;
+      quizState.bestStreak = 0;
+      quizState.currentIndex = 0;
+      quizState.hintVisible = false;
+      quizState.showSummary = false;
+      updateScoreboard();
+      renderMasterySidebar();
+      syncSummaryVisibility();
+      renderQuestion();
+      savePersistedState();
+    }
+
+    function downloadScoreReport() {
+      const total = QUESTIONS.length;
+      const answered = Object.keys(quizState.answers).length;
+      const correct = Object.values(quizState.answers).filter(a => a.correct).length;
+      const score = Math.round((correct / total) * 100);
+
+      const lines = [
+        `LAPORAN NILAI KUIS PECAHAN MATEMATIKA KELAS 6 SD`,
+        `==================================================`,
+        `Skor Akhir       : ${score} / 100`,
+        `Soal Terjawab    : ${answered} dari ${total}`,
+        `Jawaban Benar    : ${correct}`,
+        `Rekor Beruntun   : ${quizState.bestStreak}`,
+        ``,
+        `Rincian Per Soal:`,
+        ...quizState.order.map((qIdx, pos) => {
+          const q = QUESTIONS[qIdx];
+          const ans = quizState.answers[q.id];
+          const st = !ans ? `Belum Dijawab` : (ans.correct ? `Benar` : `Salah`);
+          return `${pos + 1}. [${TOPIC_META[q.topic].label}] ${q.shortTitle} -> ${st}`;
+        })
+      ];
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `rapor-kuis-pecahan-kelas6.txt`
+        });
+      }
+    }
+
+    async function loadPersistedState() {
+      if (!window.notebookAppApi) return null;
+      try {
+        const saved = await window.notebookAppApi.getAppState();
+        return saved;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function savePersistedState() {
+      if (!window.notebookAppApi) return;
+      try {
+        await window.notebookAppApi.setAppState({
+          answers: quizState.answers,
+          order: quizState.order,
+          activeFilter: quizState.activeFilter,
+          currentIndex: quizState.currentIndex,
+          streak: quizState.streak,
+          bestStreak: quizState.bestStreak,
+          showSummary: quizState.showSummary
+        });
+      } catch (e) {
+        // Ignore persistence errors safely
+      }
+    }
+
+    async function initQuizApp() {
+      const saved = await loadPersistedState();
+      if (saved && typeof saved === `object`) {
+        if (saved.answers && typeof saved.answers === `object`) quizState.answers = saved.answers;
+        if (Array.isArray(saved.order) && saved.order.length === QUESTIONS.length) quizState.order = saved.order;
+        if (typeof saved.activeFilter === `string`) quizState.activeFilter = saved.activeFilter;
+        if (typeof saved.currentIndex === `number`) quizState.currentIndex = saved.currentIndex;
+        if (typeof saved.streak === `number`) quizState.streak = saved.streak;
+        if (typeof saved.bestStreak === `number`) quizState.bestStreak = saved.bestStreak;
+        if (typeof saved.showSummary === `boolean`) quizState.showSummary = saved.showSummary;
+      }
+
+      const btns = document.querySelectorAll(`.pill-btn[data-filter]`);
+      btns.forEach(b => {
+        if (b.dataset.filter === quizState.activeFilter) b.classList.add(`active`);
+        else b.classList.remove(`active`);
+      });
+
+      updateScoreboard();
+      renderMasterySidebar();
+      syncSummaryVisibility();
+      renderQuestion();
+
+      if (window.lucide) window.lucide.createIcons();
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initQuizApp);
+  </script>
+</body>
+</html>
