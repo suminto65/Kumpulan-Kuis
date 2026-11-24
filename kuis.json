@@ -20,7 +20,64 @@
         {
           "id": "2",
           "nama": "Kelas 2",
-          "kuis": []
+          "kuis": [
+            {
+              "judul": "Kuis Ayo Membilang",
+              "bab": "Bab Ayo Membilang Sampai 50",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_1_Ayo_Membilang_sampai_50.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Penjumlahan dan Pengurangan",
+              "bab": "Bab Penjumlahan dan Pengurangan",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_2_Penjumlahan_dan_Pengurangan.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Bentuk Di Sekitar Kita",
+              "bab": "Bab Bentuk Di Sekitar Kita",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_3_Bentuk_di_Sekitar_Kita.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Posisi Benda dan Pola",
+              "bab": "Bab Posisi Benda dan Pola",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_4_Posisi_Benda_dan_Pola.html",
+              "jumlahSoal": 12,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Pecahan",
+              "bab": "Bab Pecahan",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_5_Pecahan.html",
+              "jumlahSoal": 12,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Pengukuran",
+              "bab": "Bab Pengukuran",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_6_Pengukuran.html",
+              "jumlahSoal": 15,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Ayo Membilang Sampai 100",
+              "bab": "Bab Ayo Membilang Sampai 100",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_7_Ayo_Membilang_sampai_dengan_10.html",
+              "jumlahSoal": 16,
+              "tanggal": "2026-11-24"
+            },
+            {
+              "judul": "Kuis Berbagai Diagram",
+              "bab": "Bab Berbagai Diagram",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Matematika_Kelas_2_8_Berbagai_Diagram.html",
+              "jumlahSoal": 12,
+              "tanggal": "2026-11-24"
+            }
+          ]
         },
         {
           "id": "3",
