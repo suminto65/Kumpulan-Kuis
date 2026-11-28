@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="sticker">
+  <title>Kuis Ceria Matematika SD Kelas 3 — BBM-Suminto</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Sticker palette */
+      --background: #fef7ff;
+      --surface-container-low: #ffffff;
+      --surface-container: #f8eef8;
+      --surface-container-high: #f2e8f2;
+
+      /* Ink */
+      --on-surface: #2e1a28;
+      --on-surface-variant: #604868;
+
+      /* Rules */
+      --outline: #907898;
+      --outline-variant: #dcc8e0;
+
+      /* Accents */
+      --primary: #c2207f;
+      --on-primary: #ffffff;
+      --primary-container: #f080c0;
+      --primary-soft: #fde4f3;
+      --on-primary-container: #2e1a28;
+      --secondary: #7c52aa;
+      --on-secondary: #ffffff;
+      --secondary-soft: #efe6fa;
+      --tertiary: #0096cc;
+      --tertiary-soft: #e0f4fc;
+      --error: #c53030;
+      --error-soft: #fdeaea;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #c2207f;
+      --data-2: #7c52aa;
+      --data-3: #0096cc;
+      --data-4: #d96a00;
+      --data-context: #c8b8d0;
+
+      /* Fonts */
+      --font-headline: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-label: 'DM Sans', sans-serif;
+
+      /* Shape */
+      --rounded: 1rem;
+      --rounded-lg: 2rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --shadow-pink: 0 4px 16px rgb(224 64 160 / 0.2);
+      --shadow-pink-deep: 0 10px 28px rgb(224 64 160 / 0.32);
+      --shadow-grape: 0 4px 16px rgb(124 82 170 / 0.2);
+      --shadow-grape-deep: 0 10px 28px rgb(124 82 170 / 0.3);
+      --shadow-sky: 0 4px 16px rgb(0 150 204 / 0.2);
+      --shadow-positive: 0 4px 16px rgb(27 138 90 / 0.22);
+      --pop-scale: scale(1.03);
+      --lift: translateY(-4px);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* 3. Shared tokens */
+      --positive: #1b8a5a;
+      --positive-soft: #dcf7ea;
+      --warning: #b85d00;
+      --warning-soft: #fff0db;
+      --focus: #c2207f;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+      --body-size: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Sticker cards & slabs */
+    .sticker-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+    }
+    .sticker-card--sky { box-shadow: var(--shadow-sky); }
+    .sticker-card--grape { box-shadow: var(--shadow-grape); }
+
+    .hero-panel {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg) var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    /* Brand lockup & Official Logo BBM-Suminto */
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container);
+      padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-xs);
+      border-radius: var(--rounded-full);
+      box-shadow: var(--shadow-grape);
+    }
+    .logo-svg {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: block;
+    }
+    .logo-text-group {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-kicker {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary);
+    }
+    .logo-name {
+      font-family: var(--font-headline);
+      font-size: 1.0625rem;
+      font-weight: 900;
+      color: var(--on-surface);
+      letter-spacing: -0.02em;
+    }
+
+    .display {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: var(--display-size);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .display em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .hero-sub {
+      color: var(--on-surface-variant);
+      margin: 0;
+      max-width: 60ch;
+      font-size: var(--body-size);
+    }
+
+    /* Live Scoreboard Panel inside Hero */
+    .scoreboard-panel {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .score-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .metric-pill {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      box-shadow: var(--shadow-sky);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .metric-pill:nth-child(1) { box-shadow: var(--shadow-pink); }
+    .metric-pill:nth-child(3) { box-shadow: var(--shadow-grape); }
+    .metric-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      line-height: 1.15;
+    }
+    .metric-value--pink { color: var(--primary); }
+
+    .hero-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* Buttons & Pills */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      border: none;
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 44px;
+      font-size: var(--body-size);
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) { transform: var(--pop-scale); }
+    .btn:active:not(:disabled) { transform: scale(0.97); }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-pink-deep); }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--on-secondary);
+      box-shadow: var(--shadow-grape);
+    }
+    .btn-secondary:hover:not(:disabled) { box-shadow: var(--shadow-grape-deep); }
+
+    .btn-ghost {
+      background: var(--surface-container-low);
+      color: var(--primary);
+      box-shadow: var(--shadow-pink);
+    }
+    .btn-quiet {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--space-xs) var(--space-md);
+    }
+    .btn-quiet:hover:not(:disabled) {
+      background: var(--primary-soft);
+    }
+    .btn-danger-arm {
+      background: var(--error);
+      color: var(--on-error);
+      box-shadow: var(--shadow-pink);
+    }
+
+    /* Difficulty proportion strip */
+    .difficulty-legend {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: var(--rounded-full);
+      padding: 4px 12px;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge--mudah {
+      background: var(--positive-soft);
+      color: var(--positive);
+    }
+    .badge--sedang {
+      background: var(--warning-soft);
+      color: var(--warning);
+    }
+    .badge--sulit {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .badge--grape {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+
+    /* Chapter Navigation */
+    .chapter-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(172px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .chapter-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      background: var(--surface-container-low);
+      border: none;
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 44px;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-sky);
+      color: var(--on-surface);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .chapter-tab:nth-child(3n+1) { box-shadow: var(--shadow-pink); }
+    .chapter-tab:nth-child(3n+2) { box-shadow: var(--shadow-sky); }
+    .chapter-tab:nth-child(3n+3) { box-shadow: var(--shadow-grape); }
+    .chapter-tab:hover { transform: var(--lift); }
+    .chapter-tab.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-pink-deep);
+      transform: translateY(-2px);
+    }
+    .chapter-tab.is-active .chapter-tab-kicker,
+    .chapter-tab.is-active .chapter-tab-meta {
+      color: var(--on-primary);
+      opacity: 0.92;
+    }
+    .chapter-tab-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .chapter-tab-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+    }
+    .chapter-tab-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+    .chapter-tab-meta {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Main Workspace Grid */
+    .quiz-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+    }
+
+    /* Chapter Header & Progress Dots */
+    .chapter-banner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .chapter-banner-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .section-heading {
+      font-family: var(--font-headline);
+      font-size: var(--headline-size);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin: 0 0 4px 0;
+    }
+    .section-heading em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .chapter-desc {
+      margin: 0;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+      width: 0%;
+    }
+
+    .question-pills-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .q-dot {
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: var(--rounded-full);
+      border: 2px solid transparent;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 800;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-variant-numeric: tabular-nums;
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .q-dot:hover { transform: var(--pop-scale); }
+    .q-dot.is-current {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .q-dot.is-correct {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+    .q-dot.is-wrong {
+      background: var(--error);
+      color: var(--on-error);
+    }
+    .q-dot.is-current.is-correct {
+      background: var(--positive);
+      color: var(--on-primary);
+      box-shadow: var(--shadow-positive);
+    }
+    .q-dot.is-current.is-wrong {
+      background: var(--error);
+      color: var(--on-error);
+    }
+
+    /* Question Card */
+    .question-card {
+      container-type: inline-size;
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--shadow-grape);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .question-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .question-prompt {
+      font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.45rem);
+      font-weight: 800;
+      line-height: 1.38;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin: 0;
+      max-width: 62ch;
+    }
+
+    /* Visual Aid Box */
+    .visual-stage {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+    .visual-stage svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .visual-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin: 0;
+    }
+
+    /* Data Table inside Visual Stage */
+    .quiz-table-wrap {
+      width: 100%;
+      max-width: 560px;
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-sm);
+    }
+    .quiz-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+      text-align: left;
+    }
+    .quiz-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .quiz-table th:first-child { border-top-left-radius: var(--rounded); border-bottom-left-radius: var(--rounded); }
+    .quiz-table th:last-child { border-top-right-radius: var(--rounded); border-bottom-right-radius: var(--rounded); }
+    .quiz-table td {
+      padding: var(--space-sm) var(--space-md);
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    .quiz-table tbody tr:nth-child(even) td {
+      background: var(--surface-container);
+    }
+
+    /* Options Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    @container (max-width: 540px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 58px;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: none;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 0 2px 0 var(--outline-variant);
+      transition: transform var(--dur-short) var(--ease-bounce),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: var(--pop-scale);
+      background: var(--primary-soft);
+      box-shadow: var(--shadow-pink);
+    }
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-letter {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      color: var(--secondary);
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-grape);
+    }
+    .option-text {
+      flex: 1;
+      line-height: 1.3;
+    }
+    .option-status-icon {
+      flex-shrink: 0;
+      display: inline-flex;
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-soft);
+      color: var(--positive);
+      box-shadow: var(--shadow-positive);
+    }
+    .option-btn.is-correct .option-letter {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+    .option-btn.is-wrong {
+      background: var(--error-soft);
+      color: var(--error);
+      box-shadow: var(--shadow-pink);
+    }
+    .option-btn.is-wrong .option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+    .option-btn.is-dimmed {
+      opacity: 0.6;
+    }
+
+    /* Feedback Panel */
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      animation: popIn var(--dur-short) var(--ease-bounce);
+    }
+    .feedback-box--correct {
+      background: var(--positive-soft);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-positive);
+    }
+    .feedback-box--wrong {
+      background: var(--warning-soft);
+      color: var(--on-surface);
+      box-shadow: var(--shadow-pink);
+    }
+    .feedback-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--rounded-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--on-primary);
+    }
+    .feedback-box--correct .feedback-icon { background: var(--positive); }
+    .feedback-box--wrong .feedback-icon { background: var(--warning); }
+    .feedback-title {
+      font-weight: 800;
+      font-size: 1.0625rem;
+      margin: 0 0 2px 0;
+    }
+    .feedback-text {
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .question-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      padding-top: var(--space-sm);
+    }
+
+    /* Report / Summary Dashboard */
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .chart-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-pink);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .chart-card--grape { box-shadow: var(--shadow-grape); }
+    .chart-title {
+      font-size: 1.125rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .lollipop-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .lollipop-row {
+      display: grid;
+      gap: 6px;
+    }
+    .lollipop-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .lollipop-track {
+      height: 14px;
+      background: var(--surface-container);
+      border-radius: var(--rounded-full);
+      position: relative;
+      overflow: hidden;
+    }
+    .lollipop-bar {
+      height: 100%;
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-bounce);
+    }
+    .lollipop-bar--pink { background: var(--data-1); }
+    .lollipop-bar--grape { background: var(--data-2); }
+    .lollipop-bar--sky { background: var(--data-3); }
+    .lollipop-bar--tangerine { background: var(--data-4); }
+    .lollipop-bar--positive { background: var(--positive); }
+
+    /* Student Name Input & Export */
+    .student-export-card {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      box-shadow: var(--shadow-sky);
+      padding: var(--space-lg);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 220px;
+    }
+    .input-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .pill-input {
+      background: var(--surface-container);
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded-full);
+      padding: var(--space-sm) var(--space-lg);
+      min-height: 44px;
+      font-size: var(--body-size);
+      font-weight: 600;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .pill-input:focus {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+      background: var(--surface-container-low);
+    }
+
+    .status-banner {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.875rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-note {
+      text-align: left;
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      padding: var(--space-sm) 0 var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 820px) {
+      .hero-panel {
+        grid-template-columns: 1fr;
+        padding: var(--space-lg);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .question-card {
+        padding: var(--space-lg);
+      }
+      .score-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .metric-value {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- HEADER WITH OFFICIAL BBM-SUMINTO LOGO & LIVE SCOREBOARD -->
+    <header class="hero-panel">
+      <div>
+        <div class="brand-row">
+          <div class="logo-badge" aria-label="Logo Resmi BBM-Suminto">
+	
+            <!-- Official BBM-Suminto SVG Emblem -->
+            <img src="https://raw.githubusercontent.com/suminto65/Kumpulan-Kuis/refs/heads/main/logo.png" alt="Logo BBM-Suminto" style="max-height: 80px; width: auto; display: block; margin: 0 auto;">
+
+            <div class="logo-text-group">
+              <span class="logo-kicker">Pembuat Kuis Resmi</span>
+              <span class="logo-name">Bimbingan Belajar Matematika-Suminto</span>
+            </div>
+          </div>
+
+          <div class="difficulty-legend" aria-label="Proporsi tingkat kesulitan kuis">
+            <span class="badge badge--mudah">30% Mudah</span>
+            <span class="badge badge--sedang">50% Sedang</span>
+            <span class="badge badge--sulit">20% Sulit</span>
+          </div>
+        </div>
+
+        <h1 class="display">Kuis <em>Matematika</em> SD Kelas 3</h1>
+        <p class="hero-sub">
+          Ayo berlatih 5 bab materi seru bersama teman-teman! Pilih bab di bawah, jawab soalnya, dan lihat skor serta penjelasan langsung setiap kali kamu memilih jawaban.
+        </p>
+      </div>
+
+      <div class="scoreboard-panel" aria-live="polite">
+        <div class="score-metrics">
+          <div class="metric-pill">
+            <span class="metric-label">Skor Total</span>
+            <span class="metric-value metric-value--pink" id="stat-score">0</span>
+          </div>
+          <div class="metric-pill">
+            <span class="metric-label">Dijawab</span>
+            <span class="metric-value" id="stat-answered">0/50</span>
+          </div>
+          <div class="metric-pill">
+            <span class="metric-label">Benar</span>
+            <span class="metric-value" id="stat-correct">0</span>
+          </div>
+        </div>
+
+        <div class="hero-controls">
+          <button type="button" class="btn btn-ghost" id="btn-sound" onclick="toggleSound()">
+            <i data-lucide="volume-2" aria-hidden="true"></i>
+            <span id="sound-label">Suara Nyala</span>
+          </button>
+          <button type="button" class="btn btn-quiet" id="btn-reset-all" onclick="handleResetAll(this)">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span>Ulangi Semua</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CHAPTER NAVIGATION -->
+    <nav aria-label="Navigasi Bab Kuis">
+      <div class="chapter-nav-grid" id="chapter-nav"></div>
+    </nav>
+
+    <!-- MAIN CONTENT WORKSPACE -->
+    <main class="quiz-workspace" id="main-workspace">
+      <!-- Rendered dynamically by JS -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-note">
+      <span>Disusun oleh <strong>BBM-Suminto</strong> • 5 Bab Lengkap (50 Soal Interaktif SD Kelas 3)</span>
+      <span id="save-indicator">Kemajuan tersimpan otomatis</span>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // DATA KUIS: 5 BAB, MASING-MASING 10 SOAL (3 MUDAH 30%, 5 SEDANG 50%, 2 SULIT 20%)
+    // TOTAL = 50 SOAL (15 MUDAH, 25 SEDANG, 10 SULIT)
+    // =========================================================================
+    const CHAPTERS = [
+      {
+        id: 'bab1',
+        number: 1,
+        shortTitle: `Bilangan Cacah`,
+        title: `Bab 1: Bilangan Cacah`,
+        description: `Mengenal angka, membaca bilangan, nilai tempat puluhan dan satuan, serta mengurutkan bilangan.`,
+        icon: `hash`
+      },
+      {
+        id: 'bab2',
+        number: 2,
+        shortTitle: `Kalimat Matematika`,
+        title: `Bab 2: Kalimat Matematika`,
+        description: `Menyelesaikan penjumlahan dan pengurangan sederhana dalam kalimat matematika sehari-hari.`,
+        icon: `plus-circle`
+      },
+      {
+        id: 'bab3',
+        number: 3,
+        shortTitle: `Pengukuran`,
+        title: `Bab 3: Pengukuran Panjang & Berat`,
+        description: `Membandingkan panjang dan berat benda dengan satuan tidak baku maupun satuan baku.`,
+        icon: `ruler`
+      },
+      {
+        id: 'bab4',
+        number: 4,
+        shortTitle: `Bangun Datar`,
+        title: `Bab 4: Unsur Bangun Datar`,
+        description: `Mengenal garis, sudut, titik sudut, sisi segitiga, segi empat, dan pasangan garis.`,
+        icon: `shapes`
+      },
+      {
+        id: 'bab5',
+        number: 5,
+        shortTitle: `Penyajian Data`,
+        title: `Bab 5: Penyajian Data Tabel`,
+        description: `Membaca turus, mengurutkan data, dan menjawab pertanyaan dari tabel sederhana.`,
+        icon: `table-2`
+      }
+    ];
+
+    // Visual renderer helpers returning clean inline SVG or HTML tables using CSS tokens only
+    function svgMarbles(count, colorVar, labelText) {
+      const cols = Math.min(count, 6);
+      const rows = Math.ceil(count / 6);
+      const width = Math.max(240, cols * 44 + 24);
+      const height = rows * 44 + 24;
+      let circles = '';
+      for (let i = 0; i < count; i++) {
+        const r = Math.floor(i / 6);
+        const c = i % 6;
+        const cx = 34 + c * 42;
+        const cy = 32 + r * 42;
+        circles += `<circle cx="${cx}" cy="${cy}" r="15" fill="${colorVar}" />`;
+        circles += `<circle cx="${cx - 4}" cy="${cy - 5}" r="4" fill="var(--surface-container-low)" opacity="0.65" />`;
+      }
+      return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${labelText}">
+        <rect x="4" y="4" width="${width - 8}" height="${height - 8}" rx="18" fill="var(--surface-container-low)" />
+        ${circles}
+      </svg>`;
+    }
+
+    function svgBaseTen(tens, ones, labelText) {
+      const width = 340;
+      const height = 140;
+      let blocks = '';
+      for (let t = 0; t < tens; t++) {
+        const x = 22 + t * 34;
+        blocks += `<rect x="${x}" y="20" width="24" height="100" rx="6" fill="var(--secondary)" />`;
+        for (let seg = 1; seg < 10; seg++) {
+          blocks += `<line x1="${x}" y1="${20 + seg * 10}" x2="${x + 24}" y2="${20 + seg * 10}" stroke="var(--surface-container-low)" stroke-width="1.5" />`;
+        }
+      }
+      const onesStartX = 42 + tens * 34;
+      for (let o = 0; o < ones; o++) {
+        const col = o % 3;
+        const row = Math.floor(o / 3);
+        const x = onesStartX + col * 28;
+        const y = 98 - row * 24;
+        blocks += `<rect x="${x}" y="${y}" width="20" height="20" rx="5" fill="var(--primary)" />`;
+      }
+      return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${labelText}">
+        <rect x="4" y="4" width="${width - 8}" height="${height - 8}" rx="18" fill="var(--surface-container-low)" />
+        ${blocks}
+      </svg>`;
+    }
+
+    function svgNumberCardPair(a, b, labelText) {
+      return `<svg width="320" height="110" viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${labelText}">
+        <rect x="34" y="14" width="106" height="82" rx="18" fill="var(--primary)" />
+        <text x="87" y="69" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="38" fill="var(--on-primary)">${a}</text>
+        <rect x="180" y="14" width="106" height="82" rx="18" fill="var(--secondary)" />
+        <text x="233" y="69" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="38" fill="var(--on-secondary)">${b}</text>
+      </svg>`;
+    }
+
+    function svgAdditionApples(left, right) {
+      const width = 380;
+      const height = 110;
+      let svg = `<rect x="6" y="10" width="154" height="90" rx="18" fill="var(--surface-container-low)" />`;
+      svg += `<rect x="220" y="10" width="154" height="90" rx="18" fill="var(--surface-container-low)" />`;
+      svg += `<text x="190" y="68" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="900" font-size="34" fill="var(--primary)">+</text>`;
+      for (let i = 0; i < left; i++) {
+        const cx = 34 + i * 32;
+        svg += `<circle cx="${cx}" cy="58" r="13" fill="var(--primary)" />`;
+        svg += `<rect x="${cx - 2}" y="40" width="4" height="7" rx="2" fill="var(--positive)" />`;
+      }
+      for (let j = 0; j < right; j++) {
+        const cx = 250 + j * 34;
+        svg += `<circle cx="${cx}" cy="58" r="13" fill="var(--primary)" />`;
+        svg += `<rect x="${cx - 2}" y="40" width="4" height="7" rx="2" fill="var(--positive)" />`;
+      }
+      return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${left} apel ditambah ${right} apel">${svg}</svg>`;
+    }
+
+    function svgCrossOutMarbles(total, crossed) {
+      const width = 360;
+      const height = 104;
+      let items = '';
+      for (let i = 0; i < total; i++) {
+        const cx = 30 + i * 36;
+        const isCrossed = i >= total - crossed;
+        items += `<circle cx="${cx}" cy="52" r="14" fill="${isCrossed ? 'var(--data-context)' : 'var(--tertiary)'}" />`;
+        if (isCrossed) {
+          items += `<line x1="${cx - 10}" y1="42" x2="${cx + 10}" y2="62" stroke="var(--error)" stroke-width="3.5" stroke-linecap="round" />`;
+          items += `<line x1="${cx + 10}" y1="42" x2="${cx - 10}" y2="62" stroke="var(--error)" stroke-width="3.5" stroke-linecap="round" />`;
+        }
+      }
+      return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${total} kelereng, ${crossed} dicoret">${items}</svg>`;
+    }
+
+    function svgRulerObject(startCm, endCm, objName) {
+      const width = 420;
+      const height = 128;
+      const unit = 26;
+      const leftPad = 24;
+      let ticks = '';
+      for (let cm = 0; cm <= 14; cm++) {
+        const x = leftPad + cm * unit;
+        const tickH = cm % 2 === 0 ? 18 : 11;
+        ticks += `<line x1="${x}" y1="74" x2="${x}" y2="${74 + tickH}" stroke="var(--on-surface)" stroke-width="2" />`;
+        if (cm <= 14) {
+          ticks += `<text x="${x}" y="110" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="11" fill="var(--on-surface)">${cm}</text>`;
+        }
+      }
+      const x1 = leftPad + startCm * unit;
+      const x2 = leftPad + endCm * unit;
+      const bodyW = Math.max(20, x2 - x1 - 14);
+      return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${objName} diukur dari angka ${startCm} cm sampai ${endCm} cm">
+        <rect x="10" y="74" width="400" height="44" rx="10" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="2" />
+        ${ticks}
+        <rect x="${x1}" y="30" width="${bodyW}" height="24" rx="8" fill="var(--primary)" />
+        <polygon points="${x1 + bodyW},30 ${x2},42 ${x1 + bodyW},54" fill="var(--secondary)" />
+        <line x1="${x1}" y1="56" x2="${x1}" y2="74" stroke="var(--primary)" stroke-width="2" stroke-dasharray="3 3" />
+        <line x1="${x2}" y1="45" x2="${x2}" y2="74" stroke="var(--primary)" stroke-width="2" stroke-dasharray="3 3" />
+      </svg>`;
+    }
+
+    function svgScaleCompare(leftLabel, rightLabel, tilt) {
+      // tilt: 'left-down', 'right-down', 'level'
+      const angle = tilt === 'left-down' ? -10 : tilt === 'right-down' ? 10 : 0;
+      return `<svg width="360" height="150" viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Timbangan membandingkan ${leftLabel} dan ${rightLabel}">
+        <polygon points="156,136 204,136 180,76" fill="var(--secondary)" />
+        <g transform="rotate(${angle} 180 76)">
+          <rect x="60" y="70" width="240" height="10" rx="5" fill="var(--on-surface)" />
+          <rect x="44" y="34" width="94" height="34" rx="14" fill="var(--primary-container)" />
+          <text x="91" y="56" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">${leftLabel}</text>
+          <rect x="222" y="34" width="94" height="34" rx="14" fill="var(--tertiary-soft)" />
+          <text x="269" y="56" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">${rightLabel}</text>
+        </g>
+      </svg>`;
+    }
+
+    function svgRibbonsCompare() {
+      return `<svg width="360" height="106" viewBox="0 0 360 106" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pita merah lebih pendek dari pita biru">
+        <rect x="16" y="14" width="328" height="80" rx="16" fill="var(--surface-container-low)" />
+        <text x="30" y="42" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--primary)">Merah</text>
+        <rect x="92" y="28" width="120" height="18" rx="9" fill="var(--primary)" />
+        <text x="30" y="74" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--secondary)">Biru</text>
+        <rect x="92" y="60" width="224" height="18" rx="9" fill="var(--tertiary)" />
+      </svg>`;
+    }
+
+    function svgPaperclipsCompare() {
+      let buku = '';
+      for (let i = 0; i < 6; i++) {
+        buku += `<rect x="${126 + i * 32}" y="26" width="26" height="12" rx="6" fill="none" stroke="var(--primary)" stroke-width="3" />`;
+      }
+      let kotak = '';
+      for (let j = 0; j < 4; j++) {
+        kotak += `<rect x="${126 + j * 32}" y="62" width="26" height="12" rx="6" fill="none" stroke="var(--secondary)" stroke-width="3" />`;
+      }
+      return `<svg width="360" height="104" viewBox="0 0 360 104" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panjang buku 6 klip dan kotak pensil 4 klip">
+        <rect x="10" y="10" width="340" height="84" rx="16" fill="var(--surface-container-low)" />
+        <text x="24" y="37" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Buku (6)</text>
+        ${buku}
+        <text x="24" y="73" font-family="DM Sans, sans-serif" font-weight="800" font-size="13" fill="var(--on-surface)">Kotak (4)</text>
+        ${kotak}
+      </svg>`;
+    }
+
+    function svgShapeGeo(kind) {
+      if (kind === 'triangle') {
+        return `<svg width="240" height="130" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gambar bangun datar segitiga">
+          <polygon points="120,16 44,112 196,112" fill="var(--tertiary-soft)" stroke="var(--secondary)" stroke-width="5" stroke-linejoin="round" />
+        </svg>`;
+      }
+      if (kind === 'four-shapes') {
+        return `<svg width="380" height="114" viewBox="0 0 380 114" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Empat bentuk berbeda: A segitiga, B segi empat, C lingkaran, D garis lengkung">
+          <text x="48" y="22" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">A</text>
+          <polygon points="48,34 18,92 78,92" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="3.5" stroke-linejoin="round" />
+          <text x="142" y="22" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">B</text>
+          <rect x="112" y="34" width="60" height="58" rx="4" fill="var(--tertiary-soft)" stroke="var(--tertiary)" stroke-width="3.5" />
+          <text x="236" y="22" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">C</text>
+          <circle cx="236" cy="63" r="29" fill="var(--secondary-soft)" stroke="var(--secondary)" stroke-width="3.5" />
+          <text x="328" y="22" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="800" font-size="14" fill="var(--on-surface)">D</text>
+          <path d="M298,84 Q328,28 358,84" fill="none" stroke="var(--warning)" stroke-width="4.5" stroke-linecap="round" />
+        </svg>`;
+      }
+      if (kind === 'vertex') {
+        return `<svg width="240" height="130" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua garis bertemu di satu titik pojok">
+          <line x1="60" y1="100" x2="188" y2="100" stroke="var(--secondary)" stroke-width="5" stroke-linecap="round" />
+          <line x1="60" y1="100" x2="128" y2="28" stroke="var(--secondary)" stroke-width="5" stroke-linecap="round" />
+          <circle cx="60" cy="100" r="11" fill="var(--primary)" />
+        </svg>`;
+      }
+      if (kind === 'square-vertices') {
+        return `<svg width="220" height="130" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bangun segi empat dengan empat pojok">
+          <rect x="60" y="22" width="100" height="86" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="4.5" />
+          <circle cx="60" cy="22" r="7" fill="var(--secondary)" />
+          <circle cx="160" cy="22" r="7" fill="var(--secondary)" />
+          <circle cx="60" cy="108" r="7" fill="var(--secondary)" />
+          <circle cx="160" cy="108" r="7" fill="var(--secondary)" />
+        </svg>`;
+      }
+      if (kind === 'ray') {
+        return `<svg width="280" height="90" viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Garis dimulai dari satu titik dan memanjang dengan panah di satu ujung">
+          <line x1="56" y1="45" x2="224" y2="45" stroke="var(--primary)" stroke-width="5" stroke-linecap="round" />
+          <circle cx="56" cy="45" r="9" fill="var(--secondary)" />
+          <polygon points="220,33 244,45 220,57" fill="var(--primary)" />
+        </svg>`;
+      }
+      if (kind === 'parallel') {
+        return `<svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua garis lurus sejajar yang tidak berpotongan">
+          <line x1="40" y1="34" x2="240" y2="34" stroke="var(--tertiary)" stroke-width="5.5" stroke-linecap="round" />
+          <line x1="40" y1="68" x2="240" y2="68" stroke="var(--primary)" stroke-width="5.5" stroke-linecap="round" />
+        </svg>`;
+      }
+      if (kind === 'perpendicular') {
+        return `<svg width="220" height="124" viewBox="0 0 220 124" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dua garis berpotongan membentuk sudut siku-siku">
+          <line x1="44" y1="62" x2="176" y2="62" stroke="var(--secondary)" stroke-width="5" stroke-linecap="round" />
+          <line x1="110" y1="18" x2="110" y2="106" stroke="var(--primary)" stroke-width="5" stroke-linecap="round" />
+          <rect x="110" y="46" width="16" height="16" fill="none" stroke="var(--positive)" stroke-width="3" />
+        </svg>`;
+      }
+      if (kind === 'two-shapes') {
+        return `<svg width="320" height="124" viewBox="0 0 320 124" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Satu segitiga dan satu segi empat">
+          <polygon points="82,22 32,102 132,102" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="4" stroke-linejoin="round" />
+          <rect x="184" y="24" width="96" height="78" fill="var(--tertiary-soft)" stroke="var(--tertiary)" stroke-width="4" />
+        </svg>`;
+      }
+      // polygon vs circle
+      return `<svg width="380" height="114" viewBox="0 0 380 114" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Segitiga, Persegi, Lingkaran, dan Segi lima">
+        <polygon points="48,22 18,92 78,92" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="3.5" stroke-linejoin="round" />
+        <rect x="112" y="26" width="62" height="62" fill="var(--tertiary-soft)" stroke="var(--tertiary)" stroke-width="3.5" />
+        <circle cx="236" cy="57" r="31" fill="var(--secondary-soft)" stroke="var(--secondary)" stroke-width="3.5" />
+        <polygon points="330,22 362,46 350,88 310,88 298,46" fill="var(--positive-soft)" stroke="var(--positive)" stroke-width="3.5" stroke-linejoin="round" />
+      </svg>`;
+    }
+
+    function svgTally(count, labelText) {
+      const width = 220;
+      const height = 74;
+      let strokes = '';
+      let x = 36;
+      for (let i = 1; i <= count; i++) {
+        if (i % 5 === 0) {
+          strokes += `<line x1="${x - 52}" y1="54" x2="${x - 6}" y2="20" stroke="var(--primary)" stroke-width="4.5" stroke-linecap="round" />`;
+          x += 18;
+        } else {
+          strokes += `<line x1="${x}" y1="20" x2="${x}" y2="54" stroke="var(--secondary)" stroke-width="4.5" stroke-linecap="round" />`;
+          x += 14;
+        }
+      }
+      return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${labelText}">
+        <rect x="6" y="6" width="${width - 12}" height="${height - 12}" rx="16" fill="var(--surface-container-low)" />
+        ${strokes}
+      </svg>`;
+    }
+
+    function htmlTable(headers, rows) {
+      const ths = headers.map(h => `<th>${h}</th>`).join('');
+      const trs = rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('');
+      return `<div class="quiz-table-wrap"><table class="quiz-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
+    }
+
+    // 50 Questions: 10 per chapter (3 Mudah, 5 Sedang, 2 Sulit)
+    const QUESTIONS = [
+      // ===================== BAB 1: BILANGAN CACAH =====================
+      {
+        id: 'b1q1', chapterId: 'bab1', difficulty: 'Mudah',
+        prompt: `Hitunglah banyak kelereng biru pada gambar di bawah ini!`,
+        visual: () => svgMarbles(8, `var(--tertiary)`, `Ada 8 kelereng biru`),
+        caption: `Hitung satu per satu dari kiri ke kanan`,
+        options: [`6`, `7`, `8`, `9`],
+        correct: 2,
+        explanation: `Jika kita hitung satu per satu, ada 6 kelereng di baris atas dan 2 di baris bawah. 6 + 2 = 8 kelereng.`
+      },
+      {
+        id: 'b1q2', chapterId: 'bab1', difficulty: 'Mudah',
+        prompt: `Bagaimana cara membaca bilangan 14 dengan benar?`,
+        visual: () => svgNumberCardPair(`1`, `4`, `Angka 1 dan 4 membentuk bilangan 14`),
+        caption: `Angka 1 di depan dan angka 4 di belakang`,
+        options: [`Empat satu`, `Empat belas`, `Empat puluh`, `Satu empat`],
+        correct: 1,
+        explanation: `Bilangan 14 terdiri dari 1 puluhan dan 4 satuan, sehingga dibaca "Empat belas".`
+      },
+      {
+        id: 'b1q3', chapterId: 'bab1', difficulty: 'Mudah',
+        prompt: `Manakah bilangan yang nilainya lebih besar antara 12 dan 9?`,
+        visual: () => svgNumberCardPair(`12`, `9`, `Kartu bilangan 12 dan kartu bilangan 9`),
+        caption: `Bandingkan kedua kartu bilangan`,
+        options: [`9`, `12`, `Keduanya sama`, `Tidak ada`],
+        correct: 1,
+        explanation: `Bilangan dua angka (12) selalu lebih besar daripada bilangan satu angka (9).`
+      },
+      {
+        id: 'b1q4', chapterId: 'bab1', difficulty: 'Sedang',
+        prompt: `Pada bilangan 25, angka 2 menempati nilai tempat apa?`,
+        visual: () => svgBaseTen(2, 5, `2 balok puluhan dan 5 kubus satuan`),
+        caption: `2 batang panjang dan 5 kubus kecil`,
+        options: [`Satuan`, `Puluhan`, `Ratusan`, `Bilangan nol`],
+        correct: 1,
+        explanation: `Pada bilangan 25, angka 2 berada di sebelah kiri sehingga menempati nilai tempat puluhan (bernilai 20).`
+      },
+      {
+        id: 'b1q5', chapterId: 'bab1', difficulty: 'Sedang',
+        prompt: `3 puluhan + 4 satuan sama dengan bilangan berapa?`,
+        visual: () => svgBaseTen(3, 4, `3 balok puluhan dan 4 kubus satuan`),
+        caption: `Gabungkan balok puluhan dan kubus satuan`,
+        options: [`43`, `30`, `34`, `7`],
+        correct: 2,
+        explanation: `3 puluhan bernilai 30, ditambah 4 satuan menjadi 34.`
+      },
+      {
+        id: 'b1q6', chapterId: 'bab1', difficulty: 'Sedang',
+        prompt: `Urutkan bilangan berikut dari yang paling kecil: 18, 12, 20, 15`,
+        visual: () => htmlTable([`Kartu 1`, `Kartu 2`, `Kartu 3`, `Kartu 4`], [[`18`, `12`, `20`, `15`]]),
+        caption: `Cari angka terkecil terlebih dahulu`,
+        options: [
+          `20, 18, 15, 12`,
+          `12, 15, 18, 20`,
+          `12, 18, 15, 20`,
+          `15, 12, 18, 20`
+        ],
+        correct: 1,
+        explanation: `Urutan dari yang paling kecil ke paling besar adalah 12, lalu 15, lalu 18, dan paling besar 20.`
+      },
+      {
+        id: 'b1q7', chapterId: 'bab1', difficulty: 'Sedang',
+        prompt: `Bilangan berapakah yang terletak tepat di antara 38 dan 40?`,
+        visual: () => htmlTable([`Sebelum`, `Di Tengah`, `Sesudah`], [[`38`, `?`, `40`]]),
+        caption: `Hitung maju 1 langkah setelah 38`,
+        options: [`37`, `39`, `41`, `36`],
+        correct: 1,
+        explanation: `Setelah 38 adalah 39, lalu 40. Jadi bilangan di antara 38 dan 40 adalah 39.`
+      },
+      {
+        id: 'b1q8', chapterId: 'bab1', difficulty: 'Sedang',
+        prompt: `Andi memegang kartu angka 16, Alfa memegang 19, dan Meutia memegang 14. Siapa yang memegang angka paling kecil?`,
+        visual: () => htmlTable([`Nama Anak`, `Angka Kartu`], [[`Andi`, `16`], [`Alfa`, `19`], [`Meutia`, `14`]]),
+        caption: `Bandingkan angka satuannya karena puluhannya sama-sama 1`,
+        options: [`Andi`, `Alfa`, `Meutia`, `Sama semua`],
+        correct: 2,
+        explanation: `Ketiganya punya puluhan 1. Angka satuan paling kecil adalah 4 milik Meutia (14).`
+      },
+      {
+        id: 'b1q9', chapterId: 'bab1', difficulty: 'Sulit',
+        prompt: `Alen memiliki kartu angka 2 dan 7. Bilangan dua angka paling besar yang bisa disusun adalah ...`,
+        visual: () => svgNumberCardPair(`2`, `7`, `Kartu angka 2 dan kartu angka 7`),
+        caption: `Letakkan angka yang lebih besar di tempat puluhan`,
+        options: [`27`, `77`, `72`, `22`],
+        correct: 2,
+        explanation: `Agar nilainya paling besar, letakkan angka 7 di tempat puluhan dan 2 di tempat satuan sehingga menjadi 72.`
+      },
+      {
+        id: 'b1q10', chapterId: 'bab1', difficulty: 'Sulit',
+        prompt: `Aku adalah bilangan dua angka. Angka puluhanku 3. Angka satuanku 2 lebih banyak dari puluhanku. Bilangan berapakah aku?`,
+        visual: () => svgBaseTen(3, 5, `Tebak bilangan rahasia`),
+        caption: `Petunjuk: Puluhan = 3, Satuan = 3 + 2`,
+        options: [`32`, `23`, `35`, `53`],
+        correct: 2,
+        explanation: `Puluhan = 3. Satuan = 3 + 2 = 5. Jadi bilangannya adalah 35.`
+      },
+
+      // ===================== BAB 2: KALIMAT MATEMATIKA =====================
+      {
+        id: 'b2q1', chapterId: 'bab2', difficulty: 'Mudah',
+        prompt: `Perhatikan gambar apel! Berapakah hasil kalimat matematika 4 + 3?`,
+        visual: () => svgAdditionApples(4, 3),
+        caption: `4 apel ditambah 3 apel`,
+        options: [`6`, `7`, `8`, `5`],
+        correct: 1,
+        explanation: `4 apel digabung dengan 3 apel berjumlah 7 apel. Jadi 4 + 3 = 7.`
+      },
+      {
+        id: 'b2q2', chapterId: 'bab2', difficulty: 'Mudah',
+        prompt: `Ada 9 kelereng, lalu 4 kelereng dicoret. Berapa sisa kelereng sekarang?`,
+        visual: () => svgCrossOutMarbles(9, 4),
+        caption: `Kalimat matematikanya: 9 - 4 = ...`,
+        options: [`4`, `5`, `6`, `3`],
+        correct: 1,
+        explanation: `Dari 9 kelereng, jika dikurangi 4 kelereng yang dicoret, tersisa 5 kelereng.`
+      },
+      {
+        id: 'b2q3', chapterId: 'bab2', difficulty: 'Mudah',
+        prompt: `Berapakah hasil dari 6 + 4?`,
+        visual: () => svgMarbles(10, `var(--primary)`, `6 ditambah 4 sama dengan 10`),
+        caption: `Pasangan bilangan yang berjumlah sepuluh`,
+        options: [`8`, `9`, `10`, `11`],
+        correct: 2,
+        explanation: `6 ditambah 4 tepat menjadi 10.`
+      },
+      {
+        id: 'b2q4', chapterId: 'bab2', difficulty: 'Sedang',
+        prompt: `Galih punya 12 kelereng. Lalu Alfa memberi 5 kelereng lagi. Berapa jumlah kelereng Galih?`,
+        visual: () => svgNumberCardPair(`12`, `+ 5`, `12 ditambah 5`),
+        caption: `Hitung maju 5 langkah dari 12`,
+        options: [`15`, `16`, `17`, `18`],
+        correct: 2,
+        explanation: `Kalimat matematikanya 12 + 5 = 17 kelereng.`
+      },
+      {
+        id: 'b2q5', chapterId: 'bab2', difficulty: 'Sedang',
+        prompt: `Hitunglah hasil pengurangan: 18 - 6 = ...`,
+        visual: () => svgNumberCardPair(`18`, `- 6`, `18 dikurangi 6`),
+        caption: `Kurangkan satuannya: 8 - 6`,
+        options: [`11`, `12`, `13`, `14`],
+        correct: 1,
+        explanation: `8 satuan dikurang 6 satuan sama dengan 2, ditambah 1 puluhan menjadi 12.`
+      },
+      {
+        id: 'b2q6', chapterId: 'bab2', difficulty: 'Sedang',
+        prompt: `Angka berapa yang tepat untuk mengisi titik-titik pada kalimat: 7 + ... = 15?`,
+        visual: () => htmlTable([`Bilangan 1`, `Tanda`, `Bilangan 2`, `Hasil`], [[`7`, `+`, `?`, `15`]]),
+        caption: `Hitung dari 7 sampai mencapai 15`,
+        options: [`6`, `7`, `8`, `9`],
+        correct: 2,
+        explanation: `Karena 7 + 8 = 15, maka angka yang tepat adalah 8.`
+      },
+      {
+        id: 'b2q7', chapterId: 'bab2', difficulty: 'Sedang',
+        prompt: `Berapakah hasil penjumlahan 24 + 13?`,
+        visual: () => htmlTable([`Puluhan`, `Satuan`], [[`20 + 10 = 30`, `4 + 3 = 7`]]),
+        caption: `Jumlahkan puluhan dengan puluhan, satuan dengan satuan`,
+        options: [`35`, `36`, `37`, `38`],
+        correct: 2,
+        explanation: `20 + 10 = 30 dan 4 + 3 = 7. Jadi 30 + 7 = 37.`
+      },
+      {
+        id: 'b2q8', chapterId: 'bab2', difficulty: 'Sedang',
+        prompt: `Alen membawa 16 pensil warna. Sebanyak 7 pensil dipinjam temannya. Sisa pensil Alen adalah ...`,
+        visual: () => svgNumberCardPair(`16`, `- 7`, `16 dikurangi 7`),
+        caption: `Kalimat pengurangan: 16 - 7`,
+        options: [`8`, `9`, `10`, `11`],
+        correct: 1,
+        explanation: `16 dikurangi 7 menyisakan 9 pensil warna.`
+      },
+      {
+        id: 'b2q9', chapterId: 'bab2', difficulty: 'Sulit',
+        prompt: `Hitunglah dengan teliti: 30 - 14 = ...`,
+        visual: () => htmlTable([`Langkah 1`, `Langkah 2`], [[`Ambil 1 puluhan jadi 10 satuan`, `20 - 10 = 10, lalu 10 - 4 = 6`]]),
+        caption: `Gunakan cara meminjam 1 puluhan`,
+        options: [`14`, `16`, `24`, `26`],
+        correct: 1,
+        explanation: `30 menjadi 20 + 10. Kurangkan 10 - 4 = 6 dan 20 - 10 = 10. Hasilnya 10 + 6 = 16.`
+      },
+      {
+        id: 'b2q10', chapterId: 'bab2', difficulty: 'Sulit',
+        prompt: `Meutia punya 14 stiker. Ia memberi 5 stiker ke Alfa, lalu Ibu memberi Meutia 8 stiker lagi. Berapa stiker Meutia sekarang?`,
+        visual: () => htmlTable([`Awal`, `Diberi ke Alfa`, `Dari Ibu`], [[`14`, `- 5`, `+ 8`]]),
+        caption: `Kerjakan berurutan dari kiri ke kanan`,
+        options: [`15`, `16`, `17`, `18`],
+        correct: 2,
+        explanation: `14 - 5 = 9 stiker. Lalu 9 + 8 = 17 stiker.`
+      },
+
+      // ===================== BAB 3: PENGUKURAN PANJANG & BERAT =====================
+      {
+        id: 'b3q1', chapterId: 'bab3', difficulty: 'Mudah',
+        prompt: `Perhatikan timbangan! Benda manakah yang lebih berat?`,
+        visual: () => svgScaleCompare(`Semangka`, `Apel`, `left-down`),
+        caption: `Bagian timbangan yang turun ke bawah lebih berat`,
+        options: [`Apel`, `Semangka`, `Sama berat`, `Tidak bisa dilihat`],
+        correct: 1,
+        explanation: `Sisi semangka berada di bawah (turun), artinya semangka lebih berat daripada apel.`
+      },
+      {
+        id: 'b3q2', chapterId: 'bab3', difficulty: 'Mudah',
+        prompt: `Alat ukur apakah yang biasa digunakan untuk mengukur panjang pensil?`,
+        visual: () => svgRulerObject(0, 10, `Penggaris`),
+        caption: `Memiliki angka-angka dalam satuan sentimeter (cm)`,
+        options: [`Timbangan`, `Penggaris`, `Jam dinding`, `Gelas`],
+        correct: 1,
+        explanation: `Penggaris digunakan untuk mengukur panjang benda kecil seperti pensil atau buku.`
+      },
+      {
+        id: 'b3q3', chapterId: 'bab3', difficulty: 'Mudah',
+        prompt: `Lihat kedua pita di bawah ini! Pita manakah yang lebih panjang?`,
+        visual: () => svgRibbonsCompare(),
+        caption: `Bandingkan ujung kanan kedua pita`,
+        options: [`Pita Merah`, `Pita Biru`, `Sama panjang`, `Tidak ada`],
+        correct: 1,
+        explanation: `Pita Biru memanjang lebih jauh ke kanan dibandingkan Pita Merah, jadi Pita Biru lebih panjang.`
+      },
+      {
+        id: 'b3q4', chapterId: 'bab3', difficulty: 'Sedang',
+        prompt: `Berapakah panjang pensil jika diukur dari angka 0 sampai angka 12 cm?`,
+        visual: () => svgRulerObject(0, 12, `Pensil 12 cm`),
+        caption: `Lihat angka tempat ujung lancip pensil berhenti`,
+        options: [`10 cm`, `11 cm`, `12 cm`, `13 cm`],
+        correct: 2,
+        explanation: `Karena pangkal pensil tepat di angka 0 dan ujungnya di angka 12, panjangnya adalah 12 cm.`
+      },
+      {
+        id: 'b3q5', chapterId: 'bab3', difficulty: 'Sedang',
+        prompt: `Panjang buku sama dengan 6 klip kertas. Panjang kotak pensil sama dengan 4 klip kertas. Benda mana yang lebih pendek?`,
+        visual: () => svgPaperclipsCompare(),
+        caption: `Klip kertas dipakai sebagai satuan tidak baku`,
+        options: [`Buku`, `Kotak pensil`, `Sama panjang`, `Klip kertas`],
+        correct: 1,
+        explanation: `4 klip kertas lebih sedikit daripada 6 klip kertas, sehingga kotak pensil lebih pendek.`
+      },
+      {
+        id: 'b3q6', chapterId: 'bab3', difficulty: 'Sedang',
+        prompt: `Pada timbangan seimbang, 1 nanas sama berat dengan 4 apel. Jika ada 2 nanas, berapa apel agar timbangan seimbang?`,
+        visual: () => svgScaleCompare(`1 Nanas`, `4 Apel`, `level`),
+        caption: `Jika nanasnya 2 kali lipat, apelnya juga 2 kali lipat`,
+        options: [`6 apel`, `7 apel`, `8 apel`, `10 apel`],
+        correct: 2,
+        explanation: `1 nanas = 4 apel. Maka 2 nanas = 4 + 4 = 8 apel.`
+      },
+      {
+        id: 'b3q7', chapterId: 'bab3', difficulty: 'Sedang',
+        prompt: `Manakah di bawah ini yang termasuk satuan baku untuk mengukur panjang?`,
+        visual: () => htmlTable([`Pilihan Satuan`, `Contoh`], [[`Satuan Tidak Baku`, `Jengkal tangan, langkah kaki, klip`], [`Satuan Baku`, `Sentimeter (cm), Meter (m)`]]),
+        caption: `Satuan baku hasilnya selalu sama di mana saja`,
+        options: [`Jengkal tangan`, `Klip kertas`, `Sentimeter (cm)`, `Langkah kaki`],
+        correct: 2,
+        explanation: `Sentimeter (cm) adalah satuan baku karena ukurannya selalu tetap dan diakui secara umum.`
+      },
+      {
+        id: 'b3q8', chapterId: 'bab3', difficulty: 'Sedang',
+        prompt: `Tas lebih berat dari buku. Buku lebih berat dari penghapus. Benda manakah yang paling ringan?`,
+        visual: () => htmlTable([`Urutan Berat`], [[`Tas > Buku > Penghapus`]]),
+        caption: `Bandingkan ketiga benda dari yang terberat`,
+        options: [`Tas`, `Buku`, `Penghapus`, `Semua sama`],
+        correct: 2,
+        explanation: `Penghapus lebih ringan dari buku dan tas, jadi penghapus adalah yang paling ringan.`
+      },
+      {
+        id: 'b3q9', chapterId: 'bab3', difficulty: 'Sulit',
+        prompt: `Krayon diukur menggunakan penggaris dari angka 2 cm sampai angka 9 cm. Berapa panjang krayon itu?`,
+        visual: () => svgRulerObject(2, 9, `Krayon dari 2 cm ke 9 cm`),
+        caption: `Hitung selisih angka akhir dan angka awal`,
+        options: [`11 cm`, `9 cm`, `7 cm`, `6 cm`],
+        correct: 2,
+        explanation: `Karena dimulai dari angka 2 cm dan berakhir di 9 cm, panjangnya adalah 9 - 2 = 7 cm.`
+      },
+      {
+        id: 'b3q10', chapterId: 'bab3', difficulty: 'Sulit',
+        prompt: `Berat 1 kantong beras adalah 2 kg dan 1 kantong gula adalah 1 kg. Jika Ibu membeli 2 kantong beras dan 1 kantong gula, berapa total beratnya?`,
+        visual: () => htmlTable([`Belanjaan Ibu`, `Berat`], [[`2 kantong beras`, `2 kg + 2 kg`], [`1 kantong gula`, `1 kg`]]),
+        caption: `Jumlahkan seluruh berat belanjaan Ibu`,
+        options: [`3 kg`, `4 kg`, `5 kg`, `6 kg`],
+        correct: 2,
+        explanation: `2 kantong beras = 2 + 2 = 4 kg. Ditambah 1 kantong gula (1 kg), totalnya 4 + 1 = 5 kg.`
+      },
+
+      // ===================== BAB 4: UNSUR BANGUN DATAR =====================
+      {
+        id: 'b4q1', chapterId: 'bab4', difficulty: 'Mudah',
+        prompt: `Perhatikan gambar segitiga di bawah! Berapakah jumlah sisi pada segitiga?`,
+        visual: () => svgShapeGeo(`triangle`),
+        caption: `Hitung garis tepi yang membatasi segitiga`,
+        options: [`2 sisi`, `3 sisi`, `4 sisi`, `5 sisi`],
+        correct: 1,
+        explanation: `Sesuai namanya "segi-tiga", bangun datar ini dibatasi oleh 3 buah sisi lurus.`
+      },
+      {
+        id: 'b4q2', chapterId: 'bab4', difficulty: 'Mudah',
+        prompt: `Dari keempat gambar di bawah ini, manakah yang merupakan bangun segi empat?`,
+        visual: () => svgShapeGeo(`four-shapes`),
+        caption: `Segi empat memiliki 4 sisi lurus dan 4 sudut`,
+        options: [`Gambar A`, `Gambar B`, `Gambar C`, `Gambar D`],
+        correct: 1,
+        explanation: `Gambar B memiliki 4 sisi lurus dan 4 sudut, sehingga merupakan segi empat.`
+      },
+      {
+        id: 'b4q3', chapterId: 'bab4', difficulty: 'Mudah',
+        prompt: `Titik merah muda tempat dua garis bertemu pada pojok disebut apa?`,
+        visual: () => svgShapeGeo(`vertex`),
+        caption: `Titik potong dari dua sinar garis`,
+        options: [`Sisi datar`, `Titik sudut`, `Garis lengkung`, `Lingkaran`],
+        correct: 1,
+        explanation: `Titik pertemuan atau perpotongan dua garis disebut titik sudut.`
+      },
+      {
+        id: 'b4q4', chapterId: 'bab4', difficulty: 'Sedang',
+        prompt: `Berapa banyak titik sudut yang dimiliki oleh sebuah bangun segi empat?`,
+        visual: () => svgShapeGeo(`square-vertices`),
+        caption: `Hitung bulatan ungu di setiap pojoknya`,
+        options: [`2 titik sudut`, `3 titik sudut`, `4 titik sudut`, `6 titik sudut`],
+        correct: 2,
+        explanation: `Bangun segi empat memiliki 4 sisi dan 4 titik sudut di keempat pojoknya.`
+      },
+      {
+        id: 'b4q5', chapterId: 'bab4', difficulty: 'Sedang',
+        prompt: `Garis yang dimulai dari satu titik dan memanjang lurus ke satu arah (bertanda panah) disebut ...`,
+        visual: () => svgShapeGeo(`ray`),
+        caption: `Dimulai di satu titik pangkal`,
+        options: [`Sinar garis`, `Segitiga`, `Lingkaran`, `Garis lengkung`],
+        correct: 0,
+        explanation: `Sinar garis adalah garis yang dimulai pada satu titik dan memanjang ke satu arah.`
+      },
+      {
+        id: 'b4q6', chapterId: 'bab4', difficulty: 'Sedang',
+        prompt: `Dua garis lurus yang berhadapan dan tidak pernah bertemu meski diperpanjang disebut ...`,
+        visual: () => svgShapeGeo(`parallel`),
+        caption: `Seperti rel kereta api yang jaraknya selalu sama`,
+        options: [`Garis sejajar`, `Garis melengkung`, `Titik sudut`, `Garis putus`],
+        correct: 0,
+        explanation: `Dua garis yang jaraknya selalu sama dan tidak berpotongan disebut garis sejajar.`
+      },
+      {
+        id: 'b4q7', chapterId: 'bab4', difficulty: 'Sedang',
+        prompt: `Dua garis yang berpotongan tepat membentuk pojok siku-siku (seperti tanda tambah +) disebut ...`,
+        visual: () => svgShapeGeo(`perpendicular`),
+        caption: `Sudut pertemuannya tegak lurus`,
+        options: [`Garis sejajar`, `Garis tegak lurus`, `Garis miring`, `Sisi lengkung`],
+        correct: 1,
+        explanation: `Garis yang berpotongan membentuk sudut siku-siku disebut garis-garis tegak lurus.`
+      },
+      {
+        id: 'b4q8', chapterId: 'bab4', difficulty: 'Sedang',
+        prompt: `Benda di ruang kelas yang permukaannya berbentuk segi empat adalah ...`,
+        visual: () => svgShapeGeo(`square-vertices`),
+        caption: `Pilih benda dengan 4 sisi lurus`,
+        options: [`Bola basket`, `Jam dinding bulat`, `Papan tulis`, `Topi kerucut`],
+        correct: 2,
+        explanation: `Papan tulis di kelas memiliki 4 sisi lurus dan 4 sudut, sehingga berbentuk segi empat.`
+      },
+      {
+        id: 'b4q9', chapterId: 'bab4', difficulty: 'Sulit',
+        prompt: `Alfa menggambar 1 buah segitiga dan 1 buah segi empat. Berapa jumlah seluruh sisi kedua bangun itu?`,
+        visual: () => svgShapeGeo(`two-shapes`),
+        caption: `Jumlahkan sisi segitiga dan sisi segi empat`,
+        options: [`5 sisi`, `6 sisi`, `7 sisi`, `8 sisi`],
+        correct: 2,
+        explanation: `Segitiga memiliki 3 sisi dan segi empat memiliki 4 sisi. Jadi 3 + 4 = 7 sisi.`
+      },
+      {
+        id: 'b4q10', chapterId: 'bab4', difficulty: 'Sulit',
+        prompt: `Segi banyak adalah bangun tertutup yang dibatasi garis lurus. Dari gambar berikut, manakah yang BUKAN segi banyak?`,
+        visual: () => svgShapeGeo(`polygons`),
+        caption: `Cari bangun yang sisinya melengkung`,
+        options: [`Segitiga`, `Persegi`, `Lingkaran`, `Segi lima`],
+        correct: 2,
+        explanation: `Lingkaran dibatasi oleh sisi lengkung, bukan garis lurus, sehingga bukan segi banyak.`
+      },
+
+      // ===================== BAB 5: PENYAJIAN DATA DALAM TABEL =====================
+      {
+        id: 'b5q1', chapterId: 'bab5', difficulty: 'Mudah',
+        prompt: `Lihat tabel jumlah kelereng di bawah ini! Siapakah yang memiliki kelereng paling banyak?`,
+        visual: () => htmlTable([`Nama`, `Banyak Kelereng`], [[`Andi`, `2`], [`Alen`, `3`], [`Galih`, `5`]]),
+        caption: `Bandingkan angka pada kolom Banyak Kelereng`,
+        options: [`Andi`, `Alen`, `Galih`, `Sama semua`],
+        correct: 2,
+        explanation: `Galih memiliki 5 kelereng, lebih banyak dari Alen (3) dan Andi (2).`
+      },
+      {
+        id: 'b5q2', chapterId: 'bab5', difficulty: 'Mudah',
+        prompt: `Perhatikan gambar turus di bawah ini! Berapakah jumlah yang ditunjukkan oleh turus tersebut?`,
+        visual: () => svgTally(4, `4 garis turus tegak`),
+        caption: `Setiap 1 garis lurus mewakili angka 1`,
+        options: [`2`, `3`, `4`, `5`],
+        correct: 2,
+        explanation: `Ada 4 garis tegak, jadi turus tersebut menunjukkan jumlah 4.`
+      },
+      {
+        id: 'b5q3', chapterId: 'bab5', difficulty: 'Mudah',
+        prompt: `Tabel menunjukkan buah kesukaan siswa kelas 3. Buah apakah yang paling disukai?`,
+        visual: () => htmlTable([`Buah Kesukaan`, `Banyak Siswa`], [[`Apel`, `6`], [`Pisang`, `4`], [`Jeruk`, `8`]]),
+        caption: `Cari jumlah siswa yang paling besar`,
+        options: [`Apel`, `Pisang`, `Jeruk`, `Semuanya sama`],
+        correct: 2,
+        explanation: `Jeruk disukai oleh 8 siswa, angka ini paling besar dibandingkan Apel (6) dan Pisang (4).`
+      },
+      {
+        id: 'b5q4', chapterId: 'bab5', difficulty: 'Sedang',
+        prompt: `Berdasarkan tabel kelereng berikut, siapakah dua anak yang memiliki kelereng sama banyak?`,
+        visual: () => htmlTable([`Nama Anak`, `Kelereng`], [[`Alen`, `3`], [`Meutia`, `7`], [`Galih`, `5`], [`Alfa`, `7`], [`Andi`, `2`]]),
+        caption: `Cari dua baris dengan angka yang sama`,
+        options: [`Alen dan Andi`, `Meutia dan Alfa`, `Galih dan Alfa`, `Meutia dan Galih`],
+        correct: 1,
+        explanation: `Meutia memiliki 7 kelereng dan Alfa juga memiliki 7 kelereng. Keduanya sama banyak.`
+      },
+      {
+        id: 'b5q5', chapterId: 'bab5', difficulty: 'Sedang',
+        prompt: `Urutkan nama anak dari yang memiliki kelereng paling sedikit: Alen (3), Galih (5), Andi (2)!`,
+        visual: () => htmlTable([`Nama`, `Jumlah`], [[`Alen`, `3`], [`Galih`, `5`], [`Andi`, `2`]]),
+        caption: `Mulai dari angka terkecil (2)`,
+        options: [
+          `Galih, Alen, Andi`,
+          `Andi, Alen, Galih`,
+          `Alen, Andi, Galih`,
+          `Andi, Galih, Alen`
+        ],
+        correct: 1,
+        explanation: `Urutan angka dari terkecil adalah 2, 3, 5. Maka urutannya adalah Andi, Alen, Galih.`
+      },
+      {
+        id: 'b5q6', chapterId: 'bab5', difficulty: 'Sedang',
+        prompt: `Perhatikan kata "M A T E M A T I K A". Berapa banyak huruf A pada kata tersebut?`,
+        visual: () => htmlTable([`Kata`], [[`M - A - T - E - M - A - T - I - K - A`]]),
+        caption: `Hitung huruf A dari kiri sampai kanan`,
+        options: [`2 huruf`, `3 huruf`, `4 huruf`, `5 huruf`],
+        correct: 1,
+        explanation: `Huruf A muncul pada urutan ke-2, ke-6, dan ke-10. Jadi ada 3 huruf A.`
+      },
+      {
+        id: 'b5q7', chapterId: 'bab5', difficulty: 'Sedang',
+        prompt: `Berapa jumlah benda yang ditunjukkan oleh gambar turus berikut?`,
+        visual: () => svgTally(7, `1 ikat turus isi 5 ditambah 2 garis`),
+        caption: `Satu ikat miring bernilai 5`,
+        options: [`5`, `6`, `7`, `8`],
+        correct: 2,
+        explanation: `Satu ikat turus bernilai 5, ditambah 2 garis tegak di sebelahnya menjadi 5 + 2 = 7.`
+      },
+      {
+        id: 'b5q8', chapterId: 'bab5', difficulty: 'Sedang',
+        prompt: `Kelas 3 butuh 6 buku tulis dan Kelas 6 butuh 10 buku tulis. Berapa selisih banyak buku mereka?`,
+        visual: () => htmlTable([`Tingkat`, `Kebutuhan Buku`], [[`Kelas 3`, `6 buku`], [`Kelas 6`, `10 buku`]]),
+        caption: `Selisih = angka besar dikurangi angka kecil`,
+        options: [`2 buku`, `3 buku`, `4 buku`, `16 buku`],
+        correct: 2,
+        explanation: `Selisih buku = 10 - 6 = 4 buku.`
+      },
+      {
+        id: 'b5q9', chapterId: 'bab5', difficulty: 'Sulit',
+        prompt: `Lihat tabel kelereng berikut! Berapakah jumlah seluruh kelereng yang dimiliki kelima anak tersebut?`,
+        visual: () => htmlTable([`Nama`, `Kelereng`], [[`Andi`, `2`], [`Alen`, `3`], [`Galih`, `5`], [`Meutia`, `7`], [`Alfa`, `7`]]),
+        caption: `Jumlahkan semua angka: 2 + 3 + 5 + 7 + 7`,
+        options: [`20 kelereng`, `22 kelereng`, `24 kelereng`, `25 kelereng`],
+        correct: 2,
+        explanation: `2 + 3 = 5, lalu 5 + 5 = 10, lalu 10 + 7 = 17, dan 17 + 7 = 24 kelereng.`
+      },
+      {
+        id: 'b5q10', chapterId: 'bab5', difficulty: 'Sulit',
+        prompt: `Tabel menunjukkan hasil kuis 10 siswa. Berapa banyak siswa yang mendapat nilai LEBIH DARI 7?`,
+        visual: () => htmlTable([`Nilai`, `Banyak Siswa`], [[`6`, `2 siswa`], [`7`, `3 siswa`], [`8`, `4 siswa`], [`9`, `1 siswa`]]),
+        caption: `Nilai lebih dari 7 berarti nilai 8 dan nilai 9`,
+        options: [`3 siswa`, `4 siswa`, `5 siswa`, `8 siswa`],
+        correct: 2,
+        explanation: `Nilai yang lebih dari 7 adalah nilai 8 (4 siswa) dan nilai 9 (1 siswa). Jadi 4 + 1 = 5 siswa.`
+      }
+    ];
+
+    // =========================================================================
+    // STATE APLIKASI
+    // =========================================================================
+    let appState = {
+      activeView: 'bab1', // 'bab1'..'bab5' or 'rapor'
+      currentIndexByChapter: {
+        bab1: 0,
+        bab2: 0,
+        bab3: 0,
+        bab4: 0,
+        bab5: 0
+      },
+      answers: {}, // { questionId: selectedOptionIndex }
+      soundEnabled: true,
+      studentName: ''
+    };
+
+    let audioCtx = null;
+
+    function playChime(isCorrect) {
+      if (!appState.soundEnabled) return;
+      try {
+        const AudioContextRef = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextRef) return;
+        if (!audioCtx) audioCtx = new AudioContextRef();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        if (isCorrect) {
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.14); // G5
+        } else {
+          osc.frequency.setValueAtTime(329.63, now); // E4
+          osc.frequency.exponentialRampToValueAtTime(246.94, now + 0.16); // B3
+        }
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch (e) {
+        // Ignore audio errors safely
+      }
+    }
+
+    async function persistState() {
+      const indicator = document.getElementById('save-indicator');
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+          await window.notebookAppApi.setAppState(appState);
+          if (indicator) indicator.textContent = `Kemajuan tersimpan otomatis`;
+        }
+      } catch (err) {
+        if (indicator) indicator.textContent = `Mode latihan lokal aktif`;
+      }
+    }
+
+    function getChapterQuestions(chapterId) {
+      return QUESTIONS.filter(q => q.chapterId === chapterId);
+    }
+
+    function getStats() {
+      let totalAnswered = 0;
+      let totalCorrect = 0;
+      const byChapter = {};
+      const byDifficulty = {
+        Mudah: { total: 0, answered: 0, correct: 0 },
+        Sedang: { total: 0, answered: 0, correct: 0 },
+        Sulit: { total: 0, answered: 0, correct: 0 }
+      };
+
+      for (let i = 0; i < CHAPTERS.length; i++) {
+        byChapter[CHAPTERS[i].id] = { total: 0, answered: 0, correct: 0 };
+      }
+
+      for (let i = 0; i < QUESTIONS.length; i++) {
+        const q = QUESTIONS[i];
+        byChapter[q.chapterId].total += 1;
+        byDifficulty[q.difficulty].total += 1;
+
+        if (Object.prototype.hasOwnProperty.call(appState.answers, q.id)) {
+          const chosen = appState.answers[q.id];
+          totalAnswered += 1;
+          byChapter[q.chapterId].answered += 1;
+          byDifficulty[q.difficulty].answered += 1;
+          if (chosen === q.correct) {
+            totalCorrect += 1;
+            byChapter[q.chapterId].correct += 1;
+            byDifficulty[q.difficulty].correct += 1;
+          }
+        }
+      }
+
+      const score = totalCorrect * 2; // 50 questions x 2 = 100 max score
+      return { totalAnswered, totalCorrect, score, byChapter, byDifficulty };
+    }
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
+
+    // =========================================================================
+    // HANDLERS (function declarations untuk onclick/oninput)
+    // =========================================================================
+    function switchView(viewId) {
+      appState.activeView = viewId;
+      renderAll();
+      persistState();
+    }
+
+    function jumpToQuestion(chapterId, idx) {
+      appState.currentIndexByChapter[chapterId] = idx;
+      renderAll();
+      persistState();
+    }
+
+    function selectAnswer(questionId, optionIndex) {
+      if (Object.prototype.hasOwnProperty.call(appState.answers, questionId)) {
+        return; // Locked after answering
+      }
+      const q = QUESTIONS.find(item => item.id === questionId);
+      if (!q) return;
+
+      appState.answers[questionId] = optionIndex;
+      playChime(optionIndex === q.correct);
+      renderAll();
+      persistState();
+    }
+
+    function nextQuestion(chapterId) {
+      const qs = getChapterQuestions(chapterId);
+      const cur = appState.currentIndexByChapter[chapterId] || 0;
+      if (cur < qs.length - 1) {
+        appState.currentIndexByChapter[chapterId] = cur + 1;
+        renderAll();
+        persistState();
+      } else {
+        const chapIdx = CHAPTERS.findIndex(c => c.id === chapterId);
+        if (chapIdx >= 0 && chapIdx < CHAPTERS.length - 1) {
+          appState.activeView = CHAPTERS[chapIdx + 1].id;
+        } else {
+          appState.activeView = 'rapor';
+        }
+        renderAll();
+        persistState();
+      }
+    }
+
+    function prevQuestion(chapterId) {
+      const cur = appState.currentIndexByChapter[chapterId] || 0;
+      if (cur > 0) {
+        appState.currentIndexByChapter[chapterId] = cur - 1;
+        renderAll();
+        persistState();
+      }
+    }
+
+    function toggleSound() {
+      appState.soundEnabled = !appState.soundEnabled;
+      renderHeaderStats();
+      persistState();
+    }
+
+    function handleResetAll(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.classList.remove('btn-quiet');
+        btn.classList.add('btn-danger-arm');
+        const span = btn.querySelector('span');
+        if (span) span.textContent = `Klik lagi untuk reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            btn.classList.add('btn-quiet');
+            btn.classList.remove('btn-danger-arm');
+            if (span) span.textContent = `Ulangi Semua`;
+          }
+        }, 3500);
+        return;
+      }
+
+      btn.dataset.armed = 'false';
+      btn.classList.add('btn-quiet');
+      btn.classList.remove('btn-danger-arm');
+      const span = btn.querySelector('span');
+      if (span) span.textContent = `Ulangi Semua`;
+
+      appState.answers = {};
+      appState.currentIndexByChapter = { bab1: 0, bab2: 0, bab3: 0, bab4: 0, bab5: 0 };
+      appState.activeView = 'bab1';
+      renderAll();
+      persistState();
+    }
+
+    function handleResetChapter(btn, chapterId) {
+      if (!btn) return;
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.classList.add('btn-danger-arm');
+        btn.textContent = `Klik lagi untuk ulangi bab`;
+        setTimeout(() => {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            btn.classList.remove('btn-danger-arm');
+            btn.textContent = `Ulangi Bab Ini`;
+          }
+        }, 3500);
+        return;
+      }
+
+      const qs = getChapterQuestions(chapterId);
+      for (let i = 0; i < qs.length; i++) {
+        delete appState.answers[qs[i].id];
+      }
+      appState.currentIndexByChapter[chapterId] = 0;
+      renderAll();
+      persistState();
+    }
+
+    function updateStudentName(val) {
+      appState.studentName = val;
+      persistState();
+    }
+
+    function downloadReport() {
+      const stats = getStats();
+      const nama = appState.studentName && appState.studentName.trim() ? appState.studentName.trim() : `Siswa SD Kelas 3`;
+      let lines = [
+        `============================================`,
+        `RAPOR KUIS CERIA MATEMATIKA SD KELAS 3`,
+        `Pembuat Kuis: BBM-Suminto`,
+        `============================================`,
+        `Nama Siswa   : ${nama}`,
+        `Skor Total   : ${stats.score} / 100`,
+        `Soal Dijawab : ${stats.totalAnswered} / 50`,
+        `Jawaban Benar: ${stats.totalCorrect}`,
+        ``,
+        `--- Nilai per Bab ---`
+      ];
+      for (let i = 0; i < CHAPTERS.length; i++) {
+        const ch = CHAPTERS[i];
+        const st = stats.byChapter[ch.id];
+        lines.push(`${ch.title}: ${st.correct * 10}/100 (${st.correct} benar dari ${st.answered} dijawab)`);
+      }
+      lines.push(``, `--- Ketepatan Tingkat Kesulitan ---`);
+      const diffs = [`Mudah`, `Sedang`, `Sulit`];
+      for (let d = 0; d < diffs.length; d++) {
+        const key = diffs[d];
+        const ds = stats.byDifficulty[key];
+        const pct = ds.total > 0 ? Math.round((ds.total / 50) * 100) : 0;
+        lines.push(`${key} (${pct}% proporsi): ${ds.correct}/${ds.total} benar`);
+      }
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'Rapor_Kuis_BBM_Suminto.txt'
+        });
+      } else {
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Rapor_Kuis_BBM_Suminto.txt';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    // =========================================================================
+    // RENDER FUNCTIONS
+    // =========================================================================
+    function renderHeaderStats() {
+      const stats = getStats();
+      const elScore = document.getElementById('stat-score');
+      const elAns = document.getElementById('stat-answered');
+      const elCor = document.getElementById('stat-correct');
+      const elSoundLabel = document.getElementById('sound-label');
+      const elSoundBtn = document.getElementById('btn-sound');
+
+      if (elScore) elScore.textContent = String(stats.score);
+      if (elAns) elAns.textContent = `${stats.totalAnswered}/50`;
+      if (elCor) elCor.textContent = String(stats.totalCorrect);
+      if (elSoundLabel) elSoundLabel.textContent = appState.soundEnabled ? `Suara Nyala` : `Suara Mati`;
+      if (elSoundBtn) {
+        const iconEl = elSoundBtn.querySelector('i');
+        if (iconEl) {
+          iconEl.setAttribute('data-lucide', appState.soundEnabled ? 'volume-2' : 'volume-x');
+        }
+      }
+    }
+
+    function renderChapterNav() {
+      const container = document.getElementById('chapter-nav');
+      if (!container) return;
+      const stats = getStats();
+
+      let html = '';
+      for (let i = 0; i < CHAPTERS.length; i++) {
+        const ch = CHAPTERS[i];
+        const chStat = stats.byChapter[ch.id];
+        const isActive = appState.activeView === ch.id;
+        const isDone = chStat.answered === chStat.total;
+        html += `
+          <button type="button" class="chapter-tab ${isActive ? 'is-active' : ''}" onclick="switchView('${ch.id}')">
+            <div class="chapter-tab-top">
+              <span class="chapter-tab-kicker">Bab ${ch.number}</span>
+              <i data-lucide="${isDone ? 'check-circle-2' : ch.icon}" aria-hidden="true"></i>
+            </div>
+            <span class="chapter-tab-title">${ch.shortTitle}</span>
+            <span class="chapter-tab-meta">${chStat.answered}/10 soal • ${chStat.correct * 10} poin</span>
+          </button>
+        `;
+      }
+
+      const isReportActive = appState.activeView === 'rapor';
+      html += `
+        <button type="button" class="chapter-tab ${isReportActive ? 'is-active' : ''}" onclick="switchView('rapor')">
+          <div class="chapter-tab-top">
+            <span class="chapter-tab-kicker">Hasil Belajar</span>
+            <i data-lucide="award" aria-hidden="true"></i>
+          </div>
+          <span class="chapter-tab-title">Rapor &amp; Grafik</span>
+          <span class="chapter-tab-meta">Skor ${stats.score}/100</span>
+        </button>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function renderChapterQuiz(chapterId) {
+      const ch = CHAPTERS.find(c => c.id === chapterId);
+      const qs = getChapterQuestions(chapterId);
+      if (!ch || qs.length === 0) return '';
+
+      const stats = getStats();
+      const chStat = stats.byChapter[chapterId];
+      const idx = Math.min(appState.currentIndexByChapter[chapterId] || 0, qs.length - 1);
+      const q = qs[idx];
+
+      const hasAnswered = Object.prototype.hasOwnProperty.call(appState.answers, q.id);
+      const chosenIdx = hasAnswered ? appState.answers[q.id] : -1;
+      const isRight = hasAnswered && chosenIdx === q.correct;
+
+      const pctWidth = Math.round((chStat.answered / qs.length) * 100);
+      const diffClass = q.difficulty === 'Mudah' ? 'badge--mudah' : q.difficulty === 'Sedang' ? 'badge--sedang' : 'badge--sulit';
+
+      let dotsHtml = '';
+      for (let i = 0; i < qs.length; i++) {
+        const item = qs[i];
+        const ans = Object.prototype.hasOwnProperty.call(appState.answers, item.id) ? appState.answers[item.id] : null;
+        let cls = 'q-dot';
+        if (i === idx) cls += ' is-current';
+        if (ans !== null) {
+          cls += ans === item.correct ? ' is-correct' : ' is-wrong';
+        }
+        dotsHtml += `<button type="button" class="${cls}" aria-label="Soal ${i + 1}" onclick="jumpToQuestion('${chapterId}', ${i})">${i + 1}</button>`;
+      }
+
+      const letters = [`A`, `B`, `C`, `D`];
+      let optionsHtml = '';
+      for (let o = 0; o < q.options.length; o++) {
+        let optClass = 'option-btn';
+        let statusIcon = '';
+        if (hasAnswered) {
+          if (o === q.correct) {
+            optClass += ' is-correct';
+            statusIcon = `<span class="option-status-icon"><i data-lucide="check-circle-2" aria-hidden="true"></i></span>`;
+          } else if (o === chosenIdx) {
+            optClass += ' is-wrong';
+            statusIcon = `<span class="option-status-icon"><i data-lucide="x-circle" aria-hidden="true"></i></span>`;
+          } else {
+            optClass += ' is-dimmed';
+          }
+        }
+        optionsHtml += `
+          <button type="button" class="${optClass}" ${hasAnswered ? 'disabled' : ''} onclick="selectAnswer('${q.id}', ${o})">
+            <span class="option-letter">${letters[o]}</span>
+            <span class="option-text">${q.options[o]}</span>
+            ${statusIcon}
+          </button>
+        `;
+      }
+
+      let feedbackHtml = '';
+      if (hasAnswered) {
+        feedbackHtml = `
+          <div class="feedback-box ${isRight ? 'feedback-box--correct' : 'feedback-box--wrong'}" role="status">
+            <span class="feedback-icon">
+              <i data-lucide="${isRight ? 'sparkles' : 'lightbulb'}" aria-hidden="true"></i>
+            </span>
+            <div>
+              <p class="feedback-title">${isRight ? 'Hebat! Jawabanmu Benar!' : 'Belum Tepat, Ayo Belajar Bersama!'}</p>
+              <p class="feedback-text">${q.explanation}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      const chapIdx = CHAPTERS.findIndex(c => c.id === chapterId);
+      const isLastQuestion = idx === qs.length - 1;
+      const nextLabel = !isLastQuestion
+        ? `Soal Berikutnya`
+        : chapIdx < CHAPTERS.length - 1
+          ? `Lanjut ke Bab ${chapIdx + 2}`
+          : `Lihat Rapor Nilai`;
+
+      let finishNote = '';
+      if (chStat.answered === qs.length) {
+        finishNote = `
+          <div class="status-banner">
+            <i data-lucide="star" aria-hidden="true"></i>
+            <span>Bab ${ch.number} selesai! Skormu ${chStat.correct * 10} dari 100.</span>
+          </div>
+        `;
+      }
+
+      return `
+        <section class="sticker-card chapter-banner" aria-label="${ch.title}">
+          <div class="chapter-banner-head">
+            <div>
+              <h2 class="section-heading">${ch.title}</h2>
+              <p class="chapter-desc">${ch.description}</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+              ${finishNote}
+              <button type="button" class="btn btn-quiet" onclick="handleResetChapter(this, '${chapterId}')">Ulangi Bab Ini</button>
+            </div>
+          </div>
+
+          <div class="progress-track" aria-label="Kemajuan bab ${chStat.answered} dari ${qs.length}">
+            <div class="progress-fill" style="width: ${pctWidth}%;"></div>
+          </div>
+
+          <div class="question-pills-row" aria-label="Pilih nomor soal">
+            ${dotsHtml}
+          </div>
+        </section>
+
+        <article class="question-card">
+          <div class="question-meta-bar">
+            <div style="display:flex; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+              <span class="badge badge--grape">Soal ${idx + 1} dari ${qs.length}</span>
+              <span class="badge ${diffClass}">Tingkat: ${q.difficulty}</span>
+            </div>
+            <span class="chapter-tab-meta">Nilai Bab: ${chStat.correct * 10}/100</span>
+          </div>
+
+          <h3 class="question-prompt">${q.prompt}</h3>
+
+          <div class="visual-stage">
+            ${q.visual()}
+            <p class="visual-caption">${q.caption}</p>
+          </div>
+
+          <div class="options-grid">
+            ${optionsHtml}
+          </div>
+
+          ${feedbackHtml}
+
+          <div class="question-footer">
+            <button type="button" class="btn btn-ghost" ${idx === 0 ? 'disabled' : ''} onclick="prevQuestion('${chapterId}')">
+              <i data-lucide="arrow-left" aria-hidden="true"></i>
+              <span>Sebelumnya</span>
+            </button>
+            <button type="button" class="btn btn-primary" onclick="nextQuestion('${chapterId}')">
+              <span>${nextLabel}</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderReportView() {
+      const stats = getStats();
+      const accuracy = stats.totalAnswered > 0 ? Math.round((stats.totalCorrect / stats.totalAnswered) * 100) : 0;
+
+      let message = `Ayo mulai menjawab soal di Bab 1 sampai Bab 5 untuk melihat grafik nilaimu!`;
+      if (stats.totalAnswered > 0 && stats.totalAnswered < 50) {
+        message = `Kamu sudah menjawab ${stats.totalAnswered} dari 50 soal dengan ketepatan ${accuracy}%. Ayo lanjutkan sampai selesai!`;
+      } else if (stats.totalAnswered === 50) {
+        message = accuracy >= 80
+          ? `Luar biasa! Kamu menyelesaikan semua 50 soal dengan skor ${stats.score}/100!`
+          : `Hebat sudah menyelesaikan semua 50 soal! Kamu bisa mengulangi bab yang ingin ditingkatkan.`;
+      }
+
+      const barColors = ['lollipop-bar--pink', 'lollipop-bar--sky', 'lollipop-bar--grape', 'lollipop-bar--tangerine', 'lollipop-bar--positive'];
+      let chapterBars = '';
+      for (let i = 0; i < CHAPTERS.length; i++) {
+        const ch = CHAPTERS[i];
+        const st = stats.byChapter[ch.id];
+        const chScore = st.correct * 10;
+        chapterBars += `
+          <div class="lollipop-row">
+            <div class="lollipop-label-row">
+              <span>Bab ${ch.number}: ${ch.shortTitle}</span>
+              <span>${chScore}/100 (${st.answered}/10 soal)</span>
+            </div>
+            <div class="lollipop-track">
+              <div class="lollipop-bar ${barColors[i]}" style="width: ${chScore}%;"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      const diffSpecs = [
+        { key: 'Mudah', prop: '30% Soal (15 soal)', cls: 'lollipop-bar--positive' },
+        { key: 'Sedang', prop: '50% Soal (25 soal)', cls: 'lollipop-bar--tangerine' },
+        { key: 'Sulit', prop: '20% Soal (10 soal)', cls: 'lollipop-bar--pink' }
+      ];
+      let diffBars = '';
+      for (let d = 0; d < diffSpecs.length; d++) {
+        const spec = diffSpecs[d];
+        const ds = stats.byDifficulty[spec.key];
+        const pct = Math.round((ds.correct / ds.total) * 100);
+        diffBars += `
+          <div class="lollipop-row">
+            <div class="lollipop-label-row">
+              <span>${spec.key} • ${spec.prop}</span>
+              <span>${ds.correct}/${ds.total} benar (${pct}%)</span>
+            </div>
+            <div class="lollipop-track">
+              <div class="lollipop-bar ${spec.cls}" style="width: ${pct}%;"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      const safeName = (appState.studentName || '').replace(/"/g, '&quot;');
+
+      return `
+        <section class="sticker-card sticker-card--sky">
+          <h2 class="section-heading">Rapor Belajar <em>Matematika</em></h2>
+          <p class="chapter-desc">${message}</p>
+        </section>
+
+        <div class="report-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Nilai per Bab (Skala 0–100)</h3>
+            <div class="lollipop-list">${chapterBars}</div>
+          </div>
+
+          <div class="chart-card chart-card--grape">
+            <h3 class="chart-title">Ketepatan per Tingkat Kesulitan</h3>
+            <div class="lollipop-list">${diffBars}</div>
+          </div>
+        </div>
+
+        <div class="student-export-card">
+          <div class="input-group">
+            <label class="input-label" for="student-name-input">Nama Lengkap Siswa (Untuk Rapor)</label>
+            <input
+              type="text"
+              id="student-name-input"
+              class="pill-input"
+              placeholder="Contoh: Alfa Pratama"
+              value="${safeName}"
+              oninput="updateStudentName(this.value)"
+            >
+          </div>
+          <button type="button" class="btn btn-secondary" onclick="downloadReport()">
+            <i data-lucide="download" aria-hidden="true"></i>
+            <span>Simpan Rapor (.txt)</span>
+          </button>
+          <button type="button" class="btn btn-primary" onclick="switchView('bab1')">
+            <i data-lucide="play" aria-hidden="true"></i>
+            <span>Kembali ke Kuis</span>
+          </button>
+        </div>
+      `;
+    }
+
+    function renderAll() {
+      renderHeaderStats();
+      renderChapterNav();
+      const main = document.getElementById('main-workspace');
+      if (!main) return;
+      if (appState.activeView === 'rapor') {
+        main.innerHTML = renderReportView();
+      } else {
+        main.innerHTML = renderChapterQuiz(appState.activeView);
+      }
+      refreshIcons();
+    }
+
+    // =========================================================================
+    // INISIALISASI & SHIM STATE PERSISTENCE
+    // =========================================================================
+    async function initQuizApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            if (saved.activeView) appState.activeView = saved.activeView;
+            if (saved.currentIndexByChapter) appState.currentIndexByChapter = Object.assign(appState.currentIndexByChapter, saved.currentIndexByChapter);
+            if (saved.answers && typeof saved.answers === 'object') appState.answers = saved.answers;
+            if (typeof saved.soundEnabled === 'boolean') appState.soundEnabled = saved.soundEnabled;
+            if (typeof saved.studentName === 'string') appState.studentName = saved.studentName;
+          }
+        }
+      } catch (err) {
+        // Fallback to default state
+      }
+
+      renderAll();
+
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+          window.notebookAppApi.notifyAppReady();
+        }
+      } catch (err) {
+        // Safe no-op outside host
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initQuizApp);
+  </script>
+</body>
+</html>
