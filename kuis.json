@@ -337,7 +337,57 @@
         {
           "id": "10",
           "nama": "Kelas 10",
-          "kuis": []
+          "kuis": [
+            {
+              "judul": "Kuis Eksponen",
+              "bab": "Bab Eksponen",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_Eksponen.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            },
+            {
+              "judul": "Kuis Barisan dan Deret",
+              "bab": "Bab Barisan dan Deret",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_Barisan_dan_Deret.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            },
+            {
+              "judul": "Kuis Perbandingan Trigonometri",
+              "bab": "Bab Perbandingan Trigonometri",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_Perbandingan_Trigonometri.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            },
+            {
+              "judul": "Kuis Sistem Persamaan dan Pertidaksamaan Liner",
+              "bab": "Bab Sistem Persamaan dan Pertidaksamaan Liner",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_SPL_dan_SPtLL.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            },
+            {
+              "judul": "Kuis Persamaan dan Fungsi Kuadrat",
+              "bab": "Bab Persamaan dan Fungsi Kuadrat",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_Persamaan_dan_Fungsi_Kuadrat.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            },
+            {
+              "judul": "Kuis Representasi dan Interpretasi Data",
+              "bab": "Bab Representasi dan Interpretasi Data",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_Representasi_dan_Interpretasi_Data.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            },
+            {
+              "judul": "Kuis Peluang",
+              "bab": "Bab Peluang",
+              "url": "https://suminto65.github.io/Kumpulan-Kuis/Kuis_Kelas_X_Peluang.html",
+              "jumlahSoal": 30,
+              "tanggal": "2026-11-28"
+            }
+          ]
         },
         {
           "id": "11",
